@@ -11,6 +11,7 @@ KruchyPlugin1/CodeBuilders/ICodeBuilder.cs -text
 KruchyPlugin1/CodeBuilders/InterfejsBuilder.cs -text
 KruchyPlugin1/CodeBuilders/PlikClassBuilder.cs -text
 KruchyPlugin1/CodeBuilders/StaleDlaKodu.cs -text
+KruchyPlugin1/DoZrobienia.txt -text
 KruchyPlugin1/Extensions/ProjektWrapperExtension.cs -text
 KruchyPlugin1/GlobalSuppressions.cs -text
 KruchyPlugin1/Guids.cs -text

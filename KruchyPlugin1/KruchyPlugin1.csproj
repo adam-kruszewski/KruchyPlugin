@@ -208,6 +208,7 @@
     <None Include="Resources\Images.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="DoZrobienia.txt" />
     <Content Include="Resources\Package.ico" />
   </ItemGroup>
   <ItemGroup>
