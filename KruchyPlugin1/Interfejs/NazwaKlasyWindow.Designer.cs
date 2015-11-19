@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.tbNazwaKlasy = new System.Windows.Forms.TextBox();
-            this.buttonZatwierdz = new System.Windows.Forms.Button();
             this.buttonAnuluj = new System.Windows.Forms.Button();
+            this.buttonZatwierdz = new System.Windows.Forms.Button();
+            this.tbNazwaKlasy = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -45,8 +45,35 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(296, 70);
+            this.panel1.Size = new System.Drawing.Size(464, 70);
             this.panel1.TabIndex = 0;
+            // 
+            // buttonAnuluj
+            // 
+            this.buttonAnuluj.Location = new System.Drawing.Point(377, 29);
+            this.buttonAnuluj.Name = "buttonAnuluj";
+            this.buttonAnuluj.Size = new System.Drawing.Size(75, 23);
+            this.buttonAnuluj.TabIndex = 3;
+            this.buttonAnuluj.Text = "Anuluj";
+            this.buttonAnuluj.UseVisualStyleBackColor = true;
+            this.buttonAnuluj.Click += new System.EventHandler(this.buttonAnuluj_Click);
+            // 
+            // buttonZatwierdz
+            // 
+            this.buttonZatwierdz.Location = new System.Drawing.Point(287, 29);
+            this.buttonZatwierdz.Name = "buttonZatwierdz";
+            this.buttonZatwierdz.Size = new System.Drawing.Size(75, 23);
+            this.buttonZatwierdz.TabIndex = 2;
+            this.buttonZatwierdz.Text = "Ok";
+            this.buttonZatwierdz.UseVisualStyleBackColor = true;
+            this.buttonZatwierdz.Click += new System.EventHandler(this.buttonZatwierdz_Click);
+            // 
+            // tbNazwaKlasy
+            // 
+            this.tbNazwaKlasy.Location = new System.Drawing.Point(167, 3);
+            this.tbNazwaKlasy.Name = "tbNazwaKlasy";
+            this.tbNazwaKlasy.Size = new System.Drawing.Size(285, 20);
+            this.tbNazwaKlasy.TabIndex = 1;
             // 
             // label1
             // 
@@ -57,38 +84,11 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Nazwa klasy";
             // 
-            // tbNazwaKlasy
-            // 
-            this.tbNazwaKlasy.Location = new System.Drawing.Point(76, 3);
-            this.tbNazwaKlasy.Name = "tbNazwaKlasy";
-            this.tbNazwaKlasy.Size = new System.Drawing.Size(213, 20);
-            this.tbNazwaKlasy.TabIndex = 1;
-            // 
-            // buttonZatwierdz
-            // 
-            this.buttonZatwierdz.Location = new System.Drawing.Point(115, 29);
-            this.buttonZatwierdz.Name = "buttonZatwierdz";
-            this.buttonZatwierdz.Size = new System.Drawing.Size(75, 23);
-            this.buttonZatwierdz.TabIndex = 2;
-            this.buttonZatwierdz.Text = "Ok";
-            this.buttonZatwierdz.UseVisualStyleBackColor = true;
-            this.buttonZatwierdz.Click += new System.EventHandler(this.buttonZatwierdz_Click);
-            // 
-            // buttonAnuluj
-            // 
-            this.buttonAnuluj.Location = new System.Drawing.Point(205, 29);
-            this.buttonAnuluj.Name = "buttonAnuluj";
-            this.buttonAnuluj.Size = new System.Drawing.Size(75, 23);
-            this.buttonAnuluj.TabIndex = 3;
-            this.buttonAnuluj.Text = "Anuluj";
-            this.buttonAnuluj.UseVisualStyleBackColor = true;
-            this.buttonAnuluj.Click += new System.EventHandler(this.buttonAnuluj_Click);
-            // 
             // NazwaKlasyWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(296, 70);
+            this.ClientSize = new System.Drawing.Size(464, 70);
             this.Controls.Add(this.panel1);
             this.Name = "NazwaKlasyWindow";
             this.Text = "NazwaKlasyWindow";
