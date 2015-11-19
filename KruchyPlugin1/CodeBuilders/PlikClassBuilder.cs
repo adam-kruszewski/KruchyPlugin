@@ -1,25 +1,33 @@
 ﻿using System.Collections.Generic;
-using System.Text;
 using System.Linq;
+using System.Text;
 
 namespace KruchyCompany.KruchyPlugin1.CodeBuilders
 {
     class PlikClassBuilder : ICodeBuilder
     {
         private const string jednostkaWciecia = StaleDlaKodu.JednostkaWciecia;
+        private string NazwaRodzajuObiektu { get; set; }
         private string Namespace { get; set; }
         private IList<string> Usingi { get; set; }
         private string Nazwa { get; set; }
         private IList<ICodeBuilder> Konstruktory { get; set; }
         private IList<ICodeBuilder> Metody { get; set; }
         private IList<ICodeBuilder> AtrybutyKlasy { get; set; }
-        private ICodeBuilder Klasa { get; set; }
+        private ICodeBuilder Obiekt { get; set; }
 
         public PlikClassBuilder()
         {
+            ZNazwaRodzajuObiektu("class");
             Usingi = new List<string>();
             Konstruktory = new List<ICodeBuilder>();
             AtrybutyKlasy = new List<ICodeBuilder>();
+        }
+
+        public PlikClassBuilder ZNazwaRodzajuObiektu(string nazwa)
+        {
+            this.NazwaRodzajuObiektu = nazwa;
+            return this;
         }
 
         public PlikClassBuilder WNamespace(string _namespace)
@@ -40,9 +48,9 @@ namespace KruchyCompany.KruchyPlugin1.CodeBuilders
             return this;
         }
 
-        public PlikClassBuilder ZKlasa(ICodeBuilder klasaBuilder)
+        public PlikClassBuilder ZObiektem(ICodeBuilder klasaBuilder)
         {
-            Klasa = klasaBuilder;
+            Obiekt = klasaBuilder;
             return this;
         }
 
@@ -86,7 +94,7 @@ namespace KruchyCompany.KruchyPlugin1.CodeBuilders
 
         private void GenerujZawartoscNamespace(StringBuilder outputBuilder)
         {
-            outputBuilder.AppendLine(Klasa.Build(StaleDlaKodu.WielokrotnoscWciecia(1)));
+            outputBuilder.AppendLine(Obiekt.Build(StaleDlaKodu.WielokrotnoscWciecia(1)));
 
             ////atrybuty klasy
             //foreach (var a in AtrybutyKlasy)

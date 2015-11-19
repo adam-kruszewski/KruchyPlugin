@@ -144,8 +144,10 @@
     <Compile Include="CodeBuilders\AtrybutBuilder.cs" />
     <Compile Include="CodeBuilders\ClassBuilder.cs" />
     <Compile Include="CodeBuilders\ICodeBuilder.cs" />
+    <Compile Include="CodeBuilders\InterfejsBuilder.cs" />
     <Compile Include="CodeBuilders\PlikClassBuilder.cs" />
     <Compile Include="CodeBuilders\StaleDlaKodu.cs" />
+    <Compile Include="Extensions\ProjektWrapperExtension.cs" />
     <Compile Include="Interfejs\NazwaKlasyWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -169,6 +171,9 @@
     <Compile Include="Testowo\TestowyWizard.cs" />
     <Compile Include="Testy\PlikClassBuilderTests.cs" />
     <Compile Include="Utils\DokumentWrapper.cs" />
+    <Compile Include="Utils\PlikWrapper.cs" />
+    <Compile Include="Utils\ProjektWrapper.cs" />
+    <Compile Include="Utils\SolutionWrapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Interfejs\NazwaKlasyWindow.resx">

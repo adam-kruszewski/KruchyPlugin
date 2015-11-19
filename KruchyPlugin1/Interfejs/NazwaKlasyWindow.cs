@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace KruchyCompany.KruchyPlugin1.Interfejs
@@ -13,10 +6,15 @@ namespace KruchyCompany.KruchyPlugin1.Interfejs
     public partial class NazwaKlasyWindow : Form
     {
         public string NazwaPliku { get; private set; }
+        public string EtykietaNazwyPliku
+        {
+            set { label1.Text = value; }
+        }
 
         public NazwaKlasyWindow()
         {
             InitializeComponent();
+            EtykietaNazwyPliku = "Nazwa pliku";
         }
 
         private void buttonAnuluj_Click(object sender, EventArgs e)

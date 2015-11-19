@@ -23,7 +23,7 @@ namespace KruchyCompany.KruchyPlugin1.Testy
                 new PlikClassBuilder()
                     .DodajUsing("piatka.using1")
                     .DodajUsing("piatka.klasa1")
-                    .ZKlasa(klasaBuilder)
+                    .ZObiektem(klasaBuilder)
                     .WNamespace("Kruchy.Plugin")
                         .Build();
         }

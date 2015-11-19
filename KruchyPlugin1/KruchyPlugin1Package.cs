@@ -222,16 +222,23 @@ namespace KruchyCompany.KruchyPlugin1
         {
             var dialog = new NazwaKlasyWindow();
             dialog.ShowDialog();
+            var dte = (DTE)GetService(typeof(SDTE));
         }
 
         private void MenuItemZrobKlaseService(object sender, EventArgs args)
         {
-            var dte = (DTE2)GetService(typeof(SDTE));
+            var dte = (DTE)GetService(typeof(SDTE));
             var n = dte.ActiveWindow.ProjectItem;
             var dialog = new NazwaKlasyWindow();
+            dialog.EtykietaNazwyPliku = "Nazwa pliku implementacji serwisu";
             dialog.ShowDialog();
+            if (string.IsNullOrEmpty(dialog.NazwaPliku))
+                return;
 
+            var solution = new SolutionWrapper(dte);
+            var g = new GenerowanieKlasService(solution);
 
+            g.Generuj(solution.AktualnyPlik, dialog.NazwaPliku);
         }
 
         #region [POMOCNICZE]

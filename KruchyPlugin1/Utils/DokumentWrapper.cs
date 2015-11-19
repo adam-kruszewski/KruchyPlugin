@@ -5,10 +5,17 @@ namespace KruchyCompany.KruchyPlugin1.Utils
     class DokumentWrapper
     {
         private readonly TextDocument textDocument;
+        private readonly ProjektWrapper projektWrapper;
 
         public DokumentWrapper(TextDocument textDocument)
         {
             this.textDocument = textDocument;
+        }
+
+        public DokumentWrapper(TextDocument textDocument, ProjektWrapper projekt)
+        {
+            this.textDocument = textDocument;
+            this.projektWrapper = projektWrapper;
         }
 
         public void DodajUsingaJesliTrzeba(string nazwaUsinga)

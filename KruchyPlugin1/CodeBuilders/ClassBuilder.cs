@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace KruchyCompany.KruchyPlugin1.CodeBuilders
 {
@@ -11,6 +9,7 @@ namespace KruchyCompany.KruchyPlugin1.CodeBuilders
         private string modyfikator { get; set; }
         private string nazwa { get; set; }
         private string nazwaNadklasy { get; set; }
+        private IList<string> interfejsy { get; set; }
         private IList<ICodeBuilder> metody { get; set; }
         private IList<ICodeBuilder> konstruktory { get; set; }
         private IList<ICodeBuilder> atrybuty { get; set; }
@@ -20,6 +19,7 @@ namespace KruchyCompany.KruchyPlugin1.CodeBuilders
             metody = new List<ICodeBuilder>();
             konstruktory = new List<ICodeBuilder>();
             atrybuty = new List<ICodeBuilder>();
+            interfejsy = new List<string>();
         }
 
         public ClassBuilder ZNazwa(string nazwa)
@@ -37,6 +37,12 @@ namespace KruchyCompany.KruchyPlugin1.CodeBuilders
         public ClassBuilder ZNadklasa(string nazwa)
         {
             nazwaNadklasy = nazwa;
+            return this;
+        }
+
+        public ClassBuilder DodajInterfejs(string nazwa)
+        {
+            interfejsy.Add(nazwa);
             return this;
         }
 
@@ -72,9 +78,31 @@ namespace KruchyCompany.KruchyPlugin1.CodeBuilders
             outputBuilder.Append(nazwa);
             if (!string.IsNullOrEmpty(nazwaNadklasy))
                 outputBuilder.Append(" : " + nazwaNadklasy);
+
+            var wcieciaDlaInterfejsu = wciecie;
+            if (interfejsy.Any())
+            {
+                if (string.IsNullOrEmpty(nazwaNadklasy))
+                    outputBuilder.Append(" : ");
+                else
+                {
+                    outputBuilder.Append(wcieciaDlaInterfejsu);
+                    outputBuilder.Append(", ");
+                }
+                outputBuilder.Append(interfejsy.First());
+            }
+
+            for (int i = 1; i < interfejsy.Count; i++)
+            {
+                wcieciaDlaInterfejsu += StaleDlaKodu.JednostkaWciecia;
+                outputBuilder.Append(wcieciaDlaInterfejsu);
+                outputBuilder.Append(", ");
+                outputBuilder.AppendLine(interfejsy[i]);
+            }
+
             outputBuilder.AppendLine();
             outputBuilder.AppendLine(wciecie + "{");
-            
+
             foreach (var k in konstruktory)
                 outputBuilder.AppendLine(
                     k.Build(StaleDlaKodu.WielokrotnoscWciecia(2)));
@@ -82,7 +110,7 @@ namespace KruchyCompany.KruchyPlugin1.CodeBuilders
             foreach (var m in metody)
                 outputBuilder.AppendLine(
                     m.Build(StaleDlaKodu.WielokrotnoscWciecia(2)));
-            
+
             outputBuilder.AppendLine(wciecie + "}");
             return outputBuilder.ToString();
         }

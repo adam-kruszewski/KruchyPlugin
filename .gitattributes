@@ -8,8 +8,10 @@ KruchyPlugin1/Akcje/WynikGenerowaniaKlasService.cs -text
 KruchyPlugin1/CodeBuilders/AtrybutBuilder.cs -text
 KruchyPlugin1/CodeBuilders/ClassBuilder.cs -text
 KruchyPlugin1/CodeBuilders/ICodeBuilder.cs -text
+KruchyPlugin1/CodeBuilders/InterfejsBuilder.cs -text
 KruchyPlugin1/CodeBuilders/PlikClassBuilder.cs -text
 KruchyPlugin1/CodeBuilders/StaleDlaKodu.cs -text
+KruchyPlugin1/Extensions/ProjektWrapperExtension.cs -text
 KruchyPlugin1/GlobalSuppressions.cs -text
 KruchyPlugin1/Guids.cs -text
 KruchyPlugin1/Interfejs/NazwaKlasyWindow.Designer.cs -text
@@ -32,5 +34,8 @@ KruchyPlugin1/Resources/Package.ico -text
 KruchyPlugin1/Testowo/TestowyWizard.cs -text
 KruchyPlugin1/Testy/PlikClassBuilderTests.cs -text
 KruchyPlugin1/Utils/DokumentWrapper.cs -text
+KruchyPlugin1/Utils/PlikWrapper.cs -text
+KruchyPlugin1/Utils/ProjektWrapper.cs -text
+KruchyPlugin1/Utils/SolutionWrapper.cs -text
 KruchyPlugin1/VSPackage.resx -text
 KruchyPlugin1/source.extension.vsixmanifest -text
