@@ -15,7 +15,7 @@ namespace KruchyCompany.KruchyPlugin1.Utils
         public DokumentWrapper(TextDocument textDocument, ProjektWrapper projekt)
         {
             this.textDocument = textDocument;
-            this.projektWrapper = projektWrapper;
+            this.projektWrapper = projekt;
         }
 
         public void DodajUsingaJesliTrzeba(string nazwaUsinga)

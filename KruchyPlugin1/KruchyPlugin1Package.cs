@@ -165,8 +165,8 @@ namespace KruchyCompany.KruchyPlugin1
             IntPtr dialogHwnd;
             uiShell.GetDialogOwnerHwnd(out dialogHwnd);
             Guid clsid = Guid.Empty;
-            int result;
-            wizardResult res = wizardResult.wizardResultSuccess;
+            //int result;
+            //wizardResult res = wizardResult.wizardResultSuccess;
             //var p1 = new object[0];
             //var p2 = new object[0];
             //new KruchyCompany.KruchyPlugin1.Testowo.TestowyWizard().Execute(
@@ -219,10 +219,18 @@ namespace KruchyCompany.KruchyPlugin1
 
         private void MenuItemZrobKlaseTestowa(
             object sender, EventArgs args)
-        {
-            var dialog = new NazwaKlasyWindow();
+            {
+            var dialog = new NazwaKlasyTestowForm(DajSolution());
             dialog.ShowDialog();
-            var dte = (DTE)GetService(typeof(SDTE));
+
+            if (string.IsNullOrEmpty(dialog.NazwaKlasy))
+                return;
+
+            new GenerowanieKlasyTestowej(DajSolution())
+                .Generuj(
+                    dialog.NazwaKlasy,
+                    dialog.Rodzaj,
+                    dialog.InterfejsTestowany);
         }
 
         private void MenuItemZrobKlaseService(object sender, EventArgs args)
@@ -248,6 +256,12 @@ namespace KruchyCompany.KruchyPlugin1
             IntPtr dialogHwnd;
             uiShell.GetDialogOwnerHwnd(out dialogHwnd);
             return dialogHwnd;
+        }
+
+        private SolutionWrapper DajSolution()
+        {
+            var dte = (DTE)GetService(typeof(SDTE));
+            return new SolutionWrapper(dte);
         }
         #endregion
     }

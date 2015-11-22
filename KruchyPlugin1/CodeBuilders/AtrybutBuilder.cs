@@ -11,10 +11,14 @@ namespace KruchyCompany.KruchyPlugin1.CodeBuilders
         private string Nazwa { get; set; }
 
         private IList<string> Parametry { get; set; }
+        private IList<AtrybutBuilder> KolejneAtrybuty { get; set; }
+        private bool Nawiasy { get; set; }
 
         public AtrybutBuilder()
         {
             Parametry = new List<string>();
+            KolejneAtrybuty = new List<AtrybutBuilder>();
+            Nawiasy = true;
         }
 
         public AtrybutBuilder ZNazwa(string nazwa)
@@ -25,7 +29,25 @@ namespace KruchyCompany.KruchyPlugin1.CodeBuilders
 
         public AtrybutBuilder DodajWartoscParametru(string wartosc)
         {
-            Parametry.Add(wartosc);
+            Parametry.Add("\"" + wartosc + "\"");
+            return this;
+        }
+
+        public AtrybutBuilder DodajWartoscParametruNieStringowa(string napis)
+        {
+            Parametry.Add(napis);
+            return this;
+        }
+
+        public AtrybutBuilder DodajKolejnyAtrybut(AtrybutBuilder builder)
+        {
+            KolejneAtrybuty.Add(builder);
+            return this;
+        }
+
+        public AtrybutBuilder BezNawiasow()
+        {
+            Nawiasy = false;
             return this;
         }
 
@@ -33,18 +55,24 @@ namespace KruchyCompany.KruchyPlugin1.CodeBuilders
         {
             var outputBuilder = new StringBuilder();
             outputBuilder.Append(wciecie);
-            outputBuilder.Append("[");
+            if (Nawiasy)
+                outputBuilder.Append("[");
             outputBuilder.Append(Nazwa);
 
             if (Parametry.Any())
             {
                 outputBuilder.Append("(");
-                var p = Parametry.Select(o => "\"" + o + "\"");
-                outputBuilder.Append(string.Join(", ", p));
+                outputBuilder.Append(string.Join(", ", Parametry));
                 outputBuilder.Append(")");
             }
+            foreach (var kolejnyAtrybut in KolejneAtrybuty)
+            {
+                outputBuilder.Append(", ");
+                outputBuilder.Append(kolejnyAtrybut.BezNawiasow().Build());
+            }
 
-            outputBuilder.AppendLine("]");
+            if (Nawiasy)
+                outputBuilder.AppendLine("]");
 
             return outputBuilder.ToString();
         }

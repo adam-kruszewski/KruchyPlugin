@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace KruchyCompany.KruchyPlugin1.Utils
 {
-    class SolutionWrapper
+    public class SolutionWrapper
     {
         private readonly DTE dte;
 
@@ -18,7 +18,20 @@ namespace KruchyCompany.KruchyPlugin1.Utils
 
         public string Nazwa { get; set; }
 
-        public IList<ProjektWrapper> Projekty { get; set; }
+        public IList<ProjektWrapper> Projekty
+        {
+            get
+            {
+                var wynik = new List<ProjektWrapper>();
+                var solution = dte.Solution;
+                for (int i = 1; i <= solution.Count; i++)
+                {
+                    var p = solution.Projects.Item(i);
+                    wynik.Add(new ProjektWrapper(p));
+                }
+                return wynik;
+            }
+        }
 
         public void UstawSieNaPliku(string nazwa)
         {
@@ -38,6 +51,11 @@ namespace KruchyCompany.KruchyPlugin1.Utils
         public PlikWrapper AktualnyPlik
         {
             get { return new PlikWrapper(dte.ActiveDocument); }
+        }
+
+        public ProjektWrapper ZnajdzProjekt(string nazwa)
+        {
+            return Projekty.Where(o => o.Nazwa == nazwa).FirstOrDefault();
         }
     }
 }

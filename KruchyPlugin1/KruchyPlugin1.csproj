@@ -138,6 +138,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Akcje\GenerowanieKlasService.cs" />
+    <Compile Include="Akcje\GenerowanieKlasyTestowej.cs" />
+    <Compile Include="Akcje\RodzajKlasyTestowej.cs" />
     <Compile Include="Akcje\UzupelnianieReferencedObject.cs" />
     <Compile Include="Akcje\UzupelnianieTagowDefiniujacychTabele.cs" />
     <Compile Include="Akcje\WynikGenerowaniaKlasService.cs" />
@@ -148,6 +150,12 @@
     <Compile Include="CodeBuilders\PlikClassBuilder.cs" />
     <Compile Include="CodeBuilders\StaleDlaKodu.cs" />
     <Compile Include="Extensions\ProjektWrapperExtension.cs" />
+    <Compile Include="Interfejs\NazwaKlasyTestowForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfejs\NazwaKlasyTestowForm.Designer.cs">
+      <DependentUpon>NazwaKlasyTestowForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Interfejs\NazwaKlasyWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -176,6 +184,9 @@
     <Compile Include="Utils\SolutionWrapper.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Interfejs\NazwaKlasyTestowForm.resx">
+      <DependentUpon>NazwaKlasyTestowForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Interfejs\NazwaKlasyWindow.resx">
       <DependentUpon>NazwaKlasyWindow.cs</DependentUpon>
     </EmbeddedResource>

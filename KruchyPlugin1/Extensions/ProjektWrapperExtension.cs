@@ -14,5 +14,10 @@ namespace KruchyCompany.KruchyPlugin1.Extensions
         {
             return Path.Combine(SciezkaDoService(projekt), "Impl");
         }
+
+        public static string SciezkaDoUnitTests(this ProjektWrapper projekt)
+        {
+            return Path.Combine(projekt.SciezkaDoKatalogu, "Unit");
+        }
     }
 }

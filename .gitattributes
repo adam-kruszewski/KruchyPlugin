@@ -2,6 +2,8 @@
 /KruchyPlugin.sln -text
 /KruchyPlugin.v12.suo -text
 KruchyPlugin1/Akcje/GenerowanieKlasService.cs -text
+KruchyPlugin1/Akcje/GenerowanieKlasyTestowej.cs -text
+KruchyPlugin1/Akcje/RodzajKlasyTestowej.cs -text
 KruchyPlugin1/Akcje/UzupelnianieReferencedObject.cs -text
 KruchyPlugin1/Akcje/UzupelnianieTagowDefiniujacychTabele.cs -text
 KruchyPlugin1/Akcje/WynikGenerowaniaKlasService.cs -text
@@ -15,6 +17,9 @@ KruchyPlugin1/DoZrobienia.txt -text
 KruchyPlugin1/Extensions/ProjektWrapperExtension.cs -text
 KruchyPlugin1/GlobalSuppressions.cs -text
 KruchyPlugin1/Guids.cs -text
+KruchyPlugin1/Interfejs/NazwaKlasyTestowForm.Designer.cs -text
+KruchyPlugin1/Interfejs/NazwaKlasyTestowForm.cs -text
+KruchyPlugin1/Interfejs/NazwaKlasyTestowForm.resx -text
 KruchyPlugin1/Interfejs/NazwaKlasyWindow.Designer.cs -text
 KruchyPlugin1/Interfejs/NazwaKlasyWindow.cs -text
 KruchyPlugin1/Interfejs/NazwaKlasyWindow.resx -text
