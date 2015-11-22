@@ -2,7 +2,7 @@
 
 namespace KruchyCompany.KruchyPlugin1.Utils
 {
-    class DokumentWrapper
+    public class DokumentWrapper
     {
         private readonly TextDocument textDocument;
         private readonly ProjektWrapper projektWrapper;

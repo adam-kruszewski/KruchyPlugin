@@ -14,6 +14,11 @@ namespace KruchyCompany.KruchyPlugin1
         public const uint cmdidZrobKlaseService = 0x0106;
         public const uint cmdidZrobKlaseDao = 0x0107;
 
+        public const uint cmdidDodajUsingMapowan = 0x0142;
+        public const uint cmdidDodajUsingFluentAssertion = 0x0143;
+        public const uint cmdidDodajUsingBuilderow = 0x0144;
+        public const uint cmdidDodajUsingLinq = 0x0145;
+
         //dla poruszania się po klasach ui
         public const uint cmidPrzejdzDoGridRowActions = 0x0201;
         public const uint cmidPrzejdzDoGridToolbar = 0x0202;

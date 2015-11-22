@@ -91,7 +91,10 @@ namespace KruchyCompany.KruchyPlugin1
             if (null != mcs)
             {
                 // Create the command for the menu item.
-                CommandID menuCommandID = new CommandID(GuidList.guidKruchyPlugin1CmdSet, (int)PkgCmdIDList.cmdidTestowaCommand);
+                CommandID menuCommandID =
+                    new CommandID(
+                        GuidList.guidKruchyPlugin1CmdSet,
+                        (int)PkgCmdIDList.cmdidTestowaCommand);
                 MenuCommand menuItem = new MenuCommand(MenuItemCallback, menuCommandID);
                 mcs.AddCommand(menuItem);
 
@@ -129,6 +132,23 @@ namespace KruchyCompany.KruchyPlugin1
                     mcs,
                     PkgCmdIDList.cmdidZrobKlaseService,
                     MenuItemZrobKlaseService);
+                PodlaczDoMenu(
+                    mcs,
+                    PkgCmdIDList.cmdidDodajUsingMapowan,
+                    MenuItemDodajUsingMapowan);
+
+                PodlaczDoMenu(
+                    mcs,
+                    PkgCmdIDList.cmdidDodajUsingFluentAssertion,
+                    MenuItemDodajUsingFluentAssertion);
+                PodlaczDoMenu(
+                    mcs,
+                    PkgCmdIDList.cmdidDodajUsingBuilderow,
+                    MenuItemDodajUsingBuilderów);
+                PodlaczDoMenu(
+                    mcs,
+                    PkgCmdIDList.cmdidDodajUsingLinq,
+                    MenuItemDodajUsingLinq);
                 // Create the command for the tool window
                 CommandID toolwndCommandID = new CommandID(GuidList.guidKruchyPlugin1CmdSet, (int)PkgCmdIDList.cmdidMyTool);
                 MenuCommand menuToolWin = new MenuCommand(ShowToolWindow, toolwndCommandID);
@@ -219,7 +239,7 @@ namespace KruchyCompany.KruchyPlugin1
 
         private void MenuItemZrobKlaseTestowa(
             object sender, EventArgs args)
-            {
+        {
             var dialog = new NazwaKlasyTestowForm(DajSolution());
             dialog.ShowDialog();
 
@@ -247,6 +267,28 @@ namespace KruchyCompany.KruchyPlugin1
             var g = new GenerowanieKlasService(solution);
 
             g.Generuj(solution.AktualnyPlik, dialog.NazwaPliku);
+        }
+
+        private void MenuItemDodajUsingMapowan(object sender, EventArgs args)
+        {
+            new DodawaniaUsinga(DajSolution())
+                .Dodaj("Piatka.Infrastructure.Mappings");
+        }
+
+        private void MenuItemDodajUsingFluentAssertion(object sender, EventArgs args)
+        {
+            new DodawaniaUsinga(DajSolution()).Dodaj("FluentAssertions");
+        }
+
+        private void MenuItemDodajUsingBuilderów(object sender, EventArgs args)
+        {
+            new DodawaniaUsinga(DajSolution())
+                .Dodaj("Piatka.Infrastructure.Tests.Builders");
+        }
+
+        private void MenuItemDodajUsingLinq(object sender, EventArgs args)
+        {
+            new DodawaniaUsinga(DajSolution()).Dodaj("System.Linq");
         }
 
         #region [POMOCNICZE]

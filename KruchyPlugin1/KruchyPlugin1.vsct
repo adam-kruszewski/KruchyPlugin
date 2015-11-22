@@ -42,6 +42,15 @@
           <CommandName>&amp;Kruchy plugin</CommandName>
         </Strings>
       </Menu>
+
+      <Menu guid="guidKruchyPlugin1CmdSet" id="DodajUsingiMenu"
+            priority="0x0110" type="Menu">
+        <Parent guid="guidKruchyPlugin1CmdSet" id="TopLevelMenu"/>
+        <Strings>
+          <ButtonText>Dodaj usingi</ButtonText>
+          <CommandName>Dodaj usingi</CommandName>
+        </Strings>
+      </Menu>
     </Menus>
 
     <!-- In this section you can define new menu groups. A menu group is a container for 
@@ -66,6 +75,10 @@
         <Parent guid="guidKruchyPlugin1CmdSet" id="MyMenuGroup"/>
       </Group>
 
+      <Group guid="guidKruchyPlugin1CmdSet" id="DodajUsingiMenuGroup" priority="0x0101">
+        <Parent guid="guidKruchyPlugin1CmdSet" id="DodajUsingiMenu"/>
+      </Group>
+
     </Groups>
 
     <!--Buttons section. -->
@@ -80,13 +93,15 @@
               <CommandFlag>DynamicVisibility</CommandFlag>
           If you do not want an image next to your command, remove the Icon node /> -->
 
-      <Button guid="guidKruchyPlugin1CmdSet" id="cmdidTestowaCommand" priority="0x0100" type="Button">
+      <!--<Button guid="guidKruchyPlugin1CmdSet" id="cmdidTestowaCommand" priority="0x0100" type="Button">
         <Parent guid="guidKruchyPlugin1CmdSet" id="MyMenuGroup" />
-        <!--<Icon guid="guidImages" id="bmpPic1" />-->
+        -->
+      <!--<Icon guid="guidImages" id="bmpPic1" />-->
+      <!--
         <Strings>
           <ButtonText>Moja testowa command</ButtonText>
         </Strings>
-      </Button>
+      </Button>-->
 
       <Button guid="guidKruchyPlugin1CmdSet" id="cmdidUzupelnijAtrybutKluczaObcego" priority="0x0100" type="Button">
         <Parent guid="guidKruchyPlugin1CmdSet" id="MyMenuGroup" />
@@ -119,7 +134,7 @@
           <ButtonText>Zrób klasę serwisu</ButtonText>
         </Strings>
       </Button>
-      
+
 
       <Button guid="guidKruchyPlugin1CmdSet" id="cmdidMyTool" priority="0x0100" type="Button">
         <Parent guid="guidSHLMainMenu" id="IDG_VS_WNDO_OTRWNDWS1"/>
@@ -129,6 +144,34 @@
         </Strings>
       </Button>
 
+      <Button guid="guidKruchyPlugin1CmdSet" id="cmdidDodajUsingMapowan" priority="0x0104" type="Button">
+        <Parent guid="guidKruchyPlugin1CmdSet" id="MyMenuGroup" />
+        <Strings>
+          <CommandName>cmdidDodajUsingMapowan</CommandName>
+          <ButtonText>Dodaj using mapowań</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidKruchyPlugin1CmdSet" id="cmdidDodajUsingFluentAssertion" priority="0x0105" type="Button">
+        <Parent guid="guidKruchyPlugin1CmdSet" id="MyMenuGroup" />
+        <Strings>
+          <CommandName>cmdidDodajUsingFluentAssertion</CommandName>
+          <ButtonText>Dodaj using FluentAssertion</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidKruchyPlugin1CmdSet" id="cmdidDodajUsingBuilderow" priority="0x0106" type="Button">
+        <Parent guid="guidKruchyPlugin1CmdSet" id="MyMenuGroup" />
+        <Strings>
+          <CommandName>cmdidDodajUsingBuilderow</CommandName>
+          <ButtonText>Dodaj using builderów</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidKruchyPlugin1CmdSet" id="cmdidDodajUsingLinq" priority="0x0107" type="Button">
+        <Parent guid="guidKruchyPlugin1CmdSet" id="MyMenuGroup" />
+        <Strings>
+          <CommandName>cmdidDodajUsingLinq</CommandName>
+          <ButtonText>Dodaj using Linq</ButtonText>
+        </Strings>
+      </Button>
 
     </Buttons>
 
@@ -151,22 +194,35 @@
 
   <Symbols>
     <!-- This is the package guid. -->
-    <GuidSymbol name="guidKruchyPlugin1Pkg" value="{63471d1f-5b0f-4928-a0e3-1645e2c050a6}" />
-    <!--<GuidSymbol name="guidKruchyPlugin1Pkg" value="{B7F7C8CF-F01E-4EB7-AFD6-3F0E25641769}" />-->
+    <GuidSymbol
+      name="guidKruchyPlugin1Pkg"
+      value="{63471d1f-5b0f-4928-a0e3-1645e2c050a6}" />
     <!-- This is the guid used to group the menu commands together -->
-    <GuidSymbol name="guidKruchyPlugin1CmdSet" value="{eccbde9b-9ae4-4438-aece-278a7b5db517}">
+    <GuidSymbol name="guidKruchyPlugin1CmdSet"
+                value="{eccbde9b-9ae4-4438-aece-278a7b5db517}">
 
       <IDSymbol name="MyMenuGroup" value="0x1020" />
       <IDSymbol name="SubMenuGroup" value="0x1022" />
       <IDSymbol name="MRUListGroup" value="0x1023" />
       <IDSymbol name="cmdidTestowaCommand" value="0x0100" />
+
       <IDSymbol name="cmdidMyTool" value="0x0101" />
+
       <IDSymbol name="cmdidUzupelnijAtrybutKluczaObcego" value="0x0102" />
       <IDSymbol name="cmdidUzupelnijTagiDefiniujaceTabele" value="0x0103"/>
       <IDSymbol name="cmdidZrobKlaseTestowa" value="0x0105"/>
       <IDSymbol name="cmdidZrobKlaseService" value="0x0106"/>
-      
+
       <IDSymbol name="TopLevelMenu" value="0x1021"/>
+
+      <!-- Menu z dodaj usingi -->
+      <IDSymbol name="DodajUsingiMenu" value="0x0140"/>
+      <IDSymbol name="DodajUsingiMenuGroup" value="0x0141"/>
+
+      <IDSymbol name="cmdidDodajUsingMapowan" value="0x142"/>
+      <IDSymbol name="cmdidDodajUsingFluentAssertion" value="0x0143"/>
+      <IDSymbol name="cmdidDodajUsingBuilderow" value="0x0144"/>
+      <IDSymbol name="cmdidDodajUsingLinq" value="0x0145"/>
     </GuidSymbol>
 
     <GuidSymbol name="guidImages" value="{3182c5d1-dd1b-4142-93a5-d00d6b369205}" >

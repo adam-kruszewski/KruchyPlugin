@@ -15,6 +15,7 @@ namespace KruchyCompany.KruchyPlugin1.Utils
         {
             this.document = document;
         }
+
         public string Nazwa
         {
             get
@@ -47,6 +48,15 @@ namespace KruchyCompany.KruchyPlugin1.Utils
             get
             {
                 return new ProjektWrapper(document.ProjectItem.ContainingProject);
+            }
+        }
+
+        public DokumentWrapper Dokument
+        {
+            get
+            {
+                var textDocument = (TextDocument) document.Object("TextDocument");
+                return new DokumentWrapper(textDocument);
             }
         }
     }
