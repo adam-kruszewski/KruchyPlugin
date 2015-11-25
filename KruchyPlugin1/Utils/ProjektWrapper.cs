@@ -41,16 +41,46 @@ namespace KruchyCompany.KruchyPlugin1.Utils
             }
         }
 
-        public PlikWrapper[] Pliki { get; set; }
-
-        public void DodajPlik(string katalog, string nazwaPliku, bool implementacja)
+        public PlikWrapper[] Pliki
         {
-            throw new System.NotImplementedException();
+            get
+            {
+                var listaPlikow = new List<PlikWrapper>();
+                foreach (ProjectItem pi in project.ProjectItems)
+                {
+                    SzukajPlikow(listaPlikow, pi);
+                }
+                return listaPlikow.ToArray();
+            }
         }
 
-        public void DodajPlik(string sciezka)
+        private void SzukajPlikow(
+            List<PlikWrapper> listaPlikow,
+            ProjectItem pi)
         {
-            project.ProjectItems.AddFromFile(sciezka);
+            if (JestPlikiemWProjekcie(pi))
+                listaPlikow.Add(new PlikWrapper(pi));
+            else
+            {
+                foreach (ProjectItem piDzieci in pi.ProjectItems)
+                    SzukajPlikow(listaPlikow, piDzieci);
+            }
+        }
+
+        private bool JestPlikiemWProjekcie(ProjectItem pi)
+        {
+            if (pi.FileCount != 1)
+                return false;
+            var fi = new FileInfo(pi.FileNames[0]);
+            if (Directory.Exists(fi.FullName))
+                return false;
+            return true;
+        }
+
+        public PlikWrapper DodajPlik(string sciezka)
+        {
+            return new PlikWrapper(
+                project.ProjectItems.AddFromFile(sciezka));
         }
     }
 }

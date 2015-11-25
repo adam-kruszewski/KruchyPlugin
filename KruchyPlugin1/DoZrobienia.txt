@@ -1,18 +1,17 @@
-﻿Generowanie klasy testowej dla serwisu
+﻿+Generowanie klasy testowej dla serwisu
 Generowanie validatora dla obiektu
 Generowanie Dao dla obiektu
-
 
 Przemieszczanie się po solution
  - będąc w kontrolerze przejść do katalogu z widoki
  - wygenerowanie widoku dla zaznaczonego nazwy w controlerze
-  - przenoszenie z interfejsu do implementacji
+ - przenoszenie z interfejsu do implementacji
 
 Uzupełnianie usingów do:
- - mapowań
- - builderów, tzn. np. overide
- - do linq
++ - mapowań
++ - builderów, tzn. np. overide
++ - do linq
 
  W kodzie
- - dodanie/zamiana w linii public/private
++ - dodanie/zamiana w linii public/private
  - dodanie nowego testu

@@ -5,6 +5,7 @@ namespace KruchyCompany.KruchyPlugin1.CodeBuilders
     class StaleDlaKodu
     {
         public const string JednostkaWciecia = "    ";
+        public const string WciecieDlaMetody = JednostkaWciecia + JednostkaWciecia;
 
         public static string WielokrotnoscWciecia(int ile)
         {

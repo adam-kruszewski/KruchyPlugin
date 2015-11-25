@@ -18,6 +18,8 @@ namespace KruchyCompany.KruchyPlugin1
         public const uint cmdidDodajUsingFluentAssertion = 0x0143;
         public const uint cmdidDodajUsingBuilderow = 0x0144;
         public const uint cmdidDodajUsingLinq = 0x0145;
+        public const uint cmdidZmienNaPublic = 0x0150;
+        public const uint cmdidZmienNaPrivate = 0x0151;
 
         //dla poruszania się po klasach ui
         public const uint cmidPrzejdzDoGridRowActions = 0x0201;

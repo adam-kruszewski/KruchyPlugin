@@ -14,6 +14,7 @@ using System.Windows;
 using KruchyCompany.KruchyPlugin1.Akcje;
 using KruchyCompany.KruchyPlugin1.Utils;
 using KruchyCompany.KruchyPlugin1.Interfejs;
+using System.Text;
 
 namespace KruchyCompany.KruchyPlugin1
 {
@@ -149,6 +150,15 @@ namespace KruchyCompany.KruchyPlugin1
                     mcs,
                     PkgCmdIDList.cmdidDodajUsingLinq,
                     MenuItemDodajUsingLinq);
+
+                PodlaczDoMenu(
+                    mcs,
+                    PkgCmdIDList.cmdidZmienNaPublic,
+                    MenuItemZmienNaPublic);
+                PodlaczDoMenu(
+                    mcs,
+                    PkgCmdIDList.cmdidZmienNaPrivate,
+                    MenuItemZmienNaPrivate);
                 // Create the command for the tool window
                 CommandID toolwndCommandID = new CommandID(GuidList.guidKruchyPlugin1CmdSet, (int)PkgCmdIDList.cmdidMyTool);
                 MenuCommand menuToolWin = new MenuCommand(ShowToolWindow, toolwndCommandID);
@@ -197,7 +207,6 @@ namespace KruchyCompany.KruchyPlugin1
             var proj = sol.Projects.Item(1);
             proj.ProjectItems.AddFromFile(
                 "c:\\adam\\projekty\\testy\\Kruchy.Test\\a1.cs");
-
             //Microsoft.VisualStudio.ErrorHandler.ThrowOnFailure(uiShell.ShowMessageBox(
             //           0,
             //           ref clsid,
@@ -217,14 +226,6 @@ namespace KruchyCompany.KruchyPlugin1
         {
             var dte = (DTE2)GetService(typeof(SDTE));
             new UzupelnianieReferencedObject(dte).Uzupelnij();
-            //var sol = (_Solution) dte.Solution;
-            //var project = sol.Projects.Item(0);
-            ////project.ProjectItems.
-            //var textDoc = (TextDocument) dte.ActiveDocument.Object("TextDocument");
-            //EditPoint objEditPoint =
-            //    (EditPoint)textDoc.StartPoint.CreateEditPoint();
-            //var t1 = objEditPoint.GetText(10);
-            //objEditPoint.Insert("aaaa");
         }
 
         private void MenuItemUzupelnijTagiDefiniujaceTabele(
@@ -255,7 +256,7 @@ namespace KruchyCompany.KruchyPlugin1
 
         private void MenuItemZrobKlaseService(object sender, EventArgs args)
         {
-            var dte = (DTE)GetService(typeof(SDTE));
+            var dte = (DTE2)GetService(typeof(SDTE));
             var n = dte.ActiveWindow.ProjectItem;
             var dialog = new NazwaKlasyWindow();
             dialog.EtykietaNazwyPliku = "Nazwa pliku implementacji serwisu";
@@ -291,6 +292,44 @@ namespace KruchyCompany.KruchyPlugin1
             new DodawaniaUsinga(DajSolution()).Dodaj("System.Linq");
         }
 
+        private void MenuItemZmienNaPublic(object sender, EventArgs args)
+        {
+            new ZmianaModyfikatoraMetody(DajAktualnyDokument()).ZmienNa("public");
+        }
+
+        private void MenuItemZmienNaPrivate(object sender, EventArgs args)
+        {
+            new ZmianaModyfikatoraMetody(DajAktualnyDokument()).ZmienNa("private");
+        }
+
+        void slnExplUIHierarchyExample(DTE2 dte)
+        {
+            UIHierarchy UIH = dte.ToolWindows.SolutionExplorer;
+            // Requires a reference to System.Text.
+            // Set a reference to the first level nodes in Solution Explorer. 
+            // Automation collections are one-based.
+            UIHierarchyItem UIHItem = UIH.UIHierarchyItems.Item(1);
+            StringBuilder sb = new StringBuilder();
+
+            // Iterate through first level nodes.
+            foreach (UIHierarchyItem fid in UIHItem.UIHierarchyItems)
+            {
+                sb.AppendLine(fid.Name);
+                // Iterate through second level nodes (if they exist).
+                foreach (UIHierarchyItem subitem in fid.UIHierarchyItems)
+                {
+                    sb.AppendLine("   " + subitem.Name);
+                    // Iterate through third level nodes (if they exist).
+                    foreach (UIHierarchyItem subSubItem in
+                      subitem.UIHierarchyItems)
+                    {
+                        sb.AppendLine("        " + subSubItem.Name);
+                    }
+                }
+            }
+            var zaw = sb.ToString();
+        }
+
         #region [POMOCNICZE]
         private IntPtr ParentHwnd()
         {
@@ -302,8 +341,15 @@ namespace KruchyCompany.KruchyPlugin1
 
         private SolutionWrapper DajSolution()
         {
-            var dte = (DTE)GetService(typeof(SDTE));
+            var dte = (DTE2)GetService(typeof(SDTE));
             return new SolutionWrapper(dte);
+        }
+
+        private DokumentWrapper DajAktualnyDokument()
+        {
+            var dte = (DTE2)GetService(typeof(SDTE));
+            var textDoc = (TextDocument)dte.ActiveDocument.Object("TextDocument");
+            return new DokumentWrapper(textDoc);
         }
         #endregion
     }

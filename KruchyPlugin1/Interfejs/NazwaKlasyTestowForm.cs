@@ -34,8 +34,9 @@ namespace KruchyCompany.KruchyPlugin1.Interfejs
             if (solution.AktualnyPlik == null)
                 throw new ApplicationException("Brak otwartego pliku");
             comboRodzajMigracji.SelectedIndex = 0;
-            tbInterfejsTestowany.Text =
-                "I" + solution.AktualnyPlik.NazwaBezRozszerzenia;
+            tbInterfejsTestowany.Text = solution.AktualnyPlik.NazwaBezRozszerzenia;
+            if (!tbInterfejsTestowany.Text.StartsWith("I"))
+                tbInterfejsTestowany.Text = "I" + tbInterfejsTestowany.Text;
             tbNazwaKlasyTestowej.Text =
                 solution.AktualnyPlik.NazwaBezRozszerzenia + "Tests";
         }

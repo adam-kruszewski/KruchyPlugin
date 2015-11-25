@@ -69,12 +69,34 @@ namespace KruchyCompany.KruchyPlugin1.Utils
             poczatekLinii.Insert(tekst);
         }
 
+        public void WstawWMiejscu(string tekst, int numerLinii, int numerKolumny)
+        {
+            var editPoint = DajEditPointPoczatkuLinii(numerLinii);
+            editPoint.MoveToLineAndOffset(numerLinii, numerKolumny);
+            editPoint.Insert(tekst);
+        }
+
+        public void UsunWMiejscu(int numerLinii, int numerKolumny, int dlugosc)
+        {
+            var editPoint = DajEditPointMiejsca(numerLinii, numerKolumny);
+            var editPointKoniec = DajEditPointMiejsca(numerLinii, numerKolumny + dlugosc);
+            editPoint.Delete(editPointKoniec);
+        }
+
         private EditPoint DajEditPointPoczatkuLinii(
             int numerLinii)
         {
             var poczatekLinii = textDocument.CreateEditPoint();
             poczatekLinii.MoveToLineAndOffset(numerLinii, 1);
             return poczatekLinii;
+        }
+
+        private EditPoint DajEditPointMiejsca(
+            int numerLinii, int numerKolumny)
+        {
+            var editPoint = DajEditPointPoczatkuLinii(numerLinii);
+            editPoint.MoveToLineAndOffset(numerLinii, numerKolumny);
+            return editPoint;
         }
 
         public int DajLiczbeLinii()

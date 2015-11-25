@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.labelNazwaKlasy = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.tbNazwaKlasyTestowej = new System.Windows.Forms.TextBox();
-            this.comboRodzajMigracji = new System.Windows.Forms.ComboBox();
-            this.tbInterfejsTestowany = new System.Windows.Forms.TextBox();
-            this.buttonGeneruj = new System.Windows.Forms.Button();
             this.buttonAnuluj = new System.Windows.Forms.Button();
+            this.buttonGeneruj = new System.Windows.Forms.Button();
+            this.tbInterfejsTestowany = new System.Windows.Forms.TextBox();
+            this.comboRodzajMigracji = new System.Windows.Forms.ComboBox();
+            this.tbNazwaKlasyTestowej = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.labelNazwaKlasy = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,65 +56,6 @@
             this.panel1.Size = new System.Drawing.Size(418, 119);
             this.panel1.TabIndex = 0;
             // 
-            // labelNazwaKlasy
-            // 
-            this.labelNazwaKlasy.AutoSize = true;
-            this.labelNazwaKlasy.Location = new System.Drawing.Point(3, 9);
-            this.labelNazwaKlasy.Name = "labelNazwaKlasy";
-            this.labelNazwaKlasy.Size = new System.Drawing.Size(109, 13);
-            this.labelNazwaKlasy.TabIndex = 0;
-            this.labelNazwaKlasy.Text = "Nazwa klasy testowej";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 32);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(74, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Rodzaj testów";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 56);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(95, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Interfejs testowany";
-            // 
-            // tbNazwaKlasyTestowej
-            // 
-            this.tbNazwaKlasyTestowej.Location = new System.Drawing.Point(119, 9);
-            this.tbNazwaKlasyTestowej.Name = "tbNazwaKlasyTestowej";
-            this.tbNazwaKlasyTestowej.Size = new System.Drawing.Size(290, 20);
-            this.tbNazwaKlasyTestowej.TabIndex = 3;
-            // 
-            // comboRodzajMigracji
-            // 
-            this.comboRodzajMigracji.FormattingEnabled = true;
-            this.comboRodzajMigracji.Location = new System.Drawing.Point(119, 32);
-            this.comboRodzajMigracji.Name = "comboRodzajMigracji";
-            this.comboRodzajMigracji.Size = new System.Drawing.Size(290, 21);
-            this.comboRodzajMigracji.TabIndex = 4;
-            // 
-            // tbInterfejsTestowany
-            // 
-            this.tbInterfejsTestowany.Location = new System.Drawing.Point(119, 56);
-            this.tbInterfejsTestowany.Name = "tbInterfejsTestowany";
-            this.tbInterfejsTestowany.Size = new System.Drawing.Size(290, 20);
-            this.tbInterfejsTestowany.TabIndex = 5;
-            // 
-            // buttonGeneruj
-            // 
-            this.buttonGeneruj.Location = new System.Drawing.Point(253, 82);
-            this.buttonGeneruj.Name = "buttonGeneruj";
-            this.buttonGeneruj.Size = new System.Drawing.Size(75, 23);
-            this.buttonGeneruj.TabIndex = 6;
-            this.buttonGeneruj.Text = "Generuj";
-            this.buttonGeneruj.UseVisualStyleBackColor = true;
-            this.buttonGeneruj.Click += new System.EventHandler(this.buttonGeneruj_Click);
-            // 
             // buttonAnuluj
             // 
             this.buttonAnuluj.DialogResult = System.Windows.Forms.DialogResult.Cancel;
@@ -126,8 +67,68 @@
             this.buttonAnuluj.UseVisualStyleBackColor = true;
             this.buttonAnuluj.Click += new System.EventHandler(this.buttonAnuluj_Click);
             // 
+            // buttonGeneruj
+            // 
+            this.buttonGeneruj.Location = new System.Drawing.Point(253, 82);
+            this.buttonGeneruj.Name = "buttonGeneruj";
+            this.buttonGeneruj.Size = new System.Drawing.Size(75, 23);
+            this.buttonGeneruj.TabIndex = 6;
+            this.buttonGeneruj.Text = "Generuj";
+            this.buttonGeneruj.UseVisualStyleBackColor = true;
+            this.buttonGeneruj.Click += new System.EventHandler(this.buttonGeneruj_Click);
+            // 
+            // tbInterfejsTestowany
+            // 
+            this.tbInterfejsTestowany.Location = new System.Drawing.Point(119, 56);
+            this.tbInterfejsTestowany.Name = "tbInterfejsTestowany";
+            this.tbInterfejsTestowany.Size = new System.Drawing.Size(290, 20);
+            this.tbInterfejsTestowany.TabIndex = 5;
+            // 
+            // comboRodzajMigracji
+            // 
+            this.comboRodzajMigracji.FormattingEnabled = true;
+            this.comboRodzajMigracji.Location = new System.Drawing.Point(119, 32);
+            this.comboRodzajMigracji.Name = "comboRodzajMigracji";
+            this.comboRodzajMigracji.Size = new System.Drawing.Size(290, 21);
+            this.comboRodzajMigracji.TabIndex = 4;
+            // 
+            // tbNazwaKlasyTestowej
+            // 
+            this.tbNazwaKlasyTestowej.Location = new System.Drawing.Point(119, 9);
+            this.tbNazwaKlasyTestowej.Name = "tbNazwaKlasyTestowej";
+            this.tbNazwaKlasyTestowej.Size = new System.Drawing.Size(290, 20);
+            this.tbNazwaKlasyTestowej.TabIndex = 3;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(3, 56);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(95, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Interfejs testowany";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(3, 32);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(74, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Rodzaj testów";
+            // 
+            // labelNazwaKlasy
+            // 
+            this.labelNazwaKlasy.AutoSize = true;
+            this.labelNazwaKlasy.Location = new System.Drawing.Point(3, 9);
+            this.labelNazwaKlasy.Name = "labelNazwaKlasy";
+            this.labelNazwaKlasy.Size = new System.Drawing.Size(109, 13);
+            this.labelNazwaKlasy.TabIndex = 0;
+            this.labelNazwaKlasy.Text = "Nazwa klasy testowej";
+            // 
             // NazwaKlasyTestowForm
             // 
+            this.AcceptButton = this.buttonGeneruj;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.buttonAnuluj;

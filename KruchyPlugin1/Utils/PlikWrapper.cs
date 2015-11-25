@@ -1,26 +1,33 @@
-﻿using EnvDTE;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
+using EnvDTE;
 
 namespace KruchyCompany.KruchyPlugin1.Utils
 {
     public class PlikWrapper
     {
         private Document document;
+        private ProjectItem projectItem;
 
         public PlikWrapper(EnvDTE.Document document)
         {
             this.document = document;
         }
 
+        public PlikWrapper(ProjectItem projectItem)
+        {
+            this.projectItem = projectItem;
+        }
+
         public string Nazwa
         {
             get
             {
-                return document.Name;
+                if (document != null)
+                    return document.Name;
+                else
+                {
+                    return projectItem.FileNames[0];
+                }
             }
         }
 
@@ -38,16 +45,47 @@ namespace KruchyCompany.KruchyPlugin1.Utils
 
         public string SciezkaPelna
         {
-            get { return document.FullName; }
+            get
+            {
+                if (document != null)
+                    return document.FullName;
+                else
+                {
+                    var fi = new FileInfo(projectItem.FileNames[0]);
+                    return fi.FullName;
+                }
+            }
         }
 
-        public string SciezkaWzgledna { get; set; }
+        public string Katalog
+        {
+            get
+            {
+                var fi = new FileInfo(SciezkaPelna);
+                return fi.DirectoryName;
+            }
+        }
+
+        public string SciezkaWzgledna
+        {
+            get
+            {
+                var p = SciezkaPelna;
+
+                var katalogProjektu = Projekt.SciezkaDoKatalogu;
+                p = p.Replace(katalogProjektu, "");
+                return p;
+            }
+        }
 
         public ProjektWrapper Projekt
         {
             get
             {
-                return new ProjektWrapper(document.ProjectItem.ContainingProject);
+                if (projectItem != null)
+                    return new ProjektWrapper(projectItem.ContainingProject);
+                else
+                    return new ProjektWrapper(document.ProjectItem.ContainingProject);
             }
         }
 
@@ -55,7 +93,7 @@ namespace KruchyCompany.KruchyPlugin1.Utils
         {
             get
             {
-                var textDocument = (TextDocument) document.Object("TextDocument");
+                var textDocument = (TextDocument)document.Object("TextDocument");
                 return new DokumentWrapper(textDocument);
             }
         }

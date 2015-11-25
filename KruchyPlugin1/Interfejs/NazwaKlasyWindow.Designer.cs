@@ -45,11 +45,12 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(464, 70);
+            this.panel1.Size = new System.Drawing.Size(455, 70);
             this.panel1.TabIndex = 0;
             // 
             // buttonAnuluj
             // 
+            this.buttonAnuluj.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.buttonAnuluj.Location = new System.Drawing.Point(377, 29);
             this.buttonAnuluj.Name = "buttonAnuluj";
             this.buttonAnuluj.Size = new System.Drawing.Size(75, 23);
@@ -78,7 +79,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 0);
+            this.label1.Location = new System.Drawing.Point(3, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(67, 13);
             this.label1.TabIndex = 0;
@@ -86,9 +87,12 @@
             // 
             // NazwaKlasyWindow
             // 
+            this.AcceptButton = this.buttonZatwierdz;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(464, 70);
+            this.CancelButton = this.buttonAnuluj;
+            this.ClientSize = new System.Drawing.Size(455, 70);
+            this.ControlBox = false;
             this.Controls.Add(this.panel1);
             this.Name = "NazwaKlasyWindow";
             this.Text = "NazwaKlasyWindow";

@@ -8,6 +8,7 @@ KruchyPlugin1/Akcje/RodzajKlasyTestowej.cs -text
 KruchyPlugin1/Akcje/UzupelnianieReferencedObject.cs -text
 KruchyPlugin1/Akcje/UzupelnianieTagowDefiniujacychTabele.cs -text
 KruchyPlugin1/Akcje/WynikGenerowaniaKlasService.cs -text
+KruchyPlugin1/Akcje/ZmianaModyfikatoraMetody.cs -text
 KruchyPlugin1/CodeBuilders/AtrybutBuilder.cs -text
 KruchyPlugin1/CodeBuilders/ClassBuilder.cs -text
 KruchyPlugin1/CodeBuilders/ICodeBuilder.cs -text
@@ -43,6 +44,7 @@ KruchyPlugin1/Testy/PlikClassBuilderTests.cs -text
 KruchyPlugin1/Utils/DokumentWrapper.cs -text
 KruchyPlugin1/Utils/PlikWrapper.cs -text
 KruchyPlugin1/Utils/ProjektWrapper.cs -text
+KruchyPlugin1/Utils/SolutionExplorerWrapper.cs -text
 KruchyPlugin1/Utils/SolutionWrapper.cs -text
 KruchyPlugin1/VSPackage.resx -text
 KruchyPlugin1/source.extension.vsixmanifest -text

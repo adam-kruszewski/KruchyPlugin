@@ -172,7 +172,21 @@
           <ButtonText>Dodaj using Linq</ButtonText>
         </Strings>
       </Button>
+      <Button guid="guidKruchyPlugin1CmdSet" id="cmdidZmienNaPublic" priority="0x0108" type="Button">
+        <Parent guid="guidKruchyPlugin1CmdSet" id="MyMenuGroup" />
+        <Strings>
+          <CommandName>cmdidZmienNaPublic</CommandName>
+          <ButtonText>Zmień metodę na public</ButtonText>
+        </Strings>
+      </Button>
 
+      <Button guid="guidKruchyPlugin1CmdSet" id="cmdidZmienNaPrivate" priority="0x0108" type="Button">
+        <Parent guid="guidKruchyPlugin1CmdSet" id="MyMenuGroup" />
+        <Strings>
+          <CommandName>cmdidZmienNaPrivate</CommandName>
+          <ButtonText>Zmień metodę na private</ButtonText>
+        </Strings>
+      </Button>
     </Buttons>
 
     <!--The bitmaps section is used to define the bitmaps that are used for the commands.-->
@@ -223,6 +237,8 @@
       <IDSymbol name="cmdidDodajUsingFluentAssertion" value="0x0143"/>
       <IDSymbol name="cmdidDodajUsingBuilderow" value="0x0144"/>
       <IDSymbol name="cmdidDodajUsingLinq" value="0x0145"/>
+      <IDSymbol name="cmdidZmienNaPublic" value="0x0150"/>
+      <IDSymbol name="cmdidZmienNaPrivate" value="0x0151"/>
     </GuidSymbol>
 
     <GuidSymbol name="guidImages" value="{3182c5d1-dd1b-4142-93a5-d00d6b369205}" >

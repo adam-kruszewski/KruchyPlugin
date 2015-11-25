@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Text;
 using KruchyCompany.KruchyPlugin1.CodeBuilders;
 using KruchyCompany.KruchyPlugin1.Extensions;
@@ -59,7 +60,9 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
                     interfejsTestowany);
 
             File.WriteAllText(pelnaSciezka, zawartosc, Encoding.UTF8);
-            ProjektTestowy.DodajPlik(pelnaSciezka);
+            var plik = ProjektTestowy.DodajPlik(pelnaSciezka);
+
+            new SolutionExplorerWrapper(solution).OtworzPlik(plik);
         }
 
         private string GenerujZawartosc(

@@ -144,6 +144,7 @@
     <Compile Include="Akcje\UzupelnianieReferencedObject.cs" />
     <Compile Include="Akcje\UzupelnianieTagowDefiniujacychTabele.cs" />
     <Compile Include="Akcje\WynikGenerowaniaKlasService.cs" />
+    <Compile Include="Akcje\ZmianaModyfikatoraMetody.cs" />
     <Compile Include="CodeBuilders\AtrybutBuilder.cs" />
     <Compile Include="CodeBuilders\ClassBuilder.cs" />
     <Compile Include="CodeBuilders\ICodeBuilder.cs" />
@@ -182,6 +183,7 @@
     <Compile Include="Utils\DokumentWrapper.cs" />
     <Compile Include="Utils\PlikWrapper.cs" />
     <Compile Include="Utils\ProjektWrapper.cs" />
+    <Compile Include="Utils\SolutionExplorerWrapper.cs" />
     <Compile Include="Utils\SolutionWrapper.cs" />
   </ItemGroup>
   <ItemGroup>
