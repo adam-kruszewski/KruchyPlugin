@@ -85,15 +85,13 @@ namespace KruchyCompany.KruchyPlugin1.Utils
         public void OtworzPlik(string sciezka)
         {
             ZaladujElementyUI();
-            //var item = SolutionExplorer.GetItem();
-            //item.Select(vsUISelectionType.vsUISelectionTypeSetCaret);
+            solution.DTE.ItemOperations.OpenFile(sciezka);
         }
 
         public void OtworzPlik(PlikWrapper plik)
         {
             ZaladujElementyUI();
             solution.DTE.ItemOperations.OpenFile(plik.SciezkaPelna);
-            OtworzPlik(plik.SciezkaPelna);
         }
 
         public void UstawSieNaMiejscu(string sciezka)

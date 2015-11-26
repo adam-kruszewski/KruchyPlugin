@@ -66,10 +66,6 @@ namespace KruchyCompany.KruchyPlugin1.Utils
             {
                 var item = p.ProjectItems.Item(i);
                 SzukajProjektowWProjectItem(item, wynik);
-                //if (item.Object is Project)
-                //    wynik.Add(new ProjektWrapper(item.Object as Project));
-                //else
-                //    SzukajProjektowWProjectItem(item, wynik);
             }
         }
 
@@ -90,14 +86,6 @@ namespace KruchyCompany.KruchyPlugin1.Utils
                     SzukajProjektowWProjectItem(item, wynik);
                 }
             }
-            //else
-            //{
-            //    for (int i = 1; i <= itemObject.ProjectItems.Count; i++)
-            //    {
-            //        var item = itemObject.ProjectItems.Item(i);
-            //        SzukajProjektowWProjectItem(item, wynik);
-            //    }
-            //}
         }
 
         public ProjektWrapper ZnajdzProjktDlaPliku(string nazwa)
@@ -108,6 +96,18 @@ namespace KruchyCompany.KruchyPlugin1.Utils
         public PlikWrapper AktualnyPlik
         {
             get { return new PlikWrapper(dte.ActiveDocument); }
+        }
+
+        public ProjektWrapper AktualnyProjekt
+        {
+            get
+            {
+                var plik = AktualnyPlik;
+                if (plik == null)
+                    return null;
+
+                return plik.Projekt;
+            }
         }
 
         public ProjektWrapper ZnajdzProjekt(string nazwa)
@@ -144,72 +144,5 @@ namespace KruchyCompany.KruchyPlugin1.Utils
             }
         }
 
-
-        UIHierarchyItem FindHierarchyItem(UIHierarchyItems items, object item)
-        {
-            //
-            // Enumerating children recursive would work, but it may be slow on large solution.
-            // This tries to be smarter and faster
-            //
-
-            Stack s = new Stack();
-            CreateItemsStack(s, item);
-
-            UIHierarchyItem last = null;
-            while (s.Count != 0)
-            {
-                if (!items.Expanded)
-                    items.Expanded = true;
-                if (!items.Expanded)
-                {
-                    //bug: expand dont always work...
-                    UIHierarchyItem parent = ((UIHierarchyItem)items.Parent);
-                    parent.Select(vsUISelectionType.vsUISelectionTypeSelect);
-                    dte.ToolWindows.SolutionExplorer.DoDefaultAction();
-                }
-
-                object o = s.Pop();
-
-                last = null;
-                foreach (UIHierarchyItem child in items)
-                    if (child.Object == o)
-                    {
-                        last = child;
-                        items = child.UIHierarchyItems;
-                        break;
-                    }
-            }
-
-            return last;
-        }
-
-        void CreateItemsStack(Stack s, object item)
-        {
-            if (item is ProjectItem)
-            {
-                ProjectItem pi = (ProjectItem)item;
-                s.Push(pi);
-                CreateItemsStack(s, pi.Collection.Parent);
-            }
-            else if (item is Project)
-            {
-                Project p = (Project)item;
-                s.Push(p);
-                if (p.ParentProjectItem != null)
-                {
-                    //top nodes dont have solution as parent, but is null 
-                    CreateItemsStack(s, p.ParentProjectItem);
-                }
-            }
-            else if (item is Solution)
-            {
-                //doesnt seem to ever happend... 
-                Solution sol = (Solution)item;
-            }
-            else
-            {
-                throw new Exception("unknown item");
-            }
-        }
     }
 }
