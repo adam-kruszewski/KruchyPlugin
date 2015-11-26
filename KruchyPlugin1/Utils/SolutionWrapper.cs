@@ -62,12 +62,42 @@ namespace KruchyCompany.KruchyPlugin1.Utils
 
         private void SzukajProjektow(Project p, List<ProjektWrapper> wynik)
         {
-            for ( int i = 1; i <= p.ProjectItems.Count; i++)
+            for (int i = 1; i <= p.ProjectItems.Count; i++)
             {
                 var item = p.ProjectItems.Item(i);
-                if (item.Object is Project)
-                    wynik.Add(new ProjektWrapper(item.Object as Project));
+                SzukajProjektowWProjectItem(item, wynik);
+                //if (item.Object is Project)
+                //    wynik.Add(new ProjektWrapper(item.Object as Project));
+                //else
+                //    SzukajProjektowWProjectItem(item, wynik);
             }
+        }
+
+        private void SzukajProjektowWProjectItem(
+            ProjectItem pi,
+            List<ProjektWrapper> wynik)
+        {
+            var itemObject = pi.Object as Project;
+            if (itemObject == null)
+                return;
+            if (itemObject.FullName.ToLower().EndsWith(".csproj"))
+                wynik.Add(new ProjektWrapper(itemObject));
+            else
+            {
+                for (int i = 1; i <= itemObject.ProjectItems.Count; i++)
+                {
+                    var item = itemObject.ProjectItems.Item(i);
+                    SzukajProjektowWProjectItem(item, wynik);
+                }
+            }
+            //else
+            //{
+            //    for (int i = 1; i <= itemObject.ProjectItems.Count; i++)
+            //    {
+            //        var item = itemObject.ProjectItems.Item(i);
+            //        SzukajProjektowWProjectItem(item, wynik);
+            //    }
+            //}
         }
 
         public ProjektWrapper ZnajdzProjktDlaPliku(string nazwa)
@@ -82,7 +112,8 @@ namespace KruchyCompany.KruchyPlugin1.Utils
 
         public ProjektWrapper ZnajdzProjekt(string nazwa)
         {
-            return Projekty.Where(o => o.Nazwa == nazwa).FirstOrDefault();
+            var l = Projekty.ToList();
+            return l.Where(o => o.Nazwa == nazwa).FirstOrDefault();
         }
 
         public PlikWrapper OtworzPlik(PlikWrapper plik)

@@ -4,6 +4,7 @@
 KruchyPlugin1/Akcje/DodawaniaUsinga.cs -text
 KruchyPlugin1/Akcje/GenerowanieKlasService.cs -text
 KruchyPlugin1/Akcje/GenerowanieKlasyTestowej.cs -text
+KruchyPlugin1/Akcje/GenerowanieKlasyWalidatora.cs -text
 KruchyPlugin1/Akcje/RodzajKlasyTestowej.cs -text
 KruchyPlugin1/Akcje/UzupelnianieReferencedObject.cs -text
 KruchyPlugin1/Akcje/UzupelnianieTagowDefiniujacychTabele.cs -text
@@ -13,6 +14,7 @@ KruchyPlugin1/CodeBuilders/AtrybutBuilder.cs -text
 KruchyPlugin1/CodeBuilders/ClassBuilder.cs -text
 KruchyPlugin1/CodeBuilders/ICodeBuilder.cs -text
 KruchyPlugin1/CodeBuilders/InterfejsBuilder.cs -text
+KruchyPlugin1/CodeBuilders/MetodaBuilder.cs -text
 KruchyPlugin1/CodeBuilders/PlikClassBuilder.cs -text
 KruchyPlugin1/CodeBuilders/StaleDlaKodu.cs -text
 KruchyPlugin1/DoZrobienia.txt -text
@@ -40,6 +42,7 @@ KruchyPlugin1/Resources.resx -text
 KruchyPlugin1/Resources/Images.png -text
 KruchyPlugin1/Resources/Package.ico -text
 KruchyPlugin1/Testowo/TestowyWizard.cs -text
+KruchyPlugin1/Testy/MetodaBuilderTests.cs -text
 KruchyPlugin1/Testy/PlikClassBuilderTests.cs -text
 KruchyPlugin1/Utils/DokumentWrapper.cs -text
 KruchyPlugin1/Utils/PlikWrapper.cs -text

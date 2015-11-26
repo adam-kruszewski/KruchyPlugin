@@ -140,6 +140,7 @@
     <Compile Include="Akcje\DodawaniaUsinga.cs" />
     <Compile Include="Akcje\GenerowanieKlasService.cs" />
     <Compile Include="Akcje\GenerowanieKlasyTestowej.cs" />
+    <Compile Include="Akcje\GenerowanieKlasyWalidatora.cs" />
     <Compile Include="Akcje\RodzajKlasyTestowej.cs" />
     <Compile Include="Akcje\UzupelnianieReferencedObject.cs" />
     <Compile Include="Akcje\UzupelnianieTagowDefiniujacychTabele.cs" />
@@ -149,6 +150,7 @@
     <Compile Include="CodeBuilders\ClassBuilder.cs" />
     <Compile Include="CodeBuilders\ICodeBuilder.cs" />
     <Compile Include="CodeBuilders\InterfejsBuilder.cs" />
+    <Compile Include="CodeBuilders\MetodaBuilder.cs" />
     <Compile Include="CodeBuilders\PlikClassBuilder.cs" />
     <Compile Include="CodeBuilders\StaleDlaKodu.cs" />
     <Compile Include="Extensions\ProjektWrapperExtension.cs" />
@@ -179,6 +181,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PkgCmdID.cs" />
     <Compile Include="Testowo\TestowyWizard.cs" />
+    <Compile Include="Testy\MetodaBuilderTests.cs" />
     <Compile Include="Testy\PlikClassBuilderTests.cs" />
     <Compile Include="Utils\DokumentWrapper.cs" />
     <Compile Include="Utils\PlikWrapper.cs" />

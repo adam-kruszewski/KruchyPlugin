@@ -144,35 +144,35 @@
         </Strings>
       </Button>
 
-      <Button guid="guidKruchyPlugin1CmdSet" id="cmdidDodajUsingMapowan" priority="0x0104" type="Button">
+      <Button guid="guidKruchyPlugin1CmdSet" id="cmdidDodajUsingMapowan" priority="0x0124" type="Button">
         <Parent guid="guidKruchyPlugin1CmdSet" id="MyMenuGroup" />
         <Strings>
           <CommandName>cmdidDodajUsingMapowan</CommandName>
           <ButtonText>Dodaj using mapowań</ButtonText>
         </Strings>
       </Button>
-      <Button guid="guidKruchyPlugin1CmdSet" id="cmdidDodajUsingFluentAssertion" priority="0x0105" type="Button">
+      <Button guid="guidKruchyPlugin1CmdSet" id="cmdidDodajUsingFluentAssertion" priority="0x0125" type="Button">
         <Parent guid="guidKruchyPlugin1CmdSet" id="MyMenuGroup" />
         <Strings>
           <CommandName>cmdidDodajUsingFluentAssertion</CommandName>
           <ButtonText>Dodaj using FluentAssertion</ButtonText>
         </Strings>
       </Button>
-      <Button guid="guidKruchyPlugin1CmdSet" id="cmdidDodajUsingBuilderow" priority="0x0106" type="Button">
+      <Button guid="guidKruchyPlugin1CmdSet" id="cmdidDodajUsingBuilderow" priority="0x0126" type="Button">
         <Parent guid="guidKruchyPlugin1CmdSet" id="MyMenuGroup" />
         <Strings>
           <CommandName>cmdidDodajUsingBuilderow</CommandName>
           <ButtonText>Dodaj using builderów</ButtonText>
         </Strings>
       </Button>
-      <Button guid="guidKruchyPlugin1CmdSet" id="cmdidDodajUsingLinq" priority="0x0107" type="Button">
+      <Button guid="guidKruchyPlugin1CmdSet" id="cmdidDodajUsingLinq" priority="0x0127" type="Button">
         <Parent guid="guidKruchyPlugin1CmdSet" id="MyMenuGroup" />
         <Strings>
           <CommandName>cmdidDodajUsingLinq</CommandName>
           <ButtonText>Dodaj using Linq</ButtonText>
         </Strings>
       </Button>
-      <Button guid="guidKruchyPlugin1CmdSet" id="cmdidZmienNaPublic" priority="0x0108" type="Button">
+      <Button guid="guidKruchyPlugin1CmdSet" id="cmdidZmienNaPublic" priority="0x0115" type="Button">
         <Parent guid="guidKruchyPlugin1CmdSet" id="MyMenuGroup" />
         <Strings>
           <CommandName>cmdidZmienNaPublic</CommandName>
@@ -180,13 +180,21 @@
         </Strings>
       </Button>
 
-      <Button guid="guidKruchyPlugin1CmdSet" id="cmdidZmienNaPrivate" priority="0x0108" type="Button">
+      <Button guid="guidKruchyPlugin1CmdSet" id="cmdidZmienNaPrivate" priority="0x0116" type="Button">
         <Parent guid="guidKruchyPlugin1CmdSet" id="MyMenuGroup" />
         <Strings>
           <CommandName>cmdidZmienNaPrivate</CommandName>
           <ButtonText>Zmień metodę na private</ButtonText>
         </Strings>
       </Button>
+      <Button guid="guidKruchyPlugin1CmdSet" id="cmdidDodajKlaseWalidatora" priority="0x0104" type="Button">
+        <Parent guid="guidKruchyPlugin1CmdSet" id="MyMenuGroup" />
+        <Strings>
+          <CommandName>cmdidDodajKlaseWalidatora</CommandName>
+          <ButtonText>Zrób klasę walidatora</ButtonText>
+        </Strings>
+      </Button>
+
     </Buttons>
 
     <!--The bitmaps section is used to define the bitmaps that are used for the commands.-->
@@ -226,7 +234,7 @@
       <IDSymbol name="cmdidUzupelnijTagiDefiniujaceTabele" value="0x0103"/>
       <IDSymbol name="cmdidZrobKlaseTestowa" value="0x0105"/>
       <IDSymbol name="cmdidZrobKlaseService" value="0x0106"/>
-
+      <IDSymbol name="cmdidDodajKlaseWalidatora" value="0x0152"/>
       <IDSymbol name="TopLevelMenu" value="0x1021"/>
 
       <!-- Menu z dodaj usingi -->

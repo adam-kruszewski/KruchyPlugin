@@ -1,6 +1,7 @@
 ﻿+Generowanie klasy testowej dla serwisu
 Generowanie validatora dla obiektu
 Generowanie Dao dla obiektu
+Generowanie Buildera
 
 Przemieszczanie się po solution
  - będąc w kontrolerze przejść do katalogu z widoki

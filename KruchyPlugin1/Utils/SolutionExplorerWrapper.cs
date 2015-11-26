@@ -54,26 +54,31 @@ namespace KruchyCompany.KruchyPlugin1.Utils
         {
             UIHierarchyItem UIHItem = SolutionExplorer.UIHierarchyItems.Item(1);
 
+            var rozwijane = new List<UIHierarchyItems>();
             if (!UIHItem.UIHierarchyItems.Expanded)
+            {
                 UIHItem.UIHierarchyItems.Expanded = true;
-            Podrozuj(UIHItem.UIHierarchyItems);
+                rozwijane.Add(UIHItem.UIHierarchyItems);
+            }
+            Podrozuj(UIHItem.UIHierarchyItems, rozwijane);
+            foreach (var items in rozwijane)
+                items.Expanded = false;
         }
 
-        private void Podrozuj(UIHierarchyItems uIHierarchyItems)
+        private void Podrozuj(
+            UIHierarchyItems uIHierarchyItems, List<UIHierarchyItems> rozwijane)
         {
             if (!uIHierarchyItems.Expanded)
+            {
                 uIHierarchyItems.Expanded = true;
+                rozwijane.Add(uIHierarchyItems);
+            }
 
             for (int i = 1; i <= uIHierarchyItems.Count; i++)
             {
                 var item = uIHierarchyItems.Item(i);
                 var projectItem = item.Object as ProjectItem;
-                if (projectItem != null)
-                {
-                    var n = projectItem.FileNames[0];
-                    Console.WriteLine(projectItem.Name);
-                }
-                Podrozuj(item.UIHierarchyItems);
+                Podrozuj(item.UIHierarchyItems, rozwijane);
             }
         }
 

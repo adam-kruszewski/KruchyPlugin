@@ -48,7 +48,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
                 throw new ApplicationException(
                     "Nie ma projektu testowego dla projektu " + aktualnyProjekt.Nazwa);
 
-            var nazwaPlikuTestow = nazwaKlasy + "Tests.cs";
+            var nazwaPlikuTestow = nazwaKlasy + ".cs";
             var pelnaSciezka = Path.Combine(
                 ProjektTestowy.SciezkaDoUnitTests(),
                 nazwaPlikuTestow);

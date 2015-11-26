@@ -10,6 +10,10 @@ namespace KruchyCompany.KruchyPlugin1.Interfejs
         {
             set { label1.Text = value; }
         }
+        public string InicjalnaWartosc
+        {
+            set { tbNazwaKlasy.Text = value; }
+        }
 
         public NazwaKlasyWindow()
         {

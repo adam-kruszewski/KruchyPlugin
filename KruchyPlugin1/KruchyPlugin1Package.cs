@@ -159,6 +159,10 @@ namespace KruchyCompany.KruchyPlugin1
                     mcs,
                     PkgCmdIDList.cmdidZmienNaPrivate,
                     MenuItemZmienNaPrivate);
+                PodlaczDoMenu(
+                    mcs,
+                    PkgCmdIDList.cmdidDodajKlaseWalidatora,
+                    MenuItemZrobKlaseWalidatora);
                 // Create the command for the tool window
                 CommandID toolwndCommandID = new CommandID(GuidList.guidKruchyPlugin1CmdSet, (int)PkgCmdIDList.cmdidMyTool);
                 MenuCommand menuToolWin = new MenuCommand(ShowToolWindow, toolwndCommandID);
@@ -300,6 +304,19 @@ namespace KruchyCompany.KruchyPlugin1
         private void MenuItemZmienNaPrivate(object sender, EventArgs args)
         {
             new ZmianaModyfikatoraMetody(DajAktualnyDokument()).ZmienNa("private");
+        }
+
+        private void MenuItemZrobKlaseWalidatora(object sender, EventArgs args)
+        {
+            var nazwaPlikuDoWalidacji =
+                DajSolution().AktualnyPlik.NazwaBezRozszerzenia;
+            var dialog = new NazwaKlasyWindow();
+            dialog.EtykietaNazwyPliku = "Nazwa klasy implementacji walidatora";
+            dialog.InicjalnaWartosc = nazwaPlikuDoWalidacji + "Validator";
+            dialog.ShowDialog();
+            if (!string.IsNullOrEmpty(dialog.NazwaPliku))
+                new GenerowanieKlasyWalidatora(DajSolution())
+                    .Generuj(dialog.NazwaPliku, nazwaPlikuDoWalidacji);
         }
 
         void slnExplUIHierarchyExample(DTE2 dte)

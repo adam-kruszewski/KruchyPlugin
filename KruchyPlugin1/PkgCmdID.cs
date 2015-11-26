@@ -20,6 +20,7 @@ namespace KruchyCompany.KruchyPlugin1
         public const uint cmdidDodajUsingLinq = 0x0145;
         public const uint cmdidZmienNaPublic = 0x0150;
         public const uint cmdidZmienNaPrivate = 0x0151;
+        public const uint cmdidDodajKlaseWalidatora = 0x152;
 
         //dla poruszania się po klasach ui
         public const uint cmidPrzejdzDoGridRowActions = 0x0201;
