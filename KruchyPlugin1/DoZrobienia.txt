@@ -1,6 +1,7 @@
 ﻿+Generowanie klasy testowej dla serwisu
 Generowanie validatora dla obiektu
 Generowanie Dao dla obiektu
+Generowanie Controllera formatki na podstawie Controllera listy
 Generowanie Buildera
 
 Przemieszczanie się po solution
@@ -16,3 +17,8 @@ Uzupełnianie usingów do:
  W kodzie
 + - dodanie/zamiana w linii public/private
  - dodanie nowego testu
+ - dodanie kontruktora dla serwisów
+ - dodanie uprawnień dla controllera
+
+
+ przy generowaniu klasy testowej dodać jeszcze using Piatka.Infrastructure.Tests;
