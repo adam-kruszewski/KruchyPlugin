@@ -84,13 +84,13 @@ namespace KruchyCompany.KruchyPlugin1.Utils
 
         public void OtworzPlik(string sciezka)
         {
-            ZaladujElementyUI();
+            //ZaladujElementyUI();
             solution.DTE.ItemOperations.OpenFile(sciezka);
         }
 
         public void OtworzPlik(PlikWrapper plik)
         {
-            ZaladujElementyUI();
+            //ZaladujElementyUI();
             solution.DTE.ItemOperations.OpenFile(plik.SciezkaPelna);
         }
 

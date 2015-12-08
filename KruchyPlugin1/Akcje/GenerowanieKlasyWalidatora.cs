@@ -3,6 +3,7 @@ using System.Text;
 using KruchyCompany.KruchyPlugin1.CodeBuilders;
 using KruchyCompany.KruchyPlugin1.Utils;
 using KruchyCompany.KruchyPlugin1.Extensions;
+using System.Windows;
 
 namespace KruchyCompany.KruchyPlugin1.Akcje
 {
@@ -31,6 +32,17 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
                 Path.Combine(sciezkaDoProjektu, "Validation", "Impl", nazwaPlikuImplementacji);
             var pelnaSciezkaDoPlikuInterfejsu =
                 Path.Combine(sciezkaDoProjektu, "Validation", nazwaPlikuInterfejsu);
+
+            if (File.Exists(pelnaSciezkaDoPlikuImplementacji))
+            {
+                MessageBox.Show("Plik już istnieje " + pelnaSciezkaDoPlikuImplementacji);
+                return;
+            }
+            if (File.Exists(pelnaSciezkaDoPlikuInterfejsu))
+            {
+                MessageBox.Show("Plik już istnieje " + pelnaSciezkaDoPlikuInterfejsu);
+                return;
+            }
 
             Path
                 .Combine(sciezkaDoProjektu, "Validation")

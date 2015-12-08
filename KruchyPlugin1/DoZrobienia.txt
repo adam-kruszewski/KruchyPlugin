@@ -1,5 +1,5 @@
 ﻿+Generowanie klasy testowej dla serwisu
-Generowanie validatora dla obiektu
++Generowanie validatora dla obiektu
 Generowanie Dao dla obiektu
 Generowanie Controllera formatki na podstawie Controllera listy
 Generowanie Buildera

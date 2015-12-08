@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Text;
+using System.Windows;
 using KruchyCompany.KruchyPlugin1.CodeBuilders;
 using KruchyCompany.KruchyPlugin1.Extensions;
 using KruchyCompany.KruchyPlugin1.Utils;
@@ -35,6 +36,17 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             var pelnaSciezkaDoInterfejsu =
                 Path.Combine(
                     projekt.SciezkaDoService(), nazwaPlikuInterfejsu);
+            if (File.Exists(pelnaSciezkaDoImplementacji))
+            {
+                MessageBox.Show("Plik już istnieje " + pelnaSciezkaDoImplementacji);
+                return null;
+            }
+            if (File.Exists(pelnaSciezkaDoInterfejsu))
+            {
+                MessageBox.Show("Plik już istnieje " + pelnaSciezkaDoInterfejsu);
+                return null;
+            }
+
 
             File.WriteAllText(
                 pelnaSciezkaDoImplementacji,
@@ -45,8 +57,12 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
                 GenerujPlikInterfejsu(nazwaKlasyService, projekt),
                 Encoding.UTF8);
 
-            projekt.DodajPlik(pelnaSciezkaDoImplementacji);
-            projekt.DodajPlik(pelnaSciezkaDoInterfejsu);
+            var plikImpl = projekt.DodajPlik(pelnaSciezkaDoImplementacji);
+            var plikInt = projekt.DodajPlik(pelnaSciezkaDoInterfejsu);
+
+            var solutionExplorer = new SolutionExplorerWrapper(solution);
+            solutionExplorer.OtworzPlik(plikInt.SciezkaPelna);
+            solutionExplorer.OtworzPlik(plikInt.SciezkaPelna);
 
             return new WynikGenerowaniaKlasService();
         }
