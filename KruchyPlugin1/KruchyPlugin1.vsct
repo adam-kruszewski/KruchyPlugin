@@ -35,11 +35,18 @@
     with command ids defined by other packages. -->
     <Menus>
       <Menu guid="guidKruchyPlugin1CmdSet" id="TopLevelMenu" priority="0x700" type="Menu">
-        <Parent guid="guidSHLMainMenu"
-                id="IDG_VS_MM_TOOLSADDINS" />
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_MM_TOOLSADDINS" />
         <Strings>
-          <ButtonText>Kruchy plugin</ButtonText>
-          <CommandName>&amp;Kruchy plugin</CommandName>
+          <ButtonText>Kruchy kod</ButtonText>
+          <CommandName>&amp;Kruchy kod</CommandName>
+        </Strings>
+      </Menu>
+
+      <Menu guid="guidKruchyPlugin1CmdSet" id="PodrozowanieMenu" priority="0x701" type="Menu">
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_MM_TOOLSADDINS" />
+        <Strings>
+          <ButtonText>Krucha nawigacja</ButtonText>
+          <CommandName>Krucha nawigacja</CommandName>
         </Strings>
       </Menu>
 
@@ -65,6 +72,10 @@
 
       <Group guid="guidKruchyPlugin1CmdSet" id="MyMenuGroup" priority="0x0600">
         <Parent guid="guidKruchyPlugin1CmdSet" id="TopLevelMenu"/>
+      </Group>
+
+      <Group guid="guidKruchyPlugin1CmdSet" id="PodrozowanieMenuGroup" priority="0x0601">
+        <Parent guid="guidKruchyPlugin1CmdSet" id="PodrozowanieMenu"/>
       </Group>
 
       <Group guid="guidKruchyPlugin1CmdSet" id="SubMenuGroup" priority="0x0000">
@@ -194,7 +205,55 @@
           <ButtonText>Zrób klasę walidatora</ButtonText>
         </Strings>
       </Button>
+      <!--Buttony związane z UI-->
+      <Button id="cmdidIdzDoImplementacji" priority="0x0101"  guid="guidKruchyPlugin1CmdSet" type="Button">
+        <Parent guid="guidKruchyPlugin1CmdSet" id="PodrozowanieMenuGroup"/>
+        <Strings>
+          <CommandName>cmdidIdzDoImplementacji</CommandName>
+          <ButtonText>Idź do implementacji</ButtonText>
+        </Strings>
+      </Button>
 
+      <!--<Button id="cmdidIdzDoKataloguControllera" priority="0x0101"  guid="guidKruchyPlugin1CmdSet" type="Button">
+        <Parent guid="guidKruchyPlugin1CmdSet" id="PodrozowanieMenuGroup"/>
+        <Strings>
+          <CommandName>cmdidIdzDoKataloguControllera</CommandName>
+          <ButtonText>Idź do katalogu controllera</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button id="cmdidIdzDoWidoku" priority="0x0101"  guid="guidKruchyPlugin1CmdSet" type="Button">
+        <Parent guid="guidKruchyPlugin1CmdSet" id="PodrozowanieMenuGroup"/>
+        <Strings>
+          <CommandName>cmdidIdzDoWidoku</CommandName>
+          <ButtonText>Idź do widoku</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button id="cmdidGenerujWidok" priority="0x0101"  guid="guidKruchyPlugin1CmdSet" type="Button">
+        <Parent guid="guidKruchyPlugin1CmdSet" id="PodrozowanieMenuGroup"/>
+        <Strings>
+          <CommandName>cmdidGenerujWidok</CommandName>
+          <ButtonText>Generuj widok dla zaznaczonego tekstu</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button id="cmidPrzejdzDoGridRowActions" priority="0x0101"  guid="guidKruchyPlugin1CmdSet" type="Button">
+        <Parent guid="guidKruchyPlugin1CmdSet" id="PodrozowanieMenuGroup"/>
+        <Strings>
+          <CommandName>cmidPrzejdzDoGridRowActions</CommandName>
+          <ButtonText>Idź do GridRowActions</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button id="cmidPrzejdzDoGridToolbar" priority="0x0101"  guid="guidKruchyPlugin1CmdSet" type="Button">
+        <Parent guid="guidKruchyPlugin1CmdSet" id="PodrozowanieMenuGroup"/>
+        <Strings>
+          <CommandName>cmidPrzejdzDoGridToolbar</CommandName>
+          <ButtonText>Idź do GridToolbar</ButtonText>
+        </Strings>
+      </Button>-->
+      <!--Koniec buttonów związanych z UI-->
     </Buttons>
 
     <!--The bitmaps section is used to define the bitmaps that are used for the commands.-->
@@ -226,6 +285,10 @@
       <IDSymbol name="MyMenuGroup" value="0x1020" />
       <IDSymbol name="SubMenuGroup" value="0x1022" />
       <IDSymbol name="MRUListGroup" value="0x1023" />
+
+      <IDSymbol name="PodrozowanieMenu" value="0x1024"/>
+      <IDSymbol name="PodrozowanieMenuGroup" value="0x1025"/>
+
       <IDSymbol name="cmdidTestowaCommand" value="0x0100" />
 
       <IDSymbol name="cmdidMyTool" value="0x0101" />
@@ -247,6 +310,13 @@
       <IDSymbol name="cmdidDodajUsingLinq" value="0x0145"/>
       <IDSymbol name="cmdidZmienNaPublic" value="0x0150"/>
       <IDSymbol name="cmdidZmienNaPrivate" value="0x0151"/>
+
+      <IDSymbol name="cmdidIdzDoImplementacji" value="0x0170"/>
+      <IDSymbol name="cmdidIdzDoKataloguControllera" value="0x0171"/>
+      <IDSymbol name="cmdidIdzDoWidoku" value="0x0172"/>
+      <IDSymbol name="cmdidGenerujWidok" value="0x0173"/>
+      <IDSymbol name="cmidPrzejdzDoGridRowActions" value="0x0174"/>
+      <IDSymbol name="cmidPrzejdzDoGridToolbar" value="0x0175"/>
     </GuidSymbol>
 
     <GuidSymbol name="guidImages" value="{3182c5d1-dd1b-4142-93a5-d00d6b369205}" >

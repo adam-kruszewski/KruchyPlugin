@@ -163,6 +163,10 @@ namespace KruchyCompany.KruchyPlugin1
                     mcs,
                     PkgCmdIDList.cmdidDodajKlaseWalidatora,
                     MenuItemZrobKlaseWalidatora);
+                PodlaczDoMenu(
+                    mcs,
+                    PkgCmdIDList.cmdidIdzDoImplementacji,
+                    MenuItemIdzDoImplementacjiLubInterfejsu);
                 // Create the command for the tool window
                 CommandID toolwndCommandID = new CommandID(GuidList.guidKruchyPlugin1CmdSet, (int)PkgCmdIDList.cmdidMyTool);
                 MenuCommand menuToolWin = new MenuCommand(ShowToolWindow, toolwndCommandID);
@@ -317,6 +321,12 @@ namespace KruchyCompany.KruchyPlugin1
             if (!string.IsNullOrEmpty(dialog.NazwaPliku))
                 new GenerowanieKlasyWalidatora(DajSolution())
                     .Generuj(dialog.NazwaPliku, nazwaPlikuDoWalidacji);
+        }
+
+        private void MenuItemIdzDoImplementacjiLubInterfejsu(
+            object sender, EventArgs args)
+        {
+            new IdzMiedzyInterfejsemAImplementacja(DajSolution()).Przejdz();
         }
 
         void slnExplUIHierarchyExample(DTE2 dte)

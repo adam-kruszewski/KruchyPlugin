@@ -7,7 +7,7 @@ Generowanie Buildera
 Przemieszczanie się po solution
  - będąc w kontrolerze przejść do katalogu z widoki
  - wygenerowanie widoku dla zaznaczonego nazwy w controlerze
- - przenoszenie z interfejsu do implementacji
++ - przenoszenie z interfejsu do implementacji
 
 Uzupełnianie usingów do:
 + - mapowań
@@ -20,5 +20,3 @@ Uzupełnianie usingów do:
  - dodanie kontruktora dla serwisów
  - dodanie uprawnień dla controllera
 
-
- przy generowaniu klasy testowej dodać jeszcze using Piatka.Infrastructure.Tests;

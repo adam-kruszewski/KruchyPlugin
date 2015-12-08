@@ -23,7 +23,10 @@ namespace KruchyCompany.KruchyPlugin1.Utils
             get
             {
                 if (document != null)
-                    return document.Name;
+                {
+                    var fi = new FileInfo(document.FullName);
+                    return fi.Name;
+                }
                 else
                 {
                     return projectItem.FileNames[0];

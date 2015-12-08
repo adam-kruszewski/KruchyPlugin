@@ -23,8 +23,12 @@ namespace KruchyCompany.KruchyPlugin1
         public const uint cmdidDodajKlaseWalidatora = 0x152;
 
         //dla poruszania się po klasach ui
-        public const uint cmidPrzejdzDoGridRowActions = 0x0201;
-        public const uint cmidPrzejdzDoGridToolbar = 0x0202;
-        public const uint cmidGenerujKatalogViewDlaControllera = 0x0203;
+        public const uint cmdidIdzDoImplementacji = 0x0170;
+        public const uint cmdidIdzDoKataloguControllera = 0x0171;
+        public const uint cmdidIdzDoWidoku = 0x0172;
+        public const uint cmdidGenerujWidok = 0x0173;
+
+        public const uint cmidPrzejdzDoGridRowActions = 0x0174;
+        public const uint cmidPrzejdzDoGridToolbar = 0x0175;
     };
 }
