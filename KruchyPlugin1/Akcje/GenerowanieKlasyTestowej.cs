@@ -106,7 +106,8 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
                 .WNamespace(ProjektTestowy.Nazwa + ".Unit")
                 .DodajUsing("FluentAssertions")
                 .DodajUsing("NUnit.Framework")
-                .DodajUsing("Pincasso.Core.Tests.Fixtures");
+                .DodajUsing("Pincasso.Core.Tests.Fixtures")
+                .DodajUsing("Piatka.Infrastructure.Tests");
             return plikBuilder.Build();
         }
     }
