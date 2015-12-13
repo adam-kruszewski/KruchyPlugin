@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Windows;
 using KruchyCompany.KruchyPlugin1.Utils;
 
 namespace KruchyCompany.KruchyPlugin1.Akcje
@@ -67,6 +68,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             var sciezka = Path.Combine(katalogInterfejsu, nazwa);
             if (File.Exists(sciezka))
                 return sciezka;
+            MessageBox.Show("Nie znalazłem " + sciezka);
             return null;
         }
 

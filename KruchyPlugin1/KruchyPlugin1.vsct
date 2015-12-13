@@ -214,7 +214,7 @@
         </Strings>
       </Button>
 
-      <!--<Button id="cmdidIdzDoKataloguControllera" priority="0x0101"  guid="guidKruchyPlugin1CmdSet" type="Button">
+      <Button id="cmdidIdzDoKataloguControllera" priority="0x0101"  guid="guidKruchyPlugin1CmdSet" type="Button">
         <Parent guid="guidKruchyPlugin1CmdSet" id="PodrozowanieMenuGroup"/>
         <Strings>
           <CommandName>cmdidIdzDoKataloguControllera</CommandName>
@@ -222,7 +222,7 @@
         </Strings>
       </Button>
 
-      <Button id="cmdidIdzDoWidoku" priority="0x0101"  guid="guidKruchyPlugin1CmdSet" type="Button">
+      <!--<Button id="cmdidIdzDoWidoku" priority="0x0101"  guid="guidKruchyPlugin1CmdSet" type="Button">
         <Parent guid="guidKruchyPlugin1CmdSet" id="PodrozowanieMenuGroup"/>
         <Strings>
           <CommandName>cmdidIdzDoWidoku</CommandName>

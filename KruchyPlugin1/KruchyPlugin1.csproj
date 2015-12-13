@@ -141,6 +141,7 @@
     <Compile Include="Akcje\GenerowanieKlasService.cs" />
     <Compile Include="Akcje\GenerowanieKlasyTestowej.cs" />
     <Compile Include="Akcje\GenerowanieKlasyWalidatora.cs" />
+    <Compile Include="Akcje\IdzDoKataloguControllera.cs" />
     <Compile Include="Akcje\IdzMiedzyInterfejsemAImplementacja.cs" />
     <Compile Include="Akcje\RodzajKlasyTestowej.cs" />
     <Compile Include="Akcje\UzupelnianieReferencedObject.cs" />

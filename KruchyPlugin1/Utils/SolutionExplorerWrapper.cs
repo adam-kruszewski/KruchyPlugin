@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -96,12 +97,20 @@ namespace KruchyCompany.KruchyPlugin1.Utils
 
         public void UstawSieNaMiejscu(string sciezka)
         {
+            ZaladujElementyUI();
+            var wszystkie = WszystkieWezly();
+            var nazwa = wszystkie.Select(o => o.Name).ToList();
             var wezel =
-                WszystkieWezly()
+                wszystkie
                     .Where(o => WSciezce(o, sciezka))
                         .FirstOrDefault();
             if (wezel != null)
+            {
                 wezel.Select(vsUISelectionType.vsUISelectionTypeSetCaret);
+                if (!wezel.UIHierarchyItems.Expanded)
+                    wezel.UIHierarchyItems.Expanded = true;
+                SolutionExplorer.DTE.ActiveWindow.Activate();
+            }
             else
                 throw new ApplicationException(
                     "Nie udało się ustawić dla " + sciezka);
@@ -110,9 +119,55 @@ namespace KruchyCompany.KruchyPlugin1.Utils
         private bool WSciezce(UIHierarchyItem wezel, string sciezka)
         {
             var projectItem = wezel.Object as ProjectItem;
-            if (projectItem != null && projectItem.FileNames[0] == sciezka)
-                return true;
+            if (projectItem != null)
+            {
+                var nazwaPliku = projectItem.FileNames[0];
+                if (nazwaPliku.EndsWith("\\"))
+                    nazwaPliku = nazwaPliku.Substring(0, nazwaPliku.Length - 1);
+                if (nazwaPliku == sciezka)
+                    return true;
+            }
+            else
+            {
+                string aktualnaSciezka = BudujSciezke(wezel);
+                if (aktualnaSciezka == sciezka)
+                    return true;
+            }
             return false;
+        }
+
+        private string BudujSciezke(UIHierarchyItem wezel)
+        {
+            if (wezel.Name == "KontaktyWatku")
+            {
+                var h = wezel.Collection.Parent as UIHierarchyItem;
+            }
+
+            var itemsNaSciezce = new List<UIHierarchyItem>();
+            var aktualna = wezel;
+            while (aktualna != null)
+            {
+                var p = aktualna.Object as Project;
+                if (p != null)
+                {
+                    if (p.FullName.ToLower().EndsWith(".csproj"))
+                    {
+                        var fi = new FileInfo(p.FullName);
+                        var elementySciezki = new List<string>();
+                        elementySciezki.Add(fi.DirectoryName);
+                        itemsNaSciezce.Reverse();
+                        foreach (UIHierarchyItem item in itemsNaSciezce)
+                            elementySciezki.Add(item.Name);
+                        var wynik = string.Join("" + Path.PathSeparator, elementySciezki.ToArray());
+                        return wynik;
+                    }
+                    else
+                        return string.Empty;
+                }
+                itemsNaSciezce.Add(aktualna);
+                aktualna = aktualna.Collection.Parent as UIHierarchyItem;
+            }
+            return string.Empty;
         }
     }
 }

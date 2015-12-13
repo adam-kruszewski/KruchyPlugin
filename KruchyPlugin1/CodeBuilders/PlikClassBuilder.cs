@@ -88,13 +88,13 @@ namespace KruchyCompany.KruchyPlugin1.CodeBuilders
             outputBuilder.AppendLine("namespace " + Namespace);
             outputBuilder.AppendLine("{");
             GenerujZawartoscNamespace(outputBuilder);
-            outputBuilder.AppendLine("}");
+            outputBuilder.Append("}");
             return outputBuilder.ToString();
         }
 
         private void GenerujZawartoscNamespace(StringBuilder outputBuilder)
         {
-            outputBuilder.AppendLine(Obiekt.Build(StaleDlaKodu.WielokrotnoscWciecia(1)));
+            outputBuilder.Append(Obiekt.Build(StaleDlaKodu.WielokrotnoscWciecia(1)));
 
             ////atrybuty klasy
             //foreach (var a in AtrybutyKlasy)

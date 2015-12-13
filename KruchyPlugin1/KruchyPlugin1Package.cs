@@ -167,6 +167,11 @@ namespace KruchyCompany.KruchyPlugin1
                     mcs,
                     PkgCmdIDList.cmdidIdzDoImplementacji,
                     MenuItemIdzDoImplementacjiLubInterfejsu);
+                PodlaczDoMenu(
+                    mcs,
+                    PkgCmdIDList.cmdidIdzDoKataloguControllera,
+                    MenuItemIdzDoKataloguControllera);
+
                 // Create the command for the tool window
                 CommandID toolwndCommandID = new CommandID(GuidList.guidKruchyPlugin1CmdSet, (int)PkgCmdIDList.cmdidMyTool);
                 MenuCommand menuToolWin = new MenuCommand(ShowToolWindow, toolwndCommandID);
@@ -327,6 +332,11 @@ namespace KruchyCompany.KruchyPlugin1
             object sender, EventArgs args)
         {
             new IdzMiedzyInterfejsemAImplementacja(DajSolution()).Przejdz();
+        }
+
+        public void MenuItemIdzDoKataloguControllera(object sender, EventArgs args)
+        {
+            new IdzDoKataloguControllera(DajSolution()).Przejdz();
         }
 
         void slnExplUIHierarchyExample(DTE2 dte)
