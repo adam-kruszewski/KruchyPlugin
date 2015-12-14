@@ -171,6 +171,14 @@ namespace KruchyCompany.KruchyPlugin1
                     mcs,
                     PkgCmdIDList.cmdidIdzDoKataloguControllera,
                     MenuItemIdzDoKataloguControllera);
+                PodlaczDoMenu(
+                    mcs,
+                    PkgCmdIDList.cmidPrzejdzDoGridRowActions,
+                    MenuItemIdzDoGridRowActions);
+                PodlaczDoMenu(
+                    mcs,
+                    PkgCmdIDList.cmidPrzejdzDoGridToolbar,
+                    MenuItemIdzDoGridToolbar);
 
                 // Create the command for the tool window
                 CommandID toolwndCommandID = new CommandID(GuidList.guidKruchyPlugin1CmdSet, (int)PkgCmdIDList.cmdidMyTool);
@@ -337,6 +345,18 @@ namespace KruchyCompany.KruchyPlugin1
         public void MenuItemIdzDoKataloguControllera(object sender, EventArgs args)
         {
             new IdzDoKataloguControllera(DajSolution()).Przejdz();
+        }
+
+        public void MenuItemIdzDoGridRowActions(object sender, EventArgs args)
+        {
+            new IdzDoPlikuWidoku("GridRowActions.cshtml", DajSolution())
+                .PrzejdzLubStworz();
+        }
+
+        private void MenuItemIdzDoGridToolbar(object sender, EventArgs e)
+        {
+            new IdzDoPlikuWidoku("GridToolbar.cshtml", DajSolution())
+                .PrzejdzLubStworz();
         }
 
         void slnExplUIHierarchyExample(DTE2 dte)

@@ -142,6 +142,7 @@
     <Compile Include="Akcje\GenerowanieKlasyTestowej.cs" />
     <Compile Include="Akcje\GenerowanieKlasyWalidatora.cs" />
     <Compile Include="Akcje\IdzDoKataloguControllera.cs" />
+    <Compile Include="Akcje\IdzDoPlikuWidoku.cs" />
     <Compile Include="Akcje\IdzMiedzyInterfejsemAImplementacja.cs" />
     <Compile Include="Akcje\RodzajKlasyTestowej.cs" />
     <Compile Include="Akcje\UzupelnianieReferencedObject.cs" />
@@ -155,6 +156,7 @@
     <Compile Include="CodeBuilders\MetodaBuilder.cs" />
     <Compile Include="CodeBuilders\PlikClassBuilder.cs" />
     <Compile Include="CodeBuilders\StaleDlaKodu.cs" />
+    <Compile Include="Extensions\AkcjaExtension.cs" />
     <Compile Include="Extensions\FileSystemExtension.cs" />
     <Compile Include="Extensions\ProjektWrapperExtension.cs" />
     <Compile Include="Interfejs\NazwaKlasyTestowForm.cs">

@@ -236,7 +236,7 @@
           <CommandName>cmdidGenerujWidok</CommandName>
           <ButtonText>Generuj widok dla zaznaczonego tekstu</ButtonText>
         </Strings>
-      </Button>
+      </Button>-->
 
       <Button id="cmidPrzejdzDoGridRowActions" priority="0x0101"  guid="guidKruchyPlugin1CmdSet" type="Button">
         <Parent guid="guidKruchyPlugin1CmdSet" id="PodrozowanieMenuGroup"/>
@@ -252,7 +252,7 @@
           <CommandName>cmidPrzejdzDoGridToolbar</CommandName>
           <ButtonText>Idź do GridToolbar</ButtonText>
         </Strings>
-      </Button>-->
+      </Button>
       <!--Koniec buttonów związanych z UI-->
     </Buttons>
 

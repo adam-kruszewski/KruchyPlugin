@@ -98,10 +98,13 @@ namespace KruchyCompany.KruchyPlugin1.Utils
         public void UstawSieNaMiejscu(string sciezka)
         {
             ZaladujElementyUI();
+            var fileInfo = new FileInfo(sciezka);
+            var nazwa = fileInfo.Name.ToLower();
+
             var wszystkie = WszystkieWezly();
-            var nazwa = wszystkie.Select(o => o.Name).ToList();
             var wezel =
                 wszystkie
+                    .Where(o => o.Name.ToLower() == nazwa)
                     .Where(o => WSciezce(o, sciezka))
                         .FirstOrDefault();
             if (wezel != null)
