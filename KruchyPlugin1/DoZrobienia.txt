@@ -5,7 +5,7 @@ Generowanie Controllera formatki na podstawie Controllera listy
 Generowanie Buildera
 
 Przemieszczanie się po solution
- - będąc w kontrolerze przejść do katalogu z widoki
++ - będąc w kontrolerze przejść do katalogu z widoki
  - wygenerowanie widoku dla zaznaczonego nazwy w controlerze
 + - przenoszenie z interfejsu do implementacji
 
@@ -20,3 +20,5 @@ Uzupełnianie usingów do:
  - dodanie kontruktora dla serwisów
  - dodanie uprawnień dla controllera
  - usunąć końcową linię po namespacie i klasie
+
+ TODO w przechodzeniu pomiędzy interfejsem a implementacją uwzględnić, że ścieżka może być małymi literami
