@@ -21,6 +21,7 @@ namespace KruchyCompany.KruchyPlugin1
         public const uint cmdidZmienNaPublic = 0x0150;
         public const uint cmdidZmienNaPrivate = 0x0151;
         public const uint cmdidDodajKlaseWalidatora = 0x152;
+        public const uint cmdidDodajNaczesciejUzywaneUsingi = 0x153;
 
         //dla poruszania się po klasach ui
         public const uint cmdidIdzDoImplementacji = 0x0170;

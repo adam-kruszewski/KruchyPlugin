@@ -46,7 +46,7 @@
         <Parent guid="guidSHLMainMenu" id="IDG_VS_MM_TOOLSADDINS" />
         <Strings>
           <ButtonText>Krucha nawigacja</ButtonText>
-          <CommandName>Krucha nawigacja</CommandName>
+          <CommandName>Kr&amp;ucha nawigacja</CommandName>
         </Strings>
       </Menu>
 
@@ -183,6 +183,13 @@
           <ButtonText>Dodaj using Linq</ButtonText>
         </Strings>
       </Button>
+      <Button guid="guidKruchyPlugin1CmdSet" id="cmdidDodajNaczesciejUzywaneUsingi" priority="0x0127" type="Button">
+        <Parent guid="guidKruchyPlugin1CmdSet" id="MyMenuGroup" />
+        <Strings>
+          <CommandName>cmdidDodajNaczesciejUzywaneUsingi</CommandName>
+          <ButtonText>Dodaj najczęściej używane &amp;usingi</ButtonText>
+        </Strings>
+      </Button>
       <Button guid="guidKruchyPlugin1CmdSet" id="cmdidZmienNaPublic" priority="0x0115" type="Button">
         <Parent guid="guidKruchyPlugin1CmdSet" id="MyMenuGroup" />
         <Strings>
@@ -210,7 +217,7 @@
         <Parent guid="guidKruchyPlugin1CmdSet" id="PodrozowanieMenuGroup"/>
         <Strings>
           <CommandName>cmdidIdzDoImplementacji</CommandName>
-          <ButtonText>Idź do implementacji</ButtonText>
+          <ButtonText>Przejdź między &amp;interfejsem a implementacją</ButtonText>
         </Strings>
       </Button>
 
@@ -218,7 +225,7 @@
         <Parent guid="guidKruchyPlugin1CmdSet" id="PodrozowanieMenuGroup"/>
         <Strings>
           <CommandName>cmdidIdzDoKataloguControllera</CommandName>
-          <ButtonText>Idź do katalogu controllera</ButtonText>
+          <ButtonText>Idź do &amp;katalogu controllera</ButtonText>
         </Strings>
       </Button>
 
@@ -242,7 +249,7 @@
         <Parent guid="guidKruchyPlugin1CmdSet" id="PodrozowanieMenuGroup"/>
         <Strings>
           <CommandName>cmidPrzejdzDoGridRowActions</CommandName>
-          <ButtonText>Idź do GridRowActions</ButtonText>
+          <ButtonText>Idź do Grid&amp;RowActions</ButtonText>
         </Strings>
       </Button>
 
@@ -250,7 +257,7 @@
         <Parent guid="guidKruchyPlugin1CmdSet" id="PodrozowanieMenuGroup"/>
         <Strings>
           <CommandName>cmidPrzejdzDoGridToolbar</CommandName>
-          <ButtonText>Idź do GridToolbar</ButtonText>
+          <ButtonText>Idź do Grid&amp;Toolbar</ButtonText>
         </Strings>
       </Button>
       <!--Koniec buttonów związanych z UI-->
@@ -310,6 +317,7 @@
       <IDSymbol name="cmdidDodajUsingLinq" value="0x0145"/>
       <IDSymbol name="cmdidZmienNaPublic" value="0x0150"/>
       <IDSymbol name="cmdidZmienNaPrivate" value="0x0151"/>
+      <IDSymbol name="cmdidDodajNaczesciejUzywaneUsingi" value="0x0153"/>
 
       <IDSymbol name="cmdidIdzDoImplementacji" value="0x0170"/>
       <IDSymbol name="cmdidIdzDoKataloguControllera" value="0x0171"/>

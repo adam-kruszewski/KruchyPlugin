@@ -28,11 +28,12 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
         private bool JestInterfejsem(PlikWrapper aktualny)
         {
             var nazwa = aktualny.NazwaBezRozszerzenia;
-            if (!nazwa.StartsWith("I"))
+            if (!nazwa.ToLower().StartsWith("i"))
                 return false;
             if (nazwa.Length <= 1)
                 return false;
-            if (!char.IsUpper(nazwa[1]))
+            var di = new DirectoryInfo(aktualny.Katalog);
+            if (di.Name.ToLower() == "impl")
                 return false;
             return true;
         }

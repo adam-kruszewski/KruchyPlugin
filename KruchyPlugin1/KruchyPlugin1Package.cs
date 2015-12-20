@@ -150,6 +150,10 @@ namespace KruchyCompany.KruchyPlugin1
                     mcs,
                     PkgCmdIDList.cmdidDodajUsingLinq,
                     MenuItemDodajUsingLinq);
+                PodlaczDoMenu(
+                    mcs,
+                    PkgCmdIDList.cmdidDodajNaczesciejUzywaneUsingi,
+                    MenuItemDodajNajczesciejUzywaneUsingi);
 
                 PodlaczDoMenu(
                     mcs,
@@ -311,6 +315,17 @@ namespace KruchyCompany.KruchyPlugin1
         private void MenuItemDodajUsingLinq(object sender, EventArgs args)
         {
             new DodawaniaUsinga(DajSolution()).Dodaj("System.Linq");
+        }
+
+        private void MenuItemDodajNajczesciejUzywaneUsingi(
+            object sender, EventArgs args)
+        {
+            new DodawaniaUsinga(DajSolution())
+                .Dodaj(
+                "Piatka.Infrastructure.Mappings",
+                "FluentAssertions",
+                "Piatka.Infrastructure.Tests.Builders",
+                "System.Linq");
         }
 
         private void MenuItemZmienNaPublic(object sender, EventArgs args)

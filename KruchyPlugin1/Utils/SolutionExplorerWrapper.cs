@@ -97,26 +97,95 @@ namespace KruchyCompany.KruchyPlugin1.Utils
 
         public void UstawSieNaMiejscu(string sciezka)
         {
-            ZaladujElementyUI();
-            var fileInfo = new FileInfo(sciezka);
-            var nazwa = fileInfo.Name.ToLower();
-
-            var wszystkie = WszystkieWezly();
-            var wezel =
-                wszystkie
-                    .Where(o => o.Name.ToLower() == nazwa)
-                    .Where(o => WSciezce(o, sciezka))
-                        .FirstOrDefault();
-            if (wezel != null)
+            var wezlyProjektow = SzukajWezlowProjektow(3);
+            if (Directory.Exists(sciezka))
             {
-                wezel.Select(vsUISelectionType.vsUISelectionTypeSetCaret);
-                if (!wezel.UIHierarchyItems.Expanded)
-                    wezel.UIHierarchyItems.Expanded = true;
-                SolutionExplorer.DTE.ActiveWindow.Activate();
+                var info = new FileInfo(sciezka);
+                var pelna = info.FullName;
+                var projekt =
+                    wezlyProjektow
+                        .Where(o => pelna.ToLower()
+                            .StartsWith(DajKatalogWezlaProjektu(o).ToLower()))
+                            .FirstOrDefault();
+                if (projekt != null)
+                {
+                    var katalogProjektu = DajKatalogWezlaProjektu(projekt);
+                    var reszta = pelna.Substring(katalogProjektu.Length);
+
+                    var czesci =
+                        reszta.Split(
+                            Path.DirectorySeparatorChar)
+                                .Where(o => o != "")
+                                    .ToArray();
+
+                    UIHierarchyItem znalezionyWezel = ZnajdzWezelDlaReszty(projekt, czesci);
+                    if (znalezionyWezel != null)
+                    {
+                        znalezionyWezel.Select(vsUISelectionType.vsUISelectionTypeSetCaret);
+                        znalezionyWezel.Select(vsUISelectionType.vsUISelectionTypeToggle);
+                        znalezionyWezel.UIHierarchyItems.Expanded = true;
+                    }
+                }
             }
-            else
-                throw new ApplicationException(
-                    "Nie udało się ustawić dla " + sciezka);
+            //ZaladujElementyUI();
+            //var fileInfo = new FileInfo(sciezka);
+            //var nazwa = fileInfo.Name.ToLower();
+
+            //var wszystkie = WszystkieWezly();
+            //var wezel =
+            //    wszystkie
+            //        .Where(o => o.Name.ToLower() == nazwa)
+            //        .Where(o => WSciezce(o, sciezka))
+            //            .FirstOrDefault();
+            //if (wezel != null)
+            //{
+            //    wezel.Select(vsUISelectionType.vsUISelectionTypeSetCaret);
+            //    if (!wezel.UIHierarchyItems.Expanded)
+            //        wezel.UIHierarchyItems.Expanded = true;
+            //    SolutionExplorer.DTE.ActiveWindow.Activate();
+            //}
+            //else
+            //    throw new ApplicationException(
+            //        "Nie udało się ustawić dla " + sciezka);
+        }
+
+        private UIHierarchyItem ZnajdzWezelDlaReszty(
+            UIHierarchyItem projekt, string[] czesci)
+        {
+            if (czesci.Length == 0)
+                return null;
+            var nazwa = czesci.First().ToLower();
+            if (!projekt.UIHierarchyItems.Expanded)
+                projekt.UIHierarchyItems.Expanded = true;
+
+            for (int i = 1; i <= projekt.UIHierarchyItems.Count; i++)
+            {
+                var item = projekt.UIHierarchyItems.Item(i);
+                if (item.Name.ToLower() == nazwa)
+                {
+                    if (czesci.Length == 1)
+                        return item;
+                    else
+                    {
+                        var noweCzesci = new string[czesci.Length - 1];
+                        for (int j = 0; j < czesci.Length - 1; j++)
+                            noweCzesci[j] = czesci[j + 1];
+                        return ZnajdzWezelDlaReszty(item, noweCzesci);
+                    }
+                }
+            }
+            return null;
+        }
+
+        private string DajKatalogWezlaProjektu(UIHierarchyItem wezelProjektu)
+        {
+            var projekt = wezelProjektu.Object as Project;
+
+            if (projekt == null)
+                throw new ApplicationException("Coś poszło nie tak z projektem");
+
+            var info = new FileInfo(projekt.FullName);
+            return info.DirectoryName;
         }
 
         private bool WSciezce(UIHierarchyItem wezel, string sciezka)
@@ -171,6 +240,40 @@ namespace KruchyCompany.KruchyPlugin1.Utils
                 aktualna = aktualna.Collection.Parent as UIHierarchyItem;
             }
             return string.Empty;
+        }
+
+        public List<UIHierarchyItem> SzukajWezlowProjektow(int maxGlebokosc)
+        {
+            var wynik = new List<UIHierarchyItem>();
+            UIHierarchyItem solutionItem = SolutionExplorer.UIHierarchyItems.Item(1);
+
+            wynik.AddRange(SzukajWezlowProjektow(solutionItem, maxGlebokosc));
+            return wynik;
+        }
+
+        private IEnumerable<UIHierarchyItem> SzukajWezlowProjektow(
+            UIHierarchyItem item, int maxGlebokosc)
+        {
+            for (int i = 1; i <= item.UIHierarchyItems.Count; i++ )
+            {
+                UIHierarchyItem aktItem = item.UIHierarchyItems.Item(i);
+                if (JestProjektem(aktItem))
+                    yield return aktItem;
+                else
+                {
+                    if (maxGlebokosc > 0)
+                        foreach (var p in SzukajWezlowProjektow(aktItem, maxGlebokosc - 1))
+                            yield return p;
+                }
+            }
+        }
+
+        private bool JestProjektem(UIHierarchyItem item)
+        {
+            var project = item.Object as Project;
+            if (project != null && project.FullName.EndsWith(".csproj"))
+                return true;
+            return false;
         }
     }
 }
