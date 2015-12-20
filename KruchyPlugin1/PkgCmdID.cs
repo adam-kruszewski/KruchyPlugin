@@ -14,10 +14,6 @@ namespace KruchyCompany.KruchyPlugin1
         public const uint cmdidZrobKlaseService = 0x0106;
         public const uint cmdidZrobKlaseDao = 0x0107;
 
-        public const uint cmdidDodajUsingMapowan = 0x0142;
-        public const uint cmdidDodajUsingFluentAssertion = 0x0143;
-        public const uint cmdidDodajUsingBuilderow = 0x0144;
-        public const uint cmdidDodajUsingLinq = 0x0145;
         public const uint cmdidZmienNaPublic = 0x0150;
         public const uint cmdidZmienNaPrivate = 0x0151;
         public const uint cmdidDodajKlaseWalidatora = 0x152;

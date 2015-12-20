@@ -133,23 +133,7 @@ namespace KruchyCompany.KruchyPlugin1
                     mcs,
                     PkgCmdIDList.cmdidZrobKlaseService,
                     MenuItemZrobKlaseService);
-                PodlaczDoMenu(
-                    mcs,
-                    PkgCmdIDList.cmdidDodajUsingMapowan,
-                    MenuItemDodajUsingMapowan);
 
-                PodlaczDoMenu(
-                    mcs,
-                    PkgCmdIDList.cmdidDodajUsingFluentAssertion,
-                    MenuItemDodajUsingFluentAssertion);
-                PodlaczDoMenu(
-                    mcs,
-                    PkgCmdIDList.cmdidDodajUsingBuilderow,
-                    MenuItemDodajUsingBuilderów);
-                PodlaczDoMenu(
-                    mcs,
-                    PkgCmdIDList.cmdidDodajUsingLinq,
-                    MenuItemDodajUsingLinq);
                 PodlaczDoMenu(
                     mcs,
                     PkgCmdIDList.cmdidDodajNaczesciejUzywaneUsingi,
