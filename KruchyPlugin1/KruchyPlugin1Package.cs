@@ -157,6 +157,11 @@ namespace KruchyCompany.KruchyPlugin1
                     MenuItemZrobKlaseWalidatora);
                 PodlaczDoMenu(
                     mcs,
+                    PkgCmdIDList.cmdidDodajUprawnienieDomyslne,
+                    MenuItemDodajUprawnieniaDomyslne);
+
+                PodlaczDoMenu(
+                    mcs,
                     PkgCmdIDList.cmdidIdzDoImplementacji,
                     MenuItemIdzDoImplementacjiLubInterfejsu);
                 PodlaczDoMenu(
@@ -327,6 +332,11 @@ namespace KruchyCompany.KruchyPlugin1
             if (!string.IsNullOrEmpty(dialog.NazwaPliku))
                 new GenerowanieKlasyWalidatora(DajSolution())
                     .Generuj(dialog.NazwaPliku, nazwaPlikuDoWalidacji);
+        }
+
+        private void MenuItemDodajUprawnieniaDomyslne(object sender, EventArgs e)
+        {
+            new DodawanieUprawnienDomyslnych(DajSolution()).Dodaj();
         }
 
         private void MenuItemIdzDoImplementacjiLubInterfejsu(

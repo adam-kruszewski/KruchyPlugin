@@ -16,9 +16,7 @@ Uzupełnianie usingów do:
 
  W kodzie
 + - dodanie/zamiana w linii public/private
- - dodanie nowego testu
++ - dodanie nowego testu
  - dodanie kontruktora dla serwisów
- - dodanie uprawnień dla controllera
- - usunąć końcową linię po namespacie i klasie
-
- TODO w przechodzeniu pomiędzy interfejsem a implementacją uwzględnić, że ścieżka może być małymi literami
++ - dodanie uprawnień dla controllera
++ - usunąć końcową linię po namespacie i klasie

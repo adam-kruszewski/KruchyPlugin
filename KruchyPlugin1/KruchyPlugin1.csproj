@@ -137,6 +137,7 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Akcje\DodawanieUprawnienDomyslnych.cs" />
     <Compile Include="Akcje\DodawaniaUsinga.cs" />
     <Compile Include="Akcje\DodawanieNowegoTestu.cs" />
     <Compile Include="Akcje\GenerowanieKlasService.cs" />

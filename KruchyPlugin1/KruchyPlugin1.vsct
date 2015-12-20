@@ -171,6 +171,14 @@
         </Strings>
       </Button>
 
+      <Button guid="guidKruchyPlugin1CmdSet" id="cmdidDodajUprawnienieDomyslne" priority="0x0129" type="Button">
+        <Parent guid="guidKruchyPlugin1CmdSet" id="MyMenuGroup" />
+        <Strings>
+          <CommandName>cmdidDodajUprawnienieDomyslne</CommandName>
+          <ButtonText>Dodaj up&amp;rawnienia domyślne</ButtonText>
+        </Strings>
+      </Button>
+
       <Button guid="guidKruchyPlugin1CmdSet" id="cmdidZmienNaPublic" priority="0x0115" type="Button">
         <Parent guid="guidKruchyPlugin1CmdSet" id="MyMenuGroup" />
         <Strings>
@@ -296,6 +304,7 @@
       <IDSymbol name="cmdidZmienNaPrivate" value="0x0151"/>
       <IDSymbol name="cmdidDodajNaczesciejUzywaneUsingi" value="0x0153"/>
       <IDSymbol name="cmdidDodajNowyTest" value="0x154"/>
+      <IDSymbol name="cmdidDodajUprawnienieDomyslne" value="0x0155"/>
 
       <IDSymbol name="cmdidIdzDoImplementacji" value="0x0170"/>
       <IDSymbol name="cmdidIdzDoKataloguControllera" value="0x0171"/>
