@@ -40,6 +40,35 @@ namespace KruchyCompany.KruchyPlugin1.Utils
             }
         }
 
+        public PlikWrapper AktualnyPlik
+        {
+            get { return new PlikWrapper(dte.ActiveDocument); }
+        }
+
+        public ProjektWrapper AktualnyProjekt
+        {
+            get
+            {
+                var plik = AktualnyPlik;
+                if (plik == null)
+                    return null;
+
+                return plik.Projekt;
+            }
+        }
+
+        public DokumentWrapper AktualnyDokument
+        {
+            get
+            {
+                if (dte.ActiveDocument == null)
+                    return null;
+
+                var textDoc = (TextDocument)dte.ActiveDocument.Object("TextDocument");
+                return new DokumentWrapper(textDoc);
+            }
+        }
+
         public DTE2 DTE { get { return dte; } }
 
         public IList<ProjektWrapper> Projekty
@@ -91,23 +120,6 @@ namespace KruchyCompany.KruchyPlugin1.Utils
         public ProjektWrapper ZnajdzProjktDlaPliku(string nazwa)
         {
             throw new System.NotImplementedException();
-        }
-
-        public PlikWrapper AktualnyPlik
-        {
-            get { return new PlikWrapper(dte.ActiveDocument); }
-        }
-
-        public ProjektWrapper AktualnyProjekt
-        {
-            get
-            {
-                var plik = AktualnyPlik;
-                if (plik == null)
-                    return null;
-
-                return plik.Projekt;
-            }
         }
 
         public ProjektWrapper ZnajdzProjekt(string nazwa)

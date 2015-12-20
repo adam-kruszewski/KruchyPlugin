@@ -138,6 +138,10 @@ namespace KruchyCompany.KruchyPlugin1
                     mcs,
                     PkgCmdIDList.cmdidDodajNaczesciejUzywaneUsingi,
                     MenuItemDodajNajczesciejUzywaneUsingi);
+                PodlaczDoMenu(
+                    mcs,
+                    PkgCmdIDList.cmdidDodajNowyTest,
+                    MenuItemDodajNowyTest);
 
                 PodlaczDoMenu(
                     mcs,
@@ -279,28 +283,6 @@ namespace KruchyCompany.KruchyPlugin1
             g.Generuj(solution.AktualnyPlik, dialog.NazwaPliku);
         }
 
-        private void MenuItemDodajUsingMapowan(object sender, EventArgs args)
-        {
-            new DodawaniaUsinga(DajSolution())
-                .Dodaj("Piatka.Infrastructure.Mappings");
-        }
-
-        private void MenuItemDodajUsingFluentAssertion(object sender, EventArgs args)
-        {
-            new DodawaniaUsinga(DajSolution()).Dodaj("FluentAssertions");
-        }
-
-        private void MenuItemDodajUsingBuilderów(object sender, EventArgs args)
-        {
-            new DodawaniaUsinga(DajSolution())
-                .Dodaj("Piatka.Infrastructure.Tests.Builders");
-        }
-
-        private void MenuItemDodajUsingLinq(object sender, EventArgs args)
-        {
-            new DodawaniaUsinga(DajSolution()).Dodaj("System.Linq");
-        }
-
         private void MenuItemDodajNajczesciejUzywaneUsingi(
             object sender, EventArgs args)
         {
@@ -310,6 +292,18 @@ namespace KruchyCompany.KruchyPlugin1
                 "FluentAssertions",
                 "Piatka.Infrastructure.Tests.Builders",
                 "System.Linq");
+        }
+
+        private void MenuItemDodajNowyTest(object sender, EventArgs e)
+        {
+            var dialog = new NazwaKlasyWindow();
+            dialog.EtykietaNazwyPliku = "Nazwa metody testu";
+            dialog.ShowDialog();
+            if (string.IsNullOrEmpty(dialog.NazwaPliku))
+                return;
+
+            new DodawanieNowegoTestu(DajSolution())
+                .DodajNowyTest(dialog.NazwaPliku);
         }
 
         private void MenuItemZmienNaPublic(object sender, EventArgs args)

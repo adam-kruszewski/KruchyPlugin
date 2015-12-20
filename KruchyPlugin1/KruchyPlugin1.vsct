@@ -118,7 +118,7 @@
         <Parent guid="guidKruchyPlugin1CmdSet" id="MyMenuGroup" />
         <!--<Icon guid="guidImages" id="bmpPic1" />-->
         <Strings>
-          <ButtonText>Uzupełnij atrybuty dla klucza obcego</ButtonText>
+          <ButtonText>Uzupełnij atrybuty dla klucza &amp;obcego</ButtonText>
         </Strings>
       </Button>
 
@@ -126,7 +126,7 @@
         <Parent guid="guidKruchyPlugin1CmdSet" id="MyMenuGroup" />
         <!--<Icon guid="guidImages" id="bmpPic1" />-->
         <Strings>
-          <ButtonText>Uzupełnij tagi definiujące tabelę</ButtonText>
+          <ButtonText>Uzupełnij tagi definiujące ta&amp;belę</ButtonText>
         </Strings>
       </Button>
 
@@ -134,7 +134,7 @@
         <Parent guid="guidKruchyPlugin1CmdSet" id="MyMenuGroup" />
         <!--<Icon guid="guidImages" id="bmpPic1" />-->
         <Strings>
-          <ButtonText>Zrób klasę testową</ButtonText>
+          <ButtonText>Zrób klasę &amp;testową</ButtonText>
         </Strings>
       </Button>
 
@@ -142,7 +142,7 @@
         <Parent guid="guidKruchyPlugin1CmdSet" id="MyMenuGroup" />
         <!--<Icon guid="guidImages" id="bmpPic1" />-->
         <Strings>
-          <ButtonText>Zrób klasę serwisu</ButtonText>
+          <ButtonText>Zrób klasę &amp;serwisu</ButtonText>
         </Strings>
       </Button>
 
@@ -162,11 +162,20 @@
           <ButtonText>Dodaj najczęściej używane &amp;usingi</ButtonText>
         </Strings>
       </Button>
+
+      <Button guid="guidKruchyPlugin1CmdSet" id="cmdidDodajNowyTest" priority="0x0128" type="Button">
+        <Parent guid="guidKruchyPlugin1CmdSet" id="MyMenuGroup" />
+        <Strings>
+          <CommandName>cmdidDodajNowyTest</CommandName>
+          <ButtonText>Dodaj nowy t&amp;est</ButtonText>
+        </Strings>
+      </Button>
+
       <Button guid="guidKruchyPlugin1CmdSet" id="cmdidZmienNaPublic" priority="0x0115" type="Button">
         <Parent guid="guidKruchyPlugin1CmdSet" id="MyMenuGroup" />
         <Strings>
           <CommandName>cmdidZmienNaPublic</CommandName>
-          <ButtonText>Zmień metodę na public</ButtonText>
+          <ButtonText>Zmień metodę na publi&amp;c</ButtonText>
         </Strings>
       </Button>
 
@@ -174,14 +183,14 @@
         <Parent guid="guidKruchyPlugin1CmdSet" id="MyMenuGroup" />
         <Strings>
           <CommandName>cmdidZmienNaPrivate</CommandName>
-          <ButtonText>Zmień metodę na private</ButtonText>
+          <ButtonText>Zmień metodę na &amp;private</ButtonText>
         </Strings>
       </Button>
       <Button guid="guidKruchyPlugin1CmdSet" id="cmdidDodajKlaseWalidatora" priority="0x0104" type="Button">
         <Parent guid="guidKruchyPlugin1CmdSet" id="MyMenuGroup" />
         <Strings>
           <CommandName>cmdidDodajKlaseWalidatora</CommandName>
-          <ButtonText>Zrób klasę walidatora</ButtonText>
+          <ButtonText>Zrób klasę &amp;validatora</ButtonText>
         </Strings>
       </Button>
       <!--Buttony związane z UI-->
@@ -286,6 +295,7 @@
       <IDSymbol name="cmdidZmienNaPublic" value="0x0150"/>
       <IDSymbol name="cmdidZmienNaPrivate" value="0x0151"/>
       <IDSymbol name="cmdidDodajNaczesciejUzywaneUsingi" value="0x0153"/>
+      <IDSymbol name="cmdidDodajNowyTest" value="0x154"/>
 
       <IDSymbol name="cmdidIdzDoImplementacji" value="0x0170"/>
       <IDSymbol name="cmdidIdzDoKataloguControllera" value="0x0171"/>

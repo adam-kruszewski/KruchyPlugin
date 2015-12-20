@@ -12,6 +12,7 @@ namespace KruchyCompany.KruchyPlugin1.CodeBuilders
         private string nazwa;
         private string typZwracany;
         private IList<KeyValuePair<string, string>> parametry;
+        private IList<ICodeBuilder> atrybuty;
         private IList<string> linie;
 
         public MetodaBuilder()
@@ -19,6 +20,7 @@ namespace KruchyCompany.KruchyPlugin1.CodeBuilders
             typZwracany = "void";
             modyfikatory = new List<string>();
             parametry = new List<KeyValuePair<string, string>>();
+            atrybuty = new List<ICodeBuilder>();
             linie = new List<string>();
         }
 
@@ -47,6 +49,12 @@ namespace KruchyCompany.KruchyPlugin1.CodeBuilders
             return this;
         }
 
+        public MetodaBuilder DodajAtrybut(ICodeBuilder builder)
+        {
+            atrybuty.Add(builder);
+            return this;
+        }
+
         public MetodaBuilder DodajLinie(string linia)
         {
             linie.Add(linia);
@@ -56,6 +64,9 @@ namespace KruchyCompany.KruchyPlugin1.CodeBuilders
         public string Build(string wciecie = "")
         {
             var builder = new StringBuilder();
+
+            foreach (var attr in atrybuty)
+                builder.Append(attr.Build(wciecie));
 
             builder.Append(wciecie);
             builder.Append(string.Join(" ", modyfikatory));
