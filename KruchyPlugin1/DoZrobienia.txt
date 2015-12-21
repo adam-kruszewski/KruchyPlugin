@@ -20,3 +20,7 @@ Uzupełnianie usingów do:
  - dodanie kontruktora dla serwisów
 + - dodanie uprawnień dla controllera
 + - usunąć końcową linię po namespacie i klasie
+
+ TODO
+ Podczas tworzenia widoków GridToolbar i GridRowActions - tworzyć katalog jeśli nie istnieje
+ Zmienić skrót klawiszowy do menu nawigacja na g
