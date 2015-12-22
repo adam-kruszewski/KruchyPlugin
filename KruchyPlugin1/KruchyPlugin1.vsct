@@ -46,7 +46,7 @@
         <Parent guid="guidSHLMainMenu" id="IDG_VS_MM_TOOLSADDINS" />
         <Strings>
           <ButtonText>Krucha nawigacja</ButtonText>
-          <CommandName>Kr&amp;ucha nawigacja</CommandName>
+          <CommandName>Krucha nawi&amp;gacja</CommandName>
         </Strings>
       </Menu>
 
