@@ -127,26 +127,6 @@ namespace KruchyCompany.KruchyPlugin1.Utils
                     }
                 }
             }
-            //ZaladujElementyUI();
-            //var fileInfo = new FileInfo(sciezka);
-            //var nazwa = fileInfo.Name.ToLower();
-
-            //var wszystkie = WszystkieWezly();
-            //var wezel =
-            //    wszystkie
-            //        .Where(o => o.Name.ToLower() == nazwa)
-            //        .Where(o => WSciezce(o, sciezka))
-            //            .FirstOrDefault();
-            //if (wezel != null)
-            //{
-            //    wezel.Select(vsUISelectionType.vsUISelectionTypeSetCaret);
-            //    if (!wezel.UIHierarchyItems.Expanded)
-            //        wezel.UIHierarchyItems.Expanded = true;
-            //    SolutionExplorer.DTE.ActiveWindow.Activate();
-            //}
-            //else
-            //    throw new ApplicationException(
-            //        "Nie udało się ustawić dla " + sciezka);
         }
 
         private UIHierarchyItem ZnajdzWezelDlaReszty(
@@ -254,7 +234,7 @@ namespace KruchyCompany.KruchyPlugin1.Utils
         private IEnumerable<UIHierarchyItem> SzukajWezlowProjektow(
             UIHierarchyItem item, int maxGlebokosc)
         {
-            for (int i = 1; i <= item.UIHierarchyItems.Count; i++ )
+            for (int i = 1; i <= item.UIHierarchyItems.Count; i++)
             {
                 UIHierarchyItem aktItem = item.UIHierarchyItems.Item(i);
                 if (JestProjektem(aktItem))

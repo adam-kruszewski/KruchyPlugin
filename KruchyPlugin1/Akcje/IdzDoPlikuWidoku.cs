@@ -50,10 +50,18 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
                     MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 var sciezka = listaSciezek.First();
+                UtworzKatalogDlaSciezkiJesliTrzeba(sciezka)
                 File.WriteAllText(sciezka, "", Encoding.UTF8);
                 aktualny.Projekt.DodajPlik(sciezka);
                 new SolutionExplorerWrapper(solution).OtworzPlik(sciezka);
             }
+        }
+
+        private void UtworzKatalogDlaSciezkiJesliTrzeba(string sciezka)
+        {
+            var fi = new FileInfo(sciezka);
+            if (!Directory.Exists(fi.Directory.FullName))
+                Directory.CreateDirectory(fi.Directory.FullName);
         }
 
         private string DajSciezkeWOgolnych(ProjektWrapper projekt, string nazwaControllera)

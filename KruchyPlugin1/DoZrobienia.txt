@@ -23,6 +23,4 @@ Uzupełnianie usingów do:
 
  TODO
  Podczas tworzenia widoków GridToolbar i GridRowActions - tworzyć katalog jeśli nie istnieje
- Zmienić skrót klawiszowy do menu nawigacja na g
- Tworzenie testu powinno wygenerować arrange/act/assert
  Odznaczać aktualnie zaznaczone w solution explorerze przy przejściu do katalogu controllera

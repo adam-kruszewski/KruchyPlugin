@@ -19,6 +19,12 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
                     .ZNazwa(nazwaTestu)
                     .DodajModyfikator("public")
                     .DodajAtrybut(new AtrybutBuilder().ZNazwa("Test"));
+
+            builder.DodajLinie("//arrange");
+            builder.DodajLinie("");
+            builder.DodajLinie("//act");
+            builder.DodajLinie("");
+            builder.DodajLinie("//assert");
             var dokument = solution.AktualnyDokument;
             if (dokument == null)
                 return;
