@@ -50,7 +50,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
                     MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 var sciezka = listaSciezek.First();
-                UtworzKatalogDlaSciezkiJesliTrzeba(sciezka)
+                UtworzKatalogDlaSciezkiJesliTrzeba(sciezka);
                 File.WriteAllText(sciezka, "", Encoding.UTF8);
                 aktualny.Projekt.DodajPlik(sciezka);
                 new SolutionExplorerWrapper(solution).OtworzPlik(sciezka);

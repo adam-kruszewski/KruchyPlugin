@@ -20,6 +20,7 @@ namespace KruchyCompany.KruchyPlugin1
         public const uint cmdidDodajNaczesciejUzywaneUsingi = 0x153;
         public const uint cmdidDodajNowyTest = 0x154;
         public const uint cmdidDodajUprawnienieDomyslne = 0x155;
+        public const uint cmdidUzupelnijKontruktor = 0x0156;
 
         //dla poruszania się po klasach ui
         public const uint cmdidIdzDoImplementacji = 0x0170;

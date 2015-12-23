@@ -159,6 +159,10 @@ namespace KruchyCompany.KruchyPlugin1
                     mcs,
                     PkgCmdIDList.cmdidDodajUprawnienieDomyslne,
                     MenuItemDodajUprawnieniaDomyslne);
+                PodlaczDoMenu(
+                    mcs,
+                    PkgCmdIDList.cmdidUzupelnijKontruktor,
+                    MenuItemUzupelnijKonstruktor);
 
                 PodlaczDoMenu(
                     mcs,
@@ -360,6 +364,11 @@ namespace KruchyCompany.KruchyPlugin1
         {
             new IdzDoPlikuWidoku("GridToolbar.cshtml", DajSolution())
                 .PrzejdzLubStworz();
+        }
+
+        private void MenuItemUzupelnijKonstruktor(object sender, EventArgs e)
+        {
+            MessageBox.Show("Jeszcze nie zaimplementowane");
         }
 
         void slnExplUIHierarchyExample(DTE2 dte)
