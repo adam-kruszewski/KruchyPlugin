@@ -24,3 +24,4 @@ Uzupełnianie usingów do:
  TODO
  Podczas tworzenia widoków GridToolbar i GridRowActions - tworzyć katalog jeśli nie istnieje
  Odznaczać aktualnie zaznaczone w solution explorerze przy przejściu do katalogu controllera
+ szukanie implementacji i interfejsu w też w tym samym katalogu
