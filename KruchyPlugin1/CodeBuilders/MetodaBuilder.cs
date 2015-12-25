@@ -14,6 +14,7 @@ namespace KruchyCompany.KruchyPlugin1.CodeBuilders
         private IList<KeyValuePair<string, string>> parametry;
         private IList<ICodeBuilder> atrybuty;
         private IList<string> linie;
+        private bool jedenParametrWLinii = false;
 
         public MetodaBuilder()
         {
@@ -61,6 +62,12 @@ namespace KruchyCompany.KruchyPlugin1.CodeBuilders
             return this;
         }
 
+        public MetodaBuilder JedenParametrWLinii(bool jedenWLinii)
+        {
+            this.jedenParametrWLinii = jedenWLinii;
+            return this;
+        }
+
         public string Build(string wciecie = "")
         {
             var builder = new StringBuilder();
@@ -70,13 +77,19 @@ namespace KruchyCompany.KruchyPlugin1.CodeBuilders
 
             builder.Append(wciecie);
             builder.Append(string.Join(" ", modyfikatory));
-            if (modyfikatory.Any())
+            if (modyfikatory.Any(o => !string.IsNullOrEmpty(o)))
                 builder.Append(" ");
-            builder.Append(typZwracany + " ");
+            if (!string.IsNullOrEmpty(typZwracany))
+                builder.Append(typZwracany + " ");
             builder.Append(nazwa);
             builder.Append("(");
             var par = parametry.Select(o => o.Key + " " + o.Value).ToArray();
-            builder.Append(string.Join(", ", par));
+
+            var lacznik = ", ";
+            if (jedenParametrWLinii)
+                lacznik = ",\n" + StaleDlaKodu.WciecieDlaMetody + StaleDlaKodu.JednostkaWciecia;
+
+            builder.Append(string.Join(lacznik, par));
             builder.Append(")");
             builder.AppendLine();
 

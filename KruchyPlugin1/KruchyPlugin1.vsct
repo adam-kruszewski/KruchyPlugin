@@ -183,7 +183,7 @@
         <Parent guid="guidKruchyPlugin1CmdSet" id="MyMenuGroup" />
         <Strings>
           <CommandName>cmdidUzupelnijKontruktor</CommandName>
-          <ButtonText>Uzupełnij konstruktor</ButtonText>
+          <ButtonText>Uzupełnij &amp;konstruktor</ButtonText>
         </Strings>
       </Button>
 

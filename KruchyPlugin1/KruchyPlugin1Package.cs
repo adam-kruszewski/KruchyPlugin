@@ -368,7 +368,8 @@ namespace KruchyCompany.KruchyPlugin1
 
         private void MenuItemUzupelnijKonstruktor(object sender, EventArgs e)
         {
-            MessageBox.Show("Jeszcze nie zaimplementowane");
+            //MessageBox.Show("Jeszcze nie zaimplementowane");
+            new UzupelnianieKontruktora(DajSolution()).Uzupelnij();
         }
 
         void slnExplUIHierarchyExample(DTE2 dte)

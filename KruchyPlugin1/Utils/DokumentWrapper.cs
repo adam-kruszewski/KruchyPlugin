@@ -83,6 +83,14 @@ namespace KruchyCompany.KruchyPlugin1.Utils
             editPoint.Delete(editPointKoniec);
         }
 
+        public void Usun(int numerLiniiStart, int numerKolumnyStart,
+            int numerLiniiKoniec, int numerKolumnyKoniec)
+        {
+            var editPoint = DajEditPointMiejsca(numerLiniiStart, numerKolumnyStart);
+            var editPointKoniec = DajEditPointMiejsca(numerLiniiKoniec, numerKolumnyKoniec);
+            editPoint.Delete(editPointKoniec);
+        }
+
         private EditPoint DajEditPointPoczatkuLinii(
             int numerLinii)
         {
