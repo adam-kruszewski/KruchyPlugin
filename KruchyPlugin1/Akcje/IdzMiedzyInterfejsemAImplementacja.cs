@@ -1,5 +1,7 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Windows;
+using KruchyCompany.KruchyPlugin1.ParserKodu;
 using KruchyCompany.KruchyPlugin1.Utils;
 
 namespace KruchyCompany.KruchyPlugin1.Akcje
@@ -27,15 +29,14 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 
         private bool JestInterfejsem(PlikWrapper aktualny)
         {
-            var nazwa = aktualny.NazwaBezRozszerzenia;
-            if (!nazwa.ToLower().StartsWith("i"))
-                return false;
-            if (nazwa.Length <= 1)
-                return false;
-            var di = new DirectoryInfo(aktualny.Katalog);
-            if (di.Name.ToLower() == "impl")
-                return false;
-            return true;
+            var zawartosc = aktualny.Dokument.DajZawartosc();
+            var parsowane = Parser.Parsuj(zawartosc);
+            if (parsowane.DefiniowaneObiekty.Count == 1)
+            {
+                return parsowane.DefiniowaneObiekty[0].Rodzaj == RodzajObiektu.Interfejs;
+            }
+            else
+                throw new Exception("Brak zdefiniowanego obiektu");
         }
 
         private void SprobujPrzejscDoImplementacji(PlikWrapper aktualny)
@@ -50,6 +51,9 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             var katalogImpl = Path.Combine(katalog, "Impl");
             var nazwa = aktualny.Nazwa.Substring(1);
             var sciezka = Path.Combine(katalogImpl, nazwa);
+            if (File.Exists(sciezka))
+                return sciezka;
+            sciezka = Path.Combine(aktualny.Katalog, nazwa);
             if (File.Exists(sciezka))
                 return sciezka;
             return null;
@@ -67,6 +71,9 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             var katalogInterfejsu = Directory.GetParent(katalog).FullName;
             var nazwa = "I" + aktualny.Nazwa;
             var sciezka = Path.Combine(katalogInterfejsu, nazwa);
+            if (File.Exists(sciezka))
+                return sciezka;
+            sciezka = Path.Combine(aktualny.Katalog, nazwa);
             if (File.Exists(sciezka))
                 return sciezka;
             MessageBox.Show("Nie znalazłem " + sciezka);

@@ -44,6 +44,7 @@
 
       <Menu guid="guidKruchyPlugin1CmdSet" id="PodrozowanieMenu" priority="0x701" type="Menu">
         <Parent guid="guidSHLMainMenu" id="IDG_VS_MM_TOOLSADDINS" />
+        <!--<Parent guid="guidKruchyPlugin1CmdSet" id="MyMenuGroup"/>-->
         <Strings>
           <ButtonText>Krucha nawigacja</ButtonText>
           <CommandName>Krucha nawi&amp;gacja</CommandName>
@@ -90,6 +91,21 @@
         <Parent guid="guidKruchyPlugin1CmdSet" id="DodajUsingiMenu"/>
       </Group>
 
+      <Group guid="guidKruchyPlugin1CmdSet" id="DomainObjectGroup" priority="0x0108">
+        <Parent guid="guidKruchyPlugin1CmdSet" id="TopLevelMenu"/>
+      </Group>
+
+      <Group guid="guidKruchyPlugin1CmdSet" id="GenerowanieNowychKlasMetodGroup" priority="0x0106">
+        <Parent guid="guidKruchyPlugin1CmdSet" id="TopLevelMenu"/>
+      </Group>
+
+      <Group guid="guidKruchyPlugin1CmdSet" id="ZmianaModyfikatorowGroup" priority="0x0107">
+        <Parent guid="guidKruchyPlugin1CmdSet" id="TopLevelMenu"/>
+      </Group>
+
+      <Group guid="guidKruchyPlugin1CmdSet" id="PozostaleKodoweGroup" priority="0x0109">
+        <Parent guid="guidKruchyPlugin1CmdSet" id="TopLevelMenu"/>
+      </Group>
     </Groups>
 
     <!--Buttons section. -->
@@ -115,7 +131,7 @@
       </Button>-->
 
       <Button guid="guidKruchyPlugin1CmdSet" id="cmdidUzupelnijAtrybutKluczaObcego" priority="0x0100" type="Button">
-        <Parent guid="guidKruchyPlugin1CmdSet" id="MyMenuGroup" />
+        <Parent guid="guidKruchyPlugin1CmdSet" id="DomainObjectGroup" />
         <!--<Icon guid="guidImages" id="bmpPic1" />-->
         <Strings>
           <ButtonText>Uzupełnij atrybuty dla klucza &amp;obcego</ButtonText>
@@ -123,7 +139,7 @@
       </Button>
 
       <Button guid="guidKruchyPlugin1CmdSet" id="cmdidUzupelnijTagiDefiniujaceTabele" priority="0x0101" type="Button">
-        <Parent guid="guidKruchyPlugin1CmdSet" id="MyMenuGroup" />
+        <Parent guid="guidKruchyPlugin1CmdSet" id="DomainObjectGroup" />
         <!--<Icon guid="guidImages" id="bmpPic1" />-->
         <Strings>
           <ButtonText>Uzupełnij tagi definiujące ta&amp;belę</ButtonText>
@@ -131,7 +147,7 @@
       </Button>
 
       <Button guid="guidKruchyPlugin1CmdSet" id="cmdidZrobKlaseTestowa" priority="0x0102" type="Button">
-        <Parent guid="guidKruchyPlugin1CmdSet" id="MyMenuGroup" />
+        <Parent guid="guidKruchyPlugin1CmdSet" id="GenerowanieNowychKlasMetodGroup" />
         <!--<Icon guid="guidImages" id="bmpPic1" />-->
         <Strings>
           <ButtonText>Zrób klasę &amp;testową</ButtonText>
@@ -139,7 +155,7 @@
       </Button>
 
       <Button guid="guidKruchyPlugin1CmdSet" id="cmdidZrobKlaseService" priority="0x0103" type="Button">
-        <Parent guid="guidKruchyPlugin1CmdSet" id="MyMenuGroup" />
+        <Parent guid="guidKruchyPlugin1CmdSet" id="GenerowanieNowychKlasMetodGroup" />
         <!--<Icon guid="guidImages" id="bmpPic1" />-->
         <Strings>
           <ButtonText>Zrób klasę &amp;serwisu</ButtonText>
@@ -156,7 +172,7 @@
       </Button>
 
       <Button guid="guidKruchyPlugin1CmdSet" id="cmdidDodajNaczesciejUzywaneUsingi" priority="0x0127" type="Button">
-        <Parent guid="guidKruchyPlugin1CmdSet" id="MyMenuGroup" />
+        <Parent guid="guidKruchyPlugin1CmdSet" id="PozostaleKodoweGroup" />
         <Strings>
           <CommandName>cmdidDodajNaczesciejUzywaneUsingi</CommandName>
           <ButtonText>Dodaj najczęściej używane &amp;usingi</ButtonText>
@@ -164,7 +180,7 @@
       </Button>
 
       <Button guid="guidKruchyPlugin1CmdSet" id="cmdidDodajNowyTest" priority="0x0128" type="Button">
-        <Parent guid="guidKruchyPlugin1CmdSet" id="MyMenuGroup" />
+        <Parent guid="guidKruchyPlugin1CmdSet" id="GenerowanieNowychKlasMetodGroup" />
         <Strings>
           <CommandName>cmdidDodajNowyTest</CommandName>
           <ButtonText>Dodaj nowy t&amp;est</ButtonText>
@@ -172,15 +188,15 @@
       </Button>
 
       <Button guid="guidKruchyPlugin1CmdSet" id="cmdidDodajUprawnienieDomyslne" priority="0x0129" type="Button">
-        <Parent guid="guidKruchyPlugin1CmdSet" id="MyMenuGroup" />
+        <Parent guid="guidKruchyPlugin1CmdSet" id="PozostaleKodoweGroup" />
         <Strings>
           <CommandName>cmdidDodajUprawnienieDomyslne</CommandName>
           <ButtonText>Dodaj up&amp;rawnienia domyślne</ButtonText>
         </Strings>
       </Button>
-      
+
       <Button guid="guidKruchyPlugin1CmdSet" id="cmdidUzupelnijKontruktor" priority="0x0130" type="Button">
-        <Parent guid="guidKruchyPlugin1CmdSet" id="MyMenuGroup" />
+        <Parent guid="guidKruchyPlugin1CmdSet" id="PozostaleKodoweGroup" />
         <Strings>
           <CommandName>cmdidUzupelnijKontruktor</CommandName>
           <ButtonText>Uzupełnij &amp;konstruktor</ButtonText>
@@ -188,7 +204,7 @@
       </Button>
 
       <Button guid="guidKruchyPlugin1CmdSet" id="cmdidZmienNaPublic" priority="0x0115" type="Button">
-        <Parent guid="guidKruchyPlugin1CmdSet" id="MyMenuGroup" />
+        <Parent guid="guidKruchyPlugin1CmdSet" id="ZmianaModyfikatorowGroup" />
         <Strings>
           <CommandName>cmdidZmienNaPublic</CommandName>
           <ButtonText>Zmień metodę na publi&amp;c</ButtonText>
@@ -196,14 +212,14 @@
       </Button>
 
       <Button guid="guidKruchyPlugin1CmdSet" id="cmdidZmienNaPrivate" priority="0x0116" type="Button">
-        <Parent guid="guidKruchyPlugin1CmdSet" id="MyMenuGroup" />
+        <Parent guid="guidKruchyPlugin1CmdSet" id="ZmianaModyfikatorowGroup" />
         <Strings>
           <CommandName>cmdidZmienNaPrivate</CommandName>
           <ButtonText>Zmień metodę na &amp;private</ButtonText>
         </Strings>
       </Button>
       <Button guid="guidKruchyPlugin1CmdSet" id="cmdidDodajKlaseWalidatora" priority="0x0104" type="Button">
-        <Parent guid="guidKruchyPlugin1CmdSet" id="MyMenuGroup" />
+        <Parent guid="guidKruchyPlugin1CmdSet" id="GenerowanieNowychKlasMetodGroup" />
         <Strings>
           <CommandName>cmdidDodajKlaseWalidatora</CommandName>
           <ButtonText>Zrób klasę &amp;validatora</ButtonText>
@@ -292,6 +308,10 @@
 
       <IDSymbol name="PodrozowanieMenu" value="0x1024"/>
       <IDSymbol name="PodrozowanieMenuGroup" value="0x1025"/>
+      <IDSymbol name="DomainObjectGroup" value="0x1026"/>
+      <IDSymbol name="GenerowanieNowychKlasMetodGroup" value="0x1027"/>
+      <IDSymbol name="ZmianaModyfikatorowGroup" value="0x0128"/>
+      <IDSymbol name="PozostaleKodoweGroup" value="0x0129"/>
 
       <IDSymbol name="cmdidTestowaCommand" value="0x0100" />
 
