@@ -79,6 +79,7 @@ KruchyPlugin1/source.extension.vsixmanifest -text
 Wersje/KruchyPlugin_151220_v1.zip -text
 Wersje/KruchyPlugin_151222.zip -text
 Wersje/KruchyPlugin_151225.zip -text
+Wersje/KruchyPlugin_151227.zip -text
 packages/ICSharpCode.NRefactory.5.5.1/ICSharpCode.NRefactory.5.5.1.nupkg -text
 packages/ICSharpCode.NRefactory.5.5.1/lib/Net40/ICSharpCode.NRefactory.CSharp.dll -text
 packages/ICSharpCode.NRefactory.5.5.1/lib/Net40/ICSharpCode.NRefactory.CSharp.xml -text
