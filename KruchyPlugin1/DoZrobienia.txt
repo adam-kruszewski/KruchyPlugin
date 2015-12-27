@@ -3,7 +3,7 @@
 Generowanie Dao dla obiektu
 Generowanie Controllera formatki na podstawie Controllera listy
 Generowanie Buildera
-Uzupełnianie metod na podstawie interfejsu
++ Uzupełnianie metod na podstawie interfejsu
 
 Przemieszczanie się po solution
 + - będąc w kontrolerze przejść do katalogu z widoki
