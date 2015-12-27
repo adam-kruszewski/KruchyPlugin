@@ -1,7 +1,7 @@
 ﻿
 namespace KruchyCompany.KruchyPlugin1.ParserKodu
 {
-    class PozycjaWPliku
+    public class PozycjaWPliku
     {
         public int Wiersz { get; set; }
         public int Kolumna { get; set; }

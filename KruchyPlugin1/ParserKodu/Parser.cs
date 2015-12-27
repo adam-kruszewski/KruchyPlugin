@@ -109,7 +109,7 @@ namespace KruchyCompany.KruchyPlugin1.ParserKodu
                     continue;
                 }
             }
-
+            UstawPolozenie(wynik, wezel);
             return wynik;
         }
 
@@ -135,10 +135,9 @@ namespace KruchyCompany.KruchyPlugin1.ParserKodu
             }
 
             foreach (var param in md.Parameters)
-            {
                 wynik.Parametry.Add(ParsujParametr(param));
-            }
 
+            UstawPolozenie(wynik, wezel);
             return wynik;
         }
 

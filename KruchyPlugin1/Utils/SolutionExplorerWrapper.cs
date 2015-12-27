@@ -104,8 +104,7 @@ namespace KruchyCompany.KruchyPlugin1.Utils
                 var pelna = info.FullName;
                 var projekt =
                     wezlyProjektow
-                        .Where(o => pelna.ToLower()
-                            .StartsWith(DajKatalogWezlaProjektu(o).ToLower()))
+                        .Where(o => ProjektWKtorymJestSciezka(pelna, o))
                             .FirstOrDefault();
                 if (projekt != null)
                 {
@@ -127,6 +126,14 @@ namespace KruchyCompany.KruchyPlugin1.Utils
                     }
                 }
             }
+        }
+
+        private bool ProjektWKtorymJestSciezka(string pelna, UIHierarchyItem o)
+        {
+            return
+                pelna
+                    .ToLower()
+                        .StartsWith(DajKatalogWezlaProjektu(o).ToLower());
         }
 
         private UIHierarchyItem ZnajdzWezelDlaReszty(
@@ -234,6 +241,13 @@ namespace KruchyCompany.KruchyPlugin1.Utils
         private IEnumerable<UIHierarchyItem> SzukajWezlowProjektow(
             UIHierarchyItem item, int maxGlebokosc)
         {
+            var inicjalneRozwiniecie = item.UIHierarchyItems.Expanded;
+            if (!item.UIHierarchyItems.Expanded)
+            {
+                item.UIHierarchyItems.Expanded = true;
+                item.UIHierarchyItems.Expanded = inicjalneRozwiniecie;
+            }
+
             for (int i = 1; i <= item.UIHierarchyItems.Count; i++)
             {
                 UIHierarchyItem aktItem = item.UIHierarchyItems.Item(i);

@@ -202,6 +202,14 @@
           <ButtonText>Uzupełnij &amp;konstruktor</ButtonText>
         </Strings>
       </Button>
+      
+      <Button guid="guidKruchyPlugin1CmdSet" id="cmdidUzupelnijMetodaWImplementacji" priority="0x0131" type="Button">
+        <Parent guid="guidKruchyPlugin1CmdSet" id="PozostaleKodoweGroup" />
+        <Strings>
+          <CommandName>cmdidUzupelnijMetodaWImplementacji</CommandName>
+          <ButtonText>Uzupełnij &amp;metodę i intefejsie</ButtonText>
+        </Strings>
+      </Button>
 
       <Button guid="guidKruchyPlugin1CmdSet" id="cmdidZmienNaPublic" priority="0x0115" type="Button">
         <Parent guid="guidKruchyPlugin1CmdSet" id="ZmianaModyfikatorowGroup" />
@@ -242,15 +250,15 @@
         </Strings>
       </Button>
 
-      <!--<Button id="cmdidIdzDoWidoku" priority="0x0101"  guid="guidKruchyPlugin1CmdSet" type="Button">
+      <Button id="cmdidIdzDoWidoku" priority="0x0101"  guid="guidKruchyPlugin1CmdSet" type="Button">
         <Parent guid="guidKruchyPlugin1CmdSet" id="PodrozowanieMenuGroup"/>
         <Strings>
           <CommandName>cmdidIdzDoWidoku</CommandName>
-          <ButtonText>Idź do widoku</ButtonText>
+          <ButtonText>Idź do &amp;widoku</ButtonText>
         </Strings>
       </Button>
 
-      <Button id="cmdidGenerujWidok" priority="0x0101"  guid="guidKruchyPlugin1CmdSet" type="Button">
+      <!--<Button id="cmdidGenerujWidok" priority="0x0101"  guid="guidKruchyPlugin1CmdSet" type="Button">
         <Parent guid="guidKruchyPlugin1CmdSet" id="PodrozowanieMenuGroup"/>
         <Strings>
           <CommandName>cmdidGenerujWidok</CommandName>
@@ -334,7 +342,8 @@
       <IDSymbol name="cmdidDodajNowyTest" value="0x154"/>
       <IDSymbol name="cmdidDodajUprawnienieDomyslne" value="0x0155"/>
       <IDSymbol name="cmdidUzupelnijKontruktor" value="0x0156"/>
-
+      <IDSymbol name="cmdidUzupelnijMetodaWImplementacji" value="0x0157"/>
+      
       <IDSymbol name="cmdidIdzDoImplementacji" value="0x0170"/>
       <IDSymbol name="cmdidIdzDoKataloguControllera" value="0x0171"/>
       <IDSymbol name="cmdidIdzDoWidoku" value="0x0172"/>

@@ -3,11 +3,12 @@
 Generowanie Dao dla obiektu
 Generowanie Controllera formatki na podstawie Controllera listy
 Generowanie Buildera
+Uzupełnianie metod na podstawie interfejsu
 
 Przemieszczanie się po solution
 + - będąc w kontrolerze przejść do katalogu z widoki
  - wygenerowanie widoku dla zaznaczonego nazwy w controlerze
- - przejscie do widoku dla aktualnej metody w controllerze
++ - przejscie do widoku dla aktualnej metody w controllerze
 + - przenoszenie z interfejsu do implementacji
 
 Uzupełnianie usingów do:
@@ -23,5 +24,4 @@ Uzupełnianie usingów do:
 + - usunąć końcową linię po namespacie i klasie
 
  TODO
- Podczas tworzenia widoków GridToolbar i GridRowActions - tworzyć katalog jeśli nie istnieje
  Odznaczać aktualnie zaznaczone w solution explorerze przy przejściu do katalogu controllera

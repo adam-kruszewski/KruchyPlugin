@@ -2,7 +2,7 @@
 
 namespace KruchyCompany.KruchyPlugin1.ParserKodu
 {
-    class Pole : ParsowanaJednostka
+    public class Pole : ParsowanaJednostka
     {
         public string Nazwa { get; set; }
         public string NazwaTypu { get; set; }

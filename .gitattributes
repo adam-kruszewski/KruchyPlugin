@@ -12,6 +12,7 @@ KruchyPlugin1/Akcje/IdzDoPlikuWidoku.cs -text
 KruchyPlugin1/Akcje/IdzMiedzyInterfejsemAImplementacja.cs -text
 KruchyPlugin1/Akcje/RodzajKlasyTestowej.cs -text
 KruchyPlugin1/Akcje/UzupelnianieKontruktora.cs -text
+KruchyPlugin1/Akcje/UzupelnianieMetodWImplementacji.cs -text
 KruchyPlugin1/Akcje/UzupelnianieReferencedObject.cs -text
 KruchyPlugin1/Akcje/UzupelnianieTagowDefiniujacychTabele.cs -text
 KruchyPlugin1/Akcje/WynikGenerowaniaKlasService.cs -text
@@ -26,6 +27,7 @@ KruchyPlugin1/CodeBuilders/StaleDlaKodu.cs -text
 KruchyPlugin1/DoZrobienia.txt -text
 KruchyPlugin1/Extensions/AkcjaExtension.cs -text
 KruchyPlugin1/Extensions/FileSystemExtension.cs -text
+KruchyPlugin1/Extensions/PlikWrapperExtension.cs -text
 KruchyPlugin1/Extensions/ProjektWrapperExtension.cs -text
 KruchyPlugin1/GlobalSuppressions.cs -text
 KruchyPlugin1/Guids.cs -text
@@ -54,6 +56,7 @@ KruchyPlugin1/ParserKodu/Pole.cs -text
 KruchyPlugin1/ParserKodu/PozycjaWPliku.cs -text
 KruchyPlugin1/ParserKodu/Property.cs -text
 KruchyPlugin1/ParserKodu/RodzajObiektu.cs -text
+KruchyPlugin1/ParserKodu/SzukanieParsowanegoExtension.cs -text
 KruchyPlugin1/PkgCmdID.cs -text
 KruchyPlugin1/Properties/AssemblyInfo.cs -text
 KruchyPlugin1/Resources.Designer.cs -text

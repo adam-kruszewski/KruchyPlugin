@@ -180,6 +180,14 @@ namespace KruchyCompany.KruchyPlugin1
                     mcs,
                     PkgCmdIDList.cmidPrzejdzDoGridToolbar,
                     MenuItemIdzDoGridToolbar);
+                PodlaczDoMenu(
+                    mcs,
+                    PkgCmdIDList.cmdidIdzDoWidoku,
+                    MenuItemIdzDoWidoku);
+                PodlaczDoMenu(
+                    mcs,
+                    PkgCmdIDList.cmdidUzupelnijMetodaWImplementacji,
+                    MenuItemUzupelnijMetodeWImplementacji);
 
                 // Create the command for the tool window
                 CommandID toolwndCommandID = new CommandID(GuidList.guidKruchyPlugin1CmdSet, (int)PkgCmdIDList.cmdidMyTool);
@@ -356,20 +364,30 @@ namespace KruchyCompany.KruchyPlugin1
 
         public void MenuItemIdzDoGridRowActions(object sender, EventArgs args)
         {
-            new IdzDoPlikuWidoku("GridRowActions.cshtml", DajSolution())
-                .PrzejdzLubStworz();
+            new IdzDoPlikuWidoku(DajSolution())
+                .PrzejdzLubStworz("GridRowActions.cshtml");
         }
 
         private void MenuItemIdzDoGridToolbar(object sender, EventArgs e)
         {
-            new IdzDoPlikuWidoku("GridToolbar.cshtml", DajSolution())
-                .PrzejdzLubStworz();
+            new IdzDoPlikuWidoku(DajSolution())
+                .PrzejdzLubStworz("GridToolbar.cshtml");
         }
 
         private void MenuItemUzupelnijKonstruktor(object sender, EventArgs e)
         {
             //MessageBox.Show("Jeszcze nie zaimplementowane");
             new UzupelnianieKontruktora(DajSolution()).Uzupelnij();
+        }
+
+        private void MenuItemUzupelnijMetodeWImplementacji(object sender, EventArgs e)
+        {
+            new UzupelnianieMetodWImplementacji(DajSolution()).Uzupelnij();
+        }
+
+        private void MenuItemIdzDoWidoku(object sender, EventArgs e)
+        {
+            new IdzDoPlikuWidoku(DajSolution()).PrzejdzDoWidokuDlaAktualnejMetody();
         }
 
         void slnExplUIHierarchyExample(DTE2 dte)

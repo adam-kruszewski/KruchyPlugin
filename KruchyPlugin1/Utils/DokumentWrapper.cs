@@ -62,6 +62,18 @@ namespace KruchyCompany.KruchyPlugin1.Utils
             return poczatekLinii.GetText(koniecLinii);
         }
 
+        public string DajZawartosc(int wierszPoczatek, int kolumnaPoczatek,
+            int wierszKoniec, int kolumnaKoniec)
+        {
+            var poczatekLinii = textDocument.CreateEditPoint();
+            poczatekLinii.MoveToLineAndOffset(wierszPoczatek, kolumnaPoczatek);
+
+            var koniecLinii = textDocument.CreateEditPoint();
+            koniecLinii.MoveToLineAndOffset(wierszKoniec, kolumnaKoniec);
+
+            return poczatekLinii.GetText(koniecLinii);
+        }
+
         public void WstawWLinii(string tekst, int numerLinii)
         {
             var poczatekLinii =

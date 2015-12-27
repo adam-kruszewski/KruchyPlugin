@@ -2,7 +2,7 @@
 
 namespace KruchyCompany.KruchyPlugin1.ParserKodu
 {
-    class Plik
+    public class Plik
     {
         public string Namespace { get; set; }
         public PozycjaWPliku PoczatekNamespace { get; set; }

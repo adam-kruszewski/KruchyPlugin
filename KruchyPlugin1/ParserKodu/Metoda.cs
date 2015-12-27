@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace KruchyCompany.KruchyPlugin1.ParserKodu
 {
-    class Metoda : ParsowanaJednostka
+    public class Metoda : ParsowanaJednostka
     {
         public IList<Parametr> Parametry { get; private set; }
         public IList<string> Modyfikatory { get; set; }

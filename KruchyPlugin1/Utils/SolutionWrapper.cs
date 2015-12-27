@@ -128,33 +128,9 @@ namespace KruchyCompany.KruchyPlugin1.Utils
             return l.Where(o => o.Nazwa == nazwa).FirstOrDefault();
         }
 
-        public PlikWrapper OtworzPlik(PlikWrapper plik)
+        public void OtworzPlik(string sciezka)
         {
-            return null;
+            new SolutionExplorerWrapper(this).OtworzPlik(sciezka);
         }
-
-        public PlikWrapper OtworzPlik(string sciezka)
-        {
-            UIHierarchy UIH = dte.ToolWindows.SolutionExplorer;
-            UIHierarchyItem UIHItem = UIH.UIHierarchyItems.Item(1);
-
-            if (!UIHItem.UIHierarchyItems.Expanded)
-                UIHItem.UIHierarchyItems.Expanded = true;
-            Podrozuj(UIHItem.UIHierarchyItems);
-            return null;
-        }
-
-        private void Podrozuj(UIHierarchyItems uIHierarchyItems)
-        {
-            if (!uIHierarchyItems.Expanded)
-                uIHierarchyItems.Expanded = true;
-
-            for (int i = 1; i <= uIHierarchyItems.Count; i++)
-            {
-                var item = uIHierarchyItems.Item(i);
-                Podrozuj(item.UIHierarchyItems);
-            }
-        }
-
     }
 }
