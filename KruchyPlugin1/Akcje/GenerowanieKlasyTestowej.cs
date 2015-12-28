@@ -100,6 +100,13 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
                     break;
             }
 
+            var namespaceTestowanejKlasy = solution.NamespaceAktualnegoPliku();
+            if (namespaceTestowanejKlasy.EndsWith(".Impl"))
+            {
+                namespaceTestowanejKlasy =
+                    namespaceTestowanejKlasy.Substring(
+                        0, namespaceTestowanejKlasy.Length - ".Impl".Length);
+            }
             var plikBuilder = new PlikClassBuilder();
             plikBuilder
                 .ZObiektem(klasaBuilder)
@@ -107,7 +114,8 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
                 .DodajUsing("FluentAssertions")
                 .DodajUsing("NUnit.Framework")
                 .DodajUsing("Pincasso.Core.Tests.Fixtures")
-                .DodajUsing("Piatka.Infrastructure.Tests");
+                .DodajUsing("Piatka.Infrastructure.Tests")
+                .DodajUsing(namespaceTestowanejKlasy);
             return plikBuilder.Build();
         }
     }

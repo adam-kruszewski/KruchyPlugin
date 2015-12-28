@@ -4,6 +4,7 @@ using KruchyCompany.KruchyPlugin1.CodeBuilders;
 using KruchyCompany.KruchyPlugin1.Utils;
 using KruchyCompany.KruchyPlugin1.Extensions;
 using System.Windows;
+using KruchyCompany.KruchyPlugin1.ParserKodu;
 
 namespace KruchyCompany.KruchyPlugin1.Akcje
 {
@@ -16,13 +17,25 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             this.solution = solution;
         }
 
-        public void Generuj(string nazwaKlasy, string nazwaKlasyWalidowanej)
+        public void Generuj(string nazwaKlasy)
         {
+            var nazwaKlasyWalidowanej =
+                solution.AktualnyPlik.NazwaBezRozszerzenia;
+
+            var parsowane = Parser.Parsuj(solution.AktualnyDokument.DajZawartosc());
+            nazwaKlasyWalidowanej = parsowane.DefiniowaneObiekty[0].Nazwa;
+
             var zawartoscImplementacji =
-                GenerujZawartoscImplementacji(nazwaKlasy, nazwaKlasyWalidowanej);
+                GenerujZawartoscImplementacji(
+                    nazwaKlasy,
+                    nazwaKlasyWalidowanej,
+                    parsowane.Namespace);
 
             var zawartoscInterfejsu =
-                GenerujZawartoscInterfejsu(nazwaKlasy, nazwaKlasyWalidowanej);
+                GenerujZawartoscInterfejsu(
+                    nazwaKlasy,
+                    nazwaKlasyWalidowanej,
+                    parsowane.Namespace);
 
             var nazwaPlikuImplementacji = nazwaKlasy + ".cs";
             var nazwaPlikuInterfejsu = "I" + nazwaKlasy + ".cs";
@@ -63,7 +76,10 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             solutionExplorer.OtworzPlik(pelnaSciezkaDoPlikuImplementacji);
         }
 
-        private string GenerujZawartoscImplementacji(string nazwaKlasy, string nazwaKlasyWalidowanej)
+        private string GenerujZawartoscImplementacji(
+            string nazwaKlasy,
+            string nazwaKlasyWalidowanej,
+            string usingDlaDomainObiektu)
         {
             var klasa =
                 new ClassBuilder()
@@ -86,6 +102,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
                 new PlikClassBuilder()
                     .WNamespace(DajNamespaceImplementacji())
                     .DodajUsing("Piatka.Infrastructure.Validation")
+                    .DodajUsing(usingDlaDomainObiektu)
                     .ZObiektem(klasa);
 
             return plikClass.Build();
@@ -93,10 +110,13 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 
         private string DajNamespaceImplementacji()
         {
-            return solution.AktualnyPlik.Projekt.Nazwa + "Validatation.Impl";
+            return solution.AktualnyPlik.Projekt.Nazwa + ".Validatation.Impl";
         }
 
-        private string GenerujZawartoscInterfejsu(string nazwaKlasy, string nazwaKlasyWalidowanej)
+        private string GenerujZawartoscInterfejsu(
+            string nazwaKlasy,
+            string nazwaKlasyWalidowanej,
+            string usingDlaDomainObiektu)
         {
             var interfejs =
                 new InterfejsBuilder()
@@ -108,6 +128,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
                 new PlikClassBuilder()
                     .DodajUsing("Piatka.Infrastructure.Validation")
                     .WNamespace(DajNamespaceInterfejsu())
+                    .DodajUsing(usingDlaDomainObiektu)
                     .ZObiektem(interfejs);
 
             return plikClass.Build();

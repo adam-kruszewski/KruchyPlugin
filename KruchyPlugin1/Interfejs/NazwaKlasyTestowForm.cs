@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using KruchyCompany.KruchyPlugin1.Akcje;
+using KruchyCompany.KruchyPlugin1.Extensions;
 using KruchyCompany.KruchyPlugin1.Utils;
 
 namespace KruchyCompany.KruchyPlugin1.Interfejs
@@ -34,11 +35,15 @@ namespace KruchyCompany.KruchyPlugin1.Interfejs
             if (solution.AktualnyPlik == null)
                 throw new ApplicationException("Brak otwartego pliku");
             comboRodzajMigracji.SelectedIndex = 0;
-            tbInterfejsTestowany.Text = solution.AktualnyPlik.NazwaBezRozszerzenia;
+
+            var nazwaObiektu = solution.NazwaObiektuAktualnegoPliku();
+
+            tbInterfejsTestowany.Text = nazwaObiektu;
             if (!tbInterfejsTestowany.Text.StartsWith("I"))
                 tbInterfejsTestowany.Text = "I" + tbInterfejsTestowany.Text;
-            tbNazwaKlasyTestowej.Text =
-                solution.AktualnyPlik.NazwaBezRozszerzenia + "Tests";
+            tbNazwaKlasyTestowej.Text = nazwaObiektu + "Tests";
+            if (nazwaObiektu.StartsWith("I") && char.IsUpper(nazwaObiektu[1]))
+                tbNazwaKlasyTestowej.Text = nazwaObiektu.Substring(1) + "Tests";
         }
 
         private void buttonGeneruj_Click(object sender, EventArgs e)

@@ -343,7 +343,7 @@ namespace KruchyCompany.KruchyPlugin1
             dialog.ShowDialog();
             if (!string.IsNullOrEmpty(dialog.NazwaPliku))
                 new GenerowanieKlasyWalidatora(DajSolution())
-                    .Generuj(dialog.NazwaPliku, nazwaPlikuDoWalidacji);
+                    .Generuj(dialog.NazwaPliku);
         }
 
         private void MenuItemDodajUprawnieniaDomyslne(object sender, EventArgs e)

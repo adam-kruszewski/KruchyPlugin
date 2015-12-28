@@ -26,4 +26,4 @@ Uzupełnianie usingów do:
  TODO
  Odznaczać aktualnie zaznaczone w solution explorerze przy przejściu do katalogu controllera
 
- Poprawić generowanie validatora - odpowiednia przestrzeń nazw + usingi
+ 
