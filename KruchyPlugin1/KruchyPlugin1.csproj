@@ -168,6 +168,7 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Akcje\DodawanieNowejMetodyWBuilderze.cs" />
     <Compile Include="Akcje\DodawanieUprawnienDomyslnych.cs" />
     <Compile Include="Akcje\DodawaniaUsinga.cs" />
     <Compile Include="Akcje\DodawanieNowegoTestu.cs" />

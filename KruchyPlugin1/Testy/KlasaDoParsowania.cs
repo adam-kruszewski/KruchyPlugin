@@ -10,7 +10,7 @@ namespace KruchyCompany.KruchyPlugin1.Testy
     class KlasaDoParsowania
     {
         private readonly IParser PoleReadOnly;
-        public readonly string PoleStringReadOnly;
+        public readonly IList<string> PoleStringReadOnly;
 
         public int Wlasciwosc { get; set; }
 

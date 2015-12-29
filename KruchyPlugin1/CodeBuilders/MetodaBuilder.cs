@@ -87,7 +87,11 @@ namespace KruchyCompany.KruchyPlugin1.CodeBuilders
 
             var lacznik = ", ";
             if (jedenParametrWLinii)
+            {
                 lacznik = ",\n" + StaleDlaKodu.WciecieDlaMetody + StaleDlaKodu.JednostkaWciecia;
+                builder.AppendLine();
+                builder.Append(StaleDlaKodu.WciecieDlaMetody + StaleDlaKodu.JednostkaWciecia);
+            }
 
             builder.Append(string.Join(lacznik, par));
             builder.Append(")");

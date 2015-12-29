@@ -40,6 +40,12 @@ namespace KruchyCompany.KruchyPlugin1.Utils
             return textDocument.Selection.TopPoint.Line;
         }
 
+
+        public void UstawKursor(int wiersz, int kolumna)
+        {
+            textDocument.Selection.MoveToLineAndOffset(wiersz, kolumna);
+        }
+
         public string DajZawartosc()
         {
             EditPoint objEditPoint =

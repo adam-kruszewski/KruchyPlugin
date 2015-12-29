@@ -46,7 +46,7 @@ namespace KruchyCompany.KruchyPlugin1.Testy
 
             var poleStringReadonly = obiekt.Pola[1];
             poleStringReadonly.Nazwa.Should().Be("PoleStringReadOnly");
-            poleStringReadonly.NazwaTypu.Should().Be("string");
+            poleStringReadonly.NazwaTypu.Should().Be("IList<string>");
             poleStringReadonly.Modyfikatory[0].Should().Be("public");
             poleStringReadonly.Modyfikatory[1].Should().Be("readonly");
         }

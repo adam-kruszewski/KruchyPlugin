@@ -163,6 +163,10 @@ namespace KruchyCompany.KruchyPlugin1
                     mcs,
                     PkgCmdIDList.cmdidUzupelnijKontruktor,
                     MenuItemUzupelnijKonstruktor);
+                PodlaczDoMenu(
+                    mcs,
+                    PkgCmdIDList.cmdidGenerujMetodeWBuilderze,
+                    MenuItemDodajMetodeWBuilderze);
 
                 PodlaczDoMenu(
                     mcs,
@@ -349,6 +353,17 @@ namespace KruchyCompany.KruchyPlugin1
         private void MenuItemDodajUprawnieniaDomyslne(object sender, EventArgs e)
         {
             new DodawanieUprawnienDomyslnych(DajSolution()).Dodaj();
+        }
+
+        private void MenuItemDodajMetodeWBuilderze(object sender, EventArgs e)
+        {
+            var dialog = new NazwaKlasyWindow();
+            dialog.EtykietaNazwyPliku = "Nazwa metody";
+            dialog.InicjalnaWartosc = "Z";
+            dialog.ShowDialog();
+            if (!string.IsNullOrEmpty(dialog.NazwaPliku))
+                new DodawanieNowejMetodyWBuilderze(DajSolution())
+                    .Dodaj(dialog.NazwaPliku);
         }
 
         private void MenuItemIdzDoImplementacjiLubInterfejsu(

@@ -187,6 +187,14 @@
         </Strings>
       </Button>
 
+      <Button guid="guidKruchyPlugin1CmdSet" id="cmdidGenerujMetodeWBuilderze" priority="0x0129" type="Button">
+        <Parent guid="guidKruchyPlugin1CmdSet" id="GenerowanieNowychKlasMetodGroup" />
+        <Strings>
+          <CommandName>cmdidGenerujMetodeWBuilderze</CommandName>
+          <ButtonText>Dodaj &amp;nową metodę w builderze</ButtonText>
+        </Strings>
+      </Button>
+
       <Button guid="guidKruchyPlugin1CmdSet" id="cmdidDodajUprawnienieDomyslne" priority="0x0129" type="Button">
         <Parent guid="guidKruchyPlugin1CmdSet" id="PozostaleKodoweGroup" />
         <Strings>
@@ -207,7 +215,7 @@
         <Parent guid="guidKruchyPlugin1CmdSet" id="PozostaleKodoweGroup" />
         <Strings>
           <CommandName>cmdidUzupelnijMetodaWImplementacji</CommandName>
-          <ButtonText>Uzupełnij &amp;metodę i intefejsie</ButtonText>
+          <ButtonText>Uzupełnij &amp;metodę w implementacji</ButtonText>
         </Strings>
       </Button>
 
@@ -343,7 +351,8 @@
       <IDSymbol name="cmdidDodajUprawnienieDomyslne" value="0x0155"/>
       <IDSymbol name="cmdidUzupelnijKontruktor" value="0x0156"/>
       <IDSymbol name="cmdidUzupelnijMetodaWImplementacji" value="0x0157"/>
-      
+      <IDSymbol name="cmdidGenerujMetodeWBuilderze" value="0x0158"/>
+
       <IDSymbol name="cmdidIdzDoImplementacji" value="0x0170"/>
       <IDSymbol name="cmdidIdzDoKataloguControllera" value="0x0171"/>
       <IDSymbol name="cmdidIdzDoWidoku" value="0x0172"/>

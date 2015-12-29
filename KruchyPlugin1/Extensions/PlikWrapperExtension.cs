@@ -32,5 +32,19 @@ namespace KruchyCompany.KruchyPlugin1.Extensions
                 return sciezka;
             return null;
         }
+
+        public static bool JestBuilderem(this PlikWrapper aktualny)
+        {
+            var zawartosc = aktualny.Dokument.DajZawartosc();
+            var parsowane = Parser.Parsuj(zawartosc);
+            if (parsowane.DefiniowaneObiekty.Count == 1)
+            {
+                var obiekt = parsowane.DefiniowaneObiekty[0];
+                if (obiekt.Nazwa.EndsWith("Builder")
+                    && obiekt.Rodzaj == RodzajObiektu.Klasa)
+                    return true;
+            }
+            return false;
+        }
     }
 }

@@ -260,8 +260,20 @@ namespace KruchyCompany.KruchyPlugin1.ParserKodu
                 return pt.Keyword;
             SimpleType st = wezel as SimpleType;
             if (st != null)
-                return st.Identifier;
-            return null;
+            {
+                var dodatek = string.Empty;
+                if (st.TypeArguments.Count > 0)
+                {
+                    dodatek = "<" + string.Join(", ", DajNazwyParametrowTypu(st)) + ">";
+                }
+                return st.Identifier + dodatek;
+            }
+                return null;
+        }
+
+        private static IEnumerable<string> DajNazwyParametrowTypu(SimpleType st)
+        {
+            return st.TypeArguments.Select(o => SzukajTypuPola(o));
         }
 
         private static bool SzukajNazwyPola(AstNode wezel, Pole pole)
