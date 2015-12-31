@@ -8,7 +8,7 @@ Generowanie Buildera
 
 Przemieszczanie się po solution
 + - będąc w kontrolerze przejść do katalogu z widoki
- - wygenerowanie widoku dla zaznaczonego nazwy w controlerze
++ - wygenerowanie widoku dla zaznaczonego nazwy w controlerze
 + - przejscie do widoku dla aktualnej metody w controllerze
 + - przenoszenie z interfejsu do implementacji
 

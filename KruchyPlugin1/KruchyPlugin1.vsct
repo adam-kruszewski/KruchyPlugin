@@ -250,7 +250,7 @@
         </Strings>
       </Button>
 
-      <Button id="cmdidIdzDoKataloguControllera" priority="0x0101"  guid="guidKruchyPlugin1CmdSet" type="Button">
+      <Button id="cmdidIdzDoKataloguControllera" priority="0x0102"  guid="guidKruchyPlugin1CmdSet" type="Button">
         <Parent guid="guidKruchyPlugin1CmdSet" id="PodrozowanieMenuGroup"/>
         <Strings>
           <CommandName>cmdidIdzDoKataloguControllera</CommandName>
@@ -258,7 +258,7 @@
         </Strings>
       </Button>
 
-      <Button id="cmdidIdzDoWidoku" priority="0x0101"  guid="guidKruchyPlugin1CmdSet" type="Button">
+      <Button id="cmdidIdzDoWidoku" priority="0x0103"  guid="guidKruchyPlugin1CmdSet" type="Button">
         <Parent guid="guidKruchyPlugin1CmdSet" id="PodrozowanieMenuGroup"/>
         <Strings>
           <CommandName>cmdidIdzDoWidoku</CommandName>
@@ -266,15 +266,15 @@
         </Strings>
       </Button>
 
-      <!--<Button id="cmdidGenerujWidok" priority="0x0101"  guid="guidKruchyPlugin1CmdSet" type="Button">
+      <Button id="cmdidGenerujWidok" priority="0x0104"  guid="guidKruchyPlugin1CmdSet" type="Button">
         <Parent guid="guidKruchyPlugin1CmdSet" id="PodrozowanieMenuGroup"/>
         <Strings>
           <CommandName>cmdidGenerujWidok</CommandName>
-          <ButtonText>Generuj widok dla zaznaczonego tekstu</ButtonText>
+          <ButtonText>&amp;Generuj widok dla controllera</ButtonText>
         </Strings>
-      </Button>-->
+      </Button>
 
-      <Button id="cmidPrzejdzDoGridRowActions" priority="0x0101"  guid="guidKruchyPlugin1CmdSet" type="Button">
+      <Button id="cmidPrzejdzDoGridRowActions" priority="0x0106"  guid="guidKruchyPlugin1CmdSet" type="Button">
         <Parent guid="guidKruchyPlugin1CmdSet" id="PodrozowanieMenuGroup"/>
         <Strings>
           <CommandName>cmidPrzejdzDoGridRowActions</CommandName>
@@ -282,7 +282,7 @@
         </Strings>
       </Button>
 
-      <Button id="cmidPrzejdzDoGridToolbar" priority="0x0101"  guid="guidKruchyPlugin1CmdSet" type="Button">
+      <Button id="cmidPrzejdzDoGridToolbar" priority="0x0107"  guid="guidKruchyPlugin1CmdSet" type="Button">
         <Parent guid="guidKruchyPlugin1CmdSet" id="PodrozowanieMenuGroup"/>
         <Strings>
           <CommandName>cmidPrzejdzDoGridToolbar</CommandName>

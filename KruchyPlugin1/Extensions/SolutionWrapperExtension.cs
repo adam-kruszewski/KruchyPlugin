@@ -14,7 +14,8 @@ namespace KruchyCompany.KruchyPlugin1.Extensions
             return Parser.Parsuj(zawartosc).Namespace;
         }
 
-        public static string NazwaObiektuAktualnegoPliku(this SolutionWrapper solution)
+        public static string NazwaObiektuAktualnegoPliku(
+            this SolutionWrapper solution)
         {
             if (solution.AktualnyDokument == null)
                 return null;
@@ -25,6 +26,20 @@ namespace KruchyCompany.KruchyPlugin1.Extensions
                 return null;
 
             return parsowane.DefiniowaneObiekty[0].Nazwa;
+        }
+
+        public static string NazwaAktualnejMetody(this SolutionWrapper solution)
+        {
+            var zawartosc = solution.AktualnyDokument.DajZawartosc();
+            var parsowane = Parser.Parsuj(zawartosc);
+            var liniaKursora = solution.AktualnyDokument.DajNumerLiniiKursora();
+
+            var aktualnaMetoda = parsowane.SzukajMetodyWLinii(liniaKursora);
+
+            if (aktualnaMetoda != null)
+                return aktualnaMetoda.Nazwa;
+            else
+                return string.Empty;
         }
     }
 }

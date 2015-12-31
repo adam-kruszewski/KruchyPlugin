@@ -46,5 +46,27 @@ namespace KruchyCompany.KruchyPlugin1.Extensions
             }
             return false;
         }
+
+        public static string SciezkaKataloguControllera(this PlikWrapper plik)
+        {
+            string nazwaControllera = DajNazweControllera(plik.NazwaBezRozszerzenia);
+
+            var katalogPlikControllera = plik.Katalog;
+            var katalogDlaControllera =
+                Path.Combine(
+                    Directory.GetParent(katalogPlikControllera).FullName,
+                    "Views",
+                    nazwaControllera);
+
+            return katalogDlaControllera;
+        }
+
+        private static string DajNazweControllera(string nazwaKlasyControllera)
+        {
+            var dl = "Controller".Length;
+            return nazwaKlasyControllera.Substring(
+                0,
+                nazwaKlasyControllera.Length - dl);
+        }
     }
 }

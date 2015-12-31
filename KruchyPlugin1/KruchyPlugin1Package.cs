@@ -13,6 +13,7 @@ using EnvDTE80;
 using EnvDTE;
 using System.Windows;
 using KruchyCompany.KruchyPlugin1.Akcje;
+using KruchyCompany.KruchyPlugin1.Extensions;
 using KruchyCompany.KruchyPlugin1.Utils;
 using KruchyCompany.KruchyPlugin1.Interfejs;
 using System.Text;
@@ -190,6 +191,11 @@ namespace KruchyCompany.KruchyPlugin1
                     mcs,
                     PkgCmdIDList.cmdidIdzDoWidoku,
                     MenuItemIdzDoWidoku);
+                PodlaczDoMenu(
+                    mcs,
+                    PkgCmdIDList.cmdidGenerujWidok,
+                    MenuItemGenerujWidok);
+
                 PodlaczDoMenu(
                     mcs,
                     PkgCmdIDList.cmdidUzupelnijMetodaWImplementacji,
@@ -394,7 +400,6 @@ namespace KruchyCompany.KruchyPlugin1
 
         private void MenuItemUzupelnijKonstruktor(object sender, EventArgs e)
         {
-            //MessageBox.Show("Jeszcze nie zaimplementowane");
             new UzupelnianieKontruktora(DajSolution()).Uzupelnij();
         }
 
@@ -406,6 +411,19 @@ namespace KruchyCompany.KruchyPlugin1
         private void MenuItemIdzDoWidoku(object sender, EventArgs e)
         {
             new IdzDoPlikuWidoku(DajSolution()).PrzejdzDoWidokuDlaAktualnejMetody();
+        }
+
+        private void MenuItemGenerujWidok(object sender, EventArgs e)
+        {
+            var dialog = new NazwaKlasyWindow(false);
+            dialog.EtykietaNazwyPliku = "Nazwa widoku";
+            dialog.InicjalnaWartosc = DajSolution().NazwaAktualnejMetody();
+            dialog.ShowDialog();
+
+            if (!string.IsNullOrEmpty(dialog.NazwaPliku))
+            {
+                new GenerowanieWidoku(DajSolution()).Generuj(dialog.NazwaPliku);
+            }
         }
 
         void slnExplUIHierarchyExample(DTE2 dte)
