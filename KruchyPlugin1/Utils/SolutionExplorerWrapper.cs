@@ -116,15 +116,25 @@ namespace KruchyCompany.KruchyPlugin1.Utils
                             Path.DirectorySeparatorChar)
                                 .Where(o => o != "")
                                     .ToArray();
+                    OdznaczZaznaczone();
 
                     UIHierarchyItem znalezionyWezel = ZnajdzWezelDlaReszty(projekt, czesci);
                     if (znalezionyWezel != null)
                     {
                         znalezionyWezel.Select(vsUISelectionType.vsUISelectionTypeSetCaret);
                         znalezionyWezel.Select(vsUISelectionType.vsUISelectionTypeToggle);
+                        znalezionyWezel.Select(vsUISelectionType.vsUISelectionTypeSelect);
                         znalezionyWezel.UIHierarchyItems.Expanded = true;
                     }
                 }
+            }
+        }
+
+        private void OdznaczZaznaczone()
+        {
+            foreach (EnvDTE.UIHierarchyItem item in SolutionExplorer.SelectedItems as object[])
+            {
+                item.Select(vsUISelectionType.vsUISelectionTypeToggle);
             }
         }
 

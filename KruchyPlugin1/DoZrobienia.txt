@@ -4,7 +4,7 @@ Generowanie Dao dla obiektu
 Generowanie Controllera formatki na podstawie Controllera listy
 Generowanie Buildera
 + Uzupełnianie metod na podstawie interfejsu
-Dodanie nowej metody w builderze -> po podaniu nazwy
++ Dodanie nowej metody w builderze -> po podaniu nazwy
 
 Przemieszczanie się po solution
 + - będąc w kontrolerze przejść do katalogu z widoki
@@ -16,6 +16,7 @@ Uzupełnianie usingów do:
 + - mapowań
 + - builderów, tzn. np. overide
 + - do linq
++ - wczytywanie konfiguracji najczęściej używanych usingów
 
  W kodzie
 + - dodanie/zamiana w linii public/private
@@ -25,6 +26,5 @@ Uzupełnianie usingów do:
 + - usunąć końcową linię po namespacie i klasie
 
  TODO
- Odznaczać aktualnie zaznaczone w solution explorerze przy przejściu do katalogu controllera
  Zobaczyć dodanie pierwszej metody w uzupełnianiu w implementacji oraz zmiana napisu w menu
  pozwalać tworzyć serwis i implementację w katalogu Impl

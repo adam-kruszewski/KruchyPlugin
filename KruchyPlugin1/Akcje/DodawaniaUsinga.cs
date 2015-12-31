@@ -37,7 +37,6 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
                     .AktualnyPlik
                         .Dokument
                             .DodajUsingaJesliTrzeba(nazwaUsinga);
-
         }
     }
 }

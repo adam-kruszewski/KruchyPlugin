@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Globalization;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.ComponentModel.Design;
 using Microsoft.Win32;
@@ -15,6 +16,7 @@ using KruchyCompany.KruchyPlugin1.Akcje;
 using KruchyCompany.KruchyPlugin1.Utils;
 using KruchyCompany.KruchyPlugin1.Interfejs;
 using System.Text;
+using KruchyCompany.KruchyPlugin1.KonfiguracjaPlugina;
 
 namespace KruchyCompany.KruchyPlugin1
 {
@@ -307,12 +309,12 @@ namespace KruchyCompany.KruchyPlugin1
         private void MenuItemDodajNajczesciejUzywaneUsingi(
             object sender, EventArgs args)
         {
+            var konf = Konfiguracja.GetInstance();
+            var usingi =
+                konf.DajKonfiguracjeUsingow(DajSolution())
+                    .NajczesciejUzywane.ToArray();
             new DodawaniaUsinga(DajSolution())
-                .Dodaj(
-                "Piatka.Infrastructure.Mappings",
-                "FluentAssertions",
-                "Piatka.Infrastructure.Tests.Builders",
-                "System.Linq");
+                .Dodaj(usingi);
         }
 
         private void MenuItemDodajNowyTest(object sender, EventArgs e)

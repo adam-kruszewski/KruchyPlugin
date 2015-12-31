@@ -40,6 +40,8 @@ KruchyPlugin1/Interfejs/NazwaKlasyWindow.Designer.cs -text
 KruchyPlugin1/Interfejs/NazwaKlasyWindow.cs -text
 KruchyPlugin1/Interfejs/NazwaKlasyWindow.resx -text
 KruchyPlugin1/Key.snk -text
+KruchyPlugin1/KonfiguracjaPlugina/Konfiguracja.cs -text
+KruchyPlugin1/KonfiguracjaPlugina/KonfiguracjaUsingow.cs -text
 KruchyPlugin1/KruchyPlugin1.csproj -text
 KruchyPlugin1/KruchyPlugin1.csproj.user -text
 KruchyPlugin1/KruchyPlugin1.vsct -text
