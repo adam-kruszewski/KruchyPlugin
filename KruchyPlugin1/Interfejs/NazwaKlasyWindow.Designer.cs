@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.buttonAnuluj = new System.Windows.Forms.Button();
             this.buttonZatwierdz = new System.Windows.Forms.Button();
             this.tbNazwaKlasy = new System.Windows.Forms.TextBox();
@@ -38,6 +39,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.checkBox1);
             this.panel1.Controls.Add(this.buttonAnuluj);
             this.panel1.Controls.Add(this.buttonZatwierdz);
             this.panel1.Controls.Add(this.tbNazwaKlasy);
@@ -45,26 +47,36 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(455, 70);
+            this.panel1.Size = new System.Drawing.Size(455, 91);
             this.panel1.TabIndex = 0;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(167, 29);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(80, 17);
+            this.checkBox1.TabIndex = 2;
+            this.checkBox1.Text = "checkBox1";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // buttonAnuluj
             // 
             this.buttonAnuluj.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonAnuluj.Location = new System.Drawing.Point(377, 29);
+            this.buttonAnuluj.Location = new System.Drawing.Point(377, 56);
             this.buttonAnuluj.Name = "buttonAnuluj";
             this.buttonAnuluj.Size = new System.Drawing.Size(75, 23);
-            this.buttonAnuluj.TabIndex = 3;
+            this.buttonAnuluj.TabIndex = 4;
             this.buttonAnuluj.Text = "Anuluj";
             this.buttonAnuluj.UseVisualStyleBackColor = true;
             this.buttonAnuluj.Click += new System.EventHandler(this.buttonAnuluj_Click);
             // 
             // buttonZatwierdz
             // 
-            this.buttonZatwierdz.Location = new System.Drawing.Point(287, 29);
+            this.buttonZatwierdz.Location = new System.Drawing.Point(287, 56);
             this.buttonZatwierdz.Name = "buttonZatwierdz";
             this.buttonZatwierdz.Size = new System.Drawing.Size(75, 23);
-            this.buttonZatwierdz.TabIndex = 2;
+            this.buttonZatwierdz.TabIndex = 3;
             this.buttonZatwierdz.Text = "Ok";
             this.buttonZatwierdz.UseVisualStyleBackColor = true;
             this.buttonZatwierdz.Click += new System.EventHandler(this.buttonZatwierdz_Click);
@@ -91,7 +103,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.buttonAnuluj;
-            this.ClientSize = new System.Drawing.Size(455, 70);
+            this.ClientSize = new System.Drawing.Size(455, 91);
             this.ControlBox = false;
             this.Controls.Add(this.panel1);
             this.Name = "NazwaKlasyWindow";
@@ -109,6 +121,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonAnuluj;
         private System.Windows.Forms.Button buttonZatwierdz;
+        private System.Windows.Forms.CheckBox checkBox1;
 
     }
 }

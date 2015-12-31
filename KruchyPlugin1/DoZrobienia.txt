@@ -25,6 +25,8 @@ Uzupełnianie usingów do:
 + - dodanie uprawnień dla controllera
 + - usunąć końcową linię po namespacie i klasie
 
+W solutionExplorerze
+ - dodawanie klasy razem i interfejsem w katalogu impl lub w tym samym
+
  TODO
  Zobaczyć dodanie pierwszej metody w uzupełnianiu w implementacji oraz zmiana napisu w menu
- pozwalać tworzyć serwis i implementację w katalogu Impl

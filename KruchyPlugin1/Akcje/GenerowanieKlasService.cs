@@ -19,7 +19,8 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 
         public WynikGenerowaniaKlasService Generuj(
             PlikWrapper aktualnyPlik,
-            string nazwaKlasyService)
+            string nazwaKlasyService,
+            bool obaWKataloguImpl)
         {
             var aktualny = solution.AktualnyPlik;
             var projekt = aktualny.Projekt;
@@ -33,9 +34,17 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             var pelnaSciezkaDoImplementacji =
                 Path.Combine(
                     projekt.SciezkaDoServiceImpl(), nazwaPlikuImplementacji);
-            var pelnaSciezkaDoInterfejsu =
-                Path.Combine(
-                    projekt.SciezkaDoService(), nazwaPlikuInterfejsu);
+
+            string pelnaSciezkaDoInterfejsu;
+            if (!obaWKataloguImpl)
+                pelnaSciezkaDoInterfejsu =
+                    Path.Combine(
+                        projekt.SciezkaDoService(), nazwaPlikuInterfejsu);
+            else
+                pelnaSciezkaDoInterfejsu =
+                    Path.Combine(
+                        projekt.SciezkaDoServiceImpl(), nazwaPlikuInterfejsu);
+
             if (File.Exists(pelnaSciezkaDoImplementacji))
             {
                 MessageBox.Show("Plik już istnieje " + pelnaSciezkaDoImplementacji);
@@ -54,7 +63,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
                 Encoding.UTF8);
             File.WriteAllText(
                 pelnaSciezkaDoInterfejsu,
-                GenerujPlikInterfejsu(nazwaKlasyService, projekt),
+                GenerujPlikInterfejsu(nazwaKlasyService, projekt, obaWKataloguImpl),
                 Encoding.UTF8);
 
             var plikImpl = projekt.DodajPlik(pelnaSciezkaDoImplementacji);
@@ -88,7 +97,8 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 
         private string GenerujPlikInterfejsu(
             string nazwaKlasyService,
-            ProjektWrapper projekt)
+            ProjektWrapper projekt,
+            bool obaWImpl)
         {
             var interfaceBuilder =
                 new InterfejsBuilder()
@@ -97,8 +107,11 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 
             var plikClassBuilder =
                 new PlikClassBuilder()
-                    .ZObiektem(interfaceBuilder)
-                    .WNamespace(GenerujNamespace(projekt));
+                    .ZObiektem(interfaceBuilder);
+            if (!obaWImpl)
+                plikClassBuilder.WNamespace(GenerujNamespace(projekt));
+            else
+                plikClassBuilder.WNamespace(GenerujNamespaceImpl(projekt));
 
             var zawartosc = plikClassBuilder.Build();
             return zawartosc;

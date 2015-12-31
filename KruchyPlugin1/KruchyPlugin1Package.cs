@@ -294,8 +294,9 @@ namespace KruchyCompany.KruchyPlugin1
         {
             var dte = (DTE2)GetService(typeof(SDTE));
             var n = dte.ActiveWindow.ProjectItem;
-            var dialog = new NazwaKlasyWindow();
+            var dialog = new NazwaKlasyWindow(true);
             dialog.EtykietaNazwyPliku = "Nazwa pliku implementacji serwisu";
+            dialog.EtykietaCheckBoxa = "Interfejs i implementacja w Impl";
             dialog.ShowDialog();
             if (string.IsNullOrEmpty(dialog.NazwaPliku))
                 return;
@@ -303,7 +304,7 @@ namespace KruchyCompany.KruchyPlugin1
             var solution = new SolutionWrapper(dte);
             var g = new GenerowanieKlasService(solution);
 
-            g.Generuj(solution.AktualnyPlik, dialog.NazwaPliku);
+            g.Generuj(solution.AktualnyPlik, dialog.NazwaPliku, dialog.StanCheckBoxa);
         }
 
         private void MenuItemDodajNajczesciejUzywaneUsingi(
