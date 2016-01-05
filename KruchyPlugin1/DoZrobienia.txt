@@ -35,3 +35,4 @@ W solutionExplorerze
  Zobaczyć dodanie pierwszej metody w uzupełnianiu w implementacji oraz zmiana napisu w menu
  tworzyć katalog jeśli nie istnieje przy tworzeniu widoku dla controllera
  Jak stoję na metodzie w interfejsie, to może spróbować przenieść do metody w implementacji
+ Poprawić namespace dla interfejsu walidatora
