@@ -5,6 +5,9 @@ Generowanie Controllera formatki na podstawie Controllera listy
 Generowanie Buildera
 + Uzupełnianie metod na podstawie interfejsu
 + Dodanie nowej metody w builderze -> po podaniu nazwy
+Dodanie usinga do klasy modelu w cshtml
+
+Kopiowanie do schowka nazwy controllera - z klasy controllera oraz z widoku
 
 Przemieszczanie się po solution
 + - będąc w kontrolerze przejść do katalogu z widoki
@@ -30,3 +33,5 @@ W solutionExplorerze
 
  TODO
  Zobaczyć dodanie pierwszej metody w uzupełnianiu w implementacji oraz zmiana napisu w menu
+ tworzyć katalog jeśli nie istnieje przy tworzeniu widoku dla controllera
+ Jak stoję na metodzie w interfejsie, to może spróbować przenieść do metody w implementacji
