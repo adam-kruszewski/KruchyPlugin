@@ -184,6 +184,7 @@
     <Compile Include="Akcje\UzupelnianieMetodWImplementacji.cs" />
     <Compile Include="Akcje\UzupelnianieReferencedObject.cs" />
     <Compile Include="Akcje\UzupelnianieTagowDefiniujacychTabele.cs" />
+    <Compile Include="Akcje\WstawianieNazwyControlleraDoSchowka.cs" />
     <Compile Include="Akcje\WynikGenerowaniaKlasService.cs" />
     <Compile Include="Akcje\ZmianaModyfikatoraMetody.cs" />
     <Compile Include="CodeBuilders\AtrybutBuilder.cs" />
@@ -244,6 +245,7 @@
     <Compile Include="Testy\ParsowanieKlasyTests.cs" />
     <Compile Include="Testy\PlikClassBuilderTests.cs" />
     <Compile Include="Utils\DokumentWrapper.cs" />
+    <Compile Include="Utils\FileSystemWrapper.cs" />
     <Compile Include="Utils\PlikWrapper.cs" />
     <Compile Include="Utils\ProjektWrapper.cs" />
     <Compile Include="Utils\SolutionExplorerWrapper.cs" />

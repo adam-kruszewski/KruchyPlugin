@@ -133,6 +133,9 @@
       <Button guid="guidKruchyPlugin1CmdSet" id="cmdidUzupelnijAtrybutKluczaObcego" priority="0x0100" type="Button">
         <Parent guid="guidKruchyPlugin1CmdSet" id="DomainObjectGroup" />
         <!--<Icon guid="guidImages" id="bmpPic1" />-->
+        <!--<CommandFlag>DynamicItemStart</CommandFlag>-->
+        <!--<CommandFlag>DynamicVisibility</CommandFlag>
+        <CommandFlag>TextChanges</CommandFlag>-->
         <Strings>
           <ButtonText>Uzupełnij atrybuty dla klucza &amp;obcego</ButtonText>
         </Strings>
@@ -210,7 +213,7 @@
           <ButtonText>Uzupełnij &amp;konstruktor</ButtonText>
         </Strings>
       </Button>
-      
+
       <Button guid="guidKruchyPlugin1CmdSet" id="cmdidUzupelnijMetodaWImplementacji" priority="0x0131" type="Button">
         <Parent guid="guidKruchyPlugin1CmdSet" id="PozostaleKodoweGroup" />
         <Strings>
@@ -289,6 +292,14 @@
           <ButtonText>Idź do Grid&amp;Toolbar</ButtonText>
         </Strings>
       </Button>
+
+      <Button id="cmdidWstawDoSchowkaNazweControllera" priority="0x0108"  guid="guidKruchyPlugin1CmdSet" type="Button">
+        <Parent guid="guidKruchyPlugin1CmdSet" id="PodrozowanieMenuGroup"/>
+        <Strings>
+          <CommandName>cmdidWstawDoSchowkaNazweControllera</CommandName>
+          <ButtonText>W&amp;staw nazwę controllera do schowka</ButtonText>
+        </Strings>
+      </Button>
       <!--Koniec buttonów związanych z UI-->
     </Buttons>
 
@@ -304,9 +315,6 @@
     </Bitmaps>
 
   </Commands>
-
-
-
 
 
   <Symbols>
@@ -352,6 +360,7 @@
       <IDSymbol name="cmdidUzupelnijKontruktor" value="0x0156"/>
       <IDSymbol name="cmdidUzupelnijMetodaWImplementacji" value="0x0157"/>
       <IDSymbol name="cmdidGenerujMetodeWBuilderze" value="0x0158"/>
+      <IDSymbol name="cmdidWstawDoSchowkaNazweControllera" value="0x0159"/>
 
       <IDSymbol name="cmdidIdzDoImplementacji" value="0x0170"/>
       <IDSymbol name="cmdidIdzDoKataloguControllera" value="0x0171"/>

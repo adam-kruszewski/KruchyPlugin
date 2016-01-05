@@ -7,7 +7,7 @@ Generowanie Buildera
 + Dodanie nowej metody w builderze -> po podaniu nazwy
 Dodanie usinga do klasy modelu w cshtml
 
-Kopiowanie do schowka nazwy controllera - z klasy controllera oraz z widoku
++ Kopiowanie do schowka nazwy controllera - z klasy controllera oraz z widoku
 
 Przemieszczanie się po solution
 + - będąc w kontrolerze przejść do katalogu z widoki
@@ -29,10 +29,8 @@ Uzupełnianie usingów do:
 + - usunąć końcową linię po namespacie i klasie
 
 W solutionExplorerze
- - dodawanie klasy razem i interfejsem w katalogu impl lub w tym samym
++ - dodawanie klasy razem i interfejsem w katalogu impl lub w tym samym
 
  TODO
- Zobaczyć dodanie pierwszej metody w uzupełnianiu w implementacji oraz zmiana napisu w menu
+ Zobaczyć dodanie pierwszej metody w uzupełnianiu w implementacji 
  tworzyć katalog jeśli nie istnieje przy tworzeniu widoku dla controllera
- Jak stoję na metodzie w interfejsie, to może spróbować przenieść do metody w implementacji
- Poprawić namespace dla interfejsu walidatora

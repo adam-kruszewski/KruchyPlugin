@@ -92,6 +92,7 @@ namespace KruchyCompany.KruchyPlugin1
 
             // Add our command handlers for menu (commands must exist in the .vsct file)
             OleMenuCommandService mcs = GetService(typeof(IMenuCommandService)) as OleMenuCommandService;
+
             if (null != mcs)
             {
                 // Create the command for the menu item.
@@ -107,11 +108,14 @@ namespace KruchyCompany.KruchyPlugin1
                         GuidList.guidKruchyPlugin1CmdSet,
                         (int)PkgCmdIDList.cmdidUzupelnijAtrybutKluczaObcego);
                 var mcUzupelnijReferencje =
-                    new MenuCommand(
-                        MenuItemUzupelnijReferencjeDlaKluczaObcegoCallback,
-                        menuCommandUzupReferencje);
-                mcs.AddCommand(mcUzupelnijReferencje);
-
+                    //    new OleMenuCommand(
+                    //        MenuItemUzupelnijReferencjeDlaKluczaObcegoCallback,
+                    //        menuCommandUzupReferencje);
+                    //mcUzupelnijReferencje.BeforeQueryStatus += mcUzupelnijReferencje_BeforeQueryStatus;
+                new MenuCommand(
+                    MenuItemUzupelnijReferencjeDlaKluczaObcegoCallback,
+                    menuCommandUzupReferencje);
+                //mcs.AddCommand(mcUzupelnijReferencje);
                 var menuCommandUzupTagiTabeli =
                     new CommandID(
                         GuidList.guidKruchyPlugin1CmdSet,
@@ -200,12 +204,23 @@ namespace KruchyCompany.KruchyPlugin1
                     mcs,
                     PkgCmdIDList.cmdidUzupelnijMetodaWImplementacji,
                     MenuItemUzupelnijMetodeWImplementacji);
+                PodlaczDoMenu(
+                    mcs,
+                    PkgCmdIDList.cmdidWstawDoSchowkaNazweControllera,
+                    MenuItemWstawDoSchowkaNazweControllera);
 
                 // Create the command for the tool window
                 CommandID toolwndCommandID = new CommandID(GuidList.guidKruchyPlugin1CmdSet, (int)PkgCmdIDList.cmdidMyTool);
                 MenuCommand menuToolWin = new MenuCommand(ShowToolWindow, toolwndCommandID);
                 mcs.AddCommand(menuToolWin);
             }
+        }
+
+        void mcUzupelnijReferencje_BeforeQueryStatus(object sender, EventArgs e)
+        {
+            var oleMenuCommand = sender as OleMenuCommand;
+            //oleMenuCommand.Enabled = !oleMenuCommand.Enabled;
+            oleMenuCommand.Text += "a";
         }
 
         private void PodlaczDoMenu(
@@ -424,6 +439,14 @@ namespace KruchyCompany.KruchyPlugin1
             {
                 new GenerowanieWidoku(DajSolution()).Generuj(dialog.NazwaPliku);
             }
+        }
+
+        private void MenuItemWstawDoSchowkaNazweControllera(
+            object sender,
+            EventArgs e)
+        {
+            Clipboard.SetText("Przykładowy tekst");
+            new WstawianieNazwyControlleraDoSchowka(DajSolution()).Wstaw();
         }
 
         void slnExplUIHierarchyExample(DTE2 dte)

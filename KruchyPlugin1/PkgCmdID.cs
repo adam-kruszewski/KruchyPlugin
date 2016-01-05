@@ -23,6 +23,7 @@ namespace KruchyCompany.KruchyPlugin1
         public const uint cmdidUzupelnijKontruktor = 0x0156;
         public const uint cmdidUzupelnijMetodaWImplementacji = 0x0157;
         public const uint cmdidGenerujMetodeWBuilderze = 0x0158;
+        public const uint cmdidWstawDoSchowkaNazweControllera = 0x0159;
 
         //dla poruszania się po klasach ui
         public const uint cmdidIdzDoImplementacji = 0x0170;

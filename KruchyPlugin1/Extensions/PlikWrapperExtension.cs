@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using KruchyCompany.KruchyPlugin1.ParserKodu;
 using KruchyCompany.KruchyPlugin1.Utils;
 
@@ -67,6 +68,19 @@ namespace KruchyCompany.KruchyPlugin1.Extensions
             return nazwaKlasyControllera.Substring(
                 0,
                 nazwaKlasyControllera.Length - dl);
+        }
+
+        public static string DajNazweControllera(this PlikWrapper plik)
+        {
+            var zawartosc = plik.Dokument.DajZawartosc();
+            var parsowane = Parser.Parsuj(zawartosc);
+            if (parsowane.DefiniowaneObiekty.Count() == 1)
+            {
+                var nazwa = parsowane.DefiniowaneObiekty.First().Nazwa;
+                if (nazwa.EndsWith("Controller"))
+                    return DajNazweControllera(nazwa);
+            }
+            return null;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Windows;
 using KruchyCompany.KruchyPlugin1.ParserKodu;
 using KruchyCompany.KruchyPlugin1.Utils;
@@ -41,8 +42,36 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 
         private void SprobujPrzejscDoImplementacji(PlikWrapper aktualny)
         {
+            var parsowane = Parser.Parsuj(aktualny.Dokument.DajZawartosc());
+            var metoda =
+                parsowane.SzukajMetodyWLinii(
+                    aktualny.Dokument.DajNumerLiniiKursora());
+
             string sciezkaImplementacji = SzukajSciezkiDoImplementacji(aktualny);
             OtworzJesliSciezkaNieNullowa(sciezkaImplementacji);
+
+            if (!string.IsNullOrEmpty(sciezkaImplementacji) && metoda != null)
+            {
+                UstawSieNaMetodzie(metoda);
+            }
+        }
+
+        private void UstawSieNaMetodzie(Metoda metoda)
+        {
+            var parsowane =
+                Parser.Parsuj(solution.AktualnyDokument.DajZawartosc());
+
+            if (parsowane.DefiniowaneObiekty.Count != 1)
+                return;
+
+            var znalezionaMetoda =
+                parsowane.DefiniowaneObiekty[0].Metody
+                    .Where(o => o.Nazwa == metoda.Nazwa)
+                        .FirstOrDefault();
+
+            if (znalezionaMetoda != null)
+                solution.AktualnyDokument.UstawKursor(
+                    znalezionaMetoda.Poczatek.Wiersz, 1);
         }
 
         private string SzukajSciezkiDoImplementacji(PlikWrapper aktualny)
