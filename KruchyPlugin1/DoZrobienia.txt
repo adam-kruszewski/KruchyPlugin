@@ -35,4 +35,10 @@ W solutionExplorerze
  TODO
  Zobaczyć dodanie pierwszej metody w uzupełnianiu w implementacji 
  tworzyć katalog jeśli nie istnieje przy tworzeniu widoku dla controllera
- po uzupełnieniu metody w implementacji ustawić się na metodzie
+ po uzupełnieniu metody w implementacji ustawić się na metodzie - uwzględnić różnice w parametrach
+ walidator jako nadklasę powinień mieć PincassoValidator<>
+ w TestsWithDatabase uzupełnić namespace'a
+ otwierać implementację serwisu
+ zobaczyć dlaczego nie uzupełnia referenced object
+ ustawiać się po dodaniu metody - w testach/implementacjach/builderach
+ generowanie widoku nie powinno nadpisywać, tylko nie pozwalać nadpisać
