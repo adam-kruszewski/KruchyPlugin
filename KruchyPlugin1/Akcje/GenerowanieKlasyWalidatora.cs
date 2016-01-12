@@ -84,7 +84,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             var klasa =
                 new ClassBuilder()
                     .ZNazwa(nazwaKlasy)
-                    //.ZNadklasa("Validator")
+                    .ZNadklasa("PincassoValidator<" + nazwaKlasyWalidowanej + ">")
                     .DodajInterfejs("I" + nazwaKlasy);
 
             var metodaCreateRules =

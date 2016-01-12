@@ -25,10 +25,15 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 
             var katalogControllera =
                 solution.AktualnyPlik.SciezkaKataloguControllera();
-            if (Directory.Exists(katalogControllera))
+            if (!Directory.Exists(katalogControllera))
                 Directory.CreateDirectory(katalogControllera);
 
             var pelnaSciezka = Path.Combine(katalogControllera, nazwa);
+            if (File.Exists(pelnaSciezka))
+            {
+                MessageBox.Show("Plik " + pelnaSciezka + " już istnieje");
+                return;
+            }
             File.WriteAllText(pelnaSciezka, "");
             solution.AktualnyProjekt.DodajPlik(pelnaSciezka);
             solution.OtworzPlik(pelnaSciezka);

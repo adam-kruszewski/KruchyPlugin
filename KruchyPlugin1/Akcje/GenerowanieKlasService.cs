@@ -71,7 +71,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 
             var solutionExplorer = new SolutionExplorerWrapper(solution);
             solutionExplorer.OtworzPlik(plikInt.SciezkaPelna);
-            solutionExplorer.OtworzPlik(plikInt.SciezkaPelna);
+            solutionExplorer.OtworzPlik(plikImpl.SciezkaPelna);
 
             return new WynikGenerowaniaKlasService();
         }
