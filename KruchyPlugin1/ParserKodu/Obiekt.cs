@@ -12,12 +12,18 @@ namespace KruchyCompany.KruchyPlugin1.ParserKodu
         public IList<Property> Propertiesy { get; private set; }
         public IList<Metoda> Metody { get; private set; }
 
+        public PozycjaWPliku PoczatkowaKlamerka { get; private set; }
+        public PozycjaWPliku KoncowaKlamerka { get; private set; }
+
         public Obiekt() : base()
         {
             Konstruktory = new List<Konstruktor>();
             Pola = new List<Pole>();
             Propertiesy = new List<Property>();
             Metody = new List<Metoda>();
+
+            PoczatkowaKlamerka = new PozycjaWPliku();
+            KoncowaKlamerka = new PozycjaWPliku();
         }
     }
 }

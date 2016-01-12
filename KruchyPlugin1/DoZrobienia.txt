@@ -33,8 +33,5 @@ W solutionExplorerze
  - przejście do klasy testowej według konwencji
 
  TODO
- Zobaczyć dodanie pierwszej metody w uzupełnianiu w implementacji 
  po uzupełnieniu metody w implementacji ustawić się na metodzie - uwzględnić różnice w parametrach
  w TestsWithDatabase uzupełnić namespace'a
- zobaczyć dlaczego nie uzupełnia referenced object
- ustawiać się po dodaniu metody - w testach/implementacjach/builderach

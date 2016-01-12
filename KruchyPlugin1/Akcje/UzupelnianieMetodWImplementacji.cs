@@ -71,6 +71,8 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
                 GenerujTekstDoWstawienia(definicja);
             solution.AktualnyDokument
                 .WstawWLinii(wstawianyTekst, numerLiniiGdzieDodawac);
+            solution.AktualnyDokument.UstawKursosDlaMetodyDodanejWLinii(
+                numerLiniiGdzieDodawac + 1);
 
             foreach (var u in usingi)
                 solution.AktualnyDokument.DodajUsingaJesliTrzeba(u);

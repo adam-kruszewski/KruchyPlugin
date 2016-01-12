@@ -108,9 +108,29 @@ namespace KruchyCompany.KruchyPlugin1.ParserKodu
                     wynik.Metody.Add(ParsujMetode(dziecko));
                     continue;
                 }
+                if (dziecko is CSharpTokenNode)
+                {
+                    ParsujKlamerki(wynik, dziecko);
+                }
             }
             UstawPolozenie(wynik, wezel);
             return wynik;
+        }
+
+        private static void ParsujKlamerki(Obiekt wynik, AstNode wezel)
+        {
+            var tn = wezel as CSharpTokenNode;
+            var tekst = tn.GetText();
+            if (tekst == "{")
+            {
+                wynik.PoczatkowaKlamerka.Wiersz = tn.StartLocation.Line;
+                wynik.PoczatkowaKlamerka.Kolumna = tn.StartLocation.Column;
+            }
+            if (tekst == "}")
+            {
+                wynik.KoncowaKlamerka.Wiersz = tn.EndLocation.Line;
+                wynik.KoncowaKlamerka.Kolumna = tn.EndLocation.Column;
+            }
         }
 
         private static bool DefinicjaMetody(AstNode wezel)
@@ -268,7 +288,7 @@ namespace KruchyCompany.KruchyPlugin1.ParserKodu
                 }
                 return st.Identifier + dodatek;
             }
-                return null;
+            return null;
         }
 
         private static IEnumerable<string> DajNazwyParametrowTypu(SimpleType st)

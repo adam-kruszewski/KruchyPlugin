@@ -31,7 +31,7 @@ namespace KruchyCompany.KruchyPlugin1.ParserKodu
                     .Select(o => o.Wiersz);
             if (ostatnieLinieDefinicji.Count() == 0)
             {
-                return obiekt.Poczatek.Wiersz + 2;
+                return obiekt.PoczatkowaKlamerka.Wiersz + 1;
             }
 
             return ostatnieLinieDefinicji.Max() + 1;

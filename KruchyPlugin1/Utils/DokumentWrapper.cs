@@ -1,4 +1,5 @@
 ﻿using EnvDTE;
+using KruchyCompany.KruchyPlugin1.CodeBuilders;
 
 namespace KruchyCompany.KruchyPlugin1.Utils
 {
@@ -44,6 +45,14 @@ namespace KruchyCompany.KruchyPlugin1.Utils
         public void UstawKursor(int wiersz, int kolumna)
         {
             textDocument.Selection.MoveToLineAndOffset(wiersz, kolumna);
+        }
+
+        public void UstawKursosDlaMetodyDodanejWLinii(int numerLinii)
+        {
+            UstawKursor(
+                numerLinii + 2,
+                1 + StaleDlaKodu.WciecieDlaMetody.Length
+                + StaleDlaKodu.JednostkaWciecia.Length);
         }
 
         public string DajZawartosc()

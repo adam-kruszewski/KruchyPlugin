@@ -115,7 +115,8 @@ namespace KruchyCompany.KruchyPlugin1
                 new MenuCommand(
                     MenuItemUzupelnijReferencjeDlaKluczaObcegoCallback,
                     menuCommandUzupReferencje);
-                //mcs.AddCommand(mcUzupelnijReferencje);
+                mcs.AddCommand(mcUzupelnijReferencje);
+                
                 var menuCommandUzupTagiTabeli =
                     new CommandID(
                         GuidList.guidKruchyPlugin1CmdSet,

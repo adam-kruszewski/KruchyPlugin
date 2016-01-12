@@ -25,6 +25,8 @@ namespace KruchyCompany.KruchyPlugin1.Testy
             var obiekt = plik.DefiniowaneObiekty.First();
             obiekt.Rodzaj.Should().Be(RodzajObiektu.Klasa);
             obiekt.Nazwa.Should().Be("KlasaDoParsowania");
+            obiekt.PoczatkowaKlamerka.Wiersz.Should().Be(11);
+            obiekt.PoczatkowaKlamerka.Kolumna.Should().Be(5);
 
             SprawdzPola(obiekt);
 

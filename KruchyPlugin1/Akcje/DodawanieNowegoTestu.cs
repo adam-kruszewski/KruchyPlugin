@@ -32,6 +32,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             var numerLinii = dokument.DajNumerLiniiKursora();
             var trescMetody = builder.Build(StaleDlaKodu.WciecieDlaMetody).TrimEnd();
             dokument.WstawWLinii(trescMetody, numerLinii);
+            dokument.UstawKursosDlaMetodyDodanejWLinii(numerLinii + 2);
             dokument.DodajUsingaJesliTrzeba("NUnit.Framework");
         }
     }
