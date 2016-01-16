@@ -2,9 +2,9 @@
 using System.Linq;
 using System.Text;
 
-namespace KruchyCompany.KruchyPlugin1.CodeBuilders
+namespace KrucheBuilderyKodu.Builders
 {
-    class ClassBuilder : ICodeBuilder
+    public class ClassBuilder : ICodeBuilder
     {
         private string modyfikator { get; set; }
         private string nazwa { get; set; }

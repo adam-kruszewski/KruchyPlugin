@@ -1,8 +1,8 @@
 ﻿using System.Text;
 
-namespace KruchyCompany.KruchyPlugin1.CodeBuilders
+namespace KrucheBuilderyKodu.Builders
 {
-    class InterfejsBuilder : ICodeBuilder
+    public class InterfejsBuilder : ICodeBuilder
     {
         private string modyfikator { get; set; }
         private string nazwa { get; set; }

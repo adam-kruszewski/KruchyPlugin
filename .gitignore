@@ -1,0 +1,10 @@
+KrucheBuilderyKodu/*.aps
+KrucheBuilderyKodu/*.eto
+KrucheBuilderyKodu/*.user
+KrucheBuilderyKodu/ClientBin
+KrucheBuilderyKodu/GeneratedArtifacts
+KrucheBuilderyKodu/[Bb]in
+KrucheBuilderyKodu/[Dd]ebug
+KrucheBuilderyKodu/[Rr]elease
+KrucheBuilderyKodu/_Pvt_Extensions
+KrucheBuilderyKodu/obj

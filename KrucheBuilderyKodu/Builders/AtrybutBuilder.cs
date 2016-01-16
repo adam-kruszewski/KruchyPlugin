@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KruchyCompany.KruchyPlugin1.CodeBuilders
+namespace KrucheBuilderyKodu.Builders
 {
-    class AtrybutBuilder : ICodeBuilder
+    public class AtrybutBuilder : ICodeBuilder
     {
         private string Nazwa { get; set; }
 

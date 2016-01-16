@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using KruchyCompany.KruchyPlugin1.CodeBuilders;
 using KruchyCompany.KruchyPlugin1.Utils;
+using KrucheBuilderyKodu.Builders;
 
 namespace KruchyCompany.KruchyPlugin1.Akcje
 {

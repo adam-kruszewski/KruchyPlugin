@@ -1,4 +1,4 @@
-﻿using KruchyCompany.KruchyPlugin1.CodeBuilders;
+﻿using KrucheBuilderyKodu.Builders;
 using KruchyCompany.KruchyPlugin1.Utils;
 
 namespace KruchyCompany.KruchyPlugin1.Akcje

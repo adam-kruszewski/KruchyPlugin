@@ -187,13 +187,6 @@
     <Compile Include="Akcje\WstawianieNazwyControlleraDoSchowka.cs" />
     <Compile Include="Akcje\WynikGenerowaniaKlasService.cs" />
     <Compile Include="Akcje\ZmianaModyfikatoraMetody.cs" />
-    <Compile Include="CodeBuilders\AtrybutBuilder.cs" />
-    <Compile Include="CodeBuilders\ClassBuilder.cs" />
-    <Compile Include="CodeBuilders\ICodeBuilder.cs" />
-    <Compile Include="CodeBuilders\InterfejsBuilder.cs" />
-    <Compile Include="CodeBuilders\MetodaBuilder.cs" />
-    <Compile Include="CodeBuilders\PlikClassBuilder.cs" />
-    <Compile Include="CodeBuilders\StaleDlaKodu.cs" />
     <Compile Include="Extensions\AkcjaExtension.cs" />
     <Compile Include="Extensions\FileSystemExtension.cs" />
     <Compile Include="Extensions\PlikWrapperExtension.cs" />
@@ -299,6 +292,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\KrucheBuilderyKodu\KrucheBuilderyKodu.csproj">
+      <Project>{0c5748a8-7d43-444c-90ad-3dbe02dcabab}</Project>
+      <Name>KrucheBuilderyKodu</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <UseCodebase>true</UseCodebase>

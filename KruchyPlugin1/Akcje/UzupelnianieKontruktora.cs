@@ -2,17 +2,15 @@
 using System.Linq;
 using System.Windows;
 using ICSharpCode.NRefactory.CSharp;
-using KruchyCompany.KruchyPlugin1.CodeBuilders;
 using KruchyCompany.KruchyPlugin1.ParserKodu;
 using KruchyCompany.KruchyPlugin1.Utils;
+using KrucheBuilderyKodu.Builders;
 
 namespace KruchyCompany.KruchyPlugin1.Akcje
 {
     class UzupelnianieKontruktora
     {
         private readonly SolutionWrapper solution;
-
-        private AstNode wezelDefinicjiKlasy;
 
         public UzupelnianieKontruktora(SolutionWrapper solution)
         {

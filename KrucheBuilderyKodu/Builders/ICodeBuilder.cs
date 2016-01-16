@@ -1,5 +1,5 @@
 ﻿
-namespace KruchyCompany.KruchyPlugin1.CodeBuilders
+namespace KrucheBuilderyKodu.Builders
 {
     public interface ICodeBuilder
     {

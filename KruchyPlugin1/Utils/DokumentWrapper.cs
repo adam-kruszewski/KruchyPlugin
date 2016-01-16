@@ -1,5 +1,5 @@
 ﻿using EnvDTE;
-using KruchyCompany.KruchyPlugin1.CodeBuilders;
+using KrucheBuilderyKodu.Builders;
 
 namespace KruchyCompany.KruchyPlugin1.Utils
 {

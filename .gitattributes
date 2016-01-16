@@ -1,4 +1,14 @@
 * text=auto !eol
+KrucheBuilderyKodu/Builders/AtrybutBuilder.cs -text
+KrucheBuilderyKodu/Builders/ClassBuilder.cs -text
+KrucheBuilderyKodu/Builders/ICodeBuilder.cs -text
+KrucheBuilderyKodu/Builders/InterfejsBuilder.cs -text
+KrucheBuilderyKodu/Builders/MetodaBuilder.cs -text
+KrucheBuilderyKodu/Builders/PlikClassBuilder.cs -text
+KrucheBuilderyKodu/Builders/StaleDlaKodu.cs -text
+KrucheBuilderyKodu/KrucheBuilderyKodu.csproj -text
+KrucheBuilderyKodu/KruchyKey.snk -text
+KrucheBuilderyKodu/Properties/AssemblyInfo.cs -text
 /KruchyPlugin.sln -text
 /KruchyPlugin.v12.suo -text
 KruchyPlugin1/Akcje/DodawaniaUsinga.cs -text
@@ -20,13 +30,6 @@ KruchyPlugin1/Akcje/UzupelnianieTagowDefiniujacychTabele.cs -text
 KruchyPlugin1/Akcje/WstawianieNazwyControlleraDoSchowka.cs -text
 KruchyPlugin1/Akcje/WynikGenerowaniaKlasService.cs -text
 KruchyPlugin1/Akcje/ZmianaModyfikatoraMetody.cs -text
-KruchyPlugin1/CodeBuilders/AtrybutBuilder.cs -text
-KruchyPlugin1/CodeBuilders/ClassBuilder.cs -text
-KruchyPlugin1/CodeBuilders/ICodeBuilder.cs -text
-KruchyPlugin1/CodeBuilders/InterfejsBuilder.cs -text
-KruchyPlugin1/CodeBuilders/MetodaBuilder.cs -text
-KruchyPlugin1/CodeBuilders/PlikClassBuilder.cs -text
-KruchyPlugin1/CodeBuilders/StaleDlaKodu.cs -text
 KruchyPlugin1/DoZrobienia.txt -text
 KruchyPlugin1/Extensions/AkcjaExtension.cs -text
 KruchyPlugin1/Extensions/FileSystemExtension.cs -text

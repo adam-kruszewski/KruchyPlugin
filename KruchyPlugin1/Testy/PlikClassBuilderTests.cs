@@ -1,4 +1,4 @@
-﻿using KruchyCompany.KruchyPlugin1.CodeBuilders;
+﻿using KrucheBuilderyKodu.Builders;
 using NUnit.Framework;
 
 namespace KruchyCompany.KruchyPlugin1.Testy

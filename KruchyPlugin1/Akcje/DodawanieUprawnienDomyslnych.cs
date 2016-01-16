@@ -1,7 +1,7 @@
 ﻿using KruchyCompany.KruchyPlugin1.Utils;
 using KruchyCompany.KruchyPlugin1.Extensions;
 using System.Windows;
-using KruchyCompany.KruchyPlugin1.CodeBuilders;
+using KrucheBuilderyKodu.Builders;
 
 namespace KruchyCompany.KruchyPlugin1.Akcje
 {

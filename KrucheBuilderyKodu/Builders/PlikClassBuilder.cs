@@ -2,9 +2,9 @@
 using System.Linq;
 using System.Text;
 
-namespace KruchyCompany.KruchyPlugin1.CodeBuilders
+namespace KrucheBuilderyKodu.Builders
 {
-    class PlikClassBuilder : ICodeBuilder
+    public class PlikClassBuilder : ICodeBuilder
     {
         private const string jednostkaWciecia = StaleDlaKodu.JednostkaWciecia;
         private string NazwaRodzajuObiektu { get; set; }

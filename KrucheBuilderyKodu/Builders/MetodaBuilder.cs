@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KruchyCompany.KruchyPlugin1.CodeBuilders
+namespace KrucheBuilderyKodu.Builders
 {
-    class MetodaBuilder : ICodeBuilder
+    public class MetodaBuilder : ICodeBuilder
     {
         private IList<string> modyfikatory;
         private string nazwa;

@@ -1,8 +1,8 @@
 ﻿using System.Text;
 
-namespace KruchyCompany.KruchyPlugin1.CodeBuilders
+namespace KrucheBuilderyKodu.Builders
 {
-    class StaleDlaKodu
+    public class StaleDlaKodu
     {
         public const string JednostkaWciecia = "    ";
         public const string WciecieDlaMetody = JednostkaWciecia + JednostkaWciecia;

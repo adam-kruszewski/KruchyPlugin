@@ -16,7 +16,9 @@ namespace KruchyCompany.KruchyPlugin1.Testy
 
         public KlasaDoParsowania(int a)
         {
-
+            PoleReadOnly = null;
+            Console.WriteLine(PoleReadOnly);
+            PoleStringReadOnly = null;
         }
 
         public KlasaDoParsowania()
