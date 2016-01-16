@@ -20,6 +20,7 @@ KruchyPlugin1/Akcje/GenerowanieKlasyTestowej.cs -text
 KruchyPlugin1/Akcje/GenerowanieKlasyWalidatora.cs -text
 KruchyPlugin1/Akcje/GenerowanieWidoku.cs -text
 KruchyPlugin1/Akcje/IdzDoKataloguControllera.cs -text
+KruchyPlugin1/Akcje/IdzDoKlasyTestowej.cs -text
 KruchyPlugin1/Akcje/IdzDoPlikuWidoku.cs -text
 KruchyPlugin1/Akcje/IdzMiedzyInterfejsemAImplementacja.cs -text
 KruchyPlugin1/Akcje/RodzajKlasyTestowej.cs -text

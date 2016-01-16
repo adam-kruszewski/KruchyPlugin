@@ -22,15 +22,12 @@ namespace KruchyCompany.KruchyPlugin1.Utils
         {
             get
             {
+                FileInfo fi;
                 if (document != null)
-                {
-                    var fi = new FileInfo(document.FullName);
-                    return fi.Name;
-                }
+                    fi = new FileInfo(document.FullName);
                 else
-                {
-                    return projectItem.FileNames[0];
-                }
+                    fi = new FileInfo(projectItem.FileNames[0]);
+                return fi.Name;
             }
         }
 

@@ -182,6 +182,11 @@ namespace KruchyCompany.KruchyPlugin1
                     MenuItemIdzDoImplementacjiLubInterfejsu);
                 PodlaczDoMenu(
                     mcs,
+                    PkgCmdIDList.cmdidIdzDoKlasyTestowej,
+                    MenuItemIdzDoKlasyTestowej);
+
+                PodlaczDoMenu(
+                    mcs,
                     PkgCmdIDList.cmdidIdzDoKataloguControllera,
                     MenuItemIdzDoKataloguControllera);
                 PodlaczDoMenu(
@@ -395,6 +400,11 @@ namespace KruchyCompany.KruchyPlugin1
             object sender, EventArgs args)
         {
             new IdzMiedzyInterfejsemAImplementacja(DajSolution()).Przejdz();
+        }
+
+        private void MenuItemIdzDoKlasyTestowej(object sender, EventArgs e)
+        {
+            new IdzDoKlasyTestowej(DajSolution()).Przejdz();
         }
 
         public void MenuItemIdzDoKataloguControllera(object sender, EventArgs args)

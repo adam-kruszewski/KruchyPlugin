@@ -253,7 +253,15 @@
         </Strings>
       </Button>
 
-      <Button id="cmdidIdzDoKataloguControllera" priority="0x0102"  guid="guidKruchyPlugin1CmdSet" type="Button">
+      <Button id="cmdidIdzDoKlasyTestowej" priority="0x0110"  guid="guidKruchyPlugin1CmdSet" type="Button">
+        <Parent guid="guidKruchyPlugin1CmdSet" id="PodrozowanieMenuGroup"/>
+        <Strings>
+          <CommandName>cmdidIdzDoKlasyTestowej</CommandName>
+          <ButtonText>Idź do klasy t&amp;estowej wg konwencji</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button id="cmdidIdzDoKataloguControllera" priority="0x0120"  guid="guidKruchyPlugin1CmdSet" type="Button">
         <Parent guid="guidKruchyPlugin1CmdSet" id="PodrozowanieMenuGroup"/>
         <Strings>
           <CommandName>cmdidIdzDoKataloguControllera</CommandName>
@@ -261,7 +269,7 @@
         </Strings>
       </Button>
 
-      <Button id="cmdidIdzDoWidoku" priority="0x0103"  guid="guidKruchyPlugin1CmdSet" type="Button">
+      <Button id="cmdidIdzDoWidoku" priority="0x0130"  guid="guidKruchyPlugin1CmdSet" type="Button">
         <Parent guid="guidKruchyPlugin1CmdSet" id="PodrozowanieMenuGroup"/>
         <Strings>
           <CommandName>cmdidIdzDoWidoku</CommandName>
@@ -269,7 +277,7 @@
         </Strings>
       </Button>
 
-      <Button id="cmdidGenerujWidok" priority="0x0104"  guid="guidKruchyPlugin1CmdSet" type="Button">
+      <Button id="cmdidGenerujWidok" priority="0x0140"  guid="guidKruchyPlugin1CmdSet" type="Button">
         <Parent guid="guidKruchyPlugin1CmdSet" id="PodrozowanieMenuGroup"/>
         <Strings>
           <CommandName>cmdidGenerujWidok</CommandName>
@@ -277,7 +285,7 @@
         </Strings>
       </Button>
 
-      <Button id="cmidPrzejdzDoGridRowActions" priority="0x0106"  guid="guidKruchyPlugin1CmdSet" type="Button">
+      <Button id="cmidPrzejdzDoGridRowActions" priority="0x0150"  guid="guidKruchyPlugin1CmdSet" type="Button">
         <Parent guid="guidKruchyPlugin1CmdSet" id="PodrozowanieMenuGroup"/>
         <Strings>
           <CommandName>cmidPrzejdzDoGridRowActions</CommandName>
@@ -285,7 +293,7 @@
         </Strings>
       </Button>
 
-      <Button id="cmidPrzejdzDoGridToolbar" priority="0x0107"  guid="guidKruchyPlugin1CmdSet" type="Button">
+      <Button id="cmidPrzejdzDoGridToolbar" priority="0x0151"  guid="guidKruchyPlugin1CmdSet" type="Button">
         <Parent guid="guidKruchyPlugin1CmdSet" id="PodrozowanieMenuGroup"/>
         <Strings>
           <CommandName>cmidPrzejdzDoGridToolbar</CommandName>
@@ -293,7 +301,7 @@
         </Strings>
       </Button>
 
-      <Button id="cmdidWstawDoSchowkaNazweControllera" priority="0x0108"  guid="guidKruchyPlugin1CmdSet" type="Button">
+      <Button id="cmdidWstawDoSchowkaNazweControllera" priority="0x0160"  guid="guidKruchyPlugin1CmdSet" type="Button">
         <Parent guid="guidKruchyPlugin1CmdSet" id="PodrozowanieMenuGroup"/>
         <Strings>
           <CommandName>cmdidWstawDoSchowkaNazweControllera</CommandName>
@@ -361,6 +369,7 @@
       <IDSymbol name="cmdidUzupelnijMetodaWImplementacji" value="0x0157"/>
       <IDSymbol name="cmdidGenerujMetodeWBuilderze" value="0x0158"/>
       <IDSymbol name="cmdidWstawDoSchowkaNazweControllera" value="0x0159"/>
+      <IDSymbol name="cmdidIdzDoKlasyTestowej" value="0x0160"/>
 
       <IDSymbol name="cmdidIdzDoImplementacji" value="0x0170"/>
       <IDSymbol name="cmdidIdzDoKataloguControllera" value="0x0171"/>
