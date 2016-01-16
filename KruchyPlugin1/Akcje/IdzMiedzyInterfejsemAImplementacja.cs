@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows;
 using KruchyCompany.KruchyPlugin1.ParserKodu;
 using KruchyCompany.KruchyPlugin1.Utils;
+using System.Collections.Generic;
 
 namespace KruchyCompany.KruchyPlugin1.Akcje
 {
@@ -66,12 +67,42 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 
             var znalezionaMetoda =
                 parsowane.DefiniowaneObiekty[0].Metody
-                    .Where(o => o.Nazwa == metoda.Nazwa)
+                    .Where(o => TaSamaMetoda(metoda, o))
                         .FirstOrDefault();
 
             if (znalezionaMetoda != null)
                 solution.AktualnyDokument.UstawKursor(
-                    znalezionaMetoda.Poczatek.Wiersz, 1);
+                    znalezionaMetoda.Poczatek.Wiersz,
+                    znalezionaMetoda.Poczatek.Kolumna);
+        }
+
+        private static bool TaSamaMetoda(Metoda m1, Metoda m2)
+        {
+            if (m1.Nazwa != m2.Nazwa)
+                return false;
+
+            if (m1.Parametry.Count != m2.Parametry.Count)
+                return false;
+
+            if (!TakieSameParametry(m1.Parametry, m2.Parametry))
+                return false;
+
+            return true;
+        }
+
+        private static bool TakieSameParametry(
+            IList<Parametr> list1,
+            IList<Parametr> list2)
+        {
+
+            for (int i = 0; i < list1.Count; i++)
+            {
+                if (list1[i].NazwaTypu != list2[i].NazwaTypu)
+                    return false;
+                if (list1[i].NazwaParametru != list2[i].NazwaParametru)
+                    return false;
+            }
+            return true;
         }
 
         private string SzukajSciezkiDoImplementacji(PlikWrapper aktualny)

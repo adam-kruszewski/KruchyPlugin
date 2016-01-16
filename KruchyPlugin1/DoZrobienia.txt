@@ -33,5 +33,4 @@ W solutionExplorerze
  - przejście do klasy testowej według konwencji
 
  TODO
- po uzupełnieniu metody w implementacji ustawić się na metodzie - uwzględnić różnice w parametrach
  w TestsWithDatabase uzupełnić namespace'a
