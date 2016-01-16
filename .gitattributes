@@ -83,6 +83,7 @@ KruchyPlugin1/Utils/SolutionWrapper.cs -text
 KruchyPlugin1/VSPackage.resx -text
 KruchyPlugin1/packages.config -text
 KruchyPlugin1/source.extension.vsixmanifest -text
+Wersje/KruchyPlugin1.vsix -text
 Wersje/KruchyPlugin_160105.zip -text
 Wersje/KruchyPlugin_160112.zip -text
 packages/ICSharpCode.NRefactory.5.5.1/ICSharpCode.NRefactory.5.5.1.nupkg -text
