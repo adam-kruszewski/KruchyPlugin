@@ -18,6 +18,7 @@ using KruchyCompany.KruchyPlugin1.Utils;
 using KruchyCompany.KruchyPlugin1.Interfejs;
 using System.Text;
 using KruchyCompany.KruchyPlugin1.KonfiguracjaPlugina;
+using KruchyCompany.KruchyPlugin1.Menu;
 
 namespace KruchyCompany.KruchyPlugin1
 {
@@ -43,6 +44,8 @@ namespace KruchyCompany.KruchyPlugin1
     [ProvideToolWindow(typeof(MyToolWindow))]
     [Guid(GuidList.guidKruchyPlugin1PkgString)]
     [ProvideLoadKey("Standard", "1.0", "KruchyPlugin1", "Adam Kruszewski", 104)]
+    //ręcznie dodane atrybuty
+    [ProvideAutoLoad("{f1536ef8-92ec-443c-9ed7-fdadf150da82}")]
     public sealed class KruchyPlugin1Package : Package
     {
         /// <summary>
@@ -54,6 +57,7 @@ namespace KruchyCompany.KruchyPlugin1
         /// </summary>
         public KruchyPlugin1Package()
         {
+            Debug.WriteLine("BBBBB ");
             Debug.WriteLine(string.Format(CultureInfo.CurrentCulture, "Entering constructor for: {0}", this.ToString()));
         }
 
@@ -103,78 +107,41 @@ namespace KruchyCompany.KruchyPlugin1
                 MenuCommand menuItem = new MenuCommand(MenuItemCallback, menuCommandID);
                 mcs.AddCommand(menuItem);
 
-                var menuCommandUzupReferencje =
-                    new CommandID(
-                        GuidList.guidKruchyPlugin1CmdSet,
-                        (int)PkgCmdIDList.cmdidUzupelnijAtrybutKluczaObcego);
-                var mcUzupelnijReferencje =
-                    //    new OleMenuCommand(
-                    //        MenuItemUzupelnijReferencjeDlaKluczaObcegoCallback,
-                    //        menuCommandUzupReferencje);
-                    //mcUzupelnijReferencje.BeforeQueryStatus += mcUzupelnijReferencje_BeforeQueryStatus;
-                new MenuCommand(
-                    MenuItemUzupelnijReferencjeDlaKluczaObcegoCallback,
-                    menuCommandUzupReferencje);
-                mcs.AddCommand(mcUzupelnijReferencje);
-                
-                var menuCommandUzupTagiTabeli =
-                    new CommandID(
-                        GuidList.guidKruchyPlugin1CmdSet,
-                        (int)PkgCmdIDList.cmdidUzupelnijTagiDefiniujaceTabele);
-                var mcUzupelnijTagiTabeli =
-                    new MenuCommand(
-                        MenuItemUzupelnijTagiDefiniujaceTabele,
-                        menuCommandUzupTagiTabeli);
-                mcs.AddCommand(mcUzupelnijTagiTabeli);
+                new PozycjaUzupelnianieReferencedObject(
+                    DajSolution(), (DTE2)GetService(typeof(SDTE)))
+                        .Podlacz(mcs);
 
-                var menuStworzKlaseTestowa =
-                    new CommandID(
-                        GuidList.guidKruchyPlugin1CmdSet,
-                        (int)PkgCmdIDList.cmdidZrobKlaseTestowa);
-                var mcStworzKlaseTestowa =
-                    new MenuCommand(
-                        MenuItemZrobKlaseTestowa,
-                        menuStworzKlaseTestowa);
-                mcs.AddCommand(mcStworzKlaseTestowa);
+                new PozycjaUzupelnianieTagowDefiniujacychTabele(
+                    DajSolution())
+                        .Podlacz(mcs);
 
-                PodlaczDoMenu(
-                    mcs,
-                    PkgCmdIDList.cmdidZrobKlaseService,
-                    MenuItemZrobKlaseService);
+                new PozycjaGenerowanieKlasyTestowej(DajSolution())
+                    .Podlacz(mcs);
 
-                PodlaczDoMenu(
-                    mcs,
-                    PkgCmdIDList.cmdidDodajNaczesciejUzywaneUsingi,
-                    MenuItemDodajNajczesciejUzywaneUsingi);
-                PodlaczDoMenu(
-                    mcs,
-                    PkgCmdIDList.cmdidDodajNowyTest,
-                    MenuItemDodajNowyTest);
+                new PozycjaGenerowanieKlasService(DajSolution())
+                    .Podlacz(mcs);
 
-                PodlaczDoMenu(
-                    mcs,
-                    PkgCmdIDList.cmdidZmienNaPublic,
-                    MenuItemZmienNaPublic);
-                PodlaczDoMenu(
-                    mcs,
-                    PkgCmdIDList.cmdidZmienNaPrivate,
-                    MenuItemZmienNaPrivate);
-                PodlaczDoMenu(
-                    mcs,
-                    PkgCmdIDList.cmdidDodajKlaseWalidatora,
-                    MenuItemZrobKlaseWalidatora);
-                PodlaczDoMenu(
-                    mcs,
-                    PkgCmdIDList.cmdidDodajUprawnienieDomyslne,
-                    MenuItemDodajUprawnieniaDomyslne);
-                PodlaczDoMenu(
-                    mcs,
-                    PkgCmdIDList.cmdidUzupelnijKontruktor,
-                    MenuItemUzupelnijKonstruktor);
-                PodlaczDoMenu(
-                    mcs,
-                    PkgCmdIDList.cmdidGenerujMetodeWBuilderze,
-                    MenuItemDodajMetodeWBuilderze);
+                new PozycjaGenerowanieKlasyWalidatora(DajSolution())
+                    .Podlacz(mcs);
+
+                new PozycjaDodawanieNowegoTestu(DajSolution())
+                    .Podlacz(mcs);
+
+                new PozycjaDodawanieUsingow(DajSolution())
+                    .Podlacz(mcs);
+
+                new PozycjaZmienNaPublic(DajSolution()).Podlacz(mcs);
+                new PozycjaZmienNaPrivate(DajSolution()).Podlacz(mcs);
+
+                new PozycjaDodawanieUprawnienDomyslnych(DajSolution()).Podlacz(mcs);
+
+                new PozycjaUzupelnianieKontruktora(DajSolution()).Podlacz(mcs);
+
+                new PozycjaDodawanieNowejMetodyWBuilderze(DajSolution())
+                    .Podlacz(mcs);
+
+                new PozycjaUzupelnianieMetodWImplementacji(DajSolution())
+                    .Podlacz(mcs);
 
                 PodlaczDoMenu(
                     mcs,
@@ -205,11 +172,6 @@ namespace KruchyCompany.KruchyPlugin1
                     mcs,
                     PkgCmdIDList.cmdidGenerujWidok,
                     MenuItemGenerujWidok);
-
-                PodlaczDoMenu(
-                    mcs,
-                    PkgCmdIDList.cmdidUzupelnijMetodaWImplementacji,
-                    MenuItemUzupelnijMetodeWImplementacji);
                 PodlaczDoMenu(
                     mcs,
                     PkgCmdIDList.cmdidWstawDoSchowkaNazweControllera,
@@ -220,13 +182,6 @@ namespace KruchyCompany.KruchyPlugin1
                 MenuCommand menuToolWin = new MenuCommand(ShowToolWindow, toolwndCommandID);
                 mcs.AddCommand(menuToolWin);
             }
-        }
-
-        void mcUzupelnijReferencje_BeforeQueryStatus(object sender, EventArgs e)
-        {
-            var oleMenuCommand = sender as OleMenuCommand;
-            //oleMenuCommand.Enabled = !oleMenuCommand.Enabled;
-            oleMenuCommand.Text += "a";
         }
 
         private void PodlaczDoMenu(
@@ -284,118 +239,6 @@ namespace KruchyCompany.KruchyPlugin1
             //           out result));
         }
 
-        private void MenuItemUzupelnijReferencjeDlaKluczaObcegoCallback(
-            object sender, EventArgs args)
-        {
-            var dte = (DTE2)GetService(typeof(SDTE));
-            new UzupelnianieReferencedObject(dte).Uzupelnij();
-        }
-
-        private void MenuItemUzupelnijTagiDefiniujaceTabele(
-            object sender, EventArgs args)
-        {
-            var dte = (DTE2)GetService(typeof(SDTE));
-            var textDoc = (TextDocument)dte.ActiveDocument.Object("TextDocument");
-            var dokumentWrapper = new DokumentWrapper(textDoc);
-            new UzupelnianieTagowDefiniujacychTabele(dokumentWrapper).Uzupelnij();
-
-        }
-
-        private void MenuItemZrobKlaseTestowa(
-            object sender, EventArgs args)
-        {
-            var dialog = new NazwaKlasyTestowForm(DajSolution());
-            dialog.ShowDialog();
-
-            if (string.IsNullOrEmpty(dialog.NazwaKlasy))
-                return;
-
-            new GenerowanieKlasyTestowej(DajSolution())
-                .Generuj(
-                    dialog.NazwaKlasy,
-                    dialog.Rodzaj,
-                    dialog.InterfejsTestowany);
-        }
-
-        private void MenuItemZrobKlaseService(object sender, EventArgs args)
-        {
-            var dte = (DTE2)GetService(typeof(SDTE));
-            var n = dte.ActiveWindow.ProjectItem;
-            var dialog = new NazwaKlasyWindow(true);
-            dialog.EtykietaNazwyPliku = "Nazwa pliku implementacji serwisu";
-            dialog.EtykietaCheckBoxa = "Interfejs i implementacja w Impl";
-            dialog.ShowDialog();
-            if (string.IsNullOrEmpty(dialog.NazwaPliku))
-                return;
-
-            var solution = new SolutionWrapper(dte);
-            var g = new GenerowanieKlasService(solution);
-
-            g.Generuj(solution.AktualnyPlik, dialog.NazwaPliku, dialog.StanCheckBoxa);
-        }
-
-        private void MenuItemDodajNajczesciejUzywaneUsingi(
-            object sender, EventArgs args)
-        {
-            var konf = Konfiguracja.GetInstance();
-            var usingi =
-                konf.DajKonfiguracjeUsingow(DajSolution())
-                    .NajczesciejUzywane.ToArray();
-            new DodawaniaUsinga(DajSolution())
-                .Dodaj(usingi);
-        }
-
-        private void MenuItemDodajNowyTest(object sender, EventArgs e)
-        {
-            var dialog = new NazwaKlasyWindow();
-            dialog.EtykietaNazwyPliku = "Nazwa metody testu";
-            dialog.ShowDialog();
-            if (string.IsNullOrEmpty(dialog.NazwaPliku))
-                return;
-
-            new DodawanieNowegoTestu(DajSolution())
-                .DodajNowyTest(dialog.NazwaPliku);
-        }
-
-        private void MenuItemZmienNaPublic(object sender, EventArgs args)
-        {
-            new ZmianaModyfikatoraMetody(DajAktualnyDokument()).ZmienNa("public");
-        }
-
-        private void MenuItemZmienNaPrivate(object sender, EventArgs args)
-        {
-            new ZmianaModyfikatoraMetody(DajAktualnyDokument()).ZmienNa("private");
-        }
-
-        private void MenuItemZrobKlaseWalidatora(object sender, EventArgs args)
-        {
-            var nazwaPlikuDoWalidacji =
-                DajSolution().AktualnyPlik.NazwaBezRozszerzenia;
-            var dialog = new NazwaKlasyWindow();
-            dialog.EtykietaNazwyPliku = "Nazwa klasy implementacji walidatora";
-            dialog.InicjalnaWartosc = nazwaPlikuDoWalidacji + "Validator";
-            dialog.ShowDialog();
-            if (!string.IsNullOrEmpty(dialog.NazwaPliku))
-                new GenerowanieKlasyWalidatora(DajSolution())
-                    .Generuj(dialog.NazwaPliku);
-        }
-
-        private void MenuItemDodajUprawnieniaDomyslne(object sender, EventArgs e)
-        {
-            new DodawanieUprawnienDomyslnych(DajSolution()).Dodaj();
-        }
-
-        private void MenuItemDodajMetodeWBuilderze(object sender, EventArgs e)
-        {
-            var dialog = new NazwaKlasyWindow();
-            dialog.EtykietaNazwyPliku = "Nazwa metody";
-            dialog.InicjalnaWartosc = "Z";
-            dialog.ShowDialog();
-            if (!string.IsNullOrEmpty(dialog.NazwaPliku))
-                new DodawanieNowejMetodyWBuilderze(DajSolution())
-                    .Dodaj(dialog.NazwaPliku);
-        }
-
         private void MenuItemIdzDoImplementacjiLubInterfejsu(
             object sender, EventArgs args)
         {
@@ -422,16 +265,6 @@ namespace KruchyCompany.KruchyPlugin1
         {
             new IdzDoPlikuWidoku(DajSolution())
                 .PrzejdzLubStworz("GridToolbar.cshtml");
-        }
-
-        private void MenuItemUzupelnijKonstruktor(object sender, EventArgs e)
-        {
-            new UzupelnianieKontruktora(DajSolution()).Uzupelnij();
-        }
-
-        private void MenuItemUzupelnijMetodeWImplementacji(object sender, EventArgs e)
-        {
-            new UzupelnianieMetodWImplementacji(DajSolution()).Uzupelnij();
         }
 
         private void MenuItemIdzDoWidoku(object sender, EventArgs e)

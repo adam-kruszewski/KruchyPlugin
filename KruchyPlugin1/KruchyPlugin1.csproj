@@ -207,6 +207,21 @@
     </Compile>
     <Compile Include="KonfiguracjaPlugina\Konfiguracja.cs" />
     <Compile Include="KonfiguracjaPlugina\KonfiguracjaUsingow.cs" />
+    <Compile Include="Menu\PozycjaDodawanieNowegoTestu.cs" />
+    <Compile Include="Menu\PozycjaDodawanieNowejMetodyWBuilderze.cs" />
+    <Compile Include="Menu\PozycjaDodawanieUprawnienDomyslnych.cs" />
+    <Compile Include="Menu\PozycjaDodawanieUsingow.cs" />
+    <Compile Include="Menu\PozycjaGenerowanieKlasService.cs" />
+    <Compile Include="Menu\PozycjaGenerowanieKlasyTestowej.cs" />
+    <Compile Include="Menu\PozycjaGenerowanieKlasyWalidatora.cs" />
+    <Compile Include="Menu\PozycjaMenu.cs" />
+    <Compile Include="Menu\PozycjaUzupelnianieKontruktora.cs" />
+    <Compile Include="Menu\PozycjaUzupelnianieMetodWImplementacji.cs" />
+    <Compile Include="Menu\PozycjaUzupelnianieReferencedObject.cs" />
+    <Compile Include="Menu\PozycjaUzupelnianieTagowDefiniujacychTabele.cs" />
+    <Compile Include="Menu\PozycjaZmienNaPrivate.cs" />
+    <Compile Include="Menu\PozycjaZmienNaPublic.cs" />
+    <Compile Include="Menu\WymaganieDostepnosci.cs" />
     <Compile Include="MyControl.xaml.cs">
       <DependentUpon>MyControl.xaml</DependentUpon>
     </Compile>

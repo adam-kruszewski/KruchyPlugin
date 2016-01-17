@@ -134,8 +134,8 @@
         <Parent guid="guidKruchyPlugin1CmdSet" id="DomainObjectGroup" />
         <!--<Icon guid="guidImages" id="bmpPic1" />-->
         <!--<CommandFlag>DynamicItemStart</CommandFlag>-->
-        <!--<CommandFlag>DynamicVisibility</CommandFlag>
-        <CommandFlag>TextChanges</CommandFlag>-->
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <!--<CommandFlag>TextChanges</CommandFlag>-->
         <Strings>
           <ButtonText>Uzupełnij atrybuty dla klucza &amp;obcego</ButtonText>
         </Strings>
@@ -144,6 +144,7 @@
       <Button guid="guidKruchyPlugin1CmdSet" id="cmdidUzupelnijTagiDefiniujaceTabele" priority="0x0101" type="Button">
         <Parent guid="guidKruchyPlugin1CmdSet" id="DomainObjectGroup" />
         <!--<Icon guid="guidImages" id="bmpPic1" />-->
+        <CommandFlag>DynamicVisibility</CommandFlag>
         <Strings>
           <ButtonText>Uzupełnij tagi definiujące ta&amp;belę</ButtonText>
         </Strings>
