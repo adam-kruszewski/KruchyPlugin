@@ -1,24 +1,15 @@
 ﻿using System;
+using System.ComponentModel.Design;
 using System.Diagnostics;
 using System.Globalization;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.ComponentModel.Design;
-using Microsoft.Win32;
-using Microsoft.VisualStudio;
-using Microsoft.VisualStudio.Shell.Interop;
-using Microsoft.VisualStudio.OLE.Interop;
-using Microsoft.VisualStudio.Shell;
-using EnvDTE80;
-using EnvDTE;
-using System.Windows;
-using KruchyCompany.KruchyPlugin1.Akcje;
-using KruchyCompany.KruchyPlugin1.Extensions;
-using KruchyCompany.KruchyPlugin1.Utils;
-using KruchyCompany.KruchyPlugin1.Interfejs;
 using System.Text;
-using KruchyCompany.KruchyPlugin1.KonfiguracjaPlugina;
+using EnvDTE;
+using EnvDTE80;
 using KruchyCompany.KruchyPlugin1.Menu;
+using KruchyCompany.KruchyPlugin1.Utils;
+using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Shell.Interop;
 
 namespace KruchyCompany.KruchyPlugin1
 {
@@ -143,61 +134,27 @@ namespace KruchyCompany.KruchyPlugin1
                 new PozycjaUzupelnianieMetodWImplementacji(DajSolution())
                     .Podlacz(mcs);
 
-                PodlaczDoMenu(
-                    mcs,
-                    PkgCmdIDList.cmdidIdzDoImplementacji,
-                    MenuItemIdzDoImplementacjiLubInterfejsu);
-                PodlaczDoMenu(
-                    mcs,
-                    PkgCmdIDList.cmdidIdzDoKlasyTestowej,
-                    MenuItemIdzDoKlasyTestowej);
+                new PozycjaIdzMiedzyInterfejsemAImplementacja(DajSolution())
+                    .Podlacz(mcs);
 
-                PodlaczDoMenu(
-                    mcs,
-                    PkgCmdIDList.cmdidIdzDoKataloguControllera,
-                    MenuItemIdzDoKataloguControllera);
-                PodlaczDoMenu(
-                    mcs,
-                    PkgCmdIDList.cmidPrzejdzDoGridRowActions,
-                    MenuItemIdzDoGridRowActions);
-                PodlaczDoMenu(
-                    mcs,
-                    PkgCmdIDList.cmidPrzejdzDoGridToolbar,
-                    MenuItemIdzDoGridToolbar);
-                PodlaczDoMenu(
-                    mcs,
-                    PkgCmdIDList.cmdidIdzDoWidoku,
-                    MenuItemIdzDoWidoku);
-                PodlaczDoMenu(
-                    mcs,
-                    PkgCmdIDList.cmdidGenerujWidok,
-                    MenuItemGenerujWidok);
-                PodlaczDoMenu(
-                    mcs,
-                    PkgCmdIDList.cmdidWstawDoSchowkaNazweControllera,
-                    MenuItemWstawDoSchowkaNazweControllera);
+                new PozycjaIdzDoKlasyTestowej(DajSolution()).Podlacz(mcs);
+
+                new PozycjaIdzDoKataloguControllera(DajSolution()).Podlacz(mcs);
+
+                new PozycjaIdzDoGridRowActions(DajSolution()).Podlacz(mcs);
+                new PozycjaIdzDoGridToolbar(DajSolution()).Podlacz(mcs);
+
+                new PozycjaIdzDoPlikuWidoku(DajSolution()).Podlacz(mcs);
+                new PozycjaGenerowanieWidoku(DajSolution()).Podlacz(mcs);
+
+                new PozycjaWstawianieNazwyControlleraDoSchowka(DajSolution())
+                    .Podlacz(mcs);
 
                 // Create the command for the tool window
                 CommandID toolwndCommandID = new CommandID(GuidList.guidKruchyPlugin1CmdSet, (int)PkgCmdIDList.cmdidMyTool);
                 MenuCommand menuToolWin = new MenuCommand(ShowToolWindow, toolwndCommandID);
                 mcs.AddCommand(menuToolWin);
             }
-        }
-
-        private void PodlaczDoMenu(
-            OleMenuCommandService mcs,
-            uint commandIDZPkgCmdIDList,
-            EventHandler handler)
-        {
-            var commandID =
-                new CommandID(
-                    GuidList.guidKruchyPlugin1CmdSet,
-                    (int)commandIDZPkgCmdIDList);
-            var menuCommand =
-                new MenuCommand(
-                    handler,
-                    commandID);
-            mcs.AddCommand(menuCommand);
         }
         #endregion
 
@@ -237,60 +194,6 @@ namespace KruchyCompany.KruchyPlugin1
             //           OLEMSGICON.OLEMSGICON_INFO,
             //           0,        // false
             //           out result));
-        }
-
-        private void MenuItemIdzDoImplementacjiLubInterfejsu(
-            object sender, EventArgs args)
-        {
-            new IdzMiedzyInterfejsemAImplementacja(DajSolution()).Przejdz();
-        }
-
-        private void MenuItemIdzDoKlasyTestowej(object sender, EventArgs e)
-        {
-            new IdzDoKlasyTestowej(DajSolution()).Przejdz();
-        }
-
-        public void MenuItemIdzDoKataloguControllera(object sender, EventArgs args)
-        {
-            new IdzDoKataloguControllera(DajSolution()).Przejdz();
-        }
-
-        public void MenuItemIdzDoGridRowActions(object sender, EventArgs args)
-        {
-            new IdzDoPlikuWidoku(DajSolution())
-                .PrzejdzLubStworz("GridRowActions.cshtml");
-        }
-
-        private void MenuItemIdzDoGridToolbar(object sender, EventArgs e)
-        {
-            new IdzDoPlikuWidoku(DajSolution())
-                .PrzejdzLubStworz("GridToolbar.cshtml");
-        }
-
-        private void MenuItemIdzDoWidoku(object sender, EventArgs e)
-        {
-            new IdzDoPlikuWidoku(DajSolution()).PrzejdzDoWidokuDlaAktualnejMetody();
-        }
-
-        private void MenuItemGenerujWidok(object sender, EventArgs e)
-        {
-            var dialog = new NazwaKlasyWindow(false);
-            dialog.EtykietaNazwyPliku = "Nazwa widoku";
-            dialog.InicjalnaWartosc = DajSolution().NazwaAktualnejMetody();
-            dialog.ShowDialog();
-
-            if (!string.IsNullOrEmpty(dialog.NazwaPliku))
-            {
-                new GenerowanieWidoku(DajSolution()).Generuj(dialog.NazwaPliku);
-            }
-        }
-
-        private void MenuItemWstawDoSchowkaNazweControllera(
-            object sender,
-            EventArgs e)
-        {
-            Clipboard.SetText("Przykładowy tekst");
-            new WstawianieNazwyControlleraDoSchowka(DajSolution()).Wstaw();
         }
 
         void slnExplUIHierarchyExample(DTE2 dte)

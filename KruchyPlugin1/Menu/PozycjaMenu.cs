@@ -89,12 +89,16 @@ namespace KruchyCompany.KruchyPlugin1.Menu
             if (o == WymaganieDostepnosci.Klasa)
             {
                 var p = Parser.Parsuj(solution.AktualnyDokument.DajZawartosc());
+                if (p.DefiniowaneObiekty.Count < 1)
+                    return false;
                 return p.DefiniowaneObiekty.First().Rodzaj == RodzajObiektu.Klasa;
             }
 
             if (o == WymaganieDostepnosci.Interfejs)
             {
                 var p = Parser.Parsuj(solution.AktualnyDokument.DajZawartosc());
+                if (p.DefiniowaneObiekty.Count < 1)
+                    return false;
                 return p.DefiniowaneObiekty.First().Rodzaj == RodzajObiektu.Interfejs;
             }
 

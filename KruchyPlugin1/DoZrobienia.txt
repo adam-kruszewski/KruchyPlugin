@@ -30,7 +30,7 @@ Uzupełnianie usingów do:
 
 W solutionExplorerze
 + - dodawanie klasy razem i interfejsem w katalogu impl lub w tym samym
- - przejście do klasy testowej według konwencji
+ - przejście do klasy testowej według konwencji - uwzględnić, że możemmy iść z interfejsu i z implementacji
 
  TODO
  w TestsWithDatabase uzupełnić namespace'a
