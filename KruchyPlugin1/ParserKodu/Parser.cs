@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ICSharpCode.NRefactory;
 using ICSharpCode.NRefactory.CSharp;
 
 namespace KruchyCompany.KruchyPlugin1.ParserKodu
@@ -147,11 +148,23 @@ namespace KruchyCompany.KruchyPlugin1.ParserKodu
             wynik.Nazwa = md.Name;
             wynik.TypZwracany = SzukajTypuPola(md.ReturnType);
 
+            bool bylNawiasOtwierajacy = false;
+            bool bylNawiasZammykajacy = false;
             foreach (var dziecko in wezel.Children)
             {
                 var modyfikator = SzukajModyfikatora(dziecko);
                 if (modyfikator != null)
                     wynik.Modyfikatory.Add(modyfikator);
+
+                if (dziecko is CSharpTokenNode)
+                {
+                    ParsujNawiasy(
+                        wynik,
+                        dziecko as CSharpTokenNode,
+                        ref bylNawiasOtwierajacy,
+                        ref bylNawiasZammykajacy);
+                }
+
             }
 
             foreach (var param in md.Parameters)
@@ -159,6 +172,27 @@ namespace KruchyCompany.KruchyPlugin1.ParserKodu
 
             UstawPolozenie(wynik, wezel);
             return wynik;
+        }
+
+        private static void ParsujNawiasy(
+            Metoda wynik,
+            CSharpTokenNode wezel,
+            ref bool bylNawiasOtwierajacy,
+            ref bool bylNawiasZamykajacy)
+        {
+            if (bylNawiasOtwierajacy && bylNawiasZamykajacy)
+                return;
+            var tekst = wezel.GetText();
+            if (tekst == "(")
+            {
+                wynik.NawiasOtwierajacyParametry.Wiersz = wezel.StartLocation.Line;
+                wynik.NawiasOtwierajacyParametry.Kolumna = wezel.StartLocation.Column;
+            }
+            if (tekst == ")")
+            {
+                wynik.NawiasZamykajacyParametry.Wiersz = wezel.StartLocation.Line;
+                wynik.NawiasZamykajacyParametry.Kolumna = wezel.StartLocation.Column;
+            }
         }
 
         private static bool DefinicjaKonstruktora(AstNode wezel)

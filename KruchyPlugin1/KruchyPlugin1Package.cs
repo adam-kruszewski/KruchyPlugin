@@ -128,6 +128,8 @@ namespace KruchyCompany.KruchyPlugin1
 
                 new PozycjaUzupelnianieKontruktora(DajSolution()).Podlacz(mcs);
 
+                new PozycjaPodzielParametryNaLinie(DajSolution()).Podlacz(mcs);
+
                 new PozycjaDodawanieNowejMetodyWBuilderze(DajSolution())
                     .Podlacz(mcs);
 

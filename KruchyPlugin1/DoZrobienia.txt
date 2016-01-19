@@ -27,7 +27,7 @@ Uzupełnianie usingów do:
 + - dodanie kontruktora dla serwisów
 + - dodanie uprawnień dla controllera
 + - usunąć końcową linię po namespacie i klasie
- - może dzielenie parametrów na linie...
++ - może dzielenie parametrów na linie...
  - w widoku dodanie zawartości z Shared - np. dla Save itp.
 
 W solutionExplorerze

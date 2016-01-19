@@ -215,6 +215,14 @@
         </Strings>
       </Button>
 
+      <Button guid="guidKruchyPlugin1CmdSet" id="cmdidPodzielParametryNaLinie" priority="0x0132" type="Button">
+        <Parent guid="guidKruchyPlugin1CmdSet" id="PozostaleKodoweGroup" />
+        <Strings>
+          <CommandName>cmdidPodzielParametryNaLinie</CommandName>
+          <ButtonText>Podziel parametry na &amp;linie</ButtonText>
+        </Strings>
+      </Button>
+
       <Button guid="guidKruchyPlugin1CmdSet" id="cmdidUzupelnijMetodaWImplementacji" priority="0x0131" type="Button">
         <Parent guid="guidKruchyPlugin1CmdSet" id="PozostaleKodoweGroup" />
         <Strings>
@@ -371,6 +379,7 @@
       <IDSymbol name="cmdidGenerujMetodeWBuilderze" value="0x0158"/>
       <IDSymbol name="cmdidWstawDoSchowkaNazweControllera" value="0x0159"/>
       <IDSymbol name="cmdidIdzDoKlasyTestowej" value="0x0160"/>
+      <IDSymbol name="cmdidPodzielParametryNaLinie" value="0x0161"/>
 
       <IDSymbol name="cmdidIdzDoImplementacji" value="0x0170"/>
       <IDSymbol name="cmdidIdzDoKataloguControllera" value="0x0171"/>

@@ -68,8 +68,8 @@ namespace KruchyCompany.KruchyPlugin1.Testy
 
             var bezparametrowyKonstruktor = obiekt.Konstruktory[1];
             bezparametrowyKonstruktor.Parametry.Count().Should().Be(0);
-            SprawdzPozycje(bezparametrowyKonstruktor.Poczatek, 22, 9);
-            SprawdzPozycje(bezparametrowyKonstruktor.Koniec, 25, 10);
+            SprawdzPozycje(bezparametrowyKonstruktor.Poczatek, 24, 9);
+            SprawdzPozycje(bezparametrowyKonstruktor.Koniec, 27, 10);
             //SprawdzPozycje(
             //    bezparametrowyKonstruktor.PoczatekParametrow, 22, 33);
             //SprawdzPozycje(
@@ -81,7 +81,7 @@ namespace KruchyCompany.KruchyPlugin1.Testy
             parametr.NazwaParametru.Should().Be("a");
             parametr.NazwaTypu.Should().Be("int");
             SprawdzPozycje(konstrZ1Parametrem.Poczatek, 17, 9);
-            SprawdzPozycje(konstrZ1Parametrem.Koniec, 20, 10);
+            SprawdzPozycje(konstrZ1Parametrem.Koniec, 22, 10);
             //SprawdzPozycje(konstrZ1Parametrem.PoczatekParametrow, 17, 33);
             //SprawdzPozycje(konstrZ1Parametrem.KoniecParametrow, 17, 39);
 
@@ -101,6 +101,10 @@ namespace KruchyCompany.KruchyPlugin1.Testy
             metodaStatyczna.Modyfikatory[0].Should().Be("private");
             metodaStatyczna.Modyfikatory[1].Should().Be("static");
             metodaStatyczna.TypZwracany.Should().Be("void");
+            metodaStatyczna.NawiasOtwierajacyParametry.Wiersz.Should().Be(29);
+            metodaStatyczna.NawiasOtwierajacyParametry.Kolumna.Should().Be(44);
+            metodaStatyczna.NawiasZamykajacyParametry.Wiersz.Should().Be(29);
+            metodaStatyczna.NawiasZamykajacyParametry.Kolumna.Should().Be(53);
 
             var metodaZwykla = obiekt.Metody[1];
             metodaZwykla.Modyfikatory.First().Should().Be("private");
