@@ -40,4 +40,5 @@ Organizacyjne:
  - ucywilizować przechowywanie wersji
 
  TODO
- w TestsWithDatabase uzupełnić namespace'a
+ w walidatorze uzupełnić namespace'a using Pincasso.Core.Base;
+ zobaczyć dlaczego w podziale na linię parametrów znika typ int?
