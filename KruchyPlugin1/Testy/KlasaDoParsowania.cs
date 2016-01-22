@@ -26,7 +26,7 @@ namespace KruchyCompany.KruchyPlugin1.Testy
 
         }
 
-        private static void MetodaStatyczna(string b)
+        private static void MetodaStatyczna(string b, int? a, DateTime? d)
         {
 
         }

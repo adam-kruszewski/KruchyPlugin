@@ -94,17 +94,19 @@ namespace KruchyCompany.KruchyPlugin1.Testy
 
             var metodaStatyczna = obiekt.Metody[0];
             metodaStatyczna.Nazwa.Should().Be("MetodaStatyczna");
-            metodaStatyczna.Parametry.Count().Should().Be(1);
+            metodaStatyczna.Parametry.Count().Should().Be(3);
             var p = metodaStatyczna.Parametry.First();
             p.NazwaTypu.Should().Be("string");
             p.NazwaParametru.Should().Be("b");
+            metodaStatyczna.Parametry[1].NazwaTypu.Should().Be("int?");
+            metodaStatyczna.Parametry[2].NazwaTypu.Should().Be("DateTime?");
             metodaStatyczna.Modyfikatory[0].Should().Be("private");
             metodaStatyczna.Modyfikatory[1].Should().Be("static");
             metodaStatyczna.TypZwracany.Should().Be("void");
             metodaStatyczna.NawiasOtwierajacyParametry.Wiersz.Should().Be(29);
             metodaStatyczna.NawiasOtwierajacyParametry.Kolumna.Should().Be(44);
             metodaStatyczna.NawiasZamykajacyParametry.Wiersz.Should().Be(29);
-            metodaStatyczna.NawiasZamykajacyParametry.Kolumna.Should().Be(53);
+            metodaStatyczna.NawiasZamykajacyParametry.Kolumna.Should().Be(74);
 
             var metodaZwykla = obiekt.Metody[1];
             metodaZwykla.Modyfikatory.First().Should().Be("private");

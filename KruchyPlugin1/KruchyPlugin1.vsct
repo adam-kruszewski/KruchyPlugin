@@ -266,7 +266,7 @@
         <Parent guid="guidKruchyPlugin1CmdSet" id="PodrozowanieMenuGroup"/>
         <Strings>
           <CommandName>cmdidIdzDoKlasyTestowej</CommandName>
-          <ButtonText>Idź do klasy t&amp;estowej wg konwencji</ButtonText>
+          <ButtonText>Idź wg konwencji między klasą t&amp;estową a testowaną </ButtonText>
         </Strings>
       </Button>
 

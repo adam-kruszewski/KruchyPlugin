@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Windows;
+using KruchyCompany.KruchyPlugin1.Extensions;
 using KruchyCompany.KruchyPlugin1.ParserKodu;
 using KruchyCompany.KruchyPlugin1.Utils;
 
@@ -19,38 +20,65 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             if (solution.AktualnyPlik == null)
                 return;
 
-            if (solution.AktualnyProjekt.Nazwa.EndsWith(".Tests"))
-                return;
-
             var parsowane = Parser.Parsuj(solution.AktualnyDokument.DajZawartosc());
 
-            var nazwaSzukanegoProjektu = solution.AktualnyProjekt.Nazwa + ".Tests";
-            var projektTestow =
-                solution
-                    .Projekty
-                        .Where(o => o.Nazwa == nazwaSzukanegoProjektu)
+            PlikWrapper plik;
+            if (solution.AktualnyProjekt.Modul())
+            {
+                var projektTestow =
+                    solution.SzukajProjektuTestowego(solution.AktualnyProjekt);
+
+                if (projektTestow == null)
+                {
+                    MessageBox.Show("Nie znaleziono projektu testowego ");
+                    return;
+                }
+
+                var nazwaSzukanegoPliku =
+                    DajRdzenNazwyKlasyTestow(parsowane) + "Tests.cs";
+
+                plik = projektTestow.Pliki
+                        .Where(o => o.Nazwa.ToLower() == nazwaSzukanegoPliku.ToLower())
                             .FirstOrDefault();
-
-            if (projektTestow == null)
+            }else
             {
-                MessageBox.Show("Nieznaleziono projektu testowego " + nazwaSzukanegoProjektu);
-                return;
+                var projektModulu =
+                    solution.SzukajProjektuModulu(solution.AktualnyProjekt);
+
+                if (projektModulu == null)
+                {
+                    MessageBox.Show("Nie znaleziono projektu modułu");
+                    return;
+                }
+
+                var nazwaSzukanegoPliku =
+                    solution.AktualnyPlik.NazwaBezRozszerzenia.ToLower()
+                    .Replace("tests", "");
+
+                plik =
+                    projektModulu
+                        .Pliki
+                            .Where(o => o.NazwaBezRozszerzenia.ToLower() == nazwaSzukanegoPliku)
+                                .FirstOrDefault();
             }
 
-            var nazwaSzukanegoPliku =
-                parsowane.DefiniowaneObiekty.First().Nazwa + "Tests.cs";
+                if (plik == null)
+                {
+                    MessageBox.Show("Nie znaleziono pliku: ");
+                    return;
+                }
 
-            var plik = projektTestow.Pliki
-                    .Where(o => o.Nazwa.ToLower() == nazwaSzukanegoPliku.ToLower())
-                        .FirstOrDefault();
-
-            if (plik == null)
-            {
-                MessageBox.Show("Nieznaleziono pliku: " + nazwaSzukanegoPliku);
-                return;
-            }
 
             new SolutionExplorerWrapper(solution).OtworzPlik(plik);
+        }
+
+        private string DajRdzenNazwyKlasyTestow(Plik parsowane)
+        {
+            var nazwa = parsowane.DefiniowaneObiekty.First().Nazwa;
+            if (parsowane.DefiniowaneObiekty.First().Rodzaj == RodzajObiektu.Klasa)
+                return nazwa;
+            else
+                return nazwa.Substring(1);
         }
     }
 }

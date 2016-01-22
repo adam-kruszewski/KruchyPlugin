@@ -322,6 +322,11 @@ namespace KruchyCompany.KruchyPlugin1.ParserKodu
                 }
                 return st.Identifier + dodatek;
             }
+            ComposedType ct = wezel as ComposedType;
+            if (ct != null)
+            {
+                return ct.ToString();
+            }
             return null;
         }
 

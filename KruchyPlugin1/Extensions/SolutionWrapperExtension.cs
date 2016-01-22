@@ -1,9 +1,10 @@
-﻿using KruchyCompany.KruchyPlugin1.ParserKodu;
+﻿using System.Linq;
+using KruchyCompany.KruchyPlugin1.ParserKodu;
 using KruchyCompany.KruchyPlugin1.Utils;
 
 namespace KruchyCompany.KruchyPlugin1.Extensions
 {
-    static class SolutionWrapperExtension
+    public static class SolutionWrapperExtension
     {
         public static string NamespaceAktualnegoPliku(this SolutionWrapper solution)
         {
@@ -40,6 +41,36 @@ namespace KruchyCompany.KruchyPlugin1.Extensions
                 return aktualnaMetoda.Nazwa;
             else
                 return string.Empty;
+        }
+
+        public static ProjektWrapper SzukajProjektuTestowego(
+            this SolutionWrapper solution,
+            ProjektWrapper projekt)
+        {
+            var nazwaSzukanegoProjektu = solution.AktualnyProjekt.Nazwa + ".Tests";
+            var projektTestow = SzukajProjektuWgNazwy(solution, nazwaSzukanegoProjektu);
+            return projektTestow;
+        }
+
+        public static ProjektWrapper SzukajProjektuModulu(
+            this SolutionWrapper solution,
+            ProjektWrapper projekt)
+        {
+            var nazwaSzukanegoProjektu =
+                solution.AktualnyProjekt.Nazwa.Replace(".Tests", "");
+            return SzukajProjektuWgNazwy(solution, nazwaSzukanegoProjektu);
+        }
+
+        private static ProjektWrapper SzukajProjektuWgNazwy(
+            SolutionWrapper solution,
+            string nazwaSzukanegoProjektu)
+        {
+            var projekt =
+                solution
+                    .Projekty
+                        .Where(o => o.Nazwa == nazwaSzukanegoProjektu)
+                            .FirstOrDefault();
+            return projekt;
         }
     }
 }

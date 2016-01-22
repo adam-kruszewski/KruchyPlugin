@@ -19,5 +19,15 @@ namespace KruchyCompany.KruchyPlugin1.Extensions
         {
             return Path.Combine(projekt.SciezkaDoKatalogu, "Unit");
         }
+
+        public static bool Testowy(this ProjektWrapper projekt)
+        {
+            return projekt.Nazwa.ToLower().EndsWith(".tests");
+        }
+
+        public static bool Modul(this ProjektWrapper projekt)
+        {
+            return !projekt.Nazwa.ToLower().EndsWith(".tests");
+        }
     }
 }

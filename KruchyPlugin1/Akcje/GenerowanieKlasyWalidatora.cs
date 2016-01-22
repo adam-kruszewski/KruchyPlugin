@@ -103,6 +103,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
                     .WNamespace(DajNamespaceImplementacji())
                     .DodajUsing("Piatka.Infrastructure.Validation")
                     .DodajUsing(usingDlaDomainObiektu)
+                    .DodajUsing("Pincasso.Core.Base")
                     .ZObiektem(klasa);
 
             return plikClass.Build();
