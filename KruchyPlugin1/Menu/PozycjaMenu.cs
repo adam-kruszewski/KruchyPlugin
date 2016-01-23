@@ -107,6 +107,10 @@ namespace KruchyCompany.KruchyPlugin1.Menu
                 return solution.AktualnyPlik.Nazwa.ToLower().EndsWith("builder.cs");
             }
 
+            if (o == WymaganieDostepnosci.WidokCshtml)
+            {
+                return solution.AktualnyPlik.Nazwa.ToLower().EndsWith(".cshtml");
+            }
             return true;
         }
 

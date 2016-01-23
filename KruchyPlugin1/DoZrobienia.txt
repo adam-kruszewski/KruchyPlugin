@@ -28,7 +28,7 @@ Uzupełnianie usingów do:
 + - dodanie uprawnień dla controllera
 + - usunąć końcową linię po namespacie i klasie
 + - może dzielenie parametrów na linie...
- - w widoku dodanie zawartości z Shared - np. dla Save itp.
++ - w widoku pokazanie zawartości z Shared - np. dla Save itp.
 
 W solutionExplorerze
 + - dodawanie klasy razem i interfejsem w katalogu impl lub w tym samym

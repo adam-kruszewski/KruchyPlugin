@@ -29,5 +29,20 @@ namespace KruchyCompany.KruchyPlugin1.Extensions
         {
             return !projekt.Nazwa.ToLower().EndsWith(".tests");
         }
+
+        public static string KatalogSharedViews(this ProjektWrapper projekt)
+        {
+            return Path.Combine(
+                projekt.SciezkaDoKatalogu,
+                "Views",
+                "Shared");
+        }
+
+        public static string SciezkaDoPlikuWShared(this ProjektWrapper projekt, string nazwa)
+        {
+            return Path.Combine(
+                projekt.KatalogSharedViews(),
+                nazwa);
+        }
     }
 }

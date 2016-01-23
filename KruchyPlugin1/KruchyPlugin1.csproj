@@ -181,6 +181,7 @@
     <Compile Include="Akcje\IdzDoPlikuWidoku.cs" />
     <Compile Include="Akcje\IdzMiedzyInterfejsemAImplementacja.cs" />
     <Compile Include="Akcje\PodzielParametryNaLinie.cs" />
+    <Compile Include="Akcje\PokazywaniaZawartosciZShared.cs" />
     <Compile Include="Akcje\RodzajKlasyTestowej.cs" />
     <Compile Include="Akcje\UzupelnianieKontruktora.cs" />
     <Compile Include="Akcje\UzupelnianieMetodWImplementacji.cs" />
@@ -224,6 +225,7 @@
     <Compile Include="Menu\PozycjaIdzMiedzyInterfejsemAImplementacja.cs" />
     <Compile Include="Menu\PozycjaMenu.cs" />
     <Compile Include="Menu\PozycjaPodzielParametryNaLinie.cs" />
+    <Compile Include="Menu\PozycjaPokazywanieZawartosciZShared.cs" />
     <Compile Include="Menu\PozycjaUzupelnianieKontruktora.cs" />
     <Compile Include="Menu\PozycjaUzupelnianieMetodWImplementacji.cs" />
     <Compile Include="Menu\PozycjaUzupelnianieReferencedObject.cs" />

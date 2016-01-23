@@ -317,6 +317,14 @@
           <ButtonText>W&amp;staw nazwę controllera do schowka</ButtonText>
         </Strings>
       </Button>
+
+      <Button id="cmdidPokazZawartoscZShared" priority="0x0160"  guid="guidKruchyPlugin1CmdSet" type="Button">
+        <Parent guid="guidKruchyPlugin1CmdSet" id="PodrozowanieMenuGroup"/>
+        <Strings>
+          <CommandName>cmdidPokazZawartoscZShared</CommandName>
+          <ButtonText>Pokaz zawartość widoku z Shared</ButtonText>
+        </Strings>
+      </Button>
       <!--Koniec buttonów związanych z UI-->
     </Buttons>
 
@@ -380,6 +388,7 @@
       <IDSymbol name="cmdidWstawDoSchowkaNazweControllera" value="0x0159"/>
       <IDSymbol name="cmdidIdzDoKlasyTestowej" value="0x0160"/>
       <IDSymbol name="cmdidPodzielParametryNaLinie" value="0x0161"/>
+      <IDSymbol name="cmdidPokazZawartoscZShared" value="0x0162"/>
 
       <IDSymbol name="cmdidIdzDoImplementacji" value="0x0170"/>
       <IDSymbol name="cmdidIdzDoKataloguControllera" value="0x0171"/>

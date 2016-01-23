@@ -26,6 +26,7 @@ namespace KruchyCompany.KruchyPlugin1
         public const uint cmdidWstawDoSchowkaNazweControllera = 0x0159;
         public const uint cmdidIdzDoKlasyTestowej = 0x0160;
         public const uint cmdidPodzielParametryNaLinie = 0x0161;
+        public const uint cmdidPokazZawartoscZShared = 0x162;
 
         //dla poruszania się po klasach ui
         public const uint cmdidIdzDoImplementacji = 0x0170;

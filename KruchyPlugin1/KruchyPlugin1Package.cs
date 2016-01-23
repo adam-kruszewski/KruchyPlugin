@@ -151,6 +151,7 @@ namespace KruchyCompany.KruchyPlugin1
 
                 new PozycjaWstawianieNazwyControlleraDoSchowka(DajSolution())
                     .Podlacz(mcs);
+                new PozycjaPokazywanieZawartosciZShared(DajSolution()).Podlacz(mcs);
 
                 // Create the command for the tool window
                 CommandID toolwndCommandID = new CommandID(GuidList.guidKruchyPlugin1CmdSet, (int)PkgCmdIDList.cmdidMyTool);

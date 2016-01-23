@@ -11,6 +11,7 @@ namespace KruchyCompany.KruchyPlugin1.Menu
         Controller,
         Klasa,
         Interfejs,
-        Builder
+        Builder,
+        WidokCshtml
     }
 }
