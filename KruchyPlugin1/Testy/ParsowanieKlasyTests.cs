@@ -112,6 +112,9 @@ namespace KruchyCompany.KruchyPlugin1.Testy
             metodaZwykla.Modyfikatory.First().Should().Be("private");
             metodaZwykla.Nazwa.Should().Be("MetodaZwykla");
             metodaZwykla.TypZwracany.Should().Be("int");
+            metodaZwykla.Parametry.Count().Should().Be(2);
+            metodaZwykla.Parametry[0].NazwaTypu.Should().Be("System.DateTime");
+            metodaZwykla.Parametry[1].NazwaTypu.Should().Be("System.DateTime?");
         }
 
         private string DajSciezkeTestu()

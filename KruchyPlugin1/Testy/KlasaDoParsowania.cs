@@ -31,7 +31,7 @@ namespace KruchyCompany.KruchyPlugin1.Testy
 
         }
 
-        private int MetodaZwykla()
+        private int MetodaZwykla(System.DateTime d, System.DateTime? d1)
         {
             return 0;
         }
