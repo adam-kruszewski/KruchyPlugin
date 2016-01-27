@@ -330,7 +330,7 @@ namespace KruchyCompany.KruchyPlugin1.ParserKodu
             MemberType mt = wezel as MemberType;
             if (mt != null)
                 return mt.ToString();
-            return wezel.ToString();
+            return null;
         }
 
         private static IEnumerable<string> DajNazwyParametrowTypu(SimpleType st)
