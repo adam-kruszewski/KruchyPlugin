@@ -1,10 +1,11 @@
-﻿using System.Windows;
-using KruchyCompany.KruchyPlugin1.Utils;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Windows;
+using KrucheBuilderyKodu.Builders;
 using KruchyCompany.KruchyPlugin1.Extensions;
 using KruchyCompany.KruchyPlugin1.ParserKodu;
-using System.Text;
-using System.Collections.Generic;
-using KrucheBuilderyKodu.Builders;
+using KruchyCompany.KruchyPlugin1.Utils;
 
 namespace KruchyCompany.KruchyPlugin1.Akcje
 {
@@ -58,7 +59,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
         private void DodajDefincjeWImplementacji(
             string sciezkaDoImplementacji,
             string definicja,
-            IEnumerable<string> usingi)
+            IEnumerable<UsingNamespace> usingi)
         {
             var solutionExplorer = new SolutionExplorerWrapper(solution);
             solutionExplorer.OtworzPlik(sciezkaDoImplementacji);
@@ -74,7 +75,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             solution.AktualnyDokument.UstawKursosDlaMetodyDodanejWLinii(
                 numerLiniiGdzieDodawac + 1);
 
-            foreach (var u in usingi)
+            foreach (var u in usingi.Select(o => o.Nazwa))
                 solution.AktualnyDokument.DodajUsingaJesliTrzeba(u);
         }
 

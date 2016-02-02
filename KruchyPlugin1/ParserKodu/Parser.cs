@@ -44,10 +44,12 @@ namespace KruchyCompany.KruchyPlugin1.ParserKodu
             return ud != null;
         }
 
-        private static string ParsujUsing(AstNode wezel)
+        private static UsingNamespace ParsujUsing(AstNode wezel)
         {
             UsingDeclaration ud = wezel as UsingDeclaration;
-            return ud.Namespace;
+            var wynik = new UsingNamespace(ud.Namespace);
+            UstawPolozenie(wynik, wezel);
+            return wynik;
         }
 
         private static bool WezelNamespace(AstNode wezel)

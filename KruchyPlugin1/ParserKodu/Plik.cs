@@ -7,14 +7,14 @@ namespace KruchyCompany.KruchyPlugin1.ParserKodu
         public string Namespace { get; set; }
         public PozycjaWPliku PoczatekNamespace { get; set; }
         public PozycjaWPliku KoniecNamespace { get; set; }
-        public IList<string> Usingi { get; private set; }
+        public IList<UsingNamespace> Usingi { get; private set; }
 
         public IList<Obiekt> DefiniowaneObiekty { get; private set; }
 
         public Plik()
         {
             DefiniowaneObiekty = new List<Obiekt>();
-            Usingi = new List<string>();
+            Usingi = new List<UsingNamespace>();
         }
     }
 }

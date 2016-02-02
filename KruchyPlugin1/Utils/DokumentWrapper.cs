@@ -1,5 +1,8 @@
-﻿using EnvDTE;
+﻿using System.Linq;
+using System.Text;
+using EnvDTE;
 using KrucheBuilderyKodu.Builders;
+using KruchyCompany.KruchyPlugin1.ParserKodu;
 
 namespace KruchyCompany.KruchyPlugin1.Utils
 {
@@ -19,28 +22,67 @@ namespace KruchyCompany.KruchyPlugin1.Utils
             this.projektWrapper = projekt;
         }
 
-        public void DodajUsingaJesliTrzeba(string nazwaUsinga)
+        public void DodajUsingaJesliTrzeba(string nazwaNamespace)
         {
-            int indeks = 1;
-            string linia = null;
-            do
-            {
-                linia = DajZawartoscLinii(indeks);
-                if (linia.Contains("using") && linia.Contains(nazwaUsinga))
-                    return;
-                indeks++;
-            } while (linia.Contains("using"));
+            var parsowane = Parser.Parsuj(DajZawartosc());
 
-            var endPoint = DajEditPointPoczatkuLinii(indeks - 1);
-            endPoint.Insert(
-                string.Format("using {0};\n", nazwaUsinga));
+            if (parsowane.Usingi.Select(o => o.Nazwa).Contains(nazwaNamespace))
+                return;
+
+            int wierszWstawienia = 1;
+            int kolumnaWstawienia = 1;
+            var aktualneUsingi = parsowane.Usingi.Select(o => o.Nazwa).ToList();
+            aktualneUsingi.Add(nazwaNamespace);
+
+            if (parsowane.Usingi.Any())
+            {
+                UsunWszystkieUsingi(
+                    parsowane,
+                    ref wierszWstawienia,
+                    ref kolumnaWstawienia);
+            }
+
+            var posortowaneDoWstawienia =
+                aktualneUsingi
+                    .OrderBy(o => DajKluczDoSortowaniaUsingow(o))
+                        .ToList();
+            var builder = new StringBuilder();
+            foreach (var u in posortowaneDoWstawienia)
+                builder.AppendLine("using " + u + ";");
+            var nowyTekst = builder.ToString().TrimEnd();
+
+            WstawWMiejscu(nowyTekst, wierszWstawienia, 1);
+        }
+
+        private void UsunWszystkieUsingi(
+            Plik parsowane,
+            ref int wierszWstawienia,
+            ref int kolumnaWstawienia)
+        {
+            var dotychczasowePosortowane =
+                parsowane.Usingi.OrderBy(o => o.Poczatek.Wiersz);
+
+            var pierwszyUsing = dotychczasowePosortowane.First();
+            var ostatniUsing = dotychczasowePosortowane.Last();
+
+            Usun(pierwszyUsing.Poczatek.Wiersz, pierwszyUsing.Poczatek.Kolumna,
+                ostatniUsing.Koniec.Wiersz, ostatniUsing.Koniec.Kolumna);
+            wierszWstawienia = pierwszyUsing.Poczatek.Wiersz;
+            kolumnaWstawienia = pierwszyUsing.Poczatek.Kolumna;
+        }
+
+        private string DajKluczDoSortowaniaUsingow(string nazwaUsinga)
+        {
+            if (nazwaUsinga.StartsWith("System.") || nazwaUsinga == "System")
+                return "0" + nazwaUsinga;
+            else
+                return "1" + nazwaUsinga;
         }
 
         public int DajNumerLiniiKursora()
         {
             return textDocument.Selection.TopPoint.Line;
         }
-
 
         public void UstawKursor(int wiersz, int kolumna)
         {

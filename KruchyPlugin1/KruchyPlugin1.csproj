@@ -251,6 +251,7 @@
     <Compile Include="ParserKodu\Property.cs" />
     <Compile Include="ParserKodu\RodzajObiektu.cs" />
     <Compile Include="ParserKodu\SzukanieParsowanegoExtension.cs" />
+    <Compile Include="ParserKodu\UsingNamespace.cs" />
     <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -318,7 +319,9 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup/>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KrucheBuilderyKodu\KrucheBuilderyKodu.csproj">
       <Project>{0c5748a8-7d43-444c-90ad-3dbe02dcabab}</Project>

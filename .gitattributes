@@ -94,6 +94,7 @@ KruchyPlugin1/ParserKodu/PozycjaWPliku.cs -text
 KruchyPlugin1/ParserKodu/Property.cs -text
 KruchyPlugin1/ParserKodu/RodzajObiektu.cs -text
 KruchyPlugin1/ParserKodu/SzukanieParsowanegoExtension.cs -text
+KruchyPlugin1/ParserKodu/UsingNamespace.cs -text
 KruchyPlugin1/PkgCmdID.cs -text
 KruchyPlugin1/Properties/AssemblyInfo.cs -text
 KruchyPlugin1/Resources.Designer.cs -text
