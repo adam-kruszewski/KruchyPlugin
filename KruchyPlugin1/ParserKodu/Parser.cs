@@ -283,19 +283,21 @@ namespace KruchyCompany.KruchyPlugin1.ParserKodu
             return false;
         }
 
-        private static string SzukajModyfikatora(AstNode wezel)
+        private static Modyfikator SzukajModyfikatora(AstNode wezel)
         {
             CSharpModifierToken csmt = wezel as CSharpModifierToken;
             if (csmt != null)
             {
-                return MapujModyfikator(csmt.Modifier);
+                var wynik = MapujModyfikator(csmt.Modifier);
+                UstawPolozenie(wynik, wezel);
+                return wynik;
             }
             return null;
         }
 
-        private static string MapujModyfikator(Modifiers modifiers)
+        private static Modyfikator MapujModyfikator(Modifiers modifiers)
         {
-            return modifiers.ToString().ToLower();
+            return new Modyfikator(modifiers.ToString().ToLower());
         }
 
         private static bool SzukajTypuPola(AstNode wezel, Pole pole)

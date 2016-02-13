@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
+using KruchyCompany.KruchyPlugin1.ParserKodu;
 using KruchyCompany.KruchyPlugin1.Utils;
-using KrucheBuilderyKodu.Builders;
 
 namespace KruchyCompany.KruchyPlugin1.Akcje
 {
     class ZmianaModyfikatoraMetody
     {
         private readonly DokumentWrapper dokument;
-        private readonly string[] modyfikatory = 
-            {"public", "private", "internal", "protected"};
-
+        private readonly string[] modyfikatory = { "public", "private", "internal", "protected" };
 
         public ZmianaModyfikatoraMetody(DokumentWrapper dokument)
         {
@@ -22,39 +16,55 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 
         public void ZmienNa(string modyfikator)
         {
-            var liniaKursora = dokument.DajNumerLiniiKursora();
-            var zawartoscLinii = dokument.DajZawartoscLinii(liniaKursora);
+            var parsowane = Parser.Parsuj(dokument.DajZawartosc());
+            var metoda =
+                parsowane.SzukajMetodyWLinii(dokument.DajNumerLiniiKursora());
 
-            var slowa = zawartoscLinii.Trim().Split(new char[] {' ', '\t'});
-            if (modyfikatory.Contains(slowa[0]))
-                ZmienModyfikatorWLinii(modyfikator, liniaKursora, slowa[0]);
-            else
-                DodajModyfikatorWLinii(modyfikator, liniaKursora, zawartoscLinii);
+            if (metoda != null)
+            {
+                if (metoda.ZawieraModyfikator(modyfikator))
+                    return;
+
+                var dotychczasowyModyfikator =
+                    SzukajDotychczasowegoModyfikatora(metoda);
+
+                if (dotychczasowyModyfikator == null)
+                    WstawModyfikator(modyfikator, metoda);
+                else
+                    ZmienModyfikator(modyfikator, dotychczasowyModyfikator);
+            }
         }
 
-        private void DodajModyfikatorWLinii(
+        private void ZmienModyfikator(
             string modyfikator,
-            int numerLinii,
-            string zawartoscLinii)
+            Modyfikator dotychczasowyModyfikator)
         {
-            if (zawartoscLinii.Length < StaleDlaKodu.WciecieDlaMetody.Length)
-                return;
+            dokument.Usun(
+                dotychczasowyModyfikator.Poczatek.Wiersz,
+                dotychczasowyModyfikator.Poczatek.Kolumna,
+                dotychczasowyModyfikator.Koniec.Wiersz,
+                dotychczasowyModyfikator.Koniec.Kolumna);
+            dokument.WstawWMiejscu(
+                modyfikator,
+                dotychczasowyModyfikator.Poczatek.Wiersz,
+                dotychczasowyModyfikator.Poczatek.Kolumna);
+        }
 
+        private void WstawModyfikator(string modyfikator, Metoda metoda)
+        {
             dokument.WstawWMiejscu(
                 modyfikator + " ",
-                numerLinii,
-                1 + StaleDlaKodu.WciecieDlaMetody.Length);
+                metoda.Poczatek.Wiersz,
+                metoda.Poczatek.Kolumna);
         }
 
-        private void ZmienModyfikatorWLinii(
-            string modyfikator, int numerLinii, string modyfikatorObecny)
+        private Modyfikator SzukajDotychczasowegoModyfikatora(Metoda metoda)
         {
-            var linia = dokument.DajZawartoscLinii(numerLinii);
-            int index = 0;
-            while (linia[index] == ' ' || linia[index] == '\t')
-                index++;
-            dokument.UsunWMiejscu(numerLinii, index + 1, modyfikatorObecny.Length);
-            dokument.WstawWMiejscu(modyfikator, numerLinii, index + 1);
+            var dotychczasowyModyfikator =
+                metoda.Modyfikatory
+                    .Where(o => modyfikatory.Any(m => m == o.Nazwa))
+                        .FirstOrDefault();
+            return dotychczasowyModyfikator;
         }
     }
 }

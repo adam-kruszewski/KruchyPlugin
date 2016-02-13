@@ -6,11 +6,11 @@ namespace KruchyCompany.KruchyPlugin1.ParserKodu
     {
         public string Nazwa { get; set; }
         public string NazwaTypu { get; set; }
-        public IList<string> Modyfikatory { get; private set; }
+        public IList<Modyfikator> Modyfikatory { get; private set; }
 
         public Property()
         {
-            Modyfikatory = new List<string>();
+            Modyfikatory = new List<Modyfikator>();
         }
     }
 }

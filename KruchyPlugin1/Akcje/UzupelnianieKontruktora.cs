@@ -52,8 +52,8 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             if (polaDoDodania.Count > 0)
             {
                 var polaReadOnly = obiekt.Pola.Where(
-                    o => o.Modyfikatory.Contains("private")
-                        && o.Modyfikatory.Contains("readonly"));
+                    o => o.Modyfikatory.Select(m => m.Nazwa).Contains("private")
+                        && o.Modyfikatory.Select(m => m.Nazwa).Contains("readonly"));
                 var nowyKonstruktor =
                     GenerujKonstruktor(polaReadOnly, obiekt.Nazwa);
 
@@ -103,8 +103,8 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
         {
             var wynik = new List<Pole>();
             var polaReadOnly =
-                pola.Where(o => o.Modyfikatory.Contains("private")
-                    && o.Modyfikatory.Contains("readonly"));
+                pola.Where(o => o.Modyfikatory.Select(m => m.Nazwa).Contains("private")
+                    && o.Modyfikatory.Select(m => m.Nazwa).Contains("readonly"));
             foreach (var pole in polaReadOnly)
             {
                 if (!KonstruktorMaWParametrzePole(konstruktor, pole))

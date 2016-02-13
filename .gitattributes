@@ -84,6 +84,7 @@ KruchyPlugin1/MyControl.xaml.cs -text
 KruchyPlugin1/MyToolWindow.cs -text
 KruchyPlugin1/ParserKodu/Konstruktor.cs -text
 KruchyPlugin1/ParserKodu/Metoda.cs -text
+KruchyPlugin1/ParserKodu/Modyfikator.cs -text
 KruchyPlugin1/ParserKodu/Obiekt.cs -text
 KruchyPlugin1/ParserKodu/Parametr.cs -text
 KruchyPlugin1/ParserKodu/Parser.cs -text

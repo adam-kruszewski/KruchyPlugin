@@ -43,14 +43,14 @@ namespace KruchyCompany.KruchyPlugin1.Testy
             var pole = obiekt.Pola.First();
             pole.Nazwa.Should().Be("PoleReadOnly");
             pole.NazwaTypu.Should().Be("IParser");
-            pole.Modyfikatory[0].Should().Be("private");
-            pole.Modyfikatory[1].Should().Be("readonly");
+            pole.Modyfikatory[0].Nazwa.Should().Be("private");
+            pole.Modyfikatory[1].Nazwa.Should().Be("readonly");
 
             var poleStringReadonly = obiekt.Pola[1];
             poleStringReadonly.Nazwa.Should().Be("PoleStringReadOnly");
             poleStringReadonly.NazwaTypu.Should().Be("IList<string>");
-            poleStringReadonly.Modyfikatory[0].Should().Be("public");
-            poleStringReadonly.Modyfikatory[1].Should().Be("readonly");
+            poleStringReadonly.Modyfikatory[0].Nazwa.Should().Be("public");
+            poleStringReadonly.Modyfikatory[1].Nazwa.Should().Be("readonly");
         }
 
         private static void SprawdzPropertiesa(Obiekt obiekt)
@@ -59,7 +59,7 @@ namespace KruchyCompany.KruchyPlugin1.Testy
             var wlasciwosc = obiekt.Propertiesy.First();
             wlasciwosc.Nazwa.Should().Be("Wlasciwosc");
             wlasciwosc.NazwaTypu.Should().Be("int");
-            wlasciwosc.Modyfikatory[0].Should().Be("public");
+            wlasciwosc.Modyfikatory[0].Nazwa.Should().Be("public");
         }
 
         private void SprawdzKonstruktory(Obiekt obiekt)
@@ -95,13 +95,14 @@ namespace KruchyCompany.KruchyPlugin1.Testy
             var metodaStatyczna = obiekt.Metody[0];
             metodaStatyczna.Nazwa.Should().Be("MetodaStatyczna");
             metodaStatyczna.Parametry.Count().Should().Be(3);
+            SprawdzModyfikatorMetodyStatycznej(metodaStatyczna);
             var p = metodaStatyczna.Parametry.First();
             p.NazwaTypu.Should().Be("string");
             p.NazwaParametru.Should().Be("b");
             metodaStatyczna.Parametry[1].NazwaTypu.Should().Be("int?");
             metodaStatyczna.Parametry[2].NazwaTypu.Should().Be("DateTime?");
-            metodaStatyczna.Modyfikatory[0].Should().Be("private");
-            metodaStatyczna.Modyfikatory[1].Should().Be("static");
+            metodaStatyczna.Modyfikatory[0].Nazwa.Should().Be("private");
+            metodaStatyczna.Modyfikatory[1].Nazwa.Should().Be("static");
             metodaStatyczna.TypZwracany.Should().Be("void");
             metodaStatyczna.NawiasOtwierajacyParametry.Wiersz.Should().Be(29);
             metodaStatyczna.NawiasOtwierajacyParametry.Kolumna.Should().Be(44);
@@ -109,12 +110,23 @@ namespace KruchyCompany.KruchyPlugin1.Testy
             metodaStatyczna.NawiasZamykajacyParametry.Kolumna.Should().Be(74);
 
             var metodaZwykla = obiekt.Metody[1];
-            metodaZwykla.Modyfikatory.First().Should().Be("private");
+            metodaZwykla.Modyfikatory.First().Nazwa.Should().Be("private");
             metodaZwykla.Nazwa.Should().Be("MetodaZwykla");
             metodaZwykla.TypZwracany.Should().Be("int");
             metodaZwykla.Parametry.Count().Should().Be(2);
             metodaZwykla.Parametry[0].NazwaTypu.Should().Be("System.DateTime");
             metodaZwykla.Parametry[1].NazwaTypu.Should().Be("System.DateTime?");
+        }
+
+        private void SprawdzModyfikatorMetodyStatycznej(Metoda metodaStatyczna)
+        {
+            metodaStatyczna.Modyfikatory.Count().Should().Be(2);
+            var modyfikatorPublic = metodaStatyczna.Modyfikatory[0];
+            modyfikatorPublic.Nazwa.Should().Be("private");
+            SprawdzPozycje(modyfikatorPublic.Poczatek, 29, 9);
+            SprawdzPozycje(modyfikatorPublic.Koniec, 29, 16);
+            var modyfikatorStatic = metodaStatyczna.Modyfikatory[1];
+            modyfikatorStatic.Nazwa.Should().Be("static");
         }
 
         private string DajSciezkeTestu()

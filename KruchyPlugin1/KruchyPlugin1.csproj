@@ -241,6 +241,7 @@
     <Compile Include="Guids.cs" />
     <Compile Include="ParserKodu\Konstruktor.cs" />
     <Compile Include="ParserKodu\Metoda.cs" />
+    <Compile Include="ParserKodu\Modyfikator.cs" />
     <Compile Include="ParserKodu\Obiekt.cs" />
     <Compile Include="ParserKodu\Parametr.cs" />
     <Compile Include="ParserKodu\Parser.cs" />

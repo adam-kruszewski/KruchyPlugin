@@ -1,22 +1,44 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace KruchyCompany.KruchyPlugin1.ParserKodu
 {
     public class Metoda : ParsowanaJednostka
     {
         public IList<Parametr> Parametry { get; private set; }
-        public IList<string> Modyfikatory { get; set; }
+        public IList<Modyfikator> Modyfikatory { get; set; }
         public string TypZwracany { get; set; }
         public string Nazwa { get; set; }
         public PozycjaWPliku NawiasOtwierajacyParametry { get; set; }
         public PozycjaWPliku NawiasZamykajacyParametry { get; set; }
 
+        public bool Prywatna
+        {
+            get
+            {
+                return Modyfikatory.Any(o => o.Nazwa == "private");
+            }
+        }
+
+        public bool Publiczna
+        {
+            get
+            {
+                return Modyfikatory.Any(o => o.Nazwa == "public");
+            }
+        }
+
         public Metoda()
         {
             Parametry = new List<Parametr>();
-            Modyfikatory = new List<string>();
+            Modyfikatory = new List<Modyfikator>();
             NawiasOtwierajacyParametry = new PozycjaWPliku();
             NawiasZamykajacyParametry = new PozycjaWPliku();
+        }
+
+        public bool ZawieraModyfikator(string nazwa)
+        {
+            return Modyfikatory.Any(o => o.Nazwa == nazwa);
         }
     }
 }
