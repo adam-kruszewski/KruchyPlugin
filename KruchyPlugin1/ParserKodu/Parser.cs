@@ -299,6 +299,11 @@ namespace KruchyCompany.KruchyPlugin1.ParserKodu
             wynik.Nazwa = pd.Name;
             wynik.NazwaTypu = SzukajTypuPola(pd.ReturnType);
 
+            if (pd.Setter.Keyword.ToString().Contains("set"))
+                wynik.JestSet = true;
+            if (pd.Getter.Keyword.ToString().Contains("get"))
+                wynik.JestGet = true;
+
             foreach (var dziecko in pd.Children)
             {
                 var modyfikator = SzukajModyfikatora(dziecko);

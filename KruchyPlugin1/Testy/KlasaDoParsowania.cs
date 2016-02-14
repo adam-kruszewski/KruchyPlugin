@@ -14,6 +14,7 @@ namespace KruchyCompany.KruchyPlugin1.Testy
         public readonly IList<string> PoleStringReadOnly;
 
         public int Wlasciwosc { get; set; }
+        public int Wlasciwosc2 { get { return 1; } }
 
         public KlasaDoParsowania(int a)
         {

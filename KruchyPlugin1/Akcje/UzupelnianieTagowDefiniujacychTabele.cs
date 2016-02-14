@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using KruchyCompany.KruchyPlugin1.ParserKodu;
 using KruchyCompany.KruchyPlugin1.Utils;
 
 namespace KruchyCompany.KruchyPlugin1.Akcje
@@ -18,10 +20,13 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 
         public void Uzupelnij()
         {
+            var parsowane = Parser.Parsuj(dokument.DajZawartosc());
+
             var prefiks = SzukajPrefiksu();
-            var numerLiniiClass = DajNumerLiniiZClass();
-            DodajAtrybutKlasie(prefiks);
-            List<int> linieZKolumnami = ZnajdzLinieZKolumnami();
+            var numerLiniiClass = DajNumerLiniiZClass(parsowane);
+            DodajAtrybutKlasie(prefiks, parsowane);
+            parsowane = Parser.Parsuj(dokument.DajZawartosc());
+            List<int> linieZKolumnami = ZnajdzLinieZKolumnami(parsowane);
             DodajAtrybutyKolumnowe(linieZKolumnami, prefiks);
             dokument.DodajUsingaJesliTrzeba(NamespaceDlaAtrybutowOpisujacychTabele);
         }
@@ -38,57 +43,38 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             return "";
         }
 
-        private int DajNumerLiniiZClass()
+        private int DajNumerLiniiZClass(Plik plik)
         {
-            var liczbaLinii = dokument.DajLiczbeLinii();
-            for (int i = 1; i <= liczbaLinii; i++)
-            {
-                if (dokument.DajZawartoscLinii(i).Contains("class "))
-                    return i;
-            }
-            throw new ApplicationException("Brak linii rozpoczynającej klasę");
+            if (plik.DefiniowaneObiekty.Count != 1)
+                throw new ApplicationException(
+                    "Musi być zdefiniowana dokładnie jedna klasa");
+
+            return plik.DefiniowaneObiekty.First().Poczatek.Wiersz;
         }
 
-        private void DodajAtrybutKlasie(string prefiks)
+        private void DodajAtrybutKlasie(string prefiks, Plik plik)
         {
-            var liniaZClass = DajNumerLiniiZClass();
+            var liniaZClass = DajNumerLiniiZClass(plik);
             dokument.WstawWLinii(
 "    [TableDescription(\"NAZWA_TABELI\", \"" + prefiks + "_id\")]\n", liniaZClass);
         }
 
-        private List<int> ZnajdzLinieZKolumnami()
+        private List<int> ZnajdzLinieZKolumnami(Plik plik)
         {
             var wynik = new List<int>();
 
-            var liczbaLinii = dokument.DajLiczbeLinii();
-            for (int i = DajNumerLiniiZClass(); i <= liczbaLinii; i++)
-            {
-                var linia = dokument.DajZawartoscLinii(i);
-                if (linia.TrimStart().StartsWith("//"))
-                    continue;
-                if (linia.StartsWith("["))
-                    continue;
-                if (WPoprzednichLiniachJestAtrybuReferencedObject(i))
-                    continue;
-
-                if (linia.Contains("get;") && linia.Contains("set;"))
-                    wynik.Add(i);
-            }
-            return wynik;
+            var propertiesyKolumn = plik
+                .DefiniowaneObiekty
+                    .First()
+                        .Propertiesy
+                            .Where(o => o.JestGet && o.JestSet)
+                                .Where(o => !MaAtrybutuReferencedObject(o));
+            return propertiesyKolumn.Select(o => o.Poczatek.Wiersz).ToList();
         }
 
-        private bool WPoprzednichLiniachJestAtrybuReferencedObject(int numerLinii)
+        private bool MaAtrybutuReferencedObject(Property property)
         {
-            for (int i = numerLinii - 1; i >= 1; i--)
-            {
-                var linia =
-                    dokument.DajZawartoscLinii(i).Trim();
-                if (!linia.StartsWith("["))
-                    return false;
-                if (linia.StartsWith("[ReferencedObject"))
-                    return true;
-            }
-            return false;
+            return property.Atrybuty.Any(o => o.Nazwa == "ReferencedObject");
         }
 
         private void DodajAtrybutyKolumnowe(List<int> linieKolumn, string prefiks)
