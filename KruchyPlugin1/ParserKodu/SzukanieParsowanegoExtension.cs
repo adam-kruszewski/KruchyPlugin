@@ -15,7 +15,17 @@ namespace KruchyCompany.KruchyPlugin1.ParserKodu
                         o.Poczatek.Wiersz <= numerLinii
                             && o.Koniec.Wiersz >= numerLinii)
                             .FirstOrDefault();
+        }
 
+        public static Property SzukajPropertiesaWLinii(this Plik parsowane, int numerLinii)
+        {
+            var propertiesy = parsowane.DefiniowaneObiekty.First().Propertiesy;
+            return
+                propertiesy
+                    .Where(o =>
+                        o.Poczatek.Wiersz <= numerLinii
+                            && o.Koniec.Wiersz >= numerLinii)
+                            .FirstOrDefault();
         }
 
         public static int SzukajPierwszejLiniiDlaMetody(this Plik parsowane)

@@ -1,8 +1,9 @@
-﻿using EnvDTE;
-using KruchyCompany.KruchyPlugin1.Utils;
-using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Text;
+using System.Windows;
+using EnvDTE;
+using KruchyCompany.KruchyPlugin1.ParserKodu;
+using KruchyCompany.KruchyPlugin1.Utils;
 
 namespace KruchyCompany.KruchyPlugin1.Akcje
 {
@@ -10,14 +11,6 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
     {
         private readonly _DTE dte;
         private readonly DokumentWrapper dokument;
-        private string[] modyifkatory =
-        {
-            "public",
-            "private",
-            "internal",
-            "protected",
-            "const"
-        };
         private const string NamespaceDlaAtrybutuReferencedObject = "KomponentyStandardowe.Data";
 
         public UzupelnianieReferencedObject(_DTE dte)
@@ -33,15 +26,25 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 
             var numerLinii = DajNumerLiniiKursora();
             var zawartosc = DajZawartosc();
-            var zawartoscLinii = DajZawartoscLinii(numerLinii);
-            var nazwaAtrybutu = DajNazweAtrybutu(zawartoscLinii);
-            var nazwaTypu = DajNazweTypu(zawartoscLinii);
+            var parsowane = Parser.Parsuj(zawartosc);
+            var property = parsowane.SzukajPropertiesaWLinii(numerLinii);
+
+            if (property == null)
+            {
+                MessageBox.Show("Nie wybrane pole");
+                return;
+            }
+
+            var nazwaAtrybutu = property.Nazwa;
+            var nazwaTypu = property.NazwaTypu;
 
             var numerLiniiDlaAtrybutuKluczaObcego = numerLinii;
 
-            DodajJesliTrzebaAtrybutReferencedObject(numerLinii, nazwaAtrybutu);
-            DodajPoleKluczaObcego(nazwaAtrybutu, nazwaTypu, numerLiniiDlaAtrybutuKluczaObcego);
-            DodajUsingaJesliTrzeba();
+            if (DodajJesliTrzebaAtrybutReferencedObject(numerLinii, nazwaAtrybutu, property))
+            {
+                DodajPoleKluczaObcego(nazwaAtrybutu, nazwaTypu, numerLiniiDlaAtrybutuKluczaObcego);
+                DodajUsingaJesliTrzeba();
+            }
         }
 
         private void DodajPoleKluczaObcego(
@@ -62,24 +65,14 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             dokument.DodajUsingaJesliTrzeba(NamespaceDlaAtrybutuReferencedObject);
         }
 
-        private string DajNazweTypu(string zawartoscLinii)
-        {
-            var slowa = PodzielNaSlowa(zawartoscLinii);
-            return slowa.Where(o => !modyifkatory.Contains(o)).First();
-        }
-
-        private string DajNazweAtrybutu(string zawartoscLinii)
-        {
-            var slowa = PodzielNaSlowa(zawartoscLinii);
-            return slowa.Where(o => !modyifkatory.Contains(o)).ToList()[1];
-        }
-
         private bool DodajJesliTrzebaAtrybutReferencedObject(
-            int numerLiniiKursora, string nazwaAtrybutu)
+            int numerLiniiKursora,
+            string nazwaAtrybutu,
+            KruchyCompany.KruchyPlugin1.ParserKodu.Property property)
         {
-            var poprzedniaLinia = DajZawartoscLinii(numerLiniiKursora - 1);
-            if (poprzedniaLinia.Contains("ReferencedObject"))
+            if (property.Atrybuty.Any(o => o.Nazwa == "ReferencedObject"))
                 return false;
+
             var nowaLinia =
                 string.Format("\n        [ReferencedObject(\"{0}\")]", nazwaAtrybutu + "ID");
             dokument.WstawWLinii(nowaLinia, numerLiniiKursora - 1);
@@ -94,26 +87,6 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
         private int DajNumerLiniiKursora()
         {
             return dokument.DajNumerLiniiKursora();
-        }
-
-        private string DajZawartoscLinii(int numerLinii)
-        {
-            return dokument.DajZawartoscLinii(numerLinii);
-        }
-
-        private EditPoint DajEditPointPoczatkuLinii(
-            TextDocument textDocument,
-            int numerLinii)
-        {
-            var poczatekLinii = textDocument.CreateEditPoint();
-            poczatekLinii.MoveToLineAndOffset(numerLinii, 1);
-            return poczatekLinii;
-        }
-
-        private string[] PodzielNaSlowa(string linia)
-        {
-            var separatory = new char[] { ' ', '\t' };
-            return linia.Split(separatory, StringSplitOptions.RemoveEmptyEntries);
         }
     }
 }

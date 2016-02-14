@@ -304,6 +304,8 @@ namespace KruchyCompany.KruchyPlugin1.ParserKodu
                 var modyfikator = SzukajModyfikatora(dziecko);
                 if (modyfikator != null)
                     wynik.Modyfikatory.Add(modyfikator);
+                if (DefinicjaAtrybutow(dziecko))
+                    wynik.Atrybuty.AddRange(ParsujAtrybuty(dziecko));
             }
             UstawPolozenie(wynik, wezel);
             return wynik;
