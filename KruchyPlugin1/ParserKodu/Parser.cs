@@ -90,6 +90,9 @@ namespace KruchyCompany.KruchyPlugin1.ParserKodu
 
             foreach (var dziecko in wezel.Children)
             {
+                if (DefinicjaAtrybutow(dziecko))
+                    wynik.Atrybuty.AddRange(ParsujAtrybuty(dziecko));
+
                 if (DefinicjaPola(dziecko))
                 {
                     wynik.Pola.Add(ParsujPole(dziecko));
@@ -117,6 +120,61 @@ namespace KruchyCompany.KruchyPlugin1.ParserKodu
                 }
             }
             UstawPolozenie(wynik, wezel);
+            return wynik;
+        }
+
+        private static bool DefinicjaAtrybutow(AstNode dziecko)
+        {
+            return dziecko is AttributeSection;
+        }
+
+        private static IEnumerable<Atrybut> ParsujAtrybuty(AstNode wezel)
+        {
+            var atrybut = wezel as AttributeSection;
+            foreach (var dziecko in wezel.Children)
+            {
+                if (dziecko is ICSharpCode.NRefactory.CSharp.Attribute)
+                {
+                    yield return ParsujAtrybut(dziecko as ICSharpCode.NRefactory.CSharp.Attribute);
+                }
+            }
+        }
+
+        private static Atrybut ParsujAtrybut(
+            ICSharpCode.NRefactory.CSharp.Attribute wezelAtrybutow)
+        {
+            var wynik = new Atrybut();
+            wynik.Nazwa = wezelAtrybutow.FirstChild.ToString();
+            UstawPolozenie(wynik, wezelAtrybutow);
+
+            foreach (var dziecko in wezelAtrybutow.Children)
+            {
+                if (dziecko is NamedExpression)
+                {
+                    var ne = dziecko as NamedExpression;
+                    var parametr = new ParametrAtrybutu();
+                    parametr.Nazwa = ne.Name;
+                    if (ne.Expression is PrimitiveExpression)
+                    {
+                        parametr.Wartosc =
+                            (ne.Expression as PrimitiveExpression).Value.ToString();
+                    }
+                    else
+                    {
+                        parametr.Wartosc = ne.Expression.ToString();
+                    }
+                    wynik.Parametry.Add(parametr);
+                }
+                if (dziecko is PrimitiveExpression)
+                {
+                    var pe = dziecko as PrimitiveExpression;
+                    var parametr = new ParametrAtrybutu();
+                    parametr.Nazwa = string.Empty;
+                    parametr.Wartosc = pe.Value.ToString();
+                    wynik.Parametry.Add(parametr);
+                }
+            }
+
             return wynik;
         }
 
@@ -157,6 +215,8 @@ namespace KruchyCompany.KruchyPlugin1.ParserKodu
                 var modyfikator = SzukajModyfikatora(dziecko);
                 if (modyfikator != null)
                     wynik.Modyfikatory.Add(modyfikator);
+                if (DefinicjaAtrybutow(dziecko))
+                    wynik.Atrybuty.AddRange(ParsujAtrybuty(dziecko));
 
                 if (dziecko is CSharpTokenNode)
                 {

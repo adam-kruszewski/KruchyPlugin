@@ -7,6 +7,7 @@ using KruchyCompany.KruchyPlugin1.ParserKodu;
 
 namespace KruchyCompany.KruchyPlugin1.Testy
 {
+    [Testowo]
     class KlasaDoParsowania
     {
         private readonly IParser PoleReadOnly;
@@ -31,6 +32,7 @@ namespace KruchyCompany.KruchyPlugin1.Testy
 
         }
 
+        [Testowo]
         private int MetodaZwykla(System.DateTime d, System.DateTime? d1)
         {
             return 0;

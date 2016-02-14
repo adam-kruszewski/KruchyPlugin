@@ -7,6 +7,8 @@ namespace KruchyCompany.KruchyPlugin1.ParserKodu
     {
         public IList<Parametr> Parametry { get; private set; }
         public IList<Modyfikator> Modyfikatory { get; set; }
+        public List<Atrybut> Atrybuty { get; private set; }
+
         public string TypZwracany { get; set; }
         public string Nazwa { get; set; }
         public PozycjaWPliku NawiasOtwierajacyParametry { get; set; }
@@ -32,6 +34,7 @@ namespace KruchyCompany.KruchyPlugin1.ParserKodu
         {
             Parametry = new List<Parametr>();
             Modyfikatory = new List<Modyfikator>();
+            Atrybuty = new List<Atrybut>();
             NawiasOtwierajacyParametry = new PozycjaWPliku();
             NawiasZamykajacyParametry = new PozycjaWPliku();
         }

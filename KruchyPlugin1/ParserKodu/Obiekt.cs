@@ -11,6 +11,7 @@ namespace KruchyCompany.KruchyPlugin1.ParserKodu
         public IList<Pole> Pola { get; private set; }
         public IList<Property> Propertiesy { get; private set; }
         public IList<Metoda> Metody { get; private set; }
+        public List<Atrybut> Atrybuty { get; private set; }
 
         public PozycjaWPliku PoczatkowaKlamerka { get; private set; }
         public PozycjaWPliku KoncowaKlamerka { get; private set; }
@@ -21,6 +22,7 @@ namespace KruchyCompany.KruchyPlugin1.ParserKodu
             Pola = new List<Pole>();
             Propertiesy = new List<Property>();
             Metody = new List<Metoda>();
+            Atrybuty = new List<Atrybut>();
 
             PoczatkowaKlamerka = new PozycjaWPliku();
             KoncowaKlamerka = new PozycjaWPliku();

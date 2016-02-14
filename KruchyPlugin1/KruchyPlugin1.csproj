@@ -239,11 +239,13 @@
     </Compile>
     <Compile Include="MyToolWindow.cs" />
     <Compile Include="Guids.cs" />
+    <Compile Include="ParserKodu\Atrybut.cs" />
     <Compile Include="ParserKodu\Konstruktor.cs" />
     <Compile Include="ParserKodu\Metoda.cs" />
     <Compile Include="ParserKodu\Modyfikator.cs" />
     <Compile Include="ParserKodu\Obiekt.cs" />
     <Compile Include="ParserKodu\Parametr.cs" />
+    <Compile Include="ParserKodu\ParametrAtrybutu.cs" />
     <Compile Include="ParserKodu\Parser.cs" />
     <Compile Include="ParserKodu\ParsowanaJednostka.cs" />
     <Compile Include="ParserKodu\Plik.cs" />
@@ -264,12 +266,16 @@
     <Compile Include="PkgCmdID.cs" />
     <Compile Include="Testowo\TestowyWizard.cs" />
     <Compile Include="Testy\KlasaDoParsowania.cs" />
+    <Compile Include="Testy\KlasaDoParsowaniaAtrybutow.cs" />
     <Compile Include="Testy\MetodaBuilderTests.cs" />
+    <Compile Include="Testy\ParsowanieAtrybutowTests.cs" />
     <Compile Include="Testy\ParsowanieKlasyTests.cs" />
     <Compile Include="Testy\PlikClassBuilderTests.cs" />
+    <Compile Include="Testy\TestowoAttribute.cs" />
     <Compile Include="Utils\DokumentWrapper.cs" />
     <Compile Include="Utils\FileSystemWrapper.cs" />
     <Compile Include="Utils\PlikWrapper.cs" />
+    <Compile Include="Utils\PozycjaWPlikuExtension.cs" />
     <Compile Include="Utils\ProjektWrapper.cs" />
     <Compile Include="Utils\SolutionExplorerWrapper.cs" />
     <Compile Include="Utils\SolutionWrapper.cs" />

@@ -40,3 +40,4 @@ Organizacyjne:
  - ucywilizować przechowywanie wersji
 
  TODO
+ przy umieszczaniu parametrów w oddzielnych liniach obsłużyć słowo kluczowe this
