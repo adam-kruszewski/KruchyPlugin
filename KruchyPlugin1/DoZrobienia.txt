@@ -29,6 +29,7 @@ Uzupełnianie usingów do:
 + - usunąć końcową linię po namespacie i klasie
 + - może dzielenie parametrów na linie...
 + - w widoku pokazanie zawartości z Shared - np. dla Save itp.
+ - zrobić przeorganizowanie w kodzie buildera z pamięciowego na bazodanowe
 
 W solutionExplorerze
 + - dodawanie klasy razem i interfejsem w katalogu impl lub w tym samym
@@ -40,4 +41,5 @@ Organizacyjne:
  - ucywilizować przechowywanie wersji
 
  TODO
- przy umieszczaniu parametrów w oddzielnych liniach obsłużyć słowo kluczowe this
+ przepisać uzupełnianie referencji i zmianę public/private na parser kodu
+ poprawić opcje dla plików, w którym jest więcej niż jedna klasa lub klasa wewnętrzna przy umieszczaniu parametrów w oddzielnych liniach obsłużyć słowo kluczowe this
