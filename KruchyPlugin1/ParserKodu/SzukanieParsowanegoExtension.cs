@@ -5,7 +5,9 @@ namespace KruchyCompany.KruchyPlugin1.ParserKodu
 {
     public static class SzukanieParsowanegoExtension
     {
-        public static Metoda SzukajMetodyWLinii(this Plik parsowane, int numerLinii)
+        public static Metoda SzukajMetodyWLinii(
+            this Plik parsowane,
+            int numerLinii)
         {
             var metody = parsowane.DefiniowaneObiekty.First().Metody;
 
@@ -17,7 +19,9 @@ namespace KruchyCompany.KruchyPlugin1.ParserKodu
                             .FirstOrDefault();
         }
 
-        public static Property SzukajPropertiesaWLinii(this Plik parsowane, int numerLinii)
+        public static Property SzukajPropertiesaWLinii(
+            this Plik parsowane,
+            int numerLinii)
         {
             var propertiesy = parsowane.DefiniowaneObiekty.First().Propertiesy;
             return
@@ -45,6 +49,29 @@ namespace KruchyCompany.KruchyPlugin1.ParserKodu
             }
 
             return ostatnieLinieDefinicji.Max() + 1;
+        }
+
+        public static Obiekt SzukajKlasyWLinii(
+            this Plik parsowane,
+            int numerLinii)
+        {
+            return
+                parsowane
+                    .DefiniowaneObiekty
+                        .Where(o => o.Rodzaj == RodzajObiektu.Klasa)
+                        .Where(o => o.ZawieraLinie(numerLinii))
+                            .FirstOrDefault();
+        }
+
+        private static bool ZawieraLinie(
+            this ParsowanaJednostka jednostka,
+            int numerLinii)
+        {
+            if (jednostka.Poczatek.Wiersz <= numerLinii
+                    && jednostka.Koniec.Wiersz >= numerLinii)
+                return true;
+            else
+                return false;
         }
     }
 }

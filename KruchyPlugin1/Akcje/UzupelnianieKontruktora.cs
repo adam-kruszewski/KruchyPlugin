@@ -22,20 +22,11 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             if (solution.AktualnyDokument == null)
                 return;
 
-            var kod = solution.AktualnyDokument.DajZawartosc();
-
-            var parsowanyPlik = Parser.Parsuj(kod);
-
-            if (parsowanyPlik.DefiniowaneObiekty.Count != 1)
+            var obiekt = SzukajKlasy();
+            if (obiekt == null)
             {
-                MessageBox.Show("W plik musi być definiowany jeden obiekt");
-                return;
-            }
-
-            var obiekt = parsowanyPlik.DefiniowaneObiekty.First();
-            if (obiekt.Rodzaj != RodzajObiektu.Klasa)
-            {
-                MessageBox.Show("Definiowany obiekt nie jest klasą");
+                MessageBox.Show(
+                    "Nie udało się ustalić klasy do uzupełniania konstruktora");
                 return;
             }
 
@@ -79,6 +70,25 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
                         "\n" + nowyKonstruktor + dodatek, maksymalnyNumerLiniiPol + 1);
                 }
             }
+        }
+
+        private Obiekt SzukajKlasy()
+        {
+            var kod = solution.AktualnyDokument.DajZawartosc();
+
+            var parsowanyPlik = Parser.Parsuj(kod);
+            var klasy =
+                parsowanyPlik
+                    .DefiniowaneObiekty
+                        .Where(o => o.Rodzaj == RodzajObiektu.Klasa);
+
+            if (klasy.Count() == 1)
+                return klasy.First();
+
+            return
+                parsowanyPlik
+                    .SzukajKlasyWLinii(
+                        solution.AktualnyDokument.DajNumerLiniiKursora());
         }
 
         private string GenerujKonstruktor(IEnumerable<Pole> pola, string nazwaKlasy)
