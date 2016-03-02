@@ -14,3 +14,5 @@ Organizacyjne:
  + przepisać uzupełnianie referencji i zmianę public/private na parser kodu
  + poprawić opcje dla plików, w którym jest więcej niż jedna klasa lub klasa wewnętrzna przy umieszczaniu parametrów w oddzielnych liniach obsłużyć słowo kluczowe this
  Przy generowaniu kontruktora poprawnić zachowanie jeśli są propertiesy
+ Uwzględnić domyślne wartości parametrów
+ Uwzględnić this-a
