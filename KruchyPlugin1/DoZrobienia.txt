@@ -1,45 +1,16 @@
-﻿+Generowanie klasy testowej dla serwisu
-+Generowanie validatora dla obiektu
-Generowanie Dao dla obiektu
+﻿Generowanie Dao dla obiektu
 Generowanie Controllera formatki na podstawie Controllera listy
 Generowanie Buildera
-+ Uzupełnianie metod na podstawie interfejsu
-+ Dodanie nowej metody w builderze -> po podaniu nazwy
 Dodanie usinga do klasy modelu w cshtml
 
-+ Kopiowanie do schowka nazwy controllera - z klasy controllera oraz z widoku
-
-Przemieszczanie się po solution
-+ - będąc w kontrolerze przejść do katalogu z widoki
-+ - wygenerowanie widoku dla zaznaczonego nazwy w controlerze
-+ - przejscie do widoku dla aktualnej metody w controllerze
-+ - przenoszenie z interfejsu do implementacji
-
-Uzupełnianie usingów do:
-+ - mapowań
-+ - builderów, tzn. np. overide
-+ - do linq
-+ - wczytywanie konfiguracji najczęściej używanych usingów
-
  W kodzie
-+ - dodanie/zamiana w linii public/private
-+ - dodanie nowego testu
-+ - dodanie kontruktora dla serwisów
-+ - dodanie uprawnień dla controllera
-+ - usunąć końcową linię po namespacie i klasie
-+ - może dzielenie parametrów na linie...
-+ - w widoku pokazanie zawartości z Shared - np. dla Save itp.
  - zrobić przeorganizowanie w kodzie buildera z pamięciowego na bazodanowe
 
-W solutionExplorerze
-+ - dodawanie klasy razem i interfejsem w katalogu impl lub w tym samym
-+ - przejście do klasy testowej według konwencji - uwzględnić, że możemmy iść z interfejsu i z implementacji
-
 Organizacyjne:
-+ - podzielić na moduły - zwłaszcza część od generowania/builderów kodu
  - przenieść zależności poza katalog src
  - ucywilizować przechowywanie wersji
 
  TODO
  + przepisać uzupełnianie referencji i zmianę public/private na parser kodu
  + poprawić opcje dla plików, w którym jest więcej niż jedna klasa lub klasa wewnętrzna przy umieszczaniu parametrów w oddzielnych liniach obsłużyć słowo kluczowe this
+ Przy generowaniu kontruktora poprawnić zachowanie jeśli są propertiesy
