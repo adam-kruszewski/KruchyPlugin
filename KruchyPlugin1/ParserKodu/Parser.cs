@@ -178,6 +178,29 @@ namespace KruchyCompany.KruchyPlugin1.ParserKodu
             return wynik;
         }
 
+        private static string ParsujWartosc(AstNode wezel)
+        {
+            if (wezel is NamedExpression)
+            {
+                var ne = wezel as NamedExpression;
+                if (ne.Expression is PrimitiveExpression)
+                {
+                    return (ne.Expression as PrimitiveExpression).Value.ToString();
+                }
+                else
+                {
+                    return ne.Expression.ToString();
+                }
+            }
+
+            if (wezel is PrimitiveExpression)
+            {
+                var pe = wezel as PrimitiveExpression;
+                return pe.LiteralValue;
+            }
+            return string.Empty;
+        }
+
         private static void ParsujKlamerki(Obiekt wynik, AstNode wezel)
         {
             var tn = wezel as CSharpTokenNode;
@@ -215,6 +238,7 @@ namespace KruchyCompany.KruchyPlugin1.ParserKodu
                 var modyfikator = SzukajModyfikatora(dziecko);
                 if (modyfikator != null)
                     wynik.Modyfikatory.Add(modyfikator);
+
                 if (DefinicjaAtrybutow(dziecko))
                     wynik.Atrybuty.AddRange(ParsujAtrybuty(dziecko));
 
@@ -283,6 +307,11 @@ namespace KruchyCompany.KruchyPlugin1.ParserKodu
             var wynik = new Parametr();
             wynik.NazwaParametru = param.Name;
             wynik.NazwaTypu = SzukajTypuPola(param.Type);
+            if (param.ParameterModifier == ParameterModifier.This)
+                wynik.ZThisem = true;
+
+            if (param.DefaultExpression != null)
+                wynik.WartoscDomyslna = ParsujWartosc(param.DefaultExpression);
             return wynik;
         }
 

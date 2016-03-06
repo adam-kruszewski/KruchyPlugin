@@ -56,7 +56,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
         {
             var liniaZClass = DajNumerLiniiZClass(plik);
             dokument.WstawWLinii(
-"    [TableDescription(\"NAZWA_TABELI\", \"" + prefiks + "_id\")]\n", liniaZClass);
+"    [TableDescription(\"<NAZWA_TABELI>\", \"" + prefiks + "_id\")]\n", liniaZClass);
         }
 
         private List<int> ZnajdzLinieZKolumnami(Plik plik)

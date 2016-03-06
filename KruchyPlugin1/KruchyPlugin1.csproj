@@ -209,6 +209,7 @@
     </Compile>
     <Compile Include="KonfiguracjaPlugina\Konfiguracja.cs" />
     <Compile Include="KonfiguracjaPlugina\KonfiguracjaUsingow.cs" />
+    <Compile Include="KonfiguracjaPlugina\Xml\KruchyPlugin.cs" />
     <Compile Include="Menu\PozycjaDodawanieNowegoTestu.cs" />
     <Compile Include="Menu\PozycjaDodawanieNowejMetodyWBuilderze.cs" />
     <Compile Include="Menu\PozycjaDodawanieUprawnienDomyslnych.cs" />
@@ -267,9 +268,12 @@
     <Compile Include="Testowo\TestowyWizard.cs" />
     <Compile Include="Testy\KlasaDoParsowania.cs" />
     <Compile Include="Testy\KlasaDoParsowaniaAtrybutow.cs" />
+    <Compile Include="Testy\KlasaDoParsowaniaRozszerzone.cs" />
+    <Compile Include="Testy\KonfiguracjaPluginaTests.cs" />
     <Compile Include="Testy\MetodaBuilderTests.cs" />
     <Compile Include="Testy\ParsowanieAtrybutowTests.cs" />
     <Compile Include="Testy\ParsowanieKlasyTests.cs" />
+    <Compile Include="Testy\ParsowanieRozszerzoneTests.cs" />
     <Compile Include="Testy\PlikClassBuilderTests.cs" />
     <Compile Include="Testy\TestowoAttribute.cs" />
     <Compile Include="Utils\DokumentWrapper.cs" />

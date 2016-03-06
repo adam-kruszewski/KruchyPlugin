@@ -50,6 +50,7 @@ KruchyPlugin1/Interfejs/NazwaKlasyWindow.resx -text
 KruchyPlugin1/Key.snk -text
 KruchyPlugin1/KonfiguracjaPlugina/Konfiguracja.cs -text
 KruchyPlugin1/KonfiguracjaPlugina/KonfiguracjaUsingow.cs -text
+KruchyPlugin1/KonfiguracjaPlugina/Xml/KruchyPlugin.cs -text
 KruchyPlugin1/KruchyPlugin1.csproj -text
 KruchyPlugin1/KruchyPlugin1.csproj.user -text
 KruchyPlugin1/KruchyPlugin1.vsct -text
@@ -107,9 +108,11 @@ KruchyPlugin1/Resources/Package.ico -text
 KruchyPlugin1/Testowo/TestowyWizard.cs -text
 KruchyPlugin1/Testy/KlasaDoParsowania.cs -text
 KruchyPlugin1/Testy/KlasaDoParsowaniaAtrybutow.cs -text
+KruchyPlugin1/Testy/KonfiguracjaPluginaTests.cs -text
 KruchyPlugin1/Testy/MetodaBuilderTests.cs -text
 KruchyPlugin1/Testy/ParsowanieAtrybutowTests.cs -text
 KruchyPlugin1/Testy/ParsowanieKlasyTests.cs -text
+KruchyPlugin1/Testy/ParsowanieRozszerzoneTests.cs -text
 KruchyPlugin1/Testy/PlikClassBuilderTests.cs -text
 KruchyPlugin1/Testy/TestowoAttribute.cs -text
 KruchyPlugin1/Utils/DokumentWrapper.cs -text

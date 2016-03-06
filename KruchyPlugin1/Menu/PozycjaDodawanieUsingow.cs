@@ -30,7 +30,7 @@ namespace KruchyCompany.KruchyPlugin1.Menu
 
         protected override void Execute(object sender, EventArgs args)
         {
-            var konf = Konfiguracja.GetInstance();
+            var konf = Konfiguracja.GetInstance(solution);
             var usingi =
                 konf.DajKonfiguracjeUsingow(solution)
                     .NajczesciejUzywane.ToArray();

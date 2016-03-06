@@ -15,6 +15,7 @@ namespace KrucheBuilderyKodu.Builders
         private IList<ICodeBuilder> atrybuty;
         private IList<string> linie;
         private bool jedenParametrWLinii = false;
+        private bool rozszerzajaca = false;
 
         public MetodaBuilder()
         {
@@ -67,6 +68,11 @@ namespace KrucheBuilderyKodu.Builders
             this.jedenParametrWLinii = jedenWLinii;
             return this;
         }
+        public MetodaBuilder Rozszerzajaca(bool rozszerzajaca)
+        {
+            this.rozszerzajaca = rozszerzajaca;
+            return this;
+        }
 
         public string Build(string wciecie = "")
         {
@@ -83,6 +89,8 @@ namespace KrucheBuilderyKodu.Builders
                 builder.Append(typZwracany + " ");
             builder.Append(nazwa);
             builder.Append("(");
+            if (rozszerzajaca)
+                builder.Append("this ");
             var par = parametry.Select(o => o.Key + " " + o.Value).ToArray();
 
             var lacznik = ", ";
