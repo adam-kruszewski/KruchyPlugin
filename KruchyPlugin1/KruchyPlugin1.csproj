@@ -172,6 +172,7 @@
     <Compile Include="Akcje\DodawanieUprawnienDomyslnych.cs" />
     <Compile Include="Akcje\DodawaniaUsinga.cs" />
     <Compile Include="Akcje\DodawanieNowegoTestu.cs" />
+    <Compile Include="Akcje\DodawanieUsingDbContext.cs" />
     <Compile Include="Akcje\GenerowanieKlasService.cs" />
     <Compile Include="Akcje\GenerowanieKlasyTestowej.cs" />
     <Compile Include="Akcje\GenerowanieKlasyWalidatora.cs" />
@@ -213,6 +214,7 @@
     <Compile Include="Menu\PozycjaDodawanieNowegoTestu.cs" />
     <Compile Include="Menu\PozycjaDodawanieNowejMetodyWBuilderze.cs" />
     <Compile Include="Menu\PozycjaDodawanieUprawnienDomyslnych.cs" />
+    <Compile Include="Menu\PozycjaDodawanieUsingDbContext.cs" />
     <Compile Include="Menu\PozycjaDodawanieUsingow.cs" />
     <Compile Include="Menu\PozycjaGenerowanieKlasService.cs" />
     <Compile Include="Menu\PozycjaGenerowanieKlasyTestowej.cs" />
@@ -245,6 +247,7 @@
     <Compile Include="ParserKodu\Metoda.cs" />
     <Compile Include="ParserKodu\Modyfikator.cs" />
     <Compile Include="ParserKodu\Obiekt.cs" />
+    <Compile Include="ParserKodu\ObiektDziedziczony.cs" />
     <Compile Include="ParserKodu\Parametr.cs" />
     <Compile Include="ParserKodu\ParametrAtrybutu.cs" />
     <Compile Include="ParserKodu\Parser.cs" />
@@ -268,10 +271,12 @@
     <Compile Include="Testowo\TestowyWizard.cs" />
     <Compile Include="Testy\KlasaDoParsowania.cs" />
     <Compile Include="Testy\KlasaDoParsowaniaAtrybutow.cs" />
+    <Compile Include="Testy\KlasaDoParsowaniaNadklasIInterfejsow.cs" />
     <Compile Include="Testy\KlasaDoParsowaniaRozszerzone.cs" />
     <Compile Include="Testy\KonfiguracjaPluginaTests.cs" />
     <Compile Include="Testy\MetodaBuilderTests.cs" />
     <Compile Include="Testy\ParsowanieAtrybutowTests.cs" />
+    <Compile Include="Testy\ParsowanieKlasyNadklasIInterfejsowTests.cs" />
     <Compile Include="Testy\ParsowanieKlasyTests.cs" />
     <Compile Include="Testy\ParsowanieRozszerzoneTests.cs" />
     <Compile Include="Testy\PlikClassBuilderTests.cs" />

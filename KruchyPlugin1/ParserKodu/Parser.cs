@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,6 +36,12 @@ namespace KruchyCompany.KruchyPlugin1.ParserKodu
             }
 
             return wynik;
+        }
+
+        public static Plik ParsujPlik(string nazwaPliku)
+        {
+            var zawartosc = File.ReadAllText(nazwaPliku, Encoding.UTF8);
+            return Parsuj(zawartosc);
         }
 
 
@@ -117,6 +124,13 @@ namespace KruchyCompany.KruchyPlugin1.ParserKodu
                 if (dziecko is CSharpTokenNode)
                 {
                     ParsujKlamerki(wynik, dziecko);
+                }
+                if (dziecko is SimpleType)
+                {
+                    var dziedziczony = new ObiektDziedziczony();
+                    dziedziczony.Nazwa = (dziecko as SimpleType).Identifier;
+                    UstawPolozenie(dziedziczony, dziecko);
+                    wynik.NadklasaIInterfejsy.Add(dziedziczony);
                 }
             }
             UstawPolozenie(wynik, wezel);

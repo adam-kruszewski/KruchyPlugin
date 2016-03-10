@@ -135,6 +135,7 @@ namespace KruchyCompany.KruchyPlugin1
 
                 new PozycjaUzupelnianieMetodWImplementacji(DajSolution())
                     .Podlacz(mcs);
+                new PozycjaDodawanieUsingDbContext(DajSolution()).Podlacz(mcs);
 
                 new PozycjaIdzMiedzyInterfejsemAImplementacja(DajSolution())
                     .Podlacz(mcs);

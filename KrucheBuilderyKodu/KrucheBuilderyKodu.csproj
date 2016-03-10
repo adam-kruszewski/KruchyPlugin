@@ -51,6 +51,7 @@
     <Compile Include="Builders\InterfejsBuilder.cs" />
     <Compile Include="Builders\MetodaBuilder.cs" />
     <Compile Include="Builders\PlikClassBuilder.cs" />
+    <Compile Include="Builders\PropertyBuilder.cs" />
     <Compile Include="Builders\StaleDlaKodu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

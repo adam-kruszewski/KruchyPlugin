@@ -5,6 +5,7 @@ KrucheBuilderyKodu/Builders/ICodeBuilder.cs -text
 KrucheBuilderyKodu/Builders/InterfejsBuilder.cs -text
 KrucheBuilderyKodu/Builders/MetodaBuilder.cs -text
 KrucheBuilderyKodu/Builders/PlikClassBuilder.cs -text
+KrucheBuilderyKodu/Builders/PropertyBuilder.cs -text
 KrucheBuilderyKodu/Builders/StaleDlaKodu.cs -text
 KrucheBuilderyKodu/KrucheBuilderyKodu.csproj -text
 KrucheBuilderyKodu/KruchyKey.snk -text
@@ -15,6 +16,7 @@ KruchyPlugin1/Akcje/DodawaniaUsinga.cs -text
 KruchyPlugin1/Akcje/DodawanieNowegoTestu.cs -text
 KruchyPlugin1/Akcje/DodawanieNowejMetodyWBuilderze.cs -text
 KruchyPlugin1/Akcje/DodawanieUprawnienDomyslnych.cs -text
+KruchyPlugin1/Akcje/DodawanieUsingDbContext.cs -text
 KruchyPlugin1/Akcje/GenerowanieKlasService.cs -text
 KruchyPlugin1/Akcje/GenerowanieKlasyTestowej.cs -text
 KruchyPlugin1/Akcje/GenerowanieKlasyWalidatora.cs -text
@@ -58,6 +60,7 @@ KruchyPlugin1/KruchyPlugin1Package.cs -text
 KruchyPlugin1/Menu/PozycjaDodawanieNowegoTestu.cs -text
 KruchyPlugin1/Menu/PozycjaDodawanieNowejMetodyWBuilderze.cs -text
 KruchyPlugin1/Menu/PozycjaDodawanieUprawnienDomyslnych.cs -text
+KruchyPlugin1/Menu/PozycjaDodawanieUsingDbContext.cs -text
 KruchyPlugin1/Menu/PozycjaDodawanieUsingow.cs -text
 KruchyPlugin1/Menu/PozycjaGenerowanieKlasService.cs -text
 KruchyPlugin1/Menu/PozycjaGenerowanieKlasyTestowej.cs -text
@@ -88,6 +91,7 @@ KruchyPlugin1/ParserKodu/Konstruktor.cs -text
 KruchyPlugin1/ParserKodu/Metoda.cs -text
 KruchyPlugin1/ParserKodu/Modyfikator.cs -text
 KruchyPlugin1/ParserKodu/Obiekt.cs -text
+KruchyPlugin1/ParserKodu/ObiektDziedziczony.cs -text
 KruchyPlugin1/ParserKodu/Parametr.cs -text
 KruchyPlugin1/ParserKodu/ParametrAtrybutu.cs -text
 KruchyPlugin1/ParserKodu/Parser.cs -text
@@ -108,9 +112,11 @@ KruchyPlugin1/Resources/Package.ico -text
 KruchyPlugin1/Testowo/TestowyWizard.cs -text
 KruchyPlugin1/Testy/KlasaDoParsowania.cs -text
 KruchyPlugin1/Testy/KlasaDoParsowaniaAtrybutow.cs -text
+KruchyPlugin1/Testy/KlasaDoParsowaniaNadklasIInterfejsow.cs -text
 KruchyPlugin1/Testy/KonfiguracjaPluginaTests.cs -text
 KruchyPlugin1/Testy/MetodaBuilderTests.cs -text
 KruchyPlugin1/Testy/ParsowanieAtrybutowTests.cs -text
+KruchyPlugin1/Testy/ParsowanieKlasyNadklasIInterfejsowTests.cs -text
 KruchyPlugin1/Testy/ParsowanieKlasyTests.cs -text
 KruchyPlugin1/Testy/ParsowanieRozszerzoneTests.cs -text
 KruchyPlugin1/Testy/PlikClassBuilderTests.cs -text

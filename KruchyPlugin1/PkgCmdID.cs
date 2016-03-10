@@ -27,6 +27,7 @@ namespace KruchyCompany.KruchyPlugin1
         public const uint cmdidIdzDoKlasyTestowej = 0x0160;
         public const uint cmdidPodzielParametryNaLinie = 0x0161;
         public const uint cmdidPokazZawartoscZShared = 0x162;
+        public const uint cmdidDodajUsingDbContext = 0x163;
 
         //dla poruszania się po klasach ui
         public const uint cmdidIdzDoImplementacji = 0x0170;
