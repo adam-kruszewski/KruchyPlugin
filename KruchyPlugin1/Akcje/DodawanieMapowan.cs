@@ -33,7 +33,10 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 
             var nazwaKlasyMapowanej = SzukajNazwyKlasyMapowanej(obiekt);
 
-            var sciezkaDoKlasyMapowanej = SzukajSciezkiKlasy(nazwaKlasyMapowanej);
+            var sciezkaDoKlasyMapowanej = 
+                SzukajSciezkiKlasy(
+                    nazwaKlasyMapowanej,
+                    PrzygotujRozwazaneNamespacy(parsowane).ToList());
             var opisMapowan =
                 SzukajAtrybutowDlaMapowan(
                     sciezkaDoKlasyMapowanej,
@@ -100,21 +103,25 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 
             wynik.AddRange(
                 klasa.Propertiesy
-                    .Select(o => DajMapowanieDlaProperty(o, prefix)));
+                    .Select(o => DajMapowanieDlaProperty(o, prefix, parsowane)));
 
             return wynik;
         }
 
         private MapowanyProperty DajMapowanieDlaProperty(
             Property property,
-            string prefix)
+            string prefix,
+            Plik parsowane)
         {
             var wynik =
                 new MapowanyProperty(
                     property.Nazwa,
                     property.NazwaTypu,
                     prefix);
-            var sciezka = SzukajSciezkiKlasy(property.NazwaTypu);
+            var sciezka =
+                SzukajSciezkiKlasy(
+                    property.NazwaTypu,
+                    PrzygotujRozwazaneNamespacy(parsowane).ToList());
             if (sciezka != null)
             {
                 wynik.Podobiekty.AddRange(
@@ -126,12 +133,12 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             return wynik;
         }
 
-        private string SzukajSciezkiKlasy(string nazwaKlasyMapowanej)
+        private string SzukajSciezkiKlasy(
+            string nazwaKlasyMapowanej,
+            List<string> listaNamespacow)
         {
-            var plikiDomain =
-                solution.Projekty.SelectMany(o => DajPlikiDomainZProjektu(o))
-                    .ToList();
-            return plikiDomain.Where(o => PlikKlasy(o, nazwaKlasyMapowanej))
+            var pliki = SzukajPlikowZNamespacow(listaNamespacow).ToList();
+            return pliki.Where(o => PlikKlasy(o, nazwaKlasyMapowanej))
                 .FirstOrDefault();
         }
 
@@ -168,6 +175,35 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
         private bool AtrybutMapowan(Atrybut atrybut)
         {
             return nazwyAtrybutow.Any(o => o == atrybut.Nazwa);
+        }
+
+        private IEnumerable<string> PrzygotujRozwazaneNamespacy(Plik parsowane)
+        {
+            foreach (var u in parsowane.Usingi)
+                yield return u.Nazwa;
+            yield return parsowane.Namespace;
+        }
+
+        private IEnumerable<string> SzukajPlikowZNamespacow(
+            IEnumerable<string> namespacy)
+        {
+            var wynik = new List<string>();
+            foreach (var n in namespacy)
+            {
+                wynik.AddRange(SzukajPlikowZNamespace(n));
+            }
+            return wynik.Distinct();
+        }
+
+        private IEnumerable<string> SzukajPlikowZNamespace(
+            string nazwaNamespace)
+        {
+            foreach (var p in solution.Projekty)
+            {
+                if (p.NamespaceNalezyDoProjektu(nazwaNamespace))
+                    return p.DajPlikiZNamespace(nazwaNamespace);
+            }
+            return new List<string>();
         }
     }
 }

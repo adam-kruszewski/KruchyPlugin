@@ -13,20 +13,9 @@ namespace KruchyCompany.KruchyPlugin1.Utils
             this.project = project;
         }
 
-        //private readonly 
+        public string Nazwa { get { return project.Name; } }
 
-        public string Nazwa
-        {
-            get
-            {
-                return project.Name;
-            }
-        }
-
-        public string Sciezka
-        {
-            get { return project.FullName; }
-        }
+        public string Sciezka { get { return project.FullName; } }
 
         public string SciezkaDoKatalogu
         {
@@ -77,6 +66,39 @@ namespace KruchyCompany.KruchyPlugin1.Utils
         {
             return new PlikWrapper(
                 project.ProjectItems.AddFromFile(sciezka));
+        }
+
+        public bool NamespaceNalezyDoProjektu(string nazwaNamespace)
+        {
+            return nazwaNamespace.ToLower().StartsWith(Nazwa.ToLower());
+        }
+
+        public IEnumerable<string> DajPlikiZNamespace(string nazwaNamespace)
+        {
+            var wzglednyNamespace =
+                nazwaNamespace.Substring(Nazwa.Length + 1);
+            string sciezkaPolozeniaPlikow = BudujSciezke(wzglednyNamespace);
+            foreach (var plik in Pliki)
+            {
+                if (plik.SciezkaPelna.ToLower()
+                    .StartsWith(sciezkaPolozeniaPlikow.ToLower()))
+                    yield return plik.SciezkaPelna;
+            }
+        }
+
+        private string BudujSciezke(string wzglednyNamespace)
+        {
+            var wynik = SciezkaDoKatalogu;
+            var czesci = wzglednyNamespace.Split('.');
+            foreach (var c in czesci)
+            {
+                if (Directory.Exists(wynik))
+                    wynik = Path.Combine(wynik, c);
+                else
+                    wynik += "." + c;
+            }
+
+            return wynik;
         }
     }
 }
