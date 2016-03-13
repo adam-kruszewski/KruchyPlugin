@@ -187,6 +187,13 @@ namespace KruchyCompany.KruchyPlugin1.ParserKodu
                     parametr.Wartosc = pe.Value.ToString();
                     wynik.Parametry.Add(parametr);
                 }
+                if (dziecko is TypeOfExpression)
+                {
+                    var tofe = dziecko as TypeOfExpression;
+                    var parametr = new ParametrAtrybutu();
+                    parametr.Wartosc = tofe.ToString();
+                    wynik.Parametry.Add(parametr);
+                }
             }
 
             return wynik;

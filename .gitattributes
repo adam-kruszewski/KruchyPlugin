@@ -13,6 +13,12 @@ KrucheBuilderyKodu/Properties/AssemblyInfo.cs -text
 /KruchyPlugin.sln -text
 /KruchyPlugin.v12.suo -text
 KruchyPlugin1/Akcje/DodawaniaUsinga.cs -text
+KruchyPlugin1/Akcje/DodawanieMapowan.cs -text
+KruchyPlugin1/Akcje/DodawanieMapowanElementy/MapowanieNode.cs -text
+KruchyPlugin1/Akcje/DodawanieMapowanElementy/MapowanyProperty.cs -text
+KruchyPlugin1/Akcje/DodawanieMapowanElementy/WyborMapowanForm.Designer.cs -text
+KruchyPlugin1/Akcje/DodawanieMapowanElementy/WyborMapowanForm.cs -text
+KruchyPlugin1/Akcje/DodawanieMapowanElementy/WyborMapowanForm.resx -text
 KruchyPlugin1/Akcje/DodawanieNowegoTestu.cs -text
 KruchyPlugin1/Akcje/DodawanieNowejMetodyWBuilderze.cs -text
 KruchyPlugin1/Akcje/DodawanieUprawnienDomyslnych.cs -text
@@ -57,6 +63,7 @@ KruchyPlugin1/KruchyPlugin1.csproj -text
 KruchyPlugin1/KruchyPlugin1.csproj.user -text
 KruchyPlugin1/KruchyPlugin1.vsct -text
 KruchyPlugin1/KruchyPlugin1Package.cs -text
+KruchyPlugin1/Menu/PozycjaDodawanieMapowan.cs -text
 KruchyPlugin1/Menu/PozycjaDodawanieNowegoTestu.cs -text
 KruchyPlugin1/Menu/PozycjaDodawanieNowejMetodyWBuilderze.cs -text
 KruchyPlugin1/Menu/PozycjaDodawanieUprawnienDomyslnych.cs -text

@@ -2,6 +2,7 @@
 namespace KruchyCompany.KruchyPlugin1.Testy
 {
     [Testowo]
+    [Map(typeof(KlasaDoParsowaniaAtrybutow))]
     class KlasaDoParsowaniaAtrybutow
     {
         [Testowo, Testowo3]

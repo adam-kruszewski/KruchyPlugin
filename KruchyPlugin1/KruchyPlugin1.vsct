@@ -238,6 +238,14 @@
           <ButtonText>Dodaj using Db conte&amp;xt</ButtonText>
         </Strings>
       </Button>
+      <!--cmdidDodajMapowania-->
+      <Button guid="guidKruchyPlugin1CmdSet" id="cmdidDodajMapowania" priority="0x0134" type="Button">
+        <Parent guid="guidKruchyPlugin1CmdSet" id="PozostaleKodoweGroup" />
+        <Strings>
+          <CommandName>cmdidDodajMapowania</CommandName>
+          <ButtonText>Generuj mapowania</ButtonText>
+        </Strings>
+      </Button>
 
       <Button guid="guidKruchyPlugin1CmdSet" id="cmdidZmienNaPublic" priority="0x0115" type="Button">
         <Parent guid="guidKruchyPlugin1CmdSet" id="ZmianaModyfikatorowGroup" />
@@ -398,6 +406,7 @@
       <IDSymbol name="cmdidPodzielParametryNaLinie" value="0x0161"/>
       <IDSymbol name="cmdidPokazZawartoscZShared" value="0x0162"/>
       <IDSymbol name="cmdidDodajUsingDbContext" value="0x0163"/>
+      <IDSymbol name="cmdidDodajMapowania" value="0x0164"/>
 
       <IDSymbol name="cmdidIdzDoImplementacji" value="0x0170"/>
       <IDSymbol name="cmdidIdzDoKataloguControllera" value="0x0171"/>

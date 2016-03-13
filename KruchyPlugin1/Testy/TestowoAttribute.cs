@@ -23,4 +23,13 @@ namespace KruchyCompany.KruchyPlugin1.Testy
 
         }
     }
+
+    class MapAttribute : Attribute
+    {
+        public Type Typ { get; set; }
+
+        public MapAttribute(Type typ)
+        {
+        }
+    }
 }
