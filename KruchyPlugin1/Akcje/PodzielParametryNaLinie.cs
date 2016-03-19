@@ -1,5 +1,32 @@
-﻿using System.Linq; using System.Text; using System.Windows; using KrucheBuilderyKodu.Builders; using KruchyCompany.KruchyPlugin1.ParserKodu; using KruchyCompany.KruchyPlugin1.Utils;  namespace KruchyCompany.KruchyPlugin1.Akcje {     class PodzielParametryNaLinie     {         private readonly SolutionWrapper solution;          public PodzielParametryNaLinie(SolutionWrapper solution)         {             this.solution = solution;         }          public void Podziel()         {             var dokument = solution.AktualnyDokument;             var parsowane =                 Parser.Parsuj(dokument.DajZawartosc());              var metoda = parsowane                     .SzukajMetodyWLinii(dokument.DajNumerLiniiKursora());              if (metoda == null)             {                 MessageBox.Show("Kursor nie jest w metodzie");                 return;             }              dokument.Usun(                 metoda.NawiasOtwierajacyParametry.Wiersz,                 metoda.NawiasOtwierajacyParametry.Kolumna,                 metoda.NawiasZamykajacyParametry.Wiersz,                 metoda.NawiasZamykajacyParametry.Kolumna + 1);              dokument.WstawWMiejscu(                 GenerujNoweParametry(metoda),                 metoda.NawiasOtwierajacyParametry.Wiersz,                 metoda.NawiasOtwierajacyParametry.Kolumna);         }          private string GenerujNoweParametry(Metoda metoda)         {             var builder = new StringBuilder();             builder.Append("(");
-            var parametry =                 metoda                     .Parametry
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Windows;
+using KrucheBuilderyKodu.Builders;
+using KruchyCompany.KruchyPlugin1.ParserKodu;
+using KruchyCompany.KruchyPlugin1.Utils;  namespace KruchyCompany.KruchyPlugin1.Akcje {     class PodzielParametryNaLinie     {         private readonly SolutionWrapper solution;          public PodzielParametryNaLinie(SolutionWrapper solution)         {             this.solution = solution;         }          public void Podziel()         {             var dokument = solution.AktualnyDokument;             var parsowane =                 Parser.Parsuj(dokument.DajZawartosc());              var metoda = parsowane                     .SzukajMetodyWLinii(dokument.DajNumerLiniiKursora());              if (metoda == null)             {
+                var konstruktor =
+                    parsowane
+                        .SzukajKontruktoraWLinii(dokument.DajNumerLiniiKursora());
+                if (konstruktor != null)
+                    PodzielNaLinieKontruktor(konstruktor);                 else                     MessageBox.Show("Kursor nie jest w metodzie");                 return;             }              dokument.Usun(                 metoda.NawiasOtwierajacyParametry.Wiersz,                 metoda.NawiasOtwierajacyParametry.Kolumna,                 metoda.NawiasZamykajacyParametry.Wiersz,                 metoda.NawiasZamykajacyParametry.Kolumna + 1);              dokument.WstawWMiejscu(                 GenerujNoweParametry(metoda.Parametry, metoda),                 metoda.NawiasOtwierajacyParametry.Wiersz,                 metoda.NawiasOtwierajacyParametry.Kolumna);         }
+
+        private void PodzielNaLinieKontruktor(Konstruktor konstruktor)
+        {
+            var dokument = solution.AktualnyDokument;
+
+            dokument.Usun(
+                konstruktor.NawiasOtwierajacyParametry.Wiersz,
+                konstruktor.NawiasOtwierajacyParametry.Kolumna,
+                konstruktor.NawiasZamykajacyParametry.Wiersz,
+                konstruktor.NawiasZamykajacyParametry.Kolumna + 1);
+
+            dokument.WstawWMiejscu(
+                GenerujNoweParametry(konstruktor.Parametry),
+                konstruktor.NawiasOtwierajacyParametry.Wiersz,
+                konstruktor.NawiasOtwierajacyParametry.Kolumna);
+        }          private string GenerujNoweParametry(             IEnumerable<Parametr> parametryMetody,             Metoda metoda = null)         {             var builder = new StringBuilder();             builder.Append("(");
+            var parametry =                 parametryMetody
                         .Select(o => DajDefinicjeParametru(o))                             .ToArray();
             var lacznikBuilder =
                 new StringBuilder()
@@ -32,6 +59,8 @@
 
         private void DodajThisJesliTrzeba(StringBuilder builder, Metoda metoda)
         {
+            if (metoda == null)
+                return;
             if (metoda.Parametry.Any() && metoda.Parametry.First().ZThisem)
                 builder.Append("this ");
         }     } } 

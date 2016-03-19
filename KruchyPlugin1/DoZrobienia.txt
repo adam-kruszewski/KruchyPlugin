@@ -12,4 +12,3 @@ Organizacyjne:
 
  TODO
  Przy generowaniu kontruktora poprawnić zachowanie jeśli są propertiesy
- Podział na linie przy konstruktorze 
