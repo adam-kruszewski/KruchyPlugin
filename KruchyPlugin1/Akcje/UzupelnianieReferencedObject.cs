@@ -53,7 +53,8 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             int numerLiniiDlaAtrybutuKluczaObcego)
         {
             var builder = new StringBuilder();
-            builder.AppendFormat("        [ForeignKey(typeof({0}))]\n", nazwaTypu);
+            builder.AppendFormat("        [ForeignKey(typeof({0}))]", nazwaTypu);
+            builder.AppendLine();
             builder.AppendLine("        public int " + nazwaAtrybutu + "ID { get; set; }");
             builder.AppendLine();
 
@@ -74,7 +75,8 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
                 return false;
 
             var nowaLinia =
-                string.Format("\n        [ReferencedObject(\"{0}\")]", nazwaAtrybutu + "ID");
+                new StringBuilder().AppendLine().ToString() +
+                string.Format("        [ReferencedObject(\"{0}\")]", nazwaAtrybutu + "ID");
             dokument.WstawWLinii(nowaLinia, numerLiniiKursora - 1);
             return true;
         }

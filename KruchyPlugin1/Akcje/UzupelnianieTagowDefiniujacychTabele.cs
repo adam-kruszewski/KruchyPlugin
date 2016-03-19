@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using KruchyCompany.KruchyPlugin1.ParserKodu;
 using KruchyCompany.KruchyPlugin1.Utils;
 
@@ -56,7 +57,18 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
         {
             var liniaZClass = DajNumerLiniiZClass(plik);
             dokument.WstawWLinii(
-"    [TableDescription(\"<NAZWA_TABELI>\", \"" + prefiks + "_id\")]\n", liniaZClass);
+                PrzygotujTableDescription(prefiks), liniaZClass);
+        }
+
+        private static string PrzygotujTableDescription(string prefiks)
+        {
+            var builder =
+                new StringBuilder()
+                    .Append("    [TableDescription(\"<NAZWA_TABELI>\", \"")
+                    .Append(prefiks)
+                    .Append("_id\")]")
+                    .AppendLine();
+            return builder.ToString();
         }
 
         private List<int> ZnajdzLinieZKolumnami(Plik plik)
@@ -79,7 +91,9 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 
         private void DodajAtrybutyKolumnowe(List<int> linieKolumn, string prefiks)
         {
-            var szablonAtrybutu = "        [ColumnName(\"" + prefiks + "\")]\n";
+            var szablonAtrybutu =
+                "        [ColumnName(\"" + prefiks + "\")]"
+                + new StringBuilder().AppendLine().ToString();
             for (int i = 0; i < linieKolumn.Count; i++)
             {
                 dokument.WstawWLinii(szablonAtrybutu, i + linieKolumn[i]);

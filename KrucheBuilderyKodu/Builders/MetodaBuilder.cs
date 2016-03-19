@@ -96,7 +96,12 @@ namespace KrucheBuilderyKodu.Builders
             var lacznik = ", ";
             if (jedenParametrWLinii)
             {
-                lacznik = ",\n" + StaleDlaKodu.WciecieDlaMetody + StaleDlaKodu.JednostkaWciecia;
+                var lacznikBuilder =
+                    new StringBuilder()
+                        .AppendLine()
+                        .Append(StaleDlaKodu.WciecieDlaMetody)
+                        .Append(StaleDlaKodu.JednostkaWciecia);
+                lacznik = lacznikBuilder.ToString();
                 builder.AppendLine();
                 builder.Append(StaleDlaKodu.WciecieDlaMetody + StaleDlaKodu.JednostkaWciecia);
             }

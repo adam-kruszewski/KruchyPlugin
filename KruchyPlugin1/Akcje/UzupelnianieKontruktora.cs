@@ -5,6 +5,7 @@ using ICSharpCode.NRefactory.CSharp;
 using KruchyCompany.KruchyPlugin1.ParserKodu;
 using KruchyCompany.KruchyPlugin1.Utils;
 using KrucheBuilderyKodu.Builders;
+using System.Text;
 
 namespace KruchyCompany.KruchyPlugin1.Akcje
 {
@@ -65,11 +66,25 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
                         obiekt.Pola.Select(o => o.Poczatek.Wiersz)
                             .Union(obiekt.Propertiesy.Select(o => o.Poczatek.Wiersz))
                                 .Max();
-                    var dodatek = "\n";
+                    var dodatek = new StringBuilder().AppendLine().ToString();
                     solution.AktualnyDokument.WstawWLinii(
-                        "\n" + nowyKonstruktor + dodatek, maksymalnyNumerLiniiPol + 1);
+                        PrzygotujTekstDoWstawienia(nowyKonstruktor, dodatek),
+                        maksymalnyNumerLiniiPol + 1);
                 }
             }
+        }
+
+        private string PrzygotujTekstDoWstawienia(
+            string nowyKonstruktor,
+            string dodatek)
+        {
+            var builder = new StringBuilder();
+            return 
+                builder
+                    .AppendLine()
+                    .Append(nowyKonstruktor)
+                    .Append(dodatek)
+                    .ToString();
         }
 
         private Obiekt SzukajKlasy()
