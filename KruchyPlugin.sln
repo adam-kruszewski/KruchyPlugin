@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KrucheBuilderyKodu", "Kruch
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KruchyPlugin1Tests", "KruchyPlugin1Tests\KruchyPlugin1Tests.csproj", "{D0EB3F37-4796-471A-9E0A-5CEFE22F6209}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KruchyParserKodu", "KruchyParserKodu\KruchyParserKodu.csproj", "{FB1229FB-FE17-419F-BCAD-FAD9875EC78C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		CD_ROM|Any CPU = CD_ROM|Any CPU
@@ -48,6 +50,16 @@ Global
 		{D0EB3F37-4796-471A-9E0A-5CEFE22F6209}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D0EB3F37-4796-471A-9E0A-5CEFE22F6209}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
 		{D0EB3F37-4796-471A-9E0A-5CEFE22F6209}.SingleImage|Any CPU.Build.0 = Release|Any CPU
+		{FB1229FB-FE17-419F-BCAD-FAD9875EC78C}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
+		{FB1229FB-FE17-419F-BCAD-FAD9875EC78C}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
+		{FB1229FB-FE17-419F-BCAD-FAD9875EC78C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB1229FB-FE17-419F-BCAD-FAD9875EC78C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB1229FB-FE17-419F-BCAD-FAD9875EC78C}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB1229FB-FE17-419F-BCAD-FAD9875EC78C}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
+		{FB1229FB-FE17-419F-BCAD-FAD9875EC78C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB1229FB-FE17-419F-BCAD-FAD9875EC78C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB1229FB-FE17-419F-BCAD-FAD9875EC78C}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
+		{FB1229FB-FE17-419F-BCAD-FAD9875EC78C}.SingleImage|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

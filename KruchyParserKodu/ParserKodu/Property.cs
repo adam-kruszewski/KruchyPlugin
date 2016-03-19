@@ -1,0 +1,20 @@
+﻿using System.Collections.Generic;
+
+namespace KruchyParserKodu.ParserKodu
+{
+    public class Property : ParsowanaJednostka
+    {
+        public string Nazwa { get; set; }
+        public string NazwaTypu { get; set; }
+        public IList<Modyfikator> Modyfikatory { get; private set; }
+        public List<Atrybut> Atrybuty { get; private set; }
+        public bool JestGet { get; set; }
+        public bool JestSet { get; set; }
+
+        public Property()
+        {
+            Modyfikatory = new List<Modyfikator>();
+            Atrybuty = new List<Atrybut>();
+        }
+    }
+}
