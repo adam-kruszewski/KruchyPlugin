@@ -2,7 +2,7 @@
 
 namespace KruchyCompany.KruchyPlugin1.ParserKodu
 {
-    public class Obiekt : ParsowanaJednostka
+    public class Obiekt : ParsowanaJednostka, IZPoczatkowaIKoncowaKlamerka
     {
         public RodzajObiektu Rodzaj { get; set; }
 

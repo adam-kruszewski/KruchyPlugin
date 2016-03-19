@@ -253,6 +253,8 @@
     <Compile Include="MyToolWindow.cs" />
     <Compile Include="Guids.cs" />
     <Compile Include="ParserKodu\Atrybut.cs" />
+    <Compile Include="ParserKodu\IZNawiasamiOtwierajacymiZamykajacymiParametry.cs" />
+    <Compile Include="ParserKodu\IZPoczatkowaIKoncowaKlamerka.cs" />
     <Compile Include="ParserKodu\Konstruktor.cs" />
     <Compile Include="ParserKodu\Metoda.cs" />
     <Compile Include="ParserKodu\Modyfikator.cs" />
@@ -279,18 +281,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PkgCmdID.cs" />
     <Compile Include="Testowo\TestowyWizard.cs" />
-    <Compile Include="Testy\KlasaDoParsowania.cs" />
-    <Compile Include="Testy\KlasaDoParsowaniaAtrybutow.cs" />
-    <Compile Include="Testy\KlasaDoParsowaniaNadklasIInterfejsow.cs" />
-    <Compile Include="Testy\KlasaDoParsowaniaRozszerzone.cs" />
-    <Compile Include="Testy\KonfiguracjaPluginaTests.cs" />
-    <Compile Include="Testy\MetodaBuilderTests.cs" />
-    <Compile Include="Testy\ParsowanieAtrybutowTests.cs" />
-    <Compile Include="Testy\ParsowanieKlasyNadklasIInterfejsowTests.cs" />
-    <Compile Include="Testy\ParsowanieKlasyTests.cs" />
-    <Compile Include="Testy\ParsowanieRozszerzoneTests.cs" />
-    <Compile Include="Testy\PlikClassBuilderTests.cs" />
-    <Compile Include="Testy\TestowoAttribute.cs" />
     <Compile Include="Utils\DokumentWrapper.cs" />
     <Compile Include="Utils\FileSystemWrapper.cs" />
     <Compile Include="Utils\PlikWrapper.cs" />

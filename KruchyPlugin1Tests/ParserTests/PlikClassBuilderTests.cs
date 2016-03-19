@@ -1,7 +1,7 @@
 ﻿using KrucheBuilderyKodu.Builders;
 using NUnit.Framework;
 
-namespace KruchyCompany.KruchyPlugin1.Testy
+namespace KruchyCompany.KruchyPlugin1Tests.ParserTests
 {
     [TestFixture]
     public class PlikClassBuilderTests

@@ -19,6 +19,19 @@ namespace KruchyCompany.KruchyPlugin1.ParserKodu
                             .FirstOrDefault();
         }
 
+        public static Konstruktor SzukajKontruktoraWLinii(
+            this Plik parsowane,
+            int numerLinii)
+        {
+            var konstruktory =
+                parsowane
+                    .DefiniowaneObiekty
+                        .SelectMany(o => o.Konstruktory);
+            return konstruktory
+                    .Where(o => ZawieraLinie(o, numerLinii))
+                        .FirstOrDefault();
+        }
+
         public static Property SzukajPropertiesaWLinii(
             this Plik parsowane,
             int numerLinii)

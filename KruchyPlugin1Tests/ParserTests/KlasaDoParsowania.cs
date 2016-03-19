@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using KruchyCompany.KruchyPlugin1.ParserKodu;
 
-namespace KruchyCompany.KruchyPlugin1.Testy
+namespace KruchyCompany.KruchyPlugin1Tests.ParserTests
 {
     [Testowo]
     class KlasaDoParsowania

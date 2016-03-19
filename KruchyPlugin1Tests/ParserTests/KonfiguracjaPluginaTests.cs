@@ -9,7 +9,7 @@ using System.Xml.Serialization;
 using KruchyCompany.KruchyPlugin1.KonfiguracjaPlugina.Xml;
 using NUnit.Framework;
 
-namespace KruchyCompany.KruchyPlugin1.Testy
+namespace KruchyCompany.KruchyPlugin1Tests.ParserTests
 {
     [TestFixture]
     class KonfiguracjaPluginaTests

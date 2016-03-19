@@ -1,5 +1,5 @@
 ﻿
-namespace KruchyCompany.KruchyPlugin1.Testy
+namespace KruchyCompany.KruchyPlugin1Tests.ParserTests
 {
     [Testowo]
     [Map(typeof(KlasaDoParsowaniaAtrybutow))]

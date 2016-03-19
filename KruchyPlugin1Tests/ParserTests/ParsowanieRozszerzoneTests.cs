@@ -4,7 +4,7 @@ using FluentAssertions;
 using KruchyCompany.KruchyPlugin1.ParserKodu;
 using NUnit.Framework;
 
-namespace KruchyCompany.KruchyPlugin1.Testy
+namespace KruchyCompany.KruchyPlugin1Tests.ParserTests
 {
     [TestFixture]
     public class ParsowanieRozszerzoneTests
@@ -41,7 +41,7 @@ namespace KruchyCompany.KruchyPlugin1.Testy
 
         private string DajSciezkeTestu()
         {
-            return Path.Combine("..", "..", "Testy", "KlasaDoParsowaniaRozszerzone.cs");
+            return Path.Combine("..", "..", "ParserTests", "KlasaDoParsowaniaRozszerzone.cs");
         }
     }
 }

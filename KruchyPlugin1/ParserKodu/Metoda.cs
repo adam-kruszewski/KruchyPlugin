@@ -3,7 +3,9 @@ using System.Linq;
 
 namespace KruchyCompany.KruchyPlugin1.ParserKodu
 {
-    public class Metoda : ParsowanaJednostka
+    public class Metoda
+        : ParsowanaJednostka
+            , IZNawiasamiOtwierajacymiZamykajacymiParametry
     {
         public IList<Parametr> Parametry { get; private set; }
         public IList<Modyfikator> Modyfikatory { get; set; }

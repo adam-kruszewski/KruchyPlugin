@@ -4,7 +4,7 @@ using FluentAssertions;
 using KruchyCompany.KruchyPlugin1.ParserKodu;
 using NUnit.Framework;
 
-namespace KruchyCompany.KruchyPlugin1.Testy
+namespace KruchyCompany.KruchyPlugin1Tests.ParserTests
 {
     [TestFixture]
     public class ParsowanieKlasyTests
@@ -19,7 +19,7 @@ namespace KruchyCompany.KruchyPlugin1.Testy
 
             //assert
             plik.Should().NotBeNull();
-            plik.Namespace.Should().Be("KruchyCompany.KruchyPlugin1.Testy");
+            plik.Namespace.Should().Be("KruchyCompany.KruchyPlugin1Tests.ParserTests");
             plik.Usingi.Count.Should().Be(6);
 
             var obiekt = plik.DefiniowaneObiekty.First();
@@ -78,10 +78,6 @@ namespace KruchyCompany.KruchyPlugin1.Testy
             bezparametrowyKonstruktor.Parametry.Count().Should().Be(0);
             SprawdzPozycje(bezparametrowyKonstruktor.Poczatek, 26, 9);
             SprawdzPozycje(bezparametrowyKonstruktor.Koniec, 29, 10);
-            //SprawdzPozycje(
-            //    bezparametrowyKonstruktor.PoczatekParametrow, 22, 33);
-            //SprawdzPozycje(
-            //    bezparametrowyKonstruktor.KoniecParametrow, 22, 34);
 
             var konstrZ1Parametrem = obiekt.Konstruktory.First();
             konstrZ1Parametrem.Parametry.Count().Should().Be(1);
@@ -90,9 +86,18 @@ namespace KruchyCompany.KruchyPlugin1.Testy
             parametr.NazwaTypu.Should().Be("int");
             SprawdzPozycje(konstrZ1Parametrem.Poczatek, 19, 9);
             SprawdzPozycje(konstrZ1Parametrem.Koniec, 24, 10);
-            //SprawdzPozycje(konstrZ1Parametrem.PoczatekParametrow, 17, 33);
-            //SprawdzPozycje(konstrZ1Parametrem.KoniecParametrow, 17, 39);
-
+            SprawdzPozycje(
+                konstrZ1Parametrem.NawiasOtwierajacyParametry,
+                19, 33);
+            SprawdzPozycje(
+                konstrZ1Parametrem.NawiasZamykajacyParametry,
+                19, 39);
+            SprawdzPozycje(
+                konstrZ1Parametrem.PoczatkowaKlamerka,
+                20, 9);
+            SprawdzPozycje(
+                konstrZ1Parametrem.KoncowaKlamerka,
+                24, 9);
             konstrZ1Parametrem.Modyfikator.Should().Be("public");
         }
 
@@ -141,7 +146,7 @@ namespace KruchyCompany.KruchyPlugin1.Testy
 
         private string DajSciezkeTestu()
         {
-            return Path.Combine("..", "..", "Testy", "KlasaDoParsowania.cs");
+            return Path.Combine("..", "..", "ParserTests", "KlasaDoParsowania.cs");
         }
 
         private void SprawdzPozycje(PozycjaWPliku pozycja, int wiersz, int kolumna)

@@ -9,12 +9,12 @@ using ICSharpCode.NRefactory.CSharp;
 
 namespace KruchyCompany.KruchyPlugin1.ParserKodu
 {
-    interface IParser
+    public interface IParser
     {
 
     }
 
-    class Parser
+    public class Parser
     {
         public static Plik Parsuj(string zawartosc)
         {
@@ -222,7 +222,9 @@ namespace KruchyCompany.KruchyPlugin1.ParserKodu
             return string.Empty;
         }
 
-        private static void ParsujKlamerki(Obiekt wynik, AstNode wezel)
+        private static void ParsujKlamerki(
+            IZPoczatkowaIKoncowaKlamerka wynik,
+            AstNode wezel)
         {
             var tn = wezel as CSharpTokenNode;
             var tekst = tn.GetText();
@@ -282,7 +284,7 @@ namespace KruchyCompany.KruchyPlugin1.ParserKodu
         }
 
         private static void ParsujNawiasy(
-            Metoda wynik,
+            IZNawiasamiOtwierajacymiZamykajacymiParametry wynik,
             CSharpTokenNode wezel,
             ref bool bylNawiasOtwierajacy,
             ref bool bylNawiasZamykajacy)
@@ -313,6 +315,29 @@ namespace KruchyCompany.KruchyPlugin1.ParserKodu
             ConstructorDeclaration cd = wezel as ConstructorDeclaration;
             var wynik = new Konstruktor();
             UstawPolozenie(wynik, wezel);
+
+            bool bylNawiasOtwierajacy = false;
+            bool bylNawiasZammykajacy = false;
+            foreach (var dziecko in wezel.Children)
+            {
+                if (dziecko is CSharpModifierToken)
+                    continue;
+                if (dziecko is BlockStatement)
+                {
+                    wynik.PoczatkowaKlamerka = DajPozycje(dziecko.StartLocation);
+                    wynik.KoncowaKlamerka = DajPozycje(dziecko.EndLocation);
+                    wynik.KoncowaKlamerka.Kolumna -= 1;
+                }
+
+                if (dziecko is CSharpTokenNode)
+                {
+                    ParsujNawiasy(
+                        wynik,
+                        dziecko as CSharpTokenNode,
+                        ref bylNawiasOtwierajacy,
+                        ref bylNawiasZammykajacy);
+                }
+            }
 
             foreach (var param in cd.Parameters)
             {
@@ -496,6 +521,11 @@ namespace KruchyCompany.KruchyPlugin1.ParserKodu
             obiekt.Koniec = new PozycjaWPliku(
                 wezel.EndLocation.Line,
                 wezel.EndLocation.Column);
+        }
+
+        private static PozycjaWPliku DajPozycje(TextLocation textLocation)
+        {
+            return new PozycjaWPliku(textLocation.Line, textLocation.Column);
         }
     }
 }

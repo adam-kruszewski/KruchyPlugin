@@ -3,9 +3,10 @@ using System.Linq;
 using FluentAssertions;
 using KruchyCompany.KruchyPlugin1.ParserKodu;
 using KruchyCompany.KruchyPlugin1.Utils;
+using KruchyPlugin1Tests.Utils;
 using NUnit.Framework;
 
-namespace KruchyCompany.KruchyPlugin1.Testy
+namespace KruchyCompany.KruchyPlugin1Tests.ParserTests
 {
     [TestFixture]
     public class ParsowanieKlasyNadklasIInterfejsowTests
@@ -31,7 +32,9 @@ namespace KruchyCompany.KruchyPlugin1.Testy
 
         private string DajSciezkeTestu()
         {
-            return Path.Combine("..", "..", "Testy", "KlasaDoParsowaniaNadklasIInterfejsow.cs");
+            var wynik = Path.Combine("..", "..", "ParserTests", "KlasaDoParsowaniaNadklasIInterfejsow.cs");
+            var fi = new FileInfo(wynik);
+            return wynik;
         }
     }
 }
