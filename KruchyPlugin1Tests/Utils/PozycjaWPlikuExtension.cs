@@ -1,5 +1,5 @@
-﻿using KruchyCompany.KruchyPlugin1.ParserKodu;
-using FluentAssertions;
+﻿using FluentAssertions;
+using KruchyParserKodu.ParserKodu;
 
 namespace KruchyPlugin1Tests.Utils
 {

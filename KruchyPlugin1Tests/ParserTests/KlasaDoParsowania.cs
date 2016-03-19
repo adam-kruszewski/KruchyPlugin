@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using KruchyCompany.KruchyPlugin1.ParserKodu;
+using KruchyParserKodu.ParserKodu;
 
 namespace KruchyCompany.KruchyPlugin1Tests.ParserTests
 {

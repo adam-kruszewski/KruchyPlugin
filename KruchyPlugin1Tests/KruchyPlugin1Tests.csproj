@@ -83,6 +83,10 @@
       <Project>{0c5748a8-7d43-444c-90ad-3dbe02dcabab}</Project>
       <Name>KrucheBuilderyKodu</Name>
     </ProjectReference>
+    <ProjectReference Include="..\KruchyParserKodu\KruchyParserKodu.csproj">
+      <Project>{fb1229fb-fe17-419f-bcad-fad9875ec78c}</Project>
+      <Name>KruchyParserKodu</Name>
+    </ProjectReference>
     <ProjectReference Include="..\KruchyPlugin1\KruchyPlugin1.csproj">
       <Project>{b7f7c8cf-f01e-4eb7-afd6-3f0e25641769}</Project>
       <Name>KruchyPlugin1</Name>

@@ -2,10 +2,10 @@
 using System.Linq;
 using System.Windows;
 using ICSharpCode.NRefactory.CSharp;
-using KruchyCompany.KruchyPlugin1.ParserKodu;
 using KruchyCompany.KruchyPlugin1.Utils;
 using KrucheBuilderyKodu.Builders;
 using System.Text;
+using KruchyParserKodu.ParserKodu;
 
 namespace KruchyCompany.KruchyPlugin1.Akcje
 {

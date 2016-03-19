@@ -2,8 +2,8 @@
 using System.Text;
 using System.Windows;
 using EnvDTE;
-using KruchyCompany.KruchyPlugin1.ParserKodu;
 using KruchyCompany.KruchyPlugin1.Utils;
+using KruchyParserKodu.ParserKodu;
 
 namespace KruchyCompany.KruchyPlugin1.Akcje
 {
@@ -69,7 +69,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
         private bool DodajJesliTrzebaAtrybutReferencedObject(
             int numerLiniiKursora,
             string nazwaAtrybutu,
-            KruchyCompany.KruchyPlugin1.ParserKodu.Property property)
+            KruchyParserKodu.ParserKodu.Property property)
         {
             if (property.Atrybuty.Any(o => o.Nazwa == "ReferencedObject"))
                 return false;

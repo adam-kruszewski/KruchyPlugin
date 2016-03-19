@@ -3,8 +3,8 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using KrucheBuilderyKodu.Builders;
-using KruchyCompany.KruchyPlugin1.ParserKodu;
-using KruchyCompany.KruchyPlugin1.Utils;  namespace KruchyCompany.KruchyPlugin1.Akcje {     class PodzielParametryNaLinie     {         private readonly SolutionWrapper solution;          public PodzielParametryNaLinie(SolutionWrapper solution)         {             this.solution = solution;         }          public void Podziel()         {             var dokument = solution.AktualnyDokument;             var parsowane =                 Parser.Parsuj(dokument.DajZawartosc());              var metoda = parsowane                     .SzukajMetodyWLinii(dokument.DajNumerLiniiKursora());              if (metoda == null)             {
+using KruchyCompany.KruchyPlugin1.Utils;
+using KruchyParserKodu.ParserKodu;  namespace KruchyCompany.KruchyPlugin1.Akcje {     class PodzielParametryNaLinie     {         private readonly SolutionWrapper solution;          public PodzielParametryNaLinie(SolutionWrapper solution)         {             this.solution = solution;         }          public void Podziel()         {             var dokument = solution.AktualnyDokument;             var parsowane =                 Parser.Parsuj(dokument.DajZawartosc());              var metoda = parsowane                     .SzukajMetodyWLinii(dokument.DajNumerLiniiKursora());              if (metoda == null)             {
                 var konstruktor =
                     parsowane
                         .SzukajKontruktoraWLinii(dokument.DajNumerLiniiKursora());

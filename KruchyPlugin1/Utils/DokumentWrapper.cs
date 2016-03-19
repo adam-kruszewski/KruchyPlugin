@@ -2,7 +2,7 @@
 using System.Text;
 using EnvDTE;
 using KrucheBuilderyKodu.Builders;
-using KruchyCompany.KruchyPlugin1.ParserKodu;
+using KruchyParserKodu.ParserKodu;
 
 namespace KruchyCompany.KruchyPlugin1.Utils
 {

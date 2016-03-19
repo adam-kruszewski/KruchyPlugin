@@ -252,25 +252,6 @@
     </Compile>
     <Compile Include="MyToolWindow.cs" />
     <Compile Include="Guids.cs" />
-    <Compile Include="ParserKodu\Atrybut.cs" />
-    <Compile Include="ParserKodu\IZNawiasamiOtwierajacymiZamykajacymiParametry.cs" />
-    <Compile Include="ParserKodu\IZPoczatkowaIKoncowaKlamerka.cs" />
-    <Compile Include="ParserKodu\Konstruktor.cs" />
-    <Compile Include="ParserKodu\Metoda.cs" />
-    <Compile Include="ParserKodu\Modyfikator.cs" />
-    <Compile Include="ParserKodu\Obiekt.cs" />
-    <Compile Include="ParserKodu\ObiektDziedziczony.cs" />
-    <Compile Include="ParserKodu\Parametr.cs" />
-    <Compile Include="ParserKodu\ParametrAtrybutu.cs" />
-    <Compile Include="ParserKodu\Parser.cs" />
-    <Compile Include="ParserKodu\ParsowanaJednostka.cs" />
-    <Compile Include="ParserKodu\Plik.cs" />
-    <Compile Include="ParserKodu\Pole.cs" />
-    <Compile Include="ParserKodu\PozycjaWPliku.cs" />
-    <Compile Include="ParserKodu\Property.cs" />
-    <Compile Include="ParserKodu\RodzajObiektu.cs" />
-    <Compile Include="ParserKodu\SzukanieParsowanegoExtension.cs" />
-    <Compile Include="ParserKodu\UsingNamespace.cs" />
     <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -345,6 +326,10 @@
     <ProjectReference Include="..\KrucheBuilderyKodu\KrucheBuilderyKodu.csproj">
       <Project>{0c5748a8-7d43-444c-90ad-3dbe02dcabab}</Project>
       <Name>KrucheBuilderyKodu</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KruchyParserKodu\KruchyParserKodu.csproj">
+      <Project>{fb1229fb-fe17-419f-bcad-fad9875ec78c}</Project>
+      <Name>KruchyParserKodu</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

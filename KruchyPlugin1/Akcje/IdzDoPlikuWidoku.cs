@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using KruchyCompany.KruchyPlugin1.Extensions;
-using KruchyCompany.KruchyPlugin1.ParserKodu;
 using KruchyCompany.KruchyPlugin1.Utils;
+using KruchyParserKodu.ParserKodu;
 
 namespace KruchyCompany.KruchyPlugin1.Akcje
 {

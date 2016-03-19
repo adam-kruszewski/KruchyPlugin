@@ -2,8 +2,8 @@
 using System.IO;
 using System.Linq;
 using FluentAssertions;
-using KruchyCompany.KruchyPlugin1.ParserKodu;
 using KruchyCompany.KruchyPlugin1.Utils;
+using KruchyParserKodu.ParserKodu;
 using KruchyPlugin1Tests.Utils;
 using NUnit.Framework;
 

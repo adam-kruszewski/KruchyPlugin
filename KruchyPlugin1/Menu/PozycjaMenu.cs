@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.IO;
 using System.Linq;
-using KruchyCompany.KruchyPlugin1.ParserKodu;
 using KruchyCompany.KruchyPlugin1.Utils;
+using KruchyParserKodu.ParserKodu;
 using Microsoft.VisualStudio.Shell;
 
 namespace KruchyCompany.KruchyPlugin1.Menu
