@@ -125,7 +125,6 @@ KruchyPlugin1/Testowo/TestowyWizard.cs -text
 KruchyPlugin1/Utils/DokumentWrapper.cs -text
 KruchyPlugin1/Utils/FileSystemWrapper.cs -text
 KruchyPlugin1/Utils/PlikWrapper.cs -text
-KruchyPlugin1/Utils/PozycjaWPlikuExtension.cs -text
 KruchyPlugin1/Utils/ProjektWrapper.cs -text
 KruchyPlugin1/Utils/SolutionExplorerWrapper.cs -text
 KruchyPlugin1/Utils/SolutionWrapper.cs -text
@@ -136,6 +135,7 @@ KruchyPlugin1Tests/KruchyPlugin1Tests.csproj -text
 KruchyPlugin1Tests/ParserTests/KlasaDoParsowania.cs -text
 KruchyPlugin1Tests/ParserTests/KlasaDoParsowaniaAtrybutow.cs -text
 KruchyPlugin1Tests/ParserTests/KlasaDoParsowaniaNadklasIInterfejsow.cs -text
+KruchyPlugin1Tests/ParserTests/KlasaDoParsowaniaRozszerzone.cs -text
 KruchyPlugin1Tests/ParserTests/KonfiguracjaPluginaTests.cs -text
 KruchyPlugin1Tests/ParserTests/MetodaBuilderTests.cs -text
 KruchyPlugin1Tests/ParserTests/ParsowanieAtrybutowTests.cs -text

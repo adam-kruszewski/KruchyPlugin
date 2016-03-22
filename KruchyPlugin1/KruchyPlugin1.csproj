@@ -253,7 +253,6 @@
     <Compile Include="Utils\DokumentWrapper.cs" />
     <Compile Include="Utils\FileSystemWrapper.cs" />
     <Compile Include="Utils\PlikWrapper.cs" />
-    <Compile Include="Utils\PozycjaWPlikuExtension.cs" />
     <Compile Include="Utils\ProjektWrapper.cs" />
     <Compile Include="Utils\SolutionExplorerWrapper.cs" />
     <Compile Include="Utils\SolutionWrapper.cs" />
@@ -307,7 +306,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup/>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\KrucheBuilderyKodu\KrucheBuilderyKodu.csproj">
       <Project>{0c5748a8-7d43-444c-90ad-3dbe02dcabab}</Project>

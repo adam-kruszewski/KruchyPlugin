@@ -98,6 +98,7 @@ namespace KrucheBuilderyKodu.Builders
             {
                 var lacznikBuilder =
                     new StringBuilder()
+                        .Append(",")
                         .AppendLine()
                         .Append(StaleDlaKodu.WciecieDlaMetody)
                         .Append(StaleDlaKodu.JednostkaWciecia);
