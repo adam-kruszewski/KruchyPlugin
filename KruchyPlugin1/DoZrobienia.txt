@@ -12,3 +12,4 @@ Organizacyjne:
 
  TODO
  Przy generowaniu kontruktora poprawnić zachowanie jeśli są propertiesy
+ Przy generowaniu klasy testowej dodawać using interfejsu
