@@ -11,6 +11,20 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
     class UzupelnianieKontruktora
     {
         private readonly SolutionWrapper solution;
+        private static Dictionary<string, int> kolejnoscWgTypu =
+            PrzygotujKolejnoscWgTypow();
+
+        private static Dictionary<string, int> PrzygotujKolejnoscWgTypow()
+        {
+            var wynik = new Dictionary<string, int>();
+            wynik["service"] = 1;
+            wynik["list<service>"] = 2;
+            wynik["factory"] = 3;
+            wynik["validator"] = 4;
+            wynik["list<validator>"] = 5;
+
+            return wynik;
+        }
 
         public UzupelnianieKontruktora(SolutionWrapper solution)
         {
@@ -83,14 +97,16 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
                 UsunPole(p);
 
             var builder = new StringBuilder();
-            foreach (var p in list.OrderBy(o => o.Nazwa))
+            foreach (var p in SortujPola(list))
             {
-                builder.Append(StaleDlaKodu.WciecieDlaMetody);
-                builder.Append("private readonly ");
-                builder.Append(p.NazwaTypu);
-                builder.Append(" ");
-                builder.Append(p.Nazwa);
-                builder.AppendLine(";");
+                var poleBuilder =
+                    new PoleBuilder()
+                        .ZNazwa(p.Nazwa)
+                        .ZNazwaTypu(p.NazwaTypu)
+                        .DodajModyfikatorem("private")
+                        .DodajModyfikatorem("readonly");
+
+                builder.Append(poleBuilder.Build(StaleDlaKodu.WciecieDlaMetody));
             }
 
             solution.AktualnyDokument.WstawWLinii(builder.ToString(), liniaPierwszego);
@@ -146,12 +162,54 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             builder.ZTypemZwracanym("");
             builder.DodajModyfikator("public");
             
-            foreach (var pole in pola.OrderBy(o => o.Nazwa))
+            foreach (var pole in SortujPola(pola))
             {
                 builder.DodajParametr(pole.NazwaTypu, pole.Nazwa);
                 builder.DodajLinie("this." + pole.Nazwa + " = " + pole.Nazwa + ";");
             }
             return builder.Build(StaleDlaKodu.WciecieDlaMetody).TrimEnd();
+        }
+
+        private IEnumerable<Pole> SortujPola(IEnumerable<Pole> pola)
+        {
+            return
+                pola
+                    .OrderBy(o => DajKolejnoscWgRodzajuPola(o))
+                        .ThenBy(o => o.Nazwa);
+        }
+
+        private int DajKolejnoscWgRodzajuPola(Pole pole)
+        {
+            var rodzajPola = DajRodzajPola(pole);
+            if (kolejnoscWgTypu.ContainsKey(rodzajPola))
+                return kolejnoscWgTypu[rodzajPola];
+            return 9999;
+        }
+
+        private string DajRodzajPola(Pole pole)
+        {
+            var lowerNazwaTypu = pole.NazwaTypu.ToLower();
+
+            if (pole.NazwaTypu.Contains("<"))
+            {
+                //generic - domyślamy się, że lista
+                var t = pole.NazwaTypu.Substring(pole.NazwaTypu.IndexOf("<") + 1);
+                t = t.Substring(0, t.IndexOf(">"));
+                return "list<" + t + ">";
+            }else
+            {
+                return DajRodzajPolaZNazwyTypu(pole.NazwaTypu);
+            }
+        }
+
+        private string DajRodzajPolaZNazwyTypu(string nazwaTypu)
+        {
+            for (int i = nazwaTypu.Length; i <= 0 ; i--)
+            {
+                if (char.IsUpper(nazwaTypu[i]))
+                    return nazwaTypu.Substring(i).ToLower();
+            }
+            return nazwaTypu;
         }
 
         private List<Pole> WyliczPolaDoDodaniaDoKonstruktora(

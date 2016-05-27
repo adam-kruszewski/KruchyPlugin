@@ -5,6 +5,7 @@ KrucheBuilderyKodu/Builders/ICodeBuilder.cs -text
 KrucheBuilderyKodu/Builders/InterfejsBuilder.cs -text
 KrucheBuilderyKodu/Builders/MetodaBuilder.cs -text
 KrucheBuilderyKodu/Builders/PlikClassBuilder.cs -text
+KrucheBuilderyKodu/Builders/PoleBuilder.cs -text
 KrucheBuilderyKodu/Builders/PropertyBuilder.cs -text
 KrucheBuilderyKodu/Builders/StaleDlaKodu.cs -text
 KrucheBuilderyKodu/KrucheBuilderyKodu.csproj -text
