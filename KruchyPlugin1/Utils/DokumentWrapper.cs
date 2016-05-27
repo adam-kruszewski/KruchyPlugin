@@ -160,6 +160,14 @@ namespace KruchyCompany.KruchyPlugin1.Utils
             editPoint.Delete(editPointKoniec);
         }
 
+        public void UsunLinie(int numerLinii)
+        {
+            var editPoint = DajEditPointPoczatkuLinii(numerLinii);
+            var editPointKonca = DajEditPointPoczatkuLinii(numerLinii);
+            editPointKonca.LineDown();
+            editPoint.Delete(editPointKonca);
+        }
+
         private EditPoint DajEditPointPoczatkuLinii(
             int numerLinii)
         {

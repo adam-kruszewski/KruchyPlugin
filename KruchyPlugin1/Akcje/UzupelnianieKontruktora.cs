@@ -70,7 +70,40 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
                         PrzygotujTekstDoWstawienia(nowyKonstruktor, dodatek),
                         maksymalnyNumerLiniiPol + 1);
                 }
+                PosortujZdefiniowanePola(obiekt.Pola);
             }
+        }
+
+        private void PosortujZdefiniowanePola(IList<Pole> list)
+        {
+            var liniaPierwszego =
+                list.OrderBy(o => o.Poczatek.Wiersz).First().Poczatek.Wiersz;
+
+            foreach (var p in list.OrderByDescending(o => o.Poczatek.Wiersz))
+                UsunPole(p);
+
+            var builder = new StringBuilder();
+            foreach (var p in list.OrderBy(o => o.Nazwa))
+            {
+                builder.Append(StaleDlaKodu.WciecieDlaMetody);
+                builder.Append("private readonly ");
+                builder.Append(p.NazwaTypu);
+                builder.Append(" ");
+                builder.Append(p.Nazwa);
+                builder.AppendLine(";");
+            }
+
+            solution.AktualnyDokument.WstawWLinii(builder.ToString(), liniaPierwszego);
+        }
+
+        private void UsunPole(Pole p)
+        {
+            solution.AktualnyDokument.Usun(
+                p.Poczatek.Wiersz,
+                p.Poczatek.Kolumna,
+                p.Koniec.Wiersz,
+                p.Koniec.Kolumna);
+            solution.AktualnyDokument.UsunLinie(p.Koniec.Wiersz);
         }
 
         private string PrzygotujTekstDoWstawienia(
@@ -113,7 +146,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             builder.ZTypemZwracanym("");
             builder.DodajModyfikator("public");
             
-            foreach (var pole in pola)
+            foreach (var pole in pola.OrderBy(o => o.Nazwa))
             {
                 builder.DodajParametr(pole.NazwaTypu, pole.Nazwa);
                 builder.DodajLinie("this." + pole.Nazwa + " = " + pole.Nazwa + ";");
