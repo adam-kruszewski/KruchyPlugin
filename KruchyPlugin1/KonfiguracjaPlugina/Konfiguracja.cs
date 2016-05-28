@@ -20,13 +20,13 @@ namespace KruchyCompany.KruchyPlugin1.KonfiguracjaPlugina
         private SolutionWrapper solution;
 
         private KonfiguracjaUsingow Usingi { get; set; }
+        private KruchyPlugin konfiguracjaXml;
 
         private Konfiguracja(SolutionWrapper solution)
         {
             this.solution = solution;
             var sciezkaPlikuKonfiguracji = DajSciezkePlikuKonfiguracji(solution);
 
-            KruchyPlugin konfiguracjaXml = null;
             if (!string.IsNullOrEmpty(sciezkaPlikuKonfiguracji) &&
                 File.Exists(sciezkaPlikuKonfiguracji))
             {
@@ -60,6 +60,11 @@ namespace KruchyCompany.KruchyPlugin1.KonfiguracjaPlugina
         public KonfiguracjaUsingow DajKonfiguracjeUsingow(SolutionWrapper solution)
         {
             return Usingi;
+        }
+
+        public bool SortowacZaleznosciSerwisu()
+        {
+            return konfiguracjaXml.SortowanieZaleznosciSerwisow;
         }
     }
 }

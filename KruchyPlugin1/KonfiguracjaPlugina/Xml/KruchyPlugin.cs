@@ -9,6 +9,7 @@ namespace KruchyCompany.KruchyPlugin1.KonfiguracjaPlugina.Xml
     public class KruchyPlugin
     {
         public List<Namespace> Usingi { get; set; }
+        public bool SortowanieZaleznosciSerwisow { get; set; }
 
         public KruchyPlugin()
         {

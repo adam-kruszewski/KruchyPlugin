@@ -3,6 +3,7 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using KrucheBuilderyKodu.Builders;
+using KruchyCompany.KruchyPlugin1.KonfiguracjaPlugina;
 using KruchyCompany.KruchyPlugin1.Utils;
 using KruchyParserKodu.ParserKodu;
 
@@ -172,6 +173,8 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 
         private IEnumerable<Pole> SortujPola(IEnumerable<Pole> pola)
         {
+            if (!Konfiguracja.GetInstance(solution).SortowacZaleznosciSerwisu())
+                return pola;
             return
                 pola
                     .OrderBy(o => DajKolejnoscWgRodzajuPola(o))
@@ -195,7 +198,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
                 //generic - domyślamy się, że lista
                 var t = pole.NazwaTypu.Substring(pole.NazwaTypu.IndexOf("<") + 1);
                 t = t.Substring(0, t.IndexOf(">"));
-                return "list<" + t + ">";
+                return "list<" + DajRodzajPolaZNazwyTypu(t) + ">";
             }else
             {
                 return DajRodzajPolaZNazwyTypu(pole.NazwaTypu);
@@ -204,7 +207,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 
         private string DajRodzajPolaZNazwyTypu(string nazwaTypu)
         {
-            for (int i = nazwaTypu.Length; i <= 0 ; i--)
+            for (int i = nazwaTypu.Length - 1; i >= 0 ; i--)
             {
                 if (char.IsUpper(nazwaTypu[i]))
                     return nazwaTypu.Substring(i).ToLower();

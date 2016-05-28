@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace KruchyPlugin1Tests.ParserTests
+﻿
+namespace KruchyCompany.KruchyPlugin1Tests.ParserTests
 {
-    class KlasaDoParsowaniaRozszerzone
+    public static class KlasaDoParsowaniaRozszerzone
     {
+        public static int Metoda1(this int liczba, int liczba2 = 2, string s = "aa")
+        {
+            return 0;
+        }
     }
 }
