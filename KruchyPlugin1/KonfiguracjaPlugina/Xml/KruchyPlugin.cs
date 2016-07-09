@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Xml.Serialization;
 
 namespace KruchyCompany.KruchyPlugin1.KonfiguracjaPlugina.Xml
 {
@@ -20,6 +17,9 @@ namespace KruchyCompany.KruchyPlugin1.KonfiguracjaPlugina.Xml
     public class Namespace
     {
         public string Nazwa { get; set; }
+
+        [XmlAttribute("Uzycie")]
+        public string NamespaceUzycia { get; set; }
 
         public override string ToString()
         {
