@@ -39,6 +39,7 @@ namespace KruchyCompany.KruchyPlugin1.KonfiguracjaPlugina
 
         private void UstawDefaultoweDlaPincasso()
         {
+            konfiguracjaXml = new KruchyPlugin();            
             Usingi = new KonfiguracjaUsingow();
         }
 
