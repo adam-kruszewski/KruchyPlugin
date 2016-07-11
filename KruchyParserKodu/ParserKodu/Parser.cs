@@ -129,12 +129,35 @@ namespace KruchyParserKodu.ParserKodu
                 {
                     var dziedziczony = new ObiektDziedziczony();
                     dziedziczony.Nazwa = (dziecko as SimpleType).Identifier;
+                    ParsujParametryGeneryczne(dziecko as SimpleType, dziedziczony);
                     UstawPolozenie(dziedziczony, dziecko);
                     wynik.NadklasaIInterfejsy.Add(dziedziczony);
                 }
             }
             UstawPolozenie(wynik, wezel);
             return wynik;
+        }
+
+        private static void ParsujParametryGeneryczne(
+            SimpleType wezel,
+            ObiektDziedziczony dziedziczony)
+        {
+            foreach (var dziecko in wezel.TypeArguments)
+            {
+                var typ = SzukajNazwyTypu(dziecko);
+                if (typ != null)
+                    dziedziczony.NazwyTypowParametrow.Add(typ);
+
+            }
+        }
+
+        private static string SzukajNazwyTypu(AstType dziecko)
+        {
+            var wezel = dziecko as SimpleType;
+            if (wezel != null)
+                return wezel.Identifier;
+
+            return null;
         }
 
         private static bool DefinicjaAtrybutow(AstNode dziecko)
