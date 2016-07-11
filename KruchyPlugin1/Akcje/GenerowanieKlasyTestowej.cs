@@ -96,7 +96,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
                     klasaBuilder.ZNadklasa("ServiceTests<" + interfejsTestowany + ">");
                     break;
                 case RodzajKlasyTestowej.TestsWithDatabase:
-                    klasaBuilder.ZNadklasa("TestsWithDatabase");
+                    klasaBuilder.ZNadklasa("TestsWithDatabaseFixture");
                     break;
             }
 
