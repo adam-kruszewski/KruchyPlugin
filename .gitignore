@@ -18,6 +18,7 @@ KruchyParserKodu/[Dd]ebug
 KruchyParserKodu/[Rr]elease
 KruchyParserKodu/_Pvt_Extensions
 KruchyParserKodu/obj
+KruchyPlugin1/KruchyPlugin1.csproj.user
 KruchyPlugin1Tests/*.aps
 KruchyPlugin1Tests/*.eto
 KruchyPlugin1Tests/*.user
