@@ -40,9 +40,22 @@ namespace KruchyParserKodu.ParserKodu
             this Plik parsowane,
             int numerLinii)
         {
-            var propertiesy = parsowane.DefiniowaneObiekty.First().Propertiesy;
+            var propertiesy = parsowane.DefiniowaneObiekty.SelectMany(o => o.Propertiesy);
             return
                 propertiesy
+                    .Where(o =>
+                        o.Poczatek.Wiersz <= numerLinii
+                            && o.Koniec.Wiersz >= numerLinii)
+                            .FirstOrDefault();
+        }
+
+        public static Pole SzukajPolaWLinii(
+            this Plik parsowane,
+            int numerLinii)
+        {
+            var pola = parsowane.DefiniowaneObiekty.SelectMany(o => o.Pola);
+            return
+                pola
                     .Where(o =>
                         o.Poczatek.Wiersz <= numerLinii
                             && o.Koniec.Wiersz >= numerLinii)
@@ -60,6 +73,25 @@ namespace KruchyParserKodu.ParserKodu
                 .Union(obiekt.Konstruktory.Select(o => o.Koniec))
                 .Union(obiekt.Metody.Select(o => o.Koniec))
                     .Select(o => o.Wiersz);
+            if (ostatnieLinieDefinicji.Count() == 0)
+            {
+                return obiekt.PoczatkowaKlamerka.Wiersz + 1;
+            }
+
+            return ostatnieLinieDefinicji.Max() + 1;
+        }
+
+        public static int SzukajPierwszejLiniiDlaKonstruktora(
+            this Plik parsowane,
+            int numerLiniiWObiekcie)
+        {
+            var obiekt = parsowane.SzukajKlasyWLinii(numerLiniiWObiekcie);
+
+            var ostatnieLinieDefinicji =
+                obiekt.Pola.Select(o => o.Koniec)
+                    .Union(obiekt.Propertiesy.Select(o => o.Koniec))
+                        .Select(o => o.Wiersz);
+
             if (ostatnieLinieDefinicji.Count() == 0)
             {
                 return obiekt.PoczatkowaKlamerka.Wiersz + 1;

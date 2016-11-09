@@ -215,7 +215,16 @@
         </Strings>
       </Button>
 
-      <Button guid="guidKruchyPlugin1CmdSet" id="cmdidPodzielParametryNaLinie" priority="0x0132" type="Button">
+      <Button guid="guidKruchyPlugin1CmdSet" id="cmdidInicjujWKontruktorze" priority="0x0131" type="Button">
+        <Parent guid="guidKruchyPlugin1CmdSet" id="PozostaleKodoweGroup" />
+        <Strings>
+          <CommandName>cmdidInicjujWKontruktorze</CommandName>
+          <ButtonText>&amp;Inicjuj w konstruktorze</ButtonText>
+        </Strings>
+      </Button>
+      
+
+      <Button guid="guidKruchyPlugin1CmdSet" id="cmdidPodzielParametryNaLinie" priority="0x0137" type="Button">
         <Parent guid="guidKruchyPlugin1CmdSet" id="PozostaleKodoweGroup" />
         <Strings>
           <CommandName>cmdidPodzielParametryNaLinie</CommandName>
@@ -223,7 +232,7 @@
         </Strings>
       </Button>
 
-      <Button guid="guidKruchyPlugin1CmdSet" id="cmdidUzupelnijMetodaWImplementacji" priority="0x0131" type="Button">
+      <Button guid="guidKruchyPlugin1CmdSet" id="cmdidUzupelnijMetodaWImplementacji" priority="0x0136" type="Button">
         <Parent guid="guidKruchyPlugin1CmdSet" id="PozostaleKodoweGroup" />
         <Strings>
           <CommandName>cmdidUzupelnijMetodaWImplementacji</CommandName>
@@ -231,7 +240,7 @@
         </Strings>
       </Button>
 
-      <Button guid="guidKruchyPlugin1CmdSet" id="cmdidDodajUsingDbContext" priority="0x0133" type="Button">
+      <Button guid="guidKruchyPlugin1CmdSet" id="cmdidDodajUsingDbContext" priority="0x0138" type="Button">
         <Parent guid="guidKruchyPlugin1CmdSet" id="PozostaleKodoweGroup" />
         <Strings>
           <CommandName>cmdidDodajUsingDbContext</CommandName>
@@ -239,7 +248,7 @@
         </Strings>
       </Button>
       <!--cmdidDodajMapowania-->
-      <Button guid="guidKruchyPlugin1CmdSet" id="cmdidDodajMapowania" priority="0x0134" type="Button">
+      <Button guid="guidKruchyPlugin1CmdSet" id="cmdidDodajMapowania" priority="0x0139" type="Button">
         <Parent guid="guidKruchyPlugin1CmdSet" id="PozostaleKodoweGroup" />
         <Strings>
           <CommandName>cmdidDodajMapowania</CommandName>
@@ -407,6 +416,7 @@
       <IDSymbol name="cmdidPokazZawartoscZShared" value="0x0162"/>
       <IDSymbol name="cmdidDodajUsingDbContext" value="0x0163"/>
       <IDSymbol name="cmdidDodajMapowania" value="0x0164"/>
+      <IDSymbol name="cmdidInicjujWKontruktorze" value="0x0165"/>
 
       <IDSymbol name="cmdidIdzDoImplementacji" value="0x0170"/>
       <IDSymbol name="cmdidIdzDoKataloguControllera" value="0x0171"/>

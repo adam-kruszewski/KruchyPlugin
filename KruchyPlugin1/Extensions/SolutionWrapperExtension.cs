@@ -43,6 +43,12 @@ namespace KruchyCompany.KruchyPlugin1.Extensions
                 return string.Empty;
         }
 
+        public static Plik ParsujZawartoscAktualnegoDokumetu(
+            this SolutionWrapper solution)
+        {
+            return Parser.Parsuj(solution.AktualnyDokument.DajZawartosc());
+        }
+
         public static ProjektWrapper SzukajProjektuTestowego(
             this SolutionWrapper solution,
             ProjektWrapper projekt)

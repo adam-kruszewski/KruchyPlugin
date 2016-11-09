@@ -55,6 +55,7 @@ KruchyPlugin1/Akcje/IdzDoKataloguControllera.cs -text
 KruchyPlugin1/Akcje/IdzDoKlasyTestowej.cs -text
 KruchyPlugin1/Akcje/IdzDoPlikuWidoku.cs -text
 KruchyPlugin1/Akcje/IdzMiedzyInterfejsemAImplementacja.cs -text
+KruchyPlugin1/Akcje/InicjowaniePolaWKonstruktorze.cs -text
 KruchyPlugin1/Akcje/PodzielParametryNaLinie.cs -text
 KruchyPlugin1/Akcje/PokazywaniaZawartosciZShared.cs -text
 KruchyPlugin1/Akcje/RodzajKlasyTestowej.cs -text
@@ -102,6 +103,7 @@ KruchyPlugin1/Menu/PozycjaIdzDoKataloguControllera.cs -text
 KruchyPlugin1/Menu/PozycjaIdzDoKlasyTestowej.cs -text
 KruchyPlugin1/Menu/PozycjaIdzDoPlikuWidoku.cs -text
 KruchyPlugin1/Menu/PozycjaIdzMiedzyInterfejsemAImplementacja.cs -text
+KruchyPlugin1/Menu/PozycjaInicjowaniePolaWKonstruktorze.cs -text
 KruchyPlugin1/Menu/PozycjaMenu.cs -text
 KruchyPlugin1/Menu/PozycjaPodzielParametryNaLinie.cs -text
 KruchyPlugin1/Menu/PozycjaPokazywanieZawartosciZShared.cs -text

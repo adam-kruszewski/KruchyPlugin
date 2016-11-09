@@ -6,6 +6,7 @@ namespace KrucheBuilderyKodu.Builders
     {
         public const string JednostkaWciecia = "    ";
         public const string WciecieDlaMetody = JednostkaWciecia + JednostkaWciecia;
+        public const string WciecieDlaZawartosciMetody = WciecieDlaMetody + JednostkaWciecia;
         public const string WcieciaDlaParametruMetody = WciecieDlaMetody + JednostkaWciecia;
         public const string WciecieDlaKlasy = JednostkaWciecia;
 

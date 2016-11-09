@@ -29,6 +29,7 @@ namespace KruchyCompany.KruchyPlugin1
         public const uint cmdidPokazZawartoscZShared = 0x162;
         public const uint cmdidDodajUsingDbContext = 0x163;
         public const uint cmdidDodajMapowania = 0x164;
+        public const uint cmdidInicjujWKontruktorze = 0x165;
 
         //dla poruszania się po klasach ui
         public const uint cmdidIdzDoImplementacji = 0x0170;
