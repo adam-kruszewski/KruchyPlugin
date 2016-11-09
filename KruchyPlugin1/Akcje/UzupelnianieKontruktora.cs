@@ -84,7 +84,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
                         PrzygotujTekstDoWstawienia(nowyKonstruktor, dodatek),
                         maksymalnyNumerLiniiPol + 1);
                 }
-                PosortujZdefiniowanePola(obiekt.Pola);
+                PosortujZdefiniowanePola(obiekt.NiestatycznePola);
             }
         }
 

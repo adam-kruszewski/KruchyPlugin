@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace KruchyParserKodu.ParserKodu
 {
@@ -9,6 +10,10 @@ namespace KruchyParserKodu.ParserKodu
         public string Nazwa { get; set; }
         public IList<Konstruktor> Konstruktory { get; private set; }
         public IList<Pole> Pola { get; private set; }
+        public IList<Pole> NiestatycznePola
+        {
+            get { return SzukajPolNiestatycznych().ToList(); }
+        }
         public IList<Property> Propertiesy { get; private set; }
         public IList<Metoda> Metody { get; private set; }
         public List<Atrybut> Atrybuty { get; private set; }
@@ -28,6 +33,11 @@ namespace KruchyParserKodu.ParserKodu
 
             PoczatkowaKlamerka = new PozycjaWPliku();
             KoncowaKlamerka = new PozycjaWPliku();
+        }
+
+        private IEnumerable<Pole> SzukajPolNiestatycznych()
+        {
+            return Pola.Where(o => !o.Modyfikatory.Any(p => p.Nazwa == "static"));
         }
     }
 }

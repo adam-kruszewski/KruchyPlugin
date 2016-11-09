@@ -111,7 +111,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 
         private string DajNamespaceImplementacji()
         {
-            return solution.AktualnyPlik.Projekt.Nazwa + ".Validatation.Impl";
+            return solution.AktualnyPlik.Projekt.Nazwa + ".Validation.Impl";
         }
 
         private string GenerujZawartoscInterfejsu(
@@ -137,7 +137,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 
         private string DajNamespaceInterfejsu()
         {
-            return solution.AktualnyPlik.Projekt.Nazwa + ".Validatation";
+            return solution.AktualnyPlik.Projekt.Nazwa + ".Validation";
         }
 
     }

@@ -9,7 +9,11 @@ namespace KruchyParserKodu.ParserKodu
             this Plik parsowane,
             int numerLinii)
         {
-            var metody = parsowane.DefiniowaneObiekty.First().Metody;
+            var metody =
+                parsowane
+                    .DefiniowaneObiekty
+                        .SelectMany(o => o.Metody);
+                    //.First().Metody;
 
             return
                 metody
