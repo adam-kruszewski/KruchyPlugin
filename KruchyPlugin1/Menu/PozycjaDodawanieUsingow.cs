@@ -37,10 +37,40 @@ namespace KruchyCompany.KruchyPlugin1.Menu
                 konf.DajKonfiguracjeUsingow(solution)
                     .NajczesciejUzywane
                         .Where(o => PasujeDoNamespaca(o, aktualnyNamespace))
-                            .Select(o => o.Nazwa)
+                            .Select(o => DajNazweDoWstawienia(o))
                                 .ToArray();
 
             new DodawaniaUsinga(solution).Dodaj(usingi);
+        }
+
+        private string DajNazweDoWstawienia(NajczesciejUzywanyUsing o)
+        {
+            var wynik = o.Nazwa;
+
+            //%NAZWA_MODULU%
+            //%NAZWA_MODULU_TESTOWANEGO%
+            var zmiany = new Dictionary<string, string>();
+            zmiany["%NAZWA_MODULU%"] = DajNazweModulu();
+            zmiany["%NAZWA_MODULU_TESTOWANEGO%"] = DajNazweModuluTestowanego();
+
+            foreach (var klucz in zmiany.Keys)
+                wynik = wynik.Replace(klucz, zmiany[klucz]);
+
+            return wynik;
+        }
+
+        private string DajNazweModulu()
+        {
+            return solution.AktualnyProjekt.Nazwa;
+        }
+
+        private string DajNazweModuluTestowanego()
+        {
+            var nazwaModulu = DajNazweModulu();
+            if (nazwaModulu.ToLower().EndsWith(".tests"))
+                return nazwaModulu.Substring(0, nazwaModulu.Length - ".tests".Length);
+            else
+                return "";
         }
 
         private bool PasujeDoNamespaca(

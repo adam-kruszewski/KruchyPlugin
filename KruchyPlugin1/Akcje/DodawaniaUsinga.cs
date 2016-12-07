@@ -12,19 +12,6 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             this.solution = solution;
         }
 
-        public void Dodaj(string nazwaUsinga)
-        {
-            if (solution.AktualnyPlik == null)
-            {
-                MessageBox.Show("Brak otwartego pliku");
-                return;
-            }
-            solution
-                .AktualnyPlik
-                    .Dokument
-                        .DodajUsingaJesliTrzeba(nazwaUsinga);
-        }
-
         public void Dodaj(params string[] usingi)
         {
             if (solution.AktualnyPlik == null)
