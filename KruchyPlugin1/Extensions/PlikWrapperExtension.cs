@@ -50,7 +50,8 @@ namespace KruchyCompany.KruchyPlugin1.Extensions
 
         public static string SciezkaKataloguControllera(this PlikWrapper plik)
         {
-            string nazwaControllera = DajNazweControllera(plik.NazwaBezRozszerzenia);
+            var parsowane = Parser.Parsuj(plik.Dokument.DajZawartosc());
+            string nazwaControllera = DajNazweControllera(parsowane.DefiniowaneObiekty.Single().Nazwa);
 
             var katalogPlikControllera = plik.Katalog;
             var katalogDlaControllera =
