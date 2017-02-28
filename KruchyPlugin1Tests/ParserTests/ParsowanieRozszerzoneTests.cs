@@ -62,5 +62,18 @@ namespace KruchyCompany.KruchyPlugin1Tests.ParserTests
             parametr2.ZOut.Should().BeTrue();
             parametr2.ZRef.Should().BeFalse();
         }
+
+        [Test]
+        public void RozpoznajeParam()
+        {
+            //arrange
+            var metoda = parsowane.DefiniowaneObiekty.First().Metody[1];
+
+            //assert
+            metoda.Parametry.Should().HaveCount(2);
+
+            var parametr = metoda.Parametry[1];
+            parametr.ZParams.Should().BeTrue();
+        }
     }
 }
