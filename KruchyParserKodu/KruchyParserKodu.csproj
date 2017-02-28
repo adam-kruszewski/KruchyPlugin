@@ -65,6 +65,7 @@
     <Compile Include="ParserKodu\IZPoczatkowaIKoncowaKlamerka.cs" />
     <Compile Include="ParserKodu\Konstruktor.cs" />
     <Compile Include="ParserKodu\Metoda.cs" />
+    <Compile Include="ParserKodu\MetodaExtension.cs" />
     <Compile Include="ParserKodu\Modyfikator.cs" />
     <Compile Include="ParserKodu\Obiekt.cs" />
     <Compile Include="ParserKodu\ObiektDziedziczony.cs" />

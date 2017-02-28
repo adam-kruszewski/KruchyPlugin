@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -39,6 +40,8 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
                 return;
             }
 
+            Metoda nastepnaMetoda = SzukajNastepnejMetody(parsowane, aktualnaMetoda);
+
             var sciezkaDoImplementacji =
                 solution.AktualnyPlik.SzukajSciezkiDoImplementacji();
 
@@ -53,20 +56,64 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
                 aktualnaMetoda.Koniec.Wiersz, aktualnaMetoda.Koniec.Kolumna);
 
             DodajDefincjeWImplementacji(
-                sciezkaDoImplementacji, definicja, parsowane.Usingi);
+                sciezkaDoImplementacji,
+                definicja,
+                parsowane.Usingi,
+                nastepnaMetoda);
+        }
+
+        private Metoda SzukajNastepnejMetody(Plik parsowane, Metoda aktualnaMetoda)
+        {
+            var interfejs = parsowane.SzukajObiektuWLinii(aktualnaMetoda.Poczatek.Wiersz);
+            if (interfejs == null)
+                return null;
+
+            var bylaAktualna = false;
+
+            //return
+            //klasa.Metody.SkipWhile(o => o == aktualnaMetoda).Take(2).LastOrDefault();
+
+            foreach (var m in interfejs.Metody)
+            {
+                if (bylaAktualna)
+                    return m;
+
+                if (m == aktualnaMetoda)
+                    bylaAktualna = true;
+            }
+
+            return null;
         }
 
         private void DodajDefincjeWImplementacji(
             string sciezkaDoImplementacji,
             string definicja,
-            IEnumerable<UsingNamespace> usingi)
+            IEnumerable<UsingNamespace> usingi,
+            Metoda nastepnaMetoda)
         {
             var solutionExplorer = new SolutionExplorerWrapper(solution);
             solutionExplorer.OtworzPlik(sciezkaDoImplementacji);
 
             var zawartosc = solution.AktualnyDokument.DajZawartosc();
             var parsowane = Parser.Parsuj(zawartosc);
-            var numerLiniiGdzieDodawac = parsowane.SzukajPierwszejLiniiDlaMetody();
+            int numerLiniiGdzieDodawac = 0;
+
+            Metoda nastepnaMetodaWImplementacji = null;
+            if (nastepnaMetoda == null)
+                numerLiniiGdzieDodawac = parsowane.SzukajPierwszejLiniiDlaMetody();
+            else
+            {
+                nastepnaMetodaWImplementacji =
+                    parsowane
+                        .DefiniowaneObiekty
+                            .SelectMany(o => o.Metody)
+                                .FirstOrDefault(o => o.TaSamaMetoda(nastepnaMetoda));
+            }
+
+            if (nastepnaMetodaWImplementacji == null)
+                numerLiniiGdzieDodawac = parsowane.SzukajPierwszejLiniiDlaMetody();
+            else
+                numerLiniiGdzieDodawac = nastepnaMetodaWImplementacji.Poczatek.Wiersz -1;
 
             string wstawianyTekst =
                 GenerujTekstDoWstawienia(definicja);

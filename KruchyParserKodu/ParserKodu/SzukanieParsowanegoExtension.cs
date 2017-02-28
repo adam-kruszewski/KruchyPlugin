@@ -112,6 +112,17 @@ namespace KruchyParserKodu.ParserKodu
                             .FirstOrDefault();
         }
 
+        public static Obiekt SzukajObiektuWLinii(
+            this Plik parsowane,
+            int numerLinii)
+        {
+            return
+                parsowane
+                    .DefiniowaneObiekty
+                        .Where(o => o.ZawieraLinie(numerLinii))
+                            .FirstOrDefault();
+        }
+
         private static bool ZawieraLinie(
             this ParsowanaJednostka jednostka,
             int numerLinii)

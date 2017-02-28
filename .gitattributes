@@ -18,6 +18,7 @@ KruchyParserKodu/ParserKodu/IZNawiasamiOtwierajacymiZamykajacymiParametry.cs -te
 KruchyParserKodu/ParserKodu/IZPoczatkowaIKoncowaKlamerka.cs -text
 KruchyParserKodu/ParserKodu/Konstruktor.cs -text
 KruchyParserKodu/ParserKodu/Metoda.cs -text
+KruchyParserKodu/ParserKodu/MetodaExtension.cs -text
 KruchyParserKodu/ParserKodu/Modyfikator.cs -text
 KruchyParserKodu/ParserKodu/Obiekt.cs -text
 KruchyParserKodu/ParserKodu/ObiektDziedziczony.cs -text
