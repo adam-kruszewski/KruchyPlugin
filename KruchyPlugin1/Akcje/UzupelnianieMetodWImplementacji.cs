@@ -68,21 +68,12 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             if (interfejs == null)
                 return null;
 
-            var bylaAktualna = false;
-
-            //return
-            //klasa.Metody.SkipWhile(o => o == aktualnaMetoda).Take(2).LastOrDefault();
-
-            foreach (var m in interfejs.Metody)
-            {
-                if (bylaAktualna)
-                    return m;
-
-                if (m == aktualnaMetoda)
-                    bylaAktualna = true;
-            }
-
-            return null;
+            return
+                interfejs
+                    .Metody
+                        .SkipWhile(o => !o.TaSamaMetoda(aktualnaMetoda))
+                            .Skip(1)
+                                .FirstOrDefault();
         }
 
         private void DodajDefincjeWImplementacji(
@@ -108,15 +99,22 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
                         .DefiniowaneObiekty
                             .SelectMany(o => o.Metody)
                                 .FirstOrDefault(o => o.TaSamaMetoda(nastepnaMetoda));
+
             }
+            string wstawianyTekst = GenerujTekstDoWstawienia(definicja);
 
             if (nastepnaMetodaWImplementacji == null)
                 numerLiniiGdzieDodawac = parsowane.SzukajPierwszejLiniiDlaMetody();
             else
-                numerLiniiGdzieDodawac = nastepnaMetodaWImplementacji.Poczatek.Wiersz -1;
+            {
+                numerLiniiGdzieDodawac =
+                    WyliczLinieDodanieWgNastepnejMetody(
+                        parsowane,
+                        nastepnaMetodaWImplementacji,
+                        ref wstawianyTekst);
 
-            string wstawianyTekst =
-                GenerujTekstDoWstawienia(definicja);
+            }
+
             solution.AktualnyDokument
                 .WstawWLinii(wstawianyTekst, numerLiniiGdzieDodawac);
             solution.AktualnyDokument.UstawKursosDlaMetodyDodanejWLinii(
@@ -124,6 +122,26 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 
             foreach (var u in usingi.Select(o => o.Nazwa))
                 solution.AktualnyDokument.DodajUsingaJesliTrzeba(u);
+        }
+
+        private static int WyliczLinieDodanieWgNastepnejMetody(
+            Plik parsowane,
+            Metoda nastepnaMetodaWImplementacji,
+            ref string wstawianyTekst)
+        {
+            int numerLiniiGdzieDodawac;
+            var obiekt =
+                parsowane
+                .SzukajObiektuWLinii(nastepnaMetodaWImplementacji.Poczatek.Wiersz);
+
+            numerLiniiGdzieDodawac = nastepnaMetodaWImplementacji.Poczatek.Wiersz - 1;
+            if (numerLiniiGdzieDodawac <= obiekt.PoczatkowaKlamerka.Wiersz)
+            {
+                numerLiniiGdzieDodawac = obiekt.PoczatkowaKlamerka.Wiersz + 1;
+                wstawianyTekst += new StringBuilder().AppendLine().ToString();
+            }
+
+            return numerLiniiGdzieDodawac;
         }
 
         private string GenerujTekstDoWstawienia(string definicja)
