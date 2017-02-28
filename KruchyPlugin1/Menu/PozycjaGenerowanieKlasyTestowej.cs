@@ -40,7 +40,8 @@ namespace KruchyCompany.KruchyPlugin1.Menu
                 .Generuj(
                     dialog.NazwaKlasy,
                     dialog.Rodzaj,
-                    dialog.InterfejsTestowany);
+                    dialog.InterfejsTestowany,
+                    dialog.Integracyjny);
         }
     }
 }

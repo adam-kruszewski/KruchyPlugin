@@ -20,6 +20,11 @@ namespace KruchyCompany.KruchyPlugin1.Extensions
             return Path.Combine(projekt.SciezkaDoKatalogu, "Unit");
         }
 
+        public static string SciezkaDoIntegrationTests(this ProjektWrapper projekt)
+        {
+            return Path.Combine(projekt.SciezkaDoKatalogu, "Integration");
+        }
+
         public static bool Testowy(this ProjektWrapper projekt)
         {
             return projekt.Nazwa.ToLower().EndsWith(".tests");

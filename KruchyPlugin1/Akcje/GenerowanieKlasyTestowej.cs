@@ -1,11 +1,10 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Windows;
+using KrucheBuilderyKodu.Builders;
 using KruchyCompany.KruchyPlugin1.Extensions;
 using KruchyCompany.KruchyPlugin1.Utils;
-using KrucheBuilderyKodu.Builders;
 
 namespace KruchyCompany.KruchyPlugin1.Akcje
 {
@@ -37,7 +36,8 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
         public void Generuj(
             string nazwaKlasy,
             RodzajKlasyTestowej rodzaj,
-            string interfejsTestowany)
+            string interfejsTestowany,
+            bool integracyjny)
         {
             var aktualnyProjekt = solution.AktualnyPlik.Projekt;
             var nazwaProjektuTestowego =
@@ -51,14 +51,15 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 
             var nazwaPlikuTestow = nazwaKlasy + ".cs";
             var pelnaSciezka = Path.Combine(
-                ProjektTestowy.SciezkaDoUnitTests(),
+                DajSciezkeDoKataloguTestow(integracyjny),
                 nazwaPlikuTestow);
 
             string zawartosc =
                 GenerujZawartosc(
                     nazwaKlasy,
                     rodzaj,
-                    interfejsTestowany);
+                    interfejsTestowany,
+                    integracyjny);
             if (File.Exists(pelnaSciezka))
             {
                 MessageBox.Show("Plik już istnieje " + pelnaSciezka);
@@ -71,15 +72,24 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             new SolutionExplorerWrapper(solution).OtworzPlik(plik);
         }
 
+        private string DajSciezkeDoKataloguTestow(bool integracyjne)
+        {
+            if (integracyjne)
+                return ProjektTestowy.SciezkaDoIntegrationTests();
+            else
+                return ProjektTestowy.SciezkaDoUnitTests();
+        }
+
         private string GenerujZawartosc(
             string nazwaKlasy,
             RodzajKlasyTestowej rodzaj,
-            string interfejsTestowany)
+            string interfejsTestowany,
+            bool integracyjny)
         {
             var atrybutCategory =
                 new AtrybutBuilder()
                 .ZNazwa("Category")
-                .DodajWartoscParametruNieStringowa("TestCategories.Unit");
+                .DodajWartoscParametruNieStringowa(DajKategorie(integracyjny));
             var atrybut =
                 new AtrybutBuilder()
                     .ZNazwa("TestFixture")
@@ -110,13 +120,31 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             var plikBuilder = new PlikClassBuilder();
             plikBuilder
                 .ZObiektem(klasaBuilder)
-                .WNamespace(ProjektTestowy.Nazwa + ".Unit")
+                .WNamespace(ProjektTestowy.Nazwa +
+                    DajFragmentNamespaceDotyczacyRodzajuTestow(integracyjny))
                 .DodajUsing("FluentAssertions")
                 .DodajUsing("NUnit.Framework")
                 .DodajUsing("Pincasso.Core.Tests.Fixtures")
                 .DodajUsing("Piatka.Infrastructure.Tests")
                 .DodajUsing(namespaceTestowanejKlasy);
             return plikBuilder.Build();
+        }
+
+        private static string DajFragmentNamespaceDotyczacyRodzajuTestow(
+            bool integracyjny)
+        {
+            if (integracyjny)
+                return ".Integration";
+            else
+                return ".Unit";
+        }
+
+        private string DajKategorie(bool integracyjny)
+        {
+            if (integracyjny)
+                return "TestCategories.Integration";
+            else
+                return "TestCategories.Unit";
         }
     }
 

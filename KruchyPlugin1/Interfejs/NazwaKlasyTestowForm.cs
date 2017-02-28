@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using KruchyCompany.KruchyPlugin1.Akcje;
 using KruchyCompany.KruchyPlugin1.Extensions;
@@ -18,6 +11,7 @@ namespace KruchyCompany.KruchyPlugin1.Interfejs
         public string NazwaKlasy { get; private set; }
         public RodzajKlasyTestowej Rodzaj { get; private set; }
         public string InterfejsTestowany { get; private set; }
+        public bool Integracyjny { get; set; }
 
         RodzajKlasyTestowej[] rodzaje =
         {
@@ -78,6 +72,7 @@ namespace KruchyCompany.KruchyPlugin1.Interfejs
             NazwaKlasy = tbNazwaKlasyTestowej.Text;
             Rodzaj = (RodzajKlasyTestowej)comboRodzajMigracji.SelectedItem;
             InterfejsTestowany = tbInterfejsTestowany.Text;
+            Integracyjny = checkBoxIntegracyjny.Checked;
             Close();
         }
 
