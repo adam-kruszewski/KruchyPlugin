@@ -43,5 +43,24 @@ namespace KruchyCompany.KruchyPlugin1Tests.ParserTests
         {
             return Path.Combine("..", "..", "ParserTests", "KlasaDoParsowaniaRozszerzone.cs");
         }
+
+        [Test]
+        public void RozpoznajeRefIOut()
+        {
+            //arrange
+            var metoda = parsowane.DefiniowaneObiekty.First().Metody[2];
+
+            //assert
+            metoda.Parametry.Should().HaveCount(2);
+
+            var parametr1 = metoda.Parametry.First();
+            parametr1.ZRef.Should().BeTrue();
+            parametr1.ZOut.Should().BeFalse();
+            parametr1.NazwaParametru.Should().Be("obiekt");
+
+            var parametr2 = metoda.Parametry[1];
+            parametr2.ZOut.Should().BeTrue();
+            parametr2.ZRef.Should().BeFalse();
+        }
     }
 }

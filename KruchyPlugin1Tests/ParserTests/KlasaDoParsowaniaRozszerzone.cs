@@ -7,5 +7,15 @@ namespace KruchyCompany.KruchyPlugin1Tests.ParserTests
         {
             return 0;
         }
+
+        public static void MetodaZParam(int liczba, params string[] tablica)
+        {
+
+        }
+
+        public static void MetodaZRefIOut(ref object obiekt, out decimal d)
+        {
+            d = 1m;
+        }
     }
 }

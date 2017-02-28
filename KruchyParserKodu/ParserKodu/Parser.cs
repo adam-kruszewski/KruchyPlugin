@@ -376,12 +376,25 @@ namespace KruchyParserKodu.ParserKodu
             var wynik = new Parametr();
             wynik.NazwaParametru = param.Name;
             wynik.NazwaTypu = SzukajTypuPola(param.Type);
-            if (param.ParameterModifier == ParameterModifier.This)
-                wynik.ZThisem = true;
+            ObsluzModyfikator(param, wynik);
 
             if (param.DefaultExpression != null)
                 wynik.WartoscDomyslna = ParsujWartosc(param.DefaultExpression);
             return wynik;
+        }
+
+        private static void ObsluzModyfikator(
+            ParameterDeclaration param,
+            Parametr wynik)
+        {
+            if (param.ParameterModifier == ParameterModifier.This)
+                wynik.ZThisem = true;
+            if (param.ParameterModifier == ParameterModifier.Out)
+                wynik.ZOut = true;
+            if (param.ParameterModifier == ParameterModifier.Params)
+                wynik.ZParams = true;
+            if (param.ParameterModifier == ParameterModifier.Ref)
+                wynik.ZRef = true;
         }
 
         private static bool DefinicjaPropertiesa(AstNode wezel)
