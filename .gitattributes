@@ -13,6 +13,7 @@ KrucheBuilderyKodu/KruchyKey.snk -text
 KrucheBuilderyKodu/Properties/AssemblyInfo.cs -text
 KruchyParserKodu/KruchyParserKodu.csproj -text
 KruchyParserKodu/KruchyParserKodu.pfx -text
+KruchyParserKodu/KruchyPlugin.pfx -text
 KruchyParserKodu/ParserKodu/Atrybut.cs -text
 KruchyParserKodu/ParserKodu/IZNawiasamiOtwierajacymiZamykajacymiParametry.cs -text
 KruchyParserKodu/ParserKodu/IZPoczatkowaIKoncowaKlamerka.cs -text
