@@ -86,6 +86,7 @@ KruchyPlugin1/Key.snk -text
 KruchyPlugin1/KonfiguracjaPlugina/Konfiguracja.cs -text
 KruchyPlugin1/KonfiguracjaPlugina/KonfiguracjaUsingow.cs -text
 KruchyPlugin1/KonfiguracjaPlugina/Xml/KruchyPlugin.cs -text
+KruchyPlugin1/KruchyParserKodu.pfx -text
 KruchyPlugin1/KruchyPlugin1.csproj -text
 KruchyPlugin1/KruchyPlugin1.vsct -text
 KruchyPlugin1/KruchyPlugin1Package.cs -text
