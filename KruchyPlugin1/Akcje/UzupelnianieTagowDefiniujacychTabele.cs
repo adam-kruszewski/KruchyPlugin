@@ -62,6 +62,9 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 
         private static string PrzygotujTableDescription(string prefiks)
         {
+            if (prefiks.EndsWith("_"))
+                prefiks = prefiks.Substring(0, prefiks.Length - 1);
+
             var builder =
                 new StringBuilder()
                     .Append("    [TableDescription(\"<NAZWA_TABELI>\", \"")
