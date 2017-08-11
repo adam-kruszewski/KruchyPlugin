@@ -75,9 +75,10 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
                 return false;
 
             var nowaLinia =
-                new StringBuilder().AppendLine().ToString() +
-                string.Format("        [ReferencedObject(\"{0}\")]", nazwaAtrybutu + "ID");
-            dokument.WstawWLinii(nowaLinia, numerLiniiKursora - 1);
+                new StringBuilder()
+                    .AppendLine(string.Format("        [ReferencedObject(\"{0}\")]", nazwaAtrybutu + "ID"))
+                        .ToString();
+            dokument.WstawWLinii(nowaLinia, numerLiniiKursora);
             return true;
         }
 
