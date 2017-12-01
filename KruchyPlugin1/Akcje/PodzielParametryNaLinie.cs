@@ -43,10 +43,19 @@ using KruchyParserKodu.ParserKodu;  namespace KruchyCompany.KruchyPlugin1.Ak
 
         private string DajDefinicjeParametru(Parametr parametr)
         {
-            return
-                parametr.NazwaTypu + " " +
-                parametr.NazwaParametru
-                + DajOpisWartosciDomyslnej(parametr);
+            var builder = new StringBuilder();
+            if (parametr.ZParams)
+                builder.Append("params ");
+            if (parametr.ZOut)
+                builder.Append("out ");
+            if (parametr.ZRef)
+                builder.Append("ref ");
+
+            builder.Append(parametr.NazwaTypu + " ");
+            builder.Append(parametr.NazwaParametru);
+            builder.Append(DajOpisWartosciDomyslnej(parametr));
+
+            return builder.ToString();
         }
 
         private string DajOpisWartosciDomyslnej(Parametr parametr)

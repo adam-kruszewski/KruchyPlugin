@@ -17,7 +17,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 
         public void Dodaj(string nazwaMetody)
         {
-            if (solution.AktualnyPlik == null || !solution.AktualnyPlik.JestBuilderem())
+            if (solution.AktualnyPlik == null || !solution.AktualnyPlik.JestWBuilderze())
                 return;
 
             var dokument = solution.AktualnyDokument;
@@ -27,7 +27,9 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
                 new MetodaBuilder()
                     .DodajModyfikator("public")
                     .ZNazwa(nazwaMetody)
-                    .ZTypemZwracanym(parsowane.DefiniowaneObiekty[0].Nazwa)
+                    .ZTypemZwracanym(
+                        parsowane
+                            .SzukajObiektuWLinii(dokument.DajNumerLiniiKursora()).Nazwa)
                     .DodajLinie("return this;");
 
             var numerLiniiWstawiania = dokument.DajNumerLiniiKursora();

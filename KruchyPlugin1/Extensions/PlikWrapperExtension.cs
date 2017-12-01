@@ -48,6 +48,21 @@ namespace KruchyCompany.KruchyPlugin1.Extensions
             return false;
         }
 
+        public static bool JestWBuilderze(this PlikWrapper aktualny)
+        {
+            var zawartosc = aktualny.Dokument.DajZawartosc();
+            var parsowane = Parser.Parsuj(zawartosc);
+            var obiekt =
+                parsowane.SzukajObiektuWLinii(aktualny.Dokument.DajNumerLiniiKursora());
+            if (obiekt != null)
+            {
+                if (obiekt.Nazwa.EndsWith("Builder")
+                    && obiekt.Rodzaj == RodzajObiektu.Klasa)
+                    return true;
+            }
+            return false;
+        }
+
         public static string SciezkaKataloguControllera(this PlikWrapper plik)
         {
             var parsowane = Parser.Parsuj(plik.Dokument.DajZawartosc());
