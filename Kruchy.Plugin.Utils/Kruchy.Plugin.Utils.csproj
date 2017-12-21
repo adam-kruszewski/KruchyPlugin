@@ -53,6 +53,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\AkcjaExtension.cs" />
+    <Compile Include="Extensions\FileSystemExtension.cs" />
+    <Compile Include="Extensions\PlikWrapperExtension.cs" />
+    <Compile Include="Extensions\ProjektWrapperExtension.cs" />
+    <Compile Include="Extensions\SolutionWrapperExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Wrappers\DokumentWrapper.cs" />
     <Compile Include="Wrappers\FileSystemWrapper.cs" />
