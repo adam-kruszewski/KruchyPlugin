@@ -82,11 +82,6 @@ KruchyPlugin1/Akcje/WstawianieNazwyControlleraDoSchowka.cs -text
 KruchyPlugin1/Akcje/WynikGenerowaniaKlasService.cs -text
 KruchyPlugin1/Akcje/ZmianaModyfikatoraMetody.cs -text
 KruchyPlugin1/DoZrobienia.txt -text
-KruchyPlugin1/Extensions/AkcjaExtension.cs -text
-KruchyPlugin1/Extensions/FileSystemExtension.cs -text
-KruchyPlugin1/Extensions/PlikWrapperExtension.cs -text
-KruchyPlugin1/Extensions/ProjektWrapperExtension.cs -text
-KruchyPlugin1/Extensions/SolutionWrapperExtension.cs -text
 KruchyPlugin1/GlobalSuppressions.cs -text
 KruchyPlugin1/Guids.cs -text
 KruchyPlugin1/Interfejs/NazwaKlasyTestowForm.Designer.cs -text

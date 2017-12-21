@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
+using Kruchy.Plugin.Utils.Extensions;
 using Kruchy.Plugin.Utils.Wrappers;
 using KruchyCompany.KruchyPlugin1.Akcje;
-using KruchyCompany.KruchyPlugin1.Extensions;
 
 namespace KruchyCompany.KruchyPlugin1.Interfejs
 {

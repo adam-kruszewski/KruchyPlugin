@@ -1,6 +1,6 @@
 ﻿using KrucheBuilderyKodu.Builders;
+using Kruchy.Plugin.Utils.Extensions;
 using Kruchy.Plugin.Utils.Wrappers;
-using KruchyCompany.KruchyPlugin1.Extensions;
 using KruchyParserKodu.ParserKodu;
 
 namespace KruchyCompany.KruchyPlugin1.Akcje
