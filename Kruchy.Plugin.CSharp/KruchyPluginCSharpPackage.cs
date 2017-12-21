@@ -42,6 +42,7 @@ namespace Kruchy.Plugin.CSharp
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "pkgdef, VS and vsixmanifest are valid VS terms")]
     //ręcznie dodane atrybuty
     [ProvideAutoLoad("{f1536ef8-92ec-443c-9ed7-fdadf150da82}")]
+    [ProvideToolWindow(typeof(Kruchy.Plugin.CSharp.KruchyToolWindow))]
     public sealed class KruchyPluginCSharpPackage : Package
     {
         /// <summary>
@@ -70,6 +71,7 @@ namespace Kruchy.Plugin.CSharp
         {
             base.Initialize();
             FirstCommand.Initialize(this);
+            Kruchy.Plugin.CSharp.KruchyToolWindowCommand.Initialize(this);
         }
 
         #endregion
