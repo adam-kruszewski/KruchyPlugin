@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using EnvDTE80;
+using Kruchy.Plugin.Utils.Menu;
 using Kruchy.Plugin.Utils.Wrappers;
 using KruchyCompany.KruchyPlugin1.Akcje;
 

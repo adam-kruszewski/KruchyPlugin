@@ -17,6 +17,8 @@ Kruchy.Plugin.Utils/Extensions/PlikWrapperExtension.cs -text
 Kruchy.Plugin.Utils/Extensions/ProjektWrapperExtension.cs -text
 Kruchy.Plugin.Utils/Extensions/SolutionWrapperExtension.cs -text
 Kruchy.Plugin.Utils/Kruchy.Plugin.Utils.csproj -text
+Kruchy.Plugin.Utils/Menu/PozycjaMenu.cs -text
+Kruchy.Plugin.Utils/Menu/WymaganieDostepnosci.cs -text
 Kruchy.Plugin.Utils/Properties/AssemblyInfo.cs -text
 Kruchy.Plugin.Utils/Wrappers/DokumentWrapper.cs -text
 Kruchy.Plugin.Utils/Wrappers/FileSystemWrapper.cs -text
@@ -115,7 +117,6 @@ KruchyPlugin1/Menu/PozycjaIdzDoKlasyTestowej.cs -text
 KruchyPlugin1/Menu/PozycjaIdzDoPlikuWidoku.cs -text
 KruchyPlugin1/Menu/PozycjaIdzMiedzyInterfejsemAImplementacja.cs -text
 KruchyPlugin1/Menu/PozycjaInicjowaniePolaWKonstruktorze.cs -text
-KruchyPlugin1/Menu/PozycjaMenu.cs -text
 KruchyPlugin1/Menu/PozycjaPodzielParametryNaLinie.cs -text
 KruchyPlugin1/Menu/PozycjaPokazywanieZawartosciZShared.cs -text
 KruchyPlugin1/Menu/PozycjaUzupelnianieKontruktora.cs -text
@@ -125,7 +126,6 @@ KruchyPlugin1/Menu/PozycjaUzupelnianieTagowDefiniujacychTabele.cs -text
 KruchyPlugin1/Menu/PozycjaWstawianieNazwyControlleraDoSchowka.cs -text
 KruchyPlugin1/Menu/PozycjaZmienNaPrivate.cs -text
 KruchyPlugin1/Menu/PozycjaZmienNaPublic.cs -text
-KruchyPlugin1/Menu/WymaganieDostepnosci.cs -text
 KruchyPlugin1/MyControl.xaml -text
 KruchyPlugin1/MyControl.xaml.cs -text
 KruchyPlugin1/MyToolWindow.cs -text

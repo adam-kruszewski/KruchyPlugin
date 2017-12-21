@@ -226,7 +226,6 @@
     <Compile Include="Menu\PozycjaIdzDoPlikuWidoku.cs" />
     <Compile Include="Menu\PozycjaIdzMiedzyInterfejsemAImplementacja.cs" />
     <Compile Include="Menu\PozycjaInicjowaniePolaWKonstruktorze.cs" />
-    <Compile Include="Menu\PozycjaMenu.cs" />
     <Compile Include="Menu\PozycjaPodzielParametryNaLinie.cs" />
     <Compile Include="Menu\PozycjaPokazywanieZawartosciZShared.cs" />
     <Compile Include="Menu\PozycjaUzupelnianieKontruktora.cs" />
@@ -236,7 +235,6 @@
     <Compile Include="Menu\PozycjaWstawianieNazwyControlleraDoSchowka.cs" />
     <Compile Include="Menu\PozycjaZmienNaPrivate.cs" />
     <Compile Include="Menu\PozycjaZmienNaPublic.cs" />
-    <Compile Include="Menu\WymaganieDostepnosci.cs" />
     <Compile Include="MyControl.xaml.cs">
       <DependentUpon>MyControl.xaml</DependentUpon>
     </Compile>

@@ -7,10 +7,12 @@ using Kruchy.Plugin.Utils.Wrappers;
 using KruchyParserKodu.ParserKodu;
 using Microsoft.VisualStudio.Shell;
 
-namespace KruchyCompany.KruchyPlugin1.Menu
+namespace Kruchy.Plugin.Utils.Menu
 {
-    abstract class PozycjaMenu
+    public abstract class PozycjaMenu
     {
+        public static Guid guidKruchyPluginCmdSetStatic;
+
         protected readonly SolutionWrapper solution;
         abstract protected uint MenuCommandID { get; }
         protected virtual IEnumerable<WymaganieDostepnosci> Wymagania
@@ -30,10 +32,13 @@ namespace KruchyCompany.KruchyPlugin1.Menu
 
         public void Podlacz(OleMenuCommandService service)
         {
+            Podlacz(service, guidKruchyPluginCmdSetStatic);
+        }
+
+        public void Podlacz(OleMenuCommandService service, Guid guidKruchyPluginCmdSet)
+        {
             var menuCommandID =
-                new CommandID(
-                    GuidList.guidKruchyPlugin1CmdSet,
-                    (int)MenuCommandID);
+                new CommandID(guidKruchyPluginCmdSet,(int)MenuCommandID);
             MenuItem = new OleMenuCommand(Execute, menuCommandID);
             MenuItem.BeforeQueryStatus += BeforeQueryStatus;
             service.AddCommand(MenuItem);

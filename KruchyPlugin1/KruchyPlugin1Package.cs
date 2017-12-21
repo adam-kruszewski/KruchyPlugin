@@ -6,6 +6,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using EnvDTE;
 using EnvDTE80;
+using Kruchy.Plugin.Utils.Menu;
 using Kruchy.Plugin.Utils.Wrappers;
 using KruchyCompany.KruchyPlugin1.Menu;
 using Microsoft.VisualStudio.Shell;
@@ -90,6 +91,8 @@ namespace KruchyCompany.KruchyPlugin1
 
             if (null != mcs)
             {
+                PozycjaMenu.guidKruchyPluginCmdSetStatic = GuidList.guidKruchyPlugin1CmdSet;
+
                 // Create the command for the menu item.
                 CommandID menuCommandID =
                     new CommandID(

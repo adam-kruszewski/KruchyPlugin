@@ -1,7 +1,7 @@
 ﻿
-namespace KruchyCompany.KruchyPlugin1.Menu
+namespace Kruchy.Plugin.Utils.Menu
 {
-    enum WymaganieDostepnosci
+    public enum WymaganieDostepnosci
     {
         DomainObject,
         Projekt,
