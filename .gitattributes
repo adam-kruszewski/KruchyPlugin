@@ -11,6 +11,14 @@ KrucheBuilderyKodu/Builders/StaleDlaKodu.cs -text
 KrucheBuilderyKodu/KrucheBuilderyKodu.csproj -text
 KrucheBuilderyKodu/KruchyKey.snk -text
 KrucheBuilderyKodu/Properties/AssemblyInfo.cs -text
+Kruchy.Plugin.Utils/Kruchy.Plugin.Utils.csproj -text
+Kruchy.Plugin.Utils/Properties/AssemblyInfo.cs -text
+Kruchy.Plugin.Utils/Wrappers/DokumentWrapper.cs -text
+Kruchy.Plugin.Utils/Wrappers/FileSystemWrapper.cs -text
+Kruchy.Plugin.Utils/Wrappers/PlikWrapper.cs -text
+Kruchy.Plugin.Utils/Wrappers/ProjektWrapper.cs -text
+Kruchy.Plugin.Utils/Wrappers/SolutionExplorerWrapper.cs -text
+Kruchy.Plugin.Utils/Wrappers/SolutionWrapper.cs -text
 KruchyParserKodu/KruchyParserKodu.csproj -text
 KruchyParserKodu/KruchyParserKodu.pfx -text
 KruchyParserKodu/KruchyPlugin.pfx -text

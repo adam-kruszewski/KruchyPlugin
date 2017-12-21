@@ -8,6 +8,16 @@ KrucheBuilderyKodu/[Dd]ebug
 KrucheBuilderyKodu/[Rr]elease
 KrucheBuilderyKodu/_Pvt_Extensions
 KrucheBuilderyKodu/obj
+Kruchy.Plugin.Utils/*.aps
+Kruchy.Plugin.Utils/*.eto
+Kruchy.Plugin.Utils/*.user
+Kruchy.Plugin.Utils/ClientBin
+Kruchy.Plugin.Utils/GeneratedArtifacts
+Kruchy.Plugin.Utils/[Bb]in
+Kruchy.Plugin.Utils/[Dd]ebug
+Kruchy.Plugin.Utils/[Rr]elease
+Kruchy.Plugin.Utils/_Pvt_Extensions
+Kruchy.Plugin.Utils/obj
 KruchyParserKodu/*.aps
 KruchyParserKodu/*.eto
 KruchyParserKodu/*.user

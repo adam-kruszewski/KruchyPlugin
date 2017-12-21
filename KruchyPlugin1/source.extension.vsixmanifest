@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
-    <Identity Id="63471d1f-5b0f-4928-a0e3-1645e2c050a6" Version="1.20" Language="en-US" Publisher="Adam Kruszewski" />
+    <Identity Id="63471d1f-5b0f-4928-a0e3-1645e2c050a6" Version="1.21" Language="en-US" Publisher="Adam Kruszewski" />
     <DisplayName>KruchyPlugin1</DisplayName>
     <Description xml:space="preserve">Wtyczka wspomagająca mechaniczne czynności</Description>
   </Metadata>
