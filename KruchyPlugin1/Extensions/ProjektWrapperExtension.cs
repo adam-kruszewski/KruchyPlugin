@@ -1,5 +1,5 @@
 ﻿using System.IO;
-using KruchyCompany.KruchyPlugin1.Utils;
+using Kruchy.Plugin.Utils.Wrappers;
 
 namespace KruchyCompany.KruchyPlugin1.Extensions
 {

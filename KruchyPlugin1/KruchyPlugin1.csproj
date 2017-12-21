@@ -257,12 +257,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PkgCmdID.cs" />
     <Compile Include="Testowo\TestowyWizard.cs" />
-    <Compile Include="Utils\DokumentWrapper.cs" />
-    <Compile Include="Utils\FileSystemWrapper.cs" />
-    <Compile Include="Utils\PlikWrapper.cs" />
-    <Compile Include="Utils\ProjektWrapper.cs" />
-    <Compile Include="Utils\SolutionExplorerWrapper.cs" />
-    <Compile Include="Utils\SolutionWrapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Akcje\DodawanieMapowanElementy\WyborMapowanForm.resx">

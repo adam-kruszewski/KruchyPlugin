@@ -136,12 +136,6 @@ KruchyPlugin1/Resources.resx -text
 KruchyPlugin1/Resources/Images.png -text
 KruchyPlugin1/Resources/Package.ico -text
 KruchyPlugin1/Testowo/TestowyWizard.cs -text
-KruchyPlugin1/Utils/DokumentWrapper.cs -text
-KruchyPlugin1/Utils/FileSystemWrapper.cs -text
-KruchyPlugin1/Utils/PlikWrapper.cs -text
-KruchyPlugin1/Utils/ProjektWrapper.cs -text
-KruchyPlugin1/Utils/SolutionExplorerWrapper.cs -text
-KruchyPlugin1/Utils/SolutionWrapper.cs -text
 KruchyPlugin1/VSPackage.resx -text
 KruchyPlugin1/packages.config -text
 KruchyPlugin1/source.extension.vsixmanifest -text

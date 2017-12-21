@@ -6,9 +6,10 @@ using EnvDTE;
 
 namespace Kruchy.Plugin.Utils.Wrappers
 {
-    class SolutionExplorerWrapper
+    public class SolutionExplorerWrapper
     {
         private readonly SolutionWrapper solution;
+
         private UIHierarchy SolutionExplorer
         {
             get

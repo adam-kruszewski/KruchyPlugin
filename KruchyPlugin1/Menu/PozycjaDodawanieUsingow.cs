@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Kruchy.Plugin.Utils.Wrappers;
 using KruchyCompany.KruchyPlugin1.Akcje;
 using KruchyCompany.KruchyPlugin1.KonfiguracjaPlugina;
-using KruchyCompany.KruchyPlugin1.Utils;
 using KruchyParserKodu.ParserKodu;
 
 namespace KruchyCompany.KruchyPlugin1.Menu

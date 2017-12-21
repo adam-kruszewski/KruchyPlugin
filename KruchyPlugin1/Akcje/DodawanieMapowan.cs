@@ -4,15 +4,15 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using KrucheBuilderyKodu.Builders;
+using Kruchy.Plugin.Utils.Wrappers;
 using KruchyCompany.KruchyPlugin1.Akcje.DodawanieMapowanElementy;
-using KruchyCompany.KruchyPlugin1.Utils;
 using KruchyParserKodu.ParserKodu;
 
 namespace KruchyCompany.KruchyPlugin1.Akcje
 {
     class DodawanieMapowan
     {
-        private readonly SolutionWrapper solution;
+        private readonly Kruchy.Plugin.Utils.Wrappers.SolutionWrapper solution;
         private string[] nazwyAtrybutow = { "Map", "MapFrom", "MapTo" };
 
         public DodawanieMapowan(
@@ -150,7 +150,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
         }
 
         private IEnumerable<string> DajPlikiDomainZProjektu(
-            ProjektWrapper projekt)
+            Kruchy.Plugin.Utils.Wrappers.ProjektWrapper projekt)
         {
             var plikiProjektu = projekt.Pliki;
             var sciezkaDoKataloguDomain =

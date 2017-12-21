@@ -3,7 +3,7 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using KrucheBuilderyKodu.Builders;
-using KruchyCompany.KruchyPlugin1.Utils;
+using Kruchy.Plugin.Utils.Wrappers;
 using KruchyParserKodu.ParserKodu;
 
 namespace KruchyCompany.KruchyPlugin1.Akcje

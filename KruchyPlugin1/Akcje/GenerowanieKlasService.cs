@@ -2,9 +2,9 @@
 using System.IO;
 using System.Text;
 using System.Windows;
-using KruchyCompany.KruchyPlugin1.Extensions;
-using KruchyCompany.KruchyPlugin1.Utils;
 using KrucheBuilderyKodu.Builders;
+using Kruchy.Plugin.Utils.Wrappers;
+using KruchyCompany.KruchyPlugin1.Extensions;
 
 namespace KruchyCompany.KruchyPlugin1.Akcje
 {

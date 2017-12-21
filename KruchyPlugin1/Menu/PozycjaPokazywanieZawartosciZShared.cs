@@ -1,8 +1,7 @@
-﻿using KruchyCompany.KruchyPlugin1.Akcje;
-using KruchyCompany.KruchyPlugin1.Utils;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Windows;
+using Kruchy.Plugin.Utils.Wrappers;
+using KruchyCompany.KruchyPlugin1.Akcje;
 
 namespace KruchyCompany.KruchyPlugin1.Menu
 {

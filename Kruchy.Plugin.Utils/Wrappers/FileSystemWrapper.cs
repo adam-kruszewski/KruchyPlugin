@@ -2,7 +2,7 @@
 
 namespace Kruchy.Plugin.Utils.Wrappers
 {
-    class FileSystemWrapper
+    public class FileSystemWrapper
     {
         public static void UtworzKatalogDlaSciezkiJesliTrzeba(string sciezka)
         {

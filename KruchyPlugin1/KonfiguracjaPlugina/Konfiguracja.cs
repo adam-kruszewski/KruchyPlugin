@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Xml.Serialization;
+using Kruchy.Plugin.Utils.Wrappers;
 using KruchyCompany.KruchyPlugin1.KonfiguracjaPlugina.Xml;
-using KruchyCompany.KruchyPlugin1.Utils;
 
 namespace KruchyCompany.KruchyPlugin1.KonfiguracjaPlugina
 {

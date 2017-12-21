@@ -2,7 +2,7 @@
 using System.Text;
 using System.Windows;
 using EnvDTE;
-using KruchyCompany.KruchyPlugin1.Utils;
+using Kruchy.Plugin.Utils.Wrappers;
 using KruchyParserKodu.ParserKodu;
 
 namespace KruchyCompany.KruchyPlugin1.Akcje

@@ -6,8 +6,8 @@ using System.Runtime.InteropServices;
 using System.Text;
 using EnvDTE;
 using EnvDTE80;
+using Kruchy.Plugin.Utils.Wrappers;
 using KruchyCompany.KruchyPlugin1.Menu;
-using KruchyCompany.KruchyPlugin1.Utils;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 
