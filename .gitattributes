@@ -1,4 +1,6 @@
 * text=auto !eol
+Kruche.Pluginy.Nowe/Kruche.Pluginy.Nowe.sln -text
+Kruche.Pluginy.Nowe/Kruche.Pluginy.Nowe.v3.ncrunchsolution.user -text
 KrucheBuilderyKodu/Builders/AtrybutBuilder.cs -text
 KrucheBuilderyKodu/Builders/ClassBuilder.cs -text
 KrucheBuilderyKodu/Builders/ICodeBuilder.cs -text

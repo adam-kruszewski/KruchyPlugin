@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KruchyParserKodu", "..\KruchyParserKodu\KruchyParserKodu.csproj", "{FB1229FB-FE17-419F-BCAD-FAD9875EC78C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kruchy.Plugin.Utils", "..\Kruchy.Plugin.Utils\Kruchy.Plugin.Utils.csproj", "{33505630-BFE6-414F-82A2-EE9086DAEB83}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KrucheBuilderyKodu", "..\KrucheBuilderyKodu\KrucheBuilderyKodu.csproj", "{0C5748A8-7D43-444C-90AD-3DBE02DCABAB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kruchy.Plugin.CSharp", "..\Kruchy.Plugin.CSharp\Kruchy.Plugin.CSharp.csproj", "{3C998FAC-12A7-4A55-9B0E-16D2A7039CB4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FB1229FB-FE17-419F-BCAD-FAD9875EC78C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB1229FB-FE17-419F-BCAD-FAD9875EC78C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB1229FB-FE17-419F-BCAD-FAD9875EC78C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{FB1229FB-FE17-419F-BCAD-FAD9875EC78C}.Debug|x64.Build.0 = Debug|Any CPU
+		{FB1229FB-FE17-419F-BCAD-FAD9875EC78C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB1229FB-FE17-419F-BCAD-FAD9875EC78C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB1229FB-FE17-419F-BCAD-FAD9875EC78C}.Release|x64.ActiveCfg = Release|Any CPU
+		{FB1229FB-FE17-419F-BCAD-FAD9875EC78C}.Release|x64.Build.0 = Release|Any CPU
+		{33505630-BFE6-414F-82A2-EE9086DAEB83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33505630-BFE6-414F-82A2-EE9086DAEB83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33505630-BFE6-414F-82A2-EE9086DAEB83}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{33505630-BFE6-414F-82A2-EE9086DAEB83}.Debug|x64.Build.0 = Debug|Any CPU
+		{33505630-BFE6-414F-82A2-EE9086DAEB83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33505630-BFE6-414F-82A2-EE9086DAEB83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33505630-BFE6-414F-82A2-EE9086DAEB83}.Release|x64.ActiveCfg = Release|Any CPU
+		{33505630-BFE6-414F-82A2-EE9086DAEB83}.Release|x64.Build.0 = Release|Any CPU
+		{0C5748A8-7D43-444C-90AD-3DBE02DCABAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C5748A8-7D43-444C-90AD-3DBE02DCABAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C5748A8-7D43-444C-90AD-3DBE02DCABAB}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{0C5748A8-7D43-444C-90AD-3DBE02DCABAB}.Debug|x64.Build.0 = Debug|Any CPU
+		{0C5748A8-7D43-444C-90AD-3DBE02DCABAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C5748A8-7D43-444C-90AD-3DBE02DCABAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C5748A8-7D43-444C-90AD-3DBE02DCABAB}.Release|x64.ActiveCfg = Release|Any CPU
+		{0C5748A8-7D43-444C-90AD-3DBE02DCABAB}.Release|x64.Build.0 = Release|Any CPU
+		{3C998FAC-12A7-4A55-9B0E-16D2A7039CB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C998FAC-12A7-4A55-9B0E-16D2A7039CB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C998FAC-12A7-4A55-9B0E-16D2A7039CB4}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{3C998FAC-12A7-4A55-9B0E-16D2A7039CB4}.Debug|x64.Build.0 = Debug|Any CPU
+		{3C998FAC-12A7-4A55-9B0E-16D2A7039CB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C998FAC-12A7-4A55-9B0E-16D2A7039CB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C998FAC-12A7-4A55-9B0E-16D2A7039CB4}.Release|x64.ActiveCfg = Release|Any CPU
+		{3C998FAC-12A7-4A55-9B0E-16D2A7039CB4}.Release|x64.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
