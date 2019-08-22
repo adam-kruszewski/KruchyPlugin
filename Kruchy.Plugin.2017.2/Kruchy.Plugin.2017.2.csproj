@@ -20,11 +20,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectTypeGuids>{82b43b9b-a64c-4715-b499-d71e9ca2bd60};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <ProjectGuid>{4B7B0F51-2765-4BC1-97C1-DB4C9E05F8E5}</ProjectGuid>
+    <ProjectGuid>{229988C2-6844-4294-B561-0EC1D47D50DE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>KruchyCompany.KruchyPlugin1</RootNamespace>
-    <AssemblyName>Kruchy.Plugin.2017</AssemblyName>
+    <AssemblyName>Kruchy.Plugin.2017.2</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <GeneratePkgDefFile>true</GeneratePkgDefFile>
     <IncludeAssemblyInVSIXContainer>true</IncludeAssemblyInVSIXContainer>
@@ -54,84 +54,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Akcje\DodawanieMapowan.cs" />
-    <Compile Include="Akcje\DodawanieMapowanElementy\MapowanieNode.cs" />
-    <Compile Include="Akcje\DodawanieMapowanElementy\MapowanyProperty.cs" />
-    <Compile Include="Akcje\DodawanieMapowanElementy\WyborMapowanForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Akcje\DodawanieMapowanElementy\WyborMapowanForm.Designer.cs">
-      <DependentUpon>WyborMapowanForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Akcje\DodawanieNowejMetodyWBuilderze.cs" />
-    <Compile Include="Akcje\DodawanieUprawnienDomyslnych.cs" />
-    <Compile Include="Akcje\DodawaniaUsinga.cs" />
-    <Compile Include="Akcje\DodawanieNowegoTestu.cs" />
-    <Compile Include="Akcje\DodawanieUsingDbContext.cs" />
-    <Compile Include="Akcje\GenerowanieKlasService.cs" />
-    <Compile Include="Akcje\GenerowanieKlasyTestowej.cs" />
-    <Compile Include="Akcje\GenerowanieKlasyWalidatora.cs" />
-    <Compile Include="Akcje\GenerowanieWidoku.cs" />
-    <Compile Include="Akcje\IdzDoKataloguControllera.cs" />
-    <Compile Include="Akcje\IdzDoKlasyTestowej.cs" />
-    <Compile Include="Akcje\IdzDoPlikuWidoku.cs" />
-    <Compile Include="Akcje\IdzMiedzyInterfejsemAImplementacja.cs" />
-    <Compile Include="Akcje\InicjowaniePolaWKonstruktorze.cs" />
-    <Compile Include="Akcje\PodzielParametryNaLinie.cs" />
-    <Compile Include="Akcje\PokazywaniaZawartosciZShared.cs" />
-    <Compile Include="Akcje\RodzajKlasyTestowej.cs" />
-    <Compile Include="Akcje\UzupelnianieKontruktora.cs" />
-    <Compile Include="Akcje\UzupelnianieMetodWImplementacji.cs" />
-    <Compile Include="Akcje\UzupelnianieReferencedObject.cs" />
-    <Compile Include="Akcje\UzupelnianieTagowDefiniujacychTabele.cs" />
-    <Compile Include="Akcje\WstawianieNazwyControlleraDoSchowka.cs" />
-    <Compile Include="Akcje\WynikGenerowaniaKlasService.cs" />
-    <Compile Include="Akcje\ZmianaModyfikatoraMetody.cs" />
-    <Compile Include="Interfejs\NazwaKlasyTestowForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Interfejs\NazwaKlasyTestowForm.Designer.cs">
-      <DependentUpon>NazwaKlasyTestowForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Interfejs\NazwaKlasyWindow.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Interfejs\NazwaKlasyWindow.Designer.cs">
-      <DependentUpon>NazwaKlasyWindow.cs</DependentUpon>
-    </Compile>
-    <Compile Include="KonfiguracjaPlugina\Konfiguracja.cs" />
-    <Compile Include="KonfiguracjaPlugina\KonfiguracjaUsingow.cs" />
-    <Compile Include="KonfiguracjaPlugina\Xml\KruchyPlugin.cs" />
-    <Compile Include="Menu\PozycjaDodawanieMapowan.cs" />
-    <Compile Include="Menu\PozycjaDodawanieNowegoTestu.cs" />
-    <Compile Include="Menu\PozycjaDodawanieNowejMetodyWBuilderze.cs" />
-    <Compile Include="Menu\PozycjaDodawanieUprawnienDomyslnych.cs" />
-    <Compile Include="Menu\PozycjaDodawanieUsingDbContext.cs" />
-    <Compile Include="Menu\PozycjaDodawanieUsingow.cs" />
-    <Compile Include="Menu\PozycjaGenerowanieKlasService.cs" />
-    <Compile Include="Menu\PozycjaGenerowanieKlasyTestowej.cs" />
-    <Compile Include="Menu\PozycjaGenerowanieKlasyWalidatora.cs" />
-    <Compile Include="Menu\PozycjaGenerowanieWidoku.cs" />
-    <Compile Include="Menu\PozycjaIdzDoGridRowActions.cs" />
-    <Compile Include="Menu\PozycjaIdzDoGridToolbar.cs" />
-    <Compile Include="Menu\PozycjaIdzDoKataloguControllera.cs" />
-    <Compile Include="Menu\PozycjaIdzDoKlasyTestowej.cs" />
-    <Compile Include="Menu\PozycjaIdzDoPlikuWidoku.cs" />
-    <Compile Include="Menu\PozycjaIdzMiedzyInterfejsemAImplementacja.cs" />
-    <Compile Include="Menu\PozycjaInicjowaniePolaWKonstruktorze.cs" />
-    <Compile Include="Menu\PozycjaPodzielParametryNaLinie.cs" />
-    <Compile Include="Menu\PozycjaPokazywanieZawartosciZShared.cs" />
-    <Compile Include="Menu\PozycjaUzupelnianieKontruktora.cs" />
-    <Compile Include="Menu\PozycjaUzupelnianieMetodWImplementacji.cs" />
-    <Compile Include="Menu\PozycjaUzupelnianieReferencedObject.cs" />
-    <Compile Include="Menu\PozycjaUzupelnianieTagowDefiniujacychTabele.cs" />
-    <Compile Include="Menu\PozycjaWstawianieNazwyControlleraDoSchowka.cs" />
-    <Compile Include="Menu\PozycjaZmienNaPrivate.cs" />
-    <Compile Include="Menu\PozycjaZmienNaPublic.cs" />
-    <Compile Include="Guids.cs" />
     <Compile Include="Command1.cs" />
     <Compile Include="Command1Package.cs" />
-    <Compile Include="PkgCmdID.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -233,7 +157,6 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -263,21 +186,21 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets" Condition="'$(VSToolsPath)' != ''" />
-  <Import Project="..\packages\Microsoft.VisualStudio.SDK.EmbedInteropTypes.15.0.10\build\Microsoft.VisualStudio.SDK.EmbedInteropTypes.targets" Condition="Exists('..\packages\Microsoft.VisualStudio.SDK.EmbedInteropTypes.15.0.10\build\Microsoft.VisualStudio.SDK.EmbedInteropTypes.targets')" />
+  <Import Project="..\..\..\..\lib\Kruche.Narzedzia\Kruchy.Plugin.2017\Microsoft.VisualStudio.SDK.EmbedInteropTypes.15.0.10\build\Microsoft.VisualStudio.SDK.EmbedInteropTypes.targets" Condition="Exists('..\..\..\..\lib\Kruche.Narzedzia\Kruchy.Plugin.2017\Microsoft.VisualStudio.SDK.EmbedInteropTypes.15.0.10\build\Microsoft.VisualStudio.SDK.EmbedInteropTypes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Microsoft.VisualStudio.SDK.EmbedInteropTypes.15.0.10\build\Microsoft.VisualStudio.SDK.EmbedInteropTypes.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.VisualStudio.SDK.EmbedInteropTypes.15.0.10\build\Microsoft.VisualStudio.SDK.EmbedInteropTypes.targets'))" />
-    <Error Condition="!Exists('..\packages\Microsoft.VisualStudio.SDK.Analyzers.15.8.33\build\Microsoft.VisualStudio.SDK.Analyzers.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.VisualStudio.SDK.Analyzers.15.8.33\build\Microsoft.VisualStudio.SDK.Analyzers.targets'))" />
-    <Error Condition="!Exists('..\packages\Microsoft.VisualStudio.Threading.Analyzers.15.8.122\build\Microsoft.VisualStudio.Threading.Analyzers.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.VisualStudio.Threading.Analyzers.15.8.122\build\Microsoft.VisualStudio.Threading.Analyzers.targets'))" />
-    <Error Condition="!Exists('..\..\..\..\lib\Kruche.Narzedzia\Kruchy.Plugin.2017\\Microsoft.VSSDK.BuildTools.15.9.3043\build\Microsoft.VSSDK.BuildTools.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\..\lib\Kruche.Narzedzia\Kruchy.Plugin.2017\Microsoft.VSSDK.BuildTools.15.9.3043\build\Microsoft.VSSDK.BuildTools.props'))" />
-    <Error Condition="!Exists('..\..\..\..\lib\Kruche.Narzedzia\Kruchy.Plugin.2017\\Microsoft.VSSDK.BuildTools.15.9.3043\build\Microsoft.VSSDK.BuildTools.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\..\lib\Kruche.Narzedzia\Kruchy.Plugin.2017\Microsoft.VSSDK.BuildTools.15.9.3043\build\Microsoft.VSSDK.BuildTools.targets'))" />
+    <Error Condition="!Exists('..\..\..\..\lib\Kruche.Narzedzia\Kruchy.Plugin.2017\Microsoft.VisualStudio.SDK.EmbedInteropTypes.15.0.10\build\Microsoft.VisualStudio.SDK.EmbedInteropTypes.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\..\lib\Kruche.Narzedzia\Kruchy.Plugin.2017\Microsoft.VisualStudio.SDK.EmbedInteropTypes.15.0.10\build\Microsoft.VisualStudio.SDK.EmbedInteropTypes.targets'))" />
+    <Error Condition="!Exists('..\..\..\..\lib\Kruche.Narzedzia\Kruchy.Plugin.2017\Microsoft.VSSDK.BuildTools.15.9.3043\build\Microsoft.VSSDK.BuildTools.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\..\lib\Kruche.Narzedzia\Kruchy.Plugin.2017\Microsoft.VSSDK.BuildTools.15.9.3043\build\Microsoft.VSSDK.BuildTools.props'))" />
+    <Error Condition="!Exists('..\..\..\..\lib\Kruche.Narzedzia\Kruchy.Plugin.2017\Microsoft.VSSDK.BuildTools.15.9.3043\build\Microsoft.VSSDK.BuildTools.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\..\lib\Kruche.Narzedzia\Kruchy.Plugin.2017\Microsoft.VSSDK.BuildTools.15.9.3043\build\Microsoft.VSSDK.BuildTools.targets'))" />
+    <Error Condition="!Exists('..\..\..\..\lib\Kruche.Narzedzia\Kruchy.Plugin.2017\Microsoft.VisualStudio.SDK.Analyzers.15.8.33\build\Microsoft.VisualStudio.SDK.Analyzers.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\..\lib\Kruche.Narzedzia\Kruchy.Plugin.2017\Microsoft.VisualStudio.SDK.Analyzers.15.8.33\build\Microsoft.VisualStudio.SDK.Analyzers.targets'))" />
+    <Error Condition="!Exists('..\..\..\..\lib\Kruche.Narzedzia\Kruchy.Plugin.2017\Microsoft.VisualStudio.Threading.Analyzers.15.8.122\build\Microsoft.VisualStudio.Threading.Analyzers.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\..\lib\Kruche.Narzedzia\Kruchy.Plugin.2017\Microsoft.VisualStudio.Threading.Analyzers.15.8.122\build\Microsoft.VisualStudio.Threading.Analyzers.targets'))" />
   </Target>
-  <Import Project="..\packages\Microsoft.VisualStudio.SDK.Analyzers.15.8.33\build\Microsoft.VisualStudio.SDK.Analyzers.targets" Condition="Exists('..\packages\Microsoft.VisualStudio.SDK.Analyzers.15.8.33\build\Microsoft.VisualStudio.SDK.Analyzers.targets')" />
-  <Import Project="..\packages\Microsoft.VisualStudio.Threading.Analyzers.15.8.122\build\Microsoft.VisualStudio.Threading.Analyzers.targets" Condition="Exists('..\packages\Microsoft.VisualStudio.Threading.Analyzers.15.8.122\build\Microsoft.VisualStudio.Threading.Analyzers.targets')" />
   <Import Project="..\..\..\..\lib\Kruche.Narzedzia\Kruchy.Plugin.2017\Microsoft.VSSDK.BuildTools.15.9.3043\build\Microsoft.VSSDK.BuildTools.targets" Condition="Exists('..\..\..\..\lib\Kruche.Narzedzia\Kruchy.Plugin.2017\Microsoft.VSSDK.BuildTools.15.9.3043\build\Microsoft.VSSDK.BuildTools.targets')" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+  <Import Project="..\..\..\..\lib\Kruche.Narzedzia\Kruchy.Plugin.2017\Microsoft.VisualStudio.SDK.Analyzers.15.8.33\build\Microsoft.VisualStudio.SDK.Analyzers.targets" Condition="Exists('..\..\..\..\lib\Kruche.Narzedzia\Kruchy.Plugin.2017\Microsoft.VisualStudio.SDK.Analyzers.15.8.33\build\Microsoft.VisualStudio.SDK.Analyzers.targets')" />
+  <Import Project="..\..\..\..\lib\Kruche.Narzedzia\Kruchy.Plugin.2017\Microsoft.VisualStudio.Threading.Analyzers.15.8.122\build\Microsoft.VisualStudio.Threading.Analyzers.targets" Condition="Exists('..\..\..\..\lib\Kruche.Narzedzia\Kruchy.Plugin.2017\Microsoft.VisualStudio.Threading.Analyzers.15.8.122\build\Microsoft.VisualStudio.Threading.Analyzers.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
