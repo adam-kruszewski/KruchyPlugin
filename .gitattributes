@@ -122,11 +122,6 @@ KruchyPlugin1/KruchyParserKodu.pfx -text
 KruchyPlugin1/KruchyPlugin1.csproj -text
 KruchyPlugin1/KruchyPlugin1.vsct -text
 KruchyPlugin1/KruchyPlugin1Package.cs -text
-KruchyPlugin1/KruchyPlugin1_2017/KruchyPlugin1_2017.csproj -text
-KruchyPlugin1/KruchyPlugin1_2017/Properties/AssemblyInfo.cs -text
-KruchyPlugin1/KruchyPlugin1_2017/index.html -text
-KruchyPlugin1/KruchyPlugin1_2017/source.extension.vsixmanifest -text
-KruchyPlugin1/KruchyPlugin1_2017/stylesheet.css -text
 KruchyPlugin1/Menu/PozycjaDodawanieMapowan.cs -text
 KruchyPlugin1/Menu/PozycjaDodawanieNowegoTestu.cs -text
 KruchyPlugin1/Menu/PozycjaDodawanieNowejMetodyWBuilderze.cs -text
