@@ -35,10 +35,39 @@
          other menus or buttons (commands); from a visual point of view you can see the
          group as the part of a menu contained between two lines. The parent of a group
          must be a menu. -->
+    <Menus>
+      <Menu guid="guidCommand1PackageCmdSet" id="TopLevelMenu" priority="0x700" type="Menu">
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_MM_TOOLSADDINS" />
+        <Strings>
+          <ButtonText>Kruchy kod</ButtonText>
+          <CommandName>&amp;Kruchy kod</CommandName>
+        </Strings>
+      </Menu>
+
+      <Menu guid="guidCommand1PackageCmdSet" id="PodrozowanieMenu" priority="0x701" type="Menu">
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_MM_TOOLSADDINS" />
+        <Strings>
+          <ButtonText>Krucha nawigacja</ButtonText>
+          <CommandName>Krucha nawi&amp;gacja</CommandName>
+        </Strings>
+      </Menu>
+
+    </Menus>
+
+
     <Groups>
-      <Group guid="guidCommand1PackageCmdSet" id="MyMenuGroup" priority="0x0600">
+      <!--<Group guid="guidCommand1PackageCmdSet" id="TestGroup" priority="0x0600">
         <Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_TOOLS"/>
+      </Group>-->
+
+      <Group guid="guidCommand1PackageCmdSet" id="TestGroup2" priority="0x0600">
+        <Parent guid="guidCommand1PackageCmdSet" id="TopLevelMenu"/>
       </Group>
+
+      <Group guid="guidCommand1PackageCmdSet" id="TestGroup3" priority="0x0600">
+        <Parent guid="guidCommand1PackageCmdSet" id="PodrozowanieMenu"/>
+      </Group>
+
     </Groups>
 
     <!--Buttons section. -->
@@ -52,13 +81,28 @@
               <CommandFlag>DefaultInvisible</CommandFlag>
               <CommandFlag>DynamicVisibility</CommandFlag>
           If you do not want an image next to your command, remove the Icon node /> -->
-      <Button guid="guidCommand1PackageCmdSet" id="Command1Id" priority="0x0100" type="Button">
-        <Parent guid="guidCommand1PackageCmdSet" id="MyMenuGroup" />
+      <!--<Button guid="guidCommand1PackageCmdSet" id="Command1Id" priority="0x0100" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="TestGroup" />
         <Icon guid="guidImages" id="bmpPic1" />
         <Strings>
           <ButtonText>Invoke Command1</ButtonText>
         </Strings>
+      </Button>-->
+      <Button guid="guidCommand1PackageCmdSet" id="Command2Id" priority="0x0100" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="TestGroup2" />
+        <Icon guid="guidImages" id="bmpPic1" />
+        <Strings>
+          <ButtonText>Invoke Command2</ButtonText>
+        </Strings>
       </Button>
+      <Button guid="guidCommand1PackageCmdSet" id="Command3Id" priority="0x0100" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="TestGroup3" />
+        <Icon guid="guidImages" id="bmpPic1" />
+        <Strings>
+          <ButtonText>Invoke Command3</ButtonText>
+        </Strings>
+      </Button>
+
     </Buttons>
 
     <!--The bitmaps section is used to define the bitmaps that are used for the commands.-->
@@ -78,8 +122,15 @@
 
     <!-- This is the guid used to group the menu commands together -->
     <GuidSymbol name="guidCommand1PackageCmdSet" value="{9f715a16-19db-4536-8724-8206f28d744f}">
-      <IDSymbol name="MyMenuGroup" value="0x1020" />
-      <IDSymbol name="Command1Id" value="0x0100" />
+      <!--<IDSymbol name="TestGroup" value="0x1020" />-->
+      <IDSymbol name="TestGroup2" value="0x2021" />
+      <IDSymbol name="TestGroup3" value="0x2022" />
+      <IDSymbol name="TopLevelMenu" value="0x1021"/>
+      <IDSymbol name="PodrozowanieMenu" value="0x1024"/>
+
+      <!--<IDSymbol name="Command1Id" value="0x2100" />-->
+      <IDSymbol name="Command2Id" value="0x2101" />
+      <IDSymbol name="Command3Id" value="0x2102" />
     </GuidSymbol>
 
     <GuidSymbol name="guidImages" value="{0fd3a111-8c6e-4e90-beea-ae0b7e7561be}" >
