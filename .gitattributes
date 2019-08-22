@@ -37,6 +37,7 @@ Kruchy.Plugin.Utils/Extensions/PlikWrapperExtension.cs -text
 Kruchy.Plugin.Utils/Extensions/ProjektWrapperExtension.cs -text
 Kruchy.Plugin.Utils/Extensions/SolutionWrapperExtension.cs -text
 Kruchy.Plugin.Utils/Kruchy.Plugin.Utils.csproj -text
+Kruchy.Plugin.Utils/KruchyPluginUtils.pfx -text svneol=unset#unset
 Kruchy.Plugin.Utils/Menu/PozycjaMenu.cs -text
 Kruchy.Plugin.Utils/Menu/WymaganieDostepnosci.cs -text
 Kruchy.Plugin.Utils/Properties/AssemblyInfo.cs -text
