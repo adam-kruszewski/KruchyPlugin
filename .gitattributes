@@ -117,6 +117,7 @@ KruchyPlugin1/Key.snk -text
 KruchyPlugin1/KonfiguracjaPlugina/Konfiguracja.cs -text
 KruchyPlugin1/KonfiguracjaPlugina/KonfiguracjaUsingow.cs -text
 KruchyPlugin1/KonfiguracjaPlugina/Xml/KruchyPlugin.cs -text
+KruchyPlugin1/Kruchy.Plugin.2017.csproj -text
 KruchyPlugin1/KruchyParserKodu.pfx -text
 KruchyPlugin1/KruchyPlugin1.csproj -text
 KruchyPlugin1/KruchyPlugin1.vsct -text
@@ -157,6 +158,7 @@ KruchyPlugin1/MyControl.xaml.cs -text
 KruchyPlugin1/MyToolWindow.cs -text
 KruchyPlugin1/PkgCmdID.cs -text
 KruchyPlugin1/Properties/AssemblyInfo.cs -text
+KruchyPlugin1/Properties_2017/AssemblyInfo.cs -text
 KruchyPlugin1/Resources.Designer.cs -text
 KruchyPlugin1/Resources.resx -text
 KruchyPlugin1/Resources/Images.png -text
@@ -165,6 +167,7 @@ KruchyPlugin1/Testowo/TestowyWizard.cs -text
 KruchyPlugin1/VSPackage.resx -text
 KruchyPlugin1/packages.config -text
 KruchyPlugin1/source.extension.vsixmanifest -text
+KruchyPlugin1/vs_2017/source.extension.vsixmanifest -text
 KruchyPlugin1Tests/KruchyPlugin1Tests.csproj -text
 KruchyPlugin1Tests/ParserTests/KlasaDoParsowania.cs -text
 KruchyPlugin1Tests/ParserTests/KlasaDoParsowaniaAtrybutow.cs -text
