@@ -175,6 +175,7 @@ KruchyPlugin1Tests/ParserTests/PlikClassBuilderTests.cs -text
 KruchyPlugin1Tests/ParserTests/TestowoAttribute.cs -text
 KruchyPlugin1Tests/Properties/AssemblyInfo.cs -text
 KruchyPlugin1Tests/Utils/PozycjaWPlikuExtension.cs -text
+/KruchyPlugin2017.sln -text
 Wersje/KruchyPlugin1.vsix -text
 Wersje/KruchyPlugin_160105.zip -text
 Wersje/KruchyPlugin_160112.zip -text
