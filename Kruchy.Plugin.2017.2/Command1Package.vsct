@@ -55,9 +55,9 @@
          group as the part of a menu contained between two lines. The parent of a group
          must be a menu. -->
     <Groups>
-      <Group guid="guidCommand1PackageCmdSet" id="MyMenuGroup" priority="0x0600">
+      <!--<Group guid="guidCommand1PackageCmdSet" id="MyMenuGroup" priority="0x0600">
         <Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_TOOLS"/>
-      </Group>
+      </Group>-->
 
       <Group guid="guidCommand1PackageCmdSet" id="TestGroup2" priority="0x0600">
         <Parent guid="guidCommand1PackageCmdSet" id="TopLevelMenu"/>
@@ -100,13 +100,13 @@
               <CommandFlag>DefaultInvisible</CommandFlag>
               <CommandFlag>DynamicVisibility</CommandFlag>
           If you do not want an image next to your command, remove the Icon node /> -->
-      <Button guid="guidCommand1PackageCmdSet" id="Command1Id" priority="0x0100" type="Button">
+      <!--<Button guid="guidCommand1PackageCmdSet" id="Command1Id" priority="0x0100" type="Button">
         <Parent guid="guidCommand1PackageCmdSet" id="MyMenuGroup" />
         <Icon guid="guidImages" id="bmpPic1" />
         <Strings>
           <ButtonText>Invoke plugin 2017.2</ButtonText>
         </Strings>
-      </Button>
+      </Button>-->
 
       <Button guid="guidCommand1PackageCmdSet" id="Command2Id" priority="0x0100" type="Button">
         <Parent guid="guidCommand1PackageCmdSet" id="TestGroup2" />
