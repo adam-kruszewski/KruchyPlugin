@@ -37,11 +37,15 @@ namespace KruchyCompany.KruchyPlugin1
     /// To get loaded into VS, the package must be referred by &lt;Asset Type="Microsoft.VisualStudio.VsPackage" ...&gt; in .vsixmanifest file.
     /// </para>
     /// </remarks>
-    [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
+    /// 
+    //[PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
     [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)] // Info on this package for Help/About
     [ProvideMenuResource("Menus.ctmenu", 1)]
     [Guid(Command1Package.PackageGuidString)]
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "pkgdef, VS and vsixmanifest are valid VS terms")]
+    //dodane atrybuty ręcznie
+    [ProvideAutoLoad(VSConstants.UICONTEXT.NoSolution_string, PackageAutoLoadFlags.BackgroundLoad)]
+    [ProvideAutoLoad(VSConstants.UICONTEXT.SolutionExists_string, PackageAutoLoadFlags.BackgroundLoad)]
     public sealed class Command1Package : AsyncPackage
     {
         /// <summary>
@@ -74,12 +78,13 @@ namespace KruchyCompany.KruchyPlugin1
             // When initialized asynchronously, the current thread may be a background thread at this point.
             // Do any initialization that requires the UI thread after switching to the UI thread.
             await this.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
-            //await Command1.InitializeAsync(this);
+            await Command1.InitializeAsync(this);
             PozycjaMenu.guidKruchyPluginCmdSetStatic = new Guid("9f715a16-19db-4536-8724-8206f28d744f");
 
             var dte = (DTE2)await GetServiceAsync(typeof(SDTE));
             var sw = new SolutionWrapper(dte);
             IMenuCommandService mcs = await GetServiceAsync(typeof(IMenuCommandService)) as IMenuCommandService;
+            var mcs2 = GetService(typeof(IMenuCommandService)) as OleMenuCommandService;
 
             var wszystkieKlasy = GetType().Assembly.GetTypes();
             var klasaPozycjaMenu = typeof(PozycjaMenu);
@@ -91,11 +96,8 @@ namespace KruchyCompany.KruchyPlugin1
             foreach (var klasa in klasyPozycji)
             {
                 var pozycjaMenu = Activator.CreateInstance(klasa, new [] { sw }) as PozycjaMenu;
-                pozycjaMenu.Podlacz(mcs);
+                pozycjaMenu.Podlacz(mcs2);
             }
-
-            //new PozycjaDodawanieUsingow(sw)
-            //    .Podlacz(mcs);
         }
 
         #endregion

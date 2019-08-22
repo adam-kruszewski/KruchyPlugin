@@ -58,6 +58,9 @@ namespace Kruchy.Plugin.Utils.Menu
 
         private bool Spelnione(WymaganieDostepnosci o)
         {
+            if (solution.AktualnyProjekt == null)
+                return false;
+
             if (solution.AktualnyPlik == null)
                 return false;
 

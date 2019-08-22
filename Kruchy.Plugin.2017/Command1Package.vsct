@@ -111,14 +111,7 @@
         <Parent guid="guidCommand1PackageCmdSet" id="TestGroup2" />
         <Icon guid="guidImages" id="bmpPic1" />
         <Strings>
-          <ButtonText>Invoke Command2</ButtonText>
-        </Strings>
-      </Button>
-      <Button guid="guidCommand1PackageCmdSet" id="Command3Id" priority="0x0100" type="Button">
-        <Parent guid="guidCommand1PackageCmdSet" id="TestGroup3" />
-        <Icon guid="guidImages" id="bmpPic1" />
-        <Strings>
-          <ButtonText>Invoke Command3</ButtonText>
+          <ButtonText>Włącz wtyczkę</ButtonText>
         </Strings>
       </Button>
 
@@ -128,6 +121,8 @@
         <Strings>
           <ButtonText>Zrób klasę &amp;testową</ButtonText>
         </Strings>
+        <CommandFlag>DefaultDisabled</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
 
       <Button guid="guidCommand1PackageCmdSet" id="cmdidZrobKlaseService" priority="0x0103" type="Button">
@@ -136,6 +131,8 @@
         <Strings>
           <ButtonText>Zrób klasę &amp;serwisu</ButtonText>
         </Strings>
+        <CommandFlag>DefaultDisabled</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
 
       <Button guid="guidCommand1PackageCmdSet" id="cmdidDodajKlaseWalidatora" priority="0x0104" type="Button">
@@ -144,6 +141,8 @@
           <CommandName>cmdidDodajKlaseWalidatora</CommandName>
           <ButtonText>Zrób klasę &amp;validatora</ButtonText>
         </Strings>
+        <CommandFlag>DefaultDisabled</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
 
       <Button guid="guidCommand1PackageCmdSet" id="cmdidDodajNowyTest" priority="0x0128" type="Button">
@@ -152,6 +151,8 @@
           <CommandName>cmdidDodajNowyTest</CommandName>
           <ButtonText>Dodaj nowy t&amp;est</ButtonText>
         </Strings>
+        <CommandFlag>DefaultDisabled</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
 
       <Button guid="guidCommand1PackageCmdSet" id="cmdidGenerujMetodeWBuilderze" priority="0x0129" type="Button">
@@ -160,6 +161,8 @@
           <CommandName>cmdidGenerujMetodeWBuilderze</CommandName>
           <ButtonText>Dodaj &amp;nową metodę w builderze</ButtonText>
         </Strings>
+        <CommandFlag>DefaultDisabled</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
 
       <Button guid="guidCommand1PackageCmdSet" id="cmdidZmienNaPublic" priority="0x0115" type="Button">
@@ -168,6 +171,8 @@
           <CommandName>cmdidZmienNaPublic</CommandName>
           <ButtonText>Zmień metodę na publi&amp;c</ButtonText>
         </Strings>
+        <CommandFlag>DefaultDisabled</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
 
       <Button guid="guidCommand1PackageCmdSet" id="cmdidZmienNaPrivate" priority="0x0116" type="Button">
@@ -176,6 +181,8 @@
           <CommandName>cmdidZmienNaPrivate</CommandName>
           <ButtonText>Zmień metodę na &amp;private</ButtonText>
         </Strings>
+        <CommandFlag>DefaultDisabled</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
 
       <Button guid="guidCommand1PackageCmdSet" id="cmdidUzupelnijAtrybutKluczaObcego" priority="0x0100" type="Button">
@@ -187,6 +194,8 @@
         <Strings>
           <ButtonText>Uzupełnij atrybuty dla klucza &amp;obcego</ButtonText>
         </Strings>
+        <CommandFlag>DefaultDisabled</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
 
       <Button guid="guidCommand1PackageCmdSet" id="cmdidUzupelnijTagiDefiniujaceTabele" priority="0x0101" type="Button">
@@ -196,6 +205,8 @@
         <Strings>
           <ButtonText>Uzupełnij tagi definiujące ta&amp;belę</ButtonText>
         </Strings>
+        <CommandFlag>DefaultDisabled</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
 
       <Button guid="guidCommand1PackageCmdSet" id="cmdidDodajNaczesciejUzywaneUsingi" priority="0x0127" type="Button">
@@ -204,6 +215,8 @@
           <CommandName>cmdidDodajNaczesciejUzywaneUsingi</CommandName>
           <ButtonText>Dodaj najczęściej używane &amp;usingi</ButtonText>
         </Strings>
+        <CommandFlag>DefaultDisabled</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
       
       <Button guid="guidCommand1PackageCmdSet" id="cmdidDodajUprawnienieDomyslne" priority="0x0129" type="Button">
@@ -212,6 +225,8 @@
           <CommandName>cmdidDodajUprawnienieDomyslne</CommandName>
           <ButtonText>Dodaj up&amp;rawnienia domyślne</ButtonText>
         </Strings>
+        <CommandFlag>DefaultDisabled</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
 
       <Button guid="guidCommand1PackageCmdSet" id="cmdidUzupelnijKontruktor" priority="0x0130" type="Button">
@@ -220,6 +235,8 @@
           <CommandName>cmdidUzupelnijKontruktor</CommandName>
           <ButtonText>Uzupełnij &amp;konstruktor</ButtonText>
         </Strings>
+        <CommandFlag>DefaultDisabled</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
 
       <Button guid="guidCommand1PackageCmdSet" id="cmdidInicjujWKontruktorze" priority="0x0131" type="Button">
@@ -228,6 +245,8 @@
           <CommandName>cmdidInicjujWKontruktorze</CommandName>
           <ButtonText>&amp;Inicjuj w konstruktorze</ButtonText>
         </Strings>
+        <CommandFlag>DefaultDisabled</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
 
 
@@ -237,6 +256,8 @@
           <CommandName>cmdidPodzielParametryNaLinie</CommandName>
           <ButtonText>Podziel parametry na &amp;linie</ButtonText>
         </Strings>
+        <CommandFlag>DefaultDisabled</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
 
       <Button guid="guidCommand1PackageCmdSet" id="cmdidUzupelnijMetodaWImplementacji" priority="0x0136" type="Button">
@@ -245,6 +266,8 @@
           <CommandName>cmdidUzupelnijMetodaWImplementacji</CommandName>
           <ButtonText>Uzupełnij &amp;metodę w implementacji</ButtonText>
         </Strings>
+        <CommandFlag>DefaultDisabled</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
 
       <Button guid="guidCommand1PackageCmdSet" id="cmdidDodajUsingDbContext" priority="0x0138" type="Button">
@@ -253,6 +276,8 @@
           <CommandName>cmdidDodajUsingDbContext</CommandName>
           <ButtonText>Dodaj using Db conte&amp;xt</ButtonText>
         </Strings>
+        <CommandFlag>DefaultDisabled</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
       <!--cmdidDodajMapowania-->
       <Button guid="guidCommand1PackageCmdSet" id="cmdidDodajMapowania" priority="0x0139" type="Button">
@@ -261,6 +286,8 @@
           <CommandName>cmdidDodajMapowania</CommandName>
           <ButtonText>Generuj mapowania</ButtonText>
         </Strings>
+        <CommandFlag>DefaultDisabled</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
 
       <!--Menu Krucha nawigacja-->
@@ -270,6 +297,8 @@
           <CommandName>cmdidIdzDoImplementacji</CommandName>
           <ButtonText>Przejdź między &amp;interfejsem a implementacją</ButtonText>
         </Strings>
+        <CommandFlag>DefaultDisabled</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
 
       <Button id="cmdidIdzDoKlasyTestowej" priority="0x0110"  guid="guidCommand1PackageCmdSet" type="Button">
@@ -278,6 +307,8 @@
           <CommandName>cmdidIdzDoKlasyTestowej</CommandName>
           <ButtonText>Idź wg konwencji między klasą t&amp;estową a testowaną </ButtonText>
         </Strings>
+        <CommandFlag>DefaultDisabled</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
 
       <Button id="cmdidIdzDoKataloguControllera" priority="0x0120"  guid="guidCommand1PackageCmdSet" type="Button">
@@ -286,6 +317,8 @@
           <CommandName>cmdidIdzDoKataloguControllera</CommandName>
           <ButtonText>Idź do &amp;katalogu controllera</ButtonText>
         </Strings>
+        <CommandFlag>DefaultDisabled</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
 
       <Button id="cmdidIdzDoWidoku" priority="0x0130"  guid="guidCommand1PackageCmdSet" type="Button">
@@ -294,6 +327,8 @@
           <CommandName>cmdidIdzDoWidoku</CommandName>
           <ButtonText>Idź do &amp;widoku</ButtonText>
         </Strings>
+        <CommandFlag>DefaultDisabled</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
 
       <Button id="cmdidGenerujWidok" priority="0x0140"  guid="guidCommand1PackageCmdSet" type="Button">
@@ -302,6 +337,8 @@
           <CommandName>cmdidGenerujWidok</CommandName>
           <ButtonText>&amp;Generuj widok dla controllera</ButtonText>
         </Strings>
+        <CommandFlag>DefaultDisabled</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
 
       <Button id="cmidPrzejdzDoGridRowActions" priority="0x0150"  guid="guidCommand1PackageCmdSet" type="Button">
@@ -310,6 +347,8 @@
           <CommandName>cmidPrzejdzDoGridRowActions</CommandName>
           <ButtonText>Idź do Grid&amp;RowActions</ButtonText>
         </Strings>
+        <CommandFlag>DefaultDisabled</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
 
       <Button id="cmidPrzejdzDoGridToolbar" priority="0x0151"  guid="guidCommand1PackageCmdSet" type="Button">
@@ -318,6 +357,8 @@
           <CommandName>cmidPrzejdzDoGridToolbar</CommandName>
           <ButtonText>Idź do Grid&amp;Toolbar</ButtonText>
         </Strings>
+        <CommandFlag>DefaultDisabled</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
 
       <Button id="cmdidWstawDoSchowkaNazweControllera" priority="0x0160"  guid="guidCommand1PackageCmdSet" type="Button">
@@ -326,6 +367,8 @@
           <CommandName>cmdidWstawDoSchowkaNazweControllera</CommandName>
           <ButtonText>W&amp;staw nazwę controllera do schowka</ButtonText>
         </Strings>
+        <CommandFlag>DefaultDisabled</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
 
       <Button id="cmdidPokazZawartoscZShared" priority="0x0160"  guid="guidCommand1PackageCmdSet" type="Button">
@@ -334,6 +377,8 @@
           <CommandName>cmdidPokazZawartoscZShared</CommandName>
           <ButtonText>Pokaz zawartość widoku z Shared</ButtonText>
         </Strings>
+        <CommandFlag>DefaultDisabled</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
 
     </Buttons>

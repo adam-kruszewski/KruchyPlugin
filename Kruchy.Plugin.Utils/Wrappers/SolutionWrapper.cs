@@ -40,7 +40,12 @@ namespace Kruchy.Plugin.Utils.Wrappers
 
         public PlikWrapper AktualnyPlik
         {
-            get { return new PlikWrapper(dte.ActiveDocument); }
+            get
+            {
+                if (dte.ActiveDocument == null)
+                    return null;
+                return new PlikWrapper(dte.ActiveDocument);
+            }
         }
 
         public ProjektWrapper AktualnyProjekt
