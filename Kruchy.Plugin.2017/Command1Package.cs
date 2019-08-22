@@ -6,6 +6,9 @@ using System.Globalization;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
+using EnvDTE80;
+using Kruchy.Plugin.Utils.Wrappers;
+using KruchyCompany.KruchyPlugin1.Menu;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.OLE.Interop;
 using Microsoft.VisualStudio.Shell;
@@ -70,6 +73,12 @@ namespace KruchyCompany.KruchyPlugin1
             // Do any initialization that requires the UI thread after switching to the UI thread.
             await this.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
             //await Command1.InitializeAsync(this);
+            var dte = (DTE2)GetService(typeof(SDTE));
+            var sw =new SolutionWrapper(dte);
+            //OleMenuCommandService mcs = GetService(typeof(IMenuCommandService)) as OleMenuCommandService;
+
+            //new PozycjaDodawanieUsingow(sw)
+            //    .Podlacz(mcs);
         }
 
         #endregion

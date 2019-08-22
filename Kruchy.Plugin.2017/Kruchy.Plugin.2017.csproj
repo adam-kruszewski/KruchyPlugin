@@ -54,8 +54,84 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Akcje\DodawanieMapowan.cs" />
+    <Compile Include="Akcje\DodawanieMapowanElementy\MapowanieNode.cs" />
+    <Compile Include="Akcje\DodawanieMapowanElementy\MapowanyProperty.cs" />
+    <Compile Include="Akcje\DodawanieMapowanElementy\WyborMapowanForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Akcje\DodawanieMapowanElementy\WyborMapowanForm.Designer.cs">
+      <DependentUpon>WyborMapowanForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Akcje\DodawanieNowejMetodyWBuilderze.cs" />
+    <Compile Include="Akcje\DodawanieUprawnienDomyslnych.cs" />
+    <Compile Include="Akcje\DodawaniaUsinga.cs" />
+    <Compile Include="Akcje\DodawanieNowegoTestu.cs" />
+    <Compile Include="Akcje\DodawanieUsingDbContext.cs" />
+    <Compile Include="Akcje\GenerowanieKlasService.cs" />
+    <Compile Include="Akcje\GenerowanieKlasyTestowej.cs" />
+    <Compile Include="Akcje\GenerowanieKlasyWalidatora.cs" />
+    <Compile Include="Akcje\GenerowanieWidoku.cs" />
+    <Compile Include="Akcje\IdzDoKataloguControllera.cs" />
+    <Compile Include="Akcje\IdzDoKlasyTestowej.cs" />
+    <Compile Include="Akcje\IdzDoPlikuWidoku.cs" />
+    <Compile Include="Akcje\IdzMiedzyInterfejsemAImplementacja.cs" />
+    <Compile Include="Akcje\InicjowaniePolaWKonstruktorze.cs" />
+    <Compile Include="Akcje\PodzielParametryNaLinie.cs" />
+    <Compile Include="Akcje\PokazywaniaZawartosciZShared.cs" />
+    <Compile Include="Akcje\RodzajKlasyTestowej.cs" />
+    <Compile Include="Akcje\UzupelnianieKontruktora.cs" />
+    <Compile Include="Akcje\UzupelnianieMetodWImplementacji.cs" />
+    <Compile Include="Akcje\UzupelnianieReferencedObject.cs" />
+    <Compile Include="Akcje\UzupelnianieTagowDefiniujacychTabele.cs" />
+    <Compile Include="Akcje\WstawianieNazwyControlleraDoSchowka.cs" />
+    <Compile Include="Akcje\WynikGenerowaniaKlasService.cs" />
+    <Compile Include="Akcje\ZmianaModyfikatoraMetody.cs" />
+    <Compile Include="Interfejs\NazwaKlasyTestowForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfejs\NazwaKlasyTestowForm.Designer.cs">
+      <DependentUpon>NazwaKlasyTestowForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Interfejs\NazwaKlasyWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfejs\NazwaKlasyWindow.Designer.cs">
+      <DependentUpon>NazwaKlasyWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KonfiguracjaPlugina\Konfiguracja.cs" />
+    <Compile Include="KonfiguracjaPlugina\KonfiguracjaUsingow.cs" />
+    <Compile Include="KonfiguracjaPlugina\Xml\KruchyPlugin.cs" />
+    <Compile Include="Menu\PozycjaDodawanieMapowan.cs" />
+    <Compile Include="Menu\PozycjaDodawanieNowegoTestu.cs" />
+    <Compile Include="Menu\PozycjaDodawanieNowejMetodyWBuilderze.cs" />
+    <Compile Include="Menu\PozycjaDodawanieUprawnienDomyslnych.cs" />
+    <Compile Include="Menu\PozycjaDodawanieUsingDbContext.cs" />
+    <Compile Include="Menu\PozycjaDodawanieUsingow.cs" />
+    <Compile Include="Menu\PozycjaGenerowanieKlasService.cs" />
+    <Compile Include="Menu\PozycjaGenerowanieKlasyTestowej.cs" />
+    <Compile Include="Menu\PozycjaGenerowanieKlasyWalidatora.cs" />
+    <Compile Include="Menu\PozycjaGenerowanieWidoku.cs" />
+    <Compile Include="Menu\PozycjaIdzDoGridRowActions.cs" />
+    <Compile Include="Menu\PozycjaIdzDoGridToolbar.cs" />
+    <Compile Include="Menu\PozycjaIdzDoKataloguControllera.cs" />
+    <Compile Include="Menu\PozycjaIdzDoKlasyTestowej.cs" />
+    <Compile Include="Menu\PozycjaIdzDoPlikuWidoku.cs" />
+    <Compile Include="Menu\PozycjaIdzMiedzyInterfejsemAImplementacja.cs" />
+    <Compile Include="Menu\PozycjaInicjowaniePolaWKonstruktorze.cs" />
+    <Compile Include="Menu\PozycjaPodzielParametryNaLinie.cs" />
+    <Compile Include="Menu\PozycjaPokazywanieZawartosciZShared.cs" />
+    <Compile Include="Menu\PozycjaUzupelnianieKontruktora.cs" />
+    <Compile Include="Menu\PozycjaUzupelnianieMetodWImplementacji.cs" />
+    <Compile Include="Menu\PozycjaUzupelnianieReferencedObject.cs" />
+    <Compile Include="Menu\PozycjaUzupelnianieTagowDefiniujacychTabele.cs" />
+    <Compile Include="Menu\PozycjaWstawianieNazwyControlleraDoSchowka.cs" />
+    <Compile Include="Menu\PozycjaZmienNaPrivate.cs" />
+    <Compile Include="Menu\PozycjaZmienNaPublic.cs" />
+    <Compile Include="Guids.cs" />
     <Compile Include="Command1.cs" />
     <Compile Include="Command1Package.cs" />
+    <Compile Include="PkgCmdID.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -157,6 +233,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
