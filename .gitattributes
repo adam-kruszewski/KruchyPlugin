@@ -13,6 +13,11 @@ KrucheBuilderyKodu/Builders/StaleDlaKodu.cs -text
 KrucheBuilderyKodu/KrucheBuilderyKodu.csproj -text
 KrucheBuilderyKodu/KruchyKey.snk -text
 KrucheBuilderyKodu/Properties/AssemblyInfo.cs -text
+Kruchy.Plugin.2017/Kruchy.Plugin.2017.csproj -text
+Kruchy.Plugin.2017/Properties/AssemblyInfo.cs -text
+Kruchy.Plugin.2017/index.html -text
+Kruchy.Plugin.2017/source.extension.vsixmanifest -text
+Kruchy.Plugin.2017/stylesheet.css -text
 Kruchy.Plugin.CSharp/FirstCommand.cs -text
 Kruchy.Plugin.CSharp/Key.snk -text
 Kruchy.Plugin.CSharp/Kruchy.Plugin.CSharp.csproj -text
