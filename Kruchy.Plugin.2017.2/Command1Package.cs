@@ -3,15 +3,19 @@ using System.ComponentModel.Design;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
+using Kruchy.Plugin.Utils.Menu;
+using Kruchy.Plugin.Utils.Wrappers;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.OLE.Interop;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.Win32;
 using Task = System.Threading.Tasks.Task;
+using EnvDTE80;
 
 namespace KruchyCompany.KruchyPlugin1
 {
@@ -71,10 +75,31 @@ namespace KruchyCompany.KruchyPlugin1
         /// <returns>A task representing the async work of package initialization, or an already completed task if there is none. Do not return null from this method.</returns>
         protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
         {
+            await this.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
+
+            PozycjaMenu.guidKruchyPluginCmdSetStatic = new Guid("641b3a59-28a5-4694-ad6c-56066f4300d9");
+            var dte = (DTE2)await GetServiceAsync(typeof(SDTE));
+            var sw = new SolutionWrapper(dte);
+            IMenuCommandService mcs = await GetServiceAsync(typeof(IMenuCommandService)) as IMenuCommandService;
+            var mcs2 = await GetServiceAsync(typeof(IMenuCommandService)) as OleMenuCommandService;
+
+            var wszystkieKlasy = GetType().Assembly.GetTypes();
+            var klasaPozycjaMenu = typeof(PozycjaMenu);
+            var klasyPozycji =
+                wszystkieKlasy
+                    .Where(o => klasaPozycjaMenu.IsAssignableFrom(o))
+                        .ToList();
+
+            foreach (var klasa in klasyPozycji)
+            {
+                var pozycjaMenu = Activator.CreateInstance(klasa, new[] { sw }) as PozycjaMenu;
+                pozycjaMenu.Podlacz(mcs2);
+            }
             // When initialized asynchronously, the current thread may be a background thread at this point.
             // Do any initialization that requires the UI thread after switching to the UI thread.
-            await this.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
             await Command1.InitializeAsync(this);
+
+
         }
 
         #endregion
