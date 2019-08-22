@@ -84,6 +84,9 @@
         <Parent guid="guidCommand1PackageCmdSet" id="TopLevelMenu"/>
       </Group>
 
+      <Group guid="guidCommand1PackageCmdSet" id="PodrozowanieMenuGroup" priority="0x0601">
+        <Parent guid="guidCommand1PackageCmdSet" id="PodrozowanieMenu"/>
+      </Group>
     </Groups>
 
     <!--Buttons section. -->
@@ -257,6 +260,79 @@
         <Strings>
           <CommandName>cmdidDodajMapowania</CommandName>
           <ButtonText>Generuj mapowania</ButtonText>
+        </Strings>
+      </Button>
+
+      <!--Menu Krucha nawigacja-->
+      <Button id="cmdidIdzDoImplementacji" priority="0x0101"  guid="guidCommand1PackageCmdSet" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="PodrozowanieMenuGroup"/>
+        <Strings>
+          <CommandName>cmdidIdzDoImplementacji</CommandName>
+          <ButtonText>Przejdź między &amp;interfejsem a implementacją</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button id="cmdidIdzDoKlasyTestowej" priority="0x0110"  guid="guidCommand1PackageCmdSet" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="PodrozowanieMenuGroup"/>
+        <Strings>
+          <CommandName>cmdidIdzDoKlasyTestowej</CommandName>
+          <ButtonText>Idź wg konwencji między klasą t&amp;estową a testowaną </ButtonText>
+        </Strings>
+      </Button>
+
+      <Button id="cmdidIdzDoKataloguControllera" priority="0x0120"  guid="guidCommand1PackageCmdSet" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="PodrozowanieMenuGroup"/>
+        <Strings>
+          <CommandName>cmdidIdzDoKataloguControllera</CommandName>
+          <ButtonText>Idź do &amp;katalogu controllera</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button id="cmdidIdzDoWidoku" priority="0x0130"  guid="guidCommand1PackageCmdSet" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="PodrozowanieMenuGroup"/>
+        <Strings>
+          <CommandName>cmdidIdzDoWidoku</CommandName>
+          <ButtonText>Idź do &amp;widoku</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button id="cmdidGenerujWidok" priority="0x0140"  guid="guidCommand1PackageCmdSet" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="PodrozowanieMenuGroup"/>
+        <Strings>
+          <CommandName>cmdidGenerujWidok</CommandName>
+          <ButtonText>&amp;Generuj widok dla controllera</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button id="cmidPrzejdzDoGridRowActions" priority="0x0150"  guid="guidCommand1PackageCmdSet" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="PodrozowanieMenuGroup"/>
+        <Strings>
+          <CommandName>cmidPrzejdzDoGridRowActions</CommandName>
+          <ButtonText>Idź do Grid&amp;RowActions</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button id="cmidPrzejdzDoGridToolbar" priority="0x0151"  guid="guidCommand1PackageCmdSet" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="PodrozowanieMenuGroup"/>
+        <Strings>
+          <CommandName>cmidPrzejdzDoGridToolbar</CommandName>
+          <ButtonText>Idź do Grid&amp;Toolbar</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button id="cmdidWstawDoSchowkaNazweControllera" priority="0x0160"  guid="guidCommand1PackageCmdSet" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="PodrozowanieMenuGroup"/>
+        <Strings>
+          <CommandName>cmdidWstawDoSchowkaNazweControllera</CommandName>
+          <ButtonText>W&amp;staw nazwę controllera do schowka</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button id="cmdidPokazZawartoscZShared" priority="0x0160"  guid="guidCommand1PackageCmdSet" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="PodrozowanieMenuGroup"/>
+        <Strings>
+          <CommandName>cmdidPokazZawartoscZShared</CommandName>
+          <ButtonText>Pokaz zawartość widoku z Shared</ButtonText>
         </Strings>
       </Button>
 
