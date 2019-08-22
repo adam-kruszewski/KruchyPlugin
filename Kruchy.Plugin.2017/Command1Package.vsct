@@ -68,6 +68,22 @@
         <Parent guid="guidCommand1PackageCmdSet" id="PodrozowanieMenu"/>
       </Group>
 
+      <Group guid="guidCommand1PackageCmdSet" id="DomainObjectGroup" priority="0x0108">
+        <Parent guid="guidCommand1PackageCmdSet" id="TopLevelMenu"/>
+      </Group>
+
+      <Group guid="guidCommand1PackageCmdSet" id="GenerowanieNowychKlasMetodGroup" priority="0x0106">
+        <Parent guid="guidCommand1PackageCmdSet" id="TopLevelMenu"/>
+      </Group>
+
+      <Group guid="guidCommand1PackageCmdSet" id="ZmianaModyfikatorowGroup" priority="0x0107">
+        <Parent guid="guidCommand1PackageCmdSet" id="TopLevelMenu"/>
+      </Group>
+
+      <Group guid="guidCommand1PackageCmdSet" id="PozostaleKodoweGroup" priority="0x0109">
+        <Parent guid="guidCommand1PackageCmdSet" id="TopLevelMenu"/>
+      </Group>
+
     </Groups>
 
     <!--Buttons section. -->
@@ -103,6 +119,147 @@
         </Strings>
       </Button>
 
+      <Button guid="guidCommand1PackageCmdSet" id="cmdidZrobKlaseTestowa" priority="0x0102" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="GenerowanieNowychKlasMetodGroup" />
+        <!--<Icon guid="guidImages" id="bmpPic1" />-->
+        <Strings>
+          <ButtonText>Zrób klasę &amp;testową</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="guidCommand1PackageCmdSet" id="cmdidZrobKlaseService" priority="0x0103" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="GenerowanieNowychKlasMetodGroup" />
+        <!--<Icon guid="guidImages" id="bmpPic1" />-->
+        <Strings>
+          <ButtonText>Zrób klasę &amp;serwisu</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="guidCommand1PackageCmdSet" id="cmdidDodajKlaseWalidatora" priority="0x0104" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="GenerowanieNowychKlasMetodGroup" />
+        <Strings>
+          <CommandName>cmdidDodajKlaseWalidatora</CommandName>
+          <ButtonText>Zrób klasę &amp;validatora</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="guidCommand1PackageCmdSet" id="cmdidDodajNowyTest" priority="0x0128" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="GenerowanieNowychKlasMetodGroup" />
+        <Strings>
+          <CommandName>cmdidDodajNowyTest</CommandName>
+          <ButtonText>Dodaj nowy t&amp;est</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="guidCommand1PackageCmdSet" id="cmdidGenerujMetodeWBuilderze" priority="0x0129" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="GenerowanieNowychKlasMetodGroup" />
+        <Strings>
+          <CommandName>cmdidGenerujMetodeWBuilderze</CommandName>
+          <ButtonText>Dodaj &amp;nową metodę w builderze</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="guidCommand1PackageCmdSet" id="cmdidZmienNaPublic" priority="0x0115" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="ZmianaModyfikatorowGroup" />
+        <Strings>
+          <CommandName>cmdidZmienNaPublic</CommandName>
+          <ButtonText>Zmień metodę na publi&amp;c</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="guidCommand1PackageCmdSet" id="cmdidZmienNaPrivate" priority="0x0116" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="ZmianaModyfikatorowGroup" />
+        <Strings>
+          <CommandName>cmdidZmienNaPrivate</CommandName>
+          <ButtonText>Zmień metodę na &amp;private</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="guidCommand1PackageCmdSet" id="cmdidUzupelnijAtrybutKluczaObcego" priority="0x0100" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="DomainObjectGroup" />
+        <!--<Icon guid="guidImages" id="bmpPic1" />-->
+        <!--<CommandFlag>DynamicItemStart</CommandFlag>-->
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <!--<CommandFlag>TextChanges</CommandFlag>-->
+        <Strings>
+          <ButtonText>Uzupełnij atrybuty dla klucza &amp;obcego</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="guidCommand1PackageCmdSet" id="cmdidUzupelnijTagiDefiniujaceTabele" priority="0x0101" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="DomainObjectGroup" />
+        <!--<Icon guid="guidImages" id="bmpPic1" />-->
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Uzupełnij tagi definiujące ta&amp;belę</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="guidCommand1PackageCmdSet" id="cmdidDodajNaczesciejUzywaneUsingi" priority="0x0127" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="PozostaleKodoweGroup" />
+        <Strings>
+          <CommandName>cmdidDodajNaczesciejUzywaneUsingi</CommandName>
+          <ButtonText>Dodaj najczęściej używane &amp;usingi</ButtonText>
+        </Strings>
+      </Button>
+      
+      <Button guid="guidCommand1PackageCmdSet" id="cmdidDodajUprawnienieDomyslne" priority="0x0129" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="PozostaleKodoweGroup" />
+        <Strings>
+          <CommandName>cmdidDodajUprawnienieDomyslne</CommandName>
+          <ButtonText>Dodaj up&amp;rawnienia domyślne</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="guidCommand1PackageCmdSet" id="cmdidUzupelnijKontruktor" priority="0x0130" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="PozostaleKodoweGroup" />
+        <Strings>
+          <CommandName>cmdidUzupelnijKontruktor</CommandName>
+          <ButtonText>Uzupełnij &amp;konstruktor</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="guidCommand1PackageCmdSet" id="cmdidInicjujWKontruktorze" priority="0x0131" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="PozostaleKodoweGroup" />
+        <Strings>
+          <CommandName>cmdidInicjujWKontruktorze</CommandName>
+          <ButtonText>&amp;Inicjuj w konstruktorze</ButtonText>
+        </Strings>
+      </Button>
+
+
+      <Button guid="guidCommand1PackageCmdSet" id="cmdidPodzielParametryNaLinie" priority="0x0137" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="PozostaleKodoweGroup" />
+        <Strings>
+          <CommandName>cmdidPodzielParametryNaLinie</CommandName>
+          <ButtonText>Podziel parametry na &amp;linie</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="guidCommand1PackageCmdSet" id="cmdidUzupelnijMetodaWImplementacji" priority="0x0136" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="PozostaleKodoweGroup" />
+        <Strings>
+          <CommandName>cmdidUzupelnijMetodaWImplementacji</CommandName>
+          <ButtonText>Uzupełnij &amp;metodę w implementacji</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="guidCommand1PackageCmdSet" id="cmdidDodajUsingDbContext" priority="0x0138" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="PozostaleKodoweGroup" />
+        <Strings>
+          <CommandName>cmdidDodajUsingDbContext</CommandName>
+          <ButtonText>Dodaj using Db conte&amp;xt</ButtonText>
+        </Strings>
+      </Button>
+      <!--cmdidDodajMapowania-->
+      <Button guid="guidCommand1PackageCmdSet" id="cmdidDodajMapowania" priority="0x0139" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="PozostaleKodoweGroup" />
+        <Strings>
+          <CommandName>cmdidDodajMapowania</CommandName>
+          <ButtonText>Generuj mapowania</ButtonText>
+        </Strings>
+      </Button>
+
     </Buttons>
 
     <!--The bitmaps section is used to define the bitmaps that are used for the commands.-->
@@ -125,12 +282,56 @@
       <!--<IDSymbol name="TestGroup" value="0x1020" />-->
       <IDSymbol name="TestGroup2" value="0x2021" />
       <IDSymbol name="TestGroup3" value="0x2022" />
-      <IDSymbol name="TopLevelMenu" value="0x1021"/>
-      <IDSymbol name="PodrozowanieMenu" value="0x1024"/>
 
       <!--<IDSymbol name="Command1Id" value="0x2100" />-->
       <IDSymbol name="Command2Id" value="0x2101" />
       <IDSymbol name="Command3Id" value="0x2102" />
+
+      <IDSymbol name="PodrozowanieMenu" value="0x1024"/>
+      <IDSymbol name="PodrozowanieMenuGroup" value="0x1025"/>
+      <IDSymbol name="DomainObjectGroup" value="0x1026"/>
+      <IDSymbol name="GenerowanieNowychKlasMetodGroup" value="0x1027"/>
+      <IDSymbol name="ZmianaModyfikatorowGroup" value="0x0128"/>
+      <IDSymbol name="PozostaleKodoweGroup" value="0x0129"/>
+
+      <IDSymbol name="cmdidTestowaCommand" value="0x0100" />
+
+      <IDSymbol name="cmdidMyTool" value="0x0101" />
+
+      <IDSymbol name="cmdidUzupelnijAtrybutKluczaObcego" value="0x0102" />
+      <IDSymbol name="cmdidUzupelnijTagiDefiniujaceTabele" value="0x0103"/>
+      <IDSymbol name="cmdidZrobKlaseTestowa" value="0x0105"/>
+      <IDSymbol name="cmdidZrobKlaseService" value="0x0106"/>
+      <IDSymbol name="cmdidDodajKlaseWalidatora" value="0x0152"/>
+      <IDSymbol name="TopLevelMenu" value="0x1021"/>
+
+      <!-- Menu z dodaj usingi -->
+      <IDSymbol name="DodajUsingiMenu" value="0x0140"/>
+      <IDSymbol name="DodajUsingiMenuGroup" value="0x0141"/>
+
+      <IDSymbol name="cmdidZmienNaPublic" value="0x0150"/>
+      <IDSymbol name="cmdidZmienNaPrivate" value="0x0151"/>
+      <IDSymbol name="cmdidDodajNaczesciejUzywaneUsingi" value="0x0153"/>
+      <IDSymbol name="cmdidDodajNowyTest" value="0x154"/>
+      <IDSymbol name="cmdidDodajUprawnienieDomyslne" value="0x0155"/>
+      <IDSymbol name="cmdidUzupelnijKontruktor" value="0x0156"/>
+      <IDSymbol name="cmdidUzupelnijMetodaWImplementacji" value="0x0157"/>
+      <IDSymbol name="cmdidGenerujMetodeWBuilderze" value="0x0158"/>
+      <IDSymbol name="cmdidWstawDoSchowkaNazweControllera" value="0x0159"/>
+      <IDSymbol name="cmdidIdzDoKlasyTestowej" value="0x0160"/>
+      <IDSymbol name="cmdidPodzielParametryNaLinie" value="0x0161"/>
+      <IDSymbol name="cmdidPokazZawartoscZShared" value="0x0162"/>
+      <IDSymbol name="cmdidDodajUsingDbContext" value="0x0163"/>
+      <IDSymbol name="cmdidDodajMapowania" value="0x0164"/>
+      <IDSymbol name="cmdidInicjujWKontruktorze" value="0x0165"/>
+
+      <IDSymbol name="cmdidIdzDoImplementacji" value="0x0170"/>
+      <IDSymbol name="cmdidIdzDoKataloguControllera" value="0x0171"/>
+      <IDSymbol name="cmdidIdzDoWidoku" value="0x0172"/>
+      <IDSymbol name="cmdidGenerujWidok" value="0x0173"/>
+      <IDSymbol name="cmidPrzejdzDoGridRowActions" value="0x0174"/>
+      <IDSymbol name="cmidPrzejdzDoGridToolbar" value="0x0175"/>
+
     </GuidSymbol>
 
     <GuidSymbol name="guidImages" value="{0fd3a111-8c6e-4e90-beea-ae0b7e7561be}" >
