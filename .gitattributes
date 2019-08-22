@@ -164,7 +164,7 @@ KruchyPlugin1/Resources/Package.ico -text
 KruchyPlugin1/Testowo/TestowyWizard.cs -text
 KruchyPlugin1/VSPackage.resx -text
 KruchyPlugin1/packages.config -text
-KruchyPlugin1/source.extension.vsixmanifest -text
+KruchyPlugin1/source.extension.vsixmanifest.2015 -text
 KruchyPlugin1Tests/KruchyPlugin1Tests.csproj -text
 KruchyPlugin1Tests/ParserTests/KlasaDoParsowania.cs -text
 KruchyPlugin1Tests/ParserTests/KlasaDoParsowaniaAtrybutow.cs -text
