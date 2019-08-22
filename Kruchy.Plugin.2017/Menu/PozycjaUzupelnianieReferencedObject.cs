@@ -9,14 +9,10 @@ namespace KruchyCompany.KruchyPlugin1.Menu
 {
     class PozycjaUzupelnianieReferencedObject : PozycjaMenu
     {
-        private readonly DTE2 dte;
-
         public PozycjaUzupelnianieReferencedObject(
-            SolutionWrapper solution,
-            DTE2 dte)
+            SolutionWrapper solution)
             : base(solution)
         {
-            this.dte = dte;
         }
 
         protected override IEnumerable<WymaganieDostepnosci> Wymagania
@@ -34,7 +30,7 @@ namespace KruchyCompany.KruchyPlugin1.Menu
 
         protected override void Execute(object sender, EventArgs args)
         {
-            new UzupelnianieReferencedObject(dte).Uzupelnij();
+            new UzupelnianieReferencedObject(solution.DTE).Uzupelnij();
         }
     }
 }

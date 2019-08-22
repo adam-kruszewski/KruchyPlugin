@@ -30,12 +30,12 @@ namespace Kruchy.Plugin.Utils.Menu
             this.solution = solution;
         }
 
-        public void Podlacz(OleMenuCommandService service)
+        public void Podlacz(IMenuCommandService service)
         {
             Podlacz(service, guidKruchyPluginCmdSetStatic);
         }
 
-        public void Podlacz(OleMenuCommandService service, Guid guidKruchyPluginCmdSet)
+        public void Podlacz(IMenuCommandService service, Guid guidKruchyPluginCmdSet)
         {
             var menuCommandID =
                 new CommandID(guidKruchyPluginCmdSet,(int)MenuCommandID);

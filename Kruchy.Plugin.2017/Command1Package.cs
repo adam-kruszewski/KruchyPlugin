@@ -3,10 +3,12 @@ using System.ComponentModel.Design;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using EnvDTE80;
+using Kruchy.Plugin.Utils.Menu;
 using Kruchy.Plugin.Utils.Wrappers;
 using KruchyCompany.KruchyPlugin1.Menu;
 using Microsoft.VisualStudio;
@@ -73,9 +75,24 @@ namespace KruchyCompany.KruchyPlugin1
             // Do any initialization that requires the UI thread after switching to the UI thread.
             await this.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
             //await Command1.InitializeAsync(this);
-            var dte = (DTE2)GetService(typeof(SDTE));
-            var sw =new SolutionWrapper(dte);
-            //OleMenuCommandService mcs = GetService(typeof(IMenuCommandService)) as OleMenuCommandService;
+            PozycjaMenu.guidKruchyPluginCmdSetStatic = new Guid("9f715a16-19db-4536-8724-8206f28d744f");
+
+            var dte = (DTE2)await GetServiceAsync(typeof(SDTE));
+            var sw = new SolutionWrapper(dte);
+            IMenuCommandService mcs = await GetServiceAsync(typeof(IMenuCommandService)) as IMenuCommandService;
+
+            var wszystkieKlasy = GetType().Assembly.GetTypes();
+            var klasaPozycjaMenu = typeof(PozycjaMenu);
+            var klasyPozycji =
+                wszystkieKlasy
+                    .Where(o => klasaPozycjaMenu.IsAssignableFrom(o))
+                        .ToList();
+
+            foreach (var klasa in klasyPozycji)
+            {
+                var pozycjaMenu = Activator.CreateInstance(klasa, new [] { sw }) as PozycjaMenu;
+                pozycjaMenu.Podlacz(mcs);
+            }
 
             //new PozycjaDodawanieUsingow(sw)
             //    .Podlacz(mcs);
