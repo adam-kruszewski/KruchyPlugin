@@ -49,3 +49,5 @@ KruchyPlugin1Tests/[Dd]ebug
 KruchyPlugin1Tests/[Rr]elease
 KruchyPlugin1Tests/_Pvt_Extensions
 KruchyPlugin1Tests/obj
+*/bin
+*/obj
