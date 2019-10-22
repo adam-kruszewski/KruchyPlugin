@@ -82,7 +82,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             IEnumerable<UsingNamespace> usingi,
             Metoda nastepnaMetoda)
         {
-            var solutionExplorer = new SolutionExplorerWrapper(solution);
+            var solutionExplorer = SolutionExplorerWrapper.DajDlaSolution(solution);
             solutionExplorer.OtworzPlik(sciezkaDoImplementacji);
 
             var zawartosc = solution.AktualnyDokument.DajZawartosc();

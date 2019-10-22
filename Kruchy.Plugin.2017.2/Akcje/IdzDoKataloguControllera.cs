@@ -40,7 +40,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
                 return;
             }
 
-            var explorer = new SolutionExplorerWrapper(solution);
+            var explorer = SolutionExplorerWrapper.DajDlaSolution(solution);
             explorer.UstawSieNaMiejscu(katalogDlaControllera);
         }
 

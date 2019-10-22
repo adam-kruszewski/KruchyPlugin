@@ -70,7 +70,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             var plikImpl = projekt.DodajPlik(pelnaSciezkaDoImplementacji);
             var plikInt = projekt.DodajPlik(pelnaSciezkaDoInterfejsu);
 
-            var solutionExplorer = new SolutionExplorerWrapper(solution);
+            var solutionExplorer = SolutionExplorerWrapper.DajDlaSolution(solution);
             solutionExplorer.OtworzPlik(plikInt.SciezkaPelna);
             solutionExplorer.OtworzPlik(plikImpl.SciezkaPelna);
 

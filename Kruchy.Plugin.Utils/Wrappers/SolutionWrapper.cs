@@ -133,7 +133,7 @@ namespace Kruchy.Plugin.Utils.Wrappers
 
         public void OtworzPlik(string sciezka)
         {
-            new SolutionExplorerWrapper(this).OtworzPlik(sciezka);
+            SolutionExplorerWrapper.DajDlaSolution(this).OtworzPlik(sciezka);
         }
     }
 }

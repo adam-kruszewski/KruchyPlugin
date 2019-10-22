@@ -6,7 +6,7 @@ using EnvDTE;
 
 namespace Kruchy.Plugin.Utils.Wrappers
 {
-    public class SolutionExplorerWrapper
+    public class SolutionExplorerWrapper : ISolutionExplorerWrapper
     {
         private readonly ISolutionWrapper solution;
 
@@ -23,9 +23,14 @@ namespace Kruchy.Plugin.Utils.Wrappers
             get { return SolutionExplorer.UIHierarchyItems.Item(1); }
         }
 
-        public SolutionExplorerWrapper(ISolutionWrapper solution)
+        private SolutionExplorerWrapper(ISolutionWrapper solution)
         {
             this.solution = solution;
+        }
+
+        public static ISolutionExplorerWrapper DajDlaSolution(ISolutionWrapper solution)
+        {
+            return new SolutionExplorerWrapper(solution);
         }
 
         private IList<UIHierarchyItem> WszystkieWezly()
@@ -238,7 +243,7 @@ namespace Kruchy.Plugin.Utils.Wrappers
             return string.Empty;
         }
 
-        public List<UIHierarchyItem> SzukajWezlowProjektow(int maxGlebokosc)
+        private List<UIHierarchyItem> SzukajWezlowProjektow(int maxGlebokosc)
         {
             var wynik = new List<UIHierarchyItem>();
             UIHierarchyItem solutionItem = SolutionExplorer.UIHierarchyItems.Item(1);

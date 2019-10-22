@@ -70,7 +70,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             File.WriteAllText(pelnaSciezka, zawartosc, Encoding.UTF8);
             var plik = ProjektTestowy.DodajPlik(pelnaSciezka);
 
-            new SolutionExplorerWrapper(solution).OtworzPlik(plik);
+            SolutionExplorerWrapper.DajDlaSolution(solution).OtworzPlik(plik);
         }
 
         private string DajSciezkeDoKataloguTestow(bool integracyjne)

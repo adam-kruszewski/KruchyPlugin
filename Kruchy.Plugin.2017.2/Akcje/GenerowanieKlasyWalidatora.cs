@@ -72,7 +72,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
                 Encoding.UTF8);
             solution.AktualnyProjekt.DodajPlik(pelnaSciezkaDoPlikuImplementacji);
             solution.AktualnyProjekt.DodajPlik(pelnaSciezkaDoPlikuInterfejsu);
-            var solutionExplorer = new SolutionExplorerWrapper(solution);
+            var solutionExplorer = SolutionExplorerWrapper.DajDlaSolution(solution);
             solutionExplorer.OtworzPlik(pelnaSciezkaDoPlikuInterfejsu);
             solutionExplorer.OtworzPlik(pelnaSciezkaDoPlikuImplementacji);
         }

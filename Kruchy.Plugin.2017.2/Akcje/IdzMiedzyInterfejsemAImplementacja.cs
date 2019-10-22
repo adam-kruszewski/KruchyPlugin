@@ -115,7 +115,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
         {
             if (sciezka == null)
                 return;
-            var solutionExplorer = new SolutionExplorerWrapper(solution);
+            var solutionExplorer = SolutionExplorerWrapper.DajDlaSolution(solution);
             solutionExplorer.OtworzPlik(sciezka);
         }
     }

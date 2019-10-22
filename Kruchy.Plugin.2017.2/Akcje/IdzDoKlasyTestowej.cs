@@ -75,7 +75,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             }
 
 
-            new SolutionExplorerWrapper(solution).OtworzPlik(plik);
+            SolutionExplorerWrapper.DajDlaSolution(solution).OtworzPlik(plik);
         }
 
         private string SzukajNazwyKlasyTestowanejZServiceTests()

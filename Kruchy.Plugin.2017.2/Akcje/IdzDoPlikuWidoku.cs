@@ -56,7 +56,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             {
                 if (File.Exists(sciezka))
                 {
-                    new SolutionExplorerWrapper(solution)
+                    SolutionExplorerWrapper.DajDlaSolution(solution)
                         .OtworzPlik(sciezka);
                     return;
                 }
@@ -82,7 +82,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
                 UtworzKatalogDlaSciezkiJesliTrzeba(sciezka);
                 File.WriteAllText(sciezka, "", Encoding.UTF8);
                 aktualny.Projekt.DodajPlik(sciezka);
-                new SolutionExplorerWrapper(solution).OtworzPlik(sciezka);
+                SolutionExplorerWrapper.DajDlaSolution(solution).OtworzPlik(sciezka);
             }
         }
 
