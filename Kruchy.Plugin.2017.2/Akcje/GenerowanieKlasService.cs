@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Text;
-using System.Windows;
 using System.Windows.Forms;
 using KrucheBuilderyKodu.Builders;
 using Kruchy.Plugin.Utils.Extensions;
@@ -12,10 +11,14 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
     class GenerowanieKlasService
     {
         private readonly ISolutionWrapper solution;
+        private readonly ISolutionExplorerWrapper solutionExplorer;
 
-        public GenerowanieKlasService(ISolutionWrapper solution)
+        public GenerowanieKlasService(
+            ISolutionWrapper solution,
+            ISolutionExplorerWrapper solutionExplorer)
         {
             this.solution = solution;
+            this.solutionExplorer = solutionExplorer;
         }
 
         public WynikGenerowaniaKlasService Generuj(
@@ -70,7 +73,6 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             var plikImpl = projekt.DodajPlik(pelnaSciezkaDoImplementacji);
             var plikInt = projekt.DodajPlik(pelnaSciezkaDoInterfejsu);
 
-            var solutionExplorer = SolutionExplorerWrapper.DajDlaSolution(solution);
             solutionExplorer.OtworzPlik(plikInt.SciezkaPelna);
             solutionExplorer.OtworzPlik(plikImpl.SciezkaPelna);
 

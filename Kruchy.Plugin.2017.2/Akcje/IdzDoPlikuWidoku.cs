@@ -12,10 +12,14 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
     class IdzDoPlikuWidoku
     {
         private readonly ISolutionWrapper solution;
+        private readonly ISolutionExplorerWrapper solutionExplorer;
 
-        public IdzDoPlikuWidoku(ISolutionWrapper solution)
+        public IdzDoPlikuWidoku(
+            ISolutionWrapper solution,
+            ISolutionExplorerWrapper solutionExplorer)
         {
             this.solution = solution;
+            this.solutionExplorer = solutionExplorer;
         }
 
         public void PrzejdzDoWidokuDlaAktualnejMetody()
@@ -56,8 +60,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             {
                 if (File.Exists(sciezka))
                 {
-                    SolutionExplorerWrapper.DajDlaSolution(solution)
-                        .OtworzPlik(sciezka);
+                    solutionExplorer.OtworzPlik(sciezka);
                     return;
                 }
             }
@@ -82,7 +85,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
                 UtworzKatalogDlaSciezkiJesliTrzeba(sciezka);
                 File.WriteAllText(sciezka, "", Encoding.UTF8);
                 aktualny.Projekt.DodajPlik(sciezka);
-                SolutionExplorerWrapper.DajDlaSolution(solution).OtworzPlik(sciezka);
+                solutionExplorer.OtworzPlik(sciezka);
             }
         }
 

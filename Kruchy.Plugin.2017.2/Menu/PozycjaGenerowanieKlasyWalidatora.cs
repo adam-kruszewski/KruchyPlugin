@@ -9,10 +9,14 @@ namespace KruchyCompany.KruchyPlugin1.Menu
 {
     class PozycjaGenerowanieKlasyWalidatora : PozycjaMenu
     {
-        public PozycjaGenerowanieKlasyWalidatora(ISolutionWrapper solution)
+        private readonly ISolutionExplorerWrapper solutionExplorer;
+
+        public PozycjaGenerowanieKlasyWalidatora(
+            ISolutionWrapper solution,
+            ISolutionExplorerWrapper solutionExplorer)
             : base(solution)
         {
-
+            this.solutionExplorer = solutionExplorer;
         }
 
         protected override uint MenuCommandID
@@ -39,7 +43,7 @@ namespace KruchyCompany.KruchyPlugin1.Menu
             dialog.InicjalnaWartosc = nazwaPlikuDoWalidacji + "Validator";
             dialog.ShowDialog();
             if (!string.IsNullOrEmpty(dialog.NazwaPliku))
-                new GenerowanieKlasyWalidatora(solution)
+                new GenerowanieKlasyWalidatora(solution, solutionExplorer)
                     .Generuj(dialog.NazwaPliku);
         }
     }

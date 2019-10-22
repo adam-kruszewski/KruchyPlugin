@@ -9,9 +9,14 @@ namespace KruchyCompany.KruchyPlugin1.Menu
 {
     class PozycjaGenerowanieKlasService : PozycjaMenu
     {
-        public PozycjaGenerowanieKlasService(ISolutionWrapper solution)
+        private readonly ISolutionExplorerWrapper solutionExplorer;
+
+        public PozycjaGenerowanieKlasService(
+            ISolutionWrapper solution,
+            ISolutionExplorerWrapper solutionExplorer)
             : base(solution)
         {
+            this.solutionExplorer = solutionExplorer;
         }
 
         protected override uint MenuCommandID
@@ -37,7 +42,7 @@ namespace KruchyCompany.KruchyPlugin1.Menu
             if (string.IsNullOrEmpty(dialog.NazwaPliku))
                 return;
 
-            var g = new GenerowanieKlasService(solution);
+            var g = new GenerowanieKlasService(solution, solutionExplorer);
 
             g.Generuj(solution.AktualnyPlik, dialog.NazwaPliku, dialog.StanCheckBoxa);
         }

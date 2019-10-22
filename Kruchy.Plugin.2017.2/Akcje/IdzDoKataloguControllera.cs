@@ -1,5 +1,4 @@
 ﻿using System.IO;
-using System.Windows;
 using System.Windows.Forms;
 using Kruchy.Plugin.Utils.Wrappers;
 
@@ -8,10 +7,14 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
     class IdzDoKataloguControllera
     {
         private readonly ISolutionWrapper solution;
+        private readonly ISolutionExplorerWrapper solutionExplorer;
 
-        public IdzDoKataloguControllera(ISolutionWrapper solution)
+        public IdzDoKataloguControllera(
+            ISolutionWrapper solution,
+            ISolutionExplorerWrapper solutionExplorer)
         {
             this.solution = solution;
+            this.solutionExplorer = solutionExplorer;
         }
 
         public void Przejdz()
@@ -40,8 +43,8 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
                 return;
             }
 
-            var explorer = SolutionExplorerWrapper.DajDlaSolution(solution);
-            explorer.UstawSieNaMiejscu(katalogDlaControllera);
+
+            solutionExplorer.UstawSieNaMiejscu(katalogDlaControllera);
         }
 
         private string DajNazweControllera(string nazwaKlasyControllera)

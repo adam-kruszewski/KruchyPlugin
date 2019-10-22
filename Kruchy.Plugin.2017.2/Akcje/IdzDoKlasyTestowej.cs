@@ -10,10 +10,14 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
     class IdzDoKlasyTestowej
     {
         private readonly ISolutionWrapper solution;
+        private readonly ISolutionExplorerWrapper solutionExplorer;
 
-        public IdzDoKlasyTestowej(ISolutionWrapper solution)
+        public IdzDoKlasyTestowej(
+            ISolutionWrapper solution,
+            ISolutionExplorerWrapper solutionExplorer)
         {
             this.solution = solution;
+            this.solutionExplorer = solutionExplorer;
         }
 
         public void Przejdz()
@@ -75,7 +79,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             }
 
 
-            SolutionExplorerWrapper.DajDlaSolution(solution).OtworzPlik(plik);
+            solutionExplorer.OtworzPlik(plik);
         }
 
         private string SzukajNazwyKlasyTestowanejZServiceTests()

@@ -8,10 +8,14 @@ namespace KruchyCompany.KruchyPlugin1.Menu
 {
     class PozycjaIdzDoGridRowActions : PozycjaMenu
     {
-        public PozycjaIdzDoGridRowActions(ISolutionWrapper solution)
+        private readonly ISolutionExplorerWrapper solutionExplorer;
+
+        public PozycjaIdzDoGridRowActions(
+            ISolutionWrapper solution,
+            ISolutionExplorerWrapper solutionExplorer)
             : base(solution)
         {
-
+            this.solutionExplorer = solutionExplorer;
         }
 
         protected override uint MenuCommandID
@@ -29,7 +33,7 @@ namespace KruchyCompany.KruchyPlugin1.Menu
 
         protected override void Execute(object sender, EventArgs args)
         {
-            new IdzDoPlikuWidoku(solution)
+            new IdzDoPlikuWidoku(solution, solutionExplorer)
                 .PrzejdzLubStworz("GridRowActions.cshtml");
         }
     }

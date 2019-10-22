@@ -13,10 +13,14 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
     class UzupelnianieMetodWImplementacji
     {
         private readonly ISolutionWrapper solution;
+        private readonly ISolutionExplorerWrapper solutionExplorer;
 
-        public UzupelnianieMetodWImplementacji(ISolutionWrapper solution)
+        public UzupelnianieMetodWImplementacji(
+            ISolutionWrapper solution,
+            ISolutionExplorerWrapper solutionExplorer)
         {
             this.solution = solution;
+            this.solutionExplorer = solutionExplorer;
         }
 
         public void Uzupelnij()
@@ -82,7 +86,6 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             IEnumerable<UsingNamespace> usingi,
             Metoda nastepnaMetoda)
         {
-            var solutionExplorer = SolutionExplorerWrapper.DajDlaSolution(solution);
             solutionExplorer.OtworzPlik(sciezkaDoImplementacji);
 
             var zawartosc = solution.AktualnyDokument.DajZawartosc();

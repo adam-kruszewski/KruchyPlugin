@@ -9,10 +9,14 @@ namespace KruchyCompany.KruchyPlugin1.Menu
 {
     class PozycjaGenerowanieKlasyTestowej : PozycjaMenu
     {
-        public PozycjaGenerowanieKlasyTestowej(ISolutionWrapper solution)
+        private readonly ISolutionExplorerWrapper solutionExplorer;
+
+        public PozycjaGenerowanieKlasyTestowej(
+            ISolutionWrapper solution,
+            ISolutionExplorerWrapper solutionExplorer)
             : base(solution)
         {
-
+            this.solutionExplorer = solutionExplorer;
         }
 
         protected override uint MenuCommandID
@@ -37,7 +41,7 @@ namespace KruchyCompany.KruchyPlugin1.Menu
             if (string.IsNullOrEmpty(dialog.NazwaKlasy))
                 return;
 
-            new GenerowanieKlasyTestowej(solution)
+            new GenerowanieKlasyTestowej(solution, solutionExplorer)
                 .Generuj(
                     dialog.NazwaKlasy,
                     dialog.Rodzaj,

@@ -12,6 +12,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
     class GenerowanieKlasyTestowej
     {
         private readonly ISolutionWrapper solution;
+        private readonly ISolutionExplorerWrapper solutionExplorer;
 
         private IProjektWrapper AktualnyProjekt
         {
@@ -29,9 +30,12 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             }
         }
 
-        public GenerowanieKlasyTestowej(ISolutionWrapper solution)
+        public GenerowanieKlasyTestowej(
+            ISolutionWrapper solution,
+            ISolutionExplorerWrapper solutionExplorer)
         {
             this.solution = solution;
+            this.solutionExplorer = solutionExplorer;
         }
 
         public void Generuj(
@@ -70,7 +74,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             File.WriteAllText(pelnaSciezka, zawartosc, Encoding.UTF8);
             var plik = ProjektTestowy.DodajPlik(pelnaSciezka);
 
-            SolutionExplorerWrapper.DajDlaSolution(solution).OtworzPlik(plik);
+            solutionExplorer.OtworzPlik(plik);
         }
 
         private string DajSciezkeDoKataloguTestow(bool integracyjne)

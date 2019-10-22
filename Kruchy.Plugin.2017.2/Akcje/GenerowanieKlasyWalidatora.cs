@@ -12,10 +12,14 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
     class GenerowanieKlasyWalidatora
     {
         private readonly ISolutionWrapper solution;
+        private readonly ISolutionExplorerWrapper solutionExplorer;
 
-        public GenerowanieKlasyWalidatora(ISolutionWrapper solution)
+        public GenerowanieKlasyWalidatora(
+            ISolutionWrapper solution,
+            ISolutionExplorerWrapper solutionExplorer)
         {
             this.solution = solution;
+            this.solutionExplorer = solutionExplorer;
         }
 
         public void Generuj(string nazwaKlasy)
@@ -72,7 +76,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
                 Encoding.UTF8);
             solution.AktualnyProjekt.DodajPlik(pelnaSciezkaDoPlikuImplementacji);
             solution.AktualnyProjekt.DodajPlik(pelnaSciezkaDoPlikuInterfejsu);
-            var solutionExplorer = SolutionExplorerWrapper.DajDlaSolution(solution);
+
             solutionExplorer.OtworzPlik(pelnaSciezkaDoPlikuInterfejsu);
             solutionExplorer.OtworzPlik(pelnaSciezkaDoPlikuImplementacji);
         }
