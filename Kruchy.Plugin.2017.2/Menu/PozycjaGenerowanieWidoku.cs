@@ -10,10 +10,14 @@ namespace KruchyCompany.KruchyPlugin1.Menu
 {
     class PozycjaGenerowanieWidoku : PozycjaMenu
     {
-        public PozycjaGenerowanieWidoku(ISolutionWrapper solution)
+        private readonly ISolutionExplorerWrapper solutionExplorer;
+
+        public PozycjaGenerowanieWidoku(
+            ISolutionWrapper solution,
+            ISolutionExplorerWrapper solutionExplorer)
             : base(solution)
         {
-
+            this.solutionExplorer = solutionExplorer;
         }
 
         protected override uint MenuCommandID
@@ -38,7 +42,7 @@ namespace KruchyCompany.KruchyPlugin1.Menu
 
             if (!string.IsNullOrEmpty(dialog.NazwaPliku))
             {
-                new GenerowanieWidoku(solution).Generuj(dialog.NazwaPliku);
+                new GenerowanieWidoku(solution, solutionExplorer).Generuj(dialog.NazwaPliku);
             }
         }
     }

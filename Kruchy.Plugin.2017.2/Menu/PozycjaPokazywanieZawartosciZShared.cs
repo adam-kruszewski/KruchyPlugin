@@ -8,9 +8,14 @@ namespace KruchyCompany.KruchyPlugin1.Menu
 {
     class PozycjaPokazywanieZawartosciZShared : PozycjaMenu
     {
-        public PozycjaPokazywanieZawartosciZShared(ISolutionWrapper solution)
+        private readonly ISolutionExplorerWrapper solutionExplorer;
+
+        public PozycjaPokazywanieZawartosciZShared(
+            ISolutionWrapper solution,
+            ISolutionExplorerWrapper solutionExplorer)
             : base(solution)
         {
+            this.solutionExplorer = solutionExplorer;
         }
 
         protected override uint MenuCommandID
@@ -29,7 +34,7 @@ namespace KruchyCompany.KruchyPlugin1.Menu
 
         protected override void Execute(object sender, EventArgs args)
         {
-            new PokazywaniaZawartosciZShared(solution).Pokaz();
+            new PokazywaniaZawartosciZShared(solution, solutionExplorer).Pokaz();
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System.IO;
-using System.Windows;
 using System.Windows.Forms;
 using Kruchy.Plugin.Utils.Extensions;
 using Kruchy.Plugin.Utils.Wrappers;
@@ -9,10 +8,14 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
     class PokazywaniaZawartosciZShared
     {
         private readonly ISolutionWrapper solution;
+        private readonly ISolutionExplorerWrapper solutionExplorer;
 
-        public PokazywaniaZawartosciZShared(ISolutionWrapper solution)
+        public PokazywaniaZawartosciZShared(
+            ISolutionWrapper solution,
+            ISolutionExplorerWrapper solutionExplorer)
         {
             this.solution = solution;
+            this.solutionExplorer = solutionExplorer;
         }
 
         public void Pokaz()
@@ -29,7 +32,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
                 return;
             }
 
-            solution.OtworzPlik(sciezkaWShared);
+            solutionExplorer.OtworzPlik(sciezkaWShared);
         }
     }
 }

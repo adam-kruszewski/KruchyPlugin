@@ -130,10 +130,5 @@ namespace Kruchy.Plugin.Utils.Wrappers
             var l = Projekty.ToList();
             return l.Where(o => o.Nazwa == nazwa).FirstOrDefault();
         }
-
-        public void OtworzPlik(string sciezka)
-        {
-            SolutionExplorerWrapper.DajDlaSolution(this).OtworzPlik(sciezka);
-        }
     }
 }

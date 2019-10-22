@@ -9,10 +9,14 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
     class GenerowanieWidoku
     {
         private readonly ISolutionWrapper solution;
+        private readonly ISolutionExplorerWrapper solutionExplorer;
 
-        public GenerowanieWidoku(ISolutionWrapper solution)
+        public GenerowanieWidoku(
+            ISolutionWrapper solution,
+            ISolutionExplorerWrapper solutionExplorer)
         {
             this.solution = solution;
+            this.solutionExplorer = solutionExplorer;
         }
 
         public void Generuj(string nazwa)
@@ -37,7 +41,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             }
             File.WriteAllText(pelnaSciezka, "");
             solution.AktualnyProjekt.DodajPlik(pelnaSciezka);
-            solution.OtworzPlik(pelnaSciezka);
+            solutionExplorer.OtworzPlik(pelnaSciezka);
         }
 
         private string Normalizuj(string nazwa)

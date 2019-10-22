@@ -22,7 +22,5 @@ namespace Kruchy.Plugin.Utils.Wrappers
         IList<IProjektWrapper> Projekty { get; }
 
         IProjektWrapper ZnajdzProjekt(string nazwa);
-
-        void OtworzPlik(string sciezka);
     }
 }
