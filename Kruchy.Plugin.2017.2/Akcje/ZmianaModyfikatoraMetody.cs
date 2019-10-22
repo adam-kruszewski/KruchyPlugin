@@ -6,10 +6,10 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 {
     class ZmianaModyfikatoraMetody
     {
-        private readonly DokumentWrapper dokument;
+        private readonly IDokumentWrapper dokument;
         private readonly string[] modyfikatory = { "public", "private", "internal", "protected" };
 
-        public ZmianaModyfikatoraMetody(DokumentWrapper dokument)
+        public ZmianaModyfikatoraMetody(IDokumentWrapper dokument)
         {
             this.dokument = dokument;
         }

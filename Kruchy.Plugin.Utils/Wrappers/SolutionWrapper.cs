@@ -6,7 +6,7 @@ using EnvDTE80;
 
 namespace Kruchy.Plugin.Utils.Wrappers
 {
-    public class SolutionWrapper
+    public class SolutionWrapper : ISolutionWrapper
     {
         private readonly DTE2 dte;
 
@@ -38,7 +38,7 @@ namespace Kruchy.Plugin.Utils.Wrappers
             }
         }
 
-        public PlikWrapper AktualnyPlik
+        public IPlikWrapper AktualnyPlik
         {
             get
             {
@@ -48,7 +48,7 @@ namespace Kruchy.Plugin.Utils.Wrappers
             }
         }
 
-        public ProjektWrapper AktualnyProjekt
+        public IProjektWrapper AktualnyProjekt
         {
             get
             {
@@ -60,7 +60,7 @@ namespace Kruchy.Plugin.Utils.Wrappers
             }
         }
 
-        public DokumentWrapper AktualnyDokument
+        public IDokumentWrapper AktualnyDokument
         {
             get
             {
@@ -74,11 +74,11 @@ namespace Kruchy.Plugin.Utils.Wrappers
 
         public DTE2 DTE { get { return dte; } }
 
-        public IList<ProjektWrapper> Projekty
+        public IList<IProjektWrapper> Projekty
         {
             get
             {
-                var wynik = new List<ProjektWrapper>();
+                var wynik = new List<IProjektWrapper>();
                 var solution = dte.Solution;
                 for (int i = 1; i <= solution.Count; i++)
                 {
@@ -92,7 +92,7 @@ namespace Kruchy.Plugin.Utils.Wrappers
             }
         }
 
-        private void SzukajProjektow(Project p, List<ProjektWrapper> wynik)
+        private void SzukajProjektow(Project p, List<IProjektWrapper> wynik)
         {
             for (int i = 1; i <= p.ProjectItems.Count; i++)
             {
@@ -103,7 +103,7 @@ namespace Kruchy.Plugin.Utils.Wrappers
 
         private void SzukajProjektowWProjectItem(
             ProjectItem pi,
-            List<ProjektWrapper> wynik)
+            List<IProjektWrapper> wynik)
         {
             var itemObject = pi.Object as Project;
             if (itemObject == null)
@@ -125,7 +125,7 @@ namespace Kruchy.Plugin.Utils.Wrappers
             throw new System.NotImplementedException();
         }
 
-        public ProjektWrapper ZnajdzProjekt(string nazwa)
+        public IProjektWrapper ZnajdzProjekt(string nazwa)
         {
             var l = Projekty.ToList();
             return l.Where(o => o.Nazwa == nazwa).FirstOrDefault();

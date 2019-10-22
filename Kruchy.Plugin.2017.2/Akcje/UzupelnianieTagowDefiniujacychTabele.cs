@@ -12,9 +12,9 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
         private const string NamespaceDlaAtrybutowOpisujacychTabele =
             "KomponentyStandardowe.Data";
 
-        private readonly DokumentWrapper dokument;
+        private readonly IDokumentWrapper dokument;
 
-        public UzupelnianieTagowDefiniujacychTabele(DokumentWrapper dokument)
+        public UzupelnianieTagowDefiniujacychTabele(IDokumentWrapper dokument)
         {
             this.dokument = dokument;
         }

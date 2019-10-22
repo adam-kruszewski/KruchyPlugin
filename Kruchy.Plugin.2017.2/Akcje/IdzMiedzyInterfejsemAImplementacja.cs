@@ -29,7 +29,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
                 SprobujPrzejscDoInterfejsu(aktualny);
         }
 
-        private bool JestInterfejsem(PlikWrapper aktualny)
+        private bool JestInterfejsem(IPlikWrapper aktualny)
         {
             var zawartosc = aktualny.Dokument.DajZawartosc();
             var parsowane = Parser.Parsuj(zawartosc);
@@ -41,7 +41,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
                 throw new Exception("Brak zdefiniowanego obiektu");
         }
 
-        private void SprobujPrzejscDoImplementacji(PlikWrapper aktualny)
+        private void SprobujPrzejscDoImplementacji(IPlikWrapper aktualny)
         {
             var parsowane = Parser.Parsuj(aktualny.Dokument.DajZawartosc());
             var metoda =
@@ -76,7 +76,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
                     znalezionaMetoda.Poczatek.Kolumna);
         }
 
-        private string SzukajSciezkiDoImplementacji(PlikWrapper aktualny)
+        private string SzukajSciezkiDoImplementacji(IPlikWrapper aktualny)
         {
             var katalog = aktualny.Katalog;
             var katalogImpl = Path.Combine(katalog, "Impl");
@@ -90,13 +90,13 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             return null;
         }
 
-        private void SprobujPrzejscDoInterfejsu(PlikWrapper aktualny)
+        private void SprobujPrzejscDoInterfejsu(IPlikWrapper aktualny)
         {
             string sciezkaDoInterfejsu = SzukajSciezkiDoInterfejsu(aktualny);
             OtworzJesliSciezkaNieNullowa(sciezkaDoInterfejsu);
         }
 
-        private string SzukajSciezkiDoInterfejsu(PlikWrapper aktualny)
+        private string SzukajSciezkiDoInterfejsu(IPlikWrapper aktualny)
         {
             var katalog = aktualny.Katalog;
             var katalogInterfejsu = Directory.GetParent(katalog).FullName;

@@ -19,7 +19,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
         }
 
         public WynikGenerowaniaKlasService Generuj(
-            PlikWrapper aktualnyPlik,
+            IPlikWrapper aktualnyPlik,
             string nazwaKlasyService,
             bool obaWKataloguImpl)
         {

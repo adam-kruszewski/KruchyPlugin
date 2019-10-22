@@ -69,7 +69,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
         }
 
         private void SprobujStworzyc(
-            PlikWrapper aktualny,
+            IPlikWrapper aktualny,
             List<string> listaSciezek,
             string nazwaPliku)
         {
@@ -108,7 +108,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
         }
 
         private string DajSciezkeSharedWOgolnych(
-            ProjektWrapper projekt,
+            IProjektWrapper projekt,
             string nazwaPliku)
         {
             var sciezka = Path.Combine(
@@ -120,7 +120,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
         }
 
         private string DajSciezkeWArea(
-            PlikWrapper aktualny,
+            IPlikWrapper aktualny,
             string nazwaControllera,
             string nazwaPliku)
         {
@@ -134,7 +134,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             return sciezkaDoPliku;
         }
 
-        private string DajSciezkeSharedWArea(PlikWrapper aktualny, string nazwaPliku)
+        private string DajSciezkeSharedWArea(IPlikWrapper aktualny, string nazwaPliku)
         {
             var katalogWArea = Directory.GetParent(aktualny.Katalog);
             var sciezkaDoPliku =
@@ -146,7 +146,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             return sciezkaDoPliku;
         }
 
-        private bool CzyJestWArea(PlikWrapper aktualny)
+        private bool CzyJestWArea(IPlikWrapper aktualny)
         {
             var elementySciezki = aktualny.SciezkaPelna.Split(
                 System.IO.Path.DirectorySeparatorChar);

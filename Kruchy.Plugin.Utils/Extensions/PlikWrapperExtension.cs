@@ -8,7 +8,7 @@ namespace Kruchy.Plugin.Utils.Extensions
 {
     public static class PlikWrapperExtension
     {
-        public static bool JestInterfejsem(this PlikWrapper aktualny)
+        public static bool JestInterfejsem(this IPlikWrapper aktualny)
         {
             var zawartosc = aktualny.Dokument.DajZawartosc();
             var parsowane = Parser.Parsuj(zawartosc);
@@ -20,7 +20,7 @@ namespace Kruchy.Plugin.Utils.Extensions
                 throw new Exception("Brak zdefiniowanego obiektu");
         }
 
-        public static string SzukajSciezkiDoImplementacji(this PlikWrapper aktualny)
+        public static string SzukajSciezkiDoImplementacji(this IPlikWrapper aktualny)
         {
             var katalog = aktualny.Katalog;
             var katalogImpl = Path.Combine(katalog, "Impl");
@@ -34,7 +34,7 @@ namespace Kruchy.Plugin.Utils.Extensions
             return null;
         }
 
-        public static bool JestBuilderem(this PlikWrapper aktualny)
+        public static bool JestBuilderem(this IPlikWrapper aktualny)
         {
             var zawartosc = aktualny.Dokument.DajZawartosc();
             var parsowane = Parser.Parsuj(zawartosc);
@@ -48,7 +48,7 @@ namespace Kruchy.Plugin.Utils.Extensions
             return false;
         }
 
-        public static bool JestWBuilderze(this PlikWrapper aktualny)
+        public static bool JestWBuilderze(this IPlikWrapper aktualny)
         {
             var zawartosc = aktualny.Dokument.DajZawartosc();
             var parsowane = Parser.Parsuj(zawartosc);
@@ -63,7 +63,7 @@ namespace Kruchy.Plugin.Utils.Extensions
             return false;
         }
 
-        public static string SciezkaKataloguControllera(this PlikWrapper plik)
+        public static string SciezkaKataloguControllera(this IPlikWrapper plik)
         {
             var parsowane = Parser.Parsuj(plik.Dokument.DajZawartosc());
             string nazwaControllera = DajNazweControllera(parsowane.DefiniowaneObiekty.Single().Nazwa);
@@ -86,7 +86,7 @@ namespace Kruchy.Plugin.Utils.Extensions
                 nazwaKlasyControllera.Length - dl);
         }
 
-        public static string DajNazweControllera(this PlikWrapper plik)
+        public static string DajNazweControllera(this IPlikWrapper plik)
         {
             var zawartosc = plik.Dokument.DajZawartosc();
             var parsowane = Parser.Parsuj(zawartosc);

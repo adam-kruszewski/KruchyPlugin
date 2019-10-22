@@ -49,25 +49,25 @@ namespace Kruchy.Plugin.Utils.Extensions
             return Parser.Parsuj(solution.AktualnyDokument.DajZawartosc());
         }
 
-        public static ProjektWrapper SzukajProjektuTestowego(
+        public static IProjektWrapper SzukajProjektuTestowego(
             this SolutionWrapper solution,
-            ProjektWrapper projekt)
+            IProjektWrapper projekt)
         {
             var nazwaSzukanegoProjektu = solution.AktualnyProjekt.Nazwa + ".Tests";
             var projektTestow = SzukajProjektuWgNazwy(solution, nazwaSzukanegoProjektu);
             return projektTestow;
         }
 
-        public static ProjektWrapper SzukajProjektuModulu(
+        public static IProjektWrapper SzukajProjektuModulu(
             this SolutionWrapper solution,
-            ProjektWrapper projekt)
+            IProjektWrapper projekt)
         {
             var nazwaSzukanegoProjektu =
                 solution.AktualnyProjekt.Nazwa.Replace(".Tests", "");
             return SzukajProjektuWgNazwy(solution, nazwaSzukanegoProjektu);
         }
 
-        private static ProjektWrapper SzukajProjektuWgNazwy(
+        private static IProjektWrapper SzukajProjektuWgNazwy(
             SolutionWrapper solution,
             string nazwaSzukanegoProjektu)
         {

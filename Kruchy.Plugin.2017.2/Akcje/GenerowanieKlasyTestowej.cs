@@ -13,12 +13,12 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
     {
         private readonly SolutionWrapper solution;
 
-        private ProjektWrapper AktualnyProjekt
+        private IProjektWrapper AktualnyProjekt
         {
             get { return solution.AktualnyPlik.Projekt; }
         }
 
-        private ProjektWrapper ProjektTestowy
+        private IProjektWrapper ProjektTestowy
         {
             get
             {

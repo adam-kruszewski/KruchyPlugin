@@ -108,7 +108,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             }
         }
 
-        private string SzukajPlikuContextu(ProjektWrapper projekt)
+        private string SzukajPlikuContextu(IProjektWrapper projekt)
         {
             var katalogBase = Path.Combine(projekt.SciezkaDoKatalogu, "Base");
             var pliki = Directory.GetFiles(katalogBase);

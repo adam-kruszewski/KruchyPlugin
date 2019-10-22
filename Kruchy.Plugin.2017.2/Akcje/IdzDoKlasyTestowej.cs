@@ -108,7 +108,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
         }
 
         private static IPlikWrapper SzukajPlikiKlasyTestowanej(
-            ProjektWrapper projektModulu,
+            IProjektWrapper projektModulu,
             string nazwaSzukanegoPliku)
         {
             return projektModulu
