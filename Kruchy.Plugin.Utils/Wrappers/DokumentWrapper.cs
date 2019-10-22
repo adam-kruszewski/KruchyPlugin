@@ -6,7 +6,7 @@ using KruchyParserKodu.ParserKodu;
 
 namespace Kruchy.Plugin.Utils.Wrappers
 {
-    public class DokumentWrapper
+    public class DokumentWrapper : IDokumentWrapper
     {
         private readonly TextDocument textDocument;
         private readonly ProjektWrapper projektWrapper;

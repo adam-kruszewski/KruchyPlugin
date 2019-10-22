@@ -23,7 +23,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 
             var parsowane = Parser.Parsuj(solution.AktualnyDokument.DajZawartosc());
 
-            PlikWrapper plik;
+            IPlikWrapper plik;
             if (solution.AktualnyProjekt.Modul())
             {
                 var projektTestow =
@@ -107,7 +107,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             return false;
         }
 
-        private static PlikWrapper SzukajPlikiKlasyTestowanej(
+        private static IPlikWrapper SzukajPlikiKlasyTestowanej(
             ProjektWrapper projektModulu,
             string nazwaSzukanegoPliku)
         {

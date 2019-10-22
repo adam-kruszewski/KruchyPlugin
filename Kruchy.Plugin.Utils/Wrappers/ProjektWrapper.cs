@@ -4,7 +4,7 @@ using EnvDTE;
 
 namespace Kruchy.Plugin.Utils.Wrappers
 {
-    public class ProjektWrapper
+    public class ProjektWrapper : IProjektWrapper
     {
         private readonly Project project;
 
@@ -26,11 +26,11 @@ namespace Kruchy.Plugin.Utils.Wrappers
             }
         }
 
-        public PlikWrapper[] Pliki
+        public IPlikWrapper[] Pliki
         {
             get
             {
-                var listaPlikow = new List<PlikWrapper>();
+                var listaPlikow = new List<IPlikWrapper>();
                 foreach (ProjectItem pi in project.ProjectItems)
                 {
                     SzukajPlikow(listaPlikow, pi);
@@ -40,7 +40,7 @@ namespace Kruchy.Plugin.Utils.Wrappers
         }
 
         private void SzukajPlikow(
-            List<PlikWrapper> listaPlikow,
+            List<IPlikWrapper> listaPlikow,
             ProjectItem pi)
         {
             if (JestPlikiemWProjekcie(pi))

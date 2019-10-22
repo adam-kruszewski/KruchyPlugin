@@ -3,7 +3,7 @@ using EnvDTE;
 
 namespace Kruchy.Plugin.Utils.Wrappers
 {
-    public class PlikWrapper
+    public class PlikWrapper : IPlikWrapper
     {
         private Document document;
         private ProjectItem projectItem;
@@ -89,7 +89,7 @@ namespace Kruchy.Plugin.Utils.Wrappers
             }
         }
 
-        public DokumentWrapper Dokument
+        public IDokumentWrapper Dokument
         {
             get
             {

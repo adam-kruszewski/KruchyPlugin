@@ -88,7 +88,7 @@ namespace Kruchy.Plugin.Utils.Wrappers
             solution.DTE.ItemOperations.OpenFile(sciezka);
         }
 
-        public void OtworzPlik(PlikWrapper plik)
+        public void OtworzPlik(IPlikWrapper plik)
         {
             //ZaladujElementyUI();
             solution.DTE.ItemOperations.OpenFile(plik.SciezkaPelna);
