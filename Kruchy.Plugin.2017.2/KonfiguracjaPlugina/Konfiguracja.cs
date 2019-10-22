@@ -9,7 +9,7 @@ namespace KruchyCompany.KruchyPlugin1.KonfiguracjaPlugina
     {
         #region[STATIC]
         private static Konfiguracja instance;
-        public static Konfiguracja GetInstance(SolutionWrapper solution)
+        public static Konfiguracja GetInstance(ISolutionWrapper solution)
         {
             if (instance == null || instance.solution.PelnaNazwa != solution.PelnaNazwa)
                 instance = new Konfiguracja(solution);
@@ -17,12 +17,12 @@ namespace KruchyCompany.KruchyPlugin1.KonfiguracjaPlugina
         }
         #endregion
 
-        private SolutionWrapper solution;
+        private ISolutionWrapper solution;
 
         private KonfiguracjaUsingow Usingi { get; set; }
         private KruchyPlugin konfiguracjaXml;
 
-        private Konfiguracja(SolutionWrapper solution)
+        private Konfiguracja(ISolutionWrapper solution)
         {
             this.solution = solution;
             var sciezkaPlikuKonfiguracji = DajSciezkePlikuKonfiguracji(solution);
@@ -52,13 +52,13 @@ namespace KruchyCompany.KruchyPlugin1.KonfiguracjaPlugina
             return obj as KruchyPlugin;
         }
 
-        private string DajSciezkePlikuKonfiguracji(SolutionWrapper solution)
+        private string DajSciezkePlikuKonfiguracji(ISolutionWrapper solution)
         {
             var pelnaSciezkaSolution = solution.PelnaNazwa;
             return pelnaSciezkaSolution + ".kruchy.xml";
         }
 
-        public KonfiguracjaUsingow DajKonfiguracjeUsingow(SolutionWrapper solution)
+        public KonfiguracjaUsingow DajKonfiguracjeUsingow(ISolutionWrapper solution)
         {
             return Usingi;
         }

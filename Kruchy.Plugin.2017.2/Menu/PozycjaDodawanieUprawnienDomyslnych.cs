@@ -8,7 +8,7 @@ namespace KruchyCompany.KruchyPlugin1.Menu
 {
     class PozycjaDodawanieUprawnienDomyslnych : PozycjaMenu
     {
-        public PozycjaDodawanieUprawnienDomyslnych(SolutionWrapper solution)
+        public PozycjaDodawanieUprawnienDomyslnych(ISolutionWrapper solution)
             : base(solution)
         {
 

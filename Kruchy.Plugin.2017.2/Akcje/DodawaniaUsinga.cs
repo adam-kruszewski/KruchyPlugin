@@ -6,9 +6,9 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 {
     class DodawaniaUsinga
     {
-        private readonly SolutionWrapper solution;
+        private readonly ISolutionWrapper solution;
 
-        public DodawaniaUsinga(SolutionWrapper solution)
+        public DodawaniaUsinga(ISolutionWrapper solution)
         {
             this.solution = solution;
         }

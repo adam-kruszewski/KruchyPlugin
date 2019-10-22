@@ -9,7 +9,7 @@ namespace KruchyCompany.KruchyPlugin1.Menu
     class PozycjaIdzMiedzyInterfejsemAImplementacja : PozycjaMenu
     {
         public PozycjaIdzMiedzyInterfejsemAImplementacja(
-            SolutionWrapper solution) : base(solution)
+            ISolutionWrapper solution) : base(solution)
         {
 
         }

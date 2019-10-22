@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using EnvDTE80;
 using Kruchy.Plugin.Utils.Menu;
 using Kruchy.Plugin.Utils.Wrappers;
 using KruchyCompany.KruchyPlugin1.Akcje;
@@ -10,7 +9,7 @@ namespace KruchyCompany.KruchyPlugin1.Menu
     class PozycjaUzupelnianieReferencedObject : PozycjaMenu
     {
         public PozycjaUzupelnianieReferencedObject(
-            SolutionWrapper solution)
+            ISolutionWrapper solution)
             : base(solution)
         {
         }

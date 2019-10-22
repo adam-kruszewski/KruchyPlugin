@@ -8,9 +8,9 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 {
     class DodawanieUprawnienDomyslnych
     {
-        private readonly SolutionWrapper solution;
+        private readonly ISolutionWrapper solution;
 
-        public DodawanieUprawnienDomyslnych(SolutionWrapper solution)
+        public DodawanieUprawnienDomyslnych(ISolutionWrapper solution)
         {
             this.solution = solution;
         }

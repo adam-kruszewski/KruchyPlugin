@@ -8,10 +8,10 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 {
     class WstawianieNazwyControlleraDoSchowka
     {
-        private readonly SolutionWrapper solution;
+        private readonly ISolutionWrapper solution;
 
         public WstawianieNazwyControlleraDoSchowka(
-            SolutionWrapper solution)
+            ISolutionWrapper solution)
         {
             this.solution = solution;
         }

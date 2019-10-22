@@ -1,7 +1,6 @@
 ﻿using System.IO;
 using System.Linq;
 using System.Text;
-using System.Windows;
 using System.Windows.Forms;
 using KrucheBuilderyKodu.Builders;
 using Kruchy.Plugin.Utils.Wrappers;
@@ -11,9 +10,9 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 {
     class DodawanieUsingDbContext
     {
-        private readonly SolutionWrapper solution;
+        private readonly ISolutionWrapper solution;
 
-        public DodawanieUsingDbContext(SolutionWrapper solution)
+        public DodawanieUsingDbContext(ISolutionWrapper solution)
         {
             this.solution = solution;
         }

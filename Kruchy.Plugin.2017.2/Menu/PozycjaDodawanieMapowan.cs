@@ -8,7 +8,7 @@ namespace KruchyCompany.KruchyPlugin1.Menu
 {
     class PozycjaDodawanieMapowan : PozycjaMenu
     {
-        public PozycjaDodawanieMapowan(SolutionWrapper solution)
+        public PozycjaDodawanieMapowan(ISolutionWrapper solution)
             : base(solution)
         {
         }

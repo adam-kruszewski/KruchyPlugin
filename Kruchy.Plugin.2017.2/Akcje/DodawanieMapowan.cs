@@ -12,11 +12,11 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 {
     class DodawanieMapowan
     {
-        private readonly Kruchy.Plugin.Utils.Wrappers.SolutionWrapper solution;
+        private readonly ISolutionWrapper solution;
         private string[] nazwyAtrybutow = { "Map", "MapFrom", "MapTo" };
 
         public DodawanieMapowan(
-            SolutionWrapper solution)
+            ISolutionWrapper solution)
         {
             this.solution = solution;
         }

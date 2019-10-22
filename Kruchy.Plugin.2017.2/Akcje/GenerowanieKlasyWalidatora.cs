@@ -11,9 +11,9 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 {
     class GenerowanieKlasyWalidatora
     {
-        private readonly SolutionWrapper solution;
+        private readonly ISolutionWrapper solution;
 
-        public GenerowanieKlasyWalidatora(SolutionWrapper solution)
+        public GenerowanieKlasyWalidatora(ISolutionWrapper solution)
         {
             this.solution = solution;
         }

@@ -6,7 +6,7 @@ namespace Kruchy.Plugin.Utils.Extensions
 {
     public static class SolutionWrapperExtension
     {
-        public static string NamespaceAktualnegoPliku(this SolutionWrapper solution)
+        public static string NamespaceAktualnegoPliku(this ISolutionWrapper solution)
         {
             if (solution.AktualnyDokument == null)
                 return null;
@@ -16,7 +16,7 @@ namespace Kruchy.Plugin.Utils.Extensions
         }
 
         public static string NazwaObiektuAktualnegoPliku(
-            this SolutionWrapper solution)
+            this ISolutionWrapper solution)
         {
             if (solution.AktualnyDokument == null)
                 return null;
@@ -29,7 +29,7 @@ namespace Kruchy.Plugin.Utils.Extensions
             return parsowane.DefiniowaneObiekty[0].Nazwa;
         }
 
-        public static string NazwaAktualnejMetody(this SolutionWrapper solution)
+        public static string NazwaAktualnejMetody(this ISolutionWrapper solution)
         {
             var zawartosc = solution.AktualnyDokument.DajZawartosc();
             var parsowane = Parser.Parsuj(zawartosc);
@@ -44,13 +44,13 @@ namespace Kruchy.Plugin.Utils.Extensions
         }
 
         public static Plik ParsujZawartoscAktualnegoDokumetu(
-            this SolutionWrapper solution)
+            this ISolutionWrapper solution)
         {
             return Parser.Parsuj(solution.AktualnyDokument.DajZawartosc());
         }
 
         public static IProjektWrapper SzukajProjektuTestowego(
-            this SolutionWrapper solution,
+            this ISolutionWrapper solution,
             IProjektWrapper projekt)
         {
             var nazwaSzukanegoProjektu = solution.AktualnyProjekt.Nazwa + ".Tests";
@@ -59,7 +59,7 @@ namespace Kruchy.Plugin.Utils.Extensions
         }
 
         public static IProjektWrapper SzukajProjektuModulu(
-            this SolutionWrapper solution,
+            this ISolutionWrapper solution,
             IProjektWrapper projekt)
         {
             var nazwaSzukanegoProjektu =
@@ -68,7 +68,7 @@ namespace Kruchy.Plugin.Utils.Extensions
         }
 
         private static IProjektWrapper SzukajProjektuWgNazwy(
-            SolutionWrapper solution,
+            ISolutionWrapper solution,
             string nazwaSzukanegoProjektu)
         {
             var projekt =

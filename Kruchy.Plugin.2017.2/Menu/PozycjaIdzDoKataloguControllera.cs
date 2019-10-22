@@ -8,7 +8,7 @@ namespace KruchyCompany.KruchyPlugin1.Menu
 {
     class PozycjaIdzDoKataloguControllera : PozycjaMenu
     {
-        public PozycjaIdzDoKataloguControllera(SolutionWrapper solution)
+        public PozycjaIdzDoKataloguControllera(ISolutionWrapper solution)
             : base(solution)
         {
 

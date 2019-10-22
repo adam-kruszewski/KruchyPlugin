@@ -11,7 +11,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 {
     class GenerowanieKlasyTestowej
     {
-        private readonly SolutionWrapper solution;
+        private readonly ISolutionWrapper solution;
 
         private IProjektWrapper AktualnyProjekt
         {
@@ -29,7 +29,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             }
         }
 
-        public GenerowanieKlasyTestowej(SolutionWrapper solution)
+        public GenerowanieKlasyTestowej(ISolutionWrapper solution)
         {
             this.solution = solution;
         }

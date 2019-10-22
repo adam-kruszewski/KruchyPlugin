@@ -20,7 +20,7 @@ namespace KruchyCompany.KruchyPlugin1.Interfejs
             RodzajKlasyTestowej.Zwykla
         };
 
-        public NazwaKlasyTestowForm(SolutionWrapper solution)
+        public NazwaKlasyTestowForm(ISolutionWrapper solution)
         {
             InitializeComponent();
             foreach (var r in rodzaje)

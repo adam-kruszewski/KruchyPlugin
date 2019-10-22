@@ -8,7 +8,7 @@ namespace KruchyCompany.KruchyPlugin1.Menu
 {
     class PozycjaZmienNaPrivate : PozycjaMenu
     {
-        public PozycjaZmienNaPrivate(SolutionWrapper solution)
+        public PozycjaZmienNaPrivate(ISolutionWrapper solution)
             : base(solution)
         {
 

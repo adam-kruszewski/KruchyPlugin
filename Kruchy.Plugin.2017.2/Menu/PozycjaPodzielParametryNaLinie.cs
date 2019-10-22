@@ -8,7 +8,7 @@ namespace KruchyCompany.KruchyPlugin1.Menu
 {
     class PozycjaPodzielParametryNaLinie : PozycjaMenu
     {
-        public PozycjaPodzielParametryNaLinie(SolutionWrapper solution)
+        public PozycjaPodzielParametryNaLinie(ISolutionWrapper solution)
             : base(solution)
         {
 

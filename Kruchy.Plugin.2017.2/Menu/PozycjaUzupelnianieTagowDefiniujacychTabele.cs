@@ -9,7 +9,7 @@ namespace KruchyCompany.KruchyPlugin1.Menu
     class PozycjaUzupelnianieTagowDefiniujacychTabele : PozycjaMenu
     {
         public PozycjaUzupelnianieTagowDefiniujacychTabele(
-            SolutionWrapper solution)
+            ISolutionWrapper solution)
             : base(solution)
         {
         }

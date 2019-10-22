@@ -13,7 +13,7 @@ namespace Kruchy.Plugin.Utils.Menu
     {
         public static Guid guidKruchyPluginCmdSetStatic;
 
-        protected readonly SolutionWrapper solution;
+        protected readonly ISolutionWrapper solution;
         abstract protected uint MenuCommandID { get; }
         protected virtual IEnumerable<WymaganieDostepnosci> Wymagania
         {
@@ -25,7 +25,7 @@ namespace Kruchy.Plugin.Utils.Menu
 
         OleMenuCommand MenuItem { get; set; }
 
-        public PozycjaMenu(SolutionWrapper solution)
+        public PozycjaMenu(ISolutionWrapper solution)
         {
             this.solution = solution;
         }

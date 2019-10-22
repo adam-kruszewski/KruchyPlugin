@@ -12,7 +12,7 @@ namespace KruchyCompany.KruchyPlugin1.Menu
 {
     class PozycjaDodawanieUsingow : PozycjaMenu
     {
-        public PozycjaDodawanieUsingow(SolutionWrapper solution)
+        public PozycjaDodawanieUsingow(ISolutionWrapper solution)
             : base(solution) { }
 
         protected override uint MenuCommandID

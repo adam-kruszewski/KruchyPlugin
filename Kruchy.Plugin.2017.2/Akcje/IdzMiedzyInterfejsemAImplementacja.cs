@@ -10,9 +10,9 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 {
     class IdzMiedzyInterfejsemAImplementacja
     {
-        private readonly SolutionWrapper solution;
+        private readonly ISolutionWrapper solution;
 
-        public IdzMiedzyInterfejsemAImplementacja(SolutionWrapper solution)
+        public IdzMiedzyInterfejsemAImplementacja(ISolutionWrapper solution)
         {
             this.solution = solution;
         }

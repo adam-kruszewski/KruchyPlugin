@@ -7,10 +7,10 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 {
     class DodawanieNowejMetodyWBuilderze
     {
-        private readonly SolutionWrapper solution;
+        private readonly ISolutionWrapper solution;
 
         public DodawanieNowejMetodyWBuilderze(
-            SolutionWrapper solution)
+            ISolutionWrapper solution)
         {
             this.solution = solution;
         }

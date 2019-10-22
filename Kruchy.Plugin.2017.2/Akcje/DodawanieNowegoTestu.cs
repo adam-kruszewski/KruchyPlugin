@@ -5,9 +5,9 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 {
     class DodawanieNowegoTestu
     {
-        private readonly SolutionWrapper solution;
+        private readonly ISolutionWrapper solution;
 
-        public DodawanieNowegoTestu(SolutionWrapper solution)
+        public DodawanieNowegoTestu(ISolutionWrapper solution)
         {
             this.solution = solution;
         }

@@ -9,7 +9,7 @@ namespace KruchyCompany.KruchyPlugin1.Menu
 {
     class PozycjaDodawanieNowejMetodyWBuilderze : PozycjaMenu
     {
-        public PozycjaDodawanieNowejMetodyWBuilderze(SolutionWrapper solution)
+        public PozycjaDodawanieNowejMetodyWBuilderze(ISolutionWrapper solution)
             : base(solution)
         {
 

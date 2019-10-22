@@ -9,7 +9,7 @@ namespace KruchyCompany.KruchyPlugin1.Menu
 {
     class PozycjaGenerowanieKlasyWalidatora : PozycjaMenu
     {
-        public PozycjaGenerowanieKlasyWalidatora(SolutionWrapper solution)
+        public PozycjaGenerowanieKlasyWalidatora(ISolutionWrapper solution)
             : base(solution)
         {
 

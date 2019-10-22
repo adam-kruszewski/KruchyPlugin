@@ -11,9 +11,9 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 {
     class GenerowanieKlasService
     {
-        private readonly SolutionWrapper solution;
+        private readonly ISolutionWrapper solution;
 
-        public GenerowanieKlasService(SolutionWrapper solution)
+        public GenerowanieKlasService(ISolutionWrapper solution)
         {
             this.solution = solution;
         }

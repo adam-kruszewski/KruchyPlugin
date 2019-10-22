@@ -8,7 +8,7 @@ namespace Kruchy.Plugin.Utils.Wrappers
 {
     public class SolutionExplorerWrapper
     {
-        private readonly SolutionWrapper solution;
+        private readonly ISolutionWrapper solution;
 
         private UIHierarchy SolutionExplorer
         {
@@ -23,7 +23,7 @@ namespace Kruchy.Plugin.Utils.Wrappers
             get { return SolutionExplorer.UIHierarchyItems.Item(1); }
         }
 
-        public SolutionExplorerWrapper(SolutionWrapper solution)
+        public SolutionExplorerWrapper(ISolutionWrapper solution)
         {
             this.solution = solution;
         }

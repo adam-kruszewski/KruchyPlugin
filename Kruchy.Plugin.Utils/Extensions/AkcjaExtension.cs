@@ -4,7 +4,7 @@ namespace Kruchy.Plugin.Utils.Extensions
 {
     public static class AkcjaExtension
     {
-        public static bool CzyPlikControllera(this SolutionWrapper solution)
+        public static bool CzyPlikControllera(this ISolutionWrapper solution)
         {
             var aktualny = solution.AktualnyPlik;
             if (aktualny == null)

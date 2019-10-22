@@ -8,7 +8,7 @@ namespace KruchyCompany.KruchyPlugin1.Menu
 {
     class PozycjaUzupelnianieKontruktora : PozycjaMenu
     {
-        public PozycjaUzupelnianieKontruktora(SolutionWrapper solution)
+        public PozycjaUzupelnianieKontruktora(ISolutionWrapper solution)
             : base(solution)
         {
 

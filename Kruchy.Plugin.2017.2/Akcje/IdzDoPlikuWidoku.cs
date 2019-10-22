@@ -2,7 +2,6 @@
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Windows;
 using System.Windows.Forms;
 using Kruchy.Plugin.Utils.Extensions;
 using Kruchy.Plugin.Utils.Wrappers;
@@ -12,9 +11,9 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 {
     class IdzDoPlikuWidoku
     {
-        private readonly SolutionWrapper solution;
+        private readonly ISolutionWrapper solution;
 
-        public IdzDoPlikuWidoku(SolutionWrapper solution)
+        public IdzDoPlikuWidoku(ISolutionWrapper solution)
         {
             this.solution = solution;
         }

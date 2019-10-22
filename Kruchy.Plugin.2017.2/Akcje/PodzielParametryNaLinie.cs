@@ -5,7 +5,7 @@ using System.Windows;
 using System.Windows.Forms;
 using KrucheBuilderyKodu.Builders;
 using Kruchy.Plugin.Utils.Wrappers;
-using KruchyParserKodu.ParserKodu;  namespace KruchyCompany.KruchyPlugin1.Akcje {     class PodzielParametryNaLinie     {         private readonly SolutionWrapper solution;          public PodzielParametryNaLinie(SolutionWrapper solution)         {             this.solution = solution;         }          public void Podziel()         {             var dokument = solution.AktualnyDokument;             var parsowane =                 Parser.Parsuj(dokument.DajZawartosc());              var metoda = parsowane                     .SzukajMetodyWLinii(dokument.DajNumerLiniiKursora());              if (metoda == null)             {
+using KruchyParserKodu.ParserKodu;  namespace KruchyCompany.KruchyPlugin1.Akcje {     class PodzielParametryNaLinie     {         private readonly ISolutionWrapper solution;          public PodzielParametryNaLinie(ISolutionWrapper solution)         {             this.solution = solution;         }          public void Podziel()         {             var dokument = solution.AktualnyDokument;             var parsowane =                 Parser.Parsuj(dokument.DajZawartosc());              var metoda = parsowane                     .SzukajMetodyWLinii(dokument.DajNumerLiniiKursora());              if (metoda == null)             {
                 var konstruktor =
                     parsowane
                         .SzukajKontruktoraWLinii(dokument.DajNumerLiniiKursora());

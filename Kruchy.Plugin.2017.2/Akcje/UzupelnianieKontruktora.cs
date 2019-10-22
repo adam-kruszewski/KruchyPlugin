@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Windows;
 using System.Windows.Forms;
 using KrucheBuilderyKodu.Builders;
 using Kruchy.Plugin.Utils.Wrappers;
@@ -12,7 +11,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 {
     class UzupelnianieKontruktora
     {
-        private readonly SolutionWrapper solution;
+        private readonly ISolutionWrapper solution;
         private static Dictionary<string, int> kolejnoscWgTypu =
             PrzygotujKolejnoscWgTypow();
 
@@ -28,7 +27,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             return wynik;
         }
 
-        public UzupelnianieKontruktora(SolutionWrapper solution)
+        public UzupelnianieKontruktora(ISolutionWrapper solution)
         {
             this.solution = solution;
         }

@@ -23,7 +23,7 @@ namespace KruchyCompany.KruchyPlugin1.Menu
         }
 
         public PozycjaInicjowaniePolaWKonstruktorze(
-            SolutionWrapper solution) : base(solution) { }
+            ISolutionWrapper solution) : base(solution) { }
 
         protected override void Execute(object sender, EventArgs args)
         {

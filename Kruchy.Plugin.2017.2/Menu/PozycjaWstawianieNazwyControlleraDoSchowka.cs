@@ -9,7 +9,7 @@ namespace KruchyCompany.KruchyPlugin1.Menu
     class PozycjaWstawianieNazwyControlleraDoSchowka : PozycjaMenu
     {
         public PozycjaWstawianieNazwyControlleraDoSchowka(
-            SolutionWrapper solution)
+            ISolutionWrapper solution)
             : base(solution)
         {
 

@@ -8,7 +8,7 @@ namespace KruchyCompany.KruchyPlugin1.Menu
 {
     class PozycjaIdzDoGridToolbar : PozycjaMenu
     {
-        public PozycjaIdzDoGridToolbar(SolutionWrapper solution)
+        public PozycjaIdzDoGridToolbar(ISolutionWrapper solution)
             : base(solution)
         {
 

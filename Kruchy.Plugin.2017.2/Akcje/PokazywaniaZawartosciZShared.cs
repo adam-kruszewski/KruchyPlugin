@@ -8,9 +8,9 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 {
     class PokazywaniaZawartosciZShared
     {
-        private readonly SolutionWrapper solution;
+        private readonly ISolutionWrapper solution;
 
-        public PokazywaniaZawartosciZShared(SolutionWrapper solution)
+        public PokazywaniaZawartosciZShared(ISolutionWrapper solution)
         {
             this.solution = solution;
         }

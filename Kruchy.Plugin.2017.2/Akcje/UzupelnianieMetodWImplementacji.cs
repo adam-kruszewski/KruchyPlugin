@@ -12,9 +12,9 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 {
     class UzupelnianieMetodWImplementacji
     {
-        private readonly SolutionWrapper solution;
+        private readonly ISolutionWrapper solution;
 
-        public UzupelnianieMetodWImplementacji(SolutionWrapper solution)
+        public UzupelnianieMetodWImplementacji(ISolutionWrapper solution)
         {
             this.solution = solution;
         }

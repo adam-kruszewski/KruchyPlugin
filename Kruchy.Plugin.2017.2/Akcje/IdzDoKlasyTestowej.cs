@@ -9,9 +9,9 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 {
     class IdzDoKlasyTestowej
     {
-        private readonly SolutionWrapper solution;
+        private readonly ISolutionWrapper solution;
 
-        public IdzDoKlasyTestowej(SolutionWrapper solution)
+        public IdzDoKlasyTestowej(ISolutionWrapper solution)
         {
             this.solution = solution;
         }

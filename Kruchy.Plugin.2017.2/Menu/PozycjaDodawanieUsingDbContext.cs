@@ -8,7 +8,7 @@ namespace KruchyCompany.KruchyPlugin1.Menu
 {
     class PozycjaDodawanieUsingDbContext : PozycjaMenu
     {
-        public PozycjaDodawanieUsingDbContext(SolutionWrapper solution)
+        public PozycjaDodawanieUsingDbContext(ISolutionWrapper solution)
             : base(solution)
         {
         }

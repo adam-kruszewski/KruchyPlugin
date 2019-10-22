@@ -7,9 +7,9 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 {
     class IdzDoKataloguControllera
     {
-        private readonly SolutionWrapper solution;
+        private readonly ISolutionWrapper solution;
 
-        public IdzDoKataloguControllera(SolutionWrapper solution)
+        public IdzDoKataloguControllera(ISolutionWrapper solution)
         {
             this.solution = solution;
         }

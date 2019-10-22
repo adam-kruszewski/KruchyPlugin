@@ -9,10 +9,10 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 {
     class InicjowaniePolaWKonstruktorze
     {
-        private readonly SolutionWrapper solution;
+        private readonly ISolutionWrapper solution;
 
         public InicjowaniePolaWKonstruktorze(
-            SolutionWrapper solution)
+            ISolutionWrapper solution)
         {
             this.solution = solution;
         }

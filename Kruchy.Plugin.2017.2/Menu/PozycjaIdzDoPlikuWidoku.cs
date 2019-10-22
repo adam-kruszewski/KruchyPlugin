@@ -8,7 +8,7 @@ namespace KruchyCompany.KruchyPlugin1.Menu
 {
     class PozycjaIdzDoPlikuWidoku : PozycjaMenu
     {
-        public PozycjaIdzDoPlikuWidoku(SolutionWrapper solution)
+        public PozycjaIdzDoPlikuWidoku(ISolutionWrapper solution)
             : base(solution)
         {
 
