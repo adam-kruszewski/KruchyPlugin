@@ -11,10 +11,14 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
     class IdzMiedzyInterfejsemAImplementacja
     {
         private readonly ISolutionWrapper solution;
+        private readonly ISolutionExplorerWrapper solutionExplorer;
 
-        public IdzMiedzyInterfejsemAImplementacja(ISolutionWrapper solution)
+        public IdzMiedzyInterfejsemAImplementacja(
+            ISolutionWrapper solution,
+            ISolutionExplorerWrapper solutionExplorer)
         {
             this.solution = solution;
+            this.solutionExplorer = solutionExplorer;
         }
 
         public void Przejdz()
@@ -115,7 +119,6 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
         {
             if (sciezka == null)
                 return;
-            var solutionExplorer = SolutionExplorerWrapper.DajDlaSolution(solution);
             solutionExplorer.OtworzPlik(sciezka);
         }
     }

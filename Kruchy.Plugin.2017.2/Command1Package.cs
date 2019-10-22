@@ -92,7 +92,13 @@ namespace KruchyCompany.KruchyPlugin1
 
             foreach (var klasa in klasyPozycji)
             {
-                var pozycjaMenu = Activator.CreateInstance(klasa, new[] { sw }) as PozycjaMenu;
+                var konstruktor = klasa.GetConstructors().Single();
+
+                object[] parametry = new[] { sw };
+                if (konstruktor.GetParameters().Length == 2)
+                    parametry = new[] { sw, (object)SolutionExplorerWrapper.DajDlaSolution(sw) };
+
+                var pozycjaMenu = Activator.CreateInstance(klasa, parametry) as PozycjaMenu;
                 pozycjaMenu.Podlacz(mcs2);
             }
             // When initialized asynchronously, the current thread may be a background thread at this point.
