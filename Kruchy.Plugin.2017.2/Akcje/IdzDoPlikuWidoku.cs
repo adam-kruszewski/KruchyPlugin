@@ -97,7 +97,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
         }
 
         private string DajSciezkeWOgolnych(
-            ProjektWrapper projekt,
+            IProjektWrapper projekt,
             string nazwaControllera,
             string nazwaPliku)
         {

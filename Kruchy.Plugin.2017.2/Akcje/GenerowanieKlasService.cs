@@ -100,7 +100,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 
         private string GenerujPlikInterfejsu(
             string nazwaKlasyService,
-            ProjektWrapper projekt,
+            IProjektWrapper projekt,
             bool obaWImpl)
         {
             var interfaceBuilder =
