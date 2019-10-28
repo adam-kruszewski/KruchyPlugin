@@ -9,7 +9,7 @@ using Microsoft.VisualStudio.Shell;
 
 namespace Kruchy.Plugin.Utils.Menu
 {
-    public abstract class PozycjaMenu
+    public abstract class PozycjaMenu : IPozycjaMenu
     {
         public static Guid guidKruchyPluginCmdSetStatic;
 

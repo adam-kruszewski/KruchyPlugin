@@ -17,6 +17,7 @@ using Microsoft.Win32;
 using Task = System.Threading.Tasks.Task;
 using EnvDTE80;
 using Kruchy.Plugin.Utils._2017.Wrappers;
+using Kruchy.Plugin.Utils._2017;
 
 namespace KruchyCompany.KruchyPlugin1
 {
@@ -85,10 +86,9 @@ namespace KruchyCompany.KruchyPlugin1
             var mcs2 = await GetServiceAsync(typeof(IMenuCommandService)) as OleMenuCommandService;
 
             var wszystkieKlasy = GetType().Assembly.GetTypes();
-            var klasaPozycjaMenu = typeof(PozycjaMenu);
             var klasyPozycji =
                 wszystkieKlasy
-                    .Where(o => klasaPozycjaMenu.IsAssignableFrom(o))
+                    .Where(o => typeof(IPozycjaMenu).IsAssignableFrom(o))
                         .ToList();
 
             foreach (var klasa in klasyPozycji)
@@ -100,13 +100,14 @@ namespace KruchyCompany.KruchyPlugin1
                     parametry = new[] { sw, (object)SolutionExplorerWrapper.DajDlaSolution(sw, dte) };
 
                 var pozycjaMenu = Activator.CreateInstance(klasa, parametry) as PozycjaMenu;
-                pozycjaMenu.Podlacz(mcs2);
+                PozycjaMenuAdapter.guidKruchyPluginCmdSetStatic =
+                    PozycjaMenu.guidKruchyPluginCmdSetStatic;
+                new PozycjaMenuAdapter(pozycjaMenu, sw).Podlacz(mcs2);
+                //pozycjaMenu.Podlacz(mcs2);
             }
             // When initialized asynchronously, the current thread may be a background thread at this point.
             // Do any initialization that requires the UI thread after switching to the UI thread.
             await Command1.InitializeAsync(this);
-
-
         }
 
         #endregion
