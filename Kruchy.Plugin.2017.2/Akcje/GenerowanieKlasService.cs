@@ -81,7 +81,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 
         private string GenerujPlikImplementacji(
             string nazwaKlasyService,
-            ProjektWrapper projekt)
+            IProjektWrapper projekt)
         {
             var klasaBuilder =
                 new ClassBuilder()
@@ -120,12 +120,12 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             return zawartosc;
         }
 
-        private string GenerujNamespace(ProjektWrapper projekt)
+        private string GenerujNamespace(IProjektWrapper projekt)
         {
             return projekt.Nazwa + ".Services";
         }
 
-        private string GenerujNamespaceImpl(ProjektWrapper projekt)
+        private string GenerujNamespaceImpl(IProjektWrapper projekt)
         {
             return GenerujNamespace(projekt) + ".Impl";
         }
