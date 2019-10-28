@@ -15,12 +15,12 @@ namespace KruchyCompany.KruchyPlugin1.Menu
         public PozycjaDodawanieUsingow(ISolutionWrapper solution)
             : base(solution) { }
 
-        protected override uint MenuCommandID
+        public override uint MenuCommandID
         {
             get { return PkgCmdIDList.cmdidDodajNaczesciejUzywaneUsingi; }
         }
 
-        protected override IEnumerable<WymaganieDostepnosci> Wymagania
+        public override IEnumerable<WymaganieDostepnosci> Wymagania
         {
             get
             {
@@ -28,7 +28,7 @@ namespace KruchyCompany.KruchyPlugin1.Menu
             }
         }
 
-        protected override void Execute(object sender, EventArgs args)
+        public override void Execute(object sender, EventArgs args)
         {
             var konf = Konfiguracja.GetInstance(solution);
             var aktualnaZawartosc = solution.AktualnyDokument.DajZawartosc();

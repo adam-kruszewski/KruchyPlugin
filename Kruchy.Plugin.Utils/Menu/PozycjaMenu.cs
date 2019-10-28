@@ -14,8 +14,8 @@ namespace Kruchy.Plugin.Utils.Menu
         public static Guid guidKruchyPluginCmdSetStatic;
 
         protected readonly ISolutionWrapper solution;
-        abstract protected uint MenuCommandID { get; }
-        protected virtual IEnumerable<WymaganieDostepnosci> Wymagania
+        abstract public uint MenuCommandID { get; }
+        public virtual IEnumerable<WymaganieDostepnosci> Wymagania
         {
             get
             {
@@ -122,6 +122,6 @@ namespace Kruchy.Plugin.Utils.Menu
             return true;
         }
 
-        abstract protected void Execute(object sender, EventArgs args);
+        abstract public void Execute(object sender, EventArgs args);
     }
 }

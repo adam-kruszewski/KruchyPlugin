@@ -14,7 +14,7 @@ namespace KruchyCompany.KruchyPlugin1.Menu
         {
         }
 
-        protected override IEnumerable<WymaganieDostepnosci> Wymagania
+        public override IEnumerable<WymaganieDostepnosci> Wymagania
         {
             get
             {
@@ -22,12 +22,12 @@ namespace KruchyCompany.KruchyPlugin1.Menu
             }
         }
 
-        protected override uint MenuCommandID
+        public override uint MenuCommandID
         {
             get { return PkgCmdIDList.cmdidUzupelnijTagiDefiniujaceTabele; }
         }
 
-        protected override void Execute(object sender, EventArgs args)
+        public override void Execute(object sender, EventArgs args)
         {
             var dokumentWrapper = solution.AktualnyDokument;
             new UzupelnianieTagowDefiniujacychTabele(dokumentWrapper).Uzupelnij();

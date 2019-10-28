@@ -8,12 +8,12 @@ namespace KruchyCompany.KruchyPlugin1.Menu
 {
     class PozycjaInicjowaniePolaWKonstruktorze : PozycjaMenu, IPozycjaMenu
     {
-        protected override uint MenuCommandID
+        public override uint MenuCommandID
         {
             get { return PkgCmdIDList.cmdidInicjujWKontruktorze; }
         }
 
-        protected override IEnumerable<WymaganieDostepnosci> Wymagania
+        public override IEnumerable<WymaganieDostepnosci> Wymagania
         {
             get
             {
@@ -25,7 +25,7 @@ namespace KruchyCompany.KruchyPlugin1.Menu
         public PozycjaInicjowaniePolaWKonstruktorze(
             ISolutionWrapper solution) : base(solution) { }
 
-        protected override void Execute(object sender, EventArgs args)
+        public override void Execute(object sender, EventArgs args)
         {
             new InicjowaniePolaWKonstruktorze(solution).Inicjuj();
         }

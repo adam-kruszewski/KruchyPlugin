@@ -20,12 +20,12 @@ namespace KruchyCompany.KruchyPlugin1.Menu
             this.solutionExplorer = solutionExplorer;
         }
 
-        protected override uint MenuCommandID
+        public override uint MenuCommandID
         {
             get { return PkgCmdIDList.cmdidGenerujWidok; }
         }
 
-        protected override IEnumerable<WymaganieDostepnosci> Wymagania
+        public override IEnumerable<WymaganieDostepnosci> Wymagania
         {
             get
             {
@@ -33,7 +33,7 @@ namespace KruchyCompany.KruchyPlugin1.Menu
             }
         }
 
-        protected override void Execute(object sender, EventArgs args)
+        public override void Execute(object sender, EventArgs args)
         {
             var dialog = new NazwaKlasyWindow(false);
             dialog.EtykietaNazwyPliku = "Nazwa widoku";
