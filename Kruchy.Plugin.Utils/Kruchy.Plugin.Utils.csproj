@@ -63,17 +63,12 @@
     <Compile Include="Menu\PozycjaMenu.cs" />
     <Compile Include="Menu\WymaganieDostepnosci.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Wrappers\DokumentWrapper.cs" />
     <Compile Include="Wrappers\FileSystemWrapper.cs" />
     <Compile Include="Wrappers\IDokumentWrapper.cs" />
     <Compile Include="Wrappers\IPlikWrapper.cs" />
     <Compile Include="Wrappers\IProjektWrapper.cs" />
     <Compile Include="Wrappers\ISolutionExplorerWrapper.cs" />
     <Compile Include="Wrappers\ISolutionWrapper.cs" />
-    <Compile Include="Wrappers\PlikWrapper.cs" />
-    <Compile Include="Wrappers\ProjektWrapper.cs" />
-    <Compile Include="Wrappers\SolutionExplorerWrapper.cs" />
-    <Compile Include="Wrappers\SolutionWrapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KrucheBuilderyKodu\KrucheBuilderyKodu.csproj">

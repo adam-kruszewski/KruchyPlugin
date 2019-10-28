@@ -16,6 +16,7 @@ using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.Win32;
 using Task = System.Threading.Tasks.Task;
 using EnvDTE80;
+using Kruchy.Plugin.Utils._2017.Wrappers;
 
 namespace KruchyCompany.KruchyPlugin1
 {

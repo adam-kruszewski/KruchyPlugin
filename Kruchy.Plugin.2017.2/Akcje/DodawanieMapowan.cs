@@ -150,7 +150,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
         }
 
         private IEnumerable<string> DajPlikiDomainZProjektu(
-            Kruchy.Plugin.Utils.Wrappers.ProjektWrapper projekt)
+            Kruchy.Plugin.Utils.Wrappers.IProjektWrapper projekt)
         {
             var plikiProjektu = projekt.Pliki;
             var sciezkaDoKataloguDomain =

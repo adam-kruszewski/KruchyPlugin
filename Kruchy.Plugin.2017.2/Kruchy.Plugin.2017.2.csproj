@@ -129,7 +129,6 @@
     <Compile Include="Menu\PozycjaZmienNaPrivate.cs" />
     <Compile Include="Menu\PozycjaZmienNaPublic.cs" />
     <Compile Include="Guids.cs" />
-
     <Compile Include="Command1.cs" />
     <Compile Include="Command1Package.cs" />
     <Compile Include="PkgCmdID.cs" />
@@ -251,6 +250,10 @@
     <ProjectReference Include="..\KrucheBuilderyKodu\KrucheBuilderyKodu.csproj">
       <Project>{0c5748a8-7d43-444c-90ad-3dbe02dcabab}</Project>
       <Name>KrucheBuilderyKodu</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Kruchy.Plugin.Utils.2017\Kruchy.Plugin.Utils.2017.csproj">
+      <Project>{473efcb9-dea9-44dc-9e50-30c1c46ccc5e}</Project>
+      <Name>Kruchy.Plugin.Utils.2017</Name>
     </ProjectReference>
     <ProjectReference Include="..\Kruchy.Plugin.Utils\Kruchy.Plugin.Utils.csproj">
       <Project>{33505630-bfe6-414f-82a2-ee9086daeb83}</Project>
