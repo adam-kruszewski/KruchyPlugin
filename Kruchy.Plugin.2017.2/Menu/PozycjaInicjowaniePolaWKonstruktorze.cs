@@ -6,14 +6,22 @@ using KruchyCompany.KruchyPlugin1.Akcje;
 
 namespace KruchyCompany.KruchyPlugin1.Menu
 {
-    class PozycjaInicjowaniePolaWKonstruktorze : PozycjaMenu, IPozycjaMenu
+    class PozycjaInicjowaniePolaWKonstruktorze : IPozycjaMenu
     {
-        public override uint MenuCommandID
+        private readonly ISolutionWrapper solution;
+
+        public PozycjaInicjowaniePolaWKonstruktorze(
+            ISolutionWrapper solution)
+        {
+            this.solution = solution;
+        }
+
+        public uint MenuCommandID
         {
             get { return PkgCmdIDList.cmdidInicjujWKontruktorze; }
         }
 
-        public override IEnumerable<WymaganieDostepnosci> Wymagania
+        public IEnumerable<WymaganieDostepnosci> Wymagania
         {
             get
             {
@@ -22,10 +30,7 @@ namespace KruchyCompany.KruchyPlugin1.Menu
             }
         }
 
-        public PozycjaInicjowaniePolaWKonstruktorze(
-            ISolutionWrapper solution) : base(solution) { }
-
-        public override void Execute(object sender, EventArgs args)
+        public void Execute(object sender, EventArgs args)
         {
             new InicjowaniePolaWKonstruktorze(solution).Inicjuj();
         }

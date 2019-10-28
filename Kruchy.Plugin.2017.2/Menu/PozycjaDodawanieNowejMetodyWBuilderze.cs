@@ -7,20 +7,21 @@ using KruchyCompany.KruchyPlugin1.Interfejs;
 
 namespace KruchyCompany.KruchyPlugin1.Menu
 {
-    class PozycjaDodawanieNowejMetodyWBuilderze : PozycjaMenu, IPozycjaMenu
+    class PozycjaDodawanieNowejMetodyWBuilderze : IPozycjaMenu
     {
-        public PozycjaDodawanieNowejMetodyWBuilderze(ISolutionWrapper solution)
-            : base(solution)
-        {
+        private readonly ISolutionWrapper solution;
 
+        public PozycjaDodawanieNowejMetodyWBuilderze(ISolutionWrapper solution)
+        {
+            this.solution = solution;
         }
 
-        public override uint MenuCommandID
+        public uint MenuCommandID
         {
             get { return PkgCmdIDList.cmdidGenerujMetodeWBuilderze; }
         }
 
-        public override IEnumerable<WymaganieDostepnosci> Wymagania
+        public IEnumerable<WymaganieDostepnosci> Wymagania
         {
             get
             {
@@ -28,7 +29,7 @@ namespace KruchyCompany.KruchyPlugin1.Menu
             }
         }
 
-        public override void Execute(object sender, EventArgs args)
+        public void Execute(object sender, EventArgs args)
         {
             var dialog = new NazwaKlasyWindow();
             dialog.EtykietaNazwyPliku = "Nazwa metody";

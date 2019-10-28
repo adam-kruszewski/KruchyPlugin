@@ -8,24 +8,25 @@ using KruchyCompany.KruchyPlugin1.Interfejs;
 
 namespace KruchyCompany.KruchyPlugin1.Menu
 {
-    class PozycjaGenerowanieWidoku : PozycjaMenu, IPozycjaMenu
+    class PozycjaGenerowanieWidoku : IPozycjaMenu
     {
         private readonly ISolutionExplorerWrapper solutionExplorer;
+        private readonly ISolutionWrapper solution;
 
         public PozycjaGenerowanieWidoku(
             ISolutionWrapper solution,
             ISolutionExplorerWrapper solutionExplorer)
-            : base(solution)
         {
+            this.solution = solution;
             this.solutionExplorer = solutionExplorer;
         }
 
-        public override uint MenuCommandID
+        public uint MenuCommandID
         {
             get { return PkgCmdIDList.cmdidGenerujWidok; }
         }
 
-        public override IEnumerable<WymaganieDostepnosci> Wymagania
+        public IEnumerable<WymaganieDostepnosci> Wymagania
         {
             get
             {
@@ -33,7 +34,7 @@ namespace KruchyCompany.KruchyPlugin1.Menu
             }
         }
 
-        public override void Execute(object sender, EventArgs args)
+        public void Execute(object sender, EventArgs args)
         {
             var dialog = new NazwaKlasyWindow(false);
             dialog.EtykietaNazwyPliku = "Nazwa widoku";

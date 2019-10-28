@@ -6,20 +6,21 @@ using KruchyCompany.KruchyPlugin1.Akcje;
 
 namespace KruchyCompany.KruchyPlugin1.Menu
 {
-    class PozycjaZmienNaPublic : PozycjaMenu, IPozycjaMenu
+    class PozycjaZmienNaPublic : IPozycjaMenu
     {
-        public PozycjaZmienNaPublic(ISolutionWrapper solution)
-            : base(solution)
-        {
+        private readonly ISolutionWrapper solution;
 
+        public PozycjaZmienNaPublic(ISolutionWrapper solution)        
+        {
+            this.solution = solution;
         }
 
-        public override uint MenuCommandID
+        public uint MenuCommandID
         {
             get { return PkgCmdIDList.cmdidZmienNaPublic; }
         }
 
-        public override IEnumerable<WymaganieDostepnosci> Wymagania
+        public IEnumerable<WymaganieDostepnosci> Wymagania
         {
             get
             {
@@ -27,7 +28,7 @@ namespace KruchyCompany.KruchyPlugin1.Menu
             }
         }
 
-        public override void Execute(object sender, EventArgs args)
+        public void Execute(object sender, EventArgs args)
         {
             new ZmianaModyfikatoraMetody(solution.AktualnyDokument).ZmienNa("public");
         }

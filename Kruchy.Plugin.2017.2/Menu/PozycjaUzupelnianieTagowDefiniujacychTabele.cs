@@ -6,15 +6,17 @@ using KruchyCompany.KruchyPlugin1.Akcje;
 
 namespace KruchyCompany.KruchyPlugin1.Menu
 {
-    class PozycjaUzupelnianieTagowDefiniujacychTabele : PozycjaMenu, IPozycjaMenu
+    class PozycjaUzupelnianieTagowDefiniujacychTabele : IPozycjaMenu
     {
+        private readonly ISolutionWrapper solution;
+
         public PozycjaUzupelnianieTagowDefiniujacychTabele(
             ISolutionWrapper solution)
-            : base(solution)
         {
+            this.solution = solution;
         }
 
-        public override IEnumerable<WymaganieDostepnosci> Wymagania
+        public IEnumerable<WymaganieDostepnosci> Wymagania
         {
             get
             {
@@ -22,12 +24,12 @@ namespace KruchyCompany.KruchyPlugin1.Menu
             }
         }
 
-        public override uint MenuCommandID
+        public uint MenuCommandID
         {
             get { return PkgCmdIDList.cmdidUzupelnijTagiDefiniujaceTabele; }
         }
 
-        public override void Execute(object sender, EventArgs args)
+        public void Execute(object sender, EventArgs args)
         {
             var dokumentWrapper = solution.AktualnyDokument;
             new UzupelnianieTagowDefiniujacychTabele(dokumentWrapper).Uzupelnij();

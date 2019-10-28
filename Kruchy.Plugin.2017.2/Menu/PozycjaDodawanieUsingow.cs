@@ -10,17 +10,21 @@ using KruchyParserKodu.ParserKodu;
 
 namespace KruchyCompany.KruchyPlugin1.Menu
 {
-    class PozycjaDodawanieUsingow : PozycjaMenu, IPozycjaMenu
+    class PozycjaDodawanieUsingow : IPozycjaMenu
     {
-        public PozycjaDodawanieUsingow(ISolutionWrapper solution)
-            : base(solution) { }
+        private readonly ISolutionWrapper solution;
 
-        public override uint MenuCommandID
+        public PozycjaDodawanieUsingow(ISolutionWrapper solution)
+        {
+            this.solution = solution;
+        }
+
+        public uint MenuCommandID
         {
             get { return PkgCmdIDList.cmdidDodajNaczesciejUzywaneUsingi; }
         }
 
-        public override IEnumerable<WymaganieDostepnosci> Wymagania
+        public IEnumerable<WymaganieDostepnosci> Wymagania
         {
             get
             {
@@ -28,7 +32,7 @@ namespace KruchyCompany.KruchyPlugin1.Menu
             }
         }
 
-        public override void Execute(object sender, EventArgs args)
+        public void Execute(object sender, EventArgs args)
         {
             var konf = Konfiguracja.GetInstance(solution);
             var aktualnaZawartosc = solution.AktualnyDokument.DajZawartosc();

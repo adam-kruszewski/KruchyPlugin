@@ -6,21 +6,22 @@ using KruchyCompany.KruchyPlugin1.Akcje;
 
 namespace KruchyCompany.KruchyPlugin1.Menu
 {
-    class PozycjaWstawianieNazwyControlleraDoSchowka : PozycjaMenu, IPozycjaMenu
+    class PozycjaWstawianieNazwyControlleraDoSchowka : IPozycjaMenu
     {
+        private readonly ISolutionWrapper solution;
+
         public PozycjaWstawianieNazwyControlleraDoSchowka(
             ISolutionWrapper solution)
-            : base(solution)
         {
-
+            this.solution = solution;
         }
 
-        public override uint MenuCommandID
+        public uint MenuCommandID
         {
             get { return PkgCmdIDList.cmdidWstawDoSchowkaNazweControllera; }
         }
 
-        public override IEnumerable<WymaganieDostepnosci> Wymagania
+        public IEnumerable<WymaganieDostepnosci> Wymagania
         {
             get
             {
@@ -28,7 +29,7 @@ namespace KruchyCompany.KruchyPlugin1.Menu
             }
         }
 
-        public override void Execute(object sender, EventArgs args)
+        public void Execute(object sender, EventArgs args)
         {
             new WstawianieNazwyControlleraDoSchowka(solution).Wstaw();
         }

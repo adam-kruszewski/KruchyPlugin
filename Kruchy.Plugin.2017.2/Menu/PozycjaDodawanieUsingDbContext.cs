@@ -6,19 +6,21 @@ using KruchyCompany.KruchyPlugin1.Akcje;
 
 namespace KruchyCompany.KruchyPlugin1.Menu
 {
-    class PozycjaDodawanieUsingDbContext : PozycjaMenu, IPozycjaMenu
+    class PozycjaDodawanieUsingDbContext : IPozycjaMenu
     {
+        private readonly ISolutionWrapper solution;
+
         public PozycjaDodawanieUsingDbContext(ISolutionWrapper solution)
-            : base(solution)
         {
+            this.solution = solution;
         }
 
-        public override uint MenuCommandID
+        public uint MenuCommandID
         {
             get { return PkgCmdIDList.cmdidDodajUsingDbContext; }
         }
 
-        public override IEnumerable<WymaganieDostepnosci> Wymagania
+        public IEnumerable<WymaganieDostepnosci> Wymagania
         {
             get
             {
@@ -26,7 +28,7 @@ namespace KruchyCompany.KruchyPlugin1.Menu
             }
         }
 
-        public override void Execute(object sender, EventArgs args)
+        public void Execute(object sender, EventArgs args)
         {
             new DodawanieUsingDbContext(solution).Dodaj();
         }

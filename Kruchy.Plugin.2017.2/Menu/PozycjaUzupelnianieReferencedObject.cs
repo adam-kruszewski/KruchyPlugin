@@ -6,15 +6,17 @@ using KruchyCompany.KruchyPlugin1.Akcje;
 
 namespace KruchyCompany.KruchyPlugin1.Menu
 {
-    class PozycjaUzupelnianieReferencedObject : PozycjaMenu, IPozycjaMenu
+    class PozycjaUzupelnianieReferencedObject : IPozycjaMenu
     {
+        private readonly ISolutionWrapper solution;
+
         public PozycjaUzupelnianieReferencedObject(
             ISolutionWrapper solution)
-            : base(solution)
         {
+            this.solution = solution;
         }
 
-        public override IEnumerable<WymaganieDostepnosci> Wymagania
+        public IEnumerable<WymaganieDostepnosci> Wymagania
         {
             get
             {
@@ -22,12 +24,12 @@ namespace KruchyCompany.KruchyPlugin1.Menu
             }
         }
 
-        public override uint MenuCommandID
+        public uint MenuCommandID
         {
             get { return PkgCmdIDList.cmdidUzupelnijAtrybutKluczaObcego; }
         }
 
-        public override void Execute(object sender, EventArgs args)
+        public void Execute(object sender, EventArgs args)
         {
             new UzupelnianieReferencedObject(solution.AktualnyDokument).Uzupelnij();
         }

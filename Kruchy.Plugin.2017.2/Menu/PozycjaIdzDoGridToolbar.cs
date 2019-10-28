@@ -6,24 +6,25 @@ using KruchyCompany.KruchyPlugin1.Akcje;
 
 namespace KruchyCompany.KruchyPlugin1.Menu
 {
-    class PozycjaIdzDoGridToolbar : PozycjaMenu, IPozycjaMenu
+    class PozycjaIdzDoGridToolbar : IPozycjaMenu
     {
+        private readonly ISolutionWrapper solution;
         private readonly ISolutionExplorerWrapper solutionExplorer;
 
         public PozycjaIdzDoGridToolbar(
             ISolutionWrapper solution,
             ISolutionExplorerWrapper solutionExplorer)
-            : base(solution)
         {
+            this.solution = solution;
             this.solutionExplorer = solutionExplorer;
         }
 
-        public override uint MenuCommandID
+        public uint MenuCommandID
         {
             get { return PkgCmdIDList.cmidPrzejdzDoGridToolbar; }
         }
 
-        public override IEnumerable<WymaganieDostepnosci> Wymagania
+        public IEnumerable<WymaganieDostepnosci> Wymagania
         {
             get
             {
@@ -31,7 +32,7 @@ namespace KruchyCompany.KruchyPlugin1.Menu
             }
         }
 
-        public override void Execute(object sender, EventArgs args)
+        public void Execute(object sender, EventArgs args)
         {
             new IdzDoPlikuWidoku(solution, solutionExplorer)
                 .PrzejdzLubStworz("GridToolbar.cshtml");

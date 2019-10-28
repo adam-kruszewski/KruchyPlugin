@@ -6,20 +6,21 @@ using KruchyCompany.KruchyPlugin1.Akcje;
 
 namespace KruchyCompany.KruchyPlugin1.Menu
 {
-    class PozycjaDodawanieUprawnienDomyslnych : PozycjaMenu, IPozycjaMenu
+    class PozycjaDodawanieUprawnienDomyslnych : IPozycjaMenu
     {
-        public PozycjaDodawanieUprawnienDomyslnych(ISolutionWrapper solution)
-            : base(solution)
-        {
+        private readonly ISolutionWrapper solution;
 
+        public PozycjaDodawanieUprawnienDomyslnych(ISolutionWrapper solution)
+        {
+            this.solution = solution;
         }
 
-        public override uint MenuCommandID
+        public uint MenuCommandID
         {
             get { return PkgCmdIDList.cmdidDodajUprawnienieDomyslne; }
         }
 
-        public override IEnumerable<WymaganieDostepnosci> Wymagania
+        public IEnumerable<WymaganieDostepnosci> Wymagania
         {
             get
             {
@@ -27,7 +28,7 @@ namespace KruchyCompany.KruchyPlugin1.Menu
             }
         }
 
-        public override void Execute(object sender, EventArgs args)
+        public void Execute(object sender, EventArgs args)
         {
             new DodawanieUprawnienDomyslnych(solution).Dodaj();
         }

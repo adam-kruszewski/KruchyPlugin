@@ -6,23 +6,25 @@ using KruchyCompany.KruchyPlugin1.Akcje;
 
 namespace KruchyCompany.KruchyPlugin1.Menu
 {
-    class PozycjaIdzMiedzyInterfejsemAImplementacja : PozycjaMenu, IPozycjaMenu
+    class PozycjaIdzMiedzyInterfejsemAImplementacja : IPozycjaMenu
     {
+        private readonly ISolutionWrapper solution;
         private readonly ISolutionExplorerWrapper solutionExplorer;
 
         public PozycjaIdzMiedzyInterfejsemAImplementacja(
             ISolutionWrapper solution,
-            ISolutionExplorerWrapper solutionExplorer) : base(solution)
+            ISolutionExplorerWrapper solutionExplorer)
         {
+            this.solution = solution;
             this.solutionExplorer = solutionExplorer;
         }
 
-        public override uint MenuCommandID
+        public uint MenuCommandID
         {
             get { return PkgCmdIDList.cmdidIdzDoImplementacji; }
         }
 
-        public override IEnumerable<WymaganieDostepnosci> Wymagania
+        public IEnumerable<WymaganieDostepnosci> Wymagania
         {
             get
             {
@@ -30,7 +32,7 @@ namespace KruchyCompany.KruchyPlugin1.Menu
             }
         }
 
-        public override void Execute(object sender, EventArgs args)
+        public void Execute(object sender, EventArgs args)
         {
             new IdzMiedzyInterfejsemAImplementacja(solution, solutionExplorer).Przejdz();
         }

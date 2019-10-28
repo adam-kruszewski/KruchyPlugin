@@ -7,24 +7,25 @@ using KruchyCompany.KruchyPlugin1.Interfejs;
 
 namespace KruchyCompany.KruchyPlugin1.Menu
 {
-    class PozycjaGenerowanieKlasyWalidatora : PozycjaMenu, IPozycjaMenu
+    class PozycjaGenerowanieKlasyWalidatora : IPozycjaMenu
     {
         private readonly ISolutionExplorerWrapper solutionExplorer;
+        private readonly ISolutionWrapper solution;
 
         public PozycjaGenerowanieKlasyWalidatora(
             ISolutionWrapper solution,
             ISolutionExplorerWrapper solutionExplorer)
-            : base(solution)
         {
+            this.solution = solution;
             this.solutionExplorer = solutionExplorer;
         }
 
-        public override uint MenuCommandID
+        public uint MenuCommandID
         {
             get { return PkgCmdIDList.cmdidDodajKlaseWalidatora; }
         }
 
-        public override IEnumerable<WymaganieDostepnosci> Wymagania
+        public IEnumerable<WymaganieDostepnosci> Wymagania
         {
             get
             {
@@ -34,7 +35,7 @@ namespace KruchyCompany.KruchyPlugin1.Menu
             }
         }
 
-        public override void Execute(object sender, EventArgs args)
+        public void Execute(object sender, EventArgs args)
         {
             var nazwaPlikuDoWalidacji =
                 solution.AktualnyPlik.NazwaBezRozszerzenia;

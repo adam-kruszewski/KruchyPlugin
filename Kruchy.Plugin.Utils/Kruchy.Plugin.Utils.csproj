@@ -61,7 +61,6 @@
     <Compile Include="Extensions\ProjektWrapperExtension.cs" />
     <Compile Include="Extensions\SolutionWrapperExtension.cs" />
     <Compile Include="Menu\IPozycjaMenu.cs" />
-    <Compile Include="Menu\PozycjaMenu.cs" />
     <Compile Include="Menu\WymaganieDostepnosci.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Wrappers\FileSystemWrapper.cs" />

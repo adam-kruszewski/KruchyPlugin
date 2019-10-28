@@ -79,7 +79,6 @@ namespace KruchyCompany.KruchyPlugin1
         {
             await this.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
 
-            PozycjaMenu.guidKruchyPluginCmdSetStatic = new Guid("641b3a59-28a5-4694-ad6c-56066f4300d9");
             PozycjaMenuAdapter.guidKruchyPluginCmdSetStatic = new Guid("641b3a59-28a5-4694-ad6c-56066f4300d9");
             var dte = (DTE2)await GetServiceAsync(typeof(SDTE));
             var sw = new SolutionWrapper(dte);

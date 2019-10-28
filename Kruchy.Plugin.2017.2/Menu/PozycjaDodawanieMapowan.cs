@@ -6,19 +6,21 @@ using KruchyCompany.KruchyPlugin1.Akcje;
 
 namespace KruchyCompany.KruchyPlugin1.Menu
 {
-    class PozycjaDodawanieMapowan : PozycjaMenu, IPozycjaMenu
+    class PozycjaDodawanieMapowan : IPozycjaMenu
     {
+        private readonly ISolutionWrapper solution;
+
         public PozycjaDodawanieMapowan(ISolutionWrapper solution)
-            : base(solution)
         {
+            this.solution = solution;
         }
 
-        public override uint MenuCommandID
+        public uint MenuCommandID
         {
             get { return PkgCmdIDList.cmdidDodajMapowania; }
         }
 
-        public override IEnumerable<WymaganieDostepnosci> Wymagania
+        public IEnumerable<WymaganieDostepnosci> Wymagania
         {
             get
             {
@@ -26,7 +28,7 @@ namespace KruchyCompany.KruchyPlugin1.Menu
             }
         }
 
-        public override void Execute(object sender, EventArgs args)
+        public void Execute(object sender, EventArgs args)
         {
             new DodawanieMapowan(solution).Generuj();
         }

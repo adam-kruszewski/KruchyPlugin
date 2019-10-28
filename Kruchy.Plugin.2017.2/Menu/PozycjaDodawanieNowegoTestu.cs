@@ -7,20 +7,21 @@ using KruchyCompany.KruchyPlugin1.Interfejs;
 
 namespace KruchyCompany.KruchyPlugin1.Menu
 {
-    class PozycjaDodawanieNowegoTestu : PozycjaMenu, IPozycjaMenu
+    class PozycjaDodawanieNowegoTestu : IPozycjaMenu
     {
-        public PozycjaDodawanieNowegoTestu(ISolutionWrapper solution)
-            : base(solution)
-        {
+        private readonly ISolutionWrapper solution;
 
+        public PozycjaDodawanieNowegoTestu(ISolutionWrapper solution)
+        {
+            this.solution = solution;
         }
 
-        public override uint MenuCommandID
+        public uint MenuCommandID
         {
             get { return PkgCmdIDList.cmdidDodajNowyTest; }
         }
 
-        public override IEnumerable<WymaganieDostepnosci> Wymagania
+        public IEnumerable<WymaganieDostepnosci> Wymagania
         {
             get
             {
@@ -28,7 +29,7 @@ namespace KruchyCompany.KruchyPlugin1.Menu
             }
         }
 
-        public override void Execute(object sender, EventArgs args)
+        public void Execute(object sender, EventArgs args)
         {
             var dialog = new NazwaKlasyWindow();
             dialog.EtykietaNazwyPliku = "Nazwa metody testu";
