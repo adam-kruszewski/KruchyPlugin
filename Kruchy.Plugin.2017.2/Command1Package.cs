@@ -80,6 +80,7 @@ namespace KruchyCompany.KruchyPlugin1
             await this.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
 
             PozycjaMenu.guidKruchyPluginCmdSetStatic = new Guid("641b3a59-28a5-4694-ad6c-56066f4300d9");
+            PozycjaMenuAdapter.guidKruchyPluginCmdSetStatic = new Guid("641b3a59-28a5-4694-ad6c-56066f4300d9");
             var dte = (DTE2)await GetServiceAsync(typeof(SDTE));
             var sw = new SolutionWrapper(dte);
             IMenuCommandService mcs = await GetServiceAsync(typeof(IMenuCommandService)) as IMenuCommandService;
@@ -99,11 +100,8 @@ namespace KruchyCompany.KruchyPlugin1
                 if (konstruktor.GetParameters().Length == 2)
                     parametry = new[] { sw, (object)SolutionExplorerWrapper.DajDlaSolution(sw, dte) };
 
-                var pozycjaMenu = Activator.CreateInstance(klasa, parametry) as PozycjaMenu;
-                PozycjaMenuAdapter.guidKruchyPluginCmdSetStatic =
-                    PozycjaMenu.guidKruchyPluginCmdSetStatic;
+                var pozycjaMenu = Activator.CreateInstance(klasa, parametry) as IPozycjaMenu;
                 new PozycjaMenuAdapter(pozycjaMenu, sw).Podlacz(mcs2);
-                //pozycjaMenu.Podlacz(mcs2);
             }
             // When initialized asynchronously, the current thread may be a background thread at this point.
             // Do any initialization that requires the UI thread after switching to the UI thread.
