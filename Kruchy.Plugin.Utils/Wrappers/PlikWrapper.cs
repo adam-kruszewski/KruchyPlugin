@@ -78,7 +78,7 @@ namespace Kruchy.Plugin.Utils.Wrappers
             }
         }
 
-        public ProjektWrapper Projekt
+        public IProjektWrapper Projekt
         {
             get
             {

@@ -12,7 +12,7 @@ namespace Kruchy.Plugin.Utils.Wrappers
 
         IPlikWrapper[] Pliki { get; }
 
-        PlikWrapper DodajPlik(string sciezka);
+        IPlikWrapper DodajPlik(string sciezka);
 
         bool NamespaceNalezyDoProjektu(string nazwaNamespace);
 

@@ -62,7 +62,7 @@ namespace Kruchy.Plugin.Utils.Wrappers
             return true;
         }
 
-        public PlikWrapper DodajPlik(string sciezka)
+        public IPlikWrapper DodajPlik(string sciezka)
         {
             return new PlikWrapper(
                 project.ProjectItems.AddFromFile(sciezka));

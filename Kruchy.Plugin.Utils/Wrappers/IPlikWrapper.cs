@@ -12,7 +12,7 @@
 
         string SciezkaWzgledna { get; }
 
-        ProjektWrapper Projekt { get; }
+        IProjektWrapper Projekt { get; }
 
         IDokumentWrapper Dokument { get; }
     }
