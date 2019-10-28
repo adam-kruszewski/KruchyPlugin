@@ -6,7 +6,7 @@ using KruchyCompany.KruchyPlugin1.Akcje;
 
 namespace KruchyCompany.KruchyPlugin1.Menu
 {
-    class PozycjaIdzDoPlikuWidoku : PozycjaMenu
+    class PozycjaIdzDoPlikuWidoku : PozycjaMenu, IPozycjaMenu
     {
         private readonly ISolutionExplorerWrapper solutionExplorer;
 

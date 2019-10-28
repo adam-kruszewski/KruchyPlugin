@@ -7,7 +7,7 @@ using KruchyCompany.KruchyPlugin1.Interfejs;
 
 namespace KruchyCompany.KruchyPlugin1.Menu
 {
-    class PozycjaGenerowanieKlasService : PozycjaMenu
+    class PozycjaGenerowanieKlasService : PozycjaMenu, IPozycjaMenu
     {
         private readonly ISolutionExplorerWrapper solutionExplorer;
 

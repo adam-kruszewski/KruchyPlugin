@@ -10,7 +10,7 @@ using KruchyParserKodu.ParserKodu;
 
 namespace KruchyCompany.KruchyPlugin1.Menu
 {
-    class PozycjaDodawanieUsingow : PozycjaMenu
+    class PozycjaDodawanieUsingow : PozycjaMenu, IPozycjaMenu
     {
         public PozycjaDodawanieUsingow(ISolutionWrapper solution)
             : base(solution) { }

@@ -6,7 +6,7 @@ using KruchyCompany.KruchyPlugin1.Akcje;
 
 namespace KruchyCompany.KruchyPlugin1.Menu
 {
-    class PozycjaZmienNaPublic : PozycjaMenu
+    class PozycjaZmienNaPublic : PozycjaMenu, IPozycjaMenu
     {
         public PozycjaZmienNaPublic(ISolutionWrapper solution)
             : base(solution)

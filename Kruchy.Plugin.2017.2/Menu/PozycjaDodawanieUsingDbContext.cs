@@ -6,7 +6,7 @@ using KruchyCompany.KruchyPlugin1.Akcje;
 
 namespace KruchyCompany.KruchyPlugin1.Menu
 {
-    class PozycjaDodawanieUsingDbContext : PozycjaMenu
+    class PozycjaDodawanieUsingDbContext : PozycjaMenu, IPozycjaMenu
     {
         public PozycjaDodawanieUsingDbContext(ISolutionWrapper solution)
             : base(solution)

@@ -7,7 +7,7 @@ using KruchyCompany.KruchyPlugin1.Interfejs;
 
 namespace KruchyCompany.KruchyPlugin1.Menu
 {
-    class PozycjaDodawanieNowejMetodyWBuilderze : PozycjaMenu
+    class PozycjaDodawanieNowejMetodyWBuilderze : PozycjaMenu, IPozycjaMenu
     {
         public PozycjaDodawanieNowejMetodyWBuilderze(ISolutionWrapper solution)
             : base(solution)

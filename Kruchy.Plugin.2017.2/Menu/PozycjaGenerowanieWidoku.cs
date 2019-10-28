@@ -8,7 +8,7 @@ using KruchyCompany.KruchyPlugin1.Interfejs;
 
 namespace KruchyCompany.KruchyPlugin1.Menu
 {
-    class PozycjaGenerowanieWidoku : PozycjaMenu
+    class PozycjaGenerowanieWidoku : PozycjaMenu, IPozycjaMenu
     {
         private readonly ISolutionExplorerWrapper solutionExplorer;
 

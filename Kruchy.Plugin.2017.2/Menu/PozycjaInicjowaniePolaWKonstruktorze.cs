@@ -6,7 +6,7 @@ using KruchyCompany.KruchyPlugin1.Akcje;
 
 namespace KruchyCompany.KruchyPlugin1.Menu
 {
-    class PozycjaInicjowaniePolaWKonstruktorze : PozycjaMenu
+    class PozycjaInicjowaniePolaWKonstruktorze : PozycjaMenu, IPozycjaMenu
     {
         protected override uint MenuCommandID
         {

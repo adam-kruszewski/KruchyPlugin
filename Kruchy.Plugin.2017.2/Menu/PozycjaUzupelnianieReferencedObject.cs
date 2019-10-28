@@ -6,7 +6,7 @@ using KruchyCompany.KruchyPlugin1.Akcje;
 
 namespace KruchyCompany.KruchyPlugin1.Menu
 {
-    class PozycjaUzupelnianieReferencedObject : PozycjaMenu
+    class PozycjaUzupelnianieReferencedObject : PozycjaMenu, IPozycjaMenu
     {
         public PozycjaUzupelnianieReferencedObject(
             ISolutionWrapper solution)
