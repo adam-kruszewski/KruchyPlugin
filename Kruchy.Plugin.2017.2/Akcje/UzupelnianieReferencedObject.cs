@@ -2,7 +2,6 @@
 using System.Text;
 using System.Windows.Forms;
 using EnvDTE;
-using Kruchy.Plugin.Utils._2017.Wrappers;
 using Kruchy.Plugin.Utils.Wrappers;
 using KruchyParserKodu.ParserKodu;
 
@@ -14,17 +13,13 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
         private readonly IDokumentWrapper dokument;
         private const string NamespaceDlaAtrybutuReferencedObject = "KomponentyStandardowe.Data";
 
-        public UzupelnianieReferencedObject(_DTE dte)
+        public UzupelnianieReferencedObject(IDokumentWrapper dokument)
         {
-            this.dte = dte;
-            var textDoc = (TextDocument)dte.ActiveDocument.Object("TextDocument");
-            dokument = new DokumentWrapper(textDoc);
+            this.dokument = dokument;
         }
 
         public void Uzupelnij()
         {
-            var textDoc = (TextDocument)dte.ActiveDocument.Object("TextDocument");
-
             var numerLinii = DajNumerLiniiKursora();
             var zawartosc = DajZawartosc();
             var parsowane = Parser.Parsuj(zawartosc);

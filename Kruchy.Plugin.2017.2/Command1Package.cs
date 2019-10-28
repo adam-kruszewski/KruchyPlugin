@@ -97,7 +97,7 @@ namespace KruchyCompany.KruchyPlugin1
 
                 object[] parametry = new[] { sw };
                 if (konstruktor.GetParameters().Length == 2)
-                    parametry = new[] { sw, (object)SolutionExplorerWrapper.DajDlaSolution(sw) };
+                    parametry = new[] { sw, (object)SolutionExplorerWrapper.DajDlaSolution(sw, dte) };
 
                 var pozycjaMenu = Activator.CreateInstance(klasa, parametry) as PozycjaMenu;
                 pozycjaMenu.Podlacz(mcs2);

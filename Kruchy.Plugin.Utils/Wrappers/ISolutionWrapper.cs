@@ -17,8 +17,6 @@ namespace Kruchy.Plugin.Utils.Wrappers
 
         IDokumentWrapper AktualnyDokument { get; }
 
-        DTE2 DTE { get; }
-
         IList<IProjektWrapper> Projekty { get; }
 
         IProjektWrapper ZnajdzProjekt(string nazwa);

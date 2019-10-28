@@ -29,7 +29,7 @@ namespace KruchyCompany.KruchyPlugin1.Menu
 
         protected override void Execute(object sender, EventArgs args)
         {
-            new UzupelnianieReferencedObject(solution.DTE).Uzupelnij();
+            new UzupelnianieReferencedObject(solution.AktualnyDokument).Uzupelnij();
         }
     }
 }

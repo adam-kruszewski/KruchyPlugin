@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using EnvDTE;
+using EnvDTE80;
 using Kruchy.Plugin.Utils.Wrappers;
 
 namespace Kruchy.Plugin.Utils._2017.Wrappers
@@ -10,12 +11,13 @@ namespace Kruchy.Plugin.Utils._2017.Wrappers
     public class SolutionExplorerWrapper : ISolutionExplorerWrapper
     {
         private readonly ISolutionWrapper solution;
+        private readonly DTE2 dte;
 
         private UIHierarchy SolutionExplorer
         {
             get
             {
-                return solution.DTE.ToolWindows.SolutionExplorer;
+                return dte.ToolWindows.SolutionExplorer;
             }
         }
 
@@ -24,14 +26,17 @@ namespace Kruchy.Plugin.Utils._2017.Wrappers
             get { return SolutionExplorer.UIHierarchyItems.Item(1); }
         }
 
-        private SolutionExplorerWrapper(ISolutionWrapper solution)
+        private SolutionExplorerWrapper(ISolutionWrapper solution, DTE2 dte)
         {
             this.solution = solution;
+            this.dte = dte;
         }
 
-        public static ISolutionExplorerWrapper DajDlaSolution(ISolutionWrapper solution)
+        public static ISolutionExplorerWrapper DajDlaSolution(
+            ISolutionWrapper solution,
+            DTE2 dte)
         {
-            return new SolutionExplorerWrapper(solution);
+            return new SolutionExplorerWrapper(solution, dte);
         }
 
         private IList<UIHierarchyItem> WszystkieWezly()
@@ -91,13 +96,13 @@ namespace Kruchy.Plugin.Utils._2017.Wrappers
         public void OtworzPlik(string sciezka)
         {
             //ZaladujElementyUI();
-            solution.DTE.ItemOperations.OpenFile(sciezka);
+            dte.ItemOperations.OpenFile(sciezka);
         }
 
         public void OtworzPlik(IPlikWrapper plik)
         {
             //ZaladujElementyUI();
-            solution.DTE.ItemOperations.OpenFile(plik.SciezkaPelna);
+            dte.ItemOperations.OpenFile(plik.SciezkaPelna);
         }
 
         public void UstawSieNaMiejscu(string sciezka)
