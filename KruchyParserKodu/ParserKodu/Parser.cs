@@ -18,7 +18,11 @@ namespace KruchyParserKodu.ParserKodu
     {
         public static Plik Parsuj(string zawartosc)
         {
-            var drzewo = new CSharpParser().Parse(zawartosc);
+            var csharpParser = new CSharpParser();
+            var wersja = new Version(7, 3);
+            
+            csharpParser.CompilerSettings.LanguageVersion = wersja;
+            var drzewo = csharpParser.Parse(zawartosc);
             var wynik = new Plik();
 
             foreach (var wezel in drzewo.Children)
