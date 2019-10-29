@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using EnvDTE80;
 
 namespace Kruchy.Plugin.Utils.Wrappers
 {
