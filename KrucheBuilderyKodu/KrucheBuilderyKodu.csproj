@@ -55,6 +55,7 @@
     <Compile Include="Builders\PropertyBuilder.cs" />
     <Compile Include="Builders\StaleDlaKodu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\BuilderExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="KruchyKey.snk" />
