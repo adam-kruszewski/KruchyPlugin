@@ -125,10 +125,12 @@ namespace KruchyParserKodu.ParserKodu
                     wynik.Metody.Add(ParsujMetode(dziecko));
                     continue;
                 }
+
                 if (dziecko is CSharpTokenNode)
                 {
                     ParsujKlamerki(wynik, dziecko);
                 }
+
                 if (dziecko is SimpleType)
                 {
                     var dziedziczony = new ObiektDziedziczony();
@@ -136,6 +138,12 @@ namespace KruchyParserKodu.ParserKodu
                     ParsujParametryGeneryczne(dziecko as SimpleType, dziedziczony);
                     UstawPolozenie(dziedziczony, dziecko);
                     wynik.NadklasaIInterfejsy.Add(dziedziczony);
+                }
+
+                if (WezelKlasa(dziecko))
+                {
+                    var wewnetrznyObiekt = ParsujKlase(dziecko);
+                    wynik.ObiektyWewnetrzne.Add(wewnetrznyObiekt);
                 }
             }
             UstawPolozenie(wynik, wezel);

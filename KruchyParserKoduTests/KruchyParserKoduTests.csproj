@@ -53,6 +53,8 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Samples\WlasciwosciZapisaneJakoLambda.cs" />
+    <EmbeddedResource Include="Samples\ZKlasaWewnetrzna.cs" />
+    <Compile Include="Unit\ParsowanieKlasyWewnetrznejTests.cs" />
     <Compile Include="Unit\ParsowanieWlasciwosciZapisanychJakoLambdaTests.cs" />
   </ItemGroup>
   <ItemGroup>

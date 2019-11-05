@@ -19,6 +19,8 @@ namespace KruchyParserKodu.ParserKodu
         public List<Atrybut> Atrybuty { get; private set; }
         public IList<ObiektDziedziczony> NadklasaIInterfejsy { get; private set; }
 
+        public IList<Obiekt> ObiektyWewnetrzne { get; private set; }
+
         public PozycjaWPliku PoczatkowaKlamerka { get; private set; }
         public PozycjaWPliku KoncowaKlamerka { get; private set; }
 
@@ -33,6 +35,7 @@ namespace KruchyParserKodu.ParserKodu
 
             PoczatkowaKlamerka = new PozycjaWPliku();
             KoncowaKlamerka = new PozycjaWPliku();
+            ObiektyWewnetrzne = new List<Obiekt>();
         }
 
         private IEnumerable<Pole> SzukajPolNiestatycznych()
