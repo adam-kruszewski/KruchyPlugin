@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace KruchyParserKodu.ParserKodu
@@ -12,8 +14,7 @@ namespace KruchyParserKodu.ParserKodu
             var metody =
                 parsowane
                     .DefiniowaneObiekty
-                        .SelectMany(o => o.Metody);
-                    //.First().Metody;
+                        .SelectMany(o => WszystkieMetodyObiektu(o));
 
             return
                 metody
@@ -21,6 +22,14 @@ namespace KruchyParserKodu.ParserKodu
                         o.Poczatek.Wiersz <= numerLinii
                             && o.Koniec.Wiersz >= numerLinii)
                             .FirstOrDefault();
+        }
+
+        private static IEnumerable<Metoda> WszystkieMetodyObiektu(Obiekt obiekt)
+        {
+            var metodyObiektowWewnetrznych =
+                obiekt.ObiektyWewnetrzne.SelectMany(o => WszystkieMetodyObiektu(o));
+
+            return obiekt.Metody.Union(metodyObiektowWewnetrznych);
         }
 
         public static Konstruktor SzukajKontruktoraWLinii(
