@@ -36,13 +36,23 @@ namespace KruchyParserKodu.ParserKodu
             this Plik parsowane,
             int numerLinii)
         {
-            var konstruktory =
+            var konstruktory = 
                 parsowane
                     .DefiniowaneObiekty
-                        .SelectMany(o => o.Konstruktory);
+                        .SelectMany(o => WszystkieKonstruktoryObiektow(o));
+
             return konstruktory
                     .Where(o => ZawieraLinie(o, numerLinii))
                         .FirstOrDefault();
+        }
+
+        private static IEnumerable<Konstruktor> WszystkieKonstruktoryObiektow(Obiekt obiekt)
+        {
+            var konstruktoryObiektowWewnetrznych =
+                obiekt.ObiektyWewnetrzne
+                    .SelectMany(o => WszystkieKonstruktoryObiektow(o));
+
+            return obiekt.Konstruktory.Union(konstruktoryObiektowWewnetrznych);
         }
 
         public static Property SzukajPropertiesaWLinii(

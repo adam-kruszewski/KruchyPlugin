@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -10,9 +11,9 @@ using KruchyParserKodu.ParserKodu;  namespace KruchyCompany.KruchyPlugin1.Ak
                     parsowane
                         .SzukajKontruktoraWLinii(dokument.DajNumerLiniiKursora());
                 if (konstruktor != null)
-                    PodzielNaLinieKontruktor(konstruktor);                 else                     MessageBox.Show("Kursor nie jest w metodzie");                 return;             }              dokument.Usun(                 metoda.NawiasOtwierajacyParametry.Wiersz,                 metoda.NawiasOtwierajacyParametry.Kolumna,                 metoda.NawiasZamykajacyParametry.Wiersz,                 metoda.NawiasZamykajacyParametry.Kolumna + 1);              dokument.WstawWMiejscu(                 GenerujNoweParametry(metoda.Parametry, metoda),                 metoda.NawiasOtwierajacyParametry.Wiersz,                 metoda.NawiasOtwierajacyParametry.Kolumna);         }
+                    PodzielNaLinieKonstruktor(konstruktor);                 else                     MessageBox.Show("Kursor nie jest w metodzie");                 return;             }              dokument.Usun(                 metoda.NawiasOtwierajacyParametry.Wiersz,                 metoda.NawiasOtwierajacyParametry.Kolumna,                 metoda.NawiasZamykajacyParametry.Wiersz,                 metoda.NawiasZamykajacyParametry.Kolumna + 1);              dokument.WstawWMiejscu(                 GenerujNoweParametry(metoda.Parametry, metoda, metoda),                 metoda.NawiasOtwierajacyParametry.Wiersz,                 metoda.NawiasOtwierajacyParametry.Kolumna);         }
 
-        private void PodzielNaLinieKontruktor(Konstruktor konstruktor)
+        private void PodzielNaLinieKonstruktor(Konstruktor konstruktor)
         {
             var dokument = solution.AktualnyDokument;
 
@@ -23,10 +24,10 @@ using KruchyParserKodu.ParserKodu;  namespace KruchyCompany.KruchyPlugin1.Ak
                 konstruktor.NawiasZamykajacyParametry.Kolumna + 1);
 
             dokument.WstawWMiejscu(
-                GenerujNoweParametry(konstruktor.Parametry),
+                GenerujNoweParametry(konstruktor.Parametry, konstruktor),
                 konstruktor.NawiasOtwierajacyParametry.Wiersz,
                 konstruktor.NawiasOtwierajacyParametry.Kolumna);
-        }          private string GenerujNoweParametry(             IEnumerable<Parametr> parametryMetody,             Metoda metoda = null)         {             var builder = new StringBuilder();             builder.Append("(");
+        }          private string GenerujNoweParametry(             IEnumerable<Parametr> parametryMetody,             IZWlascicielem obiekt,             Metoda metoda = null)         {             var builder = new StringBuilder();             builder.Append("(");
             var parametry =                 parametryMetody
                         .Select(o => DajDefinicjeParametru(o))                             .ToArray();
             var lacznikBuilder =
@@ -34,13 +35,39 @@ using KruchyParserKodu.ParserKodu;  namespace KruchyCompany.KruchyPlugin1.Ak
                     .Append(",")
                     .AppendLine()
                     .Append(StaleDlaKodu.WcieciaDlaParametruMetody);
+
+            var poziomMetody = WyliczPoziomMetody(obiekt.Wlasciciel);
+
+            DodajWciecieWgPoziomuMetody(lacznikBuilder, poziomMetody);
+
             var lacznik = lacznikBuilder.ToString();
             if (parametry.Any())
             {
                 builder.AppendLine();
                 builder.Append(StaleDlaKodu.WcieciaDlaParametruMetody);
+                DodajWciecieWgPoziomuMetody(builder, poziomMetody);
                 DodajThisJesliTrzeba(builder, metoda);
             }             builder.Append(string.Join(lacznik, parametry));             builder.Append(")");             return builder.ToString();         }
+
+        private void DodajWciecieWgPoziomuMetody(
+            StringBuilder lacznikBuilder,
+            int poziomMetody)
+        {
+            if (poziomMetody > 1)
+                for (int i = 0; i < poziomMetody - 1; i++)
+                    lacznikBuilder.Append(StaleDlaKodu.JednostkaWciecia);
+        }
+
+        private int WyliczPoziomMetody(IZWlascicielem obiekt)
+        {
+            if (obiekt == null)
+                return 0;
+
+            if (obiekt.Wlasciciel == null)
+                return 1;
+
+            return WyliczPoziomMetody(obiekt.Wlasciciel) + 1;
+        }
 
         private string DajDefinicjeParametru(Parametr parametr)
         {
