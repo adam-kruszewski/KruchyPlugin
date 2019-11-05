@@ -7,6 +7,16 @@
         private class KlasaWewnetrzna
         {
             public int WlasciwoscWWewnetrznym { get; set; }
+
+            public KlasaWewnetrzna()
+            {
+
+            }
+
+            public int Metoda1()
+            {
+                return 1;
+            }
         }
     }
 }

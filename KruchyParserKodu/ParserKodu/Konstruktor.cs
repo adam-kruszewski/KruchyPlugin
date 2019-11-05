@@ -7,6 +7,8 @@ namespace KruchyParserKodu.ParserKodu
             , IZNawiasamiOtwierajacymiZamykajacymiParametry
                 , IZPoczatkowaIKoncowaKlamerka
     {
+        public Obiekt Wlasciciel { get; set; }
+
         public IList<Parametr> Parametry { get; private set; }
         public string Modyfikator { get; set; }
 

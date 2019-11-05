@@ -6,6 +6,7 @@ namespace KruchyParserKodu.ParserKodu
     public class Obiekt : ParsowanaJednostka, IZPoczatkowaIKoncowaKlamerka
     {
         public RodzajObiektu Rodzaj { get; set; }
+        public Obiekt Wlasciciel { get; set; }
 
         public string Nazwa { get; set; }
         public IList<Konstruktor> Konstruktory { get; private set; }

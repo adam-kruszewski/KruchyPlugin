@@ -116,13 +116,17 @@ namespace KruchyParserKodu.ParserKodu
 
                 if (DefinicjaKonstruktora(dziecko))
                 {
-                    wynik.Konstruktory.Add(ParsujKonstruktor(dziecko));
+                    var konstruktor = ParsujKonstruktor(dziecko);
+                    konstruktor.Wlasciciel = wynik;
+                    wynik.Konstruktory.Add(konstruktor);
                     continue;
                 }
 
                 if (DefinicjaMetody(dziecko))
                 {
-                    wynik.Metody.Add(ParsujMetode(dziecko));
+                    var metoda = ParsujMetode(dziecko);
+                    metoda.Wlasciciel = wynik;
+                    wynik.Metody.Add(metoda);
                     continue;
                 }
 
@@ -143,6 +147,7 @@ namespace KruchyParserKodu.ParserKodu
                 if (WezelKlasa(dziecko))
                 {
                     var wewnetrznyObiekt = ParsujKlase(dziecko);
+                    wewnetrznyObiekt.Wlasciciel = wynik;
                     wynik.ObiektyWewnetrzne.Add(wewnetrznyObiekt);
                 }
             }
