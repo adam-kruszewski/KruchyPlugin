@@ -6,6 +6,7 @@ namespace KruchyParserKodu.ParserKodu
         : ParsowanaJednostka
             , IZNawiasamiOtwierajacymiZamykajacymiParametry
                 , IZPoczatkowaIKoncowaKlamerka
+                    , IZWlascicielem
     {
         public Obiekt Wlasciciel { get; set; }
 

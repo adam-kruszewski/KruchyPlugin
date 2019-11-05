@@ -3,7 +3,10 @@ using System.Linq;
 
 namespace KruchyParserKodu.ParserKodu
 {
-    public class Obiekt : ParsowanaJednostka, IZPoczatkowaIKoncowaKlamerka
+    public class Obiekt
+        : ParsowanaJednostka
+            , IZPoczatkowaIKoncowaKlamerka
+                , IZWlascicielem
     {
         public RodzajObiektu Rodzaj { get; set; }
         public Obiekt Wlasciciel { get; set; }

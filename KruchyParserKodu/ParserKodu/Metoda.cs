@@ -6,6 +6,7 @@ namespace KruchyParserKodu.ParserKodu
     public class Metoda
         : ParsowanaJednostka
             , IZNawiasamiOtwierajacymiZamykajacymiParametry
+                , IZWlascicielem
     {
         public Obiekt Wlasciciel { get; set; }
 
