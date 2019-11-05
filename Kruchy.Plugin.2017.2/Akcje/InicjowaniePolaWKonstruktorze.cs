@@ -1,8 +1,10 @@
 ﻿using System.Linq;
 using System.Text;
 using KrucheBuilderyKodu.Builders;
+using KrucheBuilderyKodu.Utils;
 using Kruchy.Plugin.Utils.Extensions;
 using Kruchy.Plugin.Utils.Wrappers;
+using KruchyParserKodu;
 using KruchyParserKodu.ParserKodu;
 
 namespace KruchyCompany.KruchyPlugin1.Akcje
@@ -33,7 +35,8 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             {
                 nazwaDoZainicjowania = properties.Nazwa;
                 typDoZainicjowania = properties.NazwaTypu;
-            }else
+            }
+            else
             {
                 var pole = parsowane.SzukajPolaWLinii(numerLinii);
                 if (pole == null)
@@ -50,28 +53,38 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
         {
             var klasa = parsowane.SzukajKlasyWLinii(numerLinii);
 
+            var poziomKlasy = klasa.WyliczPoziomMetody();
+
             if (klasa.Konstruktory.Any())
             {
                 var konstruktor = klasa.Konstruktory.First();
                 solution.AktualnyDokument.WstawWLinii(
-                    DajZawartoscDoDodania(nazwa, typ, true),
+                    DajZawartoscDoDodania(nazwa, typ, true, poziomKlasy),
                     konstruktor.KoncowaKlamerka.Wiersz);
-            }else
+            }
+            else
             {
                 var zawartoscKontruktora =
                     GenerujZawartoscKontruktora(
                         klasa,
-                        DajZawartoscDoDodania(nazwa, typ, false));
+                        DajZawartoscDoDodania(nazwa, typ, false, poziomKlasy));
                 solution.AktualnyDokument.WstawWLinii(
                     new StringBuilder().AppendLine() + zawartoscKontruktora,
                     parsowane.SzukajPierwszejLiniiDlaKonstruktora(numerLinii));
             }
         }
 
-        private string DajZawartoscDoDodania(string nazwa, string typ, bool koncowyEnter)
+        private string DajZawartoscDoDodania(
+            string nazwa,
+            string typ,
+            bool koncowyEnter,
+            int poziomKlasy)
         {
             var builder = new StringBuilder();
             builder.Append(StaleDlaKodu.WciecieDlaZawartosciMetody);
+
+            builder.DodajWciecieWgPoziomuMetody(poziomKlasy);
+
             builder.Append(nazwa);
             builder.Append(" = new ");
             builder.Append(typ);

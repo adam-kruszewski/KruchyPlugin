@@ -32,7 +32,7 @@ namespace KruchyParserKodu.ParserKodu
             return obiekt.Metody.Union(metodyObiektowWewnetrznych);
         }
 
-        public static Konstruktor SzukajKontruktoraWLinii(
+        public static Konstruktor SzukajKonstruktoraWLinii(
             this Plik parsowane,
             int numerLinii)
         {
@@ -59,13 +59,24 @@ namespace KruchyParserKodu.ParserKodu
             this Plik parsowane,
             int numerLinii)
         {
-            var propertiesy = parsowane.DefiniowaneObiekty.SelectMany(o => o.Propertiesy);
+            var propertiesy =
+                parsowane
+                    .DefiniowaneObiekty
+                        .SelectMany(o => WszystkiePropertiesyObiektow(o));
             return
                 propertiesy
                     .Where(o =>
                         o.Poczatek.Wiersz <= numerLinii
                             && o.Koniec.Wiersz >= numerLinii)
                             .FirstOrDefault();
+        }
+
+        private static IEnumerable<Property> WszystkiePropertiesyObiektow(Obiekt obiekt)
+        {
+            var propertiesyObiektowWewnetrznych =
+                obiekt.ObiektyWewnetrzne.SelectMany(o => WszystkiePropertiesyObiektow(o));
+
+            return obiekt.Propertiesy.Union(propertiesyObiektowWewnetrznych);
         }
 
         public static Pole SzukajPolaWLinii(
@@ -126,9 +137,29 @@ namespace KruchyParserKodu.ParserKodu
             return
                 parsowane
                     .DefiniowaneObiekty
-                        .Where(o => o.Rodzaj == RodzajObiektu.Klasa)
-                        .Where(o => o.ZawieraLinie(numerLinii))
+                    .SelectMany(o => WszystkieObiektyObiektu(o))
+                    .Where(o => o.Rodzaj == RodzajObiektu.Klasa)
+                    .Where(o => o.ZawieraLinie(numerLinii))
+                    .OrderBy(o => WyliczOdleglosc(o, numerLinii))
                             .FirstOrDefault();
+        }
+
+        private static object WyliczOdleglosc(Obiekt o, int numerLinii)
+        {
+            return Math.Abs(o.Poczatek.Wiersz - numerLinii)
+                + Math.Abs(o.Koniec.Wiersz - numerLinii);
+        }
+
+        public static IEnumerable<Obiekt> WszystkieObiektyObiektu(Obiekt obiekt)
+        {
+            var wynik =
+                obiekt.ObiektyWewnetrzne
+                    .SelectMany(o => WszystkieObiektyObiektu(o))
+                        .ToList();
+
+            wynik.Add(obiekt);
+
+            return wynik;
         }
 
         public static Obiekt SzukajObiektuWLinii(

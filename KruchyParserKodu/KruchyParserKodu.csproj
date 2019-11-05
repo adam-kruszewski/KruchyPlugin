@@ -60,6 +60,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IZWlascicielemExtensions.cs" />
     <Compile Include="ParserKodu\Atrybut.cs" />
     <Compile Include="ParserKodu\IZNawiasamiOtwierajacymiZamykajacymiParametry.cs" />
     <Compile Include="ParserKodu\IZPoczatkowaIKoncowaKlamerka.cs" />

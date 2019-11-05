@@ -9,7 +9,7 @@ using Kruchy.Plugin.Utils.Wrappers;
 using KruchyParserKodu.ParserKodu;  namespace KruchyCompany.KruchyPlugin1.Akcje {     class PodzielParametryNaLinie     {         private readonly ISolutionWrapper solution;          public PodzielParametryNaLinie(ISolutionWrapper solution)         {             this.solution = solution;         }          public void Podziel()         {             var dokument = solution.AktualnyDokument;             var parsowane =                 Parser.Parsuj(dokument.DajZawartosc());              var metoda = parsowane                     .SzukajMetodyWLinii(dokument.DajNumerLiniiKursora());              if (metoda == null)             {
                 var konstruktor =
                     parsowane
-                        .SzukajKontruktoraWLinii(dokument.DajNumerLiniiKursora());
+                        .SzukajKonstruktoraWLinii(dokument.DajNumerLiniiKursora());
                 if (konstruktor != null)
                     PodzielNaLinieKonstruktor(konstruktor);                 else                     MessageBox.Show("Kursor nie jest w metodzie");                 return;             }              dokument.Usun(                 metoda.NawiasOtwierajacyParametry.Wiersz,                 metoda.NawiasOtwierajacyParametry.Kolumna,                 metoda.NawiasZamykajacyParametry.Wiersz,                 metoda.NawiasZamykajacyParametry.Kolumna + 1);              dokument.WstawWMiejscu(                 GenerujNoweParametry(metoda.Parametry, metoda, metoda),                 metoda.NawiasOtwierajacyParametry.Wiersz,                 metoda.NawiasOtwierajacyParametry.Kolumna);         }
 
