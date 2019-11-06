@@ -20,6 +20,10 @@ namespace KruchyParserKodu.ParserKodu
         public PozycjaWPliku PoczatkowaKlamerka { get; set; }
         public PozycjaWPliku KoncowaKlamerka { get; set; }
 
+        //jeśli nie ma wołania kontruktora z nadklasy, to pole jest nullem
+        public IList<string> ParametryKonstruktoraZNadKlasy;
+        public string SlowoKluczoweInicjalizacji { get; set; }
+
         public Konstruktor()
         {
             Parametry = new List<Parametr>();

@@ -377,6 +377,17 @@ namespace KruchyParserKodu.ParserKodu
                         ref bylNawiasOtwierajacy,
                         ref bylNawiasZammykajacy);
                 }
+
+                if (dziecko is ConstructorInitializer)
+                {
+                    var ci = dziecko as ConstructorInitializer;
+                    wynik.ParametryKonstruktoraZNadKlasy = new List<string>();
+                    foreach (IdentifierExpression argument in ci.Arguments)
+                    {
+                        wynik.ParametryKonstruktoraZNadKlasy.Add(argument.Identifier);
+                    }
+                    wynik.SlowoKluczoweInicjalizacji = ci.Keyword.ToString();
+                }
             }
 
             foreach (var param in cd.Parameters)
