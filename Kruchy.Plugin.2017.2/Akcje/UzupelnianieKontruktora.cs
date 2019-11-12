@@ -9,7 +9,7 @@ using KruchyParserKodu.ParserKodu;
 
 namespace KruchyCompany.KruchyPlugin1.Akcje
 {
-    class UzupelnianieKontruktora
+    public class UzupelnianieKontruktora
     {
         private readonly ISolutionWrapper solution;
         private static Dictionary<string, int> kolejnoscWgTypu =
