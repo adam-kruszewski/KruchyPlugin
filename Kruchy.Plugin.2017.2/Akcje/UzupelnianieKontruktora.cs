@@ -59,8 +59,16 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             {
                 var polaReadOnly = obiekt.Pola.Where(
                     o => InicjowaneWKontruktorze(o));
+
+                var polaDoKonstruktoraNadklasy =
+                    WyliczPolaPotrzebneDoKonstruktoraNadklasy(konstruktor);
+
                 var nowyKonstruktor =
-                    GenerujKonstruktor(polaReadOnly, obiekt.Nazwa);
+                    GenerujKonstruktor(
+                        polaReadOnly,
+                        obiekt.Nazwa,
+                        polaDoKonstruktoraNadklasy,
+                        konstruktor?.SlowoKluczoweInicjalizacji);
 
                 if (konstruktor != null)
                 {
@@ -71,7 +79,8 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
                         konstruktor.Koniec.Kolumna);
                     solution.AktualnyDokument.WstawWLinii(
                         nowyKonstruktor, konstruktor.Poczatek.Wiersz);
-                }else
+                }
+                else
                 {
                     //tu zawsze będzie jakieś pole lub właściwośc
                     //, bo są pola które czekają na dodanie do konstruktora
@@ -86,6 +95,15 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
                 }
                 PosortujZdefiniowanePola(obiekt.NiestatycznePola);
             }
+        }
+
+        private IList<Parametr> WyliczPolaPotrzebneDoKonstruktoraNadklasy(Konstruktor konstruktor)
+        {
+            if (konstruktor == null || konstruktor.ParametryKonstruktoraZNadKlasy == null)
+                return null;
+            var p = konstruktor.Parametry
+                .Where(o => konstruktor.ParametryKonstruktoraZNadKlasy.Contains(o.NazwaParametru));
+            return p.ToList();
         }
 
         private void PosortujZdefiniowanePola(IList<Pole> list)
@@ -127,7 +145,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             string dodatek)
         {
             var builder = new StringBuilder();
-            return 
+            return
                 builder
                     .AppendLine()
                     .Append(nowyKonstruktor)
@@ -154,19 +172,36 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
                         solution.AktualnyDokument.DajNumerLiniiKursora());
         }
 
-        private string GenerujKonstruktor(IEnumerable<Pole> pola, string nazwaKlasy)
+        private string GenerujKonstruktor(
+            IEnumerable<Pole> pola,
+            string nazwaKlasy,
+            IEnumerable<Parametr> parametryDlaKonstruktoraNadklasy,
+            string slowoKluczowe)
         {
             var builder = new MetodaBuilder();
             builder.JedenParametrWLinii(true);
             builder.ZNazwa(nazwaKlasy);
             builder.ZTypemZwracanym("");
             builder.DodajModyfikator("public");
-            
+
             foreach (var pole in SortujPola(pola))
             {
                 builder.DodajParametr(pole.NazwaTypu, pole.Nazwa);
                 builder.DodajLinie("this." + pole.Nazwa + " = " + pole.Nazwa + ";");
             }
+
+            if (parametryDlaKonstruktoraNadklasy != null)
+            {
+                foreach (var parametrDlaNadklasy in parametryDlaKonstruktoraNadklasy)
+                {
+                    builder.DodajParametr(parametrDlaNadklasy.NazwaTypu, parametrDlaNadklasy.NazwaParametru);
+                }
+
+                builder.DodajInicjalizacjeKonstruktora(
+                    slowoKluczowe,
+                    parametryDlaKonstruktoraNadklasy.Select(o => o.NazwaParametru));
+            }
+
             return builder.Build(StaleDlaKodu.WciecieDlaMetody).TrimEnd();
         }
 
@@ -198,7 +233,8 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
                 var t = pole.NazwaTypu.Substring(pole.NazwaTypu.IndexOf("<") + 1);
                 t = t.Substring(0, t.IndexOf(">"));
                 return "list<" + DajRodzajPolaZNazwyTypu(t) + ">";
-            }else
+            }
+            else
             {
                 return DajRodzajPolaZNazwyTypu(pole.NazwaTypu);
             }
@@ -206,7 +242,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 
         private string DajRodzajPolaZNazwyTypu(string nazwaTypu)
         {
-            for (int i = nazwaTypu.Length - 1; i >= 0 ; i--)
+            for (int i = nazwaTypu.Length - 1; i >= 0; i--)
             {
                 if (char.IsUpper(nazwaTypu[i]))
                     return nazwaTypu.Substring(i).ToLower();
