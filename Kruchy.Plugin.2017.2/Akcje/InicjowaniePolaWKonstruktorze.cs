@@ -87,11 +87,19 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 
             builder.Append(nazwa);
             builder.Append(" = new ");
-            builder.Append(typ);
+            builder.Append(PrzygotujTypDoKonstrukcji(typ));
             builder.Append("();");
             if (koncowyEnter)
                 builder.AppendLine();
             return builder.ToString();
+        }
+
+        private string PrzygotujTypDoKonstrukcji(string typ)
+        {
+            if (typ.StartsWith("I") && typ.Length > 1 && char.IsUpper(typ[1]))
+                return typ.Substring(1);
+
+            return typ;
         }
 
         private string GenerujZawartoscKontruktora(
