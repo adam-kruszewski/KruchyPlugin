@@ -113,7 +113,7 @@ namespace Kruchy.Plugin.Akcje.Tests.WrappersMocks
                     if (poczatek == 0 && koniec >= linie[i].Length - 1)
                         linie.RemoveAt(i);
                     else
-                        linie[i] = linie[i].Substring(poczatek, koniec - poczatek + 1);
+                        linie[i] = linie[i].Substring(poczatek, koniec - poczatek);
                 }
             }
             UstawZawartoscZLinii(linie);
