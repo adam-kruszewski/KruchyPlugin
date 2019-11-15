@@ -52,6 +52,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Samples\KlasaDoParsowania.cs" />
+    <EmbeddedResource Include="Samples\KlasaDoParsowaniaAtrybutow.cs" />
+    <EmbeddedResource Include="Samples\KlasaDoParsowaniaNadklasIInterfejsow.cs" />
+    <EmbeddedResource Include="Samples\KlasaDoParsowaniaRozszerzone.cs" />
+    <Compile Include="Unit\ParsowanieAtrybutowTests.cs" />
+    <Compile Include="Unit\ParsowanieKlasyNadklasIInterfejsowTests.cs" />
+    <Compile Include="Unit\ParsowanieKlasyTests.cs" />
+    <Compile Include="Unit\ParsowanieRozszerzoneTests.cs" />
+    <Compile Include="Utils\PozycjaWPlikuExtension.cs" />
     <Compile Include="Utils\WczytywaczZawartosciPrzykladow.cs" />
     <EmbeddedResource Include="Samples\WlasciwosciZapisaneJakoLambda.cs" />
     <EmbeddedResource Include="Samples\ZKlasaWewnetrzna.cs" />
