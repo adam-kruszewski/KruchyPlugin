@@ -123,8 +123,11 @@ namespace Kruchy.Plugin.Akcje.Tests.WrappersMocks
         {
             var builder = new StringBuilder();
 
-            foreach (var linia in linie)
-                builder.AppendLine(linia);
+            for (int i = 0; i < linie.Count; i++)
+                if (i != linie.Count - 1)
+                    builder.AppendLine(linie[i]);
+                else
+                    builder.Append(linie[i]);
 
             zawartosc = builder.ToString();
         }

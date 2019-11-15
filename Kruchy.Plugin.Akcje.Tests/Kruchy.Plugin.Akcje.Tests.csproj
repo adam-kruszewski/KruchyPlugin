@@ -52,6 +52,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Samples\PustaKlasa.cs" />
+    <Compile Include="TestyInfrastrukturyTestow\DokumentWrapperTests.cs" />
     <Compile Include="Unit\UzupelnianieKonstruktoraZDziedziczeniemTests.cs" />
     <Compile Include="WrappersMocks\SolutionWrapper.cs" />
     <EmbeddedResource Include="Samples\UzupelnianieKonstruktoraPrzyNadklasie.cs" />
