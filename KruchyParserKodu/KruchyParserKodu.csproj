@@ -69,6 +69,7 @@
     <Compile Include="ParserKodu\Metoda.cs" />
     <Compile Include="ParserKodu\MetodaExtension.cs" />
     <Compile Include="ParserKodu\Modyfikator.cs" />
+    <Compile Include="ParserKodu\NRefactoryParser.cs" />
     <Compile Include="ParserKodu\Obiekt.cs" />
     <Compile Include="ParserKodu\ObiektDziedziczony.cs" />
     <Compile Include="ParserKodu\Parametr.cs" />
