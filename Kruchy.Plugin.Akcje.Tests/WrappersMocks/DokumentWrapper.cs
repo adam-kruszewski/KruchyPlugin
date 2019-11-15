@@ -113,7 +113,8 @@ namespace Kruchy.Plugin.Akcje.Tests.WrappersMocks
                     if (poczatek == 0 && koniec >= linie[i].Length - 1)
                         linie.RemoveAt(i);
                     else
-                        linie[i] = linie[i].Substring(poczatek, koniec - poczatek);
+                        linie[i] = linie[i].Substring(0, poczatek) +
+                            linie[i].Substring(koniec);
                 }
             }
             UstawZawartoscZLinii(linie);
@@ -146,6 +147,9 @@ namespace Kruchy.Plugin.Akcje.Tests.WrappersMocks
 
         public void WstawWLinii(string tekst, int numerLinii)
         {
+            var koniecLinii = new StringBuilder().AppendLine().ToString();
+            if (!tekst.EndsWith(koniecLinii))
+                tekst += koniecLinii;
             WstawWMiejscu(tekst, numerLinii, 0);
         }
 
