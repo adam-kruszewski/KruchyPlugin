@@ -41,9 +41,38 @@ namespace KruchyParserKodu.Roslyn
                 UzupelnijAtrybuty(klasa.AttributeLists, definiowanyObiekt.Atrybuty);
                 UzupelnijPola(definiowanyObiekt.Pola, klasa);
 
+                UzupelnijWlasciwosci(definiowanyObiekt.Propertiesy, klasa);
+
                 wynik.DefiniowaneObiekty.Add(definiowanyObiekt);
             }
             return wynik;
+        }
+
+        private void UzupelnijWlasciwosci(
+            IList<Property> propertiesy,
+            ClassDeclarationSyntax klasa)
+        {
+            var wlasciwosciSyntax = klasa.Members.OfType<PropertyDeclarationSyntax>();
+
+            foreach (var wlasciwoscSyntax in wlasciwosciSyntax)
+            {
+                var properties = new Property();
+                properties.Nazwa = wlasciwoscSyntax.Identifier.ValueText;
+                properties.NazwaTypu = wlasciwoscSyntax.Type.DajNazweTypu();
+                UzupelnijAtrybuty(wlasciwoscSyntax.AttributeLists, properties.Atrybuty);
+                UzupelnijModyfikatory(wlasciwoscSyntax.Modifiers, properties.Modyfikatory);
+                UstawPolozenie(wlasciwoscSyntax.SyntaxTree, properties, wlasciwoscSyntax);
+
+                properties.JestGet = JestAccessorr(wlasciwoscSyntax, "get");
+                properties.JestSet = JestAccessorr(wlasciwoscSyntax, "set");
+
+                propertiesy.Add(properties);
+            }
+        }
+
+        private bool JestAccessorr(PropertyDeclarationSyntax syntax, string nazwa)
+        {
+            return syntax.AccessorList.Accessors.Any(o => o.Keyword.ValueText == nazwa);
         }
 
         private void UzupelnijPola(IList<Pole> pola, ClassDeclarationSyntax klasa)
@@ -78,6 +107,14 @@ namespace KruchyParserKodu.Roslyn
 
                 pola.Add(pole);
             }
+        }
+
+        private void UzupelnijModyfikatory(
+            SyntaxTokenList syntax,
+            IList<Modyfikator> modyfikatory)
+        {
+            foreach (var modyfikator in syntax.Select(o => DajModifikator(o)))
+                modyfikatory.Add(modyfikator);
         }
 
         private static Modyfikator DajModifikator(SyntaxToken o)
