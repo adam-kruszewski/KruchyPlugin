@@ -43,9 +43,66 @@ namespace KruchyParserKodu.Roslyn
 
                 UzupelnijWlasciwosci(definiowanyObiekt.Propertiesy, klasa);
 
+                UzupelnijKontruktory(definiowanyObiekt.Konstruktory, klasa);
+
                 wynik.DefiniowaneObiekty.Add(definiowanyObiekt);
             }
             return wynik;
+        }
+
+        private void UzupelnijKontruktory(
+            IList<Konstruktor> konstruktory,
+            ClassDeclarationSyntax klasa)
+        {
+            foreach (var konstruktorSyntax in klasa.Members.OfType<ConstructorDeclarationSyntax>())
+            {
+                var konstruktor = new Konstruktor();
+
+                UstawPolozenie(konstruktorSyntax.SyntaxTree, konstruktor, konstruktorSyntax);
+                konstruktor.Modyfikator =
+                    SzukajModyfikatorow(konstruktorSyntax.Modifiers)
+                        .Select(o => o.Nazwa)
+                            .SingleOrDefault();
+
+                UzupelnijParametry(konstruktorSyntax.ParameterList, konstruktor.Parametry);
+
+                konstruktor.NawiasOtwierajacyParametry =
+                    DajPolozenie(konstruktorSyntax.ParameterList.OpenParenToken)
+                        .Item1.ToPozycjaWPliku();
+                konstruktor.NawiasZamykajacyParametry =
+                    DajPolozenie(
+                        konstruktorSyntax.ParameterList.CloseParenToken)
+                        .Item1.ToPozycjaWPliku();
+
+                konstruktor.PoczatkowaKlamerka =
+                    DajPolozenie(konstruktorSyntax.Body.OpenBraceToken)
+                        .Item1.ToPozycjaWPliku();
+
+                konstruktor.KoncowaKlamerka =
+                    DajPolozenie(konstruktorSyntax.Body.CloseBraceToken)
+                        .Item1.ToPozycjaWPliku();
+
+                konstruktory.Add(konstruktor);
+            }
+        }
+
+        private void UzupelnijParametry(ParameterListSyntax parameterList, IList<Parametr> parametry)
+        {
+            parametry.AddRange(parameterList.Parameters.Select(o => DajParametr(o)));
+        }
+
+        private Parametr DajParametr(ParameterSyntax parametrSyntax)
+        {
+            var parametr = new Parametr();
+            parametr.NazwaParametru = parametrSyntax.Identifier.ValueText;
+            parametr.NazwaTypu = parametrSyntax.Type.DajNazweTypu();
+
+            parametr.Modyfikator =
+                SzukajModyfikatorow(parametrSyntax.Modifiers)
+                    .Select(o => o.Nazwa)
+                        .SingleOrDefault();
+
+            return parametr;
         }
 
         private void UzupelnijWlasciwosci(
@@ -113,8 +170,13 @@ namespace KruchyParserKodu.Roslyn
             SyntaxTokenList syntax,
             IList<Modyfikator> modyfikatory)
         {
-            foreach (var modyfikator in syntax.Select(o => DajModifikator(o)))
+            foreach (var modyfikator in SzukajModyfikatorow(syntax))
                 modyfikatory.Add(modyfikator);
+        }
+
+        private static IEnumerable<Modyfikator> SzukajModyfikatorow(SyntaxTokenList syntax)
+        {
+            return syntax.Select(o => DajModifikator(o));
         }
 
         private static Modyfikator DajModifikator(SyntaxToken o)
@@ -174,11 +236,11 @@ namespace KruchyParserKodu.Roslyn
             var l2 = l.EndLinePosition;
 
             obiekt.Poczatek = new PozycjaWPliku(
-                l1.Line,
-                l1.Character);
+                l1.Line + 1,
+                l1.Character + 1);
             obiekt.Koniec = new PozycjaWPliku(
-                l2.Line,
-                l2.Character);
+                l2.Line + 1,
+                l2.Character + 1);
         }
 
         private Tuple<LinePosition, LinePosition> DajPolozenie(
@@ -193,6 +255,11 @@ namespace KruchyParserKodu.Roslyn
             SyntaxToken token)
         {
             return DajPolozenie(syntaxTree, token.Span);
+        }
+
+        private Tuple<LinePosition, LinePosition> DajPolozenie(SyntaxToken token)
+        {
+            return DajPolozenie(token.SyntaxTree, token.Span);
         }
 
         private Tuple<LinePosition, LinePosition> DajPolozenie(

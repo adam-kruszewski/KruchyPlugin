@@ -119,6 +119,7 @@
     <Compile Include="Roslyn\RoslynParser.cs" />
     <Compile Include="Roslyn\TypeSyntaxExtensions.cs" />
     <Compile Include="Utils\IListExtensions.cs" />
+    <Compile Include="Utils\PozycjaWPlikuExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="KruchyParserKodu.pfx" />
