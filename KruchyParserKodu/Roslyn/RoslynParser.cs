@@ -35,7 +35,30 @@ namespace KruchyParserKodu.Roslyn
 
                 wynik.DefiniowaneObiekty.Add(definiowanyObiekt);
             }
+
+            var interfejsy = namespaceDeclaration.Members.OfType<InterfaceDeclarationSyntax>();
+            foreach (var interfaceSyntax in interfejsy)
+            {
+                wynik.DefiniowaneObiekty.Add(ParsujInterfejs(interfaceSyntax));
+            }
+
             return wynik;
+        }
+
+        private Obiekt ParsujInterfejs(InterfaceDeclarationSyntax interfaceSyntax)
+        {
+            var definiowanyObiekt = new Obiekt();
+            definiowanyObiekt.Rodzaj = RodzajObiektu.Interfejs;
+
+            UstawPolozenie(interfaceSyntax.SyntaxTree, definiowanyObiekt, interfaceSyntax);
+            UstawPolozeniePoczatkowejKlamerki(definiowanyObiekt, interfaceSyntax.OpenBraceToken);
+            UstawPolozenieKoncowejKlamerki(definiowanyObiekt, interfaceSyntax.CloseBraceToken);
+
+            UzupelnijAtrybuty(interfaceSyntax.AttributeLists, definiowanyObiekt.Atrybuty);
+            UzupelnijWlasciwosci(definiowanyObiekt.Propertiesy, interfaceSyntax);
+            UzupelnijMetody(definiowanyObiekt.Metody, interfaceSyntax, definiowanyObiekt);
+
+            return definiowanyObiekt;
         }
 
         private Obiekt ParsujKlase(SyntaxTree syntaxTree, ClassDeclarationSyntax klasa)
@@ -93,7 +116,7 @@ namespace KruchyParserKodu.Roslyn
 
         private void UzupelnijMetody(
             IList<Metoda> metody,
-            ClassDeclarationSyntax klasa,
+            TypeDeclarationSyntax klasa,
             Obiekt obiektWlasciciela)
         {
             foreach (var metodaSyntax in klasa.Members.OfType<MethodDeclarationSyntax>())
@@ -217,7 +240,7 @@ namespace KruchyParserKodu.Roslyn
 
         private void UzupelnijWlasciwosci(
             IList<Property> propertiesy,
-            ClassDeclarationSyntax klasa)
+            TypeDeclarationSyntax klasa)
         {
             var wlasciwosciSyntax = klasa.Members.OfType<PropertyDeclarationSyntax>();
 
@@ -302,7 +325,14 @@ namespace KruchyParserKodu.Roslyn
                 pozycjaPoczatkowejKlamerki.Item1.Line;
             obiekt.PoczatkowaKlamerka.Kolumna =
                 pozycjaPoczatkowejKlamerki.Item1.Character;
+        }
 
+        private void UstawPolozenieKoncowejKlamerki(
+            IZPoczatkowaIKoncowaKlamerka obiekt,
+            SyntaxToken token)
+        {
+            var pozycjaKoncowejKlamerki = DajPolozenie(token.SyntaxTree, token);
+            obiekt.KoncowaKlamerka = pozycjaKoncowejKlamerki.Item1.ToPozycjaWPliku();
         }
 
         private void UzupelnijAtrybuty(
