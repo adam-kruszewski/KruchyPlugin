@@ -239,6 +239,9 @@ namespace KruchyParserKodu.Roslyn
 
         private bool JestAccessorr(PropertyDeclarationSyntax syntax, string nazwa)
         {
+            if (syntax.AccessorList == null)
+                return false;
+
             return syntax.AccessorList.Accessors.Any(o => o.Keyword.ValueText == nazwa);
         }
 
