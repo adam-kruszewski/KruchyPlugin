@@ -142,6 +142,20 @@ namespace KruchyParserKodu.Roslyn
 
                 konstruktor.Wlasciciel = obiektWlasciciel;
 
+                if (konstruktorSyntax.Initializer != null
+                    && konstruktorSyntax.Initializer.ArgumentList != null)
+                {
+                    konstruktor.SlowoKluczoweInicjalizacji =
+                        konstruktorSyntax.Initializer.ThisOrBaseKeyword.ToString();
+                    konstruktor.ParametryKonstruktoraZNadKlasy =
+                        konstruktorSyntax
+                            .Initializer
+                                .ArgumentList
+                                    .Arguments
+                                        .Select(o => o.ToString().Trim())
+                                            .ToList();
+                }
+
                 konstruktory.Add(konstruktor);
             }
         }
