@@ -45,9 +45,32 @@ namespace KruchyParserKodu.Roslyn
 
                 UzupelnijKontruktory(definiowanyObiekt.Konstruktory, klasa);
 
+                UzupelnijMetody(definiowanyObiekt.Metody, klasa);
+
                 wynik.DefiniowaneObiekty.Add(definiowanyObiekt);
             }
             return wynik;
+        }
+
+        private void UzupelnijMetody(IList<Metoda> metody, ClassDeclarationSyntax klasa)
+        {
+            foreach (var metodaSyntax in klasa.Members.OfType<MethodDeclarationSyntax>())
+            {
+                var metoda = new Metoda();
+                metoda.Nazwa = metodaSyntax.Identifier.ValueText;
+                UzupelnijModyfikatory(metodaSyntax.Modifiers, metoda.Modyfikatory);
+                UzupelnijParametry(metodaSyntax.ParameterList, metoda.Parametry);
+
+                UstawPolozenie(klasa.SyntaxTree, metoda, metodaSyntax);
+
+                metoda.TypZwracany = metodaSyntax.ReturnType.DajNazweTypu();
+
+                UzupelnijPozycjeNawiasowOtwierajacychIZamykajacych(metodaSyntax, metoda);
+
+                UzupelnijAtrybuty(metodaSyntax.AttributeLists, metoda.Atrybuty);
+
+                metody.Add(metoda);
+            }
         }
 
         private void UzupelnijKontruktory(
@@ -66,24 +89,38 @@ namespace KruchyParserKodu.Roslyn
 
                 UzupelnijParametry(konstruktorSyntax.ParameterList, konstruktor.Parametry);
 
-                konstruktor.NawiasOtwierajacyParametry =
-                    DajPolozenie(konstruktorSyntax.ParameterList.OpenParenToken)
-                        .Item1.ToPozycjaWPliku();
-                konstruktor.NawiasZamykajacyParametry =
-                    DajPolozenie(
-                        konstruktorSyntax.ParameterList.CloseParenToken)
-                        .Item1.ToPozycjaWPliku();
+                UzupelnijPozycjeNawiasowOtwierajacychIZamykajacych(
+                    konstruktorSyntax,
+                    konstruktor);
 
-                konstruktor.PoczatkowaKlamerka =
-                    DajPolozenie(konstruktorSyntax.Body.OpenBraceToken)
-                        .Item1.ToPozycjaWPliku();
-
-                konstruktor.KoncowaKlamerka =
-                    DajPolozenie(konstruktorSyntax.Body.CloseBraceToken)
-                        .Item1.ToPozycjaWPliku();
+                UzupelnijPozycjeKlamerek(konstruktorSyntax, konstruktor);
 
                 konstruktory.Add(konstruktor);
             }
+        }
+
+        private void UzupelnijPozycjeNawiasowOtwierajacychIZamykajacych(
+            BaseMethodDeclarationSyntax syntax,
+            IZNawiasamiOtwierajacymiZamykajacymiParametry obiekt)
+        {
+            obiekt.NawiasOtwierajacyParametry =
+                DajPolozenie(syntax.ParameterList.OpenParenToken).Item1.ToPozycjaWPliku();
+            obiekt.NawiasZamykajacyParametry =
+                DajPolozenie(syntax.ParameterList.CloseParenToken).Item1.ToPozycjaWPliku();
+        }
+
+        private void UzupelnijPozycjeKlamerek(
+            BaseMethodDeclarationSyntax syntax,
+            IZPoczatkowaIKoncowaKlamerka obiekt)
+        {
+            obiekt.PoczatkowaKlamerka =
+                DajPolozenie(syntax.Body.OpenBraceToken)
+                    .Item1.ToPozycjaWPliku();
+
+            obiekt.KoncowaKlamerka =
+                DajPolozenie(syntax.Body.CloseBraceToken)
+                    .Item1.ToPozycjaWPliku();
+
         }
 
         private void UzupelnijParametry(ParameterListSyntax parameterList, IList<Parametr> parametry)
@@ -147,17 +184,9 @@ namespace KruchyParserKodu.Roslyn
                 if (identyfikator == null)
                     continue;
 
-                var identyfikatorTypu = deklarowanePole.Declaration.Type as IdentifierNameSyntax;
-                var alternatywnyIdentyfikatorTypu =
-                    deklarowanePole.Declaration.Type as GenericNameSyntax;
-
                 pole.Nazwa = identyfikator.Identifier.ValueText;
 
-                if (identyfikatorTypu != null)
-                    pole.NazwaTypu = identyfikatorTypu.Identifier.ValueText;
-                if (alternatywnyIdentyfikatorTypu != null)
-                    pole.NazwaTypu = alternatywnyIdentyfikatorTypu.ToFullString().Trim();
-                //Identifier.ToString();
+                pole.NazwaTypu = deklarowanePole.Declaration.Type.DajNazweTypu();
 
                 pole.Modyfikatory.AddRange(
                     deklarowanePole.Modifiers.Select(o => DajModifikator(o)));
@@ -174,14 +203,17 @@ namespace KruchyParserKodu.Roslyn
                 modyfikatory.Add(modyfikator);
         }
 
-        private static IEnumerable<Modyfikator> SzukajModyfikatorow(SyntaxTokenList syntax)
+        private IEnumerable<Modyfikator> SzukajModyfikatorow(SyntaxTokenList syntax)
         {
             return syntax.Select(o => DajModifikator(o));
         }
 
-        private static Modyfikator DajModifikator(SyntaxToken o)
+        private Modyfikator DajModifikator(SyntaxToken o)
         {
             var modyfikator = new Modyfikator(o.ValueText);
+
+            UstawPolozenie(o, modyfikator);
+
             return modyfikator;
         }
 
@@ -241,6 +273,13 @@ namespace KruchyParserKodu.Roslyn
             obiekt.Koniec = new PozycjaWPliku(
                 l2.Line + 1,
                 l2.Character + 1);
+        }
+
+        private void UstawPolozenie(SyntaxToken token, ParsowanaJednostka obiekt)
+        {
+            var polozenie = DajPolozenie(token);
+            obiekt.Poczatek = polozenie.Item1.ToPozycjaWPliku();
+            obiekt.Koniec = polozenie.Item2.ToPozycjaWPliku();
         }
 
         private Tuple<LinePosition, LinePosition> DajPolozenie(

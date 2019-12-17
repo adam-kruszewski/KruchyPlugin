@@ -25,8 +25,8 @@ namespace KruchyParserKodu.ParserKodu
 
         public IList<Obiekt> ObiektyWewnetrzne { get; private set; }
 
-        public PozycjaWPliku PoczatkowaKlamerka { get; private set; }
-        public PozycjaWPliku KoncowaKlamerka { get; private set; }
+        public PozycjaWPliku PoczatkowaKlamerka { get; set; }
+        public PozycjaWPliku KoncowaKlamerka { get; set; }
 
         public Obiekt() : base()
         {

@@ -10,6 +10,7 @@ namespace KruchyParserKodu.Roslyn
             var identyfikatorTypu = syntax as IdentifierNameSyntax;
             var alternatywnyIdentyfikatorTypu = syntax as GenericNameSyntax;
             var predefiniowanyTyp = syntax as PredefinedTypeSyntax;
+            var nullableTyp = syntax as NullableTypeSyntax;
 
             if (predefiniowanyTyp != null)
                 return predefiniowanyTyp.ToString();
@@ -19,7 +20,10 @@ namespace KruchyParserKodu.Roslyn
             if (alternatywnyIdentyfikatorTypu != null)
                 return alternatywnyIdentyfikatorTypu.ToFullString().Trim();
 
-            throw new Exception("Nie udało się znaleźć nazwy typu");
+            if (nullableTyp != null)
+                return nullableTyp.ToFullString().Trim();
+
+            return syntax.ToFullString().Trim();
         }
     }
 }
