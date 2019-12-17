@@ -68,7 +68,7 @@ namespace KruchyParserKoduTests.Unit
             atrybutTestowo2.Parametry.Count().Should().Be(1);
             var parametr = atrybutTestowo2.Parametry.First();
             parametr.Nazwa.Should().Be("Param");
-            parametr.Wartosc.Should().Be("aa");
+            parametr.Wartosc.Should().Be("\"aa\"");
 
             metoda2.Atrybuty[1].Nazwa.Should().Be("Testowo3");
             metoda2.Atrybuty[1].Poczatek.Sprawdz(15, 10);

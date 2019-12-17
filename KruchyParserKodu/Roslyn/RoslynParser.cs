@@ -328,10 +328,42 @@ namespace KruchyParserKodu.Roslyn
             var atrybut =
                 new Atrybut
                 {
-                    Nazwa = atrybutSyntax.Name.GetText().ToString()
+                    Nazwa = atrybutSyntax.Name.GetText().ToString(),
+                    Parametry = SzukajParametrowAtrybutu(atrybutSyntax)
                 };
             UstawPolozenie(atrybutSyntax.SyntaxTree, atrybut, atrybutSyntax);
             return atrybut;
+        }
+
+        private IList<ParametrAtrybutu> SzukajParametrowAtrybutu(
+            AttributeSyntax atrybutSyntax)
+        {
+            if (atrybutSyntax.ArgumentList == null)
+                return new List<ParametrAtrybutu>();
+            else
+                return
+                    atrybutSyntax
+                        .ArgumentList
+                            .Arguments
+                                .Select(o => DajParametrAtrybutu(o))
+                                    .ToList();
+        }
+
+        private ParametrAtrybutu DajParametrAtrybutu(AttributeArgumentSyntax o)
+        {
+            var wynik = new ParametrAtrybutu();
+            var polozenie = DajPolozenie(o.SyntaxTree, o.Span);
+
+            wynik.Poczatek = polozenie.Item1.ToPozycjaWPliku();
+            wynik.Koniec = polozenie.Item2.ToPozycjaWPliku();
+            wynik.Wartosc = o.Expression?.ToFullString()?.Trim();
+            wynik.Nazwa = o.NameEquals?.Name?.ToFullString()?.Trim();
+
+            if (wynik.Nazwa == null)
+                wynik.Nazwa = "";
+
+            return wynik;
+
         }
 
         private void UstawPolozenie(
