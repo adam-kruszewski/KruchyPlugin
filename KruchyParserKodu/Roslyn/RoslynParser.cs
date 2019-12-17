@@ -52,15 +52,32 @@ namespace KruchyParserKodu.Roslyn
 
             UzupelnijWlasciwosci(definiowanyObiekt.Propertiesy, klasa);
 
-            UzupelnijKontruktory(definiowanyObiekt.Konstruktory, klasa);
+            UzupelnijKontruktory(definiowanyObiekt.Konstruktory, klasa, definiowanyObiekt);
 
-            UzupelnijMetody(definiowanyObiekt.Metody, klasa);
+            UzupelnijMetody(definiowanyObiekt.Metody, klasa, definiowanyObiekt);
 
             if (klasa.BaseList != null)
                 definiowanyObiekt.NadklasaIInterfejsy.AddRange(
                     klasa.BaseList.Types.Select(o => DajTypDziedziczony(o)));
 
+            var klasyWewnetrzne = SzukajKlasWewnetrznych(klasa);
+
+            foreach (var klasaWewnetrzna in klasyWewnetrzne)
+            {
+                klasaWewnetrzna.Wlasciciel = definiowanyObiekt;
+                definiowanyObiekt.ObiektyWewnetrzne.Add(klasaWewnetrzna);
+            }
+
             return definiowanyObiekt;
+        }
+
+        private IEnumerable<Obiekt> SzukajKlasWewnetrznych(ClassDeclarationSyntax klasaZewnetrzna)
+        {
+            foreach (var klasaSyntax in klasaZewnetrzna.Members.OfType<ClassDeclarationSyntax>())
+            {
+                var klasa = ParsujKlase(klasaZewnetrzna.SyntaxTree, klasaSyntax);
+                yield return klasa;
+            }
         }
 
         private ObiektDziedziczony DajTypDziedziczony(BaseTypeSyntax o)
@@ -74,7 +91,10 @@ namespace KruchyParserKodu.Roslyn
             return wynik;
         }
 
-        private void UzupelnijMetody(IList<Metoda> metody, ClassDeclarationSyntax klasa)
+        private void UzupelnijMetody(
+            IList<Metoda> metody,
+            ClassDeclarationSyntax klasa,
+            Obiekt obiektWlasciciela)
         {
             foreach (var metodaSyntax in klasa.Members.OfType<MethodDeclarationSyntax>())
             {
@@ -91,13 +111,16 @@ namespace KruchyParserKodu.Roslyn
 
                 UzupelnijAtrybuty(metodaSyntax.AttributeLists, metoda.Atrybuty);
 
+                metoda.Wlasciciel = obiektWlasciciela;
+
                 metody.Add(metoda);
             }
         }
 
         private void UzupelnijKontruktory(
             IList<Konstruktor> konstruktory,
-            ClassDeclarationSyntax klasa)
+            ClassDeclarationSyntax klasa,
+            Obiekt obiektWlasciciel)
         {
             foreach (var konstruktorSyntax in klasa.Members.OfType<ConstructorDeclarationSyntax>())
             {
@@ -116,6 +139,8 @@ namespace KruchyParserKodu.Roslyn
                     konstruktor);
 
                 UzupelnijPozycjeKlamerek(konstruktorSyntax, konstruktor);
+
+                konstruktor.Wlasciciel = obiektWlasciciel;
 
                 konstruktory.Add(konstruktor);
             }
