@@ -57,6 +57,7 @@
     <EmbeddedResource Include="Samples\KlasaDoParsowaniaNadklasIInterfejsow.cs" />
     <EmbeddedResource Include="Samples\KlasaDoParsowaniaRozszerzone.cs" />
     <EmbeddedResource Include="Samples\InterfejsDoParsowania.cs" />
+    <EmbeddedResource Include="Samples\InterfejsZDziedziczeniemIAtrybutami.cs" />
     <Compile Include="Unit\ParsowanieAtrybutowTests.cs" />
     <Compile Include="Unit\ParsowanieInterfejsuTests.cs" />
     <Compile Include="Unit\ParsowanieKlasyNadklasIInterfejsowTests.cs" />

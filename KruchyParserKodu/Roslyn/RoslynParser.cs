@@ -57,6 +57,7 @@ namespace KruchyParserKodu.Roslyn
             UzupelnijAtrybuty(interfaceSyntax.AttributeLists, definiowanyObiekt.Atrybuty);
             UzupelnijWlasciwosci(definiowanyObiekt.Propertiesy, interfaceSyntax);
             UzupelnijMetody(definiowanyObiekt.Metody, interfaceSyntax, definiowanyObiekt);
+            UzupelniejTypyDziedziczone(definiowanyObiekt, interfaceSyntax);
 
             return definiowanyObiekt;
         }
@@ -79,9 +80,7 @@ namespace KruchyParserKodu.Roslyn
 
             UzupelnijMetody(definiowanyObiekt.Metody, klasa, definiowanyObiekt);
 
-            if (klasa.BaseList != null)
-                definiowanyObiekt.NadklasaIInterfejsy.AddRange(
-                    klasa.BaseList.Types.Select(o => DajTypDziedziczony(o)));
+            UzupelniejTypyDziedziczone(definiowanyObiekt, klasa);
 
             var klasyWewnetrzne = SzukajKlasWewnetrznych(klasa);
 
@@ -92,6 +91,14 @@ namespace KruchyParserKodu.Roslyn
             }
 
             return definiowanyObiekt;
+        }
+
+        private void UzupelniejTypyDziedziczone(Obiekt obiekt, TypeDeclarationSyntax syntax)
+        {
+            if (syntax.BaseList != null)
+                obiekt.NadklasaIInterfejsy.AddRange(
+                    syntax.BaseList.Types.Select(o => DajTypDziedziczony(o)));
+
         }
 
         private IEnumerable<Obiekt> SzukajKlasWewnetrznych(ClassDeclarationSyntax klasaZewnetrzna)
@@ -110,6 +117,13 @@ namespace KruchyParserKodu.Roslyn
             wynik.Nazwa = o.Type.DajNazweTypu();
             wynik.Poczatek = DajPolozenie(o.SyntaxTree, o.Span).Item1.ToPozycjaWPliku();
             wynik.Koniec = DajPolozenie(o.SyntaxTree, o.Span).Item2.ToPozycjaWPliku();
+
+            if (o.Type.JestGeneryczny())
+            {
+                var daneGenerycznego = o.Type.DajDaneTypuGenerycznego();
+                wynik.Nazwa = daneGenerycznego.Item1;
+                wynik.NazwyTypowParametrow.AddRange(daneGenerycznego.Item2);
+            }
 
             return wynik;
         }

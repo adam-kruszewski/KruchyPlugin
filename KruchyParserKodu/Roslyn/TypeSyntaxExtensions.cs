@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace KruchyParserKodu.Roslyn
@@ -24,6 +26,25 @@ namespace KruchyParserKodu.Roslyn
                 return nullableTyp.ToFullString().Trim();
 
             return syntax.ToFullString().Trim();
+        }
+
+        public static bool JestGeneryczny(this TypeSyntax syntax)
+        {
+            return (syntax as GenericNameSyntax) != null;
+        }
+
+        public static Tuple<string, List<string>> DajDaneTypuGenerycznego(
+            this TypeSyntax syntax)
+        {
+            var generyczny = syntax as GenericNameSyntax;
+
+            var parametry =
+                generyczny
+                    .TypeArgumentList
+                        .Arguments
+                            .Select(o => o.DajNazweTypu());
+
+            return Tuple.Create(generyczny.Identifier.ValueText, parametry.ToList());
         }
     }
 }
