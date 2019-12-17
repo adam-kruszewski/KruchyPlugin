@@ -31,24 +31,46 @@ namespace KruchyParserKodu.Roslyn
 
             foreach (var klasa in klasy)
             {
-                var definiowanyObiekt = new Obiekt();
-                definiowanyObiekt.Nazwa = klasa.Identifier.ValueText;
-                definiowanyObiekt.Rodzaj = RodzajObiektu.Klasa;
-
-                UstawPolozenie(syntaxTree, definiowanyObiekt, klasa);
-                UstawPolozeniePoczatkowejKlamerki(definiowanyObiekt, klasa.OpenBraceToken);
-
-                UzupelnijAtrybuty(klasa.AttributeLists, definiowanyObiekt.Atrybuty);
-                UzupelnijPola(definiowanyObiekt.Pola, klasa);
-
-                UzupelnijWlasciwosci(definiowanyObiekt.Propertiesy, klasa);
-
-                UzupelnijKontruktory(definiowanyObiekt.Konstruktory, klasa);
-
-                UzupelnijMetody(definiowanyObiekt.Metody, klasa);
+                var definiowanyObiekt = ParsujKlase(syntaxTree, klasa);
 
                 wynik.DefiniowaneObiekty.Add(definiowanyObiekt);
             }
+            return wynik;
+        }
+
+        private Obiekt ParsujKlase(SyntaxTree syntaxTree, ClassDeclarationSyntax klasa)
+        {
+            var definiowanyObiekt = new Obiekt();
+            definiowanyObiekt.Nazwa = klasa.Identifier.ValueText;
+            definiowanyObiekt.Rodzaj = RodzajObiektu.Klasa;
+
+            UstawPolozenie(syntaxTree, definiowanyObiekt, klasa);
+            UstawPolozeniePoczatkowejKlamerki(definiowanyObiekt, klasa.OpenBraceToken);
+
+            UzupelnijAtrybuty(klasa.AttributeLists, definiowanyObiekt.Atrybuty);
+            UzupelnijPola(definiowanyObiekt.Pola, klasa);
+
+            UzupelnijWlasciwosci(definiowanyObiekt.Propertiesy, klasa);
+
+            UzupelnijKontruktory(definiowanyObiekt.Konstruktory, klasa);
+
+            UzupelnijMetody(definiowanyObiekt.Metody, klasa);
+
+            if (klasa.BaseList != null)
+                definiowanyObiekt.NadklasaIInterfejsy.AddRange(
+                    klasa.BaseList.Types.Select(o => DajTypDziedziczony(o)));
+
+            return definiowanyObiekt;
+        }
+
+        private ObiektDziedziczony DajTypDziedziczony(BaseTypeSyntax o)
+        {
+            var wynik = new ObiektDziedziczony();
+
+            wynik.Nazwa = o.Type.DajNazweTypu();
+            wynik.Poczatek = DajPolozenie(o.SyntaxTree, o.Span).Item1.ToPozycjaWPliku();
+            wynik.Koniec = DajPolozenie(o.SyntaxTree, o.Span).Item2.ToPozycjaWPliku();
+
             return wynik;
         }
 
