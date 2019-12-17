@@ -161,6 +161,18 @@ namespace KruchyParserKodu.Roslyn
                     .Select(o => o.Nazwa)
                         .SingleOrDefault();
 
+            if (parametr.Modyfikator == "this")
+                parametr.ZThisem = true;
+            if (parametr.Modyfikator == "out")
+                parametr.ZOut = true;
+            if (parametr.Modyfikator == "params")
+                parametr.ZParams = true;
+            if (parametr.Modyfikator == "ref")
+                parametr.ZRef = true;
+            if (parametrSyntax.Default != null)
+                parametr.WartoscDomyslna =
+                    parametrSyntax.Default.Value.ToFullString().Trim();
+
             return parametr;
         }
 
