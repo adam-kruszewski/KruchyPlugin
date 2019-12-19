@@ -313,6 +313,8 @@ namespace KruchyParserKodu.Roslyn
                 pole.Modyfikatory.AddRange(
                     deklarowanePole.Modifiers.Select(o => DajModifikator(o)));
 
+                UstawPolozenie(deklarowanePole.SyntaxTree, pole, deklarowanePole);
+
                 pola.Add(pole);
             }
         }

@@ -52,6 +52,8 @@ namespace KruchyParserKoduTests.Unit
             pole.NazwaTypu.Should().Be("IParser");
             pole.Modyfikatory[0].Nazwa.Should().Be("private");
             pole.Modyfikatory[1].Nazwa.Should().Be("readonly");
+            pole.Poczatek.Sprawdz(13, 9);
+            pole.Koniec.Sprawdz(13, 47);
 
             var poleStringReadonly = obiekt.Pola[1];
             poleStringReadonly.Nazwa.Should().Be("PoleStringReadOnly");
