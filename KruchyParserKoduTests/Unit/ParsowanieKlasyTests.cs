@@ -24,6 +24,8 @@ namespace KruchyParserKoduTests.Unit
             plik.Should().NotBeNull();
             plik.Namespace.Should().Be("KruchyCompany.KruchyPlugin1Tests.ParserTests");
             plik.Usingi.Count.Should().Be(6);
+            plik.Usingi[5].Poczatek.Sprawdz(6, 1);
+            plik.Usingi[5].Koniec.Sprawdz(6, 35);
 
             var obiekt = plik.DefiniowaneObiekty.First();
             obiekt.Rodzaj.Should().Be(RodzajObiektu.Klasa);

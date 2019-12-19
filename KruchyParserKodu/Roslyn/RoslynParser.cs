@@ -24,7 +24,7 @@ namespace KruchyParserKodu.Roslyn
             wynik.Namespace = namespaceDeclaration.Name.ToString();
 
             foreach (var u in root.Usings)
-                wynik.Usingi.Add(new UsingNamespace(u.Name.ToString()));
+                wynik.Usingi.Add(DajUsing(u));
 
             var klasy =
                 namespaceDeclaration.Members.OfType<ClassDeclarationSyntax>();
@@ -42,6 +42,15 @@ namespace KruchyParserKodu.Roslyn
                 wynik.DefiniowaneObiekty.Add(ParsujInterfejs(interfaceSyntax));
             }
 
+            return wynik;
+        }
+
+        private UsingNamespace DajUsing(UsingDirectiveSyntax u)
+        {
+            var wynik = new UsingNamespace(u.Name.ToString());
+            var polozenie = DajPolozenie(u.SyntaxTree, u.Span);
+            wynik.Poczatek = polozenie.Item1.ToPozycjaWPliku();
+            wynik.Koniec = polozenie.Item2.ToPozycjaWPliku();
             return wynik;
         }
 
