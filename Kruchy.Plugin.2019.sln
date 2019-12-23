@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kruchy.Plugin.Utils.2017", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KruchyParserKodu", "KruchyParserKodu\KruchyParserKodu.csproj", "{FB1229FB-FE17-419F-BCAD-FAD9875EC78C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KruchyPlugin2019", "KruchyPlugin2019\KruchyPlugin2019.csproj", "{49CD87F2-1880-4490-B9C6-2E7E3A639226}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{FB1229FB-FE17-419F-BCAD-FAD9875EC78C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB1229FB-FE17-419F-BCAD-FAD9875EC78C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB1229FB-FE17-419F-BCAD-FAD9875EC78C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49CD87F2-1880-4490-B9C6-2E7E3A639226}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49CD87F2-1880-4490-B9C6-2E7E3A639226}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49CD87F2-1880-4490-B9C6-2E7E3A639226}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49CD87F2-1880-4490-B9C6-2E7E3A639226}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
