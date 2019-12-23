@@ -3,7 +3,8 @@
   <Metadata>
     <Identity Id="KruchyPlugin2019.889683bd-2d10-47f6-872d-b309a42a9c13" Version="1.0" Language="en-US" Publisher="Adam Kruszewski" />
     <DisplayName>KruchyPlugin2019</DisplayName>
-    <Description>Empty VSIX Project.</Description>
+    <Description xml:space="preserve">Kruchy plugin dla vs 2019</Description>
+    <Icon>Resources\ikona_wtyczka.gif</Icon>
   </Metadata>
   <Installation>
     <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[16.0, 17.0)" />
