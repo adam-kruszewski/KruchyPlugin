@@ -1,7 +1,15 @@
 ﻿using System;
+using System.ComponentModel.Design;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
+using EnvDTE80;
+using Kruchy.Plugin.Utils._2017;
+using Kruchy.Plugin.Utils._2017.Wrappers;
+using Kruchy.Plugin.Utils.Menu;
+using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Shell.Interop;
 using Task = System.Threading.Tasks.Task;
 
 namespace KruchyPlugin2019
@@ -26,6 +34,10 @@ namespace KruchyPlugin2019
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
     [Guid(KruchyPlugin2019Package.PackageGuidString)]
     [ProvideMenuResource("Menus.ctmenu", 1)]
+
+    //dodane atrybuty ręcznie
+    [ProvideAutoLoad(VSConstants.UICONTEXT.NoSolution_string, PackageAutoLoadFlags.BackgroundLoad)]
+    [ProvideAutoLoad(VSConstants.UICONTEXT.SolutionExists_string, PackageAutoLoadFlags.BackgroundLoad)]
     public sealed class KruchyPlugin2019Package : AsyncPackage
     {
         /// <summary>
@@ -47,6 +59,32 @@ namespace KruchyPlugin2019
             // When initialized asynchronously, the current thread may be a background thread at this point.
             // Do any initialization that requires the UI thread after switching to the UI thread.
             await this.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
+
+            PozycjaMenuAdapter.guidKruchyPluginCmdSetStatic = new Guid("090c66f0-5900-4ef9-a243-d42476371281");
+            var dte = (DTE2)await GetServiceAsync(typeof(SDTE));
+            var sw = new SolutionWrapper(dte);
+            IMenuCommandService mcs = await GetServiceAsync(typeof(IMenuCommandService)) as IMenuCommandService;
+            var mcs2 = await GetServiceAsync(typeof(IMenuCommandService)) as OleMenuCommandService;
+
+            var wszystkieKlasy = GetType().Assembly.GetTypes();
+            var klasyPozycji =
+                wszystkieKlasy
+                    .Where(o => typeof(IPozycjaMenu).IsAssignableFrom(o))
+                        .ToList();
+
+            foreach (var klasa in klasyPozycji)
+            {
+                var konstruktor = klasa.GetConstructors().Single();
+
+                object[] parametry = new[] { sw };
+                if (konstruktor.GetParameters().Length == 2)
+                    parametry = new[] { sw, (object)SolutionExplorerWrapper.DajDlaSolution(sw, dte) };
+
+                var pozycjaMenu = Activator.CreateInstance(klasa, parametry) as IPozycjaMenu;
+                new PozycjaMenuAdapter(pozycjaMenu, sw).Podlacz(mcs2);
+            }
+
+
             await KruchyCompany.KruchyPlugin1.Command1.InitializeAsync(this);
         }
 
