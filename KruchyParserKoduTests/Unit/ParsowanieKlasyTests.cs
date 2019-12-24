@@ -24,6 +24,8 @@ namespace KruchyParserKoduTests.Unit
             plik.Should().NotBeNull();
             plik.Namespace.Should().Be("KruchyCompany.KruchyPlugin1Tests.ParserTests");
             plik.Usingi.Count.Should().Be(6);
+            plik.Usingi[5].Poczatek.Sprawdz(6, 1);
+            plik.Usingi[5].Koniec.Sprawdz(6, 35);
 
             var obiekt = plik.DefiniowaneObiekty.First();
             obiekt.Rodzaj.Should().Be(RodzajObiektu.Klasa);
@@ -50,6 +52,8 @@ namespace KruchyParserKoduTests.Unit
             pole.NazwaTypu.Should().Be("IParser");
             pole.Modyfikatory[0].Nazwa.Should().Be("private");
             pole.Modyfikatory[1].Nazwa.Should().Be("readonly");
+            pole.Poczatek.Sprawdz(13, 9);
+            pole.Koniec.Sprawdz(13, 47);
 
             var poleStringReadonly = obiekt.Pola[1];
             poleStringReadonly.Nazwa.Should().Be("PoleStringReadOnly");

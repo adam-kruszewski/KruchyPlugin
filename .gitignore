@@ -53,3 +53,4 @@ KruchyPlugin1Tests/obj
 */obj
 .vs
 packages
+*.user

@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Text;
+using KruchyParserKodu.Roslyn;
 
 namespace KruchyParserKodu.ParserKodu
 {
@@ -10,7 +11,8 @@ namespace KruchyParserKodu.ParserKodu
 
     public class Parser
     {
-        static IParser Instance = new NRefactoryParser();
+        static IParser Instance = new RoslynParser();
+            //new NRefactoryParser();
 
         public static Plik Parsuj(string zawartosc)
         {

@@ -11,5 +11,10 @@ namespace KruchyParserKodu.ParserKodu
             Poczatek = new PozycjaWPliku();
             Koniec = new PozycjaWPliku();
         }
+
+        public override string ToString()
+        {
+            return string.Format("[{0}, {1}]", Poczatek, Koniec);
+        }
     }
 }
