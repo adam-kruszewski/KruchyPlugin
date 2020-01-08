@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KruchyParserKodu", "KruchyP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KruchyPlugin2019", "KruchyPlugin2019\KruchyPlugin2019.csproj", "{49CD87F2-1880-4490-B9C6-2E7E3A639226}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kruchy.Plugin.Akcje.Tests", "Kruchy.Plugin.Akcje.Tests\Kruchy.Plugin.Akcje.Tests.csproj", "{4F24AA4F-A6F0-4140-B194-7A4521CC0BAF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,12 +49,17 @@ Global
 		{49CD87F2-1880-4490-B9C6-2E7E3A639226}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{49CD87F2-1880-4490-B9C6-2E7E3A639226}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{49CD87F2-1880-4490-B9C6-2E7E3A639226}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F24AA4F-A6F0-4140-B194-7A4521CC0BAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F24AA4F-A6F0-4140-B194-7A4521CC0BAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F24AA4F-A6F0-4140-B194-7A4521CC0BAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F24AA4F-A6F0-4140-B194-7A4521CC0BAF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{32E61880-E4D3-4F8A-84BD-D082A96103C3} = {C8E1CC91-9C5F-4EC4-9BE5-F64B511D85A7}
+		{4F24AA4F-A6F0-4140-B194-7A4521CC0BAF} = {C8E1CC91-9C5F-4EC4-9BE5-F64B511D85A7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {09DB4550-222A-44EB-8E3A-B87DF4A768F6}
