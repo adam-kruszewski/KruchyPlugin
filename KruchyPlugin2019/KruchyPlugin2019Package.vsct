@@ -415,6 +415,7 @@
         <!-- Become the permanent anchor item for the menu controller -->
         <CommandFlag>FixMenuController</CommandFlag>
         <!-- The text that appears in the tooltip.-->
+        <CommandFlag>DynamicVisibility</CommandFlag>
         <Strings>
           <ButtonText>Set Startup Project</ButtonText>
         </Strings>

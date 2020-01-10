@@ -33,7 +33,11 @@ namespace Kruchy.Plugin.Utils._2017
         {
             var menuCommandID =
                 new CommandID(guidKruchyPluginCmdSet, (int)pozycjaMenu.MenuCommandID);
-            MenuItem = new OleMenuCommand(Execute, menuCommandID);
+            if (!(pozycjaMenu is IPozycjaMenuDynamicznieRozwijane))
+                MenuItem = new OleMenuCommand(Execute, menuCommandID);
+            else
+                MenuItem = new DynamicItemMenuCommand(
+                    menuCommandID, (IPozycjaMenuDynamicznieRozwijane)pozycjaMenu);
             MenuItem.BeforeQueryStatus += BeforeQueryStatus;
             service.AddCommand(MenuItem);
         }
