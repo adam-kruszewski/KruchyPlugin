@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using Kruchy.Plugin.Utils.Menu;
 using Kruchy.Plugin.Utils.Wrappers;
@@ -8,11 +9,13 @@ namespace KruchyCompany.KruchyPlugin1.Menu
 {
     class TestowaAkcjaWPodmenu : IPozycjaMenuDynamicznieRozwijane
     {
+        private IList<PozycjaMenuRozwijanego> pozycjeRozwijane;
+
         public TestowaAkcjaWPodmenu(
             ISolutionWrapper solution,
             ISolutionExplorerWrapper solutionExplorer)
         {
-
+            pozycjeRozwijane = new List<PozycjaMenuRozwijanego>();
         }
 
         public uint MenuCommandID => PkgCmdIDList.cmdidMyDynamicStartCommand;
@@ -23,12 +26,16 @@ namespace KruchyCompany.KruchyPlugin1.Menu
 
         public IEnumerable<PozycjaMenuRozwijanego> DajPozycje()
         {
+            pozycjeRozwijane.Clear();
+
             for (uint i = 0; i < miasta.Length; i++)
-                yield return new PozycjaMenuRozwijanego
+                pozycjeRozwijane.Add(new PozycjaMenuRozwijanego
                 {
-                    ID = MenuCommandID + i,
-                    Tekst = miasta[i]
-                };
+                    Tekst = miasta[i],
+                    PozycjaMenu = new PozycjaMiasto(MenuCommandID + i, miasta[i])
+                });
+
+            return pozycjeRozwijane;
         }
 
         public void Execute(object sender, EventArgs args)
@@ -48,6 +55,10 @@ namespace KruchyCompany.KruchyPlugin1.Menu
         public void WykonajPodakcje(int commandID)
         {
             MessageBox.Show("Wykonanie podakcji commandID: " + commandID);
+
+            pozycjeRozwijane
+                .SingleOrDefault(o => o.PozycjaMenu.MenuCommandID == commandID)
+                    ?.PozycjaMenu.Execute(null, null);
         }
 
         public bool DostepnaPodakcja(int commandID)
@@ -56,6 +67,28 @@ namespace KruchyCompany.KruchyPlugin1.Menu
                 return false;
             else
                 return true;
+        }
+
+        private class PozycjaMiasto : IPozycjaMenu, IPodpozycjaMenuDynamicznego
+        {
+            uint menuCommandID;
+            private readonly string miasto;
+
+            public PozycjaMiasto(uint menuCommandID, string miasto)
+            {
+                this.menuCommandID = menuCommandID;
+                this.miasto = miasto;
+            }
+
+            public uint MenuCommandID => menuCommandID;
+
+            public IEnumerable<WymaganieDostepnosci> Wymagania => 
+                new List<WymaganieDostepnosci>();
+
+            public void Execute(object sender, EventArgs args)
+            {
+                MessageBox.Show("Miasto: " + miasto);
+            }
         }
     }
 }

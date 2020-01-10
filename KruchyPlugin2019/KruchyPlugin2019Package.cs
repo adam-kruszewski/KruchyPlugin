@@ -73,6 +73,7 @@ namespace KruchyPlugin2019
             var klasyPozycji =
                 wszystkieKlasy
                     .Where(o => typeof(IPozycjaMenu).IsAssignableFrom(o))
+                    .Where(o => !typeof(IPodpozycjaMenuDynamicznego).IsAssignableFrom(o))
                         .ToList();
 
             foreach (var klasa in klasyPozycji)
