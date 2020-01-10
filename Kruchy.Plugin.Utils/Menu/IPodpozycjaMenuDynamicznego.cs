@@ -1,6 +1,7 @@
 ﻿namespace Kruchy.Plugin.Utils.Menu
 {
-    public interface IPodpozycjaMenuDynamicznego
+    public interface IPodpozycjaMenuDynamicznego : IPozycjaMenu
     {
+        string DajOpis();
     }
 }

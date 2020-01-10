@@ -71,10 +71,7 @@ namespace Kruchy.Plugin.Utils._2017
         private static void OnInvokedDynamicItem(object sender, EventArgs args)
         {
             DynamicItemMenuCommand invokedCommand = (DynamicItemMenuCommand)sender;
-
             var matchedCommandID = invokedCommand.MatchedCommandId;
-
-            MessageBox.Show("OnInvokedDynamicItem " + matchedCommandID);
 
             invokedCommand.Pozycja.WykonajPodakcje(matchedCommandID);
         }

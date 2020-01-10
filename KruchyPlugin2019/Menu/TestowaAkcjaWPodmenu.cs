@@ -7,40 +7,18 @@ using Kruchy.Plugin.Utils.Wrappers;
 
 namespace KruchyCompany.KruchyPlugin1.Menu
 {
-    class TestowaAkcjaWPodmenu : IPozycjaMenuDynamicznieRozwijane
+    class TestowaAkcjaWPodmenu : AbstractPozycjaMenuDynamicznieRozwijane
     {
-        private IList<PozycjaMenuRozwijanego> pozycjeRozwijane;
-
         public TestowaAkcjaWPodmenu(
             ISolutionWrapper solution,
             ISolutionExplorerWrapper solutionExplorer)
         {
-            pozycjeRozwijane = new List<PozycjaMenuRozwijanego>();
         }
 
-        public uint MenuCommandID => PkgCmdIDList.cmdidMyDynamicStartCommand;
+        public override uint MenuCommandID => PkgCmdIDList.cmdidMyDynamicStartCommand;
 
-        public IEnumerable<WymaganieDostepnosci> Wymagania => new List<WymaganieDostepnosci>();
-
-        public uint OstanieCommandID => MenuCommandID + (uint)miasta.Length - 1;
-
-        public IEnumerable<PozycjaMenuRozwijanego> DajPozycje()
-        {
-            pozycjeRozwijane.Clear();
-
-            for (uint i = 0; i < miasta.Length; i++)
-                pozycjeRozwijane.Add(new PozycjaMenuRozwijanego
-                {
-                    Tekst = miasta[i],
-                    PozycjaMenu = new PozycjaMiasto(MenuCommandID + i, miasta[i])
-                });
-
-            return pozycjeRozwijane;
-        }
-
-        public void Execute(object sender, EventArgs args)
-        {
-        }
+        public override IEnumerable<WymaganieDostepnosci> Wymagania =>
+            new List<WymaganieDostepnosci>();
 
         private static string[] miasta =
         {
@@ -52,21 +30,10 @@ namespace KruchyCompany.KruchyPlugin1.Menu
             "Szczecin"
         };
 
-        public void WykonajPodakcje(int commandID)
+        protected override IEnumerable<IPodpozycjaMenuDynamicznego> DajDostepnePozycje()
         {
-            MessageBox.Show("Wykonanie podakcji commandID: " + commandID);
-
-            pozycjeRozwijane
-                .SingleOrDefault(o => o.PozycjaMenu.MenuCommandID == commandID)
-                    ?.PozycjaMenu.Execute(null, null);
-        }
-
-        public bool DostepnaPodakcja(int commandID)
-        {
-            if (commandID == MenuCommandID + 2)
-                return false;
-            else
-                return true;
+            for (uint i = 0; i < miasta.Length; i++)
+                yield return new PozycjaMiasto(MenuCommandID + i, miasta[i]);
         }
 
         private class PozycjaMiasto : IPozycjaMenu, IPodpozycjaMenuDynamicznego
@@ -88,6 +55,11 @@ namespace KruchyCompany.KruchyPlugin1.Menu
             public void Execute(object sender, EventArgs args)
             {
                 MessageBox.Show("Miasto: " + miasto);
+            }
+
+            public string DajOpis()
+            {
+                return miasto;
             }
         }
     }
