@@ -39,5 +39,8 @@ namespace KruchyCompany.KruchyPlugin1
 
         public const uint cmidPrzejdzDoGridRowActions = 0x0174;
         public const uint cmidPrzejdzDoGridToolbar = 0x0175;
+
+        //test rozwijanego menu
+        public const uint cmdidMyDynamicStartCommand = 0x0304;
     };
 }

@@ -41,6 +41,13 @@
         </Strings>
       </Menu>
 
+      <Menu guid="guidKruchyPlugin2019PackageCmdSet" id="MyMenuController" priority="0x1000" type="MenuController">
+        <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="MyToolbarItemGroup" />
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Idź do pliku</ButtonText>
+        </Strings>
+      </Menu>
     </Menus>
 
     <!-- Inside this section we have different sub-sections: one for the menus, another
@@ -87,6 +94,13 @@
         <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="PodrozowanieMenu"/>
       </Group>
 
+      <Group guid="guidKruchyPlugin2019PackageCmdSet" id="MyToolbarItemGroup" priority="0x4000" >
+        <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="TopLevelMenu" />
+      </Group>
+      <!-- The group for the items on the MenuController drop-down. It is added to the MenuController submenu. -->
+      <Group guid="guidKruchyPlugin2019PackageCmdSet" id="MyMenuControllerGroup" priority="0x4000" >
+        <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="MyMenuController" />
+      </Group>
     </Groups>
 
     <!--Buttons section. -->
@@ -165,7 +179,7 @@
         <CommandFlag>DefaultDisabled</CommandFlag>
         <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
-    
+
       <Button guid="guidKruchyPlugin2019PackageCmdSet" id="cmdidZmienNaPublic" priority="0x0115" type="Button">
         <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="ZmianaModyfikatorowGroup" />
         <Strings>
@@ -209,7 +223,7 @@
         <CommandFlag>DefaultDisabled</CommandFlag>
         <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
-    
+
       <Button guid="guidKruchyPlugin2019PackageCmdSet" id="cmdidDodajNaczesciejUzywaneUsingi" priority="0x0127" type="Button">
         <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="PozostaleKodoweGroup" />
         <Strings>
@@ -290,7 +304,7 @@
         <CommandFlag>DefaultDisabled</CommandFlag>
         <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
-    
+
       <!--Menu Krucha nawigacja-->
       <Button id="cmdidIdzDoImplementacji" priority="0x0101"  guid="guidKruchyPlugin2019PackageCmdSet" type="Button">
         <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="PodrozowanieMenuGroup"/>
@@ -380,8 +394,32 @@
         </Strings>
         <CommandFlag>DefaultDisabled</CommandFlag>
         <CommandFlag>DynamicVisibility</CommandFlag>
-      </Button>      
-    
+      </Button>
+
+      <Button guid="guidKruchyPlugin2019PackageCmdSet" id="cmdidMyDynamicStartCommand" priority="0x1000" >
+        <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="MyMenuControllerGroup" />
+        <CommandFlag>DynamicItemStart</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <CommandFlag>TextChanges</CommandFlag>
+        <!-- This text does not appear. -->
+        <Strings>
+          <ButtonText>Project</ButtonText>
+        </Strings>
+      </Button>
+
+      <!-- The anchor item to supply the icon/tooltip for the MenuController -->
+      <Button guid="guidKruchyPlugin2019PackageCmdSet" id="cmdidMyAnchorCommand" priority="0x0000" >
+        <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="MyMenuControllerGroup" />
+        <!-- Do not show on the menu controller's drop down list-->
+        <CommandFlag>NoShowOnMenuController</CommandFlag>
+        <!-- Become the permanent anchor item for the menu controller -->
+        <CommandFlag>FixMenuController</CommandFlag>
+        <!-- The text that appears in the tooltip.-->
+        <Strings>
+          <ButtonText>Set Startup Project</ButtonText>
+        </Strings>
+      </Button>
+
     </Buttons>
 
     <!--The bitmaps section is used to define the bitmaps that are used for the commands.-->
@@ -455,6 +493,15 @@
       <IDSymbol name="cmdidGenerujWidok" value="0x0173"/>
       <IDSymbol name="cmidPrzejdzDoGridRowActions" value="0x0174"/>
       <IDSymbol name="cmidPrzejdzDoGridToolbar" value="0x0175"/>
+
+      <IDSymbol name="MyToolbarItemGroup" value="0x3020" />
+      <IDSymbol name="MyMenuControllerGroup" value="0x3025" />
+      <IDSymbol name="MyMenuController" value ="0x3030"/>
+      <IDSymbol name="cmdidMyAnchorCommand" value="0x0303" />
+      <!-- NOTE: The following command expands at run time to some number of ids.
+     Try not to place command ids after it (e.g. 0x0105, 0x0106).
+     If you must add a command id after it, make the gap very large (e.g. 0x200) -->
+      <IDSymbol name="cmdidMyDynamicStartCommand" value="0x0304" />
 
     </GuidSymbol>
 

@@ -7,10 +7,13 @@ using EnvDTE80;
 using Kruchy.Plugin.Utils._2017;
 using Kruchy.Plugin.Utils._2017.Wrappers;
 using Kruchy.Plugin.Utils.Menu;
+using KruchyCompany.KruchyPlugin1;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Task = System.Threading.Tasks.Task;
+using Kruchy.Plugin.Utils._2017;
+using EnvDTE;
 
 namespace KruchyPlugin2019
 {
@@ -84,10 +87,86 @@ namespace KruchyPlugin2019
                 new PozycjaMenuAdapter(pozycjaMenu, sw).Podlacz(mcs2);
             }
 
+            CommandID dynamicItemRootId = new CommandID(
+                PozycjaMenuAdapter.guidKruchyPluginCmdSetStatic, 
+                (int)PkgCmdIDList.cmdidMyDynamicStartCommand);
 
-            await KruchyCompany.KruchyPlugin1.Command1.InitializeAsync(this);
+            var dynamicMenuCommand =
+                new DynamicItemMenuCommand(dynamicItemRootId,
+                IsValidDynamicItem,
+                OnInvokedDynamicItem,
+                OnBeforeQueryStatusDynamicItem);
+            mcs2.AddCommand(dynamicMenuCommand);
+
+            await Command1.InitializeAsync(this);
         }
 
+        private bool IsValidDynamicItem(int commandId)
+        {
+            var dte2 = (DTE2)GetService(typeof(SDTE));
+            // The match is valid if the command ID is >= the id of our root dynamic start item
+            // and the command ID minus the ID of our root dynamic start item
+            // is less than or equal to the number of projects in the solution.
+            return (commandId >= (int)PkgCmdIDList.cmdidMyDynamicStartCommand) &&
+                ((commandId - (int)PkgCmdIDList.cmdidMyDynamicStartCommand) <
+                    miasta.Count());
+                    //dte2.Solution.Projects.Count);
+        }
+
+        private void OnInvokedDynamicItem(object sender, EventArgs args)
+        {
+            var dte2 = (DTE2)GetService(typeof(SDTE));
+            DynamicItemMenuCommand invokedCommand = (DynamicItemMenuCommand)sender;
+            // If the command is already checked, we don't need to do anything
+            if (invokedCommand.Checked)
+                return;
+
+            // Find the project that corresponds to the command text and set it as the startup project
+            var projects = dte2.Solution.Projects;
+            foreach (Project proj in projects)
+            {
+                if (invokedCommand.Text.Equals(proj.Name))
+                {
+                    dte2.Solution.SolutionBuild.StartupProjects = proj.FullName;
+                    return;
+                }
+            }
+        }
+
+        private static string[] miasta = { "Warszawa", "Kraków", "Gdańsk", "Wrocław" };
+
+        private void OnBeforeQueryStatusDynamicItem(object sender, EventArgs args)
+        {
+            var dte2 = (DTE2)GetService(typeof(SDTE));
+
+            DynamicItemMenuCommand matchedCommand = (DynamicItemMenuCommand)sender;
+            matchedCommand.Enabled = true;
+            matchedCommand.Visible = true;
+
+            // Find out whether the command ID is 0, which is the ID of the root item.
+            // If it is the root item, it matches the constructed DynamicItemMenuCommand,
+            // and IsValidDynamicItem won't be called.
+            bool isRootItem = (matchedCommand.MatchedCommandId == 0);
+
+            // The index is set to 1 rather than 0 because the Solution.Projects collection is 1-based.
+            int indexForDisplay = (isRootItem ? 1 : (matchedCommand.MatchedCommandId - 
+                (int)PkgCmdIDList.cmdidMyDynamicStartCommand) + 1);
+
+            matchedCommand.Text =
+                miasta[indexForDisplay - 1];
+            //dte2.Solution.Projects.Item(indexForDisplay).Name;
+
+            Array startupProjects = (Array)dte2.Solution.SolutionBuild.StartupProjects;
+            string startupProject = System.IO.Path.GetFileNameWithoutExtension((string)startupProjects.GetValue(0));
+
+            // Check the command if it isn't checked already selected
+            matchedCommand.Checked =
+            //(matchedCommand.Text == startupProject);
+            matchedCommand.Checked = (matchedCommand.Text == "Warszawa");
+
+            // Clear the ID because we are done with this item.
+            matchedCommand.MatchedCommandId = 0;
+        }
         #endregion
     }
 }
