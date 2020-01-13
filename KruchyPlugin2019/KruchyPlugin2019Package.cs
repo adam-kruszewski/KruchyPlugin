@@ -7,13 +7,10 @@ using EnvDTE80;
 using Kruchy.Plugin.Utils._2017;
 using Kruchy.Plugin.Utils._2017.Wrappers;
 using Kruchy.Plugin.Utils.Menu;
-using KruchyCompany.KruchyPlugin1;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Task = System.Threading.Tasks.Task;
-using Kruchy.Plugin.Utils._2017;
-using EnvDTE;
 
 namespace KruchyPlugin2019
 {
@@ -69,7 +66,8 @@ namespace KruchyPlugin2019
             IMenuCommandService mcs = await GetServiceAsync(typeof(IMenuCommandService)) as IMenuCommandService;
             var mcs2 = await GetServiceAsync(typeof(IMenuCommandService)) as OleMenuCommandService;
 
-            var wszystkieKlasy = GetType().Assembly.GetTypes();
+            var wszystkieKlasy = GetType().Assembly.GetTypes().Union(
+                typeof(Kruchy.Plugin.Akcje.Menu.PkgCmdIDList).Assembly.GetTypes());
             var klasyPozycji =
                 wszystkieKlasy
                     .Where(o => typeof(IPozycjaMenu).IsAssignableFrom(o))

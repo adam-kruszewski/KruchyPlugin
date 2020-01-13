@@ -46,7 +46,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Command1.cs" />
-    <Compile Include="Menu\TestowaAkcjaWPodmenu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="KruchyPlugin2019Package.cs" />
     <Compile Include="KonfiguracjaPlugina\Konfiguracja.cs" />
@@ -159,6 +158,10 @@
     <ProjectReference Include="..\KrucheBuilderyKodu\KrucheBuilderyKodu.csproj">
       <Project>{0c5748a8-7d43-444c-90ad-3dbe02dcabab}</Project>
       <Name>KrucheBuilderyKodu</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Kruchy.Plugin.Akcje\Kruchy.Plugin.Akcje.csproj">
+      <Project>{e2d61ac0-ef12-494f-aeb9-5b6112281096}</Project>
+      <Name>Kruchy.Plugin.Akcje</Name>
     </ProjectReference>
     <ProjectReference Include="..\Kruchy.Plugin.Utils.2017\Kruchy.Plugin.Utils.2017.csproj">
       <Project>{473efcb9-dea9-44dc-9e50-30c1c46ccc5e}</Project>

@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 using Kruchy.Plugin.Utils.Menu;
 using Kruchy.Plugin.Utils.Wrappers;
 
-namespace KruchyCompany.KruchyPlugin1.Menu
+namespace Kruchy.Plugin.Akcje.Menu
 {
     class TestowaAkcjaWPodmenu : AbstractPozycjaMenuDynamicznieRozwijane
     {
@@ -49,7 +48,7 @@ namespace KruchyCompany.KruchyPlugin1.Menu
 
             public uint MenuCommandID => menuCommandID;
 
-            public IEnumerable<WymaganieDostepnosci> Wymagania => 
+            public IEnumerable<WymaganieDostepnosci> Wymagania =>
                 new List<WymaganieDostepnosci>();
 
             public void Execute(object sender, EventArgs args)
