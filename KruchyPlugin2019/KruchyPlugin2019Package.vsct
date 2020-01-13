@@ -25,7 +25,7 @@
   <Commands package="guidKruchyPlugin2019Package">
 
     <Menus>
-      <Menu guid="guidKruchyPlugin2019PackageCmdSet" id="TopLevelMenu" priority="0x700" type="Menu">
+      <Menu guid="guidCommand1PackageCmdSet" id="TopLevelMenu" priority="0x700" type="Menu">
         <Parent guid="guidSHLMainMenu" id="IDG_VS_MM_TOOLSADDINS" />
         <Strings>
           <ButtonText>Kruchy kod</ButtonText>
@@ -33,7 +33,7 @@
         </Strings>
       </Menu>
 
-      <Menu guid="guidKruchyPlugin2019PackageCmdSet" id="PodrozowanieMenu" priority="0x701" type="Menu">
+      <Menu guid="guidCommand1PackageCmdSet" id="PodrozowanieMenu" priority="0x701" type="Menu">
         <Parent guid="guidSHLMainMenu" id="IDG_VS_MM_TOOLSADDINS" />
         <Strings>
           <ButtonText>Krucha nawigacja</ButtonText>
@@ -41,8 +41,8 @@
         </Strings>
       </Menu>
 
-      <Menu guid="guidKruchyPlugin2019PackageCmdSet" id="MenuPrzejdzDoController" priority="0x1000" type="MenuController">
-        <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="ToolbarPrzejdzDoItemGroup" />
+      <Menu guid="guidCommand1PackageCmdSet" id="MenuPrzejdzDoController" priority="0x1000" type="MenuController">
+        <Parent guid="guidCommand1PackageCmdSet" id="ToolbarPrzejdzDoItemGroup" />
         <CommandFlag>DynamicVisibility</CommandFlag>
         <Strings>
           <ButtonText>Idź do pliku</ButtonText>
@@ -63,43 +63,43 @@
          group as the part of a menu contained between two lines. The parent of a group
          must be a menu. -->
     <Groups>
-      <Group guid="guidKruchyPlugin2019PackageCmdSet" id="MyMenuGroup" priority="0x0600">
+      <Group guid="guidCommand1PackageCmdSet" id="MyMenuGroup" priority="0x0600">
         <Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_TOOLS"/>
       </Group>
-      <Group guid="guidKruchyPlugin2019PackageCmdSet" id="TestGroup2" priority="0x0600">
-        <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="TopLevelMenu"/>
+      <Group guid="guidCommand1PackageCmdSet" id="TestGroup2" priority="0x0600">
+        <Parent guid="guidCommand1PackageCmdSet" id="TopLevelMenu"/>
       </Group>
 
-      <Group guid="guidKruchyPlugin2019PackageCmdSet" id="TestGroup3" priority="0x0600">
-        <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="PodrozowanieMenu"/>
+      <Group guid="guidCommand1PackageCmdSet" id="TestGroup3" priority="0x0600">
+        <Parent guid="guidCommand1PackageCmdSet" id="PodrozowanieMenu"/>
       </Group>
 
-      <Group guid="guidKruchyPlugin2019PackageCmdSet" id="DomainObjectGroup" priority="0x0108">
-        <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="TopLevelMenu"/>
+      <Group guid="guidCommand1PackageCmdSet" id="DomainObjectGroup" priority="0x0108">
+        <Parent guid="guidCommand1PackageCmdSet" id="TopLevelMenu"/>
       </Group>
 
-      <Group guid="guidKruchyPlugin2019PackageCmdSet" id="GenerowanieNowychKlasMetodGroup" priority="0x0106">
-        <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="TopLevelMenu"/>
+      <Group guid="guidCommand1PackageCmdSet" id="GenerowanieNowychKlasMetodGroup" priority="0x0106">
+        <Parent guid="guidCommand1PackageCmdSet" id="TopLevelMenu"/>
       </Group>
 
-      <Group guid="guidKruchyPlugin2019PackageCmdSet" id="ZmianaModyfikatorowGroup" priority="0x0107">
-        <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="TopLevelMenu"/>
+      <Group guid="guidCommand1PackageCmdSet" id="ZmianaModyfikatorowGroup" priority="0x0107">
+        <Parent guid="guidCommand1PackageCmdSet" id="TopLevelMenu"/>
       </Group>
 
-      <Group guid="guidKruchyPlugin2019PackageCmdSet" id="PozostaleKodoweGroup" priority="0x0109">
-        <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="TopLevelMenu"/>
+      <Group guid="guidCommand1PackageCmdSet" id="PozostaleKodoweGroup" priority="0x0109">
+        <Parent guid="guidCommand1PackageCmdSet" id="TopLevelMenu"/>
       </Group>
 
-      <Group guid="guidKruchyPlugin2019PackageCmdSet" id="PodrozowanieMenuGroup" priority="0x0601">
-        <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="PodrozowanieMenu"/>
+      <Group guid="guidCommand1PackageCmdSet" id="PodrozowanieMenuGroup" priority="0x0601">
+        <Parent guid="guidCommand1PackageCmdSet" id="PodrozowanieMenu"/>
       </Group>
 
-      <Group guid="guidKruchyPlugin2019PackageCmdSet" id="ToolbarPrzejdzDoItemGroup" priority="0x4000" >
-        <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="PodrozowanieMenu" />
+      <Group guid="guidCommand1PackageCmdSet" id="ToolbarPrzejdzDoItemGroup" priority="0x4000" >
+        <Parent guid="guidCommand1PackageCmdSet" id="PodrozowanieMenu" />
       </Group>
       <!-- The group for the items on the MenuController drop-down. It is added to the MenuController submenu. -->
-      <Group guid="guidKruchyPlugin2019PackageCmdSet" id="MenuPrzejdzDoControllerGroup" priority="0x4000" >
-        <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="MenuPrzejdzDoController" />
+      <Group guid="guidCommand1PackageCmdSet" id="MenuPrzejdzDoControllerGroup" priority="0x4000" >
+        <Parent guid="guidCommand1PackageCmdSet" id="MenuPrzejdzDoController" />
       </Group>
     </Groups>
 
@@ -114,24 +114,24 @@
               <CommandFlag>DefaultInvisible</CommandFlag>
               <CommandFlag>DynamicVisibility</CommandFlag>
           If you do not want an image next to your command, remove the Icon node /> -->
-      <Button guid="guidKruchyPlugin2019PackageCmdSet" id="Command1Id" priority="0x0100" type="Button">
-        <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="MyMenuGroup" />
+      <Button guid="guidCommand1PackageCmdSet" id="Command1Id" priority="0x0100" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="MyMenuGroup" />
         <Icon guid="guidImages" id="bmpPic1" />
         <Strings>
           <ButtonText>Kruchy command 1</ButtonText>
         </Strings>
       </Button>
 
-      <Button guid="guidKruchyPlugin2019PackageCmdSet" id="Command2Id" priority="0x0100" type="Button">
-        <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="TestGroup2" />
+      <Button guid="guidCommand1PackageCmdSet" id="Command2Id" priority="0x0100" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="TestGroup2" />
         <Icon guid="guidImages" id="bmpPic1" />
         <Strings>
           <ButtonText>Włącz wtyczkę</ButtonText>
         </Strings>
       </Button>
 
-      <Button guid="guidKruchyPlugin2019PackageCmdSet" id="cmdidZrobKlaseTestowa" priority="0x0102" type="Button">
-        <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="GenerowanieNowychKlasMetodGroup" />
+      <Button guid="guidCommand1PackageCmdSet" id="cmdidZrobKlaseTestowa" priority="0x0102" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="GenerowanieNowychKlasMetodGroup" />
         <!--<Icon guid="guidImages" id="bmpPic1" />-->
         <Strings>
           <ButtonText>Zrób klasę &amp;testową</ButtonText>
@@ -140,8 +140,8 @@
         <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
 
-      <Button guid="guidKruchyPlugin2019PackageCmdSet" id="cmdidZrobKlaseService" priority="0x0103" type="Button">
-        <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="GenerowanieNowychKlasMetodGroup" />
+      <Button guid="guidCommand1PackageCmdSet" id="cmdidZrobKlaseService" priority="0x0103" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="GenerowanieNowychKlasMetodGroup" />
         <!--<Icon guid="guidImages" id="bmpPic1" />-->
         <Strings>
           <ButtonText>Zrób klasę &amp;serwisu</ButtonText>
@@ -150,8 +150,8 @@
         <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
 
-      <Button guid="guidKruchyPlugin2019PackageCmdSet" id="cmdidDodajKlaseWalidatora" priority="0x0104" type="Button">
-        <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="GenerowanieNowychKlasMetodGroup" />
+      <Button guid="guidCommand1PackageCmdSet" id="cmdidDodajKlaseWalidatora" priority="0x0104" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="GenerowanieNowychKlasMetodGroup" />
         <Strings>
           <CommandName>cmdidDodajKlaseWalidatora</CommandName>
           <ButtonText>Zrób klasę &amp;validatora</ButtonText>
@@ -160,8 +160,8 @@
         <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
 
-      <Button guid="guidKruchyPlugin2019PackageCmdSet" id="cmdidDodajNowyTest" priority="0x0128" type="Button">
-        <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="GenerowanieNowychKlasMetodGroup" />
+      <Button guid="guidCommand1PackageCmdSet" id="cmdidDodajNowyTest" priority="0x0128" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="GenerowanieNowychKlasMetodGroup" />
         <Strings>
           <CommandName>cmdidDodajNowyTest</CommandName>
           <ButtonText>Dodaj nowy t&amp;est</ButtonText>
@@ -170,8 +170,8 @@
         <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
 
-      <Button guid="guidKruchyPlugin2019PackageCmdSet" id="cmdidGenerujMetodeWBuilderze" priority="0x0129" type="Button">
-        <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="GenerowanieNowychKlasMetodGroup" />
+      <Button guid="guidCommand1PackageCmdSet" id="cmdidGenerujMetodeWBuilderze" priority="0x0129" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="GenerowanieNowychKlasMetodGroup" />
         <Strings>
           <CommandName>cmdidGenerujMetodeWBuilderze</CommandName>
           <ButtonText>Dodaj &amp;nową metodę w builderze</ButtonText>
@@ -180,8 +180,8 @@
         <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
 
-      <Button guid="guidKruchyPlugin2019PackageCmdSet" id="cmdidZmienNaPublic" priority="0x0115" type="Button">
-        <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="ZmianaModyfikatorowGroup" />
+      <Button guid="guidCommand1PackageCmdSet" id="cmdidZmienNaPublic" priority="0x0115" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="ZmianaModyfikatorowGroup" />
         <Strings>
           <CommandName>cmdidZmienNaPublic</CommandName>
           <ButtonText>Zmień metodę na publi&amp;c</ButtonText>
@@ -190,8 +190,8 @@
         <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
 
-      <Button guid="guidKruchyPlugin2019PackageCmdSet" id="cmdidZmienNaPrivate" priority="0x0116" type="Button">
-        <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="ZmianaModyfikatorowGroup" />
+      <Button guid="guidCommand1PackageCmdSet" id="cmdidZmienNaPrivate" priority="0x0116" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="ZmianaModyfikatorowGroup" />
         <Strings>
           <CommandName>cmdidZmienNaPrivate</CommandName>
           <ButtonText>Zmień metodę na &amp;private</ButtonText>
@@ -200,8 +200,8 @@
         <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
 
-      <Button guid="guidKruchyPlugin2019PackageCmdSet" id="cmdidUzupelnijAtrybutKluczaObcego" priority="0x0100" type="Button">
-        <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="DomainObjectGroup" />
+      <Button guid="guidCommand1PackageCmdSet" id="cmdidUzupelnijAtrybutKluczaObcego" priority="0x0100" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="DomainObjectGroup" />
         <!--<Icon guid="guidImages" id="bmpPic1" />-->
         <!--<CommandFlag>DynamicItemStart</CommandFlag>-->
         <CommandFlag>DynamicVisibility</CommandFlag>
@@ -213,8 +213,8 @@
         <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
 
-      <Button guid="guidKruchyPlugin2019PackageCmdSet" id="cmdidUzupelnijTagiDefiniujaceTabele" priority="0x0101" type="Button">
-        <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="DomainObjectGroup" />
+      <Button guid="guidCommand1PackageCmdSet" id="cmdidUzupelnijTagiDefiniujaceTabele" priority="0x0101" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="DomainObjectGroup" />
         <!--<Icon guid="guidImages" id="bmpPic1" />-->
         <CommandFlag>DynamicVisibility</CommandFlag>
         <Strings>
@@ -224,8 +224,8 @@
         <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
 
-      <Button guid="guidKruchyPlugin2019PackageCmdSet" id="cmdidDodajNaczesciejUzywaneUsingi" priority="0x0127" type="Button">
-        <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="PozostaleKodoweGroup" />
+      <Button guid="guidCommand1PackageCmdSet" id="cmdidDodajNaczesciejUzywaneUsingi" priority="0x0127" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="PozostaleKodoweGroup" />
         <Strings>
           <CommandName>cmdidDodajNaczesciejUzywaneUsingi</CommandName>
           <ButtonText>Dodaj najczęściej używane &amp;usingi</ButtonText>
@@ -234,8 +234,8 @@
         <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
 
-      <Button guid="guidKruchyPlugin2019PackageCmdSet" id="cmdidDodajUprawnienieDomyslne" priority="0x0129" type="Button">
-        <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="PozostaleKodoweGroup" />
+      <Button guid="guidCommand1PackageCmdSet" id="cmdidDodajUprawnienieDomyslne" priority="0x0129" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="PozostaleKodoweGroup" />
         <Strings>
           <CommandName>cmdidDodajUprawnienieDomyslne</CommandName>
           <ButtonText>Dodaj up&amp;rawnienia domyślne</ButtonText>
@@ -244,8 +244,8 @@
         <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
 
-      <Button guid="guidKruchyPlugin2019PackageCmdSet" id="cmdidUzupelnijKontruktor" priority="0x0130" type="Button">
-        <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="PozostaleKodoweGroup" />
+      <Button guid="guidCommand1PackageCmdSet" id="cmdidUzupelnijKontruktor" priority="0x0130" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="PozostaleKodoweGroup" />
         <Strings>
           <CommandName>cmdidUzupelnijKontruktor</CommandName>
           <ButtonText>Uzupełnij &amp;konstruktor</ButtonText>
@@ -254,8 +254,8 @@
         <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
 
-      <Button guid="guidKruchyPlugin2019PackageCmdSet" id="cmdidInicjujWKontruktorze" priority="0x0131" type="Button">
-        <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="PozostaleKodoweGroup" />
+      <Button guid="guidCommand1PackageCmdSet" id="cmdidInicjujWKontruktorze" priority="0x0131" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="PozostaleKodoweGroup" />
         <Strings>
           <CommandName>cmdidInicjujWKontruktorze</CommandName>
           <ButtonText>&amp;Inicjuj w konstruktorze</ButtonText>
@@ -265,8 +265,8 @@
       </Button>
 
 
-      <Button guid="guidKruchyPlugin2019PackageCmdSet" id="cmdidPodzielParametryNaLinie" priority="0x0137" type="Button">
-        <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="PozostaleKodoweGroup" />
+      <Button guid="guidCommand1PackageCmdSet" id="cmdidPodzielParametryNaLinie" priority="0x0137" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="PozostaleKodoweGroup" />
         <Strings>
           <CommandName>cmdidPodzielParametryNaLinie</CommandName>
           <ButtonText>Podziel parametry na &amp;linie</ButtonText>
@@ -275,8 +275,8 @@
         <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
 
-      <Button guid="guidKruchyPlugin2019PackageCmdSet" id="cmdidUzupelnijMetodaWImplementacji" priority="0x0136" type="Button">
-        <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="PozostaleKodoweGroup" />
+      <Button guid="guidCommand1PackageCmdSet" id="cmdidUzupelnijMetodaWImplementacji" priority="0x0136" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="PozostaleKodoweGroup" />
         <Strings>
           <CommandName>cmdidUzupelnijMetodaWImplementacji</CommandName>
           <ButtonText>Uzupełnij &amp;metodę w implementacji</ButtonText>
@@ -285,8 +285,8 @@
         <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
 
-      <Button guid="guidKruchyPlugin2019PackageCmdSet" id="cmdidDodajUsingDbContext" priority="0x0138" type="Button">
-        <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="PozostaleKodoweGroup" />
+      <Button guid="guidCommand1PackageCmdSet" id="cmdidDodajUsingDbContext" priority="0x0138" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="PozostaleKodoweGroup" />
         <Strings>
           <CommandName>cmdidDodajUsingDbContext</CommandName>
           <ButtonText>Dodaj using Db conte&amp;xt</ButtonText>
@@ -295,8 +295,8 @@
         <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
       <!--cmdidDodajMapowania-->
-      <Button guid="guidKruchyPlugin2019PackageCmdSet" id="cmdidDodajMapowania" priority="0x0139" type="Button">
-        <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="PozostaleKodoweGroup" />
+      <Button guid="guidCommand1PackageCmdSet" id="cmdidDodajMapowania" priority="0x0139" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="PozostaleKodoweGroup" />
         <Strings>
           <CommandName>cmdidDodajMapowania</CommandName>
           <ButtonText>Generuj mapowania</ButtonText>
@@ -306,8 +306,8 @@
       </Button>
 
       <!--Menu Krucha nawigacja-->
-      <Button id="cmdidIdzDoImplementacji" priority="0x0101"  guid="guidKruchyPlugin2019PackageCmdSet" type="Button">
-        <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="PodrozowanieMenuGroup"/>
+      <Button id="cmdidIdzDoImplementacji" priority="0x0101"  guid="guidCommand1PackageCmdSet" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="PodrozowanieMenuGroup"/>
         <Strings>
           <CommandName>cmdidIdzDoImplementacji</CommandName>
           <ButtonText>Przejdź między &amp;interfejsem a implementacją</ButtonText>
@@ -316,8 +316,8 @@
         <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
 
-      <Button id="cmdidIdzDoKlasyTestowej" priority="0x0110"  guid="guidKruchyPlugin2019PackageCmdSet" type="Button">
-        <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="PodrozowanieMenuGroup"/>
+      <Button id="cmdidIdzDoKlasyTestowej" priority="0x0110"  guid="guidCommand1PackageCmdSet" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="PodrozowanieMenuGroup"/>
         <Strings>
           <CommandName>cmdidIdzDoKlasyTestowej</CommandName>
           <ButtonText>Idź wg konwencji między klasą t&amp;estową a testowaną </ButtonText>
@@ -326,8 +326,8 @@
         <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
 
-      <Button id="cmdidIdzDoKataloguControllera" priority="0x0120"  guid="guidKruchyPlugin2019PackageCmdSet" type="Button">
-        <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="PodrozowanieMenuGroup"/>
+      <Button id="cmdidIdzDoKataloguControllera" priority="0x0120"  guid="guidCommand1PackageCmdSet" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="PodrozowanieMenuGroup"/>
         <Strings>
           <CommandName>cmdidIdzDoKataloguControllera</CommandName>
           <ButtonText>Idź do &amp;katalogu controllera</ButtonText>
@@ -336,8 +336,8 @@
         <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
 
-      <Button id="cmdidIdzDoWidoku" priority="0x0130"  guid="guidKruchyPlugin2019PackageCmdSet" type="Button">
-        <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="PodrozowanieMenuGroup"/>
+      <Button id="cmdidIdzDoWidoku" priority="0x0130"  guid="guidCommand1PackageCmdSet" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="PodrozowanieMenuGroup"/>
         <Strings>
           <CommandName>cmdidIdzDoWidoku</CommandName>
           <ButtonText>Idź do &amp;widoku</ButtonText>
@@ -346,8 +346,8 @@
         <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
 
-      <Button id="cmdidGenerujWidok" priority="0x0140"  guid="guidKruchyPlugin2019PackageCmdSet" type="Button">
-        <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="PodrozowanieMenuGroup"/>
+      <Button id="cmdidGenerujWidok" priority="0x0140"  guid="guidCommand1PackageCmdSet" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="PodrozowanieMenuGroup"/>
         <Strings>
           <CommandName>cmdidGenerujWidok</CommandName>
           <ButtonText>&amp;Generuj widok dla controllera</ButtonText>
@@ -356,8 +356,8 @@
         <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
 
-      <Button id="cmidPrzejdzDoGridRowActions" priority="0x0150"  guid="guidKruchyPlugin2019PackageCmdSet" type="Button">
-        <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="PodrozowanieMenuGroup"/>
+      <Button id="cmidPrzejdzDoGridRowActions" priority="0x0150"  guid="guidCommand1PackageCmdSet" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="PodrozowanieMenuGroup"/>
         <Strings>
           <CommandName>cmidPrzejdzDoGridRowActions</CommandName>
           <ButtonText>Idź do Grid&amp;RowActions</ButtonText>
@@ -366,8 +366,8 @@
         <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
 
-      <Button id="cmidPrzejdzDoGridToolbar" priority="0x0151"  guid="guidKruchyPlugin2019PackageCmdSet" type="Button">
-        <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="PodrozowanieMenuGroup"/>
+      <Button id="cmidPrzejdzDoGridToolbar" priority="0x0151"  guid="guidCommand1PackageCmdSet" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="PodrozowanieMenuGroup"/>
         <Strings>
           <CommandName>cmidPrzejdzDoGridToolbar</CommandName>
           <ButtonText>Idź do Grid&amp;Toolbar</ButtonText>
@@ -376,8 +376,8 @@
         <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
 
-      <Button id="cmdidWstawDoSchowkaNazweControllera" priority="0x0160"  guid="guidKruchyPlugin2019PackageCmdSet" type="Button">
-        <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="PodrozowanieMenuGroup"/>
+      <Button id="cmdidWstawDoSchowkaNazweControllera" priority="0x0160"  guid="guidCommand1PackageCmdSet" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="PodrozowanieMenuGroup"/>
         <Strings>
           <CommandName>cmdidWstawDoSchowkaNazweControllera</CommandName>
           <ButtonText>W&amp;staw nazwę controllera do schowka</ButtonText>
@@ -386,8 +386,8 @@
         <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
 
-      <Button id="cmdidPokazZawartoscZShared" priority="0x0160"  guid="guidKruchyPlugin2019PackageCmdSet" type="Button">
-        <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="PodrozowanieMenuGroup"/>
+      <Button id="cmdidPokazZawartoscZShared" priority="0x0160"  guid="guidCommand1PackageCmdSet" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="PodrozowanieMenuGroup"/>
         <Strings>
           <CommandName>cmdidPokazZawartoscZShared</CommandName>
           <ButtonText>Pokaz zawartość widoku z Shared</ButtonText>
@@ -396,8 +396,8 @@
         <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
 
-      <Button guid="guidKruchyPlugin2019PackageCmdSet" id="cmdidMyDynamicStartCommand" priority="0x1000" >
-        <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="MenuPrzejdzDoControllerGroup" />
+      <Button guid="guidCommand1PackageCmdSet" id="cmdidMyDynamicStartCommand" priority="0x1000" >
+        <Parent guid="guidCommand1PackageCmdSet" id="MenuPrzejdzDoControllerGroup" />
         <CommandFlag>DynamicItemStart</CommandFlag>
         <CommandFlag>DynamicVisibility</CommandFlag>
         <CommandFlag>TextChanges</CommandFlag>
@@ -408,8 +408,8 @@
       </Button>
 
       <!-- The anchor item to supply the icon/tooltip for the MenuController -->
-      <Button guid="guidKruchyPlugin2019PackageCmdSet" id="cmdidPrzejdzDoAnchorCommand" priority="0x0000" >
-        <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="MenuPrzejdzDoControllerGroup" />
+      <Button guid="guidCommand1PackageCmdSet" id="cmdidPrzejdzDoAnchorCommand" priority="0x0000" >
+        <Parent guid="guidCommand1PackageCmdSet" id="MenuPrzejdzDoControllerGroup" />
         <!-- Do not show on the menu controller's drop down list-->
         <CommandFlag>NoShowOnMenuController</CommandFlag>
         <!-- Become the permanent anchor item for the menu controller -->
@@ -439,7 +439,7 @@
     <GuidSymbol name="guidKruchyPlugin2019Package" value="{5ffc0f84-e8b7-4742-b523-902d1f2b31e5}" />
 
     <!-- This is the guid used to group the menu commands together -->
-    <GuidSymbol name="guidKruchyPlugin2019PackageCmdSet" value="{090c66f0-5900-4ef9-a243-d42476371281}">
+    <GuidSymbol name="guidCommand1PackageCmdSet" value="{090c66f0-5900-4ef9-a243-d42476371281}">
       <IDSymbol name="MyMenuGroup" value="0x1020" />
       <IDSymbol name="Command1Id" value="0x0100" />
 
