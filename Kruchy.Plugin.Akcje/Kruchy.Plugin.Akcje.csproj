@@ -46,7 +46,7 @@
     <Compile Include="KonfiguracjaPlugina\KonfiguracjaUsingow.cs" />
     <Compile Include="KonfiguracjaPlugina\Xml\KruchyPlugin.cs" />
     <Compile Include="Menu\PkgCmdIDList.cs" />
-    <Compile Include="Menu\TestowaAkcjaWPodmenu.cs" />
+    <Compile Include="Menu\PozycjaPrzejdzDo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

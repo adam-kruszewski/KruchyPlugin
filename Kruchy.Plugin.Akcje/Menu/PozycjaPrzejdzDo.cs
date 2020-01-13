@@ -6,9 +6,9 @@ using Kruchy.Plugin.Utils.Wrappers;
 
 namespace Kruchy.Plugin.Akcje.Menu
 {
-    class TestowaAkcjaWPodmenu : AbstractPozycjaMenuDynamicznieRozwijane
+    class PozycjaPrzejdzDo : AbstractPozycjaMenuDynamicznieRozwijane
     {
-        public TestowaAkcjaWPodmenu(
+        public PozycjaPrzejdzDo(
             ISolutionWrapper solution,
             ISolutionExplorerWrapper solutionExplorer)
         {
