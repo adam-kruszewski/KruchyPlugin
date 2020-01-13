@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Windows.Forms;
+using Kruchy.Plugin.Akcje.KonfiguracjaPlugina;
 using Kruchy.Plugin.Utils.Menu;
 using Kruchy.Plugin.Utils.Wrappers;
 
@@ -8,10 +11,15 @@ namespace Kruchy.Plugin.Akcje.Menu
 {
     class PozycjaPrzejdzDo : AbstractPozycjaMenuDynamicznieRozwijane
     {
+        private readonly ISolutionWrapper solution;
+        private readonly ISolutionExplorerWrapper solutionExplorer;
+
         public PozycjaPrzejdzDo(
             ISolutionWrapper solution,
             ISolutionExplorerWrapper solutionExplorer)
         {
+            this.solution = solution;
+            this.solutionExplorer = solutionExplorer;
         }
 
         public override uint MenuCommandID => PkgCmdIDList.cmdidMyDynamicStartCommand;
@@ -19,31 +27,39 @@ namespace Kruchy.Plugin.Akcje.Menu
         public override IEnumerable<WymaganieDostepnosci> Wymagania =>
             new List<WymaganieDostepnosci>();
 
-        private static string[] miasta =
-        {
-            "Warszawa",
-            "Kraków",
-            "Wrocław",
-            "Białystok",
-            "Gdańsk",
-            "Szczecin"
-        };
-
         protected override IEnumerable<IPodpozycjaMenuDynamicznego> DajDostepnePozycje()
         {
-            for (uint i = 0; i < miasta.Length; i++)
-                yield return new PozycjaMiasto(MenuCommandID + i, miasta[i]);
+            var konf = Konfiguracja.GetInstance(solution);
+
+            var pozycjePrzejdzDo = konf.PrzejdzDo().ToList();
+
+            for (uint i = 0; i < pozycjePrzejdzDo.Count(); i++)
+            {
+                yield return new PozycjaPlikDoOtwarcia(
+                    solution,
+                    solutionExplorer,
+                    MenuCommandID + i,
+                    pozycjePrzejdzDo[(int)i].Sciezka);
+            }
         }
 
-        private class PozycjaMiasto : IPozycjaMenu, IPodpozycjaMenuDynamicznego
+        private class PozycjaPlikDoOtwarcia : IPozycjaMenu, IPodpozycjaMenuDynamicznego
         {
             uint menuCommandID;
-            private readonly string miasto;
+            private readonly string sciezka;
+            private readonly ISolutionWrapper solution;
+            private readonly ISolutionExplorerWrapper solutionExplorer;
 
-            public PozycjaMiasto(uint menuCommandID, string miasto)
+            public PozycjaPlikDoOtwarcia(
+                ISolutionWrapper solution,
+                ISolutionExplorerWrapper solutionExplorer,
+                uint menuCommandID,
+                string sciezka)
             {
                 this.menuCommandID = menuCommandID;
-                this.miasto = miasto;
+                this.sciezka = sciezka;
+                this.solution = solution;
+                this.solutionExplorer = solutionExplorer;
             }
 
             public uint MenuCommandID => menuCommandID;
@@ -53,12 +69,24 @@ namespace Kruchy.Plugin.Akcje.Menu
 
             public void Execute(object sender, EventArgs args)
             {
-                MessageBox.Show("Miasto: " + miasto);
+                var sciezkaDoOtwarcia = sciezka;
+                if (!sciezka.Contains(":"))
+                {
+                    sciezkaDoOtwarcia =
+                        Path.Combine(
+                            solution.Katalog,
+                            sciezka);
+                }
+
+                if (File.Exists(sciezkaDoOtwarcia))
+                    solutionExplorer.OtworzPlik(sciezkaDoOtwarcia);
+                else
+                    MessageBox.Show("Brak pliku: " + sciezkaDoOtwarcia);
             }
 
             public string DajOpis()
             {
-                return miasto;
+                return sciezka;
             }
         }
     }

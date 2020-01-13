@@ -8,9 +8,12 @@ namespace Kruchy.Plugin.Akcje.KonfiguracjaPlugina.Xml
         public List<Namespace> Usingi { get; set; }
         public bool SortowanieZaleznosciSerwisow { get; set; }
 
+        public List<PrzejdzDo> PrzejdzDo { get; set; }
+
         public KruchyPlugin()
         {
             Usingi = new List<Namespace>();
+            PrzejdzDo = new List<PrzejdzDo>();
         }
     }
 

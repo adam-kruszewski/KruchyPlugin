@@ -1,4 +1,7 @@
-﻿using System.IO;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Xml.Serialization;
 using Kruchy.Plugin.Akcje.KonfiguracjaPlugina.Xml;
 using Kruchy.Plugin.Utils.Wrappers;
@@ -50,6 +53,7 @@ namespace Kruchy.Plugin.Akcje.KonfiguracjaPlugina
             var obj =
                 s.Deserialize(
                     new FileStream(sciezkaPlikuKonfiguracji, FileMode.Open));
+
             return obj as KruchyPlugin;
         }
 
@@ -67,6 +71,11 @@ namespace Kruchy.Plugin.Akcje.KonfiguracjaPlugina
         public bool SortowacZaleznosciSerwisu()
         {
             return konfiguracjaXml.SortowanieZaleznosciSerwisow;
+        }
+
+        public IEnumerable<PrzejdzDo> PrzejdzDo()
+        {
+            return konfiguracjaXml.PrzejdzDo;
         }
     }
 }

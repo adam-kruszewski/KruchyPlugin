@@ -46,8 +46,13 @@ namespace Kruchy.Plugin.Utils.Menu
 
         public void WykonajPodakcje(int commandID)
         {
+            var commandIDDoPorownania = commandID;
+            if (commandID == 0)
+            {
+                commandIDDoPorownania = (int)MenuCommandID;
+            }
             pozycjeRozwijane
-                .SingleOrDefault(o => commandID == o.MenuCommandID)
+                .SingleOrDefault(o => commandIDDoPorownania == o.MenuCommandID)
                     ?.Execute(null, null);
         }
     }
