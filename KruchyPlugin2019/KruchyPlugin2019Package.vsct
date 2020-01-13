@@ -41,8 +41,8 @@
         </Strings>
       </Menu>
 
-      <Menu guid="guidKruchyPlugin2019PackageCmdSet" id="MyMenuController" priority="0x1000" type="MenuController">
-        <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="MyToolbarItemGroup" />
+      <Menu guid="guidKruchyPlugin2019PackageCmdSet" id="MenuPrzejdzDoController" priority="0x1000" type="MenuController">
+        <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="ToolbarPrzejdzDoItemGroup" />
         <CommandFlag>DynamicVisibility</CommandFlag>
         <Strings>
           <ButtonText>Idź do pliku</ButtonText>
@@ -94,12 +94,12 @@
         <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="PodrozowanieMenu"/>
       </Group>
 
-      <Group guid="guidKruchyPlugin2019PackageCmdSet" id="MyToolbarItemGroup" priority="0x4000" >
+      <Group guid="guidKruchyPlugin2019PackageCmdSet" id="ToolbarPrzejdzDoItemGroup" priority="0x4000" >
         <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="TopLevelMenu" />
       </Group>
       <!-- The group for the items on the MenuController drop-down. It is added to the MenuController submenu. -->
-      <Group guid="guidKruchyPlugin2019PackageCmdSet" id="MyMenuControllerGroup" priority="0x4000" >
-        <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="MyMenuController" />
+      <Group guid="guidKruchyPlugin2019PackageCmdSet" id="MenuPrzejdzDoControllerGroup" priority="0x4000" >
+        <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="MenuPrzejdzDoController" />
       </Group>
     </Groups>
 
@@ -397,7 +397,7 @@
       </Button>
 
       <Button guid="guidKruchyPlugin2019PackageCmdSet" id="cmdidMyDynamicStartCommand" priority="0x1000" >
-        <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="MyMenuControllerGroup" />
+        <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="MenuPrzejdzDoControllerGroup" />
         <CommandFlag>DynamicItemStart</CommandFlag>
         <CommandFlag>DynamicVisibility</CommandFlag>
         <CommandFlag>TextChanges</CommandFlag>
@@ -408,8 +408,8 @@
       </Button>
 
       <!-- The anchor item to supply the icon/tooltip for the MenuController -->
-      <Button guid="guidKruchyPlugin2019PackageCmdSet" id="cmdidMyAnchorCommand" priority="0x0000" >
-        <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="MyMenuControllerGroup" />
+      <Button guid="guidKruchyPlugin2019PackageCmdSet" id="cmdidPrzejdzDoAnchorCommand" priority="0x0000" >
+        <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="MenuPrzejdzDoControllerGroup" />
         <!-- Do not show on the menu controller's drop down list-->
         <CommandFlag>NoShowOnMenuController</CommandFlag>
         <!-- Become the permanent anchor item for the menu controller -->
@@ -495,10 +495,10 @@
       <IDSymbol name="cmidPrzejdzDoGridRowActions" value="0x0174"/>
       <IDSymbol name="cmidPrzejdzDoGridToolbar" value="0x0175"/>
 
-      <IDSymbol name="MyToolbarItemGroup" value="0x3020" />
-      <IDSymbol name="MyMenuControllerGroup" value="0x3025" />
-      <IDSymbol name="MyMenuController" value ="0x3030"/>
-      <IDSymbol name="cmdidMyAnchorCommand" value="0x0303" />
+      <IDSymbol name="ToolbarPrzejdzDoItemGroup" value="0x3020" />
+      <IDSymbol name="MenuPrzejdzDoControllerGroup" value="0x3025" />
+      <IDSymbol name="MenuPrzejdzDoController" value ="0x3030"/>
+      <IDSymbol name="cmdidPrzejdzDoAnchorCommand" value="0x0303" />
       <!-- NOTE: The following command expands at run time to some number of ids.
      Try not to place command ids after it (e.g. 0x0105, 0x0106).
      If you must add a command id after it, make the gap very large (e.g. 0x200) -->
