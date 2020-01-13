@@ -122,7 +122,6 @@
     <Compile Include="Interfejs\NazwaKlasyWindow.Designer.cs">
       <DependentUpon>NazwaKlasyWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="PkgCmdID.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="source.extension.vsixmanifest">
