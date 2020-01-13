@@ -95,7 +95,7 @@
       </Group>
 
       <Group guid="guidKruchyPlugin2019PackageCmdSet" id="ToolbarPrzejdzDoItemGroup" priority="0x4000" >
-        <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="TopLevelMenu" />
+        <Parent guid="guidKruchyPlugin2019PackageCmdSet" id="PodrozowanieMenu" />
       </Group>
       <!-- The group for the items on the MenuController drop-down. It is added to the MenuController submenu. -->
       <Group guid="guidKruchyPlugin2019PackageCmdSet" id="MenuPrzejdzDoControllerGroup" priority="0x4000" >
