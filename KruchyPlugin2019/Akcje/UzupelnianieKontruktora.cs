@@ -3,8 +3,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using KrucheBuilderyKodu.Builders;
+using Kruchy.Plugin.Akcje.KonfiguracjaPlugina;
 using Kruchy.Plugin.Utils.Wrappers;
-using KruchyCompany.KruchyPlugin1.KonfiguracjaPlugina;
 using KruchyParserKodu.ParserKodu;
 
 namespace KruchyCompany.KruchyPlugin1.Akcje

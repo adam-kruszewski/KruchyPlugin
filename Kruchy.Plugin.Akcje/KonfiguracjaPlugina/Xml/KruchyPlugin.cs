@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Xml.Serialization;
 
-namespace KruchyCompany.KruchyPlugin1.KonfiguracjaPlugina.Xml
+namespace Kruchy.Plugin.Akcje.KonfiguracjaPlugina.Xml
 {
     public class KruchyPlugin
     {

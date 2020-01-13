@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using KruchyCompany.KruchyPlugin1.KonfiguracjaPlugina.Xml;
+using Kruchy.Plugin.Akcje.KonfiguracjaPlugina.Xml;
 
-namespace KruchyCompany.KruchyPlugin1.KonfiguracjaPlugina
+namespace Kruchy.Plugin.Akcje.KonfiguracjaPlugina
 {
-    class KonfiguracjaUsingow
+    public class KonfiguracjaUsingow
     {
         public IList<NajczesciejUzywanyUsing> NajczesciejUzywane { get; private set; }
 
@@ -50,5 +50,4 @@ namespace KruchyCompany.KruchyPlugin1.KonfiguracjaPlugina
             NamespaceUzycia = namespaceUzycia;
         }
     }
-
 }

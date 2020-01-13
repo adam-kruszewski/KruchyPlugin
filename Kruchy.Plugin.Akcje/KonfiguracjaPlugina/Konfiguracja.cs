@@ -1,11 +1,12 @@
 ﻿using System.IO;
 using System.Xml.Serialization;
+using Kruchy.Plugin.Akcje.KonfiguracjaPlugina.Xml;
 using Kruchy.Plugin.Utils.Wrappers;
-using KruchyCompany.KruchyPlugin1.KonfiguracjaPlugina.Xml;
 
-namespace KruchyCompany.KruchyPlugin1.KonfiguracjaPlugina
+
+namespace Kruchy.Plugin.Akcje.KonfiguracjaPlugina
 {
-    class Konfiguracja
+    public class Konfiguracja
     {
         #region[STATIC]
         private static Konfiguracja instance;
@@ -39,7 +40,7 @@ namespace KruchyCompany.KruchyPlugin1.KonfiguracjaPlugina
 
         private void UstawDefaultoweDlaPincasso()
         {
-            konfiguracjaXml = new KruchyPlugin();            
+            konfiguracjaXml = new KruchyPlugin();
             Usingi = new KonfiguracjaUsingow();
         }
 
