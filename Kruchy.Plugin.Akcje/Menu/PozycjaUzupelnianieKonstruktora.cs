@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using Kruchy.Plugin.Akcje.Menu;
+using Kruchy.Plugin.Akcje.Akcje;
 using Kruchy.Plugin.Utils.Menu;
 using Kruchy.Plugin.Utils.Wrappers;
-using KruchyCompany.KruchyPlugin1.Akcje;
 
-namespace KruchyCompany.KruchyPlugin1.Menu
+namespace Kruchy.Plugin.Akcje.Menu
 {
-    class PozycjaUzupelnianieKontruktora : IPozycjaMenu
+    public class PozycjaUzupelnianieKonstruktora : IPozycjaMenu
     {
         private readonly ISolutionWrapper solution;
 
-        public PozycjaUzupelnianieKontruktora(ISolutionWrapper solution)
+        public PozycjaUzupelnianieKonstruktora(ISolutionWrapper solution)
         {
             this.solution = solution;
         }
@@ -31,7 +30,7 @@ namespace KruchyCompany.KruchyPlugin1.Menu
 
         public void Execute(object sender, EventArgs args)
         {
-            new UzupelnianieKontruktora(solution).Uzupelnij();
+            new UzupelnianieKonstruktora(solution).Uzupelnij();
         }
     }
 }

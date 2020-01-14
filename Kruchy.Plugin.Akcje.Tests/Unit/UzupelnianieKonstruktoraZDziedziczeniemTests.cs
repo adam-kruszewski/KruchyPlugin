@@ -1,13 +1,13 @@
 ﻿using FluentAssertions;
+using Kruchy.Plugin.Akcje.Akcje;
 using Kruchy.Plugin.Akcje.Tests.Utils;
 using Kruchy.Plugin.Akcje.Tests.WrappersMocks;
-using KruchyCompany.KruchyPlugin1.Akcje;
 using NUnit.Framework;
 
 namespace Kruchy.Plugin.Akcje.Tests.Unit
 {
     [TestFixture]
-    public class UzupelnianieKonstruktoraZDziedziczeniemTests 
+    public class UzupelnianieKonstruktoraZDziedziczeniemTests
     {
         [Test]
         public void UzupelniaKonstruktorGdyKlasaDziedziczy()
@@ -18,7 +18,7 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
                     .DajZawartoscPrzykladu("UzupelnianieKonstruktoraPrzyNadklasie.cs"));
 
             //act
-            new UzupelnianieKontruktora(solution).Uzupelnij();
+            new UzupelnianieKonstruktora(solution).Uzupelnij();
 
             //assert
             var zawartoscPoZmianie = solution.AktualnyDokument.DajZawartosc();
@@ -48,6 +48,45 @@ namespace Kruchy.Plugin.Akcje.Tests.Samples
     }
 }
 ");
+        }
+
+        [Test]
+        public void UzupełniaKonstruktorGdyJestZdefiniowaStalaNiePusjacKodu()
+        {
+            //arrange
+            var solution = new SolutionWrapper(
+                new WczytywaczZawartosciPrzykladow()
+                    .DajZawartoscPrzykladu("UzupelnianieKonstruktoraPrzyStalej.cs"));
+            //act
+            //act
+            new UzupelnianieKonstruktora(solution).Uzupelnij();
+
+            //assert
+            var zawartoscPoZmianie = solution.AktualnyDokument.DajZawartosc();
+            //TODO trzeba poprawić mocki zawartości dokumentu - bo na żywo działa chyba dobrze
+            zawartoscPoZmianie.Should().Be(
+@"using System;
+
+namespace Kruchy.Plugin.Akcje.Tests.Unit
+{
+    class UzupelnianieKonstruktoraPrzyStalej
+    {
+        private const int DefaultTimeout = 10000;
+
+        private readonly Class1 appSettingsService;
+
+        public UzupelnianieKonstruktoraPrzyStalej(
+            Class1 appSettingsService)
+        {
+            this.appSettingsService = appSettingsService;
+        }
+
+        public int TimeoutInMilliseconds()
+        {
+            return 1;
+        }
+    }
+}");
         }
     }
 }

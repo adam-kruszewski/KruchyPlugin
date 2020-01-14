@@ -157,6 +157,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Samples\PustaKlasa.cs" />
     <Compile Include="TestyInfrastrukturyTestow\DokumentWrapperTests.cs" />
+    <EmbeddedResource Include="Samples\UzupelnianieKonstruktoraPrzyStalej.cs" />
     <Compile Include="Unit\UzupelnianieKonstruktoraZDziedziczeniemTests.cs" />
     <Compile Include="WrappersMocks\SolutionWrapper.cs" />
     <EmbeddedResource Include="Samples\UzupelnianieKonstruktoraPrzyNadklasie.cs" />
@@ -164,9 +165,9 @@
     <Compile Include="WrappersMocks\DokumentWrapper.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Kruchy.Plugin.2017.2\Kruchy.Plugin.2017.2.csproj">
-      <Project>{229988c2-6844-4294-b561-0ec1d47d50de}</Project>
-      <Name>Kruchy.Plugin.2017.2</Name>
+    <ProjectReference Include="..\Kruchy.Plugin.Akcje\Kruchy.Plugin.Akcje.csproj">
+      <Project>{e2d61ac0-ef12-494f-aeb9-5b6112281096}</Project>
+      <Name>Kruchy.Plugin.Akcje</Name>
     </ProjectReference>
     <ProjectReference Include="..\Kruchy.Plugin.Utils\Kruchy.Plugin.Utils.csproj">
       <Project>{33505630-bfe6-414f-82a2-ee9086daeb83}</Project>

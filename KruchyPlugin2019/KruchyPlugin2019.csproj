@@ -74,7 +74,6 @@
     <Compile Include="Akcje\PodzielParametryNaLinie.cs" />
     <Compile Include="Akcje\PokazywaniaZawartosciZShared.cs" />
     <Compile Include="Akcje\RodzajKlasyTestowej.cs" />
-    <Compile Include="Akcje\UzupelnianieKontruktora.cs" />
     <Compile Include="Akcje\UzupelnianieMetodWImplementacji.cs" />
     <Compile Include="Akcje\UzupelnianieReferencedObject.cs" />
     <Compile Include="Akcje\UzupelnianieTagowDefiniujacychTabele.cs" />
@@ -100,7 +99,6 @@
     <Compile Include="Menu\PozycjaInicjowaniePolaWKonstruktorze.cs" />
     <Compile Include="Menu\PozycjaPodzielParametryNaLinie.cs" />
     <Compile Include="Menu\PozycjaPokazywanieZawartosciZShared.cs" />
-    <Compile Include="Menu\PozycjaUzupelnianieKontruktora.cs" />
     <Compile Include="Menu\PozycjaUzupelnianieMetodWImplementacji.cs" />
     <Compile Include="Menu\PozycjaUzupelnianieReferencedObject.cs" />
     <Compile Include="Menu\PozycjaUzupelnianieTagowDefiniujacychTabele.cs" />

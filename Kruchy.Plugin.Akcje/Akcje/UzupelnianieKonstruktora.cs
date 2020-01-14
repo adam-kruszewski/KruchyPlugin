@@ -4,12 +4,13 @@ using System.Text;
 using System.Windows.Forms;
 using KrucheBuilderyKodu.Builders;
 using Kruchy.Plugin.Akcje.KonfiguracjaPlugina;
+using Kruchy.Plugin.Akcje.Utils;
 using Kruchy.Plugin.Utils.Wrappers;
 using KruchyParserKodu.ParserKodu;
 
-namespace KruchyCompany.KruchyPlugin1.Akcje
+namespace Kruchy.Plugin.Akcje.Akcje
 {
-    public class UzupelnianieKontruktora
+    public class UzupelnianieKonstruktora
     {
         private readonly ISolutionWrapper solution;
         private static Dictionary<string, int> kolejnoscWgTypu =
@@ -27,7 +28,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             return wynik;
         }
 
-        public UzupelnianieKontruktora(ISolutionWrapper solution)
+        public UzupelnianieKonstruktora(ISolutionWrapper solution)
         {
             this.solution = solution;
         }
@@ -93,7 +94,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
                         PrzygotujTekstDoWstawienia(nowyKonstruktor, dodatek),
                         maksymalnyNumerLiniiPol + 1);
                 }
-                PosortujZdefiniowanePola(obiekt.NiestatycznePola);
+                PosortujZdefiniowanePola(obiekt.SzukajPolPrivateReadOnly());
             }
         }
 
@@ -106,7 +107,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             return p.ToList();
         }
 
-        private void PosortujZdefiniowanePola(IList<Pole> list)
+        private void PosortujZdefiniowanePola(IEnumerable<Pole> list)
         {
             var liniaPierwszego =
                 list.OrderBy(o => o.Poczatek.Wiersz).First().Poczatek.Wiersz;

@@ -48,18 +48,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Akcje\UzupelnianieKonstruktora.cs" />
     <Compile Include="KonfiguracjaPlugina\Konfiguracja.cs" />
     <Compile Include="KonfiguracjaPlugina\KonfiguracjaUsingow.cs" />
     <Compile Include="KonfiguracjaPlugina\Xml\KruchyPlugin.cs" />
     <Compile Include="KonfiguracjaPlugina\Xml\PrzejdzDo.cs" />
     <Compile Include="Menu\PkgCmdIDList.cs" />
     <Compile Include="Menu\PozycjaPrzejdzDo.cs" />
+    <Compile Include="Menu\PozycjaUzupelnianieKonstruktora.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\ObiektExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\KrucheBuilderyKodu\KrucheBuilderyKodu.csproj">
+      <Project>{0c5748a8-7d43-444c-90ad-3dbe02dcabab}</Project>
+      <Name>KrucheBuilderyKodu</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Kruchy.Plugin.Utils\Kruchy.Plugin.Utils.csproj">
       <Project>{33505630-BFE6-414F-82A2-EE9086DAEB83}</Project>
       <Name>Kruchy.Plugin.Utils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KruchyParserKodu\KruchyParserKodu.csproj">
+      <Project>{fb1229fb-fe17-419f-bcad-fad9875ec78c}</Project>
+      <Name>KruchyParserKodu</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
