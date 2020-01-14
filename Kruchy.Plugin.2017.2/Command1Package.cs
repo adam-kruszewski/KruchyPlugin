@@ -86,9 +86,14 @@ namespace KruchyCompany.KruchyPlugin1
             var mcs2 = await GetServiceAsync(typeof(IMenuCommandService)) as OleMenuCommandService;
 
             var wszystkieKlasy = GetType().Assembly.GetTypes();
+            var a = typeof(Kruchy.Plugin.Akcje.Menu.PkgCmdIDList).Assembly.GetTypes();
+            wszystkieKlasy = wszystkieKlasy.Union(a).ToArray();
+            //var wszystkieKlasy = GetType().Assembly.GetTypes().Union(
+            //    typeof(Kruchy.Plugin.Akcje.Menu.PkgCmdIDList).Assembly.GetTypes());
             var klasyPozycji =
                 wszystkieKlasy
                     .Where(o => typeof(IPozycjaMenu).IsAssignableFrom(o))
+                    .Where(o => !typeof(IPodpozycjaMenuDynamicznego).IsAssignableFrom(o))
                         .ToList();
 
             foreach (var klasa in klasyPozycji)

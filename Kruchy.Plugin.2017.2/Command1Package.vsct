@@ -48,6 +48,14 @@
         </Strings>
       </Menu>
 
+      <Menu guid="guidCommand1PackageCmdSet" id="MenuPrzejdzDoController" priority="0x1000" type="MenuController">
+        <Parent guid="guidCommand1PackageCmdSet" id="ToolbarPrzejdzDoItemGroup" />
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Idź do pliku</ButtonText>
+        </Strings>
+      </Menu>
+
     </Menus>
 
     <!-- In this section you can define new menu groups. A menu group is a container for
@@ -85,6 +93,14 @@
 
       <Group guid="guidCommand1PackageCmdSet" id="PodrozowanieMenuGroup" priority="0x0601">
         <Parent guid="guidCommand1PackageCmdSet" id="PodrozowanieMenu"/>
+      </Group>
+
+      <Group guid="guidCommand1PackageCmdSet" id="ToolbarPrzejdzDoItemGroup" priority="0x4000" >
+        <Parent guid="guidCommand1PackageCmdSet" id="PodrozowanieMenu" />
+      </Group>
+      <!-- The group for the items on the MenuController drop-down. It is added to the MenuController submenu. -->
+      <Group guid="guidCommand1PackageCmdSet" id="MenuPrzejdzDoControllerGroup" priority="0x4000" >
+        <Parent guid="guidCommand1PackageCmdSet" id="MenuPrzejdzDoController" />
       </Group>
 
     </Groups>
@@ -380,7 +396,33 @@
         </Strings>
         <CommandFlag>DefaultDisabled</CommandFlag>
         <CommandFlag>DynamicVisibility</CommandFlag>
-      </Button>      
+      </Button>
+
+      <Button guid="guidCommand1PackageCmdSet" id="cmdidMyDynamicStartCommand" priority="0x1000" >
+        <Parent guid="guidCommand1PackageCmdSet" id="MenuPrzejdzDoControllerGroup" />
+        <CommandFlag>DynamicItemStart</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <CommandFlag>TextChanges</CommandFlag>
+        <!-- This text does not appear. -->
+        <Strings>
+          <ButtonText>Project</ButtonText>
+        </Strings>
+      </Button>
+
+      <!-- The anchor item to supply the icon/tooltip for the MenuController -->
+      <Button guid="guidCommand1PackageCmdSet" id="cmdidPrzejdzDoAnchorCommand" priority="0x0000" >
+        <Parent guid="guidCommand1PackageCmdSet" id="MenuPrzejdzDoControllerGroup" />
+        <!-- Do not show on the menu controller's drop down list-->
+        <CommandFlag>NoShowOnMenuController</CommandFlag>
+        <!-- Become the permanent anchor item for the menu controller -->
+        <CommandFlag>FixMenuController</CommandFlag>
+        <!-- The text that appears in the tooltip.-->
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Set Startup Project</ButtonText>
+        </Strings>
+      </Button>
+
     </Buttons>
 
     <!--The bitmaps section is used to define the bitmaps that are used for the commands.-->
@@ -451,6 +493,16 @@
       <IDSymbol name="cmdidGenerujWidok" value="0x0173"/>
       <IDSymbol name="cmidPrzejdzDoGridRowActions" value="0x0174"/>
       <IDSymbol name="cmidPrzejdzDoGridToolbar" value="0x0175"/>
+
+      <IDSymbol name="ToolbarPrzejdzDoItemGroup" value="0x3020" />
+      <IDSymbol name="MenuPrzejdzDoControllerGroup" value="0x3025" />
+      <IDSymbol name="MenuPrzejdzDoController" value ="0x3030"/>
+      <IDSymbol name="cmdidPrzejdzDoAnchorCommand" value="0x0303" />
+      <!-- NOTE: The following command expands at run time to some number of ids.
+     Try not to place command ids after it (e.g. 0x0105, 0x0106).
+     If you must add a command id after it, make the gap very large (e.g. 0x200) -->
+      <IDSymbol name="cmdidMyDynamicStartCommand" value="0x0304" />
+
     </GuidSymbol>
 
     <GuidSymbol name="guidImages" value="{07bfc565-7f34-4efd-aa12-28f59d44c75b}" >
