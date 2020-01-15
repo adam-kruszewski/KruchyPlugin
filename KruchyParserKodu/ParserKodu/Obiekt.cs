@@ -18,6 +18,8 @@ namespace KruchyParserKodu.ParserKodu
         {
             get { return SzukajPolNiestatycznych().ToList(); }
         }
+
+        public IList<Modyfikator> Modyfikatory { get; set; }
         public IList<Property> Propertiesy { get; private set; }
         public IList<Metoda> Metody { get; private set; }
         public List<Atrybut> Atrybuty { get; private set; }
@@ -40,6 +42,7 @@ namespace KruchyParserKodu.ParserKodu
             PoczatkowaKlamerka = new PozycjaWPliku();
             KoncowaKlamerka = new PozycjaWPliku();
             ObiektyWewnetrzne = new List<Obiekt>();
+            Modyfikatory = new List<Modyfikator>();
         }
 
         private IEnumerable<Pole> SzukajPolNiestatycznych()

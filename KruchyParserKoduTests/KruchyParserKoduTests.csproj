@@ -161,10 +161,12 @@
     <EmbeddedResource Include="Samples\KlasaDoParsowaniaRozszerzone.cs" />
     <EmbeddedResource Include="Samples\InterfejsDoParsowania.cs" />
     <EmbeddedResource Include="Samples\InterfejsZDziedziczeniemIAtrybutami.cs" />
+    <EmbeddedResource Include="Samples\KlasaDoParsowaniaModyfikatorow.cs" />
     <Compile Include="Unit\ParsowanieAtrybutowTests.cs" />
     <Compile Include="Unit\ParsowanieInterfejsuTests.cs" />
     <Compile Include="Unit\ParsowanieKlasyNadklasIInterfejsowTests.cs" />
     <Compile Include="Unit\ParsowanieKlasyTests.cs" />
+    <Compile Include="Unit\ParsowanieModyfikatorwKlasyTests.cs" />
     <Compile Include="Unit\ParsowanieRozszerzoneTests.cs" />
     <Compile Include="Utils\PozycjaWPlikuExtension.cs" />
     <Compile Include="Utils\WczytywaczZawartosciPrzykladow.cs" />

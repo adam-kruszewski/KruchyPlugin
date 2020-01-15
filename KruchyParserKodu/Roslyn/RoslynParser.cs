@@ -64,6 +64,7 @@ namespace KruchyParserKodu.Roslyn
             UstawPolozenieKoncowejKlamerki(definiowanyObiekt, interfaceSyntax.CloseBraceToken);
 
             UzupelnijAtrybuty(interfaceSyntax.AttributeLists, definiowanyObiekt.Atrybuty);
+            UzupelnijModyfikatory(interfaceSyntax.Modifiers, definiowanyObiekt.Modyfikatory);
             UzupelnijWlasciwosci(definiowanyObiekt.Propertiesy, interfaceSyntax);
             UzupelnijMetody(definiowanyObiekt.Metody, interfaceSyntax, definiowanyObiekt);
             UzupelniejTypyDziedziczone(definiowanyObiekt, interfaceSyntax);
@@ -81,6 +82,9 @@ namespace KruchyParserKodu.Roslyn
             UstawPolozeniePoczatkowejKlamerki(definiowanyObiekt, klasa.OpenBraceToken);
 
             UzupelnijAtrybuty(klasa.AttributeLists, definiowanyObiekt.Atrybuty);
+
+            UzupelnijModyfikatory(klasa.Modifiers, definiowanyObiekt.Modyfikatory);
+
             UzupelnijPola(definiowanyObiekt.Pola, klasa);
 
             UzupelnijWlasciwosci(definiowanyObiekt.Propertiesy, klasa);

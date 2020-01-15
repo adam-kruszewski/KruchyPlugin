@@ -34,6 +34,7 @@ namespace KruchyParserKoduTests.Unit
             obiekt.PoczatkowaKlamerka.Kolumna.Should().Be(5);
             obiekt.Atrybuty.Count().Should().Be(1);
             obiekt.Atrybuty.First().Nazwa.Should().Be("Testowo");
+            obiekt.Modyfikatory.Should().BeEmpty();
 
             SprawdzPola(obiekt);
 
