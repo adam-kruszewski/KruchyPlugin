@@ -1,4 +1,4 @@
-﻿namespace KruchyCompany.KruchyPlugin1.Interfejs
+﻿namespace Kruchy.Plugin.Akcje.Interfejs
 {
     partial class NazwaKlasyTestowForm
     {

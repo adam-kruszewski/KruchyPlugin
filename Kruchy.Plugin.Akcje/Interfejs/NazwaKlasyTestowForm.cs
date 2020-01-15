@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Windows.Forms;
+using Kruchy.Plugin.Akcje.Akcje;
 using Kruchy.Plugin.Utils.Extensions;
 using Kruchy.Plugin.Utils.Wrappers;
-using KruchyCompany.KruchyPlugin1.Akcje;
 
-namespace KruchyCompany.KruchyPlugin1.Interfejs
+namespace Kruchy.Plugin.Akcje.Interfejs
 {
     public partial class NazwaKlasyTestowForm : Form
     {
