@@ -29,6 +29,7 @@ namespace Kruchy.Plugin.Akcje.Menu
         {
             get
             {
+                yield return WymaganieDostepnosci.PlikCs;
                 yield return WymaganieDostepnosci.Projekt;
                 yield return WymaganieDostepnosci.Modul;
             }
