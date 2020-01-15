@@ -6,7 +6,7 @@ using KrucheBuilderyKodu.Builders;
 using Kruchy.Plugin.Utils.Extensions;
 using Kruchy.Plugin.Utils.Wrappers;
 
-namespace KruchyCompany.KruchyPlugin1.Akcje
+namespace Kruchy.Plugin.Akcje.Akcje
 {
     class GenerowanieKlasService
     {
@@ -21,7 +21,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             this.solutionExplorer = solutionExplorer;
         }
 
-        public WynikGenerowaniaKlasService Generuj(
+        public void Generuj(
             IPlikWrapper aktualnyPlik,
             string nazwaKlasyService,
             bool obaWKataloguImpl)
@@ -52,14 +52,13 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             if (File.Exists(pelnaSciezkaDoImplementacji))
             {
                 MessageBox.Show("Plik już istnieje " + pelnaSciezkaDoImplementacji);
-                return null;
+                return;
             }
             if (File.Exists(pelnaSciezkaDoInterfejsu))
             {
                 MessageBox.Show("Plik już istnieje " + pelnaSciezkaDoInterfejsu);
-                return null;
+                return;
             }
-
 
             File.WriteAllText(
                 pelnaSciezkaDoImplementacji,
@@ -75,8 +74,6 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 
             solutionExplorer.OtworzPlik(plikInt.SciezkaPelna);
             solutionExplorer.OtworzPlik(plikImpl.SciezkaPelna);
-
-            return new WynikGenerowaniaKlasService();
         }
 
         private string GenerujPlikImplementacji(

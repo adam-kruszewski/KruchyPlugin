@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace KruchyCompany.KruchyPlugin1.Interfejs
+namespace Kruchy.Plugin.Akcje.Interfejs
 {
     public partial class NazwaKlasyWindow : Form
     {

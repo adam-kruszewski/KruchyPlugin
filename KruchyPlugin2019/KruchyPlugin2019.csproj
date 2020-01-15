@@ -62,7 +62,6 @@
     <Compile Include="Akcje\DodawaniaUsinga.cs" />
     <Compile Include="Akcje\DodawanieNowegoTestu.cs" />
     <Compile Include="Akcje\DodawanieUsingDbContext.cs" />
-    <Compile Include="Akcje\GenerowanieKlasService.cs" />
     <Compile Include="Akcje\GenerowanieKlasyWalidatora.cs" />
     <Compile Include="Akcje\GenerowanieWidoku.cs" />
     <Compile Include="Akcje\IdzDoKataloguControllera.cs" />
@@ -85,7 +84,6 @@
     <Compile Include="Menu\PozycjaDodawanieUprawnienDomyslnych.cs" />
     <Compile Include="Menu\PozycjaDodawanieUsingDbContext.cs" />
     <Compile Include="Menu\PozycjaDodawanieUsingow.cs" />
-    <Compile Include="Menu\PozycjaGenerowanieKlasService.cs" />
     <Compile Include="Menu\PozycjaGenerowanieKlasyWalidatora.cs" />
     <Compile Include="Menu\PozycjaGenerowanieWidoku.cs" />
     <Compile Include="Menu\PozycjaIdzDoGridRowActions.cs" />
@@ -103,12 +101,6 @@
     <Compile Include="Menu\PozycjaWstawianieNazwyControlleraDoSchowka.cs" />
     <Compile Include="Menu\PozycjaZmienNaPrivate.cs" />
     <Compile Include="Menu\PozycjaZmienNaPublic.cs" />
-    <Compile Include="Interfejs\NazwaKlasyWindow.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Interfejs\NazwaKlasyWindow.Designer.cs">
-      <DependentUpon>NazwaKlasyWindow.cs</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="source.extension.vsixmanifest">

@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Akcje\GenerowanieKlasService.cs" />
     <Compile Include="Akcje\GenerowanieKlasyTestowej.cs" />
     <Compile Include="Akcje\RodzajKlasyTestowej.cs" />
     <Compile Include="Akcje\UzupelnianieKonstruktora.cs" />
@@ -58,11 +59,18 @@
     <Compile Include="Interfejs\NazwaKlasyTestowForm.Designer.cs">
       <DependentUpon>NazwaKlasyTestowForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Interfejs\NazwaKlasyWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfejs\NazwaKlasyWindow.Designer.cs">
+      <DependentUpon>NazwaKlasyWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="KonfiguracjaPlugina\Konfiguracja.cs" />
     <Compile Include="KonfiguracjaPlugina\KonfiguracjaUsingow.cs" />
     <Compile Include="KonfiguracjaPlugina\Xml\KruchyPlugin.cs" />
     <Compile Include="KonfiguracjaPlugina\Xml\PrzejdzDo.cs" />
     <Compile Include="Menu\PkgCmdIDList.cs" />
+    <Compile Include="Menu\PozycjaGenerowanieKlasService.cs" />
     <Compile Include="Menu\PozycjaGenerowanieKlasyTestowej.cs" />
     <Compile Include="Menu\PozycjaPrzejdzDo.cs" />
     <Compile Include="Menu\PozycjaUzupelnianieKonstruktora.cs" />
