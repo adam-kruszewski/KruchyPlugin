@@ -77,7 +77,6 @@
     <Compile Include="Akcje\UzupelnianieTagowDefiniujacychTabele.cs" />
     <Compile Include="Akcje\WstawianieNazwyControlleraDoSchowka.cs" />
     <Compile Include="Akcje\WynikGenerowaniaKlasService.cs" />
-    <Compile Include="Akcje\ZmianaModyfikatoraMetody.cs" />
     <Compile Include="Menu\PozycjaDodawanieMapowan.cs" />
     <Compile Include="Menu\PozycjaDodawanieNowegoTestu.cs" />
     <Compile Include="Menu\PozycjaDodawanieNowejMetodyWBuilderze.cs" />
@@ -99,8 +98,6 @@
     <Compile Include="Menu\PozycjaUzupelnianieReferencedObject.cs" />
     <Compile Include="Menu\PozycjaUzupelnianieTagowDefiniujacychTabele.cs" />
     <Compile Include="Menu\PozycjaWstawianieNazwyControlleraDoSchowka.cs" />
-    <Compile Include="Menu\PozycjaZmienNaPrivate.cs" />
-    <Compile Include="Menu\PozycjaZmienNaPublic.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="source.extension.vsixmanifest">

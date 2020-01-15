@@ -2,7 +2,7 @@
 using Kruchy.Plugin.Utils.Wrappers;
 using KruchyParserKodu.ParserKodu;
 
-namespace KruchyCompany.KruchyPlugin1.Akcje
+namespace Kruchy.Plugin.Akcje.Akcje
 {
     class ZmianaModyfikatoraMetody
     {

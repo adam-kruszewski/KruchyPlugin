@@ -53,6 +53,7 @@
     <Compile Include="Akcje\GenerowanieKlasyTestowej.cs" />
     <Compile Include="Akcje\RodzajKlasyTestowej.cs" />
     <Compile Include="Akcje\UzupelnianieKonstruktora.cs" />
+    <Compile Include="Akcje\ZmianaModyfikatoraMetody.cs" />
     <Compile Include="Interfejs\NazwaKlasyTestowForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -74,6 +75,8 @@
     <Compile Include="Menu\PozycjaGenerowanieKlasyTestowej.cs" />
     <Compile Include="Menu\PozycjaPrzejdzDo.cs" />
     <Compile Include="Menu\PozycjaUzupelnianieKonstruktora.cs" />
+    <Compile Include="Menu\PozycjaZmienNaPrivate.cs" />
+    <Compile Include="Menu\PozycjaZmienNaPublic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\ObiektExtensions.cs" />
   </ItemGroup>
