@@ -85,7 +85,7 @@ namespace Kruchy.Plugin.Utils._2017
             }
             if (o == WymaganieDostepnosci.PlikCs)
             {
-                return solution.AktualnyPlik.Nazwa.ToLower().EndsWith(".cs");
+                return PlikCs();
             }
             if (o == WymaganieDostepnosci.Controller)
             {
@@ -94,16 +94,16 @@ namespace Kruchy.Plugin.Utils._2017
 
             if (o == WymaganieDostepnosci.Klasa)
             {
-                var p = Parser.Parsuj(solution.AktualnyDokument.DajZawartosc());
-                if (p.DefiniowaneObiekty.Count < 1)
+                var p = Parsuj();
+                if (p == null || p.DefiniowaneObiekty.Count < 1)
                     return false;
                 return p.DefiniowaneObiekty.First().Rodzaj == RodzajObiektu.Klasa;
             }
 
             if (o == WymaganieDostepnosci.Interfejs)
             {
-                var p = Parser.Parsuj(solution.AktualnyDokument.DajZawartosc());
-                if (p.DefiniowaneObiekty.Count < 1)
+                var p = Parsuj();
+                if (p == null || p.DefiniowaneObiekty.Count < 1)
                     return false;
                 return p.DefiniowaneObiekty.First().Rodzaj == RodzajObiektu.Interfejs;
             }
@@ -118,6 +118,26 @@ namespace Kruchy.Plugin.Utils._2017
                 return solution.AktualnyPlik.Nazwa.ToLower().EndsWith(".cshtml");
             }
             return true;
+        }
+
+        private bool PlikCs()
+        {
+            return solution.AktualnyPlik.Nazwa.ToLower().EndsWith(".cs");
+        }
+
+        private Plik Parsuj()
+        {
+            try
+            {
+                if (!PlikCs())
+                    return null;
+
+                return Parser.Parsuj(solution.AktualnyDokument.DajZawartosc());
+            }catch (Exception ex)
+            {
+                Console.WriteLine("Błąd parsowania " + ex);
+                return null;
+            }
         }
 
         public void Execute(object sender, EventArgs args)
