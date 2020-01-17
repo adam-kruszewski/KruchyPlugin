@@ -184,7 +184,7 @@
         <Parent guid="guidCommand1PackageCmdSet" id="ZmianaModyfikatorowGroup" />
         <Strings>
           <CommandName>cmdidZmienNaPublic</CommandName>
-          <ButtonText>Zmień metodę na publi&amp;c</ButtonText>
+          <ButtonText>Zmień metodę/klasę na publi&amp;c</ButtonText>
         </Strings>
         <CommandFlag>DefaultDisabled</CommandFlag>
         <CommandFlag>DynamicVisibility</CommandFlag>
@@ -194,7 +194,7 @@
         <Parent guid="guidCommand1PackageCmdSet" id="ZmianaModyfikatorowGroup" />
         <Strings>
           <CommandName>cmdidZmienNaPrivate</CommandName>
-          <ButtonText>Zmień metodę na &amp;private</ButtonText>
+          <ButtonText>Zmień metodę/klasę na &amp;private</ButtonText>
         </Strings>
         <CommandFlag>DefaultDisabled</CommandFlag>
         <CommandFlag>DynamicVisibility</CommandFlag>
