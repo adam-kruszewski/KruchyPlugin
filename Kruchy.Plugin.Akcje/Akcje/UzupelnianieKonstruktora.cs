@@ -85,10 +85,15 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 {
                     //tu zawsze będzie jakieś pole lub właściwośc
                     //, bo są pola które czekają na dodanie do konstruktora
-                    var maksymalnyNumerLiniiPol =
-                        obiekt.Pola.Select(o => o.Poczatek.Wiersz)
-                            .Union(obiekt.Propertiesy.Select(o => o.Poczatek.Wiersz))
-                                .Max();
+                    int maksymalnyNumerLiniiPol = obiekt.PoczatkowaKlamerka.Wiersz + 1;
+
+                    if (obiekt.Pola.Any())
+                        maksymalnyNumerLiniiPol =
+                            obiekt.Pola.Select(o => o.Koniec.Wiersz).Max();
+                    else
+                        maksymalnyNumerLiniiPol =
+                            obiekt.Propertiesy.Select(o => o.Koniec.Wiersz).Max();
+
                     var dodatek = new StringBuilder().AppendLine().ToString();
                     solution.AktualnyDokument.WstawWLinii(
                         PrzygotujTekstDoWstawienia(nowyKonstruktor, dodatek),

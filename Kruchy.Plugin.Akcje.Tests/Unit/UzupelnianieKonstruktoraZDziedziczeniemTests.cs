@@ -74,7 +74,7 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
         private const int DefaultTimeout = 10000;
 
         private readonly Class1 appSettingsService;
-
+        
         public UzupelnianieKonstruktoraPrzyStalej(
             Class1 appSettingsService)
         {
