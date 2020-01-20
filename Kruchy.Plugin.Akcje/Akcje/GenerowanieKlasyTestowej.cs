@@ -40,7 +40,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         public void Generuj(
             string nazwaKlasy,
-            RodzajKlasyTestowej rodzaj,
+            string rodzaj,
             string interfejsTestowany,
             bool integracyjny)
         {
@@ -87,7 +87,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         private string GenerujZawartosc(
             string nazwaKlasy,
-            RodzajKlasyTestowej rodzaj,
+            string rodzaj,
             string interfejsTestowany,
             bool integracyjny)
         {
@@ -105,15 +105,11 @@ namespace Kruchy.Plugin.Akcje.Akcje
                     .ZNazwa(nazwaKlasy)
                     .DodajAtrybut(atrybut);
 
-            switch (rodzaj)
-            {
-                case RodzajKlasyTestowej.ServiceTests:
-                    klasaBuilder.ZNadklasa("ServiceTests<" + interfejsTestowany + ">");
-                    break;
-                case RodzajKlasyTestowej.TestsWithDatabase:
-                    klasaBuilder.ZNadklasa("TestsWithDatabaseFixture");
-                    break;
-            }
+            if (rodzaj == RodzajKlasyTestowej.ServiceTests.ToString())
+                klasaBuilder.ZNadklasa("ServiceTests<" + interfejsTestowany + ">");
+
+            if (rodzaj == RodzajKlasyTestowej.TestsWithDatabase.ToString())
+                klasaBuilder.ZNadklasa("TestsWithDatabaseFixture");
 
             var namespaceTestowanejKlasy = solution.NamespaceAktualnegoPliku();
             if (namespaceTestowanejKlasy.EndsWith(".Impl"))

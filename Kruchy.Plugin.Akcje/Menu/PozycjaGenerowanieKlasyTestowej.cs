@@ -46,7 +46,7 @@ namespace Kruchy.Plugin.Akcje.Menu
             new GenerowanieKlasyTestowej(solution, solutionExplorer)
                 .Generuj(
                     dialog.NazwaKlasy,
-                    dialog.Rodzaj,
+                    dialog.Rodzaj.ToString(),
                     dialog.InterfejsTestowany,
                     dialog.Integracyjny);
         }
