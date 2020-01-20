@@ -1,9 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Forms;
 using KrucheBuilderyKodu.Builders;
+using Kruchy.Plugin.Akcje.KonfiguracjaPlugina;
+using Kruchy.Plugin.Akcje.KonfiguracjaPlugina.Xml;
 using Kruchy.Plugin.Utils.Extensions;
 using Kruchy.Plugin.Utils.Wrappers;
 
@@ -91,6 +95,18 @@ namespace Kruchy.Plugin.Akcje.Akcje
             string interfejsTestowany,
             bool integracyjny)
         {
+            var konfiguracja = Konfiguracja.GetInstance(solution);
+
+            if (RodzajZKonfiguracjiDynamicznej(konfiguracja, rodzaj))
+            {
+                return GenerujZawartoscDynamiczna(
+                    konfiguracja,
+                    nazwaKlasy,
+                    rodzaj,
+                    interfejsTestowany,
+                    integracyjny);
+            }
+
             var atrybutCategory =
                 new AtrybutBuilder()
                 .ZNazwa("Category")
@@ -111,6 +127,22 @@ namespace Kruchy.Plugin.Akcje.Akcje
             if (rodzaj == RodzajKlasyTestowej.TestsWithDatabase.ToString())
                 klasaBuilder.ZNadklasa("TestsWithDatabaseFixture");
 
+            var namespaceTestowanejKlasy = DajNamespaceInterfejsuTestowanego();
+
+            var plikBuilder = new PlikClassBuilder();
+            plikBuilder
+                .ZObiektem(klasaBuilder)
+                .WNamespace(DajNamespaceKlastyTestowej(integracyjny))
+                .DodajUsing("FluentAssertions")
+                .DodajUsing("NUnit.Framework")
+                .DodajUsing("Pincasso.Core.Tests.Fixtures")
+                .DodajUsing("Piatka.Infrastructure.Tests")
+                .DodajUsing(namespaceTestowanejKlasy);
+            return plikBuilder.Build();
+        }
+
+        private string DajNamespaceInterfejsuTestowanego()
+        {
             var namespaceTestowanejKlasy = solution.NamespaceAktualnegoPliku();
             if (namespaceTestowanejKlasy.EndsWith(".Impl"))
             {
@@ -118,17 +150,78 @@ namespace Kruchy.Plugin.Akcje.Akcje
                     namespaceTestowanejKlasy.Substring(
                         0, namespaceTestowanejKlasy.Length - ".Impl".Length);
             }
-            var plikBuilder = new PlikClassBuilder();
-            plikBuilder
-                .ZObiektem(klasaBuilder)
-                .WNamespace(ProjektTestowy.Nazwa +
-                    DajFragmentNamespaceDotyczacyRodzajuTestow(integracyjny))
-                .DodajUsing("FluentAssertions")
-                .DodajUsing("NUnit.Framework")
-                .DodajUsing("Pincasso.Core.Tests.Fixtures")
-                .DodajUsing("Piatka.Infrastructure.Tests")
-                .DodajUsing(namespaceTestowanejKlasy);
-            return plikBuilder.Build();
+
+            return namespaceTestowanejKlasy;
+        }
+
+        private string DajNamespaceKlastyTestowej(bool integracyjny)
+        {
+            return ProjektTestowy.Nazwa +
+                DajFragmentNamespaceDotyczacyRodzajuTestow(integracyjny);
+        }
+
+        private string GenerujZawartoscDynamiczna(
+            Konfiguracja konfiguracja,
+            string nazwaKlasy,
+            string rodzaj,
+            string interfejsTestowany,
+            bool integracyjny)
+        {
+            var szablon = konfiguracja.KlasyTestowe().Single(o => o.Nazwa == rodzaj);
+
+            return WypelnijZnaczniki(
+                szablon,
+                nazwaKlasy,
+                rodzaj,
+                interfejsTestowany,
+                integracyjny);
+        }
+
+        private string WypelnijZnaczniki(
+            KlasaTestowa szablon,
+            string nazwaKlasy,
+            string rodzaj,
+            string interfejsTestowany,
+            bool integracyjny)
+        {
+            var slownikWartosci = PrzygotujWartosciZnacznikow(
+                nazwaKlasy,
+                rodzaj,
+                interfejsTestowany,
+                integracyjny);
+
+            var wynik = szablon.Zawartosc;
+
+            foreach (var wartosc in slownikWartosci)
+                wynik = wynik.Replace(wartosc.Key, wartosc.Value);
+
+            return wynik;
+        }
+
+        private IDictionary<string, string> PrzygotujWartosciZnacznikow(
+            string nazwaKlasy,
+            string rodzaj,
+            string interfejsTestowany,
+            bool integracyjny)
+        {
+            var wynik = new Dictionary<string, string>();
+
+            wynik.Add("%NAMESPACE%", DajNamespaceKlastyTestowej(integracyjny));
+            wynik.Add("%NAZWA_KLASY%", nazwaKlasy);
+            wynik.Add("%NAMESPACE_INTERFEJSU_TESTOWANEGO%", DajNamespaceInterfejsuTestowanego());
+            wynik.Add("%INTERFEJS_TESTOWANY%", interfejsTestowany);
+
+            var kategoria = DajKategorie(integracyjny);
+            wynik.Add("%KATEGORIA%", kategoria);
+
+            return wynik;
+        }
+
+        private bool RodzajZKonfiguracjiDynamicznej(
+            Konfiguracja konfiguracja,
+            string rodzaj)
+        {
+            return konfiguracja.KlasyTestowe().Any(o => o.Nazwa == rodzaj);
         }
 
         private static string DajFragmentNamespaceDotyczacyRodzajuTestow(

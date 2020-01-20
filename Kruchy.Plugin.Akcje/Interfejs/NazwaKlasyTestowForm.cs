@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
 using Kruchy.Plugin.Akcje.Akcje;
+using Kruchy.Plugin.Akcje.KonfiguracjaPlugina;
+using Kruchy.Plugin.Akcje.KonfiguracjaPlugina.Xml;
 using Kruchy.Plugin.Utils.Extensions;
 using Kruchy.Plugin.Utils.Wrappers;
 
@@ -9,25 +11,29 @@ namespace Kruchy.Plugin.Akcje.Interfejs
     public partial class NazwaKlasyTestowForm : Form
     {
         public string NazwaKlasy { get; private set; }
-        public RodzajKlasyTestowej Rodzaj { get; private set; }
+        public string Rodzaj { get; private set; }
         public string InterfejsTestowany { get; private set; }
         public bool Integracyjny { get; set; }
 
-        RodzajKlasyTestowej[] rodzaje =
+        private readonly ISolutionWrapper solution;
+
+        string[] rodzaje =
         {
-            RodzajKlasyTestowej.ServiceTests,
-            RodzajKlasyTestowej.TestsWithDatabase,
-            RodzajKlasyTestowej.Zwykla
+            RodzajKlasyTestowej.ServiceTests.ToString(),
+            RodzajKlasyTestowej.TestsWithDatabase.ToString(),
+            RodzajKlasyTestowej.Zwykla.ToString()
         };
 
         public NazwaKlasyTestowForm(ISolutionWrapper solution)
         {
-            InitializeComponent();
-            foreach (var r in rodzaje)
-                comboRodzajMigracji.Items.Add(r);
+            this.solution = solution;
 
+            InitializeComponent();
             if (solution.AktualnyPlik == null)
                 throw new ApplicationException("Brak otwartego pliku");
+
+            WypelnijRodzajKlasyTestowej();
+
             comboRodzajMigracji.SelectedIndex = 0;
 
             var nazwaObiektu = solution.NazwaObiektuAktualnegoPliku();
@@ -38,6 +44,21 @@ namespace Kruchy.Plugin.Akcje.Interfejs
             tbNazwaKlasyTestowej.Text = nazwaObiektu + "Tests";
             if (nazwaObiektu.StartsWith("I") && char.IsUpper(nazwaObiektu[1]))
                 tbNazwaKlasyTestowej.Text = nazwaObiektu.Substring(1) + "Tests";
+        }
+
+        private void WypelnijRodzajKlasyTestowej()
+        {
+            foreach (var r in rodzaje)
+                comboRodzajMigracji.Items.Add(r);
+
+            DodajPozycjeZKonfiguracji();
+        }
+
+        private void DodajPozycjeZKonfiguracji()
+        {
+            foreach (KlasaTestowa klasaTestowa in
+                    Konfiguracja.GetInstance(solution).KlasyTestowe())
+                comboRodzajMigracji.Items.Add(klasaTestowa.Nazwa);
         }
 
         private void buttonGeneruj_Click(object sender, EventArgs e)
@@ -70,7 +91,7 @@ namespace Kruchy.Plugin.Akcje.Interfejs
         private void Generuj()
         {
             NazwaKlasy = tbNazwaKlasyTestowej.Text;
-            Rodzaj = (RodzajKlasyTestowej)comboRodzajMigracji.SelectedItem;
+            Rodzaj = comboRodzajMigracji.SelectedItem.ToString();
             InterfejsTestowany = tbInterfejsTestowany.Text;
             Integracyjny = checkBoxIntegracyjny.Checked;
             Close();
