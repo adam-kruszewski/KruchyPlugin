@@ -10,10 +10,13 @@ namespace Kruchy.Plugin.Akcje.KonfiguracjaPlugina.Xml
 
         public List<PrzejdzDo> PrzejdzDo { get; set; }
 
+        public List<KlasaTestowa> KlasyTestowe { get; set; }
+
         public KruchyPlugin()
         {
             Usingi = new List<Namespace>();
             PrzejdzDo = new List<PrzejdzDo>();
+            KlasyTestowe = new List<KlasaTestowa>();
         }
     }
 

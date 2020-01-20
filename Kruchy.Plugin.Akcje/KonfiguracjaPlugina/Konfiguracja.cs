@@ -77,5 +77,10 @@ namespace Kruchy.Plugin.Akcje.KonfiguracjaPlugina
         {
             return konfiguracjaXml.PrzejdzDo;
         }
+
+        public IEnumerable<KlasaTestowa> KlasyTestowe()
+        {
+            return konfiguracjaXml.KlasyTestowe;
+        }
     }
 }
