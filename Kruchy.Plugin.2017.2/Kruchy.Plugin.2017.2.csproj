@@ -84,7 +84,6 @@
     <Compile Include="Akcje\UzupelnianieTagowDefiniujacychTabele.cs" />
     <Compile Include="Akcje\WstawianieNazwyControlleraDoSchowka.cs" />
     <Compile Include="Akcje\WynikGenerowaniaKlasService.cs" />
-    <Compile Include="Akcje\ZmianaModyfikatoraMetody.cs" />
     <Compile Include="Menu\PozycjaDodawanieMapowan.cs" />
     <Compile Include="Menu\PozycjaDodawanieNowegoTestu.cs" />
     <Compile Include="Menu\PozycjaDodawanieNowejMetodyWBuilderze.cs" />
@@ -106,8 +105,6 @@
     <Compile Include="Menu\PozycjaUzupelnianieReferencedObject.cs" />
     <Compile Include="Menu\PozycjaUzupelnianieTagowDefiniujacychTabele.cs" />
     <Compile Include="Menu\PozycjaWstawianieNazwyControlleraDoSchowka.cs" />
-    <Compile Include="Menu\PozycjaZmienNaPrivate.cs" />
-    <Compile Include="Menu\PozycjaZmienNaPublic.cs" />
     <Compile Include="Guids.cs" />
     <Compile Include="Command1.cs" />
     <Compile Include="Command1Package.cs" />
@@ -124,6 +121,7 @@
   <ItemGroup>
     <VSCTCompile Include="Command1Package.vsct">
       <ResourceName>Menus.ctmenu</ResourceName>
+      <SubType>Designer</SubType>
     </VSCTCompile>
     <Content Include="index.html" />
     <Content Include="Resources\Command1.png" />
