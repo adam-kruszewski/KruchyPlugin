@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Windows;
 using System.Windows.Forms;
-using KrucheBuilderyKodu.Builders;
 using Kruchy.Plugin.Akcje.KonfiguracjaPlugina;
 using Kruchy.Plugin.Akcje.KonfiguracjaPlugina.Xml;
 using Kruchy.Plugin.Utils.Extensions;
@@ -97,48 +95,12 @@ namespace Kruchy.Plugin.Akcje.Akcje
         {
             var konfiguracja = Konfiguracja.GetInstance(solution);
 
-            if (RodzajZKonfiguracjiDynamicznej(konfiguracja, rodzaj))
-            {
-                return GenerujZawartoscDynamiczna(
-                    konfiguracja,
-                    nazwaKlasy,
-                    rodzaj,
-                    interfejsTestowany,
-                    integracyjny);
-            }
-
-            var atrybutCategory =
-                new AtrybutBuilder()
-                .ZNazwa("Category")
-                .DodajWartoscParametruNieStringowa(DajKategorie(integracyjny));
-            var atrybut =
-                new AtrybutBuilder()
-                    .ZNazwa("TestFixture")
-                    .DodajKolejnyAtrybut(atrybutCategory);
-            var klasaBuilder =
-                new ClassBuilder()
-                    .ZModyfikatorem("public")
-                    .ZNazwa(nazwaKlasy)
-                    .DodajAtrybut(atrybut);
-
-            if (rodzaj == RodzajKlasyTestowej.ServiceTests.ToString())
-                klasaBuilder.ZNadklasa("ServiceTests<" + interfejsTestowany + ">");
-
-            if (rodzaj == RodzajKlasyTestowej.TestsWithDatabase.ToString())
-                klasaBuilder.ZNadklasa("TestsWithDatabaseFixture");
-
-            var namespaceTestowanejKlasy = DajNamespaceInterfejsuTestowanego();
-
-            var plikBuilder = new PlikClassBuilder();
-            plikBuilder
-                .ZObiektem(klasaBuilder)
-                .WNamespace(DajNamespaceKlastyTestowej(integracyjny))
-                .DodajUsing("FluentAssertions")
-                .DodajUsing("NUnit.Framework")
-                .DodajUsing("Pincasso.Core.Tests.Fixtures")
-                .DodajUsing("Piatka.Infrastructure.Tests")
-                .DodajUsing(namespaceTestowanejKlasy);
-            return plikBuilder.Build();
+            return GenerujZawartoscDynamiczna(
+                konfiguracja,
+                nazwaKlasy,
+                rodzaj,
+                interfejsTestowany,
+                integracyjny);
         }
 
         private string DajNamespaceInterfejsuTestowanego()
