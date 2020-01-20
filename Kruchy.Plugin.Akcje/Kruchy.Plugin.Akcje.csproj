@@ -68,6 +68,7 @@
     </Compile>
     <Compile Include="KonfiguracjaPlugina\Konfiguracja.cs" />
     <Compile Include="KonfiguracjaPlugina\KonfiguracjaUsingow.cs" />
+    <Compile Include="KonfiguracjaPlugina\Xml\KlasaTestowa.cs" />
     <Compile Include="KonfiguracjaPlugina\Xml\KruchyPlugin.cs" />
     <Compile Include="KonfiguracjaPlugina\Xml\PrzejdzDo.cs" />
     <Compile Include="Menu\PkgCmdIDList.cs" />
