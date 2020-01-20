@@ -17,13 +17,6 @@ namespace Kruchy.Plugin.Akcje.Interfejs
 
         private readonly ISolutionWrapper solution;
 
-        string[] rodzaje =
-        {
-            RodzajKlasyTestowej.ServiceTests.ToString(),
-            RodzajKlasyTestowej.TestsWithDatabase.ToString(),
-            RodzajKlasyTestowej.Zwykla.ToString()
-        };
-
         public NazwaKlasyTestowForm(ISolutionWrapper solution)
         {
             this.solution = solution;
@@ -47,14 +40,6 @@ namespace Kruchy.Plugin.Akcje.Interfejs
         }
 
         private void WypelnijRodzajKlasyTestowej()
-        {
-            foreach (var r in rodzaje)
-                comboRodzajMigracji.Items.Add(r);
-
-            DodajPozycjeZKonfiguracji();
-        }
-
-        private void DodajPozycjeZKonfiguracji()
         {
             foreach (KlasaTestowa klasaTestowa in
                     Konfiguracja.GetInstance(solution).KlasyTestowe())
