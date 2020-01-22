@@ -74,7 +74,7 @@ namespace Kruchy.Plugin.Utils.Extensions
             var projekt =
                 solution
                     .Projekty
-                        .Where(o => o.Nazwa == nazwaSzukanegoProjektu)
+                        .Where(o => o.Nazwa.ToLower() == nazwaSzukanegoProjektu.ToLower())
                             .FirstOrDefault();
             return projekt;
         }
