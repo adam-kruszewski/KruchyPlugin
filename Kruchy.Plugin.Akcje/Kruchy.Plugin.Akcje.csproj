@@ -49,6 +49,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Akcje\GenerowanieBuildera.cs" />
+    <Compile Include="Akcje\Generowanie.Buildera.Komponenty\IParametryGenerowaniaBuildera.cs" />
     <Compile Include="Akcje\GenerowanieKlasService.cs" />
     <Compile Include="Akcje\GenerowanieKlasyTestowej.cs" />
     <Compile Include="Akcje\RodzajKlasyTestowej.cs" />

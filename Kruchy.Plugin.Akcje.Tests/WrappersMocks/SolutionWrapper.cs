@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
 using Kruchy.Plugin.Utils.Wrappers;
 
 namespace Kruchy.Plugin.Akcje.Tests.WrappersMocks
@@ -7,10 +10,25 @@ namespace Kruchy.Plugin.Akcje.Tests.WrappersMocks
     class SolutionWrapper : ISolutionWrapper
     {
         IDokumentWrapper dokument;
+        private IList<IProjektWrapper> projekty;
 
         public SolutionWrapper(string aktualnaZawartosc)
         {
             dokument = new DokumentWrapper(aktualnaZawartosc);
+            projekty = new List<IProjektWrapper>();
+        }
+
+        public SolutionWrapper(
+            IProjektWrapper projekt,
+            string aktualnaZawartosc)
+            : this(aktualnaZawartosc)
+        {
+            AktualnyProjekt = projekt;
+        }
+
+        public void DodajProjekt(IProjektWrapper projekt)
+        {
+            projekty.Add(projekt);
         }
 
         public string PelnaNazwa { get { return "A"; } }
@@ -21,15 +39,26 @@ namespace Kruchy.Plugin.Akcje.Tests.WrappersMocks
 
         public IPlikWrapper AktualnyPlik { get { throw new NotImplementedException(); } }
 
-        public IProjektWrapper AktualnyProjekt { get { throw new NotImplementedException(); } }
+        public IProjektWrapper AktualnyProjekt { get; private set; }
 
         public IDokumentWrapper AktualnyDokument { get { return dokument; } }
 
-        public IList<IProjektWrapper> Projekty { get { throw new NotImplementedException(); } }
+        public IList<IProjektWrapper> Projekty { get { return projekty.ToList(); } }
 
         public IProjektWrapper ZnajdzProjekt(string nazwa)
         {
             throw new NotImplementedException();
+        }
+
+        public void OtworzPlik(string sciezka)
+        {
+            AktualnyProjekt = Projekty.SingleOrDefault(o => ZawieraPlik(o, sciezka));
+            dokument = new DokumentWrapper(File.ReadAllText(sciezka, Encoding.UTF8));
+        }
+
+        private bool ZawieraPlik(IProjektWrapper projekt, string sciezka)
+        {
+            return projekt.Pliki.Any(o => o.SciezkaPelna == sciezka);
         }
     }
 }
