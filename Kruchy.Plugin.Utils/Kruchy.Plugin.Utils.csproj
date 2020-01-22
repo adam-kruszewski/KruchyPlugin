@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extensions\AkcjaExtension.cs" />
+    <Compile Include="Extensions\DokumentWrapperExtensions.cs" />
     <Compile Include="Extensions\FileSystemExtension.cs" />
     <Compile Include="Extensions\PlikWrapperExtension.cs" />
     <Compile Include="Extensions\ProjektWrapperExtension.cs" />
