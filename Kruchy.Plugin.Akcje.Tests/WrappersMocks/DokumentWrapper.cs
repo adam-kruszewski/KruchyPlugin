@@ -71,11 +71,6 @@ namespace Kruchy.Plugin.Akcje.Tests.WrappersMocks
             return Linie()[numerLinii - 1];
         }
 
-        public void DodajUsingaJesliTrzeba(string nazwaNamespace)
-        {
-            throw new NotImplementedException();
-        }
-
         public void UstawKursor(int wiersz, int kolumna)
         {
             pozycjaKursoraX = wiersz - 1;

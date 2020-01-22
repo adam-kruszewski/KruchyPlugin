@@ -8,8 +8,6 @@ namespace Kruchy.Plugin.Utils.Wrappers
 {
     public interface IDokumentWrapper
     {
-        void DodajUsingaJesliTrzeba(string nazwaNamespace);
-
         int DajNumerLiniiKursora();
 
         void UstawKursor(int wiersz, int kolumna);
