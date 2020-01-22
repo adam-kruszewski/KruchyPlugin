@@ -80,6 +80,7 @@ namespace KruchyParserKodu.Roslyn
 
             UstawPolozenie(syntaxTree, definiowanyObiekt, klasa);
             UstawPolozeniePoczatkowejKlamerki(definiowanyObiekt, klasa.OpenBraceToken);
+            UstawPolozenieKoncowejKlamerki(definiowanyObiekt, klasa.CloseBraceToken);
 
             UzupelnijAtrybuty(klasa.AttributeLists, definiowanyObiekt.Atrybuty);
 
