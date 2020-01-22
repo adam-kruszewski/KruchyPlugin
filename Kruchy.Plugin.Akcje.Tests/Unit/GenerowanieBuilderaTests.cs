@@ -64,5 +64,67 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
                 }
             }
         }
+
+        [Test]
+        public void UzupelniaIstniejacyBuilder()
+        {
+            //arrange
+            var mockParametrow = new Mock<IParametryGenerowaniaBuildera>();
+            mockParametrow.Setup(o => o.NazwaInterfejsuService).Returns("IDomainService");
+            var zawartoscDomain =
+                new WczytywaczZawartosciPrzykladow()
+                    .DajZawartoscPrzykladu("DomainObject.cs");
+
+            var zawartoscNiepelnegoBuildera =
+                new WczytywaczZawartosciPrzykladow()
+                    .DajZawartoscPrzykladu("DomainBuilderNiepelny.cs");
+
+            using (var projektZDomainObjectem = new ProjektWrapper("a1"))
+            {
+                var plikZDomainObjectem =
+                    new PlikWrapper(
+                        "DomainObject.cs",
+                        "Domain",
+                        projektZDomainObjectem,
+                        zawartoscDomain);
+
+                using (var projektTestow = new ProjektWrapper("a1.tests"))
+                {
+                    var solution = new SolutionWrapper(projektZDomainObjectem, zawartoscDomain);
+                    solution.DodajProjekt(projektZDomainObjectem);
+                    solution.DodajProjekt(projektTestow);
+
+                    var solutionExplorer = new SolutionExlorerWrapper(solution);
+
+                    Directory.CreateDirectory(
+                        Path.Combine(projektTestow.SciezkaDoKatalogu, "Builders"));
+
+                    var sciezkaDoBuildera =
+                        Path.Combine(
+                            projektTestow.SciezkaDoKatalogu,
+                            "Builders",
+                            "DomainObjectBuilder.cs");
+
+                    File.WriteAllText(
+                        sciezkaDoBuildera, zawartoscNiepelnegoBuildera, Encoding.UTF8);
+
+                    var plikBuildera = new PlikWrapper(sciezkaDoBuildera);
+                    projektTestow.DodajPlik(plikBuildera);
+
+                    //act
+                    new GenerowanieBuildera(solution, solutionExplorer)
+                        .Generuj(mockParametrow.Object);
+
+                    //assert
+                    solutionExplorer.OtwartyPlik.Should().Be(sciezkaDoBuildera);
+
+                    projektTestow.Pliki
+                        .Where(o => o.Nazwa == "DomainObjectBuilder.cs")
+                            .Should().ContainSingle();
+
+                    var zawartoscBuildera = solution.AktualnyDokument.DajZawartosc();
+                }
+            }
+        }
     }
 }

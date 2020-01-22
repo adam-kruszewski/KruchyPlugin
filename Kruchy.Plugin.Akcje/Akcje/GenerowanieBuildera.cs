@@ -159,9 +159,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                         .DodajParametr(wlasciwosc.Property.NazwaTypu, nazwaParametru);
 
                 tesktMetodyBuilder.DodajLinie(
-                    string.Format("Object.{0} = {1};",
-                        wlasciwosc.Property.Nazwa,
-                        nazwaParametru));
+                    DajLinieUstawiajacaWartosc(wlasciwosc, nazwaParametru));
                 tesktMetodyBuilder.DodajLinie("return this;");
 
                 var tesktMetody = tesktMetodyBuilder.Build(StaleDlaKodu.WciecieDlaMetody);
@@ -170,6 +168,21 @@ namespace Kruchy.Plugin.Akcje.Akcje
                     tesktMetody + new StringBuilder().AppendLine().ToString(),
                     miejsceWstawiania.Wiersz);
             }
+        }
+
+        private string DajLinieUstawiajacaWartosc(
+            WlasciwoscDlaBuildera wlasciwosc,
+            string nazwaParametru)
+        {
+            if (!wlasciwosc.Referencyjne)
+                return string.Format("Object.{0} = {1};",
+                    wlasciwosc.Property.Nazwa,
+                    nazwaParametru);
+            else
+                return string.Format(
+                    "SetReferencedObject(o => o.{0}, {1});",
+                    wlasciwosc.Property.Nazwa,
+                    nazwaParametru);
         }
 
         private bool JestMetodaDlaWlasciwosci(
@@ -259,7 +272,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         {
             public Property Property { get; set; }
 
-            bool Referencyjne { get; set; }
+            public bool Referencyjne { get; set; }
 
             public WlasciwoscDlaBuildera(Property property, bool referencyjne)
             {

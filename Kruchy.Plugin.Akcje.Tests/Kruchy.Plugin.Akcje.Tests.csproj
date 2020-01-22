@@ -161,6 +161,7 @@
     <EmbeddedResource Include="Samples\PustaKlasa.cs" />
     <EmbeddedResource Include="Samples\UzupelnianieKonstruktoraGdyPropertiesy.cs" />
     <EmbeddedResource Include="Samples\DomainObject.cs" />
+    <EmbeddedResource Include="Samples\DomainBuilderNiepelny.cs" />
     <Compile Include="TestyInfrastrukturyTestow\DokumentWrapperTests.cs" />
     <EmbeddedResource Include="Samples\UzupelnianieKonstruktoraPrzyStalej.cs" />
     <Compile Include="Unit\UzupelnianieKonstruktoraTests.cs" />
