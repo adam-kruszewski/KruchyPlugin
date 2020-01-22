@@ -146,20 +146,55 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
             foreach (var wlasciwosc in wlasciwosciDlaBuildera)
             {
-                var tesktMetody =
+                if (JestMetodaDlaWlasciwosci(klasaBuildera, wlasciwosc))
+                    continue;
+
+                var nazwaParametru = DajNazweParametru(wlasciwosc.Property.Nazwa);
+
+                var tesktMetodyBuilder =
                     new MetodaBuilder()
                         .DodajModyfikator("public")
                         .ZNazwa("Z" + wlasciwosc.Property.Nazwa)
                         .ZTypemZwracanym(nazwaKlasyBuildera)
-                        .DodajParametr(
-                            wlasciwosc.Property.NazwaTypu,
-                            DajNazweParametru(wlasciwosc.Property.Nazwa))
-                        .Build(StaleDlaKodu.WciecieDlaMetody);
+                        .DodajParametr(wlasciwosc.Property.NazwaTypu, nazwaParametru);
+
+                tesktMetodyBuilder.DodajLinie(
+                    string.Format("Object.{0} = {1};",
+                        wlasciwosc.Property.Nazwa,
+                        nazwaParametru));
+                tesktMetodyBuilder.DodajLinie("return this;");
+
+                var tesktMetody = tesktMetodyBuilder.Build(StaleDlaKodu.WciecieDlaMetody);
 
                 solution.AktualnyDokument.WstawWLinii(
                     tesktMetody + new StringBuilder().AppendLine().ToString(),
                     miejsceWstawiania.Wiersz);
             }
+        }
+
+        private bool JestMetodaDlaWlasciwosci(
+            Obiekt klasaBuildera,
+            WlasciwoscDlaBuildera wlasciwosc)
+        {
+            var metodyDoAnalizy = klasaBuildera.Metody.Where(
+                o => new[] { "Save", "Init" }.Contains(o.Nazwa));
+
+            var napisUstawiajacyWartoscPola =
+                string.Format("Object.{0} =", wlasciwosc.Property.Nazwa);
+
+            return metodyDoAnalizy.Any(o => ZawieraNapis(o, napisUstawiajacyWartoscPola));
+        }
+
+        private bool ZawieraNapis(Metoda metoda, string napisUstawiajacyWartoscPola)
+        {
+            for (int i = metoda.Poczatek.Wiersz; i < metoda.Koniec.Wiersz; i++)
+            {
+                if (solution.AktualnyDokument.DajZawartoscLinii(i)
+                    .Contains(napisUstawiajacyWartoscPola))
+                    return true;
+            }
+
+            return false;
         }
 
         private string DajNazweParametru(string nazwaTypu)
@@ -180,6 +215,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         {
             var plik = new PlikClassBuilder();
             plik.WNamespace(projektTestow.Nazwa + "Builders");
+            plik.DodajUsing("Pincasso.Core.Tests.Builders");
             plik.ZObiektem(
                 new ClassBuilder()
                     .ZModyfikatorem("public")
