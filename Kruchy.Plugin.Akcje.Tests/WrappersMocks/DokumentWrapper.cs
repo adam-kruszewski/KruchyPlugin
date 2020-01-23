@@ -88,31 +88,45 @@ namespace Kruchy.Plugin.Akcje.Tests.WrappersMocks
             int numerLiniiKoniec,
             int numerKolumnyKoniec)
         {
-            var linie = Linie();
-            for (int i = numerLiniiKoniec - 1; i >= numerLiniiStart - 1; i--)
+            int aktualnyNumerLinii = 1;
+            int aktualnyNumerKolumny = 1;
+
+            int indeksPoczatkuUsuwania = -1;
+            int indeksKoncaUsuwania = -1;
+
+            for (int i = 0; i < zawartosc.Length; i++)
             {
-                if (i != numerLiniiStart - 1 && i != numerLiniiKoniec - 1)
+                if (aktualnyNumerLinii == numerLiniiStart &&
+                    aktualnyNumerKolumny == numerKolumnyStart)
                 {
-                    linie.RemoveAt(i);
+                    indeksPoczatkuUsuwania = i;
+                }
+
+                if (aktualnyNumerLinii == numerLiniiKoniec &&
+                    aktualnyNumerKolumny == numerKolumnyKoniec)
+                {
+                    indeksKoncaUsuwania = i;
+                    if (zawartosc[i] == '\r')
+                        indeksKoncaUsuwania--;
+                    break;
+                }
+
+                if (zawartosc[i] == '\n')
+                {
+                    aktualnyNumerLinii++;
+                    aktualnyNumerKolumny = 1;
                 }
                 else
                 {
-                    var poczatek = 0;
-                    var koniec = linie[i].Length - 1;
-
-                    if (i == numerLiniiStart - 1)
-                        poczatek = numerKolumnyStart - 1;
-                    if (i == numerLiniiKoniec - 1)
-                        koniec = numerKolumnyKoniec - 1;
-
-                    if (poczatek == 0 && koniec >= linie[i].Length - 1)
-                        linie.RemoveAt(i);
-                    else
-                        linie[i] = linie[i].Substring(0, poczatek) +
-                            linie[i].Substring(koniec);
+                    aktualnyNumerKolumny++;
                 }
             }
-            UstawZawartoscZLinii(linie);
+
+            var poczatek = "";
+            if (indeksPoczatkuUsuwania != -1)
+                poczatek += zawartosc.Substring(0, indeksPoczatkuUsuwania);
+            zawartosc = poczatek + zawartosc.Substring(indeksKoncaUsuwania + 1);
+
         }
 
         private void UstawZawartoscZLinii(IList<string> linie)
@@ -150,51 +164,30 @@ namespace Kruchy.Plugin.Akcje.Tests.WrappersMocks
 
         public void WstawWMiejscu(string tekst, int numerLinii, int numerKolumny)
         {
-            var linie = Linie();
+            int aktualnyNumerLinii = 1;
+            int aktualnyNumerKolumny = 1;
 
-            var linieDoWstawienia =
-                tekst
-                    .Split(new char[] { '\n' })
-                        .ToList();
-
-            if (linieDoWstawienia.Last().EndsWith("\r"))
-                linieDoWstawienia.Add("");
-            linieDoWstawienia = linieDoWstawienia.Select(o => o.Replace("\r", "")).ToList();
-
-            var aktualnyIndeksWstawianejLinii = numerLinii - 1;
-            var linia = linie[aktualnyIndeksWstawianejLinii];
-
-            for (int i = 0; i < linieDoWstawienia.Count; i++)
+            for (int i = 0; i < zawartosc.Length; i++)
             {
-                var wstawianaLinia = linieDoWstawienia[i];
-
-                if (i == linieDoWstawienia.Count - 1)
+                if (numerLinii == aktualnyNumerLinii && aktualnyNumerKolumny == numerKolumny)
                 {
-                    if (numerKolumny - 1 > linia.Length)
-                    {
-                        linia =
-                            linia.Substring(0, numerKolumny)
-                            + tekst +
-                            linia.Substring(numerKolumny);
-                    }
-                    else if (numerKolumny == 0)
-                    {
-                        linia = wstawianaLinia + linia;
-                    }
-                    else
+                    var poczatek = "";
 
-                        linia = linia + wstawianaLinia;
-                    linie[aktualnyIndeksWstawianejLinii] = linia;
-                    aktualnyIndeksWstawianejLinii++;
+                    if (i > 0)
+                        poczatek = zawartosc.Substring(0, i);
+
+                    zawartosc = poczatek + tekst + zawartosc.Substring(i);
+                    return;
+                }
+
+                if (zawartosc[i] == '\n')
+                {
+                    aktualnyNumerLinii++;
+                    aktualnyNumerKolumny = 1;
                 }
                 else
-                {
-                    linie.Insert(aktualnyIndeksWstawianejLinii, wstawianaLinia);
-                    aktualnyIndeksWstawianejLinii++;
-                }
+                    aktualnyNumerKolumny++;
             }
-
-            UstawZawartoscZLinii(linie);
         }
 
         private IList<string> Linie()
