@@ -9,17 +9,18 @@ namespace Kruchy.Plugin.Utils.Extensions
     {
         public static void DodajUsingaJesliTrzeba(
             this IDokumentWrapper dokument,
-            string nazwaNamespace)
+            params string[] nazwyNamespace)
         {
             var parsowane = Parser.Parsuj(dokument.DajZawartosc());
 
-            if (parsowane.Usingi.Select(o => o.Nazwa).Contains(nazwaNamespace))
+            if (nazwyNamespace.All(o => ZawieraUsingNamespace(o, parsowane)))
                 return;
 
             int wierszWstawienia = 1;
             int kolumnaWstawienia = 1;
             var aktualneUsingi = parsowane.Usingi.Select(o => o.Nazwa).ToList();
-            aktualneUsingi.Add(nazwaNamespace);
+            aktualneUsingi.AddRange(
+                nazwyNamespace.Where(o => !ZawieraUsingNamespace(o, parsowane)));
 
             if (parsowane.Usingi.Any())
             {
@@ -40,6 +41,11 @@ namespace Kruchy.Plugin.Utils.Extensions
             var nowyTekst = builder.ToString().TrimEnd();
 
             dokument.WstawWMiejscu(nowyTekst, wierszWstawienia, 1);
+        }
+
+        private static bool ZawieraUsingNamespace(string nazwaNamespace, Plik parsowane)
+        {
+            return parsowane.Usingi.Select(o => o.Nazwa).Contains(nazwaNamespace);
         }
 
         private static void UsunWszystkieUsingi(
