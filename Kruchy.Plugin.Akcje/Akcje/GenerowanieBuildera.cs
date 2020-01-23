@@ -77,7 +77,10 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
             solutionExplorer.OtworzPlik(sciezkaDoPlikuBuilder);
 
-            UzupelnijMetody(wlasciwosciDlaBuildera, nazwaKlasyBuildera);
+            UzupelnijMetody(
+                wlasciwosciDlaBuildera,
+                nazwaKlasyBuildera,
+                sparsowane.Usingi.Select(o => o.Nazwa));
         }
 
         private List<WlasciwoscDlaBuildera> SzukajWlasciwosciDlaBuildera(Obiekt obiektDoZbudowania)
@@ -130,44 +133,62 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         private void UzupelnijMetody(
             List<WlasciwoscDlaBuildera> wlasciwosciDlaBuildera,
-            string nazwaKlasyBuildera)
+            string nazwaKlasyBuildera,
+            IEnumerable<string> usingiZObiektuBudowanego)
         {
             var sparsowane = Parser.Parsuj(solution.AktualnyDokument.DajZawartosc());
 
             var klasaBuildera =
                 sparsowane.DefiniowaneObiekty.Single(o => o.Nazwa == nazwaKlasyBuildera);
 
-            var metodaSave = klasaBuildera.Metody.FirstOrDefault(o => o.Nazwa == "Save");
-
-            var miejsceWstawiania = metodaSave?.Poczatek;
-
-            if (miejsceWstawiania == null)
-                miejsceWstawiania = klasaBuildera.KoncowaKlamerka;
+            PozycjaWPliku miejsceWstawiania = UstalMiejsceWstawienia(klasaBuildera);
 
             foreach (var wlasciwosc in wlasciwosciDlaBuildera)
             {
                 if (JestMetodaDlaWlasciwosci(klasaBuildera, wlasciwosc))
                     continue;
 
-                var nazwaParametru = DajNazweParametru(wlasciwosc.Property.Nazwa);
-
-                var tesktMetodyBuilder =
-                    new MetodaBuilder()
-                        .DodajModyfikator("public")
-                        .ZNazwa("Z" + wlasciwosc.Property.Nazwa)
-                        .ZTypemZwracanym(nazwaKlasyBuildera)
-                        .DodajParametr(wlasciwosc.Property.NazwaTypu, nazwaParametru);
-
-                tesktMetodyBuilder.DodajLinie(
-                    DajLinieUstawiajacaWartosc(wlasciwosc, nazwaParametru));
-                tesktMetodyBuilder.DodajLinie("return this;");
-
-                var tesktMetody = tesktMetodyBuilder.Build(StaleDlaKodu.WciecieDlaMetody);
+                string tesktMetody = GenerujTrescMetody(nazwaKlasyBuildera, wlasciwosc);
 
                 solution.AktualnyDokument.WstawWLinii(
                     tesktMetody + new StringBuilder().AppendLine().ToString(),
                     miejsceWstawiania.Wiersz);
             }
+
+            foreach (var usingBudowanego in usingiZObiektuBudowanego)
+                solution.AktualnyDokument.DodajUsingaJesliTrzeba(usingBudowanego);
+        }
+
+        private string GenerujTrescMetody(
+            string nazwaKlasyBuildera,
+            WlasciwoscDlaBuildera wlasciwosc)
+        {
+            var nazwaParametru = DajNazweParametru(wlasciwosc.Property.Nazwa);
+
+            var tesktMetodyBuilder =
+                new MetodaBuilder()
+                    .DodajModyfikator("public")
+                    .ZNazwa("Z" + wlasciwosc.Property.Nazwa)
+                    .ZTypemZwracanym(nazwaKlasyBuildera)
+                    .DodajParametr(wlasciwosc.Property.NazwaTypu, nazwaParametru);
+
+            tesktMetodyBuilder.DodajLinie(
+                DajLinieUstawiajacaWartosc(wlasciwosc, nazwaParametru));
+            tesktMetodyBuilder.DodajLinie("return this;");
+
+            var tesktMetody = tesktMetodyBuilder.Build(StaleDlaKodu.WciecieDlaMetody);
+            return tesktMetody;
+        }
+
+        private PozycjaWPliku UstalMiejsceWstawienia(Obiekt klasaBuildera)
+        {
+            var metodaSave = klasaBuildera.Metody.FirstOrDefault(o => o.Nazwa == "Save");
+
+            var miejsceWstawiania = metodaSave?.Poczatek;
+
+            if (miejsceWstawiania == null)
+                miejsceWstawiania = klasaBuildera.KoncowaKlamerka;
+            return miejsceWstawiania;
         }
 
         private string DajLinieUstawiajacaWartosc(
@@ -190,10 +211,13 @@ namespace Kruchy.Plugin.Akcje.Akcje
             WlasciwoscDlaBuildera wlasciwosc)
         {
             var metodyDoAnalizy = klasaBuildera.Metody.Where(
-                o => new[] { "Save", "Init" }.Contains(o.Nazwa));
+                o => !(new[] { "Save", "Init" }.Contains(o.Nazwa)));
 
             var napisUstawiajacyWartoscPola =
                 string.Format("Object.{0} =", wlasciwosc.Property.Nazwa);
+            if (wlasciwosc.Referencyjne)
+                napisUstawiajacyWartoscPola =
+                    string.Format("SetReferencedObject(o => o.{0}", wlasciwosc.Property.Nazwa);
 
             return metodyDoAnalizy.Any(o => ZawieraNapis(o, napisUstawiajacyWartoscPola));
         }
@@ -244,7 +268,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                             .DodajModyfikator("protected")
                             .DodajModyfikator("override")
                             .DodajLinie(
-                            string.Format("this.Object = new {0}()", obiektDoZbudowania.Nazwa)))
+                            string.Format("this.Object = new {0}();", obiektDoZbudowania.Nazwa)))
                     .DodajMetode(
                         new MetodaBuilder()
                             .ZNazwa("Save")
