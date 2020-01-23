@@ -14,6 +14,15 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
     [TestFixture]
     public class GenerowanieBuilderaTests
     {
+        WczytywaczZawartosciPrzykladow wczytywacz;
+
+        [SetUp]
+        public void SetUpEachTest()
+        {
+            wczytywacz = new WczytywaczZawartosciPrzykladow();
+        }
+
+
         [Test]
         public void GenerujeBuilderGdyNieIstnieje()
         {
@@ -24,8 +33,7 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
             using (var projektZDomainObjectem = new ProjektWrapper("a1"))
             {
                 var zawartoscDomain =
-                    new WczytywaczZawartosciPrzykladow()
-                        .DajZawartoscPrzykladu("DomainObject.cs");
+                    wczytywacz.DajZawartoscPrzykladu("DomainObject.cs");
 
                 var plikZDomainObjectem =
                     new PlikWrapper(
@@ -60,7 +68,8 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
                             .Should().ContainSingle();
 
                     solution.AktualnyDokument.DajZawartosc()
-                        .Should().Be(File.ReadAllText(sciezkaDoBuildera, Encoding.UTF8));
+                        .Should().Be(
+                            wczytywacz.DajZawartoscPrzykladu("WynikNowegoBuildera.cs"));
                 }
             }
         }
@@ -76,8 +85,7 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
                     .DajZawartoscPrzykladu("DomainObject.cs");
 
             var zawartoscNiepelnegoBuildera =
-                new WczytywaczZawartosciPrzykladow()
-                    .DajZawartoscPrzykladu("DomainBuilderNiepelny.cs");
+                wczytywacz.DajZawartoscPrzykladu("DomainBuilderNiepelny.cs");
 
             using (var projektZDomainObjectem = new ProjektWrapper("a1"))
             {
@@ -123,6 +131,9 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
                             .Should().ContainSingle();
 
                     var zawartoscBuildera = solution.AktualnyDokument.DajZawartosc();
+
+                    zawartoscBuildera.Should().Be(
+                        wczytywacz.DajZawartoscPrzykladu("WynikIstniejacegoBuildera.cs"));
                 }
             }
         }
