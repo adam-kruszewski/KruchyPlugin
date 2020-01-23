@@ -164,6 +164,7 @@
     <EmbeddedResource Include="Samples\DomainBuilderNiepelny.cs" />
     <Compile Include="TestyInfrastrukturyTestow\DokumentWrapperTests.cs" />
     <EmbeddedResource Include="Samples\UzupelnianieKonstruktoraPrzyStalej.cs" />
+    <Compile Include="Unit\DodawanieUsingaTests.cs" />
     <Compile Include="Unit\UzupelnianieKonstruktoraTests.cs" />
     <Compile Include="Unit\UzupelnianieKonstruktoraZDziedziczeniemTests.cs" />
     <Compile Include="Unit\GenerowanieBuilderaTests.cs" />
