@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using Kruchy.Plugin.Utils.Wrappers;
+using Moq;
 
 namespace Kruchy.Plugin.Akcje.Tests.WrappersMocks
 {
@@ -37,7 +38,7 @@ namespace Kruchy.Plugin.Akcje.Tests.WrappersMocks
 
         public string Katalog { get { return "A"; } }
 
-        public IPlikWrapper AktualnyPlik { get { throw new NotImplementedException(); } }
+        public IPlikWrapper AktualnyPlik { get { return new Mock<IPlikWrapper>().Object; } }
 
         public IProjektWrapper AktualnyProjekt { get; private set; }
 
