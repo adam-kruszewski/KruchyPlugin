@@ -34,25 +34,22 @@ namespace Kruchy.Plugin.Akcje.Menu
 
         public void Execute(object sender, EventArgs args)
         {
-            var oknoParametrow = new NazwaKlasyWindow();
-            oknoParametrow.EtykietaNazwyPliku = "Interfejs klasy serwisu";
-
-            oknoParametrow.ShowDialog();
-            if (string.IsNullOrEmpty(oknoParametrow.NazwaPliku))
-                return;
-
             new GenerowanieBuildera(solution, solutionExplorer)
-                .Generuj(new Parametry(oknoParametrow.NazwaPliku));
+                .Generuj(new Parametry());
         }
 
         private class Parametry : IParametryGenerowaniaBuildera
         {
-            public Parametry(string nazwaInterfejsu)
-            {
-                NazwaInterfejsuService = nazwaInterfejsu;
-            }
+            public string NazwaInterfejsuService {
+                get
+                {
+                    var oknoParametrow = new NazwaKlasyWindow();
+                    oknoParametrow.EtykietaNazwyPliku = "Interfejs klasy serwisu";
 
-            public string NazwaInterfejsuService { get; private set; }
+                    oknoParametrow.ShowDialog();
+                    return oknoParametrow.NazwaPliku;
+                }
+            }
         }
     }
 }

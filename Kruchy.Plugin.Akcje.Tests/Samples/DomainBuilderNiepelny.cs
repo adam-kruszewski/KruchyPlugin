@@ -1,6 +1,6 @@
 ﻿using Pincasso.Core.Tests.Builders;
 
-namespace a1.testsBuilders
+namespace a1.tests.Builders
 {
     public class DomainObjectBuilder : Builder<IDomainService, DomainObject>
     {

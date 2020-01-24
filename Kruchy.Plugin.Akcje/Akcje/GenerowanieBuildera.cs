@@ -69,7 +69,11 @@ namespace Kruchy.Plugin.Akcje.Akcje
                     obiektDoZbudowania,
                     wlasciwosciDlaBuildera,
                     nazwaKlasyBuildera,
-                    parametry);
+                    parametry,
+                    sparsowane.Namespace);
+
+                if (string.IsNullOrEmpty(zawartosc))
+                    return;
 
                 File.WriteAllText(sciezkaDoPlikuBuilder, zawartosc, Encoding.UTF8);
                 projektTestow.DodajPlik(sciezkaDoPlikuBuilder);
@@ -248,18 +252,27 @@ namespace Kruchy.Plugin.Akcje.Akcje
             Obiekt obiektDoZbudowania,
             List<WlasciwoscDlaBuildera> wlasciwosciDlaBuildera,
             string nazwaKlasyBuildera,
-            IParametryGenerowaniaBuildera parametry)
+            IParametryGenerowaniaBuildera parametry,
+            string namespaceObiektuBudowanego)
         {
             var plik = new PlikClassBuilder();
-            plik.WNamespace(projektTestow.Nazwa + "Builders");
+            plik.WNamespace(projektTestow.Nazwa + ".Builders");
             plik.DodajUsing("Pincasso.Core.Tests.Builders");
+            plik.DodajUsing(namespaceObiektuBudowanego);
+            plik.DodajUsing("Piatka.Infrastructure.Tests.Builders");
+
+            var nazwaKlasyInterfejsuSerwisu = parametry.NazwaInterfejsuService;
+
+            if (string.IsNullOrEmpty(nazwaKlasyInterfejsuSerwisu))
+                return null;
+
             plik.ZObiektem(
                 new ClassBuilder()
                     .ZModyfikatorem("public")
                     .ZNazwa(nazwaKlasyBuildera)
                     .ZNadklasa(
                         string.Format("Builder<{0}, {1}>",
-                        parametry.NazwaInterfejsuService,
+                        nazwaKlasyInterfejsuSerwisu,
                         obiektDoZbudowania.Nazwa))
                     .DodajMetode(
                         new MetodaBuilder()
@@ -278,7 +291,6 @@ namespace Kruchy.Plugin.Akcje.Akcje
                             .DodajParametr("IValidationResultListener", "validationListener"))
                         );
 
-            //protected override void Save(IValidationResultListener validationListener)
             return plik.Build();
         }
 

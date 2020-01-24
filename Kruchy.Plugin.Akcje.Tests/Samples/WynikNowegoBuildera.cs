@@ -1,12 +1,14 @@
 ﻿using KomponentyStandardowe.Data;
+using Piatka.Infrastructure.Tests.Builders;
 using Piatka.Infrastructure.Utils;
 using Piatka.Log.Attributes;
 using Pincasso.Core.Attributes;
 using Pincasso.Core.Base;
 using Pincasso.Core.Tests.Builders;
+using Pincasso.Kontrahenci.Core.Domain;
 using Pincasso.Lokalizacje.Core.Domain;
 
-namespace a1.testsBuilders
+namespace a1.tests.Builders
 {
     public class DomainObjectBuilder : Builder<IDomainService, DomainObject>
     {

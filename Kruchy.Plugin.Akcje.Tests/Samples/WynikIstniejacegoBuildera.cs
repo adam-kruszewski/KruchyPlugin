@@ -6,7 +6,7 @@ using Pincasso.Core.Base;
 using Pincasso.Core.Tests.Builders;
 using Pincasso.Lokalizacje.Core.Domain;
 
-namespace a1.testsBuilders
+namespace a1.tests.Builders
 {
     public class DomainObjectBuilder : Builder<IDomainService, DomainObject>
     {
