@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="PotwierdzenieSalda"
+    targetNamespace="http://tempuri.org/PotwierdzenieSalda.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/PotwierdzenieSalda.xsd"
+    xmlns:mstns="http://tempuri.org/PotwierdzenieSalda.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Header">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Saldo" type="xs:decimal" />
+        <xs:element name="SaldoNierozksiegowanychWplat" type="xs:decimal" />
+        <xs:element name="DataWystawienia" type="xs:string" />
+        <xs:element name="DataWydruku" type="xs:string" />
+        <xs:element name="KontoNumer" type="xs:string" />
+        <xs:element name="Pracownik" type="xs:string" />
+        <xs:element name="PracownikDaneKontaktowe" type="xs:string" nillable="true" />
+        <xs:element name="SaldoZaGaz" type="xs:string" />
+        <xs:element name="SaldoZaOdsetki" type="xs:string" />
+        <xs:element name="SaldoOdsetekWewnetrznych" type="xs:string" nillable="true" />
+        <xs:element name="PodmiotGospodarczy" type="xs:boolean" nillable="true" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NierozksiegowaneWplaty">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Kwota" type="xs:string" />
+        <xs:element name="Data" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NiezaplaconeFaktury">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="KwotaBrutto" type="xs:string" />
+        <xs:element name="DoZaplatyZaGaz" type="xs:string" />
+        <xs:element name="DoZaplatyOdsetki" type="xs:string" />
+        <xs:element name="DoZaplaty" type="xs:string" />
+        <xs:element name="NumerSformatowany" type="xs:string" />
+        <xs:element name="DataWystawienia" type="xs:string" />
+        <xs:element name="TerminPlatnosci" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NiezaplaconeNotyOdsetkowe">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="KwotaBrutto" type="xs:string" nillable="true" />
+        <xs:element name="DoZaplaty" type="xs:string" nillable="true" />
+        <xs:element name="NumerSformatowany" type="xs:string" nillable="true"/>
+        <xs:element name="DataWystawienia" type="xs:string" nillable="true"/>
+        <xs:element name="TerminPlatnosci" type="xs:string" nillable="true"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
