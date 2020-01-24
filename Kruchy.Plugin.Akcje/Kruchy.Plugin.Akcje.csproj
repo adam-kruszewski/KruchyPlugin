@@ -50,10 +50,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Akcje\DodawanieUsinga.cs" />
+    <Compile Include="Akcje\Generowanie.Xsd.Komponenty\IParametryGenerowaniaXsd.cs" />
     <Compile Include="Akcje\GenerowanieBuildera.cs" />
     <Compile Include="Akcje\Generowanie.Buildera.Komponenty\IParametryGenerowaniaBuildera.cs" />
     <Compile Include="Akcje\GenerowanieKlasService.cs" />
     <Compile Include="Akcje\GenerowanieKlasyTestowej.cs" />
+    <Compile Include="Akcje\GenerowanieXsdDlaReportView.cs" />
     <Compile Include="Akcje\RodzajKlasyTestowej.cs" />
     <Compile Include="Akcje\UzupelnianieKonstruktora.cs" />
     <Compile Include="Akcje\ZmianaModyfikatoraMetody.cs" />
