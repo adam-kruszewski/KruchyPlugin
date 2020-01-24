@@ -66,7 +66,6 @@
     </Compile>
     <Compile Include="Akcje\DodawanieNowejMetodyWBuilderze.cs" />
     <Compile Include="Akcje\DodawanieUprawnienDomyslnych.cs" />
-    <Compile Include="Akcje\DodawaniaUsinga.cs" />
     <Compile Include="Akcje\DodawanieNowegoTestu.cs" />
     <Compile Include="Akcje\DodawanieUsingDbContext.cs" />
     <Compile Include="Akcje\GenerowanieKlasyWalidatora.cs" />
@@ -89,7 +88,6 @@
     <Compile Include="Menu\PozycjaDodawanieNowejMetodyWBuilderze.cs" />
     <Compile Include="Menu\PozycjaDodawanieUprawnienDomyslnych.cs" />
     <Compile Include="Menu\PozycjaDodawanieUsingDbContext.cs" />
-    <Compile Include="Menu\PozycjaDodawanieUsingow.cs" />
     <Compile Include="Menu\PozycjaGenerowanieKlasyWalidatora.cs" />
     <Compile Include="Menu\PozycjaGenerowanieWidoku.cs" />
     <Compile Include="Menu\PozycjaIdzDoGridRowActions.cs" />
