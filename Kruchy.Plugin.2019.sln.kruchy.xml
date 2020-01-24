@@ -1,0 +1,61 @@
+<KruchyPlugin>
+  <Usingi>
+    <Namespace>
+      <Nazwa>Piatka.Infrastructure.Mappings</Nazwa>
+    </Namespace>
+    <Namespace Uzycie=".Tests.">
+      <Nazwa>FluentAssertions</Nazwa>
+    </Namespace>
+    <Namespace>
+      <Nazwa>System.Linq</Nazwa>
+    </Namespace>
+    <Namespace Uzycie="^((?!(Tests)).)*$">
+      <Nazwa>%NAZWA_MODULU%.Domain</Nazwa>
+    </Namespace>
+    <Namespace Uzycie="^((?!(Tests)).)*$">
+      <Nazwa>%NAZWA_MODULU%.Dao</Nazwa>
+    </Namespace>
+    <Namespace Uzycie="^((?!(Tests)).)*$">
+      <Nazwa>%NAZWA_MODULU%.Validation</Nazwa>
+    </Namespace>
+    <Namespace Uzycie="^((?!(Tests)).)*$">
+      <Nazwa>%NAZWA_MODULU%.Views</Nazwa>
+    </Namespace>
+    <Namespace Uzycie="^((?!(Tests)).)*$">
+      <Nazwa>%NAZWA_MODULU%.Messages</Nazwa>
+    </Namespace>
+    <Namespace Uzycie=".Tests.">
+      <Nazwa>%NAZWA_MODULU_TESTOWANEGO%.Validation</Nazwa>
+    </Namespace>
+    <Namespace Uzycie=".Tests.">
+      <Nazwa>%NAZWA_MODULU_TESTOWANEGO%.Domain</Nazwa>
+    </Namespace>
+
+  </Usingi>
+  <SortowanieZaleznosciSerwisow>true</SortowanieZaleznosciSerwisow>
+  <PrzejdzDo>
+    <PrzejdzDo>
+      <Sciezka>Kruchy.Plugin.2019.sln.kruchy.xml</Sciezka>
+    </PrzejdzDo>
+  </PrzejdzDo>
+
+  <KlasyTestowe>
+
+
+    <KlasaTestowa>
+      <Nazwa>Zwykla</Nazwa>
+      <Zawartosc>using %NAMESPACE_INTERFEJSU_TESTOWANEGO%;
+using FluentAssertions;
+using NUnit.Framework;
+
+namespace %NAMESPACE%
+{
+    [TestFixture]
+    public class %NAZWA_KLASY%
+    {
+    }
+}</Zawartosc>
+    </KlasaTestowa>
+
+  </KlasyTestowe>
+</KruchyPlugin>

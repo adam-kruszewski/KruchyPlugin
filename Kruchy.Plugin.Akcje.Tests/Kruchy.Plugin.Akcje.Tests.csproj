@@ -164,9 +164,11 @@
     <EmbeddedResource Include="Samples\DomainBuilderNiepelny.cs" />
     <EmbeddedResource Include="Samples\WynikNowegoBuildera.cs" />
     <EmbeddedResource Include="Samples\WynikIstniejacegoBuildera.cs" />
+    <EmbeddedResource Include="Samples\ReportView.cs" />
     <Compile Include="TestyInfrastrukturyTestow\DokumentWrapperTests.cs" />
     <EmbeddedResource Include="Samples\UzupelnianieKonstruktoraPrzyStalej.cs" />
     <Compile Include="Unit\DodawanieUsingaTests.cs" />
+    <Compile Include="Unit\GenerowanieXsdDlaReportViewTests.cs" />
     <Compile Include="Unit\UzupelnianieKonstruktoraTests.cs" />
     <Compile Include="Unit\UzupelnianieKonstruktoraZDziedziczeniemTests.cs" />
     <Compile Include="Unit\GenerowanieBuilderaTests.cs" />
@@ -191,6 +193,9 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <EmbeddedResource Include="Samples\ReportViewXsd.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.2.6.1\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />
