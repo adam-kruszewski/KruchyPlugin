@@ -317,6 +317,16 @@
         <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
 
+      <Button guid="guidCommand1PackageCmdSet" id="cmdidGenerujXsdDlaReportView" priority="0x0140" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="PozostaleKodoweGroup" />
+        <Strings>
+          <CommandName>cmdidGenerujXsdDlaReportView</CommandName>
+          <ButtonText>Generuj xsd dla ReportView</ButtonText>
+        </Strings>
+        <CommandFlag>DefaultDisabled</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+      </Button>
+
       <!--Menu Krucha nawigacja-->
       <Button id="cmdidIdzDoImplementacji" priority="0x0101"  guid="guidCommand1PackageCmdSet" type="Button">
         <Parent guid="guidCommand1PackageCmdSet" id="PodrozowanieMenuGroup"/>
@@ -497,6 +507,7 @@
       <IDSymbol name="cmdidDodajMapowania" value="0x0164"/>
       <IDSymbol name="cmdidInicjujWKontruktorze" value="0x0165"/>
       <IDSymbol name="cmdidGenerujBuildera" value="0x0166"/>
+      <IDSymbol name="cmdidGenerujXsdDlaReportView" value="0x0167"/>
 
       <IDSymbol name="cmdidIdzDoImplementacji" value="0x0170"/>
       <IDSymbol name="cmdidIdzDoKataloguControllera" value="0x0171"/>
