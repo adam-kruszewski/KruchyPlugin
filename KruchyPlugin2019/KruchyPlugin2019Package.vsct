@@ -316,7 +316,7 @@
       </Button>
 
       <Button guid="guidCommand1PackageCmdSet" id="cmdidGenerujXsdDlaReportView" priority="0x0140" type="Button">
-        <Parent guid="guidCommand1PackageCmdSet" id="GenerowanieNowychKlasMetodGroup" />
+        <Parent guid="guidCommand1PackageCmdSet" id="PozostaleKodoweGroup" />
         <Strings>
           <CommandName>cmdidGenerujXsdDlaReportView</CommandName>
           <ButtonText>Generuj xsd dla ReportView</ButtonText>
