@@ -40,6 +40,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             var aktualnyProjekt = solution.AktualnyProjekt;
 
             var dokument = DajNowyDokumentLubWczytajIstniejacy(klasaView, sciezkaDoXsd);
+            ZapiszDokument(dokument, sciezkaDoXsd);
 
             var elementHeader = DajElementHeader(dokument);
 
@@ -254,6 +255,8 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
             element1.AppendChild(CreateElementDefinicjiObiektu(nowyDokument, "header"));
 
+            ZapiszDokument(nowyDokument, sciezkaDoXsd);
+
             solution.AktualnyProjekt.DodajPlik(sciezkaDoXsd);
 
             return nowyDokument;
@@ -265,7 +268,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             settings.Encoding = Encoding.UTF8;
             settings.Indent = true;
 
-            using (var fileStream = new FileStream(sciezkaDoXsd, FileMode.CreateNew))
+            using (var fileStream = new FileStream(sciezkaDoXsd, FileMode.OpenOrCreate))
             using (var streamWriter = new StreamWriter(fileStream, Encoding.UTF8))
             using (var writer = XmlWriter.Create(streamWriter, settings))
             {
