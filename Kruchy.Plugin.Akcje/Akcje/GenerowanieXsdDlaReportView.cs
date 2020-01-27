@@ -1,10 +1,8 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
-using System.Xml.Linq;
 using Kruchy.Plugin.Akcje.Akcje.Generowanie.Xsd.Komponenty;
 using Kruchy.Plugin.Utils.Wrappers;
 using KruchyParserKodu.ParserKodu;
@@ -33,9 +31,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             if (string.IsNullOrEmpty(sciezkaDoXsd))
                 return;
 
-            var sparsowane = Parser.Parsuj(solution.AktualnyDokument.DajZawartosc());
-
-            Obiekt klasaView = DajKlaseReportView(sparsowane);
+            Obiekt klasaView = DajKlaseReportView();
 
             if (klasaView == null)
                 return;
@@ -80,47 +76,66 @@ namespace Kruchy.Plugin.Akcje.Akcje
                     wlasciwosc);
             }
 
-            UzupelnijDaneOdnosniePolaTypuKolejkcja(klasaView, dokument);
+            UzupelnijDaneOdnosniePolTypuKolekcja(klasaView, dokument);
         }
 
-        private void UzupelnijDaneOdnosniePolaTypuKolejkcja(
+        private void UzupelnijDaneOdnosniePolTypuKolekcja(
             Obiekt klasaView,
             XmlDocument dokument)
         {
             var rootElement = dokument.DocumentElement;
 
             foreach (var wlasciwosc in klasaView.Propertiesy.Where(o => Kolekcja(o)))
+                UzupelnijDefinicjePolaTypuKolekcja(dokument, rootElement, wlasciwosc);
+        }
+
+        private void UzupelnijDefinicjePolaTypuKolekcja(
+            XmlDocument dokument,
+            XmlElement rootElement,
+            Property wlasciwosc)
+        {
+            var elementDlaWlasciwosci =
+                SzukajElementuWgAttrybutuName(rootElement, wlasciwosc.Nazwa);
+
+            string nazwaKlasy = DajNazweKlasyObiektuKolekcjonowanego(wlasciwosc);
+
+            if (elementDlaWlasciwosci == null)
             {
-                var elementDlaWlasciwosci =
-                    SzukajElementuWgAttrybutuName(rootElement, wlasciwosc.Nazwa);
-
-                var regex = new Regex(@"<([A-Za-z0-9_]+)>");
-                var match = regex.Match(wlasciwosc.NazwaTypu);
-
-                var nazwaKlasy = match.Groups[1].Value;
-                if (elementDlaWlasciwosci == null)
-                {
-                    elementDlaWlasciwosci = CreateElementDefinicjiObiektu(dokument, nazwaKlasy);
-                    rootElement.AppendChild(elementDlaWlasciwosci);
-                }
-
-                var plikZKlasa =
-                    solution
-                        .AktualnyProjekt
-                            .Pliki
-                                .Single(o => o.NazwaBezRozszerzenia == nazwaKlasy);
-
-                var klasaObiektuKolekcjonowanego =
-                    Parser
-                        .ParsujPlik(plikZKlasa.SciezkaPelna)
-                            .DefiniowaneObiekty
-                                .Single(o => o.Nazwa == nazwaKlasy);
-
-                UzupelnijDefinicjeWgKlasy(
-                    klasaObiektuKolekcjonowanego,
-                    dokument,
-                    elementDlaWlasciwosci);
+                elementDlaWlasciwosci = CreateElementDefinicjiObiektu(dokument, wlasciwosc.Nazwa);
+                rootElement.AppendChild(elementDlaWlasciwosci);
             }
+
+            var klasaObiektuKolekcjonowanego = DajKlaseWProjekcieWgNazwy(nazwaKlasy);
+
+            UzupelnijDefinicjeWgKlasy(
+                klasaObiektuKolekcjonowanego,
+                dokument,
+                elementDlaWlasciwosci);
+        }
+
+        private Obiekt DajKlaseWProjekcieWgNazwy(string nazwaKlasy)
+        {
+            var plikZKlasa =
+                solution
+                    .AktualnyProjekt
+                        .Pliki
+                            .Single(o => o.NazwaBezRozszerzenia == nazwaKlasy);
+
+            var klasaObiektuKolekcjonowanego =
+                Parser
+                    .ParsujPlik(plikZKlasa.SciezkaPelna)
+                        .DefiniowaneObiekty
+                            .Single(o => o.Nazwa == nazwaKlasy);
+            return klasaObiektuKolekcjonowanego;
+        }
+
+        private string DajNazweKlasyObiektuKolekcjonowanego(Property wlasciwosc)
+        {
+            var regex = new Regex(@"<([A-Za-z0-9_]+)>");
+            var match = regex.Match(wlasciwosc.NazwaTypu);
+
+            var nazwaKlasy = match.Groups[1].Value;
+            return nazwaKlasy;
         }
 
         private void UzupelnijDaneOdnosnieTypuINullowalnosci(
@@ -216,13 +231,15 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 return ladowanyDokument;
             }
 
-            XmlDocument nowyDokument = new XmlDocument();
+            var nowyDokument = new XmlDocument();
 
-            XmlDeclaration xmlDeclaration = nowyDokument.CreateXmlDeclaration("1.0", "UTF-8", null);
-            XmlElement root = nowyDokument.DocumentElement;
+            var xmlDeclaration =
+                nowyDokument.CreateXmlDeclaration("1.0", "UTF-8", null);
+
+            var root = nowyDokument.DocumentElement;
             nowyDokument.InsertBefore(xmlDeclaration, root);
 
-            XmlElement element1 = CreateRootElement(klasaView, nowyDokument);
+            var element1 = CreateRootElement(klasaView, nowyDokument);
 
             element1.AppendChild(CreateElementDefinicjiObiektu(nowyDokument, "header"));
 
@@ -262,7 +279,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             XmlElement element1 = doc.CreateElement("xs", "schema", NamespaceXS);
             doc.AppendChild(element1);
 
-            element1.SetAttribute("id", klasaView.Nazwa);
+            element1.SetAttribute("id", DajNazweKlasyWXsd(klasaView));
             element1.SetAttribute("targetNamespace", DajTargetNamespace(klasaView));
             element1.SetAttribute("elementFormDefault", "qualified");
             element1.SetAttribute("xmlns", DajTargetNamespace(klasaView));
@@ -271,14 +288,30 @@ namespace Kruchy.Plugin.Akcje.Akcje
             return element1;
         }
 
-        private static string DajTargetNamespace(Obiekt klasaView)
+        private static string DajNazweKlasyWXsd(Obiekt klasa)
         {
-            return string.Format("http://tempuri.org/{0}.xsd", klasaView.Nazwa);
+            var nazwa = klasa.Nazwa;
+            return DajNazweKlasyWXsd(nazwa);
         }
 
-        private Obiekt DajKlaseReportView(
-            Plik sparsowane)
+        private static string DajNazweKlasyWXsd(string nazwa)
         {
+            var stringReportView = "ReportView";
+            if (nazwa.EndsWith(stringReportView))
+                return nazwa.Substring(0, nazwa.Length - stringReportView.Length);
+            else
+                return nazwa;
+        }
+
+        private static string DajTargetNamespace(Obiekt klasaView)
+        {
+            return string.Format("http://tempuri.org/{0}.xsd", DajNazweKlasyWXsd(klasaView));
+        }
+
+        private Obiekt DajKlaseReportView()
+        {
+            var sparsowane = Parser.Parsuj(solution.AktualnyDokument.DajZawartosc());
+
             var klasy =
                 sparsowane
                     .DefiniowaneObiekty
