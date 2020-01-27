@@ -29,8 +29,6 @@ namespace Pincasso.Drukowanie.Core.Views
 
         public IList<NiezaplaconaFakturaReportView> NiezaplaconeFaktury { get; set; }
 
-        public IList<NiezaplaconaNotaOdsetkowaReportView> NiezaplaconeNotyOdsetkowe { get; set; }
-
         public string SaldoOdsetekWewnetrznych { get; set; }
 
         public bool PodmiotGospodarczy { get; set; }

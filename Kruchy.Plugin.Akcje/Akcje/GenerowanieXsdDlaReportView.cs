@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Xml;
 using System.Xml.Linq;
 using Kruchy.Plugin.Akcje.Akcje.Generowanie.Xsd.Komponenty;
@@ -45,7 +46,21 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
             var elementHeader = DajElementHeader(dokument);
 
-            var elementComplexType = SzukajElementuWgNazwy(elementHeader, "xs:complexType");
+            UzupelnijDefinicjeWgKlasy(klasaView, dokument, elementHeader);
+
+            ZapiszDokument(dokument, sciezkaDoXsd);
+            solutionExplorer.OtworzPlik(sciezkaDoXsd);
+
+            if (!aktualnyProjekt.Pliki.Any(o => o.SciezkaPelna == sciezkaDoXsd))
+                aktualnyProjekt.DodajPlik(sciezkaDoXsd);
+        }
+
+        private void UzupelnijDefinicjeWgKlasy(
+            Obiekt klasaView,
+            XmlDocument dokument,
+            XmlElement element)
+        {
+            var elementComplexType = SzukajElementuWgNazwy(element, "xs:complexType");
             var elementSequenceWHeader = SzukajElementuWgNazwy(elementComplexType, "xs:sequence");
 
             foreach (var wlasciwosc in klasaView.Propertiesy.Where(o => !Kolekcja(o)))
@@ -64,8 +79,48 @@ namespace Kruchy.Plugin.Akcje.Akcje
                     elementOdpowiadajacy,
                     wlasciwosc);
             }
-            ZapiszDokument(dokument, sciezkaDoXsd);
-            solutionExplorer.OtworzPlik(sciezkaDoXsd);
+
+            UzupelnijDaneOdnosniePolaTypuKolejkcja(klasaView, dokument);
+        }
+
+        private void UzupelnijDaneOdnosniePolaTypuKolejkcja(
+            Obiekt klasaView,
+            XmlDocument dokument)
+        {
+            var rootElement = dokument.DocumentElement;
+
+            foreach (var wlasciwosc in klasaView.Propertiesy.Where(o => Kolekcja(o)))
+            {
+                var elementDlaWlasciwosci =
+                    SzukajElementuWgAttrybutuName(rootElement, wlasciwosc.Nazwa);
+
+                var regex = new Regex(@"<([A-Za-z0-9_]+)>");
+                var match = regex.Match(wlasciwosc.NazwaTypu);
+
+                var nazwaKlasy = match.Groups[1].Value;
+                if (elementDlaWlasciwosci == null)
+                {
+                    elementDlaWlasciwosci = CreateElementDefinicjiObiektu(dokument, nazwaKlasy);
+                    rootElement.AppendChild(elementDlaWlasciwosci);
+                }
+
+                var plikZKlasa =
+                    solution
+                        .AktualnyProjekt
+                            .Pliki
+                                .Single(o => o.NazwaBezRozszerzenia == nazwaKlasy);
+
+                var klasaObiektuKolekcjonowanego =
+                    Parser
+                        .ParsujPlik(plikZKlasa.SciezkaPelna)
+                            .DefiniowaneObiekty
+                                .Single(o => o.Nazwa == nazwaKlasy);
+
+                UzupelnijDefinicjeWgKlasy(
+                    klasaObiektuKolekcjonowanego,
+                    dokument,
+                    elementDlaWlasciwosci);
+            }
         }
 
         private void UzupelnijDaneOdnosnieTypuINullowalnosci(
@@ -98,6 +153,9 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 case "bool":
                 case "bool?":
                     return "xs:boolean";
+                case "DateTime":
+                case "DateTime?":
+                    return "xs:datetime";
             }
 
             return "?????";
@@ -166,7 +224,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
             XmlElement element1 = CreateRootElement(klasaView, nowyDokument);
 
-            element1.AppendChild(CreateElementComplexType(nowyDokument, "header"));
+            element1.AppendChild(CreateElementDefinicjiObiektu(nowyDokument, "header"));
 
             return nowyDokument;
         }
@@ -185,7 +243,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             }
         }
 
-        private XmlElement CreateElementComplexType(XmlDocument doc, string nazwa)
+        private XmlElement CreateElementDefinicjiObiektu(XmlDocument doc, string nazwa)
         {
             XmlElement elementGlowny = doc.CreateElement("xs", "element", NamespaceXS);
             elementGlowny.SetAttribute("name", nazwa);

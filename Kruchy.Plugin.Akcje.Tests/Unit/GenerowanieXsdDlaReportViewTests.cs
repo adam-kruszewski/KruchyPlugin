@@ -30,12 +30,16 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
             using (var projekt = new ProjektWrapper("a1"))
             {
                 var solution = new SolutionWrapper(zawartoscView);
+                solution.AktualnyProjekt = projekt;
 
                 var plikZView = new PlikWrapper(
                     "ReportView.cs",
                     "Views",
                     projekt,
                     zawartoscView);
+
+                new PlikWrapper("NierozksiegowanaWplataReportView.cs", projekt);
+                new PlikWrapper("NiezaplaconaFakturaReportView.cs", projekt);
 
                 solution.DodajProjekt(projekt);
                 var solutionExplorer = new SolutionExlorerWrapper(solution);

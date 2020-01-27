@@ -35,22 +35,6 @@
       <xs:sequence>
         <xs:element name="KwotaBrutto" type="xs:string" />
         <xs:element name="DoZaplatyZaGaz" type="xs:string" />
-        <xs:element name="DoZaplatyOdsetki" type="xs:string" />
-        <xs:element name="DoZaplaty" type="xs:string" />
-        <xs:element name="NumerSformatowany" type="xs:string" />
-        <xs:element name="DataWystawienia" type="xs:string" />
-        <xs:element name="TerminPlatnosci" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="NiezaplaconeNotyOdsetkowe">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element name="KwotaBrutto" type="xs:string" nillable="true" />
-        <xs:element name="DoZaplaty" type="xs:string" nillable="true" />
-        <xs:element name="NumerSformatowany" type="xs:string" nillable="true"/>
-        <xs:element name="DataWystawienia" type="xs:string" nillable="true"/>
-        <xs:element name="TerminPlatnosci" type="xs:string" nillable="true"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>

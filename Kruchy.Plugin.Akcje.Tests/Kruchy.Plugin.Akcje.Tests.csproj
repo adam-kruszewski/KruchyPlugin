@@ -165,6 +165,8 @@
     <EmbeddedResource Include="Samples\WynikNowegoBuildera.cs" />
     <EmbeddedResource Include="Samples\WynikIstniejacegoBuildera.cs" />
     <EmbeddedResource Include="Samples\ReportView.cs" />
+    <EmbeddedResource Include="Samples\NierozksiegowanaWplataReportView.cs" />
+    <EmbeddedResource Include="Samples\NiezaplaconaFakturaReportView.cs" />
     <Compile Include="TestyInfrastrukturyTestow\DokumentWrapperTests.cs" />
     <EmbeddedResource Include="Samples\UzupelnianieKonstruktoraPrzyStalej.cs" />
     <Compile Include="Unit\DodawanieUsingaTests.cs" />

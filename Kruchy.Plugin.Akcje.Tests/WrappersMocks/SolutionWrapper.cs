@@ -40,7 +40,7 @@ namespace Kruchy.Plugin.Akcje.Tests.WrappersMocks
 
         public IPlikWrapper AktualnyPlik { get { return new Mock<IPlikWrapper>().Object; } }
 
-        public IProjektWrapper AktualnyProjekt { get; private set; }
+        public IProjektWrapper AktualnyProjekt { get; set; }
 
         public IDokumentWrapper AktualnyDokument { get { return dokument; } }
 
