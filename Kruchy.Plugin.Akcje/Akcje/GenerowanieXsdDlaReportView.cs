@@ -45,6 +45,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             UzupelnijDefinicjeWgKlasy(klasaView, dokument, elementHeader);
 
             ZapiszDokument(dokument, sciezkaDoXsd);
+
             solutionExplorer.OtworzPlik(sciezkaDoXsd);
 
             if (!aktualnyProjekt.Pliki.Any(o => o.SciezkaPelna == sciezkaDoXsd))
@@ -222,7 +223,9 @@ namespace Kruchy.Plugin.Akcje.Akcje
             return poczatkiKolekcji.Any(o => nazwaTypu.StartsWith(o));
         }
 
-        private XmlDocument DajNowyDokumentLubWczytajIstniejacy(Obiekt klasaView, string sciezkaDoXsd)
+        private XmlDocument DajNowyDokumentLubWczytajIstniejacy(
+            Obiekt klasaView,
+            string sciezkaDoXsd)
         {
             if (File.Exists(sciezkaDoXsd))
             {
@@ -242,6 +245,8 @@ namespace Kruchy.Plugin.Akcje.Akcje
             var element1 = CreateRootElement(klasaView, nowyDokument);
 
             element1.AppendChild(CreateElementDefinicjiObiektu(nowyDokument, "header"));
+
+            solution.AktualnyProjekt.DodajPlik(sciezkaDoXsd);
 
             return nowyDokument;
         }

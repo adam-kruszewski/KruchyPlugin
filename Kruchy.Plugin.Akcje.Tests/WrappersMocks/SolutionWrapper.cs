@@ -13,7 +13,12 @@ namespace Kruchy.Plugin.Akcje.Tests.WrappersMocks
         IDokumentWrapper dokument;
         private IList<IProjektWrapper> projekty;
 
-        public SolutionWrapper(string aktualnaZawartosc)
+        public SolutionWrapper()
+        {
+            AktualnyPlik = new Mock<IPlikWrapper>().Object;
+        }
+
+        public SolutionWrapper(string aktualnaZawartosc) : this()
         {
             dokument = new DokumentWrapper(aktualnaZawartosc);
             projekty = new List<IProjektWrapper>();
@@ -38,7 +43,7 @@ namespace Kruchy.Plugin.Akcje.Tests.WrappersMocks
 
         public string Katalog { get { return "A"; } }
 
-        public IPlikWrapper AktualnyPlik { get { return new Mock<IPlikWrapper>().Object; } }
+        public IPlikWrapper AktualnyPlik { get; private set; }
 
         public IProjektWrapper AktualnyProjekt { get; set; }
 
@@ -54,6 +59,7 @@ namespace Kruchy.Plugin.Akcje.Tests.WrappersMocks
         public void OtworzPlik(string sciezka)
         {
             AktualnyProjekt = Projekty.SingleOrDefault(o => ZawieraPlik(o, sciezka));
+            AktualnyPlik = AktualnyProjekt.Pliki.SingleOrDefault(o => o.SciezkaPelna == sciezka);
             dokument = new DokumentWrapper(File.ReadAllText(sciezka, Encoding.UTF8));
         }
 
