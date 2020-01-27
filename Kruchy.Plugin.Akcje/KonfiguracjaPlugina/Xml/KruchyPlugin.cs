@@ -12,11 +12,14 @@ namespace Kruchy.Plugin.Akcje.KonfiguracjaPlugina.Xml
 
         public List<KlasaTestowa> KlasyTestowe { get; set; }
 
+        public List<MapowanieTypuXsd> MapowaniaTypowXsd { get; set; }
+
         public KruchyPlugin()
         {
             Usingi = new List<Namespace>();
             PrzejdzDo = new List<PrzejdzDo>();
             KlasyTestowe = new List<KlasaTestowa>();
+            MapowaniaTypowXsd = new List<MapowanieTypuXsd>();
         }
     }
 

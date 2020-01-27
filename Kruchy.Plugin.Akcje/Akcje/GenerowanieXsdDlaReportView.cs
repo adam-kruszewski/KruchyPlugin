@@ -4,6 +4,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
 using Kruchy.Plugin.Akcje.Akcje.Generowanie.Xsd.Komponenty;
+using Kruchy.Plugin.Akcje.KonfiguracjaPlugina;
 using Kruchy.Plugin.Utils.Wrappers;
 using KruchyParserKodu.ParserKodu;
 
@@ -156,6 +157,13 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         private string DajNazweTypuDoXml(string nazwaTypu)
         {
+            var mapowania = Konfiguracja.GetInstance(solution).MapowaniaTypowXsd();
+
+            var mapowanie = mapowania.SingleOrDefault(o => o.NazwaTypu == nazwaTypu);
+
+            if (mapowanie != null)
+                return mapowanie.NazwaWXsd;
+
             switch (nazwaTypu)
             {
                 case "string":

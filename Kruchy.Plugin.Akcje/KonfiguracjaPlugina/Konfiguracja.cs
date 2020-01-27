@@ -82,5 +82,10 @@ namespace Kruchy.Plugin.Akcje.KonfiguracjaPlugina
         {
             return konfiguracjaXml.KlasyTestowe;
         }
+
+        public IEnumerable<MapowanieTypuXsd> MapowaniaTypowXsd()
+        {
+            return konfiguracjaXml.MapowaniaTypowXsd;
+        }
     }
 }
