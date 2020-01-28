@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Xml.Serialization;
 
 namespace Kruchy.Plugin.Akcje.KonfiguracjaPlugina.Xml
 {
@@ -14,25 +13,15 @@ namespace Kruchy.Plugin.Akcje.KonfiguracjaPlugina.Xml
 
         public List<MapowanieTypuXsd> MapowaniaTypowXsd { get; set; }
 
+        public SchematGenerowania Schematy { get; set; }
+
         public KruchyPlugin()
         {
             Usingi = new List<Namespace>();
             PrzejdzDo = new List<PrzejdzDo>();
             KlasyTestowe = new List<KlasaTestowa>();
             MapowaniaTypowXsd = new List<MapowanieTypuXsd>();
-        }
-    }
-
-    public class Namespace
-    {
-        public string Nazwa { get; set; }
-
-        [XmlAttribute("Uzycie")]
-        public string NamespaceUzycia { get; set; }
-
-        public override string ToString()
-        {
-            return Nazwa;
+            Schematy = new SchematGenerowania();
         }
     }
 }

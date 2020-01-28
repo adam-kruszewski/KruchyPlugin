@@ -73,6 +73,8 @@
     </Compile>
     <Compile Include="KonfiguracjaPlugina\Konfiguracja.cs" />
     <Compile Include="KonfiguracjaPlugina\KonfiguracjaUsingow.cs" />
+    <Compile Include="KonfiguracjaPlugina\Xml\Namespace.cs" />
+    <Compile Include="KonfiguracjaPlugina\Xml\SchematGenerowania.cs" />
     <Compile Include="KonfiguracjaPlugina\Xml\KlasaTestowa.cs" />
     <Compile Include="KonfiguracjaPlugina\Xml\KruchyPlugin.cs" />
     <Compile Include="KonfiguracjaPlugina\Xml\MapowanieTypuXsd.cs" />
