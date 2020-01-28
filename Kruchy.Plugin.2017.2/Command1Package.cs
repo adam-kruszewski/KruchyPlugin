@@ -53,7 +53,7 @@ namespace KruchyCompany.KruchyPlugin1
         /// <summary>
         /// Command1Package GUID string.
         /// </summary>
-        public const string PackageGuidString = "3a159134-75a9-47d4-8e19-9f3e895a9f07";
+        public const string PackageGuidString = "5ffc0f84-e8b7-4742-b523-902d1f2b31e5";
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Command1Package"/> class.
@@ -79,7 +79,7 @@ namespace KruchyCompany.KruchyPlugin1
         {
             await this.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
 
-            PozycjaMenuAdapter.guidKruchyPluginCmdSetStatic = new Guid("641b3a59-28a5-4694-ad6c-56066f4300d9");
+            PozycjaMenuAdapter.guidKruchyPluginCmdSetStatic = new Guid("090c66f0-5900-4ef9-a243-d42476371281");
             var dte = (DTE2)await GetServiceAsync(typeof(SDTE));
             var sw = new SolutionWrapper(dte);
             IMenuCommandService mcs = await GetServiceAsync(typeof(IMenuCommandService)) as IMenuCommandService;

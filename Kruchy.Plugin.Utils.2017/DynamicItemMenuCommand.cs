@@ -91,17 +91,20 @@ namespace Kruchy.Plugin.Utils._2017
             int indexForDisplay = (isRootItem ? 0 : (matchedCommand.MatchedCommandId -
                 (int)matchedCommand.Pozycja.MenuCommandID));
 
-            var pozycjaDlaIndeksu =
-                matchedCommand.Pozycja.DajPozycje().ToArray()[indexForDisplay];
+            var pozycje = matchedCommand.Pozycja.DajPozycje();
 
-            matchedCommand.Text = pozycjaDlaIndeksu.Tekst;
+            if (!pozycje.Any())
+            {
+                var pozycjaDlaIndeksu = pozycje.ToArray()[indexForDisplay];
+
+                matchedCommand.Text = pozycjaDlaIndeksu.Tekst;
+            }
 
             matchedCommand.Enabled =
                 matchedCommand.Pozycja.DostepnaPodakcja(matchedCommand.MatchedCommandId);
             //matchedCommand.Text =
             //    miasta[indexForDisplay - 1];
             ////dte2.Solution.Projects.Item(indexForDisplay).Name;
-            matchedCommand.Enabled = false;
 
             //// Clear the ID because we are done with this item.
             matchedCommand.MatchedCommandId = 0;

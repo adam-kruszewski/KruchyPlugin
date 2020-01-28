@@ -458,10 +458,10 @@
 
   <Symbols>
     <!-- This is the package guid. -->
-    <GuidSymbol name="guidCommand1Package" value="{3a159134-75a9-47d4-8e19-9f3e895a9f07}" />
+    <GuidSymbol name="guidCommand1Package" value="{5ffc0f84-e8b7-4742-b523-902d1f2b31e5}" />
 
     <!-- This is the guid used to group the menu commands together -->
-    <GuidSymbol name="guidCommand1PackageCmdSet" value="{641b3a59-28a5-4694-ad6c-56066f4300d9}">
+    <GuidSymbol name="guidCommand1PackageCmdSet" value="{090c66f0-5900-4ef9-a243-d42476371281}">
       <IDSymbol name="TestGroup2" value="0x2021" />
       <IDSymbol name="TestGroup3" value="0x2022" />
       <IDSymbol name="Command1Id" value="0x2100" />

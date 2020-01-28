@@ -22,7 +22,7 @@ namespace KruchyCompany.KruchyPlugin1
         /// <summary>
         /// Command menu group (command set GUID).
         /// </summary>
-        public static readonly Guid CommandSet = new Guid("641b3a59-28a5-4694-ad6c-56066f4300d9");
+        public static readonly Guid CommandSet = new Guid("090c66f0-5900-4ef9-a243-d42476371281");
 
         /// <summary>
         /// VS Package that provides this command, not null.
