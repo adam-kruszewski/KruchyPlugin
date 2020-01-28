@@ -125,6 +125,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <Content Include="KruchyPluginUI.vsct" />
     <Content Include="Resources\Command1.png" />
   </ItemGroup>
   <ItemGroup>
