@@ -87,5 +87,10 @@ namespace Kruchy.Plugin.Akcje.KonfiguracjaPlugina
         {
             return konfiguracjaXml.MapowaniaTypowXsd;
         }
+
+        public IEnumerable<SchematGenerowania> SchematyGenerowania()
+        {
+            return konfiguracjaXml.Schematy;
+        }
     }
 }

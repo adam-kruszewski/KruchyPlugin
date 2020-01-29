@@ -13,7 +13,7 @@ namespace Kruchy.Plugin.Akcje.KonfiguracjaPlugina.Xml
 
         public List<MapowanieTypuXsd> MapowaniaTypowXsd { get; set; }
 
-        public SchematGenerowania Schematy { get; set; }
+        public List<SchematGenerowania> Schematy { get; set; }
 
         public KruchyPlugin()
         {
@@ -21,7 +21,7 @@ namespace Kruchy.Plugin.Akcje.KonfiguracjaPlugina.Xml
             PrzejdzDo = new List<PrzejdzDo>();
             KlasyTestowe = new List<KlasaTestowa>();
             MapowaniaTypowXsd = new List<MapowanieTypuXsd>();
-            Schematy = new SchematGenerowania();
+            Schematy = new List<SchematGenerowania>();
         }
     }
 }
