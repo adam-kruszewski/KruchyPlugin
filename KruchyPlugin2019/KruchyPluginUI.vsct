@@ -40,6 +40,15 @@
           <ButtonText>Idź do pliku</ButtonText>
         </Strings>
       </Menu>
+
+      <Menu guid="guidCommand1PackageCmdSet" id="MenuGenerujPlikController" priority="0x1000" type="MenuController">
+        <Parent guid="guidCommand1PackageCmdSet" id="ToolbarGenerujPlikItemGroup" />
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Generuj pliki/klas&amp;y</ButtonText>
+        </Strings>
+      </Menu>
+
     </Menus>
 
     <!-- Inside this section we have different sub-sections: one for the menus, another
@@ -82,6 +91,10 @@
         <Parent guid="guidCommand1PackageCmdSet" id="TopLevelMenu"/>
       </Group>
 
+      <Group guid="guidCommand1PackageCmdSet" id="ToolbarGenerujPlikItemGroup" priority="0x110" >
+        <Parent guid="guidCommand1PackageCmdSet" id="TopLevelMenu" />
+      </Group>
+
       <Group guid="guidCommand1PackageCmdSet" id="PodrozowanieMenuGroup" priority="0x0601">
         <Parent guid="guidCommand1PackageCmdSet" id="PodrozowanieMenu"/>
       </Group>
@@ -93,6 +106,11 @@
       <Group guid="guidCommand1PackageCmdSet" id="MenuPrzejdzDoControllerGroup" priority="0x4000" >
         <Parent guid="guidCommand1PackageCmdSet" id="MenuPrzejdzDoController" />
       </Group>
+
+      <Group guid="guidCommand1PackageCmdSet" id="MenuGenerujPlikControllerGroup" priority="0x4000" >
+        <Parent guid="guidCommand1PackageCmdSet" id="MenuGenerujPlikController" />
+      </Group>
+
     </Groups>
 
     <!--Buttons section. -->
@@ -413,7 +431,6 @@
         <CommandFlag>DynamicItemStart</CommandFlag>
         <CommandFlag>DynamicVisibility</CommandFlag>
         <CommandFlag>TextChanges</CommandFlag>
-        <!-- This text does not appear. -->
         <Strings>
           <ButtonText>Project</ButtonText>
         </Strings>
@@ -422,16 +439,35 @@
       <!-- The anchor item to supply the icon/tooltip for the MenuController -->
       <Button guid="guidCommand1PackageCmdSet" id="cmdidPrzejdzDoAnchorCommand" priority="0x0000" >
         <Parent guid="guidCommand1PackageCmdSet" id="MenuPrzejdzDoControllerGroup" />
-        <!-- Do not show on the menu controller's drop down list-->
         <CommandFlag>NoShowOnMenuController</CommandFlag>
-        <!-- Become the permanent anchor item for the menu controller -->
         <CommandFlag>FixMenuController</CommandFlag>
-        <!-- The text that appears in the tooltip.-->
         <CommandFlag>DynamicVisibility</CommandFlag>
         <Strings>
           <ButtonText>Set Startup Project</ButtonText>
         </Strings>
       </Button>
+
+      <Button guid="guidCommand1PackageCmdSet" id="cmdidGenerujPlikStartCommand" priority="0x1000" >
+        <Parent guid="guidCommand1PackageCmdSet" id="MenuGenerujPlikControllerGroup" />
+        <CommandFlag>DynamicItemStart</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <CommandFlag>TextChanges</CommandFlag>
+        <Strings>
+          <ButtonText>Project</ButtonText>
+        </Strings>
+      </Button>
+
+      <!-- The anchor item to supply the icon/tooltip for the MenuController -->
+      <Button guid="guidCommand1PackageCmdSet" id="cmdidGenerujPlikAnchorCommand" priority="0x0000" >
+        <Parent guid="guidCommand1PackageCmdSet" id="MenuGenerujPlikControllerGroup" />
+        <CommandFlag>NoShowOnMenuController</CommandFlag>
+        <CommandFlag>FixMenuController</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Set Startup Project</ButtonText>
+        </Strings>
+      </Button>
+
 
     </Buttons>
 
@@ -517,6 +553,15 @@
      Try not to place command ids after it (e.g. 0x0105, 0x0106).
      If you must add a command id after it, make the gap very large (e.g. 0x200) -->
       <IDSymbol name="cmdidMyDynamicStartCommand" value="0x0304" />
+
+      <IDSymbol name="ToolbarGenerujPlikItemGroup" value="0x3040" />
+      <IDSymbol name="MenuGenerujPlikControllerGroup" value="0x3045" />
+      <IDSymbol name="MenuGenerujPlikController" value ="0x3050"/>
+      <IDSymbol name="cmdidGenerujPlikAnchorCommand" value="0x0323" />
+      <!-- NOTE: The following command expands at run time to some number of ids.
+     Try not to place command ids after it (e.g. 0x0105, 0x0106).
+     If you must add a command id after it, make the gap very large (e.g. 0x200) -->
+      <IDSymbol name="cmdidGenerujPlikStartCommand" value="0x0324" />
 
     </GuidSymbol>
 
