@@ -170,10 +170,12 @@
     <Compile Include="TestyInfrastrukturyTestow\DokumentWrapperTests.cs" />
     <EmbeddedResource Include="Samples\UzupelnianieKonstruktoraPrzyStalej.cs" />
     <Compile Include="Unit\DodawanieUsingaTests.cs" />
+    <Compile Include="Unit\GenerowaniePlikuZSzablonuTests.cs" />
     <Compile Include="Unit\GenerowanieXsdDlaReportViewTests.cs" />
     <Compile Include="Unit\UzupelnianieKonstruktoraTests.cs" />
     <Compile Include="Unit\UzupelnianieKonstruktoraZDziedziczeniemTests.cs" />
     <Compile Include="Unit\GenerowanieBuilderaTests.cs" />
+    <Compile Include="Utils\TymczasowaKonfiguracja.cs" />
     <Compile Include="WrappersMocks\PlikWrapper.cs" />
     <Compile Include="WrappersMocks\ProjektWrapper.cs" />
     <Compile Include="WrappersMocks\SolutionExlorerWrapper.cs" />

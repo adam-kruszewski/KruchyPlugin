@@ -1,11 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Xml.Serialization;
 using Kruchy.Plugin.Akcje.KonfiguracjaPlugina.Xml;
 using Kruchy.Plugin.Utils.Wrappers;
-
 
 namespace Kruchy.Plugin.Akcje.KonfiguracjaPlugina
 {
@@ -15,20 +12,31 @@ namespace Kruchy.Plugin.Akcje.KonfiguracjaPlugina
         private static Konfiguracja instance;
         public static Konfiguracja GetInstance(ISolutionWrapper solution)
         {
-            if (instance == null || instance.solution.PelnaNazwa != solution.PelnaNazwa)
+            if (instance == null || instance.Solution.PelnaNazwa != solution.PelnaNazwa)
                 instance = new Konfiguracja(solution);
+            return instance;
+        }
+
+        public static Konfiguracja SetInstance(Konfiguracja instance1)
+        {
+            instance = instance1;
             return instance;
         }
         #endregion
 
-        private ISolutionWrapper solution;
+        public virtual ISolutionWrapper Solution { get; set; }
 
         private KonfiguracjaUsingow Usingi { get; set; }
         private KruchyPlugin konfiguracjaXml;
 
+        public Konfiguracja()
+        {
+            UstawDefaultoweDlaPincasso();
+        }
+
         private Konfiguracja(ISolutionWrapper solution)
         {
-            this.solution = solution;
+            this.Solution = solution;
             var sciezkaPlikuKonfiguracji = DajSciezkePlikuKonfiguracji(solution);
 
             if (!string.IsNullOrEmpty(sciezkaPlikuKonfiguracji) &&
@@ -88,7 +96,7 @@ namespace Kruchy.Plugin.Akcje.KonfiguracjaPlugina
             return konfiguracjaXml.MapowaniaTypowXsd;
         }
 
-        public IEnumerable<SchematGenerowania> SchematyGenerowania()
+        public virtual IEnumerable<SchematGenerowania> SchematyGenerowania()
         {
             return konfiguracjaXml.Schematy;
         }

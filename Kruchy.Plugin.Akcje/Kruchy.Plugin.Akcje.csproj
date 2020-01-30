@@ -55,6 +55,7 @@
     <Compile Include="Akcje\Generowanie.Buildera.Komponenty\IParametryGenerowaniaBuildera.cs" />
     <Compile Include="Akcje\GenerowanieKlasService.cs" />
     <Compile Include="Akcje\GenerowanieKlasyTestowej.cs" />
+    <Compile Include="Akcje\GenerowaniePlikuZSzablonu.cs" />
     <Compile Include="Akcje\GenerowanieXsdDlaReportView.cs" />
     <Compile Include="Akcje\RodzajKlasyTestowej.cs" />
     <Compile Include="Akcje\UzupelnianieKonstruktora.cs" />

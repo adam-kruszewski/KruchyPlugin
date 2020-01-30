@@ -18,6 +18,8 @@ namespace Kruchy.Plugin.Akcje.KonfiguracjaPlugina.Xml
     {
         public List<Zmienna> Zmienne { get; set; }
 
+        public string NazwaPliku { get; set; }
+
         public string Tresc { get; set; }
 
         public SchematKlasy()
