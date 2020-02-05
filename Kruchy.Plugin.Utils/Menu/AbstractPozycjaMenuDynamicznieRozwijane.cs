@@ -16,7 +16,7 @@ namespace Kruchy.Plugin.Utils.Menu
             pozycjeRozwijane = new List<IPodpozycjaMenuDynamicznego>();
         }
 
-        public uint OstanieCommandID => MenuCommandID +  (uint)(DajDostepnePozycje().Count() - 1);
+        public uint OstanieCommandID => MenuCommandID + (uint)(DajDostepnePozycje().Count() - 1);
 
         abstract public uint MenuCommandID { get; }
 
@@ -30,8 +30,7 @@ namespace Kruchy.Plugin.Utils.Menu
         {
             pozycjeRozwijane.Clear();
 
-            pozycjeRozwijane.AddRange(
-                DajDostepnePozycje()));
+            pozycjeRozwijane.AddRange(DajDostepnePozycje());
 
             return pozycjeRozwijane
                 .Select(o => new PozycjaMenuRozwijanego
