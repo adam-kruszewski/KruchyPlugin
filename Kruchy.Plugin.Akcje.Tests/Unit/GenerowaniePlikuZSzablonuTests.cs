@@ -96,10 +96,47 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
                 });
         }
 
+        [Test]
+        public void GenerujeTrescZDynamicznaZmienna()
+        {
+            var szablon = new SchematGenerowania();
+            szablon.TytulSchematu = "test1";
+
+            var schematKlasy = new SchematKlasy();
+            schematKlasy.Tresc = "a %KlasaContext%";
+            schematKlasy.NazwaPliku = "ADao.cs";
+            schematKlasy.Zmienne.Add(
+                new Zmienna
+                {
+                    BezRozszerzenia = true,
+                    DopasowaniePliku = ".Context.cs",
+                    Symbol = "KlasaContext"
+                });
+            szablon.SchematyKlas.Add(schematKlasy);
+
+            UruchomTest(
+                "PustaKlasa.cs",
+                szablon,
+                projekt =>
+                {
+                    var sciezkaDoPliku =
+                        Path.Combine(projekt.SciezkaDoKatalogu, "ADao.cs");
+                    projekt.Pliki.Single(o => o.SciezkaPelna == sciezkaDoPliku);
+
+                    File.ReadAllText(sciezkaDoPliku).Should().Be("a ModulContext");
+                },
+                (solution, projekt) =>
+                {
+                    projekt.DodajPustyPlik("ModulContext.cs");
+                    projekt.DodajPustyPlik("ModulContextScope.cs");
+                });
+        }
+
         private void UruchomTest(
             string nazwaZasobuZawartosciAktulnegoPliku,
             SchematGenerowania schematGenerowania,
-            Action<IProjektWrapper> akcjaAssert)
+            Action<IProjektWrapper> akcjaAssert,
+            Action<SolutionWrapper, ProjektWrapper> akcjaDopasowaniaArrange = null)
         {
             using (var projekt = new ProjektWrapper("kruchy.projekt1"))
             {
@@ -113,6 +150,9 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
                 solution.OtworzPlik(plik.SciezkaPelna);
 
                 PrzygotujKonfiguracjeWgSolutionISzablonu(solution, schematGenerowania);
+
+                if (akcjaDopasowaniaArrange != null)
+                    akcjaDopasowaniaArrange(solution, projekt);
 
                 //act
                 new GenerowaniePlikuZSzablonu(null, solution).Generuj("test1");

@@ -50,6 +50,13 @@ namespace Kruchy.Plugin.Akcje.Tests.WrappersMocks
             return plik;
         }
 
+        public IPlikWrapper DodajPustyPlik(string nazwaWzgledna)
+        {
+            var pelnaSciezka = Path.Combine(SciezkaDoKatalogu, nazwaWzgledna);
+            File.WriteAllText(pelnaSciezka, "");
+            return DodajPlik(pelnaSciezka);
+        }
+
         public bool NamespaceNalezyDoProjektu(string nazwaNamespace)
         {
             throw new NotImplementedException();

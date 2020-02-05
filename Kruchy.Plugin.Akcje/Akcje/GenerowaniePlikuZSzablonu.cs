@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Kruchy.Plugin.Akcje.KonfiguracjaPlugina;
 using Kruchy.Plugin.Akcje.KonfiguracjaPlugina.Xml;
@@ -86,7 +87,30 @@ namespace Kruchy.Plugin.Akcje.Akcje
             wynik["NAZWA_PLIKU_BEZ_ROZSZERZENIA"] =
                 solution.AktualnyPlik.NazwaBezRozszerzenia;
 
+            foreach (var zmienna in schematKlasy.Zmienne)
+            {
+                var pasujacyPlik =
+                    solution.AktualnyProjekt.Pliki
+                    .SingleOrDefault(o => PasujePlik(o, zmienna.DopasowaniePliku));
+
+                if (zmienna.BezRozszerzenia)
+                {
+                    wynik[zmienna.Symbol] = pasujacyPlik.NazwaBezRozszerzenia;
+                }
+                else
+                    wynik[zmienna.Symbol] = pasujacyPlik.Nazwa;
+            }
+
             return wynik;
+        }
+
+        private bool PasujePlik(IPlikWrapper plik, string dopasowaniePliku)
+        {
+            var regex = new Regex(dopasowaniePliku);
+
+            var match = regex.Match(plik.SciezkaPelna);
+
+            return match.Success;
         }
 
         private string DajNazweKlasy(Plik sparsowane)
