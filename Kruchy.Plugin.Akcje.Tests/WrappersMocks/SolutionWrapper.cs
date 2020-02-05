@@ -29,6 +29,7 @@ namespace Kruchy.Plugin.Akcje.Tests.WrappersMocks
             string aktualnaZawartosc)
             : this(aktualnaZawartosc)
         {
+            DodajProjekt(projekt);
             AktualnyProjekt = projekt;
         }
 
@@ -43,7 +44,7 @@ namespace Kruchy.Plugin.Akcje.Tests.WrappersMocks
 
         public string Katalog { get { return "A"; } }
 
-        public IPlikWrapper AktualnyPlik { get; private set; }
+        public IPlikWrapper AktualnyPlik { get; set; }
 
         public IProjektWrapper AktualnyProjekt { get; set; }
 

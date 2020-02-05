@@ -47,6 +47,30 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
                 });
         }
 
+        [Test]
+        public void GenerujeKlaseZeZmiennymiWbudowanymi()
+        {
+            var szablon = new SchematGenerowania();
+            szablon.TytulSchematu = "test1";
+
+            var schematKlasy = new SchematKlasy();
+            schematKlasy.Tresc = "a %NAZWA_KLASY% b %NAMESPACE_KLASY% c %NAZWA_PLIKU% d %NAZWA_PLIKU_BEZ_ROZSZERZENIA%";
+            schematKlasy.NazwaPliku = "Klasa1.cs";
+            szablon.SchematyKlas.Add(schematKlasy);
+
+            UruchomTest(
+                "PustaKlasa.cs",
+                szablon,
+                projekt =>
+                {
+                    var sciezkaDoPliku =
+                        Path.Combine(projekt.SciezkaDoKatalogu, schematKlasy.NazwaPliku);
+
+                    File.ReadAllText(sciezkaDoPliku).Should().Be(
+                        "a PustaKlasa b Kruchy.Plugin.Akcje.Tests.Samples c PustaKlasa.cs d PustaKlasa");
+                });
+        }
+
         private void UruchomTest(
             string nazwaZasobuZawartosciAktulnegoPliku,
             SchematGenerowania schematGenerowania,
@@ -55,11 +79,13 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
             using (var projekt = new ProjektWrapper("kruchy.projekt1"))
             {
                 //arrange
-                var zawartoscPustaKlasa =
+                var zawartosc =
                     wczytywacz
                         .DajZawartoscPrzykladu(nazwaZasobuZawartosciAktulnegoPliku);
 
-                var solution = new SolutionWrapper(projekt, zawartoscPustaKlasa);
+                var solution = new SolutionWrapper(projekt, zawartosc);
+                var plik = new PlikWrapper(nazwaZasobuZawartosciAktulnegoPliku, projekt);
+                solution.OtworzPlik(plik.SciezkaPelna);
 
                 PrzygotujKonfiguracjeWgSolutionISzablonu(solution, schematGenerowania);
 
