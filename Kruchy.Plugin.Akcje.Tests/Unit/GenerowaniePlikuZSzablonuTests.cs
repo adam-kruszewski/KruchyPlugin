@@ -1,15 +1,16 @@
-﻿using Kruchy.Plugin.Akcje.Akcje;
-using FluentAssertions;
-using NUnit.Framework;
-using Kruchy.Plugin.Akcje.Tests.WrappersMocks;
-using Kruchy.Plugin.Akcje.Tests.Utils;
-using Moq;
-using Kruchy.Plugin.Akcje.KonfiguracjaPlugina;
-using Kruchy.Plugin.Akcje.KonfiguracjaPlugina.Xml;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using FluentAssertions;
+using Kruchy.Plugin.Akcje.Akcje;
+using Kruchy.Plugin.Akcje.KonfiguracjaPlugina;
+using Kruchy.Plugin.Akcje.KonfiguracjaPlugina.Xml;
+using Kruchy.Plugin.Akcje.Tests.Utils;
+using Kruchy.Plugin.Akcje.Tests.WrappersMocks;
 using Kruchy.Plugin.Utils.Wrappers;
-using System;
+using Moq;
+using NUnit.Framework;
 
 namespace Kruchy.Plugin.Akcje.Tests.Unit
 {
@@ -68,6 +69,30 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
 
                     File.ReadAllText(sciezkaDoPliku).Should().Be(
                         "a PustaKlasa b Kruchy.Plugin.Akcje.Tests.Samples c PustaKlasa.cs d PustaKlasa");
+                });
+        }
+
+        [Test]
+        public void GnerujeKlaseZeZmiennymiWNazwiePliku()
+        {
+            var szablon = new SchematGenerowania();
+            szablon.TytulSchematu = "test1";
+
+            var schematKlasy = new SchematKlasy();
+            schematKlasy.Tresc = "a";
+            schematKlasy.NazwaPliku = "%NAZWA_KLASY%Dao.cs";
+            szablon.SchematyKlas.Add(schematKlasy);
+
+            UruchomTest(
+                "PustaKlasa.cs",
+                szablon,
+                projekt =>
+                {
+                    var sciezkaDoPliku =
+                        Path.Combine(projekt.SciezkaDoKatalogu, "PustaKlasaDao.cs");
+                    projekt.Pliki.Single(o => o.SciezkaPelna == sciezkaDoPliku);
+
+                    File.ReadAllText(sciezkaDoPliku).Should().Be("a");
                 });
         }
 

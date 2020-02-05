@@ -14,19 +14,19 @@ namespace Kruchy.Plugin.Akcje.Akcje
     public class GenerowaniePlikuZSzablonu
     {
         private readonly ISolutionExplorerWrapper solutionExplorer;
-        private readonly ISolutionWrapper soluton;
+        private readonly ISolutionWrapper solution;
 
         public GenerowaniePlikuZSzablonu(
             ISolutionExplorerWrapper solutionExplorer,
-            ISolutionWrapper soluton)
+            ISolutionWrapper solution)
         {
             this.solutionExplorer = solutionExplorer;
-            this.soluton = soluton;
+            this.solution = solution;
         }
 
         public void Generuj(string nazwaSzablonu)
         {
-            var konf = Konfiguracja.GetInstance(soluton);
+            var konf = Konfiguracja.GetInstance(solution);
 
             var szablon =
                 konf
@@ -41,39 +41,50 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         private void GenerujWgSchmatu(SchematKlasy schematKlasy)
         {
+            var sparsowane = Parser.Parsuj(solution.AktualnyDokument.DajZawartosc());
+
             var sciezkaDoPliku =
                 Path.Combine(
-                    soluton.AktualnyProjekt.SciezkaDoKatalogu,
-                    schematKlasy.NazwaPliku);
+                    solution.AktualnyProjekt.SciezkaDoKatalogu,
+                    DajNazwePliku(schematKlasy, sparsowane));
 
             var tresc = schematKlasy.Tresc;
 
-            tresc = ZamienZmienneNaWartosci(tresc, schematKlasy);
+            tresc = ZamienZmienneNaWartosci(tresc, schematKlasy, sparsowane);
 
             File.WriteAllText(sciezkaDoPliku, tresc, Encoding.UTF8);
+            solution.AktualnyProjekt.DodajPlik(sciezkaDoPliku);
         }
 
-        private string ZamienZmienneNaWartosci(string tresc, SchematKlasy schematKlasy)
+        private string DajNazwePliku(SchematKlasy schematKlasy, Plik sparsowane)
         {
-            var zmienne = PrzygotujWartosciZmiennych(schematKlasy);
+            return ZamienZmienneNaWartosci(schematKlasy.NazwaPliku, schematKlasy, sparsowane);
+        }
+
+        private string ZamienZmienneNaWartosci(
+            string tekst,
+            SchematKlasy schematKlasy,
+            Plik sparsowane)
+        {
+            var zmienne = PrzygotujWartosciZmiennych(schematKlasy, sparsowane);
 
             foreach (var zmienna in zmienne)
-                tresc = tresc.Replace("%" + zmienna.Key + "%", zmienna.Value);
+                tekst = tekst.Replace("%" + zmienna.Key + "%", zmienna.Value);
 
-            return tresc;
+            return tekst;
         }
 
-        private Dictionary<string, string> PrzygotujWartosciZmiennych(SchematKlasy schematKlasy)
+        private Dictionary<string, string> PrzygotujWartosciZmiennych(
+            SchematKlasy schematKlasy,
+            Plik sparsowane)
         {
-            var sparsowane = Parser.Parsuj(soluton.AktualnyDokument.DajZawartosc());
-
             var wynik = new Dictionary<string, string>();
 
             wynik["NAZWA_KLASY"] = DajNazweKlasy(sparsowane);
             wynik["NAMESPACE_KLASY"] = sparsowane.Namespace;
-            wynik["NAZWA_PLIKU"] = soluton.AktualnyPlik.Nazwa;
+            wynik["NAZWA_PLIKU"] = solution.AktualnyPlik.Nazwa;
             wynik["NAZWA_PLIKU_BEZ_ROZSZERZENIA"] =
-                soluton.AktualnyPlik.NazwaBezRozszerzenia;
+                solution.AktualnyPlik.NazwaBezRozszerzenia;
 
             return wynik;
         }
@@ -81,7 +92,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         private string DajNazweKlasy(Plik sparsowane)
         {
             var obiekt =
-            sparsowane.SzukajKlasyWLinii(soluton.AktualnyDokument.DajNumerLiniiKursora());
+            sparsowane.SzukajKlasyWLinii(solution.AktualnyDokument.DajNumerLiniiKursora());
 
             if (obiekt == null)
                 return sparsowane.DefiniowaneObiekty.Single().Nazwa;
