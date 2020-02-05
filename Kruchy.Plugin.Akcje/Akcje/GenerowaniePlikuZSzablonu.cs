@@ -35,16 +35,16 @@ namespace Kruchy.Plugin.Akcje.Akcje
                     .SchematyGenerowania()
                         .Single(o => o.TytulSchematu == nazwaSzablonu);
 
+            var sparsowane = Parser.Parsuj(solution.AktualnyDokument.DajZawartosc());
+
             foreach (var schematKlasy in szablon.SchematyKlas)
             {
-                GenerujWgSchmatu(schematKlasy);
+                GenerujWgSchmatu(schematKlasy, sparsowane);
             }
         }
 
-        private void GenerujWgSchmatu(SchematKlasy schematKlasy)
+        private void GenerujWgSchmatu(SchematKlasy schematKlasy, Plik sparsowane)
         {
-            var sparsowane = Parser.Parsuj(solution.AktualnyDokument.DajZawartosc());
-
             var sciezkaDoPliku =
                 Path.Combine(
                     solution.AktualnyProjekt.SciezkaDoKatalogu,
@@ -90,6 +90,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             var wynik = new Dictionary<string, string>();
 
             wynik["NAZWA_KLASY"] = DajNazweKlasy(sparsowane);
+            wynik["NAZWA_PROJEKTU"] = solution.AktualnyProjekt.Nazwa.Replace(".csproj", "");
             wynik["NAMESPACE_KLASY"] = sparsowane.Namespace;
             wynik["NAZWA_PLIKU"] = solution.AktualnyPlik.Nazwa;
             wynik["NAZWA_PLIKU_BEZ_ROZSZERZENIA"] =
