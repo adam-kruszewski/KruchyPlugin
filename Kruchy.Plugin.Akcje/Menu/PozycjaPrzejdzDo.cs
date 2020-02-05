@@ -11,14 +11,12 @@ namespace Kruchy.Plugin.Akcje.Menu
 {
     class PozycjaPrzejdzDo : AbstractPozycjaMenuDynamicznieRozwijane
     {
-        private readonly ISolutionWrapper solution;
         private readonly ISolutionExplorerWrapper solutionExplorer;
 
         public PozycjaPrzejdzDo(
             ISolutionWrapper solution,
-            ISolutionExplorerWrapper solutionExplorer)
+            ISolutionExplorerWrapper solutionExplorer) : base(solution)
         {
-            this.solution = solution;
             this.solutionExplorer = solutionExplorer;
         }
 

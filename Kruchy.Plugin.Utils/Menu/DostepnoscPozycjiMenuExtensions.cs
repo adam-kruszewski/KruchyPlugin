@@ -1,65 +1,21 @@
 ﻿using System;
-using System.ComponentModel.Design;
 using System.IO;
 using System.Linq;
-using Kruchy.Plugin.Utils.Menu;
 using Kruchy.Plugin.Utils.Wrappers;
 using KruchyParserKodu.ParserKodu;
-using Microsoft.VisualStudio.Shell;
 
-namespace Kruchy.Plugin.Utils._2017
+namespace Kruchy.Plugin.Utils.Menu
 {
-    public class PozycjaMenuAdapter
+    public static class DostepnoscPozycjiMenuExtensions
     {
-        public static Guid guidKruchyPluginCmdSetStatic;
-
-        private readonly IPozycjaMenu pozycjaMenu;
-        private readonly ISolutionWrapper solution;
-
-        OleMenuCommand MenuItem { get; set; }
-
-        public PozycjaMenuAdapter(IPozycjaMenu pozycjaMenu, ISolutionWrapper solution)
-        {
-            this.pozycjaMenu = pozycjaMenu;
-            this.solution = solution;
+        public static bool SpelnioneWymaganie(
+            this IPozycjaMenu pozycjaMenu,
+            ISolutionWrapper solution)
+        { 
+            return pozycjaMenu.Wymagania.All(o => Spelnione(o, solution));
         }
 
-        public void Podlacz(IMenuCommandService service)
-        {
-            Podlacz(service, guidKruchyPluginCmdSetStatic);
-        }
-
-        public void Podlacz(IMenuCommandService service, Guid guidKruchyPluginCmdSet)
-        {
-            var menuCommandID =
-                new CommandID(guidKruchyPluginCmdSet, (int)pozycjaMenu.MenuCommandID);
-            if (!(pozycjaMenu is IPozycjaMenuDynamicznieRozwijane))
-                MenuItem = new OleMenuCommand(Execute, menuCommandID);
-            else
-                MenuItem = new DynamicItemMenuCommand(
-                    menuCommandID, (IPozycjaMenuDynamicznieRozwijane)pozycjaMenu);
-            MenuItem.BeforeQueryStatus += BeforeQueryStatus;
-            service.AddCommand(MenuItem);
-        }
-
-        void BeforeQueryStatus(object sender, EventArgs e)
-        {
-            if (!SpelnioneWymagania())
-            {
-                this.MenuItem.Enabled = false;
-            }
-            else
-            {
-                this.MenuItem.Enabled = true;
-            }
-        }
-
-        private bool SpelnioneWymagania()
-        {
-            return pozycjaMenu.Wymagania.All(o => Spelnione(o));
-        }
-
-        private bool Spelnione(WymaganieDostepnosci o)
+        private static bool Spelnione(WymaganieDostepnosci o, ISolutionWrapper solution)
         {
             if (solution.AktualnyProjekt == null)
                 return false;
@@ -90,7 +46,7 @@ namespace Kruchy.Plugin.Utils._2017
             }
             if (o == WymaganieDostepnosci.PlikCs)
             {
-                return PlikCs();
+                return PlikCs(solution);
             }
             if (o == WymaganieDostepnosci.Controller)
             {
@@ -99,7 +55,7 @@ namespace Kruchy.Plugin.Utils._2017
 
             if (o == WymaganieDostepnosci.Klasa)
             {
-                var p = Parsuj();
+                var p = Parsuj(solution);
                 if (p == null || p.DefiniowaneObiekty.Count < 1)
                     return false;
                 return p.DefiniowaneObiekty.First().Rodzaj == RodzajObiektu.Klasa;
@@ -107,7 +63,7 @@ namespace Kruchy.Plugin.Utils._2017
 
             if (o == WymaganieDostepnosci.Interfejs)
             {
-                var p = Parsuj();
+                var p = Parsuj(solution);
                 if (p == null || p.DefiniowaneObiekty.Count < 1)
                     return false;
                 return p.DefiniowaneObiekty.First().Rodzaj == RodzajObiektu.Interfejs;
@@ -125,29 +81,27 @@ namespace Kruchy.Plugin.Utils._2017
             return true;
         }
 
-        private bool PlikCs()
+        private static bool PlikCs(ISolutionWrapper solution)
         {
             return solution.AktualnyPlik.Nazwa.ToLower().EndsWith(".cs");
         }
 
-        private Plik Parsuj()
+        private static Plik Parsuj(ISolutionWrapper solution)
         {
             try
             {
-                if (!PlikCs())
+                if (!PlikCs(solution))
                     return null;
 
                 return Parser.Parsuj(solution.AktualnyDokument.DajZawartosc());
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine("Błąd parsowania " + ex);
                 return null;
             }
         }
 
-        public void Execute(object sender, EventArgs args)
-        {
-            pozycjaMenu.Execute(sender, args);
-        }
     }
 }
+

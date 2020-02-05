@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using Kruchy.Plugin.Akcje.Akcje;
 using Kruchy.Plugin.Akcje.KonfiguracjaPlugina;
 using Kruchy.Plugin.Akcje.KonfiguracjaPlugina.Xml;
@@ -14,14 +11,12 @@ namespace Kruchy.Plugin.Akcje.Menu
 {
     class PozycjaGenerujPlik : AbstractPozycjaMenuDynamicznieRozwijane
     {
-        private readonly ISolutionWrapper solution;
         private readonly ISolutionExplorerWrapper solutionExplorer;
 
         public PozycjaGenerujPlik(
             ISolutionWrapper solution,
-            ISolutionExplorerWrapper solutionExplorer)
+            ISolutionExplorerWrapper solutionExplorer) : base(solution)
         {
-            this.solution = solution;
             this.solutionExplorer = solutionExplorer;
         }
 

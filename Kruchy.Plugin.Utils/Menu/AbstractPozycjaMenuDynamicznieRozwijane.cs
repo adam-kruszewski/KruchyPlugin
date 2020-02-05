@@ -1,14 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Kruchy.Plugin.Utils.Wrappers;
 
 namespace Kruchy.Plugin.Utils.Menu
 {
     public abstract class AbstractPozycjaMenuDynamicznieRozwijane
         : IPozycjaMenuDynamicznieRozwijane
     {
-        public AbstractPozycjaMenuDynamicznieRozwijane()
+        protected readonly ISolutionWrapper solution;
+
+        public AbstractPozycjaMenuDynamicznieRozwijane(ISolutionWrapper solution)
         {
+            this.solution = solution;
             pozycjeRozwijane = new List<IPodpozycjaMenuDynamicznego>();
         }
 
@@ -26,7 +30,8 @@ namespace Kruchy.Plugin.Utils.Menu
         {
             pozycjeRozwijane.Clear();
 
-            pozycjeRozwijane.AddRange(DajDostepnePozycje());
+            pozycjeRozwijane.AddRange(
+                DajDostepnePozycje().Where(o => o.SpelnioneWymaganie(solution)));
 
             return pozycjeRozwijane
                 .Select(o => new PozycjaMenuRozwijanego

@@ -165,7 +165,7 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
                     akcjaDopasowaniaArrange(solution, projekt);
 
                 //act
-                new GenerowaniePlikuZSzablonu(null, solution).Generuj("test1");
+                new GenerowaniePlikuZSzablonu(new SolutionExlorerWrapper(solution), solution).Generuj("test1");
 
                 //assert
                 akcjaAssert(projekt);
