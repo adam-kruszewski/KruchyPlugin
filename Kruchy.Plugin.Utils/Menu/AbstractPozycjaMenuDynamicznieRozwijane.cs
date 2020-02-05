@@ -31,7 +31,7 @@ namespace Kruchy.Plugin.Utils.Menu
             pozycjeRozwijane.Clear();
 
             pozycjeRozwijane.AddRange(
-                DajDostepnePozycje().Where(o => o.SpelnioneWymaganie(solution)));
+                DajDostepnePozycje()));
 
             return pozycjeRozwijane
                 .Select(o => new PozycjaMenuRozwijanego
