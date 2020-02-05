@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Kruchy.Plugin.Akcje.KonfiguracjaPlugina;
 using Kruchy.Plugin.Akcje.KonfiguracjaPlugina.Xml;
 using Kruchy.Plugin.Utils.Wrappers;
@@ -49,12 +50,19 @@ namespace Kruchy.Plugin.Akcje.Akcje
                     solution.AktualnyProjekt.SciezkaDoKatalogu,
                     DajNazwePliku(schematKlasy, sparsowane));
 
+            if (File.Exists(sciezkaDoPliku))
+            {
+                MessageBox.Show(string.Format("Plik {0} już istnieje", sciezkaDoPliku));
+                return;
+            }
+
             var tresc = schematKlasy.Tresc;
 
             tresc = ZamienZmienneNaWartosci(tresc, schematKlasy, sparsowane);
 
             File.WriteAllText(sciezkaDoPliku, tresc, Encoding.UTF8);
             solution.AktualnyProjekt.DodajPlik(sciezkaDoPliku);
+            solutionExplorer.OtworzPlik(sciezkaDoPliku);
         }
 
         private string DajNazwePliku(SchematKlasy schematKlasy, Plik sparsowane)

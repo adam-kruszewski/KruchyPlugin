@@ -93,12 +93,15 @@ namespace Kruchy.Plugin.Utils._2017
 
             var pozycje = matchedCommand.Pozycja.DajPozycje();
 
-            if (!pozycje.Any())
+            if (pozycje.Any())
             {
                 var pozycjaDlaIndeksu = pozycje.ToArray()[indexForDisplay];
 
                 matchedCommand.Text = pozycjaDlaIndeksu.Tekst;
             }
+
+            if (isRootItem && !pozycje.Any())
+                matchedCommand.Enabled = false;
 
             matchedCommand.Enabled =
                 matchedCommand.Pozycja.DostepnaPodakcja(matchedCommand.MatchedCommandId);

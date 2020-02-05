@@ -1,7 +1,9 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Xml.Serialization;
 using FluentAssertions;
 using Kruchy.Plugin.Akcje.Akcje;
 using Kruchy.Plugin.Akcje.KonfiguracjaPlugina;
@@ -113,6 +115,14 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
                     Symbol = "KlasaContext"
                 });
             szablon.SchematyKlas.Add(schematKlasy);
+
+            var konf = new KonfiguracjaPlugina.Xml.KruchyPlugin();
+            konf.Schematy.Add(szablon);
+
+            var s = new XmlSerializer(typeof(KruchyPlugin));
+            var tw = new StringWriter();
+            s.Serialize(tw, konf);
+            var a = tw.ToString();
 
             UruchomTest(
                 "PustaKlasa.cs",

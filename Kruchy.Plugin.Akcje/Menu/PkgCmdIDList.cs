@@ -38,7 +38,8 @@
         public const uint cmidPrzejdzDoGridRowActions = 0x0174;
         public const uint cmidPrzejdzDoGridToolbar = 0x0175;
 
-        //test rozwijanego menu
+        //rozwijane menu
         public const uint cmdidMyDynamicStartCommand = 0x0304;
+        public const uint cmdidGenerujPlikStartCommand = 0x0324;
     };
 }

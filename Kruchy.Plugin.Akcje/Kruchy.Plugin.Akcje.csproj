@@ -86,6 +86,7 @@
     <Compile Include="Menu\PozycjaGenerowanieKlasService.cs" />
     <Compile Include="Menu\PozycjaGenerowanieKlasyTestowej.cs" />
     <Compile Include="Menu\PozycjaGenerowanieXsdDlaReportView.cs" />
+    <Compile Include="Menu\PozycjaGenerujPlik.cs" />
     <Compile Include="Menu\PozycjaPrzejdzDo.cs" />
     <Compile Include="Menu\PozycjaUzupelnianieKonstruktora.cs" />
     <Compile Include="Menu\PozycjaZmienNaPrivate.cs" />
