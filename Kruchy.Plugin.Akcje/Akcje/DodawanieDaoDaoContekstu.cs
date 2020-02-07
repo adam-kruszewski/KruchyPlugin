@@ -43,13 +43,13 @@ namespace Kruchy.Plugin.Akcje.Akcje
             string nazwaInterfejsuDao = null;
             if (obiekt.Rodzaj == RodzajObiektu.Klasa)
             {
-                nazwaKlasyDao = obiekt.Nazwa + "Dao";
+                nazwaKlasyDao = obiekt.Nazwa;
                 nazwaInterfejsuDao = "I" + nazwaKlasyDao;
             }
 
             if (obiekt.Rodzaj == RodzajObiektu.Interfejs)
             {
-                nazwaInterfejsuDao = obiekt.Nazwa + "Dao";
+                nazwaInterfejsuDao = obiekt.Nazwa;
                 nazwaKlasyDao = nazwaInterfejsuDao.Substring(1);
             }
 
@@ -98,6 +98,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
             dokument.DodajUsingaJesliTrzeba(sparsowaneDao.Namespace);
             dokument.DodajUsingaJesliTrzeba(sparsowaneIDao.Namespace);
+            dokument.DodajUsingaJesliTrzeba("Pincasso.Core.Base");
 
             dokument.WstawWLinii(
                     string.Format("{0}public {1} {2} ",StaleDlaKodu.WciecieDlaMetody, nazwaInterfejsuDao, nazwaKlasyDao)

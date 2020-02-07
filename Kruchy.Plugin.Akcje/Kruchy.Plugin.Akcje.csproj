@@ -82,6 +82,7 @@
     <Compile Include="KonfiguracjaPlugina\Xml\MapowanieTypuXsd.cs" />
     <Compile Include="KonfiguracjaPlugina\Xml\PrzejdzDo.cs" />
     <Compile Include="Menu\PkgCmdIDList.cs" />
+    <Compile Include="Menu\PozycjaDodawanieDaoDoContekstu.cs" />
     <Compile Include="Menu\PozycjaDodawanieUsingow.cs" />
     <Compile Include="Menu\PozycjaGenerowanieBuildera.cs" />
     <Compile Include="Menu\PozycjaGenerowanieKlasService.cs" />
