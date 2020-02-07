@@ -63,10 +63,12 @@ namespace KruchyProjekt.Base
 }");
 
                 },
-                (soltuion, projekt) =>
+                (soltuion, projekt, solutionExplorer) =>
                 {
                     DodajPlikiContekstu(projekt);
                     DodajPlikiDao(projekt);
+                    solutionExplorer.OtworzPlik(
+                        projekt.Pliki.First(o => o.SciezkaPelna.EndsWith("Dao.cs")));
                 },
                 null);
 
@@ -89,7 +91,7 @@ namespace KruchyProjekt.Base
                     .WNamespace("Kruchy.Projekt1.Dao")
                     .ZNazwa("ISamochodDomainDao")
                     .ZNazwaRodzajuObiektu("interface")
-                    .ZObiektem(new ClassBuilder().ZNazwa("ISamochodDomainDao"));
+                    .ZObiektem(new InterfejsBuilder().ZNazwa("ISamochodDomainDao"));
             var zawartoscIDao = plikBuilder.Build();
 
             var sciezkDoIDao = Path.Combine(katalogDao, "ISamochodDomainDao.cs");

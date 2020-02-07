@@ -57,6 +57,7 @@ namespace KruchyParserKodu.Roslyn
         private Obiekt ParsujInterfejs(InterfaceDeclarationSyntax interfaceSyntax)
         {
             var definiowanyObiekt = new Obiekt();
+            definiowanyObiekt.Nazwa = interfaceSyntax.Identifier.ValueText;
             definiowanyObiekt.Rodzaj = RodzajObiektu.Interfejs;
 
             UstawPolozenie(interfaceSyntax.SyntaxTree, definiowanyObiekt, interfaceSyntax);

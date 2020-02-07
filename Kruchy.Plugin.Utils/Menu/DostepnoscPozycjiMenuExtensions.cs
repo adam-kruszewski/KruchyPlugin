@@ -15,7 +15,7 @@ namespace Kruchy.Plugin.Utils.Menu
             return pozycjaMenu.Wymagania.All(o => Spelnione(o, solution));
         }
 
-        private static bool Spelnione(WymaganieDostepnosci o, ISolutionWrapper solution)
+        public static bool Spelnione(WymaganieDostepnosci o, ISolutionWrapper solution)
         {
             if (solution.AktualnyProjekt == null)
                 return false;
@@ -78,6 +78,10 @@ namespace Kruchy.Plugin.Utils.Menu
             {
                 return solution.AktualnyPlik.Nazwa.ToLower().EndsWith(".cshtml");
             }
+
+            if (o == WymaganieDostepnosci.PlikDao)
+                return solution.AktualnyPlik.NazwaBezRozszerzenia.EndsWith("Dao");
+
             return true;
         }
 

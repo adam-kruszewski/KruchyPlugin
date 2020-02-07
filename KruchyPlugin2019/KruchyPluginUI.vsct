@@ -335,6 +335,16 @@
         <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
 
+      <Button id="cmdidDodajDaoDoContekstu" priority="0x0160"  guid="guidCommand1PackageCmdSet" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="PozostaleKodoweGroup"/>
+        <Strings>
+          <CommandName>cmdidDodajDaoDoContekstu</CommandName>
+          <ButtonText>Dodaj dao do Contekstu</ButtonText>
+        </Strings>
+        <CommandFlag>DefaultDisabled</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+      </Button>
+
       <!--Menu Krucha nawigacja-->
       <Button id="cmdidIdzDoImplementacji" priority="0x0101"  guid="guidCommand1PackageCmdSet" type="Button">
         <Parent guid="guidCommand1PackageCmdSet" id="PodrozowanieMenuGroup"/>
@@ -468,7 +478,6 @@
         </Strings>
       </Button>
 
-
     </Buttons>
 
     <!--The bitmaps section is used to define the bitmaps that are used for the commands.-->
@@ -537,6 +546,7 @@
       <IDSymbol name="cmdidInicjujWKontruktorze" value="0x0165"/>
       <IDSymbol name="cmdidGenerujBuildera" value="0x0166"/>
       <IDSymbol name="cmdidGenerujXsdDlaReportView" value="0x0167"/>
+      <IDSymbol name="cmdidDodajDaoDoContekstu" value="0x168"/>
 
       <IDSymbol name="cmdidIdzDoImplementacji" value="0x0170"/>
       <IDSymbol name="cmdidIdzDoKataloguControllera" value="0x0171"/>

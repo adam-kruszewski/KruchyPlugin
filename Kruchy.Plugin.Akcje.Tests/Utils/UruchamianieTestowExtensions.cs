@@ -12,7 +12,7 @@ namespace Kruchy.Plugin.Akcje.Tests.Utils
             string nazwaZasobuZawartosciAktulnegoPliku,
             Action<SolutionWrapper, ProjektWrapper, SolutionExlorerWrapper> akcjaWykonania,
             Action<ISolutionWrapper, IProjektWrapper, ISolutionExplorerWrapper> akcjaAssert,
-            Action<SolutionWrapper, ProjektWrapper> akcjaDopasowaniaArrange = null,
+            Action<SolutionWrapper, ProjektWrapper, ISolutionExplorerWrapper> akcjaDopasowaniaArrange = null,
             Action<Mock<Konfiguracja>> akcjaDopasowaniaKonfiguracji = null)
         {
             using (var projekt = new ProjektWrapper("Kruchy.Projekt1"))
@@ -28,10 +28,10 @@ namespace Kruchy.Plugin.Akcje.Tests.Utils
 
                 PrzygotujKonfiguracjeWgSolutionISzablonu(solution, akcjaDopasowaniaKonfiguracji);
 
-                if (akcjaDopasowaniaArrange != null)
-                    akcjaDopasowaniaArrange(solution, projekt);
-
                 var solutionExplorer = new SolutionExlorerWrapper(solution);
+
+                if (akcjaDopasowaniaArrange != null)
+                    akcjaDopasowaniaArrange(solution, projekt, solutionExplorer);
 
                 //act
                 akcjaWykonania(solution, projekt, solutionExplorer);

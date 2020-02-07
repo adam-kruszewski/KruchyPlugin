@@ -12,6 +12,7 @@ namespace Kruchy.Plugin.Utils.Menu
         Klasa,
         Interfejs,
         Builder,
-        WidokCshtml
+        WidokCshtml,
+        PlikDao
     }
 }
