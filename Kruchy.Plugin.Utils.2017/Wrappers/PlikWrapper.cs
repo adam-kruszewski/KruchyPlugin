@@ -98,5 +98,10 @@ namespace Kruchy.Plugin.Utils._2017.Wrappers
                 return new DokumentWrapper(textDocument);
             }
         }
+
+        public override string ToString()
+        {
+            return string.Format("{0} [{1}]", Nazwa, Katalog);
+        }
     }
 }

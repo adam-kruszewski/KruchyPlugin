@@ -167,8 +167,10 @@
     <EmbeddedResource Include="Samples\ReportView.cs" />
     <EmbeddedResource Include="Samples\NierozksiegowanaWplataReportView.cs" />
     <EmbeddedResource Include="Samples\NiezaplaconaFakturaReportView.cs" />
+    <EmbeddedResource Include="Samples\SamochodDomain.cs" />
     <Compile Include="TestyInfrastrukturyTestow\DokumentWrapperTests.cs" />
     <EmbeddedResource Include="Samples\UzupelnianieKonstruktoraPrzyStalej.cs" />
+    <Compile Include="Unit\DodawanieDaoDaoContekstuTests.cs" />
     <Compile Include="Unit\DodawanieUsingaTests.cs" />
     <Compile Include="Unit\GenerowaniePlikuZSzablonuTests.cs" />
     <Compile Include="Unit\GenerowanieXsdDlaReportViewTests.cs" />
@@ -176,6 +178,7 @@
     <Compile Include="Unit\UzupelnianieKonstruktoraZDziedziczeniemTests.cs" />
     <Compile Include="Unit\GenerowanieBuilderaTests.cs" />
     <Compile Include="Utils\TymczasowaKonfiguracja.cs" />
+    <Compile Include="Utils\UruchamianieTestowExtensions.cs" />
     <Compile Include="WrappersMocks\PlikWrapper.cs" />
     <Compile Include="WrappersMocks\ProjektWrapper.cs" />
     <Compile Include="WrappersMocks\SolutionExlorerWrapper.cs" />
@@ -185,6 +188,10 @@
     <Compile Include="WrappersMocks\DokumentWrapper.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\KrucheBuilderyKodu\KrucheBuilderyKodu.csproj">
+      <Project>{0C5748A8-7D43-444C-90AD-3DBE02DCABAB}</Project>
+      <Name>KrucheBuilderyKodu</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Kruchy.Plugin.Akcje\Kruchy.Plugin.Akcje.csproj">
       <Project>{e2d61ac0-ef12-494f-aeb9-5b6112281096}</Project>
       <Name>Kruchy.Plugin.Akcje</Name>
