@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace KruchyParserKodu.ParserKodu
 {
@@ -12,6 +13,16 @@ namespace KruchyParserKodu.ParserKodu
         public Pole()
         {
             Modyfikatory = new List<Modyfikator>();
+        }
+
+        public override string ToString()
+        {
+            return string.Format("{0} : {1} [{2}]", Nazwa, NazwaTypu, ScalModyfikatory());
+        }
+
+        private string ScalModyfikatory()
+        {
+            return string.Join(", ", Modyfikatory.Select(o => o.Nazwa));
         }
     }
 }

@@ -9,5 +9,10 @@ namespace KruchyParserKodu.ParserKodu
         {
             Nazwa = nazwa;
         }
+
+        public override string ToString()
+        {
+            return Nazwa;
+        }
     }
 }

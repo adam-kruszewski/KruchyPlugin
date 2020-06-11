@@ -48,5 +48,10 @@ namespace KruchyParserKodu.ParserKodu
         {
             return Modyfikatory.Any(o => o.Nazwa == nazwa);
         }
+
+        public override string ToString()
+        {
+            return Nazwa;
+        }
     }
 }
