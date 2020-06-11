@@ -168,6 +168,8 @@
     <EmbeddedResource Include="Samples\NierozksiegowanaWplataReportView.cs" />
     <EmbeddedResource Include="Samples\NiezaplaconaFakturaReportView.cs" />
     <EmbeddedResource Include="Samples\SamochodDomain.cs" />
+    <EmbeddedResource Include="Samples\UzupelnianieKonstruktoraGdyPolaZPodkresleniem.cs" />
+    <EmbeddedResource Include="Samples\UzupelnianieKonstruktoraGdyPolaZPodkresleniemPrzegenerowanie.cs" />
     <Compile Include="TestyInfrastrukturyTestow\DokumentWrapperTests.cs" />
     <EmbeddedResource Include="Samples\UzupelnianieKonstruktoraPrzyStalej.cs" />
     <Compile Include="Unit\DodawanieDaoDaoContekstuTests.cs" />
@@ -177,6 +179,7 @@
     <Compile Include="Unit\UzupelnianieKonstruktoraTests.cs" />
     <Compile Include="Unit\UzupelnianieKonstruktoraZDziedziczeniemTests.cs" />
     <Compile Include="Unit\GenerowanieBuilderaTests.cs" />
+    <Compile Include="Unit\UzupelnienieKonstruktoraPolaZPodkresleniemTests.cs" />
     <Compile Include="Utils\TymczasowaKonfiguracja.cs" />
     <Compile Include="Utils\UruchamianieTestowExtensions.cs" />
     <Compile Include="WrappersMocks\PlikWrapper.cs" />

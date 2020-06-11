@@ -140,9 +140,12 @@ namespace Kruchy.Plugin.Akcje.Akcje
         {
             solution.AktualnyDokument.Usun(
                 p.Poczatek.Wiersz,
-                p.Poczatek.Kolumna,
+                //p.Poczatek.Kolumna,
+                1,
                 p.Koniec.Wiersz,
                 p.Koniec.Kolumna);
+
+            //if (p.Poczatek.Wiersz != p.Koniec.Wiersz)
             solution.AktualnyDokument.UsunLinie(p.Koniec.Wiersz);
         }
 
@@ -192,8 +195,17 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
             foreach (var pole in SortujPola(pola))
             {
-                builder.DodajParametr(pole.NazwaTypu, pole.Nazwa);
-                builder.DodajLinie("this." + pole.Nazwa + " = " + pole.Nazwa + ";");
+                var nazwaParametru = pole.Nazwa;
+                if (nazwaParametru.StartsWith("_"))
+                    nazwaParametru = pole.Nazwa.Substring(1);
+
+                builder.DodajParametr(pole.NazwaTypu, nazwaParametru);
+
+                var napisThisJesliTrzeba = "this.";
+                if (pole.Nazwa != nazwaParametru)
+                    napisThisJesliTrzeba = "";
+
+                builder.DodajLinie(napisThisJesliTrzeba + pole.Nazwa + " = " + nazwaParametru + ";");
             }
 
             if (parametryDlaKonstruktoraNadklasy != null)

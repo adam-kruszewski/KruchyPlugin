@@ -36,7 +36,7 @@ namespace Kruchy.Plugin.Akcje.Tests.Samples
     {
         private readonly string serwis1;
         private readonly string serwis2;
-        
+
         public UzupelnianieKonstruktoraPrzyNadklasie(
             string serwis1,
             string serwis2,
@@ -45,6 +45,7 @@ namespace Kruchy.Plugin.Akcje.Tests.Samples
             this.serwis1 = serwis1;
             this.serwis2 = serwis2;
         }
+
     }
 }
 ");
@@ -74,7 +75,7 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
         private const int DefaultTimeout = 10000;
 
         private readonly Class1 appSettingsService;
-        
+
         public UzupelnianieKonstruktoraPrzyStalej(
             Class1 appSettingsService)
         {

@@ -39,7 +39,7 @@ namespace Pincasso.MvcApp.WebServices.Logging
         private const string Domyslny_Katalog_Komunikatow = ""web-service-messages"";
 
         private readonly IAppSettingsService appSettingsService;
-        
+
         public KonfiguracjaLogowaniaKomunikatowWebowych(
             IAppSettingsService appSettingsService)
         {
