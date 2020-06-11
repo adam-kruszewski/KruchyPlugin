@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using EnvDTE;
@@ -43,8 +44,14 @@ namespace Kruchy.Plugin.Utils._2017.Wrappers
         {
             get
             {
-                if (dte.ActiveDocument == null)
+                try
+                {
+                    if (dte.ActiveDocument == null)
+                        return null;
+                }catch (ArgumentException)
+                {
                     return null;
+                }
                 return new PlikWrapper(dte.ActiveDocument);
             }
         }

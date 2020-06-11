@@ -1,5 +1,7 @@
 ﻿using System;
 using System.ComponentModel.Design;
+using System.Linq;
+using System.Reflection;
 using Kruchy.Plugin.Utils.Menu;
 using Kruchy.Plugin.Utils.Wrappers;
 using Microsoft.VisualStudio.Shell;
@@ -49,6 +51,26 @@ namespace Kruchy.Plugin.Utils._2017
             {
                 this.MenuItem.Enabled = true;
             }
+
+            if (SpecyficznaDlaPincasso())
+            {
+                this.MenuItem.Visible = false;
+                this.MenuItem.Enabled = false;
+            }
+        }
+
+        private bool SpecyficznaDlaPincasso()
+        {
+            var customAttributes =
+                pozycjaMenu
+                    .GetType()
+                        .GetCustomAttributes();
+
+            if (customAttributes
+                .Where(o => o.GetType().Name == "SpecyficzneDlaPincassoAttribute")
+                    .Any())
+                return true;
+            return false;
         }
 
         private bool SpelnioneWymagania()

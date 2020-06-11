@@ -4,12 +4,14 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using KrucheBuilderyKodu.Builders;
+using Kruchy.Plugin.Akcje.Atrybuty;
 using Kruchy.Plugin.Utils.Extensions;
 using Kruchy.Plugin.Utils.Wrappers;
 using KruchyParserKodu.ParserKodu;
 
 namespace Kruchy.Plugin.Akcje.Akcje
 {
+    [SpecyficzneDlaPincasso]
     public class DodawanieDaoDaoContekstu
     {
         private readonly ISolutionWrapper solution;

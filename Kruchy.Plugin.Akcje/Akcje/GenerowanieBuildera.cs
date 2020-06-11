@@ -6,12 +6,14 @@ using System.Text;
 using System.Windows.Forms;
 using KrucheBuilderyKodu.Builders;
 using Kruchy.Plugin.Akcje.Akcje.Generowanie.Buildera.Komponenty;
+using Kruchy.Plugin.Akcje.Atrybuty;
 using Kruchy.Plugin.Utils.Extensions;
 using Kruchy.Plugin.Utils.Wrappers;
 using KruchyParserKodu.ParserKodu;
 
 namespace Kruchy.Plugin.Akcje.Akcje
 {
+    [SpecyficzneDlaPincasso]
     public class GenerowanieBuildera
     {
         private readonly ISolutionWrapper solution;

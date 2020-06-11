@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using Kruchy.Plugin.Akcje.Akcje;
 using Kruchy.Plugin.Akcje.Akcje.Generowanie.Buildera.Komponenty;
+using Kruchy.Plugin.Akcje.Atrybuty;
 using Kruchy.Plugin.Akcje.Interfejs;
 using Kruchy.Plugin.Utils.Menu;
 using Kruchy.Plugin.Utils.Wrappers;
 
 namespace Kruchy.Plugin.Akcje.Menu
 {
+    [SpecyficzneDlaPincasso]
     public class PozycjaGenerowanieBuildera : IPozycjaMenu
     {
         private readonly ISolutionExplorerWrapper solutionExplorer;
