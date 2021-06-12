@@ -1,4 +1,5 @@
 ﻿using KrucheBuilderyKodu.Builders;
+using Kruchy.Plugin.Akcje.KonfiguracjaPlugina;
 using Kruchy.Plugin.Utils.Extensions;
 using Kruchy.Plugin.Utils.Wrappers;
 
@@ -15,11 +16,13 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 
         public void DodajNowyTest(string nazwaTestu)
         {
+            var konfiguracja = Konfiguracja.GetInstance(solution);
+
             var builder =
                 new MetodaBuilder()
                     .ZNazwa(nazwaTestu)
                     .DodajModyfikator("public")
-                    .DodajAtrybut(new AtrybutBuilder().ZNazwa("Test"));
+                    .DodajAtrybut(new AtrybutBuilder().ZNazwa(DajNazweAtrybutu(konfiguracja)));
 
             builder.DodajLinie("//arrange");
             builder.DodajLinie("");
@@ -34,7 +37,29 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             var trescMetody = builder.Build(StaleDlaKodu.WciecieDlaMetody).TrimEnd();
             dokument.WstawWLinii(trescMetody, numerLinii);
             dokument.UstawKursosDlaMetodyDodanejWLinii(numerLinii + 2);
-            dokument.DodajUsingaJesliTrzeba("NUnit.Framework");
+            dokument.DodajUsingaJesliTrzeba(DajUsingaDoDodania(konfiguracja));
+        }
+
+        private static string DajNazweAtrybutu(Konfiguracja konfiguracja)
+        {
+            switch (konfiguracja.Testy().NazwaBiblioteki)
+            {
+                case "NUnit":
+                    return "Test";
+                default:
+                    return "TestMethod";
+            }
+        }
+
+        private static string DajUsingaDoDodania(Konfiguracja konfiguracja)
+        {
+            switch (konfiguracja.Testy().NazwaBiblioteki)
+            {
+                case "NUnit":
+                    return "NUnit.Framework";
+                default:
+                    return "Microsoft.VisualStudio.TestTools.UnitTesting";
+            }
         }
     }
 }

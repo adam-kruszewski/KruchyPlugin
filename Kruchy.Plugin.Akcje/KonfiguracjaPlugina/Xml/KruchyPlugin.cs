@@ -15,6 +15,8 @@ namespace Kruchy.Plugin.Akcje.KonfiguracjaPlugina.Xml
 
         public List<SchematGenerowania> Schematy { get; set; }
 
+        public Testy Testy { get; set; }
+
         public KruchyPlugin()
         {
             Usingi = new List<Namespace>();
@@ -22,6 +24,7 @@ namespace Kruchy.Plugin.Akcje.KonfiguracjaPlugina.Xml
             KlasyTestowe = new List<KlasaTestowa>();
             MapowaniaTypowXsd = new List<MapowanieTypuXsd>();
             Schematy = new List<SchematGenerowania>();
+            Testy = new Testy();
         }
     }
 }

@@ -100,5 +100,10 @@ namespace Kruchy.Plugin.Akcje.KonfiguracjaPlugina
         {
             return konfiguracjaXml.Schematy;
         }
+
+        public Testy Testy()
+        {
+            return konfiguracjaXml.Testy;
+        }
     }
 }
