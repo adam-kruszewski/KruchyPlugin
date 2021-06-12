@@ -24,9 +24,7 @@ namespace Kruchy.Plugin.Akcje.KonfiguracjaPlugina
 
         private void DodajDefaultoweDlaPincasso()
         {
-            DodajNajczesciejUzywanyUsing("Piatka.Infrastructure.Mappings");
             DodajNajczesciejUzywanyUsing("FluentAssertions");
-            DodajNajczesciejUzywanyUsing("Piatka.Infrastructure.Tests.Builders");
             DodajNajczesciejUzywanyUsing("System.Linq");
         }
 
