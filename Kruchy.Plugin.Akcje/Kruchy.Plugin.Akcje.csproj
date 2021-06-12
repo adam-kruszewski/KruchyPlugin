@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Akcje\DodawanieDaoDaoContekstu.cs" />
+    <Compile Include="Akcje\DodawanieNowegoTestu.cs" />
     <Compile Include="Akcje\DodawanieUsinga.cs" />
     <Compile Include="Akcje\Generowanie.Xsd.Komponenty\IParametryGenerowaniaXsd.cs" />
     <Compile Include="Akcje\GenerowanieBuildera.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="KonfiguracjaPlugina\Xml\Testy.cs" />
     <Compile Include="Menu\PkgCmdIDList.cs" />
     <Compile Include="Menu\PozycjaDodawanieDaoDoContekstu.cs" />
+    <Compile Include="Menu\PozycjaDodawanieNowegoTestu.cs" />
     <Compile Include="Menu\PozycjaDodawanieUsingow.cs" />
     <Compile Include="Menu\PozycjaGenerowanieBuildera.cs" />
     <Compile Include="Menu\PozycjaGenerowanieKlasService.cs" />

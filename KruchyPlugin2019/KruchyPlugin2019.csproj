@@ -59,7 +59,6 @@
     </Compile>
     <Compile Include="Akcje\DodawanieNowejMetodyWBuilderze.cs" />
     <Compile Include="Akcje\DodawanieUprawnienDomyslnych.cs" />
-    <Compile Include="Akcje\DodawanieNowegoTestu.cs" />
     <Compile Include="Akcje\DodawanieUsingDbContext.cs" />
     <Compile Include="Akcje\GenerowanieKlasyWalidatora.cs" />
     <Compile Include="Akcje\GenerowanieWidoku.cs" />
@@ -77,7 +76,6 @@
     <Compile Include="Akcje\WstawianieNazwyControlleraDoSchowka.cs" />
     <Compile Include="Akcje\WynikGenerowaniaKlasService.cs" />
     <Compile Include="Menu\PozycjaDodawanieMapowan.cs" />
-    <Compile Include="Menu\PozycjaDodawanieNowegoTestu.cs" />
     <Compile Include="Menu\PozycjaDodawanieNowejMetodyWBuilderze.cs" />
     <Compile Include="Menu\PozycjaDodawanieUprawnienDomyslnych.cs" />
     <Compile Include="Menu\PozycjaDodawanieUsingDbContext.cs" />
