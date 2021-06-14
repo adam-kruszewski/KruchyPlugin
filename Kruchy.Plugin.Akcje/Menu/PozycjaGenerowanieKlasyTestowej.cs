@@ -48,7 +48,8 @@ namespace Kruchy.Plugin.Akcje.Menu
                     dialog.NazwaKlasy,
                     dialog.Rodzaj,
                     dialog.InterfejsTestowany,
-                    dialog.Integracyjny);
+                    dialog.Integracyjny,
+                    dialog.Katalog);
         }
     }
 }

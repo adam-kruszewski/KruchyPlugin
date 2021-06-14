@@ -117,5 +117,10 @@
   <ItemGroup>
     <None Include="KruchyPlugin.pfx" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Interfejs\NazwaKlasyTestowForm.resx">
+      <DependentUpon>NazwaKlasyTestowForm.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -44,11 +44,11 @@ namespace Kruchy.Plugin.Akcje.Akcje
             string nazwaKlasy,
             string rodzaj,
             string interfejsTestowany,
-            bool integracyjny)
+            bool integracyjny,
+            string katalog)
         {
             var aktualnyProjekt = solution.AktualnyPlik.Projekt;
-            var nazwaProjektuTestowego =
-                aktualnyProjekt.Nazwa + ".Tests";
+            var nazwaProjektuTestowego = aktualnyProjekt.Nazwa + ".Tests";
 
             var projektTestowy = solution.ZnajdzProjekt(nazwaProjektuTestowego);
 
@@ -58,7 +58,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
             var nazwaPlikuTestow = nazwaKlasy + ".cs";
             var pelnaSciezka = Path.Combine(
-                DajSciezkeDoKataloguTestow(integracyjny),
+                DajSciezkeDoKataloguTestow(integracyjny, katalog),
                 nazwaPlikuTestow);
 
             string zawartosc =
@@ -66,12 +66,17 @@ namespace Kruchy.Plugin.Akcje.Akcje
                     nazwaKlasy,
                     rodzaj,
                     interfejsTestowany,
-                    integracyjny);
+                    integracyjny,
+                    katalog);
             if (File.Exists(pelnaSciezka))
             {
                 MessageBox.Show("Plik już istnieje " + pelnaSciezka);
                 return;
             }
+
+            var fileInfo = new FileInfo(pelnaSciezka);
+
+            Directory.CreateDirectory(fileInfo.Directory.FullName);
 
             File.WriteAllText(pelnaSciezka, zawartosc, Encoding.UTF8);
             var plik = ProjektTestowy.DodajPlik(pelnaSciezka);
@@ -79,8 +84,11 @@ namespace Kruchy.Plugin.Akcje.Akcje
             solutionExplorer.OtworzPlik(plik);
         }
 
-        private string DajSciezkeDoKataloguTestow(bool integracyjne)
+        private string DajSciezkeDoKataloguTestow(bool integracyjne, string katalog)
         {
+            if (!string.IsNullOrEmpty(katalog))
+                return Path.Combine(ProjektTestowy.SciezkaDoKatalogu, katalog);
+
             if (integracyjne)
                 return ProjektTestowy.SciezkaDoIntegrationTests();
             else
@@ -91,7 +99,8 @@ namespace Kruchy.Plugin.Akcje.Akcje
             string nazwaKlasy,
             string rodzaj,
             string interfejsTestowany,
-            bool integracyjny)
+            bool integracyjny,
+            string katalog)
         {
             var konfiguracja = Konfiguracja.GetInstance(solution);
 
@@ -100,7 +109,8 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 nazwaKlasy,
                 rodzaj,
                 interfejsTestowany,
-                integracyjny);
+                integracyjny,
+                katalog);
         }
 
         private string DajNamespaceInterfejsuTestowanego()
@@ -116,8 +126,11 @@ namespace Kruchy.Plugin.Akcje.Akcje
             return namespaceTestowanejKlasy;
         }
 
-        private string DajNamespaceKlastyTestowej(bool integracyjny)
+        private string DajNamespaceKlastyTestowej(bool integracyjny, string katalog)
         {
+            if (!string.IsNullOrEmpty(katalog))
+                return ProjektTestowy.Nazwa + "." + katalog.Replace("\\", ".").Replace("/", ".");
+
             return ProjektTestowy.Nazwa +
                 DajFragmentNamespaceDotyczacyRodzajuTestow(integracyjny);
         }
@@ -127,7 +140,8 @@ namespace Kruchy.Plugin.Akcje.Akcje
             string nazwaKlasy,
             string rodzaj,
             string interfejsTestowany,
-            bool integracyjny)
+            bool integracyjny,
+            string katalog)
         {
             var szablon = konfiguracja.KlasyTestowe().Single(o => o.Nazwa == rodzaj);
 
@@ -136,7 +150,8 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 nazwaKlasy,
                 rodzaj,
                 interfejsTestowany,
-                integracyjny);
+                integracyjny,
+                katalog);
         }
 
         private string WypelnijZnaczniki(
@@ -144,13 +159,15 @@ namespace Kruchy.Plugin.Akcje.Akcje
             string nazwaKlasy,
             string rodzaj,
             string interfejsTestowany,
-            bool integracyjny)
+            bool integracyjny,
+            string katalog)
         {
             var slownikWartosci = PrzygotujWartosciZnacznikow(
                 nazwaKlasy,
                 rodzaj,
                 interfejsTestowany,
-                integracyjny);
+                integracyjny,
+                katalog);
 
             var wynik = szablon.Zawartosc;
 
@@ -164,11 +181,12 @@ namespace Kruchy.Plugin.Akcje.Akcje
             string nazwaKlasy,
             string rodzaj,
             string interfejsTestowany,
-            bool integracyjny)
+            bool integracyjny,
+            string katalog)
         {
             var wynik = new Dictionary<string, string>();
 
-            wynik.Add("%NAMESPACE%", DajNamespaceKlastyTestowej(integracyjny));
+            wynik.Add("%NAMESPACE%", DajNamespaceKlastyTestowej(integracyjny, katalog));
             wynik.Add("%NAZWA_KLASY%", nazwaKlasy);
             wynik.Add("%NAMESPACE_INTERFEJSU_TESTOWANEGO%", DajNamespaceInterfejsuTestowanego());
             wynik.Add("%INTERFEJS_TESTOWANY%", interfejsTestowany);

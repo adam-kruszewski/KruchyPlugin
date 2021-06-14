@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.checkBoxIntegracyjny = new System.Windows.Forms.CheckBox();
             this.buttonAnuluj = new System.Windows.Forms.Button();
             this.buttonGeneruj = new System.Windows.Forms.Button();
             this.tbInterfejsTestowany = new System.Windows.Forms.TextBox();
@@ -37,12 +38,15 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.labelNazwaKlasy = new System.Windows.Forms.Label();
-            this.checkBoxIntegracyjny = new System.Windows.Forms.CheckBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBoxKatalog = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.textBoxKatalog);
+            this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.checkBoxIntegracyjny);
             this.panel1.Controls.Add(this.buttonAnuluj);
             this.panel1.Controls.Add(this.buttonGeneruj);
@@ -55,13 +59,23 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(418, 141);
+            this.panel1.Size = new System.Drawing.Size(418, 181);
             this.panel1.TabIndex = 0;
+            // 
+            // checkBoxIntegracyjny
+            // 
+            this.checkBoxIntegracyjny.AutoSize = true;
+            this.checkBoxIntegracyjny.Location = new System.Drawing.Point(119, 98);
+            this.checkBoxIntegracyjny.Name = "checkBoxIntegracyjny";
+            this.checkBoxIntegracyjny.Size = new System.Drawing.Size(83, 17);
+            this.checkBoxIntegracyjny.TabIndex = 8;
+            this.checkBoxIntegracyjny.Text = "Integracyjny";
+            this.checkBoxIntegracyjny.UseVisualStyleBackColor = true;
             // 
             // buttonAnuluj
             // 
             this.buttonAnuluj.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonAnuluj.Location = new System.Drawing.Point(334, 109);
+            this.buttonAnuluj.Location = new System.Drawing.Point(334, 147);
             this.buttonAnuluj.Name = "buttonAnuluj";
             this.buttonAnuluj.Size = new System.Drawing.Size(75, 23);
             this.buttonAnuluj.TabIndex = 7;
@@ -71,7 +85,7 @@
             // 
             // buttonGeneruj
             // 
-            this.buttonGeneruj.Location = new System.Drawing.Point(253, 109);
+            this.buttonGeneruj.Location = new System.Drawing.Point(253, 147);
             this.buttonGeneruj.Name = "buttonGeneruj";
             this.buttonGeneruj.Size = new System.Drawing.Size(75, 23);
             this.buttonGeneruj.TabIndex = 6;
@@ -81,7 +95,7 @@
             // 
             // tbInterfejsTestowany
             // 
-            this.tbInterfejsTestowany.Location = new System.Drawing.Point(119, 83);
+            this.tbInterfejsTestowany.Location = new System.Drawing.Point(119, 121);
             this.tbInterfejsTestowany.Name = "tbInterfejsTestowany";
             this.tbInterfejsTestowany.Size = new System.Drawing.Size(290, 20);
             this.tbInterfejsTestowany.TabIndex = 5;
@@ -89,7 +103,7 @@
             // comboRodzajMigracji
             // 
             this.comboRodzajMigracji.FormattingEnabled = true;
-            this.comboRodzajMigracji.Location = new System.Drawing.Point(119, 32);
+            this.comboRodzajMigracji.Location = new System.Drawing.Point(119, 70);
             this.comboRodzajMigracji.Name = "comboRodzajMigracji";
             this.comboRodzajMigracji.Size = new System.Drawing.Size(290, 21);
             this.comboRodzajMigracji.TabIndex = 4;
@@ -104,7 +118,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 83);
+            this.label1.Location = new System.Drawing.Point(3, 121);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(95, 13);
             this.label1.TabIndex = 2;
@@ -113,7 +127,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 32);
+            this.label2.Location = new System.Drawing.Point(3, 70);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(74, 13);
             this.label2.TabIndex = 1;
@@ -128,15 +142,21 @@
             this.labelNazwaKlasy.TabIndex = 0;
             this.labelNazwaKlasy.Text = "Nazwa klasy testowej";
             // 
-            // checkBoxIntegracyjny
+            // label3
             // 
-            this.checkBoxIntegracyjny.AutoSize = true;
-            this.checkBoxIntegracyjny.Location = new System.Drawing.Point(119, 60);
-            this.checkBoxIntegracyjny.Name = "checkBoxIntegracyjny";
-            this.checkBoxIntegracyjny.Size = new System.Drawing.Size(83, 17);
-            this.checkBoxIntegracyjny.TabIndex = 8;
-            this.checkBoxIntegracyjny.Text = "Integracyjny";
-            this.checkBoxIntegracyjny.UseVisualStyleBackColor = true;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(3, 40);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(43, 13);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Katalog";
+            // 
+            // textBoxKatalog
+            // 
+            this.textBoxKatalog.Location = new System.Drawing.Point(119, 41);
+            this.textBoxKatalog.Name = "textBoxKatalog";
+            this.textBoxKatalog.Size = new System.Drawing.Size(290, 20);
+            this.textBoxKatalog.TabIndex = 10;
             // 
             // NazwaKlasyTestowForm
             // 
@@ -144,7 +164,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.buttonAnuluj;
-            this.ClientSize = new System.Drawing.Size(418, 141);
+            this.ClientSize = new System.Drawing.Size(418, 181);
             this.ControlBox = false;
             this.Controls.Add(this.panel1);
             this.Name = "NazwaKlasyTestowForm";
@@ -170,5 +190,7 @@
         private System.Windows.Forms.ComboBox comboRodzajMigracji;
         private System.Windows.Forms.TextBox tbNazwaKlasyTestowej;
         private System.Windows.Forms.CheckBox checkBoxIntegracyjny;
+        private System.Windows.Forms.TextBox textBoxKatalog;
+        private System.Windows.Forms.Label label3;
     }
 }
