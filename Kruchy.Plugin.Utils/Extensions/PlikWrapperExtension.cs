@@ -31,8 +31,30 @@ namespace Kruchy.Plugin.Utils.Extensions
             sciezka = Path.Combine(aktualny.Katalog, nazwa);
             if (File.Exists(sciezka))
                 return sciezka;
-            return null;
+
+            return aktualny.Projekt.Pliki
+                .FirstOrDefault(o => o.Nazwa == nazwa)
+                ?.SciezkaPelna;
         }
+
+
+        public static string SzukajSciezkiDoInterfejsu(this IPlikWrapper aktualny)
+        {
+            var katalog = aktualny.Katalog;
+            var katalogInterfejsu = Directory.GetParent(katalog).FullName;
+            var nazwa = "I" + aktualny.Nazwa;
+            var sciezka = Path.Combine(katalogInterfejsu, nazwa);
+            if (File.Exists(sciezka))
+                return sciezka;
+            sciezka = Path.Combine(aktualny.Katalog, nazwa);
+            if (File.Exists(sciezka))
+                return sciezka;
+
+            return aktualny.Projekt.Pliki
+                .FirstOrDefault(o => o.Nazwa == nazwa)
+                ?.SciezkaPelna;
+        }
+
 
         public static bool JestBuilderem(this IPlikWrapper aktualny)
         {

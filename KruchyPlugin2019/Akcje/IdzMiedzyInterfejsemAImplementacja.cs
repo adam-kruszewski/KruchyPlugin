@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Forms;
+using Kruchy.Plugin.Utils.Extensions;
 using Kruchy.Plugin.Utils.Wrappers;
 using KruchyParserKodu.ParserKodu;
 
@@ -82,16 +83,12 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 
         private string SzukajSciezkiDoImplementacji(IPlikWrapper aktualny)
         {
-            var katalog = aktualny.Katalog;
-            var katalogImpl = Path.Combine(katalog, "Impl");
-            var nazwa = aktualny.Nazwa.Substring(1);
-            var sciezka = Path.Combine(katalogImpl, nazwa);
-            if (File.Exists(sciezka))
-                return sciezka;
-            sciezka = Path.Combine(aktualny.Katalog, nazwa);
-            if (File.Exists(sciezka))
-                return sciezka;
-            return null;
+            var wynik = aktualny.SzukajSciezkiDoImplementacji();
+
+            if (wynik == null)
+                MessageBox.Show("Nie znalazłem");
+
+            return wynik;
         }
 
         private void SprobujPrzejscDoInterfejsu(IPlikWrapper aktualny)
@@ -102,17 +99,12 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 
         private string SzukajSciezkiDoInterfejsu(IPlikWrapper aktualny)
         {
-            var katalog = aktualny.Katalog;
-            var katalogInterfejsu = Directory.GetParent(katalog).FullName;
-            var nazwa = "I" + aktualny.Nazwa;
-            var sciezka = Path.Combine(katalogInterfejsu, nazwa);
-            if (File.Exists(sciezka))
-                return sciezka;
-            sciezka = Path.Combine(aktualny.Katalog, nazwa);
-            if (File.Exists(sciezka))
-                return sciezka;
-            MessageBox.Show("Nie znalazłem " + sciezka);
-            return null;
+            var wynik = aktualny.SzukajSciezkiDoInterfejsu();
+
+            if (wynik == null)
+                MessageBox.Show("Nie znalazłem");
+
+            return wynik;
         }
 
         private void OtworzJesliSciezkaNieNullowa(string sciezka)
