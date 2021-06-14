@@ -30,7 +30,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 ZmienWMetodzie(modyfikator, metoda);
             }else
             {
-                var klasa = parsowane.SzukajKlasyWLinii(dokument.DajNumerLiniiKursora());
+                var klasa = parsowane.SzukajObiektuWLinii(dokument.DajNumerLiniiKursora());
                 if (klasa != null)
                     ZmienWKlasie(modyfikator, klasa);
             }
