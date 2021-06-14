@@ -13,7 +13,6 @@ namespace Kruchy.Plugin.Akcje.Interfejs
         public string NazwaKlasy { get; private set; }
         public string Rodzaj { get; private set; }
         public string InterfejsTestowany { get; private set; }
-        public bool Integracyjny { get; set; }
         public string Katalog { get; set; }
 
         private readonly ISolutionWrapper solution;
@@ -79,7 +78,6 @@ namespace Kruchy.Plugin.Akcje.Interfejs
             NazwaKlasy = tbNazwaKlasyTestowej.Text;
             Rodzaj = comboRodzajMigracji.SelectedItem.ToString();
             InterfejsTestowany = tbInterfejsTestowany.Text;
-            Integracyjny = checkBoxIntegracyjny.Checked;
             Katalog = textBoxKatalog.Text;
             Close();
         }
