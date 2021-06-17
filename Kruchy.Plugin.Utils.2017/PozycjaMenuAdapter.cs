@@ -2,6 +2,7 @@
 using System.ComponentModel.Design;
 using System.Linq;
 using System.Reflection;
+using System.Windows.Forms;
 using Kruchy.Plugin.Utils.Menu;
 using Kruchy.Plugin.Utils.Wrappers;
 using Microsoft.VisualStudio.Shell;
@@ -80,7 +81,13 @@ namespace Kruchy.Plugin.Utils._2017
 
         public void Execute(object sender, EventArgs args)
         {
-            pozycjaMenu.Execute(sender, args);
+            try
+            {
+                pozycjaMenu.Execute(sender, args);
+            }catch (Exception ex)
+            {
+                MessageBox.Show(ex.StackTrace);
+            }
         }
     }
 }
