@@ -67,6 +67,8 @@
     <Compile Include="Wrappers\IProjektWrapper.cs" />
     <Compile Include="Wrappers\ISolutionExplorerWrapper.cs" />
     <Compile Include="Wrappers\ISolutionWrapper.cs" />
+    <Compile Include="UI\IUIFactory.cs" />
+    <Compile Include="UI\UIFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KrucheBuilderyKodu\KrucheBuilderyKodu.csproj">

@@ -7,6 +7,7 @@ using EnvDTE80;
 using Kruchy.Plugin.Utils._2017;
 using Kruchy.Plugin.Utils._2017.Wrappers;
 using Kruchy.Plugin.Utils.Menu;
+using Kruchy.Plugin.Utils.UI;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
@@ -85,6 +86,8 @@ namespace KruchyPlugin2019
                 var pozycjaMenu = Activator.CreateInstance(klasa, parametry) as IPozycjaMenu;
                 new PozycjaMenuAdapter(pozycjaMenu, sw).Podlacz(mcs2);
             }
+
+            UIFactory.factoryFunction = type => this.FindToolWindow(type, 0, true);
         }
         #endregion
     }
