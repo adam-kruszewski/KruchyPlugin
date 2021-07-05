@@ -27,10 +27,10 @@
             <CheckBox x:Name="asyncCheckBox" Grid.Row="1" Grid.Column="1"/>
         </Grid>
         <WrapPanel FlowDirection="RightToLeft" Orientation="Horizontal">
-            <Button x:Name="cancelButton" Margin="3">
+            <Button x:Name="cancelButton" Margin="3" IsCancel="True" Width="60" Height="40">
                 Anuluj
             </Button>
-            <Button x:Name="addButton" Margin="3">
+            <Button x:Name="addButton" Margin="3" Height="40" Width="60" BorderThickness="1,0,1,1" IsDefault="True">
                 Dodaj
             </Button>
         </WrapPanel>
