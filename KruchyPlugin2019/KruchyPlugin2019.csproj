@@ -102,6 +102,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Design" />
@@ -134,6 +135,10 @@
     <ProjectReference Include="..\Kruchy.Plugin.Akcje\Kruchy.Plugin.Akcje.csproj">
       <Project>{e2d61ac0-ef12-494f-aeb9-5b6112281096}</Project>
       <Name>Kruchy.Plugin.Akcje</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Kruchy.Plugin.UI\Kruchy.Plugin.UI.csproj">
+      <Project>{7A7E0B69-C434-4504-BAA1-AD093FEA4D45}</Project>
+      <Name>Kruchy.Plugin.UI</Name>
     </ProjectReference>
     <ProjectReference Include="..\Kruchy.Plugin.Utils.2017\Kruchy.Plugin.Utils.2017.csproj">
       <Project>{473efcb9-dea9-44dc-9e50-30c1c46ccc5e}</Project>

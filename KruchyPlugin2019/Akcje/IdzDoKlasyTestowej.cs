@@ -35,7 +35,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 
                 if (projektTestow == null)
                 {
-                    MessageBox.Show("Nie znaleziono projektu testowego ");
+                    System.Windows.MessageBox.Show("Nie znaleziono projektu testowego ");
                     return;
                 }
 
@@ -53,7 +53,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 
                 if (projektModulu == null)
                 {
-                    MessageBox.Show("Nie znaleziono projektu modułu");
+                    System.Windows.MessageBox.Show("Nie znaleziono projektu modułu");
                     return;
                 }
 
@@ -74,7 +74,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 
             if (plik == null)
             {
-                MessageBox.Show("Nie znaleziono pliku: ");
+                System.Windows.MessageBox.Show("Nie znaleziono pliku: ");
                 return;
             }
 

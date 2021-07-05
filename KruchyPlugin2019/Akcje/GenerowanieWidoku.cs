@@ -23,7 +23,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
         {
             if (!solution.CzyPlikControllera())
             {
-                MessageBox.Show("To nie jest plik controllera");
+                System.Windows.MessageBox.Show("To nie jest plik controllera");
                 return;
             }
             nazwa = Normalizuj(nazwa);
@@ -36,7 +36,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             var pelnaSciezka = Path.Combine(katalogControllera, nazwa);
             if (File.Exists(pelnaSciezka))
             {
-                MessageBox.Show("Plik " + pelnaSciezka + " już istnieje");
+                System.Windows.MessageBox.Show("Plik " + pelnaSciezka + " już istnieje");
                 return;
             }
             File.WriteAllText(pelnaSciezka, "");

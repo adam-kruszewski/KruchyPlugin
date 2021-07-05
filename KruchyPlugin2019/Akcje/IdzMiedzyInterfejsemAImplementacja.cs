@@ -86,7 +86,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             var wynik = aktualny.SzukajSciezkiDoImplementacji();
 
             if (wynik == null)
-                MessageBox.Show("Nie znalazłem");
+                System.Windows.MessageBox.Show("Nie znalazłem");
 
             return wynik;
         }
@@ -102,7 +102,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             var wynik = aktualny.SzukajSciezkiDoInterfejsu();
 
             if (wynik == null)
-                MessageBox.Show("Nie znalazłem");
+                System.Windows.MessageBox.Show("Nie znalazłem");
 
             return wynik;
         }

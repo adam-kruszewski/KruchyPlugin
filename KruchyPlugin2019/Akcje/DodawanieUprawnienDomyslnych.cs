@@ -19,7 +19,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
         {
             if (!solution.CzyPlikControllera())
             {
-                MessageBox.Show("To nie jest plik controllera");
+                System.Windows.MessageBox.Show("To nie jest plik controllera");
                 return;
             }
             var nazwaKlasy = "";

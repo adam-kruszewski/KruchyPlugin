@@ -28,7 +28,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             var aktualnyPlik = solution.AktualnyPlik;
             if (!aktualnyPlik.JestInterfejsem())
             {
-                MessageBox.Show("Aktualny plik nie jest interfejsem");
+                System.Windows.MessageBox.Show("Aktualny plik nie jest interfejsem");
                 return;
             }
 
@@ -40,7 +40,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 
             if (aktualnaMetoda == null)
             {
-                MessageBox.Show("Kursor nie stoi ma metodzie");
+                System.Windows.MessageBox.Show("Kursor nie stoi ma metodzie");
                 return;
             }
 
@@ -51,7 +51,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 
             if (sciezkaDoImplementacji == null)
             {
-                MessageBox.Show("Nie znaleziono implementacji");
+                System.Windows.MessageBox.Show("Nie znaleziono implementacji");
                 return;
             }
 

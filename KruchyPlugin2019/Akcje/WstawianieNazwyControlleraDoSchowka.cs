@@ -25,7 +25,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
                         .AktualnyPlik
                             .DajNazweControllera();
 
-                Clipboard.SetText(nazwaControllera);
+                System.Windows.Forms.Clipboard.SetText(nazwaControllera);
                 return;
             }
             else
@@ -34,7 +34,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
                     return;
                 var fi = new FileInfo(solution.AktualnyPlik.SciezkaPelna);
                 if (fi.Extension.ToLower() == ".cshtml")
-                    Clipboard.SetText(fi.DirectoryName);
+                    System.Windows.Clipboard.SetText(fi.DirectoryName);
             }
         }
 

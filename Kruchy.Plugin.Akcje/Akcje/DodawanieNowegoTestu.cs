@@ -14,7 +14,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             this.solution = solution;
         }
 
-        public void DodajNowyTest(string nazwaTestu)
+        public void DodajNowyTest(string nazwaTestu, bool asyncTest = false)
         {
             var konfiguracja = Konfiguracja.GetInstance(solution);
 
@@ -23,6 +23,15 @@ namespace Kruchy.Plugin.Akcje.Akcje
                     .ZNazwa(nazwaTestu)
                     .DodajModyfikator("public")
                     .DodajAtrybut(new AtrybutBuilder().ZNazwa(DajNazweAtrybutu(konfiguracja)));
+
+            if (asyncTest)
+            {
+                builder = builder
+                    .DodajModyfikator("async")
+                    .ZTypemZwracanym("Task");
+
+                solution.AktualnyDokument?.DodajUsingaJesliTrzeba("System.Threading.Tasks");
+            }
 
             builder.DodajLinie("//arrange");
             builder.DodajLinie("");

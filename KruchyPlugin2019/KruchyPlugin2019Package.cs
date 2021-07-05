@@ -3,12 +3,17 @@ using System.ComponentModel.Design;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
+using System.Windows;
 using EnvDTE80;
+using Kruchy.Plugin.Akcje.Interfejs;
+using Kruchy.Plugin.UI;
 using Kruchy.Plugin.Utils._2017;
 using Kruchy.Plugin.Utils._2017.Wrappers;
 using Kruchy.Plugin.Utils.Menu;
 using Kruchy.Plugin.Utils.UI;
+using Microsoft.Internal.VisualStudio.PlatformUI;
 using Microsoft.VisualStudio;
+using Microsoft.VisualStudio.ProjectSystem;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Task = System.Threading.Tasks.Task;
@@ -87,7 +92,12 @@ namespace KruchyPlugin2019
                 new PozycjaMenuAdapter(pozycjaMenu, sw).Podlacz(mcs2);
             }
 
-            UIFactory.factoryFunction = type => this.FindToolWindow(type, 0, true);
+            Kruchy.Plugin.UI.UIFactory.factoryFunction = type => this.FindToolWindow(type, 0, true);
+
+            IVsUIShell uiShell = (IVsUIShell)(await ServiceProvider.GetGlobalServiceAsync(typeof(SVsUIShell)));
+            UIObjects.ShowWindow = WindowTools.ShowWindow;
+            UIObjects.FactoryInstance = new Kruchy.Plugin.UI.UIFactory();
+            UIObjects.ShowWindowModal = window => WindowTools.ShowWindowModal(window, uiShell);
         }
         #endregion
     }

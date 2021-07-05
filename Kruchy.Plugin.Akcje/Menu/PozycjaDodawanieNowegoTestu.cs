@@ -1,6 +1,7 @@
 ﻿using Kruchy.Plugin.Akcje.Akcje;
 using Kruchy.Plugin.Akcje.Interfejs;
 using Kruchy.Plugin.Utils.Menu;
+using Kruchy.Plugin.Utils.UI;
 using Kruchy.Plugin.Utils.Wrappers;
 using System;
 using System.Collections.Generic;
@@ -31,14 +32,14 @@ namespace Kruchy.Plugin.Akcje.Menu
 
         public void Execute(object sender, EventArgs args)
         {
-            var dialog = new NazwaKlasyWindow();
-            dialog.EtykietaNazwyPliku = "Nazwa metody testu";
-            dialog.ShowDialog();
-            if (string.IsNullOrEmpty(dialog.NazwaPliku))
+            INewTestWindow dialog = UIObjects.FactoryInstance.Get<INewTestWindow>();
+            UIObjects.ShowWindowModal(dialog);
+
+            if (string.IsNullOrEmpty(dialog.Name))
                 return;
 
             new DodawanieNowegoTestu(solution)
-                .DodajNowyTest(dialog.NazwaPliku);
+                .DodajNowyTest(dialog.Name, dialog.Async);
         }
     }
 }

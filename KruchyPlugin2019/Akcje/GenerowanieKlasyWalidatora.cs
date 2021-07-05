@@ -53,12 +53,12 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 
             if (File.Exists(pelnaSciezkaDoPlikuImplementacji))
             {
-                MessageBox.Show("Plik już istnieje " + pelnaSciezkaDoPlikuImplementacji);
+                System.Windows.MessageBox.Show("Plik już istnieje " + pelnaSciezkaDoPlikuImplementacji);
                 return;
             }
             if (File.Exists(pelnaSciezkaDoPlikuInterfejsu))
             {
-                MessageBox.Show("Plik już istnieje " + pelnaSciezkaDoPlikuInterfejsu);
+                System.Windows.MessageBox.Show("Plik już istnieje " + pelnaSciezkaDoPlikuInterfejsu);
                 return;
             }
 

@@ -11,7 +11,7 @@ using KruchyParserKodu.ParserKodu;  namespace KruchyCompany.KruchyPlugin1.Ak
                     parsowane
                         .SzukajKonstruktoraWLinii(dokument.DajNumerLiniiKursora());
                 if (konstruktor != null)
-                    PodzielNaLinieKonstruktor(konstruktor);                 else                     MessageBox.Show("Kursor nie jest w metodzie");                 return;             }              dokument.Usun(                 metoda.NawiasOtwierajacyParametry.Wiersz,                 metoda.NawiasOtwierajacyParametry.Kolumna,                 metoda.NawiasZamykajacyParametry.Wiersz,                 metoda.NawiasZamykajacyParametry.Kolumna + 1);              dokument.WstawWMiejscu(                 GenerujNoweParametry(metoda.Parametry, metoda, metoda),                 metoda.NawiasOtwierajacyParametry.Wiersz,                 metoda.NawiasOtwierajacyParametry.Kolumna);         }
+                    PodzielNaLinieKonstruktor(konstruktor);                 else                     System.Windows.MessageBox.Show("Kursor nie jest w metodzie");                 return;             }              dokument.Usun(                 metoda.NawiasOtwierajacyParametry.Wiersz,                 metoda.NawiasOtwierajacyParametry.Kolumna,                 metoda.NawiasZamykajacyParametry.Wiersz,                 metoda.NawiasZamykajacyParametry.Kolumna + 1);              dokument.WstawWMiejscu(                 GenerujNoweParametry(metoda.Parametry, metoda, metoda),                 metoda.NawiasOtwierajacyParametry.Wiersz,                 metoda.NawiasOtwierajacyParametry.Kolumna);         }
 
         private void PodzielNaLinieKonstruktor(Konstruktor konstruktor)
         {
