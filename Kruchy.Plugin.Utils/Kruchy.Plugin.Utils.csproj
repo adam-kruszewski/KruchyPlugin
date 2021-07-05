@@ -61,6 +61,7 @@
     <Compile Include="Menu\AbstractPozycjaMenuDynamicznieRozwijane.cs" />
     <Compile Include="Menu\WymaganieDostepnosci.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\UIObjects.cs" />
     <Compile Include="Wrappers\FileSystemWrapper.cs" />
     <Compile Include="Wrappers\IDokumentWrapper.cs" />
     <Compile Include="Wrappers\IPlikWrapper.cs" />
@@ -68,7 +69,6 @@
     <Compile Include="Wrappers\ISolutionExplorerWrapper.cs" />
     <Compile Include="Wrappers\ISolutionWrapper.cs" />
     <Compile Include="UI\IUIFactory.cs" />
-    <Compile Include="UI\UIFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KrucheBuilderyKodu\KrucheBuilderyKodu.csproj">
