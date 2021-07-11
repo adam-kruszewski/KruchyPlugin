@@ -29,6 +29,7 @@
         public const uint cmdidGenerujBuildera = 0x166;
         public const uint cmdidGenerujXsdDlaReportView = 0x167;
         public const uint cmdidDodajDaoDoContekstu = 0x168;
+        public const uint cmdidZrobMetodeAsync = 0x169;
 
         //dla poruszania się po klasach ui
         public const uint cmdidIdzDoImplementacji = 0x0170;

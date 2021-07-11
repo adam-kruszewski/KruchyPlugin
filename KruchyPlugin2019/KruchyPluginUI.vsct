@@ -220,6 +220,16 @@
         <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
 
+      <Button guid="guidCommand1PackageCmdSet" id="cmdidZrobMetodeAsync" priority="0x0117" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="ZmianaModyfikatorowGroup" />
+        <Strings>
+          <CommandName>cmdidZrobMetodeAsync</CommandName>
+          <ButtonText>Zmień metodę na &amp;async</ButtonText>
+        </Strings>
+        <CommandFlag>DefaultDisabled</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+      </Button>
+
       <Button guid="guidCommand1PackageCmdSet" id="cmdidUzupelnijAtrybutKluczaObcego" priority="0x0100" type="Button">
         <Parent guid="guidCommand1PackageCmdSet" id="DomainObjectGroup" />
         <!--<Icon guid="guidImages" id="bmpPic1" />-->
@@ -547,7 +557,8 @@
       <IDSymbol name="cmdidGenerujBuildera" value="0x0166"/>
       <IDSymbol name="cmdidGenerujXsdDlaReportView" value="0x0167"/>
       <IDSymbol name="cmdidDodajDaoDoContekstu" value="0x168"/>
-
+      <IDSymbol name="cmdidZrobMetodeAsync" value="0x169"/>
+      
       <IDSymbol name="cmdidIdzDoImplementacji" value="0x0170"/>
       <IDSymbol name="cmdidIdzDoKataloguControllera" value="0x0171"/>
       <IDSymbol name="cmdidIdzDoWidoku" value="0x0172"/>

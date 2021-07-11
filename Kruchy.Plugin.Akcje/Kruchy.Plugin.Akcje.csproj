@@ -63,6 +63,7 @@
     <Compile Include="Akcje\RodzajKlasyTestowej.cs" />
     <Compile Include="Akcje\UzupelnianieKonstruktora.cs" />
     <Compile Include="Akcje\ZmianaModyfikatoraMetody.cs" />
+    <Compile Include="Akcje\ZmianaNaAsync.cs" />
     <Compile Include="Atrybuty\SpecyficzneDlaPincassoAttribute.cs" />
     <Compile Include="Interfejs\INewTestWindow.cs" />
     <Compile Include="Interfejs\NazwaKlasyTestowForm.cs">
@@ -97,6 +98,7 @@
     <Compile Include="Menu\PozycjaGenerujPlik.cs" />
     <Compile Include="Menu\PozycjaPrzejdzDo.cs" />
     <Compile Include="Menu\PozycjaUzupelnianieKonstruktora.cs" />
+    <Compile Include="Menu\PozycjaZmienNaAsync.cs" />
     <Compile Include="Menu\PozycjaZmienNaPrivate.cs" />
     <Compile Include="Menu\PozycjaZmienNaPublic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

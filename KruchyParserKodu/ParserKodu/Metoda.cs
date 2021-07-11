@@ -14,7 +14,7 @@ namespace KruchyParserKodu.ParserKodu
         public IList<Modyfikator> Modyfikatory { get; set; }
         public List<Atrybut> Atrybuty { get; private set; }
 
-        public string TypZwracany { get; set; }
+        public TypZwracany TypZwracany { get; set; }
         public string Nazwa { get; set; }
         public PozycjaWPliku NawiasOtwierajacyParametry { get; set; }
         public PozycjaWPliku NawiasZamykajacyParametry { get; set; }

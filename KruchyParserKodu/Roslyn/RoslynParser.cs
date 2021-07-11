@@ -157,7 +157,12 @@ namespace KruchyParserKodu.Roslyn
 
                 UstawPolozenie(klasa.SyntaxTree, metoda, metodaSyntax);
 
-                metoda.TypZwracany = metodaSyntax.ReturnType.DajNazweTypu();
+                metoda.TypZwracany = new TypZwracany
+                {
+                    Nazwa = metodaSyntax.ReturnType.DajNazweTypu()
+                };
+
+                UstawPolozenie(klasa.SyntaxTree, metoda.TypZwracany, metodaSyntax.ReturnType);
 
                 UzupelnijPozycjeNawiasowOtwierajacychIZamykajacych(metodaSyntax, metoda);
 

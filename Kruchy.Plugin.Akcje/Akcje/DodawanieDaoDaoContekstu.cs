@@ -143,7 +143,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 .DefiniowaneObiekty
                     .Single()
                         .Metody
-                            .Where(o => o.TypZwracany.CompareTo(nazwaInterfejsuDao) > 0)
+                            .Where(o => o.TypZwracany.Nazwa.CompareTo(nazwaInterfejsuDao) > 0)
                                 .FirstOrDefault();
 
             if (metodaPo == null)
