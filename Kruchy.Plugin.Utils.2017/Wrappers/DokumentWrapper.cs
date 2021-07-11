@@ -5,6 +5,7 @@ using KrucheBuilderyKodu.Builders;
 using Kruchy.Plugin.Utils.Wrappers;
 using KruchyParserKodu.ParserKodu;
 
+#pragma warning disable VSTHRD010
 namespace Kruchy.Plugin.Utils._2017.Wrappers
 {
     public class DokumentWrapper : IDokumentWrapper
