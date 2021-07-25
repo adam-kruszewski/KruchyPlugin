@@ -28,7 +28,8 @@ namespace Kruchy.Plugin.Akcje.Akcje
                     return;
 
                 ZmienWMetodzie(modyfikator, metoda);
-            }else
+            }
+            else
             {
                 var klasa = parsowane.SzukajObiektuWLinii(dokument.DajNumerLiniiKursora());
                 if (klasa != null)
@@ -45,7 +46,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 modyfikator = "";
 
             if (dotychczasowyModyfikator == null)
-                WstawModyfikator(modyfikator, klasa.Poczatek);
+                WstawModyfikator(modyfikator, klasa.RodzajObiektuObiekt.Poczatek);
             else
                 ZmienModyfikator(modyfikator, dotychczasowyModyfikator);
         }
@@ -56,7 +57,11 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 SzukajDotychczasowegoModyfikatora(metoda.Modyfikatory);
 
             if (dotychczasowyModyfikator == null)
-                WstawModyfikator(modyfikator, metoda.Poczatek);
+            {
+                WstawModyfikator(
+                    modyfikator,
+                    metoda.TypZwracany.Poczatek);
+            }
             else
                 ZmienModyfikator(modyfikator, dotychczasowyModyfikator);
         }

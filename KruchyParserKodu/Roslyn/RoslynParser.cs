@@ -59,6 +59,7 @@ namespace KruchyParserKodu.Roslyn
             var definiowanyObiekt = new Obiekt();
             definiowanyObiekt.Nazwa = interfaceSyntax.Identifier.ValueText;
             definiowanyObiekt.Rodzaj = RodzajObiektu.Interfejs;
+            UstawPolozenie(interfaceSyntax.Keyword, definiowanyObiekt.RodzajObiektuObiekt);
 
             UstawPolozenie(interfaceSyntax.SyntaxTree, definiowanyObiekt, interfaceSyntax);
             UstawPolozeniePoczatkowejKlamerki(definiowanyObiekt, interfaceSyntax.OpenBraceToken);
@@ -78,6 +79,7 @@ namespace KruchyParserKodu.Roslyn
             var definiowanyObiekt = new Obiekt();
             definiowanyObiekt.Nazwa = klasa.Identifier.ValueText;
             definiowanyObiekt.Rodzaj = RodzajObiektu.Klasa;
+            UstawPolozenie(klasa.Keyword, definiowanyObiekt.RodzajObiektuObiekt);
 
             UstawPolozenie(syntaxTree, definiowanyObiekt, klasa);
             UstawPolozeniePoczatkowejKlamerki(definiowanyObiekt, klasa.OpenBraceToken);

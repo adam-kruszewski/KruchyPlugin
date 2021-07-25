@@ -8,7 +8,16 @@ namespace KruchyParserKodu.ParserKodu
             , IZPoczatkowaIKoncowaKlamerka
                 , IZWlascicielem
     {
-        public RodzajObiektu Rodzaj { get; set; }
+        public RodzajObiektu Rodzaj {
+            get => RodzajObiektuObiekt.RodzajObiektu;
+            set
+            {
+                RodzajObiektuObiekt.RodzajObiektu = value;
+            }
+        }
+
+        public RodzajObiektuObiekt RodzajObiektuObiekt { get; set; }
+
         public Obiekt Wlasciciel { get; set; }
 
         public string Nazwa { get; set; }
@@ -43,6 +52,8 @@ namespace KruchyParserKodu.ParserKodu
             KoncowaKlamerka = new PozycjaWPliku();
             ObiektyWewnetrzne = new List<Obiekt>();
             Modyfikatory = new List<Modyfikator>();
+
+            RodzajObiektuObiekt = new RodzajObiektuObiekt();
         }
 
         private IEnumerable<Pole> SzukajPolNiestatycznych()
