@@ -9,6 +9,7 @@ namespace KrucheBuilderyKodu.Builders
         public const string WciecieDlaZawartosciMetody = WciecieDlaMetody + JednostkaWciecia;
         public const string WcieciaDlaParametruMetody = WciecieDlaMetody + JednostkaWciecia;
         public const string WciecieDlaKlasy = JednostkaWciecia;
+        public const string WcieciaDlaPolaKlasy = WciecieDlaKlasy + JednostkaWciecia;
 
         public static string WielokrotnoscWciecia(int ile)
         {

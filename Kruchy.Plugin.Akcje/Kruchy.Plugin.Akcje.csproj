@@ -60,6 +60,7 @@
     <Compile Include="Akcje\GenerowanieKlasyTestowej.cs" />
     <Compile Include="Akcje\GenerowaniePlikuZSzablonu.cs" />
     <Compile Include="Akcje\GenerowanieXsdDlaReportView.cs" />
+    <Compile Include="Akcje\InicjalizowanieKlasyTestowejMockami.cs" />
     <Compile Include="Akcje\RodzajKlasyTestowej.cs" />
     <Compile Include="Akcje\UzupelnianieKonstruktora.cs" />
     <Compile Include="Akcje\ZmianaModyfikatoraMetody.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="Menu\PozycjaGenerowanieKlasyTestowej.cs" />
     <Compile Include="Menu\PozycjaGenerowanieXsdDlaReportView.cs" />
     <Compile Include="Menu\PozycjaGenerujPlik.cs" />
+    <Compile Include="Menu\PozycjaInicjalizowanieKlasyTestowejMockami.cs" />
     <Compile Include="Menu\PozycjaPrzejdzDo.cs" />
     <Compile Include="Menu\PozycjaUzupelnianieKonstruktora.cs" />
     <Compile Include="Menu\PozycjaZmienNaAsync.cs" />

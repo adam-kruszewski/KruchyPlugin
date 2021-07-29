@@ -294,6 +294,16 @@
         <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
 
+      <Button guid="guidCommand1PackageCmdSet" id="cmdidInicjujTestyMockami" priority="0x0132" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="PozostaleKodoweGroup" />
+        <Strings>
+          <CommandName>cmdidInicjujTestyMockami</CommandName>
+          <ButtonText>Inic&amp;juj mocki</ButtonText>
+        </Strings>
+        <CommandFlag>DefaultDisabled</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+      </Button>
+
 
       <Button guid="guidCommand1PackageCmdSet" id="cmdidPodzielParametryNaLinie" priority="0x0137" type="Button">
         <Parent guid="guidCommand1PackageCmdSet" id="PozostaleKodoweGroup" />
@@ -565,6 +575,8 @@
       <IDSymbol name="cmdidGenerujWidok" value="0x0173"/>
       <IDSymbol name="cmidPrzejdzDoGridRowActions" value="0x0174"/>
       <IDSymbol name="cmidPrzejdzDoGridToolbar" value="0x0175"/>
+
+      <IDSymbol name="cmdidInicjujTestyMockami" value="0x0180"/>
 
       <IDSymbol name="ToolbarPrzejdzDoItemGroup" value="0x3020" />
       <IDSymbol name="MenuPrzejdzDoControllerGroup" value="0x3025" />
