@@ -17,6 +17,8 @@ namespace KruchyParserKodu.Roslyn
             var syntaxTree = CSharpSyntaxTree.ParseText(zawartosc);
             var root = syntaxTree.GetRoot() as CompilationUnitSyntax;
 
+            DisplayHierachy(root);
+
             var wynik = new Plik();
 
             var namespaceDeclaration =
@@ -43,6 +45,82 @@ namespace KruchyParserKodu.Roslyn
             }
 
             return wynik;
+        }
+
+        private void DisplayHierachy(CompilationUnitSyntax root)
+        {
+            var indent = "";
+
+            Console.WriteLine($"{indent} - {root.GetType().Name}");
+
+            var trivias = root.DescendantTrivia();
+
+
+            var nodes = root.ChildNodes();
+
+            foreach (var node in nodes)
+            {
+                DisplayNode(node, indent + "  ");
+            }
+
+            for (int i = 0; i < nodes.Count(); i++)
+            {
+
+            }
+
+            var tokens = root.ChildTokens();
+        }
+
+        private void DisplayNode(SyntaxNode node, string indent)
+        {
+            Console.WriteLine($"{indent} - {node.GetType().Name} :: {node.Kind()} ++ {node.ToFullString()}");
+            var nodes = node.ChildNodes();
+
+            if (node is ClassDeclarationSyntax)
+            {
+                var classDeclarion = node as ClassDeclarationSyntax;
+
+                var trivias = classDeclarion.GetLeadingTrivia();
+
+                foreach (var trivia in trivias)
+                {
+                    if (trivia.IsKind(SyntaxKind.SingleLineCommentTrivia))
+                    {
+                        Console.WriteLine($"Comment :: {trivia.ToString()}");
+                    }
+                }
+            }
+
+            foreach (var node2 in nodes)
+            {
+                DisplayNode(node2, indent + "  ");
+            }
+        }
+
+        private void ParsujKomentarz(IZKomentarzem obiekt, SyntaxNode syntaxNode)
+        {
+            var trivias = syntaxNode.GetLeadingTrivia();
+
+            foreach (var trivia in trivias.Where(o => o.IsKind(SyntaxKind.SingleLineCommentTrivia)))
+            {
+                if (obiekt.Komentarz == null)
+                    obiekt.Komentarz = new Komentarz();
+                obiekt.Komentarz.DodajLinie(trivia.ToString());
+                UstawPolozenie(trivia, obiekt.Komentarz);
+            }
+        }
+
+        private void ParsujDokumentacje(IZDokumentacja obiekt, SyntaxNode syntaxNode)
+        {
+            var trivias = syntaxNode.GetLeadingTrivia();
+
+            foreach (var trivia in trivias.Where(o => o.IsKind(SyntaxKind.SingleLineDocumentationCommentTrivia)))
+            {
+                if (obiekt.Dokumentacja == null)
+                    obiekt.Dokumentacja = new Dokumentacja();
+                obiekt.Dokumentacja.DodajDokumentacje(trivia.ToFullString());
+                UstawPolozenie(trivia, obiekt.Dokumentacja);
+            }
         }
 
         private UsingNamespace DajUsing(UsingDirectiveSyntax u)
@@ -98,6 +176,10 @@ namespace KruchyParserKodu.Roslyn
             UzupelnijMetody(definiowanyObiekt.Metody, klasa, definiowanyObiekt);
 
             UzupelniejTypyDziedziczone(definiowanyObiekt, klasa);
+
+            ParsujKomentarz(definiowanyObiekt, klasa);
+
+            ParsujDokumentacje(definiowanyObiekt, klasa);
 
             var klasyWewnetrzne = SzukajKlasWewnetrznych(klasa);
 
@@ -458,11 +540,11 @@ namespace KruchyParserKodu.Roslyn
             obiekt.Koniec = polozenie.Item2.ToPozycjaWPliku();
         }
 
-        private Tuple<LinePosition, LinePosition> DajPolozenie(
-            SyntaxTree syntaxTree,
-            SyntaxNode wezel)
+        private void UstawPolozenie(SyntaxTrivia trivia, ParsowanaJednostka jednostka)
         {
-            return DajPolozenie(syntaxTree, wezel.Span);
+            var polozenie = DajPolozenie(trivia.SyntaxTree, trivia.FullSpan);
+            jednostka.Poczatek = polozenie.Item1.ToPozycjaWPliku();
+            jednostka.Koniec = polozenie.Item2.ToPozycjaWPliku();
         }
 
         private Tuple<LinePosition, LinePosition> DajPolozenie(

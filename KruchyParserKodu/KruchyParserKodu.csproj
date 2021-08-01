@@ -65,9 +65,13 @@
   <ItemGroup>
     <Compile Include="IZWlascicielemExtensions.cs" />
     <Compile Include="ParserKodu\Atrybut.cs" />
+    <Compile Include="ParserKodu\Dokumentacja.cs" />
+    <Compile Include="ParserKodu\IZDokumentacja.cs" />
+    <Compile Include="ParserKodu\IZKomentarzem.cs" />
     <Compile Include="ParserKodu\IZNawiasamiOtwierajacymiZamykajacymiParametry.cs" />
     <Compile Include="ParserKodu\IZPoczatkowaIKoncowaKlamerka.cs" />
     <Compile Include="ParserKodu\IZWlascicielem.cs" />
+    <Compile Include="ParserKodu\Komentarz.cs" />
     <Compile Include="ParserKodu\Konstruktor.cs" />
     <Compile Include="ParserKodu\Metoda.cs" />
     <Compile Include="ParserKodu\MetodaExtension.cs" />

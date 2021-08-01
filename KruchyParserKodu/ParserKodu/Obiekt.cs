@@ -7,6 +7,8 @@ namespace KruchyParserKodu.ParserKodu
         : ParsowanaJednostka
             , IZPoczatkowaIKoncowaKlamerka
                 , IZWlascicielem
+                    , IZKomentarzem
+                        , IZDokumentacja
     {
         public RodzajObiektu Rodzaj {
             get => RodzajObiektuObiekt.RodzajObiektu;
@@ -38,6 +40,10 @@ namespace KruchyParserKodu.ParserKodu
 
         public PozycjaWPliku PoczatkowaKlamerka { get; set; }
         public PozycjaWPliku KoncowaKlamerka { get; set; }
+
+        public Komentarz Komentarz { get; set; }
+
+        public Dokumentacja Dokumentacja { get; set; }
 
         public Obiekt() : base()
         {
