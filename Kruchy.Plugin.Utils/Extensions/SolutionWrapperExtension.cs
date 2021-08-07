@@ -49,26 +49,8 @@ namespace Kruchy.Plugin.Utils.Extensions
             return Parser.Parsuj(solution.AktualnyDokument.DajZawartosc());
         }
 
-        public static IProjektWrapper SzukajProjektuTestowego(
+        public static IProjektWrapper SzukajProjektuWgNazwy(
             this ISolutionWrapper solution,
-            IProjektWrapper projekt)
-        {
-            var nazwaSzukanegoProjektu = solution.AktualnyProjekt.Nazwa + ".Tests";
-            var projektTestow = SzukajProjektuWgNazwy(solution, nazwaSzukanegoProjektu);
-            return projektTestow;
-        }
-
-        public static IProjektWrapper SzukajProjektuModulu(
-            this ISolutionWrapper solution,
-            IProjektWrapper projekt)
-        {
-            var nazwaSzukanegoProjektu =
-                solution.AktualnyProjekt.Nazwa.Replace(".Tests", "");
-            return SzukajProjektuWgNazwy(solution, nazwaSzukanegoProjektu);
-        }
-
-        private static IProjektWrapper SzukajProjektuWgNazwy(
-            ISolutionWrapper solution,
             string nazwaSzukanegoProjektu)
         {
             var projekt =

@@ -20,19 +20,27 @@
       <Menu guid="guidCommand1PackageCmdSet" id="TopLevelMenu" priority="0x700" type="Menu">
         <Parent guid="guidSHLMainMenu" id="IDG_VS_MM_TOOLSADDINS" />
         <Strings>
-          <ButtonText>Kruchy kod</ButtonText>
-          <CommandName>&amp;Kruchy kod</CommandName>
+          <ButtonText>Kruchy plugin</ButtonText>
+          <CommandName>&amp;Kruchy plugin</CommandName>
         </Strings>
       </Menu>
 
-      <Menu guid="guidCommand1PackageCmdSet" id="PodrozowanieMenu" priority="0x701" type="Menu">
+      <!--<Menu guid="guidCommand1PackageCmdSet" id="PodrozowanieMenu" priority="0x701" type="Menu">
         <Parent guid="guidSHLMainMenu" id="IDG_VS_MM_TOOLSADDINS" />
         <Strings>
           <ButtonText>Krucha nawigacja</ButtonText>
           <CommandName>Krucha nawi&amp;gacja</CommandName>
         </Strings>
-      </Menu>
+      </Menu>-->
 
+      <Menu guid="guidCommand1PackageCmdSet" id="PodrozowanieMenu" priority="0x702" type="Menu">
+        <Parent guid="guidCommand1PackageCmdSet" id="NawigacjaGroup" />
+        <Strings>
+          <ButtonText>Nawi&amp;gacja</ButtonText>
+          <CommandName>Nawigacja</CommandName>
+        </Strings>
+      </Menu>
+      
       <Menu guid="guidCommand1PackageCmdSet" id="MenuPrzejdzDoController" priority="0x1000" type="MenuController">
         <Parent guid="guidCommand1PackageCmdSet" id="ToolbarPrzejdzDoItemGroup" />
         <CommandFlag>DynamicVisibility</CommandFlag>
@@ -64,9 +72,6 @@
          group as the part of a menu contained between two lines. The parent of a group
          must be a menu. -->
     <Groups>
-      <Group guid="guidCommand1PackageCmdSet" id="MyMenuGroup" priority="0x0600">
-        <Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_TOOLS"/>
-      </Group>
       <Group guid="guidCommand1PackageCmdSet" id="TestGroup2" priority="0x0600">
         <Parent guid="guidCommand1PackageCmdSet" id="TopLevelMenu"/>
       </Group>
@@ -76,6 +81,10 @@
       </Group>
 
       <Group guid="guidCommand1PackageCmdSet" id="DomainObjectGroup" priority="0x0108">
+        <Parent guid="guidCommand1PackageCmdSet" id="TopLevelMenu"/>
+      </Group>
+
+      <Group guid="guidCommand1PackageCmdSet" id="NawigacjaGroup" priority="0x0105">
         <Parent guid="guidCommand1PackageCmdSet" id="TopLevelMenu"/>
       </Group>
 
@@ -124,14 +133,6 @@
               <CommandFlag>DefaultInvisible</CommandFlag>
               <CommandFlag>DynamicVisibility</CommandFlag>
           If you do not want an image next to your command, remove the Icon node /> -->
-      <Button guid="guidCommand1PackageCmdSet" id="Command1Id" priority="0x0100" type="Button">
-        <Parent guid="guidCommand1PackageCmdSet" id="MyMenuGroup" />
-        <Icon guid="guidImages" id="bmpPic1" />
-        <Strings>
-          <ButtonText>Kruchy command 1</ButtonText>
-        </Strings>
-      </Button>
-
       <Button guid="guidCommand1PackageCmdSet" id="Command2Id" priority="0x0100" type="Button">
         <Parent guid="guidCommand1PackageCmdSet" id="TestGroup2" />
         <Icon guid="guidImages" id="bmpPic1" />
@@ -517,7 +518,6 @@
 
     <!-- This is the guid used to group the menu commands together -->
     <GuidSymbol name="guidCommand1PackageCmdSet" value="{090c66f0-5900-4ef9-a243-d42476371281}">
-      <IDSymbol name="MyMenuGroup" value="0x1020" />
       <IDSymbol name="Command1Id" value="0x0100" />
 
       <IDSymbol name="TestGroup2" value="0x2021" />
@@ -525,7 +525,6 @@
       <IDSymbol name="Command1Id" value="0x2100" />
       <IDSymbol name="Command2Id" value="0x2101" />
       <IDSymbol name="Command3Id" value="0x2102" />
-      <IDSymbol name="MyMenuGroup" value="0x2103"/>
 
       <IDSymbol name="PodrozowanieMenu" value="0x1024"/>
       <IDSymbol name="PodrozowanieMenuGroup" value="0x1025"/>
@@ -533,6 +532,7 @@
       <IDSymbol name="GenerowanieNowychKlasMetodGroup" value="0x1027"/>
       <IDSymbol name="ZmianaModyfikatorowGroup" value="0x0128"/>
       <IDSymbol name="PozostaleKodoweGroup" value="0x0129"/>
+      <IDSymbol name="NawigacjaGroup" value="0x0130"/>
 
       <IDSymbol name="cmdidTestowaCommand" value="0x0100" />
 
@@ -596,6 +596,10 @@
      If you must add a command id after it, make the gap very large (e.g. 0x200) -->
       <IDSymbol name="cmdidGenerujPlikStartCommand" value="0x0324" />
 
+      <IDSymbol name="cmdidSubMenuPodrozowanie" value="0x0181"/>
+      <IDSymbol name="cmdidSubMenuPodrozowanieGroup" value="0x0182"/>
+      <IDSymbol name="cmdidSubMenuCommand" value="0x0183"/>
+      
     </GuidSymbol>
 
     <GuidSymbol name="guidImages" value="{c1f609e4-7a1f-4a72-860d-6211440e5f9b}" >
