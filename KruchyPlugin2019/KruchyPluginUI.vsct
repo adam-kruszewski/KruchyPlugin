@@ -25,14 +25,22 @@
         </Strings>
       </Menu>
 
-      <Menu guid="guidCommand1PackageCmdSet" id="PodrozowanieMenu" priority="0x701" type="Menu">
+      <!--<Menu guid="guidCommand1PackageCmdSet" id="PodrozowanieMenu" priority="0x701" type="Menu">
         <Parent guid="guidSHLMainMenu" id="IDG_VS_MM_TOOLSADDINS" />
         <Strings>
           <ButtonText>Krucha nawigacja</ButtonText>
           <CommandName>Krucha nawi&amp;gacja</CommandName>
         </Strings>
-      </Menu>
+      </Menu>-->
 
+      <Menu guid="guidCommand1PackageCmdSet" id="PodrozowanieMenu" priority="0x702" type="Menu">
+        <Parent guid="guidCommand1PackageCmdSet" id="NawigacjaGroup" />
+        <Strings>
+          <ButtonText>Nawi&amp;gacja</ButtonText>
+          <CommandName>Nawigacja</CommandName>
+        </Strings>
+      </Menu>
+      
       <Menu guid="guidCommand1PackageCmdSet" id="MenuPrzejdzDoController" priority="0x1000" type="MenuController">
         <Parent guid="guidCommand1PackageCmdSet" id="ToolbarPrzejdzDoItemGroup" />
         <CommandFlag>DynamicVisibility</CommandFlag>
@@ -76,6 +84,10 @@
       </Group>
 
       <Group guid="guidCommand1PackageCmdSet" id="DomainObjectGroup" priority="0x0108">
+        <Parent guid="guidCommand1PackageCmdSet" id="TopLevelMenu"/>
+      </Group>
+
+      <Group guid="guidCommand1PackageCmdSet" id="NawigacjaGroup" priority="0x0105">
         <Parent guid="guidCommand1PackageCmdSet" id="TopLevelMenu"/>
       </Group>
 
@@ -533,6 +545,7 @@
       <IDSymbol name="GenerowanieNowychKlasMetodGroup" value="0x1027"/>
       <IDSymbol name="ZmianaModyfikatorowGroup" value="0x0128"/>
       <IDSymbol name="PozostaleKodoweGroup" value="0x0129"/>
+      <IDSymbol name="NawigacjaGroup" value="0x0130"/>
 
       <IDSymbol name="cmdidTestowaCommand" value="0x0100" />
 
@@ -596,6 +609,10 @@
      If you must add a command id after it, make the gap very large (e.g. 0x200) -->
       <IDSymbol name="cmdidGenerujPlikStartCommand" value="0x0324" />
 
+      <IDSymbol name="cmdidSubMenuPodrozowanie" value="0x0181"/>
+      <IDSymbol name="cmdidSubMenuPodrozowanieGroup" value="0x0182"/>
+      <IDSymbol name="cmdidSubMenuCommand" value="0x0183"/>
+      
     </GuidSymbol>
 
     <GuidSymbol name="guidImages" value="{c1f609e4-7a1f-4a72-860d-6211440e5f9b}" >
