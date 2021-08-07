@@ -6,6 +6,7 @@ using System.Text;
 using System.Windows.Forms;
 using Kruchy.Plugin.Akcje.KonfiguracjaPlugina;
 using Kruchy.Plugin.Akcje.KonfiguracjaPlugina.Xml;
+using Kruchy.Plugin.Akcje.Utils;
 using Kruchy.Plugin.Utils.Extensions;
 using Kruchy.Plugin.Utils.Wrappers;
 
@@ -15,22 +16,6 @@ namespace Kruchy.Plugin.Akcje.Akcje
     {
         private readonly ISolutionWrapper solution;
         private readonly ISolutionExplorerWrapper solutionExplorer;
-
-        private IProjektWrapper AktualnyProjekt
-        {
-            get { return solution.AktualnyPlik.Projekt; }
-        }
-
-        private IProjektWrapper ProjektTestowy
-        {
-            get
-            {
-                var nazwaProjektuTestowego =
-                    AktualnyProjekt.Nazwa + ".Tests";
-
-                return solution.ZnajdzProjekt(nazwaProjektuTestowego);
-            }
-        }
 
         public GenerowanieKlasyTestowej(
             ISolutionWrapper solution,
@@ -46,22 +31,20 @@ namespace Kruchy.Plugin.Akcje.Akcje
             string interfejsTestowany,
             string katalog)
         {
-            var aktualnyProjekt = solution.AktualnyPlik.Projekt;
-            var nazwaProjektuTestowego = aktualnyProjekt.Nazwa + ".Tests";
-
-            var projektTestowy = solution.ZnajdzProjekt(nazwaProjektuTestowego);
+            var projektTestowy = solution.SzukajProjektuTestowego();
 
             if (projektTestowy == null)
                 throw new ApplicationException(
-                    "Nie ma projektu testowego dla projektu " + aktualnyProjekt.Nazwa);
+                    "Nie ma projektu testowego dla projektu " + solution.AktualnyProjekt.Nazwa);
 
             var nazwaPlikuTestow = nazwaKlasy + ".cs";
             var pelnaSciezka = Path.Combine(
-                DajSciezkeDoKataloguTestow(katalog),
+                DajSciezkeDoKataloguTestow(projektTestowy, katalog),
                 nazwaPlikuTestow);
 
             string zawartosc =
                 GenerujZawartosc(
+                    projektTestowy,
                     nazwaKlasy,
                     rodzaj,
                     interfejsTestowany,
@@ -77,20 +60,21 @@ namespace Kruchy.Plugin.Akcje.Akcje
             Directory.CreateDirectory(fileInfo.Directory.FullName);
 
             File.WriteAllText(pelnaSciezka, zawartosc, Encoding.UTF8);
-            var plik = ProjektTestowy.DodajPlik(pelnaSciezka);
+            var plik = projektTestowy.DodajPlik(pelnaSciezka);
 
             solutionExplorer.OtworzPlik(plik);
         }
 
-        private string DajSciezkeDoKataloguTestow(string katalog)
+        private string DajSciezkeDoKataloguTestow(IProjektWrapper projektTestowy, string katalog)
         {
             if (!string.IsNullOrEmpty(katalog))
-                return Path.Combine(ProjektTestowy.SciezkaDoKatalogu, katalog);
+                return Path.Combine(projektTestowy.SciezkaDoKatalogu, katalog);
 
-            return ProjektTestowy.SciezkaDoUnitTests();
+            return projektTestowy.SciezkaDoKatalogu;
         }
 
         private string GenerujZawartosc(
+            IProjektWrapper projektTestowy,
             string nazwaKlasy,
             string rodzaj,
             string interfejsTestowany,
@@ -99,6 +83,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             var konfiguracja = Konfiguracja.GetInstance(solution);
 
             return GenerujZawartoscDynamiczna(
+                projektTestowy,
                 konfiguracja,
                 nazwaKlasy,
                 rodzaj,
@@ -119,16 +104,16 @@ namespace Kruchy.Plugin.Akcje.Akcje
             return namespaceTestowanejKlasy;
         }
 
-        private string DajNamespaceKlastyTestowej(string katalog)
+        private string DajNamespaceKlastyTestowej(IProjektWrapper projektTestowy, string katalog)
         {
             if (!string.IsNullOrEmpty(katalog))
-                return ProjektTestowy.Nazwa + "." + katalog.Replace("\\", ".").Replace("/", ".");
+                return projektTestowy.Nazwa + "." + katalog.Replace("\\", ".").Replace("/", ".");
 
-            return ProjektTestowy.Nazwa +
-                DajFragmentNamespaceDomyslnyDlaTestow();
+            return projektTestowy.Nazwa;
         }
 
         private string GenerujZawartoscDynamiczna(
+            IProjektWrapper projektTestowy,
             Konfiguracja konfiguracja,
             string nazwaKlasy,
             string rodzaj,
@@ -138,23 +123,23 @@ namespace Kruchy.Plugin.Akcje.Akcje
             var szablon = konfiguracja.KlasyTestowe().Single(o => o.Nazwa == rodzaj);
 
             return WypelnijZnaczniki(
+                projektTestowy,
                 szablon,
                 nazwaKlasy,
-                rodzaj,
                 interfejsTestowany,
                 katalog);
         }
 
         private string WypelnijZnaczniki(
+            IProjektWrapper projektTestowy,
             KlasaTestowa szablon,
             string nazwaKlasy,
-            string rodzaj,
             string interfejsTestowany,
             string katalog)
         {
             var slownikWartosci = PrzygotujWartosciZnacznikow(
+                projektTestowy,
                 nazwaKlasy,
-                rodzaj,
                 interfejsTestowany,
                 katalog);
 
@@ -167,39 +152,19 @@ namespace Kruchy.Plugin.Akcje.Akcje
         }
 
         private IDictionary<string, string> PrzygotujWartosciZnacznikow(
+            IProjektWrapper projektTestowy,
             string nazwaKlasy,
-            string rodzaj,
             string interfejsTestowany,
             string katalog)
         {
             var wynik = new Dictionary<string, string>();
 
-            wynik.Add("%NAMESPACE%", DajNamespaceKlastyTestowej(katalog));
+            wynik.Add("%NAMESPACE%", DajNamespaceKlastyTestowej(projektTestowy, katalog));
             wynik.Add("%NAZWA_KLASY%", nazwaKlasy);
             wynik.Add("%NAMESPACE_INTERFEJSU_TESTOWANEGO%", DajNamespaceInterfejsuTestowanego());
             wynik.Add("%INTERFEJS_TESTOWANY%", interfejsTestowany);
 
             return wynik;
-        }
-
-        private bool RodzajZKonfiguracjiDynamicznej(
-            Konfiguracja konfiguracja,
-            string rodzaj)
-        {
-            return konfiguracja.KlasyTestowe().Any(o => o.Nazwa == rodzaj);
-        }
-
-        private static string DajFragmentNamespaceDomyslnyDlaTestow()
-        {
-            return ".Unit";
-        }
-
-        private string DajKategorie(bool integracyjny)
-        {
-            if (integracyjny)
-                return "TestCategories.Integration";
-            else
-                return "TestCategories.Unit";
         }
     }
 }

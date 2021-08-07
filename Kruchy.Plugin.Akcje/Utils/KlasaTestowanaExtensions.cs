@@ -1,5 +1,4 @@
-﻿using Kruchy.Plugin.Utils.Extensions;
-using Kruchy.Plugin.Utils.Wrappers;
+﻿using Kruchy.Plugin.Utils.Wrappers;
 using System.Linq;
 
 namespace Kruchy.Plugin.Akcje.Utils
@@ -8,8 +7,7 @@ namespace Kruchy.Plugin.Akcje.Utils
     {
         public static IPlikWrapper SzukajPlikuKlasyTestowanej(this ISolutionWrapper solution)
         {
-            var projektModulu =
-                solution.SzukajProjektuModulu(solution.AktualnyProjekt);
+            var projektModulu = solution.SzukajProjektuModulu();
 
             if (projektModulu == null)
             {

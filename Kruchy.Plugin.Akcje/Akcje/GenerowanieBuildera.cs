@@ -48,8 +48,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             var nazwaKlasyBuildera = obiektDoZbudowania.Nazwa + "Builder";
             var nazwaPlikuBuildera = nazwaKlasyBuildera + ".cs";
 
-            var projektTestow =
-                    solution.SzukajProjektuTestowego(solution.AktualnyProjekt);
+            var projektTestow = solution.SzukajProjektuTestowego();
 
             if (projektTestow == null)
             {

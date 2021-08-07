@@ -31,8 +31,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             IPlikWrapper plik;
             if (solution.AktualnyProjekt.Modul())
             {
-                var projektTestow =
-                    solution.SzukajProjektuTestowego(solution.AktualnyProjekt);
+                var projektTestow = solution.SzukajProjektuTestowego();
 
                 if (projektTestow == null)
                 {
@@ -49,8 +48,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             }
             else
             {
-                var projektModulu =
-                    solution.SzukajProjektuModulu(solution.AktualnyProjekt);
+                var projektModulu = solution.SzukajProjektuModulu();
 
                 if (projektModulu == null)
                 {
