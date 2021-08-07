@@ -3,12 +3,14 @@ using System.Linq;
 
 namespace KruchyParserKodu.ParserKodu
 {
-    public class Pole : ParsowanaJednostka
+    public class Pole : ParsowanaJednostka, IZDokumentacja
     {
         public string Nazwa { get; set; }
         public string NazwaTypu { get; set; }
         public bool Generyczny { get; set; }
         public IList<Modyfikator> Modyfikatory { get; private set; }
+
+        public Dokumentacja Dokumentacja { get; set; }
 
         public Pole()
         {

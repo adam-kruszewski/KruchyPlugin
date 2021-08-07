@@ -7,6 +7,7 @@ namespace KruchyParserKodu.ParserKodu
         : ParsowanaJednostka
             , IZNawiasamiOtwierajacymiZamykajacymiParametry
                 , IZWlascicielem
+                    , IZDokumentacja
     {
         public Obiekt Wlasciciel { get; set; }
 
@@ -18,6 +19,7 @@ namespace KruchyParserKodu.ParserKodu
         public string Nazwa { get; set; }
         public PozycjaWPliku NawiasOtwierajacyParametry { get; set; }
         public PozycjaWPliku NawiasZamykajacyParametry { get; set; }
+        public Dokumentacja Dokumentacja { get; set; }
 
         public bool Prywatna
         {

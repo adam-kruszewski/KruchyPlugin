@@ -7,6 +7,7 @@ namespace KruchyParserKodu.ParserKodu
             , IZNawiasamiOtwierajacymiZamykajacymiParametry
                 , IZPoczatkowaIKoncowaKlamerka
                     , IZWlascicielem
+                        , IZDokumentacja
     {
         public Obiekt Wlasciciel { get; set; }
 
@@ -23,6 +24,7 @@ namespace KruchyParserKodu.ParserKodu
         //jeśli nie ma wołania kontruktora z nadklasy, to pole jest nullem
         public IList<string> ParametryKonstruktoraZNadKlasy;
         public string SlowoKluczoweInicjalizacji { get; set; }
+        public Dokumentacja Dokumentacja { get; set; }
 
         public Konstruktor()
         {
