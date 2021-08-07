@@ -20,8 +20,8 @@
       <Menu guid="guidCommand1PackageCmdSet" id="TopLevelMenu" priority="0x700" type="Menu">
         <Parent guid="guidSHLMainMenu" id="IDG_VS_MM_TOOLSADDINS" />
         <Strings>
-          <ButtonText>Kruchy kod</ButtonText>
-          <CommandName>&amp;Kruchy kod</CommandName>
+          <ButtonText>Kruchy plugin</ButtonText>
+          <CommandName>&amp;Kruchy plugin</CommandName>
         </Strings>
       </Menu>
 
@@ -72,9 +72,6 @@
          group as the part of a menu contained between two lines. The parent of a group
          must be a menu. -->
     <Groups>
-      <Group guid="guidCommand1PackageCmdSet" id="MyMenuGroup" priority="0x0600">
-        <Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_TOOLS"/>
-      </Group>
       <Group guid="guidCommand1PackageCmdSet" id="TestGroup2" priority="0x0600">
         <Parent guid="guidCommand1PackageCmdSet" id="TopLevelMenu"/>
       </Group>
@@ -136,14 +133,6 @@
               <CommandFlag>DefaultInvisible</CommandFlag>
               <CommandFlag>DynamicVisibility</CommandFlag>
           If you do not want an image next to your command, remove the Icon node /> -->
-      <Button guid="guidCommand1PackageCmdSet" id="Command1Id" priority="0x0100" type="Button">
-        <Parent guid="guidCommand1PackageCmdSet" id="MyMenuGroup" />
-        <Icon guid="guidImages" id="bmpPic1" />
-        <Strings>
-          <ButtonText>Kruchy command 1</ButtonText>
-        </Strings>
-      </Button>
-
       <Button guid="guidCommand1PackageCmdSet" id="Command2Id" priority="0x0100" type="Button">
         <Parent guid="guidCommand1PackageCmdSet" id="TestGroup2" />
         <Icon guid="guidImages" id="bmpPic1" />
@@ -529,7 +518,6 @@
 
     <!-- This is the guid used to group the menu commands together -->
     <GuidSymbol name="guidCommand1PackageCmdSet" value="{090c66f0-5900-4ef9-a243-d42476371281}">
-      <IDSymbol name="MyMenuGroup" value="0x1020" />
       <IDSymbol name="Command1Id" value="0x0100" />
 
       <IDSymbol name="TestGroup2" value="0x2021" />
@@ -537,7 +525,6 @@
       <IDSymbol name="Command1Id" value="0x2100" />
       <IDSymbol name="Command2Id" value="0x2101" />
       <IDSymbol name="Command3Id" value="0x2102" />
-      <IDSymbol name="MyMenuGroup" value="0x2103"/>
 
       <IDSymbol name="PodrozowanieMenu" value="0x1024"/>
       <IDSymbol name="PodrozowanieMenuGroup" value="0x1025"/>
