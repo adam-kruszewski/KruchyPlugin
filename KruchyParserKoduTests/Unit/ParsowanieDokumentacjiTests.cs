@@ -43,5 +43,77 @@ namespace KruchyParserKoduTests.Unit
             klasa.Dokumentacja.Koniec.Sprawdz(6, 1);
         }
 
+        [Test]
+        public void ParsujeDokumentacjeNadMetoda()
+        {
+            var metoda = klasa.Metody.Single(o => o.Nazwa == "Metoda1");
+
+            //assert
+            metoda.Dokumentacja.Linie.Should().BeEquivalentTo(
+                new[]
+                {
+                    "<summary>",
+                    "metoda1",
+                    "</summary>"
+                });
+
+            metoda.Dokumentacja.Poczatek.Sprawdz(8, 9);
+            metoda.Dokumentacja.Koniec.Sprawdz(11, 1);
+        }
+
+        [Test]
+        public void ParsujeDokumentacjeNadKontruktorem()
+        {
+            var konstruktor = klasa.Konstruktory.Single();
+
+            //assert
+            konstruktor.Dokumentacja.Linie.Should().BeEquivalentTo(
+                new[]
+                {
+                    "<summary>",
+                    "konstruktor",
+                    "</summary>"
+                });
+
+            konstruktor.Dokumentacja.Poczatek.Sprawdz(16, 9);
+            konstruktor.Dokumentacja.Koniec.Sprawdz(19, 1);
+        }
+
+        [Test]
+        public void ParsujeDokumentacjaNadPolem()
+        {
+            var pole = klasa.Pola.Single(o => o.Nazwa == "poleString");
+
+            //assert
+            pole.Dokumentacja.Linie.Should().BeEquivalentTo(
+                new[]
+                {
+                    "<summary>",
+                    "pole string",
+                    "</summary>"
+                });
+
+            pole.Dokumentacja.Poczatek.Sprawdz(24, 9);
+            pole.Dokumentacja.Koniec.Sprawdz(27, 1);
+        }
+
+        [Test]
+        public void ParsujeDokumentacjaNadProperty()
+        {
+            var property = klasa.Propertiesy.Single(o => o.Nazwa == "MyProperty");
+            //act
+
+            //assert
+            property.Dokumentacja.Linie.Should().BeEquivalentTo(
+                new[]
+                {
+                    "<summary>",
+                    "my property",
+                    "</summary>"
+                });
+
+            property.Dokumentacja.Poczatek.Sprawdz(29, 9);
+            property.Dokumentacja.Koniec.Sprawdz(32, 1);
+        }
     }
 }

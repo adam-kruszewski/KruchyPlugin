@@ -252,6 +252,8 @@ namespace KruchyParserKodu.Roslyn
 
                 UzupelnijAtrybuty(metodaSyntax.AttributeLists, metoda.Atrybuty);
 
+                ParsujDokumentacje(metoda, metodaSyntax);
+
                 metoda.Wlasciciel = obiektWlasciciela;
 
                 metody.Add(metoda);
@@ -280,6 +282,8 @@ namespace KruchyParserKodu.Roslyn
                     konstruktor);
 
                 UzupelnijPozycjeKlamerek(konstruktorSyntax, konstruktor);
+
+                ParsujDokumentacje(konstruktor, konstruktorSyntax);
 
                 konstruktor.Wlasciciel = obiektWlasciciel;
 
@@ -370,6 +374,7 @@ namespace KruchyParserKodu.Roslyn
                 UzupelnijAtrybuty(wlasciwoscSyntax.AttributeLists, properties.Atrybuty);
                 UzupelnijModyfikatory(wlasciwoscSyntax.Modifiers, properties.Modyfikatory);
                 UstawPolozenie(wlasciwoscSyntax.SyntaxTree, properties, wlasciwoscSyntax);
+                ParsujDokumentacje(properties, wlasciwoscSyntax);
 
                 properties.JestGet = JestAccessorr(wlasciwoscSyntax, "get");
                 properties.JestSet = JestAccessorr(wlasciwoscSyntax, "set");
@@ -409,6 +414,8 @@ namespace KruchyParserKodu.Roslyn
                     deklarowanePole.Modifiers.Select(o => DajModifikator(o)));
 
                 UstawPolozenie(deklarowanePole.SyntaxTree, pole, deklarowanePole);
+
+                ParsujDokumentacje(pole, deklarowanePole);
 
                 pola.Add(pole);
             }
