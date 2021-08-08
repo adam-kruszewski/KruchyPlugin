@@ -1,5 +1,6 @@
 ﻿using Kruchy.Plugin.Utils.Wrappers;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace Kruchy.Plugin.Akcje.Utils
 {
@@ -11,7 +12,7 @@ namespace Kruchy.Plugin.Akcje.Utils
 
             if (projektModulu == null)
             {
-                System.Windows.MessageBox.Show("Nie znaleziono projektu modułu");
+                MessageBox.Show("Nie znaleziono projektu modułu");
                 return null;
             }
 
