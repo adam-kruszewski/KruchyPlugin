@@ -21,6 +21,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kruchy.Plugin.Utils", "Kruc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kruchy.Plugin.Utils.2017", "Kruchy.Plugin.Utils.2017\Kruchy.Plugin.Utils.2017.csproj", "{700B6A6B-CE12-4ACA-8DCD-FCE561BB955E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Akcje", "Akcje", "{C374FFBE-47C7-4BA1-AAA6-B6FEF3054203}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kruchy.Plugin.Akcje", "Kruchy.Plugin.Akcje\Kruchy.Plugin.Akcje.csproj", "{373932F3-FED1-4037-97E2-05A8DDA18AFE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +55,10 @@ Global
 		{700B6A6B-CE12-4ACA-8DCD-FCE561BB955E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{700B6A6B-CE12-4ACA-8DCD-FCE561BB955E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{700B6A6B-CE12-4ACA-8DCD-FCE561BB955E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{373932F3-FED1-4037-97E2-05A8DDA18AFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{373932F3-FED1-4037-97E2-05A8DDA18AFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{373932F3-FED1-4037-97E2-05A8DDA18AFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{373932F3-FED1-4037-97E2-05A8DDA18AFE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -61,6 +69,7 @@ Global
 		{B3DFE520-906C-4B30-9464-F934CABB209E} = {86825CFC-35CE-4313-8987-F882B5B07DFF}
 		{7868C192-F37E-418E-AC84-E507756C3F5F} = {0B42274F-3CD5-4A2B-AED1-9295B3EB4F4B}
 		{700B6A6B-CE12-4ACA-8DCD-FCE561BB955E} = {0B42274F-3CD5-4A2B-AED1-9295B3EB4F4B}
+		{373932F3-FED1-4037-97E2-05A8DDA18AFE} = {C374FFBE-47C7-4BA1-AAA6-B6FEF3054203}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {485F7081-62E2-49CF-8968-A48D402BE6B4}
