@@ -1,0 +1,53 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentAssertions" Version="5.10.3" />
+    <PackageReference Include="NUnit" Version="3.12.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.16.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Samples\KlasaDoParsowania.cs" />
+    <EmbeddedResource Include="Samples\KlasaDoParsowaniaAtrybutow.cs" />
+    <EmbeddedResource Include="Samples\KlasaDoParsowaniaNadklasIInterfejsow.cs" />
+    <EmbeddedResource Include="Samples\KlasaDoParsowaniaRozszerzone.cs" />
+    <EmbeddedResource Include="Samples\InterfejsDoParsowania.cs" />
+    <EmbeddedResource Include="Samples\InterfejsZDziedziczeniemIAtrybutami.cs" />
+    <EmbeddedResource Include="Samples\KlasaDoParsowaniaModyfikatorow.cs" />
+    <EmbeddedResource Include="Samples\KlasaZKomentarzemDoParsowania.cs" />
+    <EmbeddedResource Include="Samples\KlasaZDokumentacjaDoParsowania.cs" />
+    <Compile Include="Unit\ParsowanieAtrybutowTests.cs" />
+    <Compile Include="Unit\ParsowanieDokumentacjiTests.cs" />
+    <Compile Include="Unit\ParsowanieInterfejsuTests.cs" />
+    <Compile Include="Unit\ParsowanieKlasyNadklasIInterfejsowTests.cs" />
+    <Compile Include="Unit\ParsowanieKlasyTests.cs" />
+    <Compile Include="Unit\ParsowanieKomentarzyTests.cs" />
+    <Compile Include="Unit\ParsowanieModyfikatorwKlasyTests.cs" />
+    <Compile Include="Unit\ParsowanieRozszerzoneTests.cs" />
+    <Compile Include="Utils\PozycjaWPlikuExtension.cs" />
+    <Compile Include="Utils\WczytywaczZawartosciPrzykladow.cs" />
+    <EmbeddedResource Include="Samples\WlasciwosciZapisaneJakoLambda.cs" />
+    <EmbeddedResource Include="Samples\ZKlasaWewnetrzna.cs" />
+    <EmbeddedResource Include="Samples\KontruktorZNadKlasy.cs" />
+    <Compile Include="Unit\ParsowanieKlasyWewnetrznejTests.cs" />
+    <Compile Include="Unit\ParsowanieKonstruktoraZNadklasyTests.cs" />
+    <Compile Include="Unit\ParsowanieWlasciwosciZapisanychJakoLambdaTests.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\KruchyParserKodu\KruchyParserKodu.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
+</Project>
