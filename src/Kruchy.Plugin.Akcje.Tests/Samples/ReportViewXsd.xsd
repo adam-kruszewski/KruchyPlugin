@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="PotwierdzenieSalda" targetNamespace="http://tempuri.org/PotwierdzenieSalda.xsd" elementFormDefault="qualified" xmlns="http://tempuri.org/PotwierdzenieSalda.xsd" xmlns:mstns="http://tempuri.org/PotwierdzenieSalda.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="header">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Saldo" type="xs:string" />
+        <xs:element name="SaldoNierozksiegowanychWplat" type="xs:string" />
+        <xs:element name="DataWystawienia" type="xs:string" />
+        <xs:element name="DataWydruku" type="xs:string" />
+        <xs:element name="KontoNumer" type="xs:string" />
+        <xs:element name="Pracownik" type="xs:string" />
+        <xs:element name="PracownikDaneKontaktowe" type="xs:string" />
+        <xs:element name="SaldoZaGaz" type="xs:string" />
+        <xs:element name="SaldoZaOdsetki" type="xs:string" />
+        <xs:element name="SaldoOdsetekWewnetrznych" type="xs:string" />
+        <xs:element name="PodmiotGospodarczy" type="xs:boolean" nillable="false" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NierozksiegowaneWplaty">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Kwota" type="xs:decimal" nillable="false" />
+        <xs:element name="Data" type="xs:datetime" nillable="false" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NiezaplaconeFaktury">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="KwotaBrutto" type="xs:string" />
+        <xs:element name="DoZaplatyZaGaz" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

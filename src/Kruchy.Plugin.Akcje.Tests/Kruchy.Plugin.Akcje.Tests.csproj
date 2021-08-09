@@ -1,0 +1,62 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentAssertions" Version="5.10.3" />
+    <PackageReference Include="Moq" Version="4.16.1" />
+    <PackageReference Include="NUnit" Version="3.12.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.16.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Samples\PustaKlasa.cs" />
+    <EmbeddedResource Include="Samples\UzupelnianieKonstruktoraGdyPropertiesy.cs" />
+    <EmbeddedResource Include="Samples\DomainObject.cs" />
+    <EmbeddedResource Include="Samples\DomainBuilderNiepelny.cs" />
+    <EmbeddedResource Include="Samples\WynikNowegoBuildera.cs" />
+    <EmbeddedResource Include="Samples\WynikIstniejacegoBuildera.cs" />
+    <EmbeddedResource Include="Samples\ReportView.cs" />
+    <EmbeddedResource Include="Samples\NierozksiegowanaWplataReportView.cs" />
+    <EmbeddedResource Include="Samples\NiezaplaconaFakturaReportView.cs" />
+    <EmbeddedResource Include="Samples\SamochodDomain.cs" />
+    <EmbeddedResource Include="Samples\UzupelnianieKonstruktoraGdyPolaZPodkresleniem.cs" />
+    <EmbeddedResource Include="Samples\UzupelnianieKonstruktoraGdyPolaZPodkresleniemPrzegenerowanie.cs" />
+    <Compile Include="TestyInfrastrukturyTestow\DokumentWrapperTests.cs" />
+    <EmbeddedResource Include="Samples\UzupelnianieKonstruktoraPrzyStalej.cs" />
+    <Compile Include="Unit\DodawanieDaoDaoContekstuTests.cs" />
+    <Compile Include="Unit\DodawanieUsingaTests.cs" />
+    <Compile Include="Unit\GenerowaniePlikuZSzablonuTests.cs" />
+    <Compile Include="Unit\GenerowanieXsdDlaReportViewTests.cs" />
+    <Compile Include="Unit\UzupelnianieKonstruktoraTests.cs" />
+    <Compile Include="Unit\UzupelnianieKonstruktoraZDziedziczeniemTests.cs" />
+    <Compile Include="Unit\GenerowanieBuilderaTests.cs" />
+    <Compile Include="Unit\UzupelnienieKonstruktoraPolaZPodkresleniemTests.cs" />
+    <Compile Include="Utils\TymczasowaKonfiguracja.cs" />
+    <Compile Include="Utils\UruchamianieTestowExtensions.cs" />
+    <Compile Include="WrappersMocks\PlikWrapper.cs" />
+    <Compile Include="WrappersMocks\ProjektWrapper.cs" />
+    <Compile Include="WrappersMocks\SolutionExlorerWrapper.cs" />
+    <Compile Include="WrappersMocks\SolutionWrapper.cs" />
+    <EmbeddedResource Include="Samples\UzupelnianieKonstruktoraPrzyNadklasie.cs" />
+    <Compile Include="Utils\WczytywaczZawartosciPrzykladow.cs" />
+    <Compile Include="WrappersMocks\DokumentWrapper.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Kruchy.Plugin.Akcje\Kruchy.Plugin.Akcje.csproj" />
+    <ProjectReference Include="..\Kruchy.Plugin.Utils\Kruchy.Plugin.Utils.csproj" />
+  </ItemGroup>
+
+</Project>
