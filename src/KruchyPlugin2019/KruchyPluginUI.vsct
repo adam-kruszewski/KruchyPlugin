@@ -37,7 +37,7 @@
         <Parent guid="guidCommand1PackageCmdSet" id="NawigacjaGroup" />
         <Strings>
           <ButtonText>Nawi&amp;gacja</ButtonText>
-          <CommandName>Nawigacja</CommandName>
+          <CommandName>Nawi&amp;gacja</CommandName>
         </Strings>
       </Menu>
       
