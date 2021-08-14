@@ -29,7 +29,10 @@
     <EmbeddedResource Include="Samples\SamochodDomain.cs" />
     <EmbeddedResource Include="Samples\UzupelnianieKonstruktoraGdyPolaZPodkresleniem.cs" />
     <EmbeddedResource Include="Samples\UzupelnianieKonstruktoraGdyPolaZPodkresleniemPrzegenerowanie.cs" />
+    <EmbeddedResource Include="Samples\KlasaDoDokumentacji.cs" />
+    <EmbeddedResource Include="Samples\WynikKlasyDoDokumentacji.cs" />
     <Compile Include="TestyInfrastrukturyTestow\DokumentWrapperTests.cs" />
+    <Compile Include="Unit\UzupelnianieDokumentacjiTests.cs" />
     <EmbeddedResource Include="Samples\UzupelnianieKonstruktoraPrzyStalej.cs" />
     <Compile Include="Unit\DodawanieDaoDaoContekstuTests.cs" />
     <Compile Include="Unit\DodawanieUsingaTests.cs" />

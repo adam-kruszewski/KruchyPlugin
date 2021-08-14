@@ -55,6 +55,7 @@
     <Compile Include="Akcje\GenerowanieXsdDlaReportView.cs" />
     <Compile Include="Akcje\InicjalizowanieKlasyTestowejMockami.cs" />
     <Compile Include="Akcje\RodzajKlasyTestowej.cs" />
+    <Compile Include="Akcje\UzupelnianieDokumentacji.cs" />
     <Compile Include="Akcje\UzupelnianieKonstruktora.cs" />
     <Compile Include="Akcje\ZmianaModyfikatoraMetody.cs" />
     <Compile Include="Akcje\ZmianaNaAsync.cs" />
