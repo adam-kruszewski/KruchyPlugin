@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>16.0</MinimumVisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectTypeGuids>{82b43b9b-a64c-4715-b499-d71e9ca2bd60};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{D9EF634C-DF9E-4197-83E7-EB0C81F1C562}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>KruchyPlugin2019</RootNamespace>
+    <AssemblyName>KruchyPlugin2019</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <GeneratePkgDefFile>true</GeneratePkgDefFile>
+    <UseCodebase>true</UseCodebase>
+    <IncludeAssemblyInVSIXContainer>true</IncludeAssemblyInVSIXContainer>
+    <IncludeDebugSymbolsInVSIXContainer>false</IncludeDebugSymbolsInVSIXContainer>
+    <IncludeDebugSymbolsInLocalVSIXDeployment>false</IncludeDebugSymbolsInLocalVSIXDeployment>
+    <CopyBuildOutputToOutputDirectory>true</CopyBuildOutputToOutputDirectory>
+    <CopyOutputSymbolsToOutputDirectory>true</CopyOutputSymbolsToOutputDirectory>
+    <StartAction>Program</StartAction>
+    <StartProgram Condition="'$(DevEnvDir)' != ''">$(DevEnvDir)devenv.exe</StartProgram>
+    <StartArguments>/rootsuffix Exp</StartArguments>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Command1.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="KruchyPlugin2019Package.cs" />
+    <Compile Include="Akcje\DodawanieMapowan.cs" />
+    <Compile Include="Akcje\DodawanieMapowanElementy\MapowanieNode.cs" />
+    <Compile Include="Akcje\DodawanieMapowanElementy\MapowanyProperty.cs" />
+    <Compile Include="Akcje\DodawanieMapowanElementy\WyborMapowanForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Akcje\DodawanieMapowanElementy\WyborMapowanForm.Designer.cs">
+      <DependentUpon>WyborMapowanForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Akcje\DodawanieNowejMetodyWBuilderze.cs" />
+    <Compile Include="Akcje\DodawanieUprawnienDomyslnych.cs" />
+    <Compile Include="Akcje\DodawanieUsingDbContext.cs" />
+    <Compile Include="Akcje\GenerowanieKlasyWalidatora.cs" />
+    <Compile Include="Akcje\GenerowanieWidoku.cs" />
+    <Compile Include="Akcje\IdzDoKataloguControllera.cs" />
+    <Compile Include="Akcje\IdzDoKlasyTestowej.cs" />
+    <Compile Include="Akcje\IdzDoPlikuWidoku.cs" />
+    <Compile Include="Akcje\IdzMiedzyInterfejsemAImplementacja.cs" />
+    <Compile Include="Akcje\InicjowaniePolaWKonstruktorze.cs" />
+    <Compile Include="Akcje\PodzielParametryNaLinie.cs" />
+    <Compile Include="Akcje\PokazywaniaZawartosciZShared.cs" />
+    <Compile Include="Akcje\RodzajKlasyTestowej.cs" />
+    <Compile Include="Akcje\UzupelnianieMetodWImplementacji.cs" />
+    <Compile Include="Akcje\UzupelnianieReferencedObject.cs" />
+    <Compile Include="Akcje\UzupelnianieTagowDefiniujacychTabele.cs" />
+    <Compile Include="Akcje\WstawianieNazwyControlleraDoSchowka.cs" />
+    <Compile Include="Akcje\WynikGenerowaniaKlasService.cs" />
+    <Compile Include="Menu\PozycjaDodawanieMapowan.cs" />
+    <Compile Include="Menu\PozycjaDodawanieNowejMetodyWBuilderze.cs" />
+    <Compile Include="Menu\PozycjaDodawanieUprawnienDomyslnych.cs" />
+    <Compile Include="Menu\PozycjaDodawanieUsingDbContext.cs" />
+    <Compile Include="Menu\PozycjaGenerowanieKlasyWalidatora.cs" />
+    <Compile Include="Menu\PozycjaGenerowanieWidoku.cs" />
+    <Compile Include="Menu\PozycjaIdzDoGridRowActions.cs" />
+    <Compile Include="Menu\PozycjaIdzDoGridToolbar.cs" />
+    <Compile Include="Menu\PozycjaIdzDoKataloguControllera.cs" />
+    <Compile Include="Menu\PozycjaIdzDoKlasyTestowej.cs" />
+    <Compile Include="Menu\PozycjaIdzDoPlikuWidoku.cs" />
+    <Compile Include="Menu\PozycjaIdzMiedzyInterfejsemAImplementacja.cs" />
+    <Compile Include="Menu\PozycjaInicjowaniePolaWKonstruktorze.cs" />
+    <Compile Include="Menu\PozycjaPodzielParametryNaLinie.cs" />
+    <Compile Include="Menu\PozycjaPokazywanieZawartosciZShared.cs" />
+    <Compile Include="Menu\PozycjaUzupelnianieMetodWImplementacji.cs" />
+    <Compile Include="Menu\PozycjaUzupelnianieReferencedObject.cs" />
+    <Compile Include="Menu\PozycjaUzupelnianieTagowDefiniujacychTabele.cs" />
+    <Compile Include="Menu\PozycjaWstawianieNazwyControlleraDoSchowka.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="source.extension.vsixmanifest">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <VSCTCompile Include="KruchyPlugin2019Package.vsct">
+      <ResourceName>Menus.ctmenu</ResourceName>
+    </VSCTCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ikona_wtyczka.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="KruchyPluginUI.vsct" />
+    <Content Include="Resources\Command1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.SDK" Version="16.0.206" ExcludeAssets="runtime" />
+    <PackageReference Include="Microsoft.VSSDK.BuildTools" Version="16.9.2021" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\KrucheBuilderyKodu\KrucheBuilderyKodu.csproj">
+      <Project>{b3dfe520-906c-4b30-9464-f934cabb209e}</Project>
+      <Name>KrucheBuilderyKodu</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Kruchy.Plugin.Akcje\Kruchy.Plugin.Akcje.csproj">
+      <Project>{373932f3-fed1-4037-97e2-05a8dda18afe}</Project>
+      <Name>Kruchy.Plugin.Akcje</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Kruchy.Plugin.UI\Kruchy.Plugin.UI.csproj">
+      <Project>{15b17ff2-b9aa-445b-a1aa-2e5d54d289d6}</Project>
+      <Name>Kruchy.Plugin.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Kruchy.Plugin.Utils.2017\Kruchy.Plugin.Utils.2017.csproj">
+      <Project>{700b6a6b-ce12-4aca-8dcd-fce561bb955e}</Project>
+      <Name>Kruchy.Plugin.Utils.2017</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Kruchy.Plugin.Utils\Kruchy.Plugin.Utils.csproj">
+      <Project>{7868c192-f37e-418e-ac84-e507756c3f5f}</Project>
+      <Name>Kruchy.Plugin.Utils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KruchyParserKodu\KruchyParserKodu.csproj">
+      <Project>{eb4586ea-ec53-4cc4-b1ad-a7720d12c098}</Project>
+      <Name>KruchyParserKodu</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets" Condition="'$(VSToolsPath)' != ''" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
