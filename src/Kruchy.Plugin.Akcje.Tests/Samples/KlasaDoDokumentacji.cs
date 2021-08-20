@@ -12,7 +12,7 @@
 
         }
 
-        public int WykonajMetodeZWynikiem()
+        public int WykonajMetodeZWynikiem(string stringowyParametr)
         {
             return 1;
         }

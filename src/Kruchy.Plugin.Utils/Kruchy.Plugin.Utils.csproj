@@ -47,6 +47,7 @@
     <Compile Include="Extensions\PlikWrapperExtension.cs" />
     <Compile Include="Extensions\ProjektWrapperExtension.cs" />
     <Compile Include="Extensions\SolutionWrapperExtension.cs" />
+    <Compile Include="Extensions\StringUtils.cs" />
     <Compile Include="Menu\DostepnoscPozycjiMenuExtensions.cs" />
     <Compile Include="Menu\IPodpozycjaMenuDynamicznego.cs" />
     <Compile Include="Menu\IPozycjaMenu.cs" />

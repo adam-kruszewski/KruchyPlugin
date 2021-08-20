@@ -19,6 +19,8 @@ namespace Kruchy.Plugin.Akcje.KonfiguracjaPlugina.Xml
 
         public List<ProjektTestowy> PowiazaniaProjektowTestowych { get; set; }
 
+        public Dokumentacja Dokumentacja { get; set; }
+
         public KruchyPlugin()
         {
             Usingi = new List<Namespace>();
@@ -28,6 +30,7 @@ namespace Kruchy.Plugin.Akcje.KonfiguracjaPlugina.Xml
             Schematy = new List<SchematGenerowania>();
             Testy = new Testy();
             PowiazaniaProjektowTestowych = new List<ProjektTestowy>();
+            Dokumentacja = new Dokumentacja();
         }
     }
 }

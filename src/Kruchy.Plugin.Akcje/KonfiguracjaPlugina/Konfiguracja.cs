@@ -107,5 +107,10 @@ namespace Kruchy.Plugin.Akcje.KonfiguracjaPlugina
         }
 
         public IEnumerable<ProjektTestowy> PowiazaniaProjektowTestowych => konfiguracjaXml.PowiazaniaProjektowTestowych;
+
+        public virtual Dokumentacja Dokumentacja()
+        {
+            return konfiguracjaXml.Dokumentacja;
+        }
     }
 }

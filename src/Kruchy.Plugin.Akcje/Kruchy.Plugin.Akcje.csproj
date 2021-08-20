@@ -75,6 +75,8 @@
     </Compile>
     <Compile Include="KonfiguracjaPlugina\Konfiguracja.cs" />
     <Compile Include="KonfiguracjaPlugina\KonfiguracjaUsingow.cs" />
+    <Compile Include="KonfiguracjaPlugina\Xml\Dokumentacja.cs" />
+    <Compile Include="KonfiguracjaPlugina\Xml\JezykExtensions.cs" />
     <Compile Include="KonfiguracjaPlugina\Xml\Namespace.cs" />
     <Compile Include="KonfiguracjaPlugina\Xml\ProjektTestowy.cs" />
     <Compile Include="KonfiguracjaPlugina\Xml\SchematGenerowania.cs" />

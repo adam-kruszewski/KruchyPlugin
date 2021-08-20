@@ -1,21 +1,21 @@
 ﻿namespace Kruchy.Plugin.Akcje.Tests.Samples
 {
     /// <summary>
-    /// klasa do dokumentacji
+    /// Klasa do dokumentacji
     /// </summary>
     class KlasaDoDokumentacji
     {
         /// <summary>
-        /// constructor
+        /// Konstruktor
         /// </summary>
-        /// <param name="parametr">nazwa parametru</param>
-        public KlasaDoDokumentacji(string nazwaParametru)
+        /// <param name="parametr">Parametr</param>
+        public KlasaDoDokumentacji(string parametr)
         {
 
         }
 
         /// <summary>
-        /// wykonaj metode1
+        /// Wykonaj metode1
         /// </summary>
         public void WykonajMetode1()
         {
@@ -23,21 +23,22 @@
         }
 
         /// <summary>
-        /// wykonaj metode z wynikiem
+        /// Wykonaj metode z wynikiem
         /// </summary>
+        /// <param name="stringowyParametr">Stringowy parametr</param>
         /// <returns></returns>
-        public int WykonajMetodeZWynikiem()
+        public int WykonajMetodeZWynikiem(string stringowyParametr)
         {
             return 1;
         }
 
         /// <summary>
-        /// pole testowe
+        /// Pole testowe
         /// </summary>
         private string poleTestowe;
 
         /// <summary>
-        /// wlasciwosc testowa
+        /// Wlasciwosc testowa
         /// </summary>
         public int WlasciwoscTestowa { get; set; }
     }
