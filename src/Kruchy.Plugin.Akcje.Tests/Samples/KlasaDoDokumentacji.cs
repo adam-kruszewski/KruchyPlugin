@@ -17,6 +17,11 @@
             return 1;
         }
 
+        public override void MetodaDziedziczona()
+        {
+
+        }
+
         private string poleTestowe;
 
         public int WlasciwoscTestowa { get; set; }

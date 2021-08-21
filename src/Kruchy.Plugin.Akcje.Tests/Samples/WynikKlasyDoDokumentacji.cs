@@ -32,6 +32,12 @@
             return 1;
         }
 
+        /// <inheritdoc/>
+        public override void MetodaDziedziczona()
+        {
+
+        }
+
         /// <summary>
         /// Pole testowe
         /// </summary>

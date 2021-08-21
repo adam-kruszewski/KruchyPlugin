@@ -63,6 +63,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
                 var poczatek = $"{wciecie}/// ";
                 var builder = new StringBuilder();
+
                 GennerujSummary(poczatek, builder, GenerujSummaryKlasyLubInterfejsu(obiekt));
 
                 var doWstawienia = builder.ToString();
@@ -151,17 +152,29 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
                 var konf = Konfiguracja.GetInstance(solution);
 
-                GennerujSummary(poczatek, builder, DajSummaryMetody(metoda.Nazwa, konf.Dokumentacja().Jezyk));
-
-                GenerujOpisParametrow(metoda.Parametry, poczatek, builder);
-
-                if (metoda.TypZwracany.Nazwa != "void")
-                    builder.AppendLine($"{poczatek}<returns></returns>");
-
                 var numerLinii = DajNumerLiniiDoWstawienia(metoda, metoda.Atrybuty);
 
-                solution.AktualnyDokument.WstawWLinii(builder.ToString(), numerLinii);
+                if (metoda.ZawieraModyfikator("override"))
+                {
+                    WstawInheritDoc(poczatek, numerLinii);
+                }
+                else
+                {
+                    GennerujSummary(poczatek, builder, DajSummaryMetody(metoda.Nazwa, konf.Dokumentacja().Jezyk));
+
+                    GenerujOpisParametrow(metoda.Parametry, poczatek, builder);
+
+                    if (metoda.TypZwracany.Nazwa != "void")
+                        builder.AppendLine($"{poczatek}<returns></returns>");
+
+                    solution.AktualnyDokument.WstawWLinii(builder.ToString(), numerLinii);
+                }
             }
+        }
+
+        private void WstawInheritDoc(string poczatek, int numerLinii)
+        {
+            solution.AktualnyDokument.WstawWLinii($"{poczatek}<inheritdoc/>", numerLinii);
         }
 
         private string DajSummaryMetody(string nazwa, int jezyk)

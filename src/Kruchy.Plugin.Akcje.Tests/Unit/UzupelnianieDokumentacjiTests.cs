@@ -36,6 +36,22 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
                 wczytywacz.DajZawartoscPrzykladu("WynikKlasyDoDokumentacji.cs"));
         }
 
+        [Test]
+        public void DodajeInheritDocDoKlasyImplementujacejInterfejs()
+        {
+            //arrange
+            var solution = new SolutionWrapper(wczytywacz.DajZawartoscPrzykladu("KlasaDokumentacjiImplementujacaInterfejs.cs"));
+
+            PrzygotujKonfiguracjeWgSolutionISzablonu(solution, 1);
+
+            //act
+            new UzupelnianieDokumentacji(solution).Uzupelnij();
+
+            //assert
+            solution.AktualnyDokument.DajZawartosc().Should().Be(
+                wczytywacz.DajZawartoscPrzykladu("WynikKlasaDokumentacjiImplementujacaInterfejs.cs"));
+        }
+
         private void PrzygotujKonfiguracjeWgSolutionISzablonu(
             SolutionWrapper solution,
             int jezyk)
