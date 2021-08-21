@@ -66,8 +66,6 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
                 GennerujSummary(poczatek, builder, GenerujSummaryKlasyLubInterfejsu(obiekt));
 
-                if (obiekt.)
-
                 var doWstawienia = builder.ToString();
 
                 var numerLinii = obiekt.Poczatek.Wiersz;

@@ -40,7 +40,15 @@
           <CommandName>Nawi&amp;gacja</CommandName>
         </Strings>
       </Menu>
-      
+
+      <Menu guid="guidCommand1PackageCmdSet" id="DokumentacjaMenu" priority="0x703" type="Menu">
+        <Parent guid="guidCommand1PackageCmdSet" id="NawigacjaGroup" />
+        <Strings>
+          <ButtonText>Dokumentacja</ButtonText>
+          <CommandName>Dokumentacja</CommandName>
+        </Strings>
+      </Menu>
+
       <Menu guid="guidCommand1PackageCmdSet" id="MenuPrzejdzDoController" priority="0x1000" type="MenuController">
         <Parent guid="guidCommand1PackageCmdSet" id="ToolbarPrzejdzDoItemGroup" />
         <CommandFlag>DynamicVisibility</CommandFlag>
@@ -106,6 +114,10 @@
 
       <Group guid="guidCommand1PackageCmdSet" id="PodrozowanieMenuGroup" priority="0x0601">
         <Parent guid="guidCommand1PackageCmdSet" id="PodrozowanieMenu"/>
+      </Group>
+
+      <Group guid="guidCommand1PackageCmdSet" id="DokumentacjaMenuGroup" priority="0x0601">
+        <Parent guid="guidCommand1PackageCmdSet" id="DokumentacjaMenu"/>
       </Group>
 
       <Group guid="guidCommand1PackageCmdSet" id="ToolbarPrzejdzDoItemGroup" priority="0x4000" >
@@ -457,6 +469,16 @@
         <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
 
+      <Button id="cmdidGenerujDokumentacjaDlaPliku" priority="0x0101"  guid="guidCommand1PackageCmdSet" type="Button">
+        <Parent guid="guidCommand1PackageCmdSet" id="DokumentacjaMenuGroup"/>
+        <Strings>
+          <CommandName>cmdidGenerujDokumentacjaDlaPliku</CommandName>
+          <ButtonText>Generuj dokumentację dla pliku</ButtonText>
+        </Strings>
+        <CommandFlag>DefaultDisabled</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+      </Button>
+
       <Button guid="guidCommand1PackageCmdSet" id="cmdidMyDynamicStartCommand" priority="0x1000" >
         <Parent guid="guidCommand1PackageCmdSet" id="MenuPrzejdzDoControllerGroup" />
         <CommandFlag>DynamicItemStart</CommandFlag>
@@ -534,6 +556,9 @@
       <IDSymbol name="PozostaleKodoweGroup" value="0x0129"/>
       <IDSymbol name="NawigacjaGroup" value="0x0130"/>
 
+      <IDSymbol name="DokumentacjaMenu" value="0x131"/>
+      <IDSymbol name="DokumentacjaMenuGroup" value="0x132"/>
+
       <IDSymbol name="cmdidTestowaCommand" value="0x0100" />
 
       <IDSymbol name="cmdidMyTool" value="0x0101" />
@@ -577,6 +602,7 @@
       <IDSymbol name="cmidPrzejdzDoGridToolbar" value="0x0175"/>
 
       <IDSymbol name="cmdidInicjujTestyMockami" value="0x0180"/>
+      <IDSymbol name="cmdidGenerujDokumentacjaDlaPliku" value="0x0181"/>
 
       <IDSymbol name="ToolbarPrzejdzDoItemGroup" value="0x3020" />
       <IDSymbol name="MenuPrzejdzDoControllerGroup" value="0x3025" />
