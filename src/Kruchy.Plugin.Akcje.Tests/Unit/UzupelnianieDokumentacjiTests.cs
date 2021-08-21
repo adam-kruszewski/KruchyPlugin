@@ -37,10 +37,11 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
         }
 
         [Test]
-        public void DodajeInheritDocDoKlasyImplementujacejInterfejs()
+        [Ignore("Jeszcze nie zaimplementowane")]
+        public void DodajeOpisParametrowGenerycznych()
         {
             //arrange
-            var solution = new SolutionWrapper(wczytywacz.DajZawartoscPrzykladu("KlasaDokumentacjiImplementujacaInterfejs.cs"));
+            var solution = new SolutionWrapper(wczytywacz.DajZawartoscPrzykladu("KlasaGenertycznaZMetodaGeneryczna.cs"));
 
             PrzygotujKonfiguracjeWgSolutionISzablonu(solution, 1);
 
@@ -49,7 +50,7 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
 
             //assert
             solution.AktualnyDokument.DajZawartosc().Should().Be(
-                wczytywacz.DajZawartoscPrzykladu("WynikKlasaDokumentacjiImplementujacaInterfejs.cs"));
+                wczytywacz.DajZawartoscPrzykladu("WynikKlasaGenertycznaZMetodaGeneryczna.cs"));
         }
 
         private void PrzygotujKonfiguracjeWgSolutionISzablonu(

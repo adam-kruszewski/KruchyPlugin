@@ -31,6 +31,8 @@
     <EmbeddedResource Include="Samples\UzupelnianieKonstruktoraGdyPolaZPodkresleniemPrzegenerowanie.cs" />
     <EmbeddedResource Include="Samples\KlasaDoDokumentacji.cs" />
     <EmbeddedResource Include="Samples\WynikKlasyDoDokumentacji.cs" />
+    <EmbeddedResource Include="Samples\KlasaGenertycznaZMetodaGeneryczna.cs" />
+    <EmbeddedResource Include="Samples\WynikKlasaGenertycznaZMetodaGeneryczna.cs" />
     <Compile Include="TestyInfrastrukturyTestow\DokumentWrapperTests.cs" />
     <Compile Include="Unit\UzupelnianieDokumentacjiTests.cs" />
     <EmbeddedResource Include="Samples\UzupelnianieKonstruktoraPrzyStalej.cs" />
