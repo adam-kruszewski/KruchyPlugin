@@ -87,6 +87,7 @@
     <Compile Include="KonfiguracjaPlugina\Xml\Testy.cs" />
     <Compile Include="Menu\PkgCmdIDList.cs" />
     <Compile Include="Menu\PozycjaDodawanieDaoDoContekstu.cs" />
+    <Compile Include="Menu\PozycjaDodawanieDokumentacjiDlaPliku.cs" />
     <Compile Include="Menu\PozycjaDodawanieNowegoTestu.cs" />
     <Compile Include="Menu\PozycjaDodawanieUsingow.cs" />
     <Compile Include="Menu\PozycjaGenerowanieBuildera.cs" />

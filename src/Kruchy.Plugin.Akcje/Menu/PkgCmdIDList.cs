@@ -31,6 +31,7 @@
         public const uint cmdidDodajDaoDoContekstu = 0x168;
         public const uint cmdidZrobMetodeAsync = 0x169;
         public const uint cmdidInicjujTestyMockami = 0x180;
+        public const uint cmdidGenerujDokumentacjaDlaPliku = 0x181;
 
         //dla poruszania się po klasach ui
         public const uint cmdidIdzDoImplementacji = 0x0170;
