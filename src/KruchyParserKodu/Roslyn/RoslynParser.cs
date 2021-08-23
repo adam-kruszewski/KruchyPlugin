@@ -149,6 +149,8 @@ namespace KruchyParserKodu.Roslyn
             UzupelnijMetody(definiowanyObiekt.Metody, interfaceSyntax, definiowanyObiekt);
             UzupelniejTypyDziedziczone(definiowanyObiekt, interfaceSyntax);
 
+            ParsujDokumentacje(definiowanyObiekt, interfaceSyntax);
+
             return definiowanyObiekt;
         }
 
