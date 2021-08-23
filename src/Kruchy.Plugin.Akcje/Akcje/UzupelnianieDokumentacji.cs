@@ -190,7 +190,14 @@ namespace Kruchy.Plugin.Akcje.Akcje
         {
             if (pole.Dokumentacja == null)
             {
-                var summary = string.Join(" ", pole.Nazwa.PodzielNaSlowaOdWielkichLiter().Select(o => o.ToLower())).ZacznijDuzaLitera();
+                var slowa = pole.Nazwa
+                    .PodzielNaSlowaOdWielkichLiter()
+                        .Select(o => o.ToLower())
+                            .ToArray();
+
+                slowa[0] = slowa[0].TrimStart('_');
+
+                var summary = string.Join(" ", slowa).ZacznijDuzaLitera();
 
                 var wciecie = (pole.Poczatek.Kolumna - 1).Spacji();
 
