@@ -24,11 +24,14 @@
     <EmbeddedResource Include="Samples\KlasaDoParsowaniaModyfikatorow.cs" />
     <EmbeddedResource Include="Samples\KlasaZKomentarzemDoParsowania.cs" />
     <EmbeddedResource Include="Samples\KlasaZDokumentacjaDoParsowania.cs" />
+    <EmbeddedResource Include="Samples\KlasaZParametramiGenerycznymi.cs" />
+    <EmbeddedResource Include="Samples\IInterfejsZParametramiGenerycznymi.cs" />
     <Compile Include="Unit\ParsowanieAtrybutowTests.cs" />
     <Compile Include="Unit\ParsowanieDokumentacjiTests.cs" />
     <Compile Include="Unit\ParsowanieInterfejsuTests.cs" />
     <Compile Include="Unit\ParsowanieKlasyNadklasIInterfejsowTests.cs" />
     <Compile Include="Unit\ParsowanieKlasyTests.cs" />
+    <Compile Include="Unit\ParsowanieZParametramiGenerycznymiTests.cs" />
     <Compile Include="Unit\ParsowanieKomentarzyTests.cs" />
     <Compile Include="Unit\ParsowanieModyfikatorwKlasyTests.cs" />
     <Compile Include="Unit\ParsowanieRozszerzoneTests.cs" />

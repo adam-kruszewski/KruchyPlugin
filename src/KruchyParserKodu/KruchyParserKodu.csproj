@@ -65,6 +65,7 @@
     <Compile Include="ParserKodu\ObiektDziedziczony.cs" />
     <Compile Include="ParserKodu\Parametr.cs" />
     <Compile Include="ParserKodu\ParametrAtrybutu.cs" />
+    <Compile Include="ParserKodu\ParametrGeneryczny.cs" />
     <Compile Include="ParserKodu\Parser.cs" />
     <Compile Include="ParserKodu\ParsowanaJednostka.cs" />
     <Compile Include="ParserKodu\Plik.cs" />

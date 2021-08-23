@@ -151,6 +151,8 @@ namespace KruchyParserKodu.Roslyn
 
             ParsujDokumentacje(definiowanyObiekt, interfaceSyntax);
 
+            ParsujParametryGeneryczne(definiowanyObiekt, interfaceSyntax.TypeParameterList);
+
             return definiowanyObiekt;
         }
 
@@ -183,6 +185,8 @@ namespace KruchyParserKodu.Roslyn
 
             ParsujDokumentacje(definiowanyObiekt, klasa);
 
+            ParsujParametryGeneryczne(definiowanyObiekt, klasa.TypeParameterList);
+
             var klasyWewnetrzne = SzukajKlasWewnetrznych(klasa);
 
             foreach (var klasaWewnetrzna in klasyWewnetrzne)
@@ -192,6 +196,21 @@ namespace KruchyParserKodu.Roslyn
             }
 
             return definiowanyObiekt;
+        }
+
+        private void ParsujParametryGeneryczne(Obiekt obiekt, TypeParameterListSyntax parameterListSyntax)
+        {
+            foreach (var typeParameter in parameterListSyntax.Parameters)
+            {
+                var parametrGeneryczny = new ParametrGeneryczny
+                {
+                    Nazwa = typeParameter.Identifier.ValueText
+                };
+
+                UstawPolozenie(typeParameter.SyntaxTree, parametrGeneryczny, typeParameter);
+
+                obiekt.ParametryGeneryczne.Add(parametrGeneryczny);
+            }
         }
 
         private void UzupelniejTypyDziedziczone(Obiekt obiekt, TypeDeclarationSyntax syntax)

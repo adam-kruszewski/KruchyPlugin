@@ -45,6 +45,8 @@ namespace KruchyParserKodu.ParserKodu
 
         public Dokumentacja Dokumentacja { get; set; }
 
+        public IList<ParametrGeneryczny> ParametryGeneryczne { get; set; }
+
         public Obiekt() : base()
         {
             Konstruktory = new List<Konstruktor>();
@@ -60,6 +62,7 @@ namespace KruchyParserKodu.ParserKodu
             Modyfikatory = new List<Modyfikator>();
 
             RodzajObiektuObiekt = new RodzajObiektuObiekt();
+            ParametryGeneryczne = new List<ParametrGeneryczny>();
         }
 
         private IEnumerable<Pole> SzukajPolNiestatycznych()
