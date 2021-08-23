@@ -200,6 +200,16 @@ namespace KruchyParserKodu.Roslyn
 
         private void ParsujParametryGeneryczne(Obiekt obiekt, TypeParameterListSyntax parameterListSyntax)
         {
+            ParsujParametryGeneryczne(obiekt.ParametryGeneryczne, parameterListSyntax);
+        }
+
+        private void ParsujParametryGeneryczne(
+            IList<ParametrGeneryczny> parametryGeneryczne,
+            TypeParameterListSyntax parameterListSyntax)
+        {
+            if (parameterListSyntax == null)
+                return;
+
             foreach (var typeParameter in parameterListSyntax.Parameters)
             {
                 var parametrGeneryczny = new ParametrGeneryczny
@@ -209,7 +219,7 @@ namespace KruchyParserKodu.Roslyn
 
                 UstawPolozenie(typeParameter.SyntaxTree, parametrGeneryczny, typeParameter);
 
-                obiekt.ParametryGeneryczne.Add(parametrGeneryczny);
+                parametryGeneryczne.Add(parametrGeneryczny);
             }
         }
 
@@ -274,6 +284,8 @@ namespace KruchyParserKodu.Roslyn
                 UzupelnijAtrybuty(metodaSyntax.AttributeLists, metoda.Atrybuty);
 
                 ParsujDokumentacje(metoda, metodaSyntax);
+
+                ParsujParametryGeneryczne(metoda.ParametryGeneryczne, metodaSyntax.TypeParameterList);
 
                 metoda.Wlasciciel = obiektWlasciciela;
 

@@ -6,5 +6,10 @@
         {
 
         }
+
+        public string Metoda2<TParametrMetody>()
+        {
+
+        }
     }
 }

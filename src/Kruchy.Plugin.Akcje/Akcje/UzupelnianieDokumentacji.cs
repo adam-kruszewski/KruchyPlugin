@@ -66,6 +66,8 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
                 GennerujSummary(poczatek, builder, GenerujSummaryKlasyLubInterfejsu(obiekt));
 
+                DodajOpisParametrowGenerycznych(obiekt.ParametryGeneryczne, poczatek, builder);
+
                 var doWstawienia = builder.ToString();
 
                 var numerLinii = obiekt.Poczatek.Wiersz;
@@ -75,6 +77,27 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
                 solution.AktualnyDokument.WstawWLinii(doWstawienia, numerLinii);
             }
+        }
+
+        private void DodajOpisParametrowGenerycznych(
+            IEnumerable<ParametrGeneryczny> parametryGeneryczne,
+            string poczatek,
+            StringBuilder builder)
+        {
+            foreach (var parametrGeneryczny in parametryGeneryczne)
+            {
+                builder.AppendLine($"{poczatek}<typeparam name=\"{parametrGeneryczny.Nazwa}\">{DajOpisParametruGenerycznego(parametrGeneryczny)}</typeparam>");
+            }
+        }
+
+        private string DajOpisParametruGenerycznego(ParametrGeneryczny parametr)
+        {
+            var slowa = parametr.Nazwa.PodzielNaSlowaOdWielkichLiter();
+
+            if (slowa.First() == "T")
+                slowa = slowa.Skip(1);
+
+            return string.Join(" ", slowa.Select(o => o.ToLower())).ZacznijDuzaLitera();
         }
 
         private void GennerujSummary(string poczatek, StringBuilder builder, string summary)
@@ -163,6 +186,8 @@ namespace Kruchy.Plugin.Akcje.Akcje
                     GennerujSummary(poczatek, builder, DajSummaryMetody(metoda.Nazwa, konf.Dokumentacja().Jezyk));
 
                     GenerujOpisParametrow(metoda.Parametry, poczatek, builder);
+
+                    DodajOpisParametrowGenerycznych(metoda.ParametryGeneryczne, poczatek, builder);
 
                     if (metoda.TypZwracany.Nazwa != "void")
                         builder.AppendLine($"{poczatek}<returns></returns>");

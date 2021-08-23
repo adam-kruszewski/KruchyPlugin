@@ -37,7 +37,6 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
         }
 
         [Test]
-        [Ignore("Jeszcze nie zaimplementowane")]
         public void DodajeOpisParametrowGenerycznych()
         {
             //arrange

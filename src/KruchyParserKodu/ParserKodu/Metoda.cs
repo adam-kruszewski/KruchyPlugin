@@ -20,6 +20,7 @@ namespace KruchyParserKodu.ParserKodu
         public PozycjaWPliku NawiasOtwierajacyParametry { get; set; }
         public PozycjaWPliku NawiasZamykajacyParametry { get; set; }
         public Dokumentacja Dokumentacja { get; set; }
+        public IList<ParametrGeneryczny> ParametryGeneryczne { get; set; }
 
         public bool Prywatna
         {
@@ -44,6 +45,7 @@ namespace KruchyParserKodu.ParserKodu
             Atrybuty = new List<Atrybut>();
             NawiasOtwierajacyParametry = new PozycjaWPliku();
             NawiasZamykajacyParametry = new PozycjaWPliku();
+            ParametryGeneryczne = new List<ParametrGeneryczny>();
         }
 
         public bool ZawieraModyfikator(string nazwa)
