@@ -184,7 +184,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 }
                 else
                 {
-                    GennerujSummary(poczatek, builder, DajSummaryMetody(metoda.Nazwa, konf.Dokumentacja().Jezyk));
+                    GennerujSummary(poczatek, builder, DajSummaryMetody(konf.Dokumentacja().Jezyk, metoda));
 
                     GenerujOpisParametrow(metoda.Parametry, poczatek, builder);
 
@@ -207,9 +207,23 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
             if (slowaNazwyMetody.First() == "Get")
             {
+                var slowaDoBudowy = slowaNazwyMetody.Skip(1).Select(o => o.ToLower());
+
                 var regex = new Regex("Task<[a-zA-Z0-9_]+>");
 
-                var slowaDoBudowy = slowaNazwyMetody.Skip(1).Select(o => o.ToLower());
+                if (regex.IsMatch(metoda.TypZwracany.Nazwa))
+                {
+                    slowaDoBudowy = new[] { "Async" }.Union(slowaDoBudowy);
+                }
+
+                return string.Join(" ", slowaDoBudowy).ZacznijDuzaLitera();
+            }
+
+            if (slowaNazwyMetody.First() == "Is")
+            {
+                var slowaDoBudowy = new[] { "if it is" }.Union(slowaNazwyMetody.Skip(1).Select(o => o.ToLower()));
+
+                var regex = new Regex("Task<[a-zA-Z0-9_]+>");
 
                 if (regex.IsMatch(metoda.TypZwracany.Nazwa))
                 {
@@ -227,13 +241,51 @@ namespace Kruchy.Plugin.Akcje.Akcje
             solution.AktualnyDokument.WstawWLinii($"{poczatek}<inheritdoc/>", numerLinii);
         }
 
-        private string DajSummaryMetody(string nazwa, int jezyk)
+        private string DajSummaryMetody(int jezyk, Metoda metoda)
         {
-            var slowa = nazwa.PodzielNaSlowaOdWielkichLiter().ToList();
+            var slowa = metoda.Nazwa.PodzielNaSlowaOdWielkichLiter().ToList();
 
-            slowa[0] = jezyk.PrzygotujCzasownik(slowa[0]);
+            slowa[0] = DajCzasownikOpisuMetody(jezyk, slowa, metoda);
 
             return string.Join(" ", slowa.Select(o => o.ToLower())).ZacznijDuzaLitera();
+        }
+
+        private string DajCzasownikOpisuMetody(int jezyk, List<string> slowa, Metoda metoda)
+        {
+            var konfiguracja = Konfiguracja.GetInstance(solution);
+
+            var czasownik = slowa.First();
+
+            var konfiguracjeCzasownika =
+                konfiguracja.Dokumentacja().Czasowniki
+                .Where(o => o.Wartosc == slowa.First());
+
+            if (konfiguracjeCzasownika.Count() == 1)
+                return konfiguracjeCzasownika.Single().WyjsciowaWartosc;
+
+            if (konfiguracjeCzasownika.Count() > 1)
+            {
+                var konfiguracjaCzasownikaZRegex =
+                    konfiguracjeCzasownika.SingleOrDefault(o => PasujeRegexNazwyKlasy(metoda, o));
+
+                if (konfiguracjaCzasownikaZRegex != null)
+                    return konfiguracjaCzasownikaZRegex.WyjsciowaWartosc;
+
+                var konfiguracjaCzasownikaBezRegex =
+                    konfiguracjeCzasownika.SingleOrDefault(o => o.RegexNazwyKlasy == null);
+
+                if (konfiguracjaCzasownikaBezRegex != null)
+                    return konfiguracjaCzasownikaBezRegex.WyjsciowaWartosc;
+            }
+
+            return jezyk.PrzygotujCzasownik(slowa[0]);
+        }
+
+        private static bool PasujeRegexNazwyKlasy(Metoda metoda, Czasownik o)
+        {
+            return
+                o.RegexNazwyKlasy != null &&
+                new Regex(o.RegexNazwyKlasy).IsMatch(metoda.Wlasciciel.Nazwa);
         }
 
         private void PrzetworzPole(Pole pole)
