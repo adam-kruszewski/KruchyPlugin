@@ -33,6 +33,8 @@
     <EmbeddedResource Include="Samples\WynikKlasyDoDokumentacji.cs" />
     <EmbeddedResource Include="Samples\KlasaGenertycznaZMetodaGeneryczna.cs" />
     <EmbeddedResource Include="Samples\WynikKlasaGenertycznaZMetodaGeneryczna.cs" />
+    <EmbeddedResource Include="Samples\KlasaDoDokumentacjaRozne.cs" />
+    <EmbeddedResource Include="Samples\WynikKlasaDoDokumentacjaRozne.cs" />
     <Compile Include="TestyInfrastrukturyTestow\DokumentWrapperTests.cs" />
     <Compile Include="Unit\UzupelnianieDokumentacjiTests.cs" />
     <EmbeddedResource Include="Samples\UzupelnianieKonstruktoraPrzyStalej.cs" />

@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Kruchy.Plugin.Akcje.Akcje
 {
@@ -190,11 +191,35 @@ namespace Kruchy.Plugin.Akcje.Akcje
                     DodajOpisParametrowGenerycznych(metoda.ParametryGeneryczne, poczatek, builder);
 
                     if (metoda.TypZwracany.Nazwa != "void")
-                        builder.AppendLine($"{poczatek}<returns></returns>");
+                        builder.AppendLine($"{poczatek}<returns>{DajOpisTypuZwracanego(metoda)}</returns>");
 
                     solution.AktualnyDokument.WstawWLinii(builder.ToString(), numerLinii);
                 }
             }
+        }
+
+        private string DajOpisTypuZwracanego(Metoda metoda)
+        {
+            if (metoda.TypZwracany.Nazwa == "Task")
+                return "Awaitable object";
+
+            var slowaNazwyMetody = metoda.Nazwa.PodzielNaSlowaOdWielkichLiter();
+
+            if (slowaNazwyMetody.First() == "Get")
+            {
+                var regex = new Regex("Task<[a-zA-Z0-9_]+>");
+
+                var slowaDoBudowy = slowaNazwyMetody.Skip(1).Select(o => o.ToLower());
+
+                if (regex.IsMatch(metoda.TypZwracany.Nazwa))
+                {
+                    slowaDoBudowy = new[] { "Async" }.Union(slowaDoBudowy);
+                }
+
+                return string.Join(" ", slowaDoBudowy).ZacznijDuzaLitera();
+            }
+
+            return "";
         }
 
         private void WstawInheritDoc(string poczatek, int numerLinii)

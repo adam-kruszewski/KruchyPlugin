@@ -52,6 +52,22 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
                 wczytywacz.DajZawartoscPrzykladu("WynikKlasaGenertycznaZMetodaGeneryczna.cs"));
         }
 
+        [Test]
+        public void RozneCiekawePrzypadki()
+        {
+            //arrange
+            var solution = new SolutionWrapper(wczytywacz.DajZawartoscPrzykladu("KlasaDoDokumentacjaRozne.cs"));
+
+            PrzygotujKonfiguracjeWgSolutionISzablonu(solution, 2);
+
+            //act
+            new UzupelnianieDokumentacji(solution).Uzupelnij();
+
+            //assert
+            solution.AktualnyDokument.DajZawartosc().Should().Be(
+                wczytywacz.DajZawartoscPrzykladu("WynikKlasaDoDokumentacjaRozne.cs"));
+        }
+
         private void PrzygotujKonfiguracjeWgSolutionISzablonu(
             SolutionWrapper solution,
             int jezyk)
@@ -61,7 +77,7 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
             mockKonfiguracja.Setup(o => o.Dokumentacja())
                 .Returns(new Dokumentacja
                 {
-                    Jezyk = 1
+                    Jezyk = jezyk
                 });
 
             mockKonfiguracja.SetupGet(o => o.Solution).Returns(solution);
