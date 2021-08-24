@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Kruchy.Plugin.Akcje.Atrybuty;
 using Kruchy.Plugin.Akcje.Menu;
 using Kruchy.Plugin.Utils.Menu;
 using Kruchy.Plugin.Utils.Wrappers;
@@ -7,7 +8,8 @@ using KruchyCompany.KruchyPlugin1.Akcje;
 
 namespace KruchyCompany.KruchyPlugin1.Menu
 {
-    class PozycjaDodawanieMapowan : IPozycjaMenu
+    [SpecyficzneDlaPincasso]
+    public class PozycjaDodawanieMapowan : IPozycjaMenu
     {
         private readonly ISolutionWrapper solution;
 
