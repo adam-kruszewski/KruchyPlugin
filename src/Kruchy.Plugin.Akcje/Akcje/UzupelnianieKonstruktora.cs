@@ -99,7 +99,8 @@ namespace Kruchy.Plugin.Akcje.Akcje
                         PrzygotujTekstDoWstawienia(nowyKonstruktor, dodatek),
                         maksymalnyNumerLiniiPol + 1);
                 }
-                PosortujZdefiniowanePola(obiekt.SzukajPolPrivateReadOnly());
+                if (Konfiguracja.GetInstance(solution).SortowacZaleznosciSerwisu())
+                    PosortujZdefiniowanePola(obiekt.SzukajPolPrivateReadOnly());
             }
         }
 
@@ -287,8 +288,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         {
             var stringiModyfikatorow = pole.Modyfikatory.Select(m => m.Nazwa);
             return
-                stringiModyfikatorow.Contains("private")
-                && stringiModyfikatorow.Contains("readonly")
+                stringiModyfikatorow.Contains("readonly")
                 && !stringiModyfikatorow.Contains("static");
         }
 
