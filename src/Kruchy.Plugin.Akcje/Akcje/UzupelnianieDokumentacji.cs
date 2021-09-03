@@ -95,6 +95,10 @@ namespace Kruchy.Plugin.Akcje.Akcje
         {
             var slowa = parametr.Nazwa.PodzielNaSlowaOdWielkichLiter();
 
+            if (slowa.Count() == 1 && slowa.First().Length == 1)
+                return "";
+
+
             if (slowa.First() == "T")
                 slowa = slowa.Skip(1);
 
