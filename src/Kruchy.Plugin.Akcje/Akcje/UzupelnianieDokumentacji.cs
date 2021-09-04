@@ -289,21 +289,31 @@ namespace Kruchy.Plugin.Akcje.Akcje
         {
             return
                 o.RegexNazwyKlasy != null &&
-                new Regex(o.RegexNazwyKlasy).IsMatch(metoda.Wlasciciel.Nazwa);
+                PasujeRegex(metoda.Wlasciciel.Nazwa, o.RegexNazwyKlasy);
+        }
+
+        private static bool PasujeRegex(string wartosc, string regex)
+        {
+            return new Regex(regex).IsMatch(wartosc);
         }
 
         private void PrzetworzPole(Pole pole)
         {
             if (pole.Dokumentacja == null)
             {
-                var slowa = pole.Nazwa
-                    .PodzielNaSlowaOdWielkichLiter()
-                        .Select(o => o.ToLower())
-                            .ToArray();
+                var nazwaDoPrzetwarzania = pole.Nazwa.TrimStart('_');
 
-                slowa[0] = slowa[0].TrimStart('_');
+                string summary = DajNazwePolaWlasciwosciWgKonfiguracji(nazwaDoPrzetwarzania, pole.Wlasciciel);
 
-                var summary = string.Join(" ", slowa).ZacznijDuzaLitera();
+                if (string.IsNullOrEmpty(summary))
+                {
+                    var slowa = nazwaDoPrzetwarzania
+                        .PodzielNaSlowaOdWielkichLiter()
+                            .Select(o => o.ToLower())
+                                .ToArray();
+
+                    summary = string.Join(" ", slowa).ZacznijDuzaLitera();
+                }
 
                 var wciecie = (pole.Poczatek.Kolumna - 1).Spacji();
 
@@ -320,7 +330,10 @@ namespace Kruchy.Plugin.Akcje.Akcje
         {
             if (property.Dokumentacja == null)
             {
-                var summary = string.Join(" ", property.Nazwa.PodzielNaSlowaOdWielkichLiter().Select(o => o.ToLower())).ZacznijDuzaLitera();
+                var summary = DajNazwePolaWlasciwosciWgKonfiguracji(property.Nazwa, property.Wlasciciel);
+
+                if (string.IsNullOrEmpty(summary))
+                    summary = string.Join(" ", property.Nazwa.PodzielNaSlowaOdWielkichLiter().Select(o => o.ToLower())).ZacznijDuzaLitera();
 
                 var wciecie = (property.Poczatek.Kolumna - 1).Spacji();
 
@@ -331,6 +344,38 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
                 solution.AktualnyDokument.WstawWLinii(builder.ToString(), DajNumerLiniiDoWstawienia(property, property.Atrybuty));
             }
+        }
+
+        private string DajNazwePolaWlasciwosciWgKonfiguracji(string nazwa, Obiekt wlasciciel)
+        {
+            string summary = null;
+
+            var konfiguracja = Konfiguracja.GetInstance(solution).Dokumentacja();
+
+            var konfiguracjaDokumentacji = konfiguracja.WlasciwosciPola;
+
+            var konfiguracjaDokumentacjiDlaNazwy = konfiguracjaDokumentacji.Where(o => o.Wartosc == nazwa);
+
+            var definicjaZRegexemNazwyKlasy =
+                konfiguracjaDokumentacjiDlaNazwy
+                    .Where(o => !string.IsNullOrEmpty(o.RegexNazwyKlasy))
+                    .SingleOrDefault(o => PasujeRegex(wlasciciel.Nazwa, o.RegexNazwyKlasy));
+
+            if (definicjaZRegexemNazwyKlasy != null)
+            {
+                summary = definicjaZRegexemNazwyKlasy.WyjsciowaWartosc;
+            }
+
+            if (string.IsNullOrEmpty(summary))
+            {
+                var definicjaBezRegexaNazwyKlasy =
+                    konfiguracjaDokumentacjiDlaNazwy
+                        .SingleOrDefault(o => string.IsNullOrEmpty(o.RegexNazwyKlasy));
+
+                summary = definicjaBezRegexaNazwyKlasy?.WyjsciowaWartosc;
+            }
+
+            return summary;
         }
 
         private int DajNumerLiniiDoWstawienia(ParsowanaJednostka parsowanaJednostka, IEnumerable<Atrybut> atrybuty = null)

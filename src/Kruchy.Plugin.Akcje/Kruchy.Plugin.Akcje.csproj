@@ -86,6 +86,7 @@
     <Compile Include="KonfiguracjaPlugina\Xml\MapowanieTypuXsd.cs" />
     <Compile Include="KonfiguracjaPlugina\Xml\PrzejdzDo.cs" />
     <Compile Include="KonfiguracjaPlugina\Xml\Testy.cs" />
+    <Compile Include="KonfiguracjaPlugina\Xml\WlasciwoscPole.cs" />
     <Compile Include="Menu\PkgCmdIDList.cs" />
     <Compile Include="Menu\PozycjaDodawanieDaoDoContekstu.cs" />
     <Compile Include="Menu\PozycjaDodawanieDokumentacjiDlaPliku.cs" />

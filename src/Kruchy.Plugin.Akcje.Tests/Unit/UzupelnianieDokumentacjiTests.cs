@@ -76,30 +76,30 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
             var solution = new SolutionWrapper(wczytywacz.DajZawartoscPrzykladu("KlasaDoDokumentacjiCzasownikow.cs"));
 
             PrzygotujKonfiguracjeWgSolutionISzablonu(solution, 2,
-                dok =>
-                {
-                    dok.Czasowniki.Add(
-                        new Czasownik
-                        {
-                            Wartosc = "To",
-                            WyjsciowaWartosc = "To"
-                        });
+               dok =>
+               {
+                   dok.Czasowniki.Add(
+                       new Czasownik
+                       {
+                           Wartosc = "To",
+                           WyjsciowaWartosc = "To"
+                       });
 
-                    dok.Czasowniki.Add(
-                        new Czasownik
-                        {
-                            Wartosc = "Is",
-                            WyjsciowaWartosc = "Is"
-                        });
+                   dok.Czasowniki.Add(
+                       new Czasownik
+                       {
+                           Wartosc = "Is",
+                           WyjsciowaWartosc = "Is"
+                       });
 
-                    dok.Czasowniki.Add(
-                    new Czasownik
-                    {
-                        Wartosc = "To",
-                        RegexNazwyKlasy = "Klasa[0-9]",
-                        WyjsciowaWartosc = "OtherTo"
-                    });
-                });
+                   dok.Czasowniki.Add(
+                   new Czasownik
+                   {
+                       Wartosc = "To",
+                       RegexNazwyKlasy = "Klasa[0-9]",
+                       WyjsciowaWartosc = "OtherTo"
+                   });
+               });
 
             //act
             new UzupelnianieDokumentacji(solution).Uzupelnij();
@@ -107,6 +107,64 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
             //assert
             solution.AktualnyDokument.DajZawartosc().Should().Be(
                 wczytywacz.DajZawartoscPrzykladu("WynikKlasaDoDokumentacjiCzasownikow.cs"));
+        }
+
+        [Test]
+        public void WlasciwosciIPolaZKonfiguracjiDokumentacji()
+        {
+            //arrange
+            var solution = new SolutionWrapper(wczytywacz.DajZawartoscPrzykladu("KlasaDoDokumentacjiWlasciwosciIPol.cs"));
+
+            PrzygotujKonfiguracjeWgSolutionISzablonu(solution, 2,
+                dok =>
+                {
+                    dok.WlasciwosciPola.Add(
+                        new WlasciwoscPole
+                        {
+                            Wartosc = "Wlasciwosc1",
+                            WyjsciowaWartosc = "Text1"
+                        });
+
+                    dok.WlasciwosciPola.Add(
+                        new WlasciwoscPole
+                        {
+                            Wartosc = "Wlasciwosc2",
+                            RegexNazwyKlasy = "Klasa2",
+                            WyjsciowaWartosc = "Text2"
+                        });
+
+                    dok.WlasciwosciPola.Add(
+                        new WlasciwoscPole
+                        {
+                            Wartosc = "pole1",
+                            WyjsciowaWartosc = "TextPole1"
+                        });
+
+                    dok.WlasciwosciPola.Add(
+                        new WlasciwoscPole
+                        {
+                            Wartosc = "pole2",
+                            RegexNazwyKlasy = "Klasa2",
+                            WyjsciowaWartosc = "TextPole2"
+                        });
+
+                });
+
+            //act
+            new UzupelnianieDokumentacji(solution).Uzupelnij();
+
+            //assert
+            var a1 = solution.AktualnyDokument.DajZawartosc();
+            var a2 = wczytywacz.DajZawartoscPrzykladu("KlasaDoDokumentacjiWlasciwosciIPolWynik.cs");
+
+            var b1 = a1.Substring(541);
+            var b2 = a2.Substring(541);
+
+            System.IO.File.WriteAllText(@"e:\adam\tmp\a1.txt", a1);
+            System.IO.File.WriteAllText(@"e:\adam\tmp\a2.txt", a2);
+
+            solution.AktualnyDokument.DajZawartosc().Should().Be(
+                wczytywacz.DajZawartoscPrzykladu("KlasaDoDokumentacjiWlasciwosciIPolWynik.cs"));
         }
 
         private void PrzygotujKonfiguracjeWgSolutionISzablonu(

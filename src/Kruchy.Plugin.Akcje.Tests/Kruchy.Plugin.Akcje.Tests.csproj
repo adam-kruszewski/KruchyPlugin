@@ -37,6 +37,8 @@
     <EmbeddedResource Include="Samples\WynikKlasaDoDokumentacjaRozne.cs" />
     <EmbeddedResource Include="Samples\KlasaDoDokumentacjiCzasownikow.cs" />
     <EmbeddedResource Include="Samples\WynikKlasaDoDokumentacjiCzasownikow.cs" />
+    <EmbeddedResource Include="Samples\KlasaDoDokumentacjiWlasciwosciIPol.cs" />
+    <EmbeddedResource Include="Samples\KlasaDoDokumentacjiWlasciwosciIPolWynik.cs" />
     <Compile Include="TestyInfrastrukturyTestow\DokumentWrapperTests.cs" />
     <Compile Include="Unit\UzupelnianieDokumentacjiTests.cs" />
     <EmbeddedResource Include="Samples\UzupelnianieKonstruktoraPrzyStalej.cs" />
