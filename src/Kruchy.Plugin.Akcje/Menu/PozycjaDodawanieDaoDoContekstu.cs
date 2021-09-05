@@ -1,5 +1,4 @@
 ﻿using Kruchy.Plugin.Akcje.Akcje;
-using Kruchy.Plugin.Pincasso.Akcje.Atrybuty;
 using Kruchy.Plugin.Utils.Menu;
 using Kruchy.Plugin.Utils.Wrappers;
 using System;
@@ -7,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Kruchy.Plugin.Akcje.Menu
 {
-    [SpecyficzneDlaPincasso]
+    //[SpecyficzneDlaPincasso]
     class PozycjaDodawanieDaoDoContekstu : IPozycjaMenu
     {
         private readonly ISolutionWrapper solution;

@@ -1,5 +1,4 @@
 ﻿using KrucheBuilderyKodu.Builders;
-using Kruchy.Plugin.Pincasso.Akcje.Atrybuty;
 using Kruchy.Plugin.Utils.Extensions;
 using Kruchy.Plugin.Utils.Wrappers;
 using KruchyParserKodu.ParserKodu;
@@ -10,7 +9,6 @@ using System.Windows.Forms;
 
 namespace Kruchy.Plugin.Akcje.Akcje
 {
-    [SpecyficzneDlaPincasso]
     public class DodawanieDaoDaoContekstu
     {
         private readonly ISolutionWrapper solution;

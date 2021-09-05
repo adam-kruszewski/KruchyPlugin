@@ -1,13 +1,13 @@
 ﻿using Kruchy.Plugin.Akcje.Akcje;
-using Kruchy.Plugin.Akcje.Akcje.Generowanie.Buildera.Komponenty;
 using Kruchy.Plugin.Akcje.Interfejs;
+using Kruchy.Plugin.Pincasso.Akcje.Akcje;
 using Kruchy.Plugin.Pincasso.Akcje.Atrybuty;
 using Kruchy.Plugin.Utils.Menu;
 using Kruchy.Plugin.Utils.Wrappers;
 using System;
 using System.Collections.Generic;
 
-namespace Kruchy.Plugin.Akcje.Menu
+namespace Kruchy.Plugin.Pincasso.Akcje.Menu
 {
     [SpecyficzneDlaPincasso]
     public class PozycjaGenerowanieBuildera : IPozycjaMenu
@@ -23,7 +23,7 @@ namespace Kruchy.Plugin.Akcje.Menu
             this.solution = solution;
         }
 
-        public uint MenuCommandID => PkgCmdIDList.cmdidGenerujBuildera;
+        public uint MenuCommandID => PincassoPkgCmdIDList.cmdidGenerujBuildera;
 
         public IEnumerable<WymaganieDostepnosci> Wymagania
         {
@@ -42,7 +42,8 @@ namespace Kruchy.Plugin.Akcje.Menu
 
         private class Parametry : IParametryGenerowaniaBuildera
         {
-            public string NazwaInterfejsuService {
+            public string NazwaInterfejsuService
+            {
                 get
                 {
                     var oknoParametrow = new NazwaKlasyWindow();

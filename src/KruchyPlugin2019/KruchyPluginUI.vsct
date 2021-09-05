@@ -199,16 +199,6 @@
         <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
 
-      <Button guid="guidCommand1PackageCmdSet" id="cmdidGenerujBuildera" priority="0x0130" type="Button">
-        <Parent guid="guidCommand1PackageCmdSet" id="GenerowanieNowychKlasMetodGroup" />
-        <Strings>
-          <CommandName>cmdidGenerujBuildera</CommandName>
-          <ButtonText>Generuj buildera</ButtonText>
-        </Strings>
-        <CommandFlag>DefaultDisabled</CommandFlag>
-        <CommandFlag>DynamicVisibility</CommandFlag>
-      </Button>
-
       <Button guid="guidCommand1PackageCmdSet" id="cmdidZmienNaPublic" priority="0x0115" type="Button">
         <Parent guid="guidCommand1PackageCmdSet" id="ZmianaModyfikatorowGroup" />
         <Strings>
@@ -547,7 +537,6 @@
       <IDSymbol name="cmdidPokazZawartoscZShared" value="0x0162"/>
       <IDSymbol name="cmdidDodajUsingDbContext" value="0x0163"/>
       <IDSymbol name="cmdidInicjujWKontruktorze" value="0x0165"/>
-      <IDSymbol name="cmdidGenerujBuildera" value="0x0166"/>
       <IDSymbol name="cmdidGenerujXsdDlaReportView" value="0x0167"/>
       <IDSymbol name="cmdidDodajDaoDoContekstu" value="0x168"/>
       <IDSymbol name="cmdidZrobMetodeAsync" value="0x169"/>

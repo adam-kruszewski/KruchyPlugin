@@ -1,5 +1,4 @@
-﻿
-namespace Kruchy.Plugin.Akcje.Akcje.Generowanie.Buildera.Komponenty
+﻿namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
 {
     public interface IParametryGenerowaniaBuildera
     {

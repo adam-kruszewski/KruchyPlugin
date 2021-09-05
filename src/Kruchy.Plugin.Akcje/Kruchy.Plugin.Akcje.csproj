@@ -47,8 +47,6 @@
     <Compile Include="Akcje\DodawanieNowegoTestu.cs" />
     <Compile Include="Akcje\DodawanieUsinga.cs" />
     <Compile Include="Akcje\Generowanie.Xsd.Komponenty\IParametryGenerowaniaXsd.cs" />
-    <Compile Include="Akcje\GenerowanieBuildera.cs" />
-    <Compile Include="Akcje\Generowanie.Buildera.Komponenty\IParametryGenerowaniaBuildera.cs" />
     <Compile Include="Akcje\GenerowanieKlasService.cs" />
     <Compile Include="Akcje\GenerowanieKlasyTestowej.cs" />
     <Compile Include="Akcje\GenerowaniePlikuZSzablonu.cs" />
@@ -91,7 +89,6 @@
     <Compile Include="Menu\PozycjaDodawanieDokumentacjiDlaPliku.cs" />
     <Compile Include="Menu\PozycjaDodawanieNowegoTestu.cs" />
     <Compile Include="Menu\PozycjaDodawanieUsingow.cs" />
-    <Compile Include="Menu\PozycjaGenerowanieBuildera.cs" />
     <Compile Include="Menu\PozycjaGenerowanieKlasService.cs" />
     <Compile Include="Menu\PozycjaGenerowanieKlasyTestowej.cs" />
     <Compile Include="Menu\PozycjaGenerowanieXsdDlaReportView.cs" />
@@ -111,10 +108,6 @@
     <ProjectReference Include="..\KrucheBuilderyKodu\KrucheBuilderyKodu.csproj">
       <Project>{b3dfe520-906c-4b30-9464-f934cabb209e}</Project>
       <Name>KrucheBuilderyKodu</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Kruchy.Plugin.Pincasso.Akcje\Kruchy.Plugin.Pincasso.Akcje.csproj">
-      <Project>{3E444894-807C-43AC-86B1-F6D81EEE4BE3}</Project>
-      <Name>Kruchy.Plugin.Pincasso.Akcje</Name>
     </ProjectReference>
     <ProjectReference Include="..\Kruchy.Plugin.Utils\Kruchy.Plugin.Utils.csproj">
       <Project>{7868c192-f37e-418e-ac84-e507756c3f5f}</Project>

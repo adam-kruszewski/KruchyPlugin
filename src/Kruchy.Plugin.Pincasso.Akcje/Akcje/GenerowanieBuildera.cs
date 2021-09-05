@@ -1,7 +1,5 @@
 ﻿using KrucheBuilderyKodu.Builders;
-using Kruchy.Plugin.Akcje.Akcje.Generowanie.Buildera.Komponenty;
 using Kruchy.Plugin.Akcje.Utils;
-using Kruchy.Plugin.Pincasso.Akcje.Atrybuty;
 using Kruchy.Plugin.Utils.Extensions;
 using Kruchy.Plugin.Utils.Wrappers;
 using KruchyParserKodu.ParserKodu;
@@ -11,9 +9,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Kruchy.Plugin.Akcje.Akcje
+namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
 {
-    [SpecyficzneDlaPincasso]
     public class GenerowanieBuildera
     {
         private readonly ISolutionWrapper solution;

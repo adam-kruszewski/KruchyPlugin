@@ -1,7 +1,6 @@
 ﻿using Kruchy.Plugin.Akcje.Akcje;
 using Kruchy.Plugin.Akcje.Akcje.Generowanie.Xsd.Komponenty;
 using Kruchy.Plugin.Akcje.Interfejs;
-using Kruchy.Plugin.Pincasso.Akcje.Atrybuty;
 using Kruchy.Plugin.Utils.Menu;
 using Kruchy.Plugin.Utils.Wrappers;
 using System;
@@ -12,7 +11,7 @@ using System.Text.RegularExpressions;
 
 namespace Kruchy.Plugin.Akcje.Menu
 {
-    [SpecyficzneDlaPincasso]
+    //[SpecyficzneDlaPincasso]
     public class PozycjaGenerowanieXsdDlaReportView : IPozycjaMenu
     {
         private readonly ISolutionWrapper solution;

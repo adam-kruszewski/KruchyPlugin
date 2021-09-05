@@ -42,9 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Akcje\GenerowanieBuildera.cs" />
+    <Compile Include="Akcje\IParametryGenerowaniaBuildera.cs" />
     <Compile Include="Akcje\UzupelnianieReferencedObject.cs" />
     <Compile Include="Akcje\UzupelnianieTagowDefiniujacychTabele.cs" />
     <Compile Include="Atrybuty\SpecyficzneDlaPincassoAttribute.cs" />
+    <Compile Include="Menu\PozycjaGenerowanieBuildera.cs" />
     <Compile Include="Menu\PozycjaUzupelnianieReferencedObject.cs" />
     <Compile Include="Menu\PozycjaUzupelnianieTagowDefiniujacychTabele.cs" />
     <Compile Include="PincassoPkgCmdIDList.cs" />
@@ -52,6 +55,14 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\KrucheBuilderyKodu\KrucheBuilderyKodu.csproj">
+      <Project>{B3DFE520-906C-4B30-9464-F934CABB209E}</Project>
+      <Name>KrucheBuilderyKodu</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Kruchy.Plugin.Akcje\Kruchy.Plugin.Akcje.csproj">
+      <Project>{373932f3-fed1-4037-97e2-05a8dda18afe}</Project>
+      <Name>Kruchy.Plugin.Akcje</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Kruchy.Plugin.Utils\Kruchy.Plugin.Utils.csproj">
       <Project>{7868C192-F37E-418E-AC84-E507756C3F5F}</Project>
       <Name>Kruchy.Plugin.Utils</Name>
