@@ -44,12 +44,14 @@
   <ItemGroup>
     <Compile Include="Akcje\DodawanieDaoDaoContekstu.cs" />
     <Compile Include="Akcje\GenerowanieBuildera.cs" />
+    <Compile Include="Akcje\GenerowanieXsdDlaReportView.cs" />
     <Compile Include="Akcje\IParametryGenerowaniaBuildera.cs" />
     <Compile Include="Akcje\UzupelnianieReferencedObject.cs" />
     <Compile Include="Akcje\UzupelnianieTagowDefiniujacychTabele.cs" />
     <Compile Include="Atrybuty\SpecyficzneDlaPincassoAttribute.cs" />
     <Compile Include="Menu\PozycjaDodawanieDaoDoContekstu.cs" />
     <Compile Include="Menu\PozycjaGenerowanieBuildera.cs" />
+    <Compile Include="Menu\PozycjaGenerowanieXsdDlaReportView.cs" />
     <Compile Include="Menu\PozycjaUzupelnianieReferencedObject.cs" />
     <Compile Include="Menu\PozycjaUzupelnianieTagowDefiniujacychTabele.cs" />
     <Compile Include="PincassoPkgCmdIDList.cs" />

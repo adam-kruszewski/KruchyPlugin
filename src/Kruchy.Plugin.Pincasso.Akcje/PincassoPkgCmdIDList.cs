@@ -6,6 +6,7 @@
         public const uint cmdidUzupelnijAtrybutKluczaObcego = 0x0102;
         public const uint cmdidGenerujBuildera = 0x166;
         public const uint cmdidDodajDaoDoContekstu = 0x168;
+        public const uint cmdidGenerujXsdDlaReportView = 0x167;
 
     }
 }

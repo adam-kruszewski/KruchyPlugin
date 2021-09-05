@@ -1,6 +1,8 @@
 ﻿using Kruchy.Plugin.Akcje.Akcje;
 using Kruchy.Plugin.Akcje.Akcje.Generowanie.Xsd.Komponenty;
 using Kruchy.Plugin.Akcje.Interfejs;
+using Kruchy.Plugin.Pincasso.Akcje.Akcje;
+using Kruchy.Plugin.Pincasso.Akcje.Atrybuty;
 using Kruchy.Plugin.Utils.Menu;
 using Kruchy.Plugin.Utils.Wrappers;
 using System;
@@ -9,9 +11,9 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace Kruchy.Plugin.Akcje.Menu
+namespace Kruchy.Plugin.Pincasso.Akcje.Menu
 {
-    //[SpecyficzneDlaPincasso]
+    [SpecyficzneDlaPincasso]
     public class PozycjaGenerowanieXsdDlaReportView : IPozycjaMenu
     {
         private readonly ISolutionWrapper solution;
@@ -27,7 +29,7 @@ namespace Kruchy.Plugin.Akcje.Menu
 
         public uint MenuCommandID
         {
-            get { return PkgCmdIDList.cmdidGenerujXsdDlaReportView; }
+            get { return PincassoPkgCmdIDList.cmdidGenerujXsdDlaReportView; }
         }
 
         public IEnumerable<WymaganieDostepnosci> Wymagania

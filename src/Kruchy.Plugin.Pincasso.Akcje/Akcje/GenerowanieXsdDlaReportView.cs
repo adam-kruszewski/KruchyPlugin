@@ -1,14 +1,14 @@
-﻿using System.IO;
+﻿using Kruchy.Plugin.Akcje.Akcje.Generowanie.Xsd.Komponenty;
+using Kruchy.Plugin.Akcje.KonfiguracjaPlugina;
+using Kruchy.Plugin.Utils.Wrappers;
+using KruchyParserKodu.ParserKodu;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
-using Kruchy.Plugin.Akcje.Akcje.Generowanie.Xsd.Komponenty;
-using Kruchy.Plugin.Akcje.KonfiguracjaPlugina;
-using Kruchy.Plugin.Utils.Wrappers;
-using KruchyParserKodu.ParserKodu;
 
-namespace Kruchy.Plugin.Akcje.Akcje
+namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
 {
     public class GenerowanieXsdDlaReportView
     {

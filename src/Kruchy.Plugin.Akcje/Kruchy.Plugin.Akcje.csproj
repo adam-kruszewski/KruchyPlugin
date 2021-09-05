@@ -49,7 +49,6 @@
     <Compile Include="Akcje\GenerowanieKlasService.cs" />
     <Compile Include="Akcje\GenerowanieKlasyTestowej.cs" />
     <Compile Include="Akcje\GenerowaniePlikuZSzablonu.cs" />
-    <Compile Include="Akcje\GenerowanieXsdDlaReportView.cs" />
     <Compile Include="Akcje\InicjalizowanieKlasyTestowejMockami.cs" />
     <Compile Include="Akcje\RodzajKlasyTestowej.cs" />
     <Compile Include="Akcje\UzupelnianieDokumentacji.cs" />
@@ -89,7 +88,6 @@
     <Compile Include="Menu\PozycjaDodawanieUsingow.cs" />
     <Compile Include="Menu\PozycjaGenerowanieKlasService.cs" />
     <Compile Include="Menu\PozycjaGenerowanieKlasyTestowej.cs" />
-    <Compile Include="Menu\PozycjaGenerowanieXsdDlaReportView.cs" />
     <Compile Include="Menu\PozycjaGenerujPlik.cs" />
     <Compile Include="Menu\PozycjaInicjalizowanieKlasyTestowejMockami.cs" />
     <Compile Include="Menu\PozycjaPrzejdzDo.cs" />
