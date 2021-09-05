@@ -1,15 +1,14 @@
-﻿using Kruchy.Plugin.Akcje.Menu;
+﻿using Kruchy.Plugin.Pincasso.Akcje.Akcje;
 using Kruchy.Plugin.Pincasso.Akcje.Atrybuty;
 using Kruchy.Plugin.Utils.Menu;
 using Kruchy.Plugin.Utils.Wrappers;
-using KruchyCompany.KruchyPlugin1.Akcje;
 using System;
 using System.Collections.Generic;
 
-namespace KruchyCompany.KruchyPlugin1.Menu
+namespace Kruchy.Plugin.Pincasso.Akcje.Menu
 {
     [SpecyficzneDlaPincasso]
-    class PozycjaUzupelnianieTagowDefiniujacychTabele : IPozycjaMenu
+    public class PozycjaUzupelnianieTagowDefiniujacychTabele
     {
         private readonly ISolutionWrapper solution;
 
@@ -29,7 +28,7 @@ namespace KruchyCompany.KruchyPlugin1.Menu
 
         public uint MenuCommandID
         {
-            get { return PkgCmdIDList.cmdidUzupelnijTagiDefiniujaceTabele; }
+            get { return PincassoPkgCmdIDList.cmdidUzupelnijTagiDefiniujaceTabele; }
         }
 
         public void Execute(object sender, EventArgs args)

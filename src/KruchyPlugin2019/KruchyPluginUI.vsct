@@ -256,17 +256,6 @@
         <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
 
-      <Button guid="guidCommand1PackageCmdSet" id="cmdidUzupelnijTagiDefiniujaceTabele" priority="0x0101" type="Button">
-        <Parent guid="guidCommand1PackageCmdSet" id="DomainObjectGroup" />
-        <!--<Icon guid="guidImages" id="bmpPic1" />-->
-        <CommandFlag>DynamicVisibility</CommandFlag>
-        <Strings>
-          <ButtonText>Uzupełnij tagi definiujące ta&amp;belę</ButtonText>
-        </Strings>
-        <CommandFlag>DefaultDisabled</CommandFlag>
-        <CommandFlag>DynamicVisibility</CommandFlag>
-      </Button>
-
       <Button guid="guidCommand1PackageCmdSet" id="cmdidDodajNaczesciejUzywaneUsingi" priority="0x0127" type="Button">
         <Parent guid="guidCommand1PackageCmdSet" id="PozostaleKodoweGroup" />
         <Strings>
@@ -564,7 +553,6 @@
       <IDSymbol name="cmdidMyTool" value="0x0101" />
 
       <IDSymbol name="cmdidUzupelnijAtrybutKluczaObcego" value="0x0102" />
-      <IDSymbol name="cmdidUzupelnijTagiDefiniujaceTabele" value="0x0103"/>
       <IDSymbol name="cmdidZrobKlaseTestowa" value="0x0105"/>
       <IDSymbol name="cmdidZrobKlaseService" value="0x0106"/>
       <IDSymbol name="cmdidDodajKlaseWalidatora" value="0x0152"/>

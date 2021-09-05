@@ -1,14 +1,14 @@
-﻿using System;
+﻿using Kruchy.Plugin.Utils.Extensions;
+using Kruchy.Plugin.Utils.Wrappers;
+using KruchyParserKodu.ParserKodu;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Kruchy.Plugin.Utils.Extensions;
-using Kruchy.Plugin.Utils.Wrappers;
-using KruchyParserKodu.ParserKodu;
 
-namespace KruchyCompany.KruchyPlugin1.Akcje
+namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
 {
-    class UzupelnianieTagowDefiniujacychTabele
+    public class UzupelnianieTagowDefiniujacychTabele
     {
         private const string NamespaceDlaAtrybutowOpisujacychTabele =
             "KomponentyStandardowe.Data";

@@ -41,12 +41,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Akcje\UzupelnianieTagowDefiniujacychTabele.cs" />
     <Compile Include="Atrybuty\SpecyficzneDlaPincassoAttribute.cs" />
+    <Compile Include="Menu\PozycjaUzupelnianieTagowDefiniujacychTabele.cs" />
+    <Compile Include="PincassoPkgCmdIDList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Akcje\" />
-    <Folder Include="Menu\" />
+    <ProjectReference Include="..\Kruchy.Plugin.Utils\Kruchy.Plugin.Utils.csproj">
+      <Project>{7868C192-F37E-418E-AC84-E507756C3F5F}</Project>
+      <Name>Kruchy.Plugin.Utils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KruchyParserKodu\KruchyParserKodu.csproj">
+      <Project>{EB4586EA-EC53-4CC4-B1AD-A7720D12C098}</Project>
+      <Name>KruchyParserKodu</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
