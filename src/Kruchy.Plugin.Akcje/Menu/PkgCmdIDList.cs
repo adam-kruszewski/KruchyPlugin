@@ -22,7 +22,6 @@
         public const uint cmdidPodzielParametryNaLinie = 0x0161;
         public const uint cmdidPokazZawartoscZShared = 0x162;
         public const uint cmdidDodajUsingDbContext = 0x163;
-        public const uint cmdidDodajMapowania = 0x164;
         public const uint cmdidInicjujWKontruktorze = 0x165;
         public const uint cmdidGenerujBuildera = 0x166;
         public const uint cmdidGenerujXsdDlaReportView = 0x167;
