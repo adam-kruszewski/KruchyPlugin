@@ -43,7 +43,6 @@
     <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Akcje\DodawanieDaoDaoContekstu.cs" />
     <Compile Include="Akcje\DodawanieNowegoTestu.cs" />
     <Compile Include="Akcje\DodawanieUsinga.cs" />
     <Compile Include="Akcje\Generowanie.Xsd.Komponenty\IParametryGenerowaniaXsd.cs" />
@@ -85,7 +84,6 @@
     <Compile Include="KonfiguracjaPlugina\Xml\Testy.cs" />
     <Compile Include="KonfiguracjaPlugina\Xml\WlasciwoscPole.cs" />
     <Compile Include="Menu\PkgCmdIDList.cs" />
-    <Compile Include="Menu\PozycjaDodawanieDaoDoContekstu.cs" />
     <Compile Include="Menu\PozycjaDodawanieDokumentacjiDlaPliku.cs" />
     <Compile Include="Menu\PozycjaDodawanieNowegoTestu.cs" />
     <Compile Include="Menu\PozycjaDodawanieUsingow.cs" />
