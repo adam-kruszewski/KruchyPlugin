@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using Kruchy.Plugin.Akcje.Atrybuty;
-using Kruchy.Plugin.Akcje.Interfejs;
+﻿using Kruchy.Plugin.Akcje.Interfejs;
 using Kruchy.Plugin.Akcje.Menu;
+using Kruchy.Plugin.Pincasso.Akcje.Atrybuty;
 using Kruchy.Plugin.Utils.Menu;
 using Kruchy.Plugin.Utils.Wrappers;
 using KruchyCompany.KruchyPlugin1.Akcje;
+using System;
+using System.Collections.Generic;
 
 namespace KruchyCompany.KruchyPlugin1.Menu
 {
