@@ -24,7 +24,6 @@
         public const uint cmdidDodajUsingDbContext = 0x163;
         public const uint cmdidInicjujWKontruktorze = 0x165;
         public const uint cmdidGenerujXsdDlaReportView = 0x167;
-        public const uint cmdidDodajDaoDoContekstu = 0x168;
         public const uint cmdidZrobMetodeAsync = 0x169;
         public const uint cmdidInicjujTestyMockami = 0x180;
         public const uint cmdidGenerujDokumentacjaDlaPliku = 0x181;

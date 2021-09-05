@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
-namespace Kruchy.Plugin.Akcje.Akcje
+namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
 {
     public class DodawanieDaoDaoContekstu
     {
@@ -100,7 +100,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             dokument.DodajUsingaJesliTrzeba("Pincasso.Core.Base");
 
             dokument.WstawWLinii(
-                    string.Format("{0}public {1} {2} ",StaleDlaKodu.WciecieDlaMetody, nazwaInterfejsuDao, nazwaKlasyDao)
+                    string.Format("{0}public {1} {2} ", StaleDlaKodu.WciecieDlaMetody, nazwaInterfejsuDao, nazwaKlasyDao)
                      + "{ get { " +
                      string.Format("return GetDao<{0}>();", nazwaKlasyDao)
                      + " } }",

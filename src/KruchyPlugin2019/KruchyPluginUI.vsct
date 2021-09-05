@@ -320,16 +320,6 @@
         <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
 
-      <Button id="cmdidDodajDaoDoContekstu" priority="0x0160"  guid="guidCommand1PackageCmdSet" type="Button">
-        <Parent guid="guidCommand1PackageCmdSet" id="PozostaleKodoweGroup"/>
-        <Strings>
-          <CommandName>cmdidDodajDaoDoContekstu</CommandName>
-          <ButtonText>Dodaj dao do Contekstu</ButtonText>
-        </Strings>
-        <CommandFlag>DefaultDisabled</CommandFlag>
-        <CommandFlag>DynamicVisibility</CommandFlag>
-      </Button>
-
       <!--Menu Krucha nawigacja-->
       <Button id="cmdidIdzDoImplementacji" priority="0x0101"  guid="guidCommand1PackageCmdSet" type="Button">
         <Parent guid="guidCommand1PackageCmdSet" id="PodrozowanieMenuGroup"/>
@@ -538,7 +528,6 @@
       <IDSymbol name="cmdidDodajUsingDbContext" value="0x0163"/>
       <IDSymbol name="cmdidInicjujWKontruktorze" value="0x0165"/>
       <IDSymbol name="cmdidGenerujXsdDlaReportView" value="0x0167"/>
-      <IDSymbol name="cmdidDodajDaoDoContekstu" value="0x168"/>
       <IDSymbol name="cmdidZrobMetodeAsync" value="0x169"/>
       
       <IDSymbol name="cmdidIdzDoImplementacji" value="0x0170"/>

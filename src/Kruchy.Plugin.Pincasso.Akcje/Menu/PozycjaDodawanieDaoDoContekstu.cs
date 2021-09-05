@@ -1,12 +1,14 @@
 ﻿using Kruchy.Plugin.Akcje.Akcje;
+using Kruchy.Plugin.Pincasso.Akcje.Akcje;
+using Kruchy.Plugin.Pincasso.Akcje.Atrybuty;
 using Kruchy.Plugin.Utils.Menu;
 using Kruchy.Plugin.Utils.Wrappers;
 using System;
 using System.Collections.Generic;
 
-namespace Kruchy.Plugin.Akcje.Menu
+namespace Kruchy.Plugin.Pincasso.Akcje.Menu
 {
-    //[SpecyficzneDlaPincasso]
+    [SpecyficzneDlaPincasso]
     class PozycjaDodawanieDaoDoContekstu : IPozycjaMenu
     {
         private readonly ISolutionWrapper solution;
@@ -20,7 +22,7 @@ namespace Kruchy.Plugin.Akcje.Menu
             this.solutionExplorer = solutionExplorer;
         }
 
-        public uint MenuCommandID => PkgCmdIDList.cmdidDodajDaoDoContekstu;
+        public uint MenuCommandID => PincassoPkgCmdIDList.cmdidDodajDaoDoContekstu;
 
         public IEnumerable<WymaganieDostepnosci> Wymagania
         {
