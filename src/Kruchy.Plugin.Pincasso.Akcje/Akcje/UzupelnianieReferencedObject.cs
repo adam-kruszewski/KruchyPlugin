@@ -5,7 +5,7 @@ using Kruchy.Plugin.Utils.Extensions;
 using Kruchy.Plugin.Utils.Wrappers;
 using KruchyParserKodu.ParserKodu;
 
-namespace KruchyCompany.KruchyPlugin1.Akcje
+namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
 {
     class UzupelnianieReferencedObject
     {

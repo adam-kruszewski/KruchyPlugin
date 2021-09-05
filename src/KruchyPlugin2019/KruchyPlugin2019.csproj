@@ -71,7 +71,6 @@
     <Compile Include="Akcje\PokazywaniaZawartosciZShared.cs" />
     <Compile Include="Akcje\RodzajKlasyTestowej.cs" />
     <Compile Include="Akcje\UzupelnianieMetodWImplementacji.cs" />
-    <Compile Include="Akcje\UzupelnianieReferencedObject.cs" />
     <Compile Include="Akcje\WstawianieNazwyControlleraDoSchowka.cs" />
     <Compile Include="Akcje\WynikGenerowaniaKlasService.cs" />
     <Compile Include="Menu\PozycjaDodawanieMapowan.cs" />
@@ -90,7 +89,6 @@
     <Compile Include="Menu\PozycjaPodzielParametryNaLinie.cs" />
     <Compile Include="Menu\PozycjaPokazywanieZawartosciZShared.cs" />
     <Compile Include="Menu\PozycjaUzupelnianieMetodWImplementacji.cs" />
-    <Compile Include="Menu\PozycjaUzupelnianieReferencedObject.cs" />
     <Compile Include="Menu\PozycjaWstawianieNazwyControlleraDoSchowka.cs" />
   </ItemGroup>
   <ItemGroup>
