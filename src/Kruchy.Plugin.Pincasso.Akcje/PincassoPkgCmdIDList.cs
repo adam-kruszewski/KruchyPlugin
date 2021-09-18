@@ -10,5 +10,6 @@
         public const uint cmdidGenerujMetodeWBuilderze = 0x0158;
         public const uint cmdidDodajUprawnienieDomyslne = 0x155;
         public const uint cmdidDodajUsingDbContext = 0x163;
+        public const uint cmdidDodajKlaseWalidatora = 0x152;
     }
 }

@@ -1,13 +1,12 @@
-﻿using System.IO;
-using System.Text;
-using System.Windows;
-using System.Windows.Forms;
-using KrucheBuilderyKodu.Builders;
+﻿using KrucheBuilderyKodu.Builders;
 using Kruchy.Plugin.Utils.Extensions;
 using Kruchy.Plugin.Utils.Wrappers;
 using KruchyParserKodu.ParserKodu;
+using System.IO;
+using System.Text;
+using System.Windows.Forms;
 
-namespace KruchyCompany.KruchyPlugin1.Akcje
+namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
 {
     class GenerowanieKlasyWalidatora
     {
@@ -53,12 +52,12 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 
             if (File.Exists(pelnaSciezkaDoPlikuImplementacji))
             {
-                System.Windows.MessageBox.Show("Plik już istnieje " + pelnaSciezkaDoPlikuImplementacji);
+                MessageBox.Show("Plik już istnieje " + pelnaSciezkaDoPlikuImplementacji);
                 return;
             }
             if (File.Exists(pelnaSciezkaDoPlikuInterfejsu))
             {
-                System.Windows.MessageBox.Show("Plik już istnieje " + pelnaSciezkaDoPlikuInterfejsu);
+                MessageBox.Show("Plik już istnieje " + pelnaSciezkaDoPlikuInterfejsu);
                 return;
             }
 

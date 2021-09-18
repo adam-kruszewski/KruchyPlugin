@@ -48,7 +48,6 @@
     <Compile Include="Command1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="KruchyPlugin2019Package.cs" />
-    <Compile Include="Akcje\GenerowanieKlasyWalidatora.cs" />
     <Compile Include="Akcje\GenerowanieWidoku.cs" />
     <Compile Include="Akcje\IdzDoKataloguControllera.cs" />
     <Compile Include="Akcje\IdzDoKlasyTestowej.cs" />
@@ -61,7 +60,6 @@
     <Compile Include="Akcje\UzupelnianieMetodWImplementacji.cs" />
     <Compile Include="Akcje\WstawianieNazwyControlleraDoSchowka.cs" />
     <Compile Include="Akcje\WynikGenerowaniaKlasService.cs" />
-    <Compile Include="Menu\PozycjaGenerowanieKlasyWalidatora.cs" />
     <Compile Include="Menu\PozycjaGenerowanieWidoku.cs" />
     <Compile Include="Menu\PozycjaIdzDoGridRowActions.cs" />
     <Compile Include="Menu\PozycjaIdzDoGridToolbar.cs" />

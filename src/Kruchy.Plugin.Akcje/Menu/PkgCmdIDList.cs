@@ -10,7 +10,6 @@
 
         public const uint cmdidZmienNaPublic = 0x0150;
         public const uint cmdidZmienNaPrivate = 0x0151;
-        public const uint cmdidDodajKlaseWalidatora = 0x152;
         public const uint cmdidDodajNaczesciejUzywaneUsingi = 0x153;
         public const uint cmdidDodajNowyTest = 0x154;
         public const uint cmdidUzupelnijKontruktor = 0x0156;

@@ -47,6 +47,7 @@
     <Compile Include="Akcje\DodawanieUprawnienDomyslnych.cs" />
     <Compile Include="Akcje\DodawanieUsingDbContext.cs" />
     <Compile Include="Akcje\GenerowanieBuildera.cs" />
+    <Compile Include="Akcje\GenerowanieKlasyWalidatora.cs" />
     <Compile Include="Akcje\GenerowanieXsdDlaReportView.cs" />
     <Compile Include="Akcje\IParametryGenerowaniaBuildera.cs" />
     <Compile Include="Akcje\UzupelnianieReferencedObject.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="Menu\PozycjaDodawanieUprawnienDomyslnych.cs" />
     <Compile Include="Menu\PozycjaDodawanieUsingDbContext.cs" />
     <Compile Include="Menu\PozycjaGenerowanieBuildera.cs" />
+    <Compile Include="Menu\PozycjaGenerowanieKlasyWalidatora.cs" />
     <Compile Include="Menu\PozycjaGenerowanieXsdDlaReportView.cs" />
     <Compile Include="Menu\PozycjaUzupelnianieReferencedObject.cs" />
     <Compile Include="Menu\PozycjaUzupelnianieTagowDefiniujacychTabele.cs" />
