@@ -61,6 +61,7 @@
     <Compile Include="Menu\PozycjaGenerowanieKlasyWalidatora.cs" />
     <Compile Include="Menu\PozycjaGenerowanieXsdDlaReportView.cs" />
     <Compile Include="Menu\PozycjaIdzDoGridRowActions.cs" />
+    <Compile Include="Menu\PozycjaIdzDoGridToolbar.cs" />
     <Compile Include="Menu\PozycjaUzupelnianieReferencedObject.cs" />
     <Compile Include="Menu\PozycjaUzupelnianieTagowDefiniujacychTabele.cs" />
     <Compile Include="PincassoPkgCmdIDList.cs" />

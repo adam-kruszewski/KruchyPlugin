@@ -321,16 +321,6 @@
         <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
 
-      <Button id="cmidPrzejdzDoGridToolbar" priority="0x0151"  guid="guidCommand1PackageCmdSet" type="Button">
-        <Parent guid="guidCommand1PackageCmdSet" id="PodrozowanieMenuGroup"/>
-        <Strings>
-          <CommandName>cmidPrzejdzDoGridToolbar</CommandName>
-          <ButtonText>Idź do Grid&amp;Toolbar</ButtonText>
-        </Strings>
-        <CommandFlag>DefaultDisabled</CommandFlag>
-        <CommandFlag>DynamicVisibility</CommandFlag>
-      </Button>
-
       <Button id="cmdidWstawDoSchowkaNazweControllera" priority="0x0160"  guid="guidCommand1PackageCmdSet" type="Button">
         <Parent guid="guidCommand1PackageCmdSet" id="PodrozowanieMenuGroup"/>
         <Strings>
@@ -469,7 +459,6 @@
       <IDSymbol name="cmdidIdzDoKataloguControllera" value="0x0171"/>
       <IDSymbol name="cmdidIdzDoWidoku" value="0x0172"/>
       <IDSymbol name="cmdidGenerujWidok" value="0x0173"/>
-      <IDSymbol name="cmidPrzejdzDoGridToolbar" value="0x0175"/>
 
       <IDSymbol name="cmdidInicjujTestyMockami" value="0x0180"/>
       <IDSymbol name="cmdidGenerujDokumentacjaDlaPliku" value="0x0181"/>

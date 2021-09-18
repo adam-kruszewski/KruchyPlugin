@@ -6,7 +6,7 @@ using Kruchy.Plugin.Utils.Wrappers;
 using System;
 using System.Collections.Generic;
 
-namespace KruchyCompany.KruchyPlugin1.Menu
+namespace Kruchy.Plugin.Pincasso.Akcje.Menu
 {
     [SpecyficzneDlaPincasso]
     class PozycjaIdzDoGridToolbar : IPozycjaMenu
@@ -24,7 +24,7 @@ namespace KruchyCompany.KruchyPlugin1.Menu
 
         public uint MenuCommandID
         {
-            get { return PkgCmdIDList.cmidPrzejdzDoGridToolbar; }
+            get { return PincassoPkgCmdIDList.cmidPrzejdzDoGridToolbar; }
         }
 
         public IEnumerable<WymaganieDostepnosci> Wymagania

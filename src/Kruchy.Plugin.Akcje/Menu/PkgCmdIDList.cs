@@ -29,8 +29,6 @@
         public const uint cmdidIdzDoWidoku = 0x0172;
         public const uint cmdidGenerujWidok = 0x0173;
 
-        public const uint cmidPrzejdzDoGridToolbar = 0x0175;
-
         //rozwijane menu
         public const uint cmdidMyDynamicStartCommand = 0x0304;
         public const uint cmdidGenerujPlikStartCommand = 0x0324;

@@ -12,5 +12,6 @@
         public const uint cmdidDodajUsingDbContext = 0x163;
         public const uint cmdidDodajKlaseWalidatora = 0x152;
         public const uint cmidPrzejdzDoGridRowActions = 0x0174;
+        public const uint cmidPrzejdzDoGridToolbar = 0x0175;
     }
 }

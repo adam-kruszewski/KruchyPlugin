@@ -60,7 +60,6 @@
     <Compile Include="Akcje\WstawianieNazwyControlleraDoSchowka.cs" />
     <Compile Include="Akcje\WynikGenerowaniaKlasService.cs" />
     <Compile Include="Menu\PozycjaGenerowanieWidoku.cs" />
-    <Compile Include="Menu\PozycjaIdzDoGridToolbar.cs" />
     <Compile Include="Menu\PozycjaIdzDoKataloguControllera.cs" />
     <Compile Include="Menu\PozycjaIdzDoKlasyTestowej.cs" />
     <Compile Include="Menu\PozycjaIdzDoPlikuWidoku.cs" />
