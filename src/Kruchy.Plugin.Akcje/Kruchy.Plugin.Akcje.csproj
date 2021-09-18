@@ -49,6 +49,7 @@
     <Compile Include="Akcje\GenerowanieKlasService.cs" />
     <Compile Include="Akcje\GenerowanieKlasyTestowej.cs" />
     <Compile Include="Akcje\GenerowaniePlikuZSzablonu.cs" />
+    <Compile Include="Akcje\IdzDoPlikuWidoku.cs" />
     <Compile Include="Akcje\InicjalizowanieKlasyTestowejMockami.cs" />
     <Compile Include="Akcje\RodzajKlasyTestowej.cs" />
     <Compile Include="Akcje\UzupelnianieDokumentacji.cs" />

@@ -29,7 +29,6 @@
         public const uint cmdidIdzDoWidoku = 0x0172;
         public const uint cmdidGenerujWidok = 0x0173;
 
-        public const uint cmidPrzejdzDoGridRowActions = 0x0174;
         public const uint cmidPrzejdzDoGridToolbar = 0x0175;
 
         //rozwijane menu

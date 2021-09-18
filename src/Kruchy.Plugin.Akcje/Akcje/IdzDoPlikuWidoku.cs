@@ -1,15 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using Kruchy.Plugin.Utils.Extensions;
+using Kruchy.Plugin.Utils.Wrappers;
+using KruchyParserKodu.ParserKodu;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Kruchy.Plugin.Utils.Extensions;
-using Kruchy.Plugin.Utils.Wrappers;
-using KruchyParserKodu.ParserKodu;
 
-namespace KruchyCompany.KruchyPlugin1.Akcje
+namespace Kruchy.Plugin.Akcje.Akcje
 {
-    class IdzDoPlikuWidoku
+    public class IdzDoPlikuWidoku
     {
         private readonly ISolutionWrapper solution;
         private readonly ISolutionExplorerWrapper solutionExplorer;
