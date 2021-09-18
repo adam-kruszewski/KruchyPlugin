@@ -1,12 +1,11 @@
-﻿using Kruchy.Plugin.Akcje.Menu;
+﻿using Kruchy.Plugin.Pincasso.Akcje.Akcje;
 using Kruchy.Plugin.Pincasso.Akcje.Atrybuty;
 using Kruchy.Plugin.Utils.Menu;
 using Kruchy.Plugin.Utils.Wrappers;
-using KruchyCompany.KruchyPlugin1.Akcje;
 using System;
 using System.Collections.Generic;
 
-namespace KruchyCompany.KruchyPlugin1.Menu
+namespace Kruchy.Plugin.Pincasso.Akcje.Menu
 {
     [SpecyficzneDlaPincasso]
     class PozycjaDodawanieUprawnienDomyslnych : IPozycjaMenu
@@ -20,7 +19,7 @@ namespace KruchyCompany.KruchyPlugin1.Menu
 
         public uint MenuCommandID
         {
-            get { return PkgCmdIDList.cmdidDodajUprawnienieDomyslne; }
+            get { return PincassoPkgCmdIDList.cmdidDodajUprawnienieDomyslne; }
         }
 
         public IEnumerable<WymaganieDostepnosci> Wymagania

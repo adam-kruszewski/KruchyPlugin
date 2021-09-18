@@ -13,7 +13,6 @@
         public const uint cmdidDodajKlaseWalidatora = 0x152;
         public const uint cmdidDodajNaczesciejUzywaneUsingi = 0x153;
         public const uint cmdidDodajNowyTest = 0x154;
-        public const uint cmdidDodajUprawnienieDomyslne = 0x155;
         public const uint cmdidUzupelnijKontruktor = 0x0156;
         public const uint cmdidUzupelnijMetodaWImplementacji = 0x0157;
         public const uint cmdidWstawDoSchowkaNazweControllera = 0x0159;
