@@ -19,7 +19,6 @@
         public const uint cmdidIdzDoKlasyTestowej = 0x0160;
         public const uint cmdidPodzielParametryNaLinie = 0x0161;
         public const uint cmdidPokazZawartoscZShared = 0x162;
-        public const uint cmdidDodajUsingDbContext = 0x163;
         public const uint cmdidInicjujWKontruktorze = 0x165;
         public const uint cmdidZrobMetodeAsync = 0x169;
         public const uint cmdidInicjujTestyMockami = 0x180;

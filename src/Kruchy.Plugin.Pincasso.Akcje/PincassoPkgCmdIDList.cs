@@ -9,5 +9,6 @@
         public const uint cmdidGenerujXsdDlaReportView = 0x167;
         public const uint cmdidGenerujMetodeWBuilderze = 0x0158;
         public const uint cmdidDodajUprawnienieDomyslne = 0x155;
+        public const uint cmdidDodajUsingDbContext = 0x163;
     }
 }

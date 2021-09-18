@@ -7,9 +7,9 @@ using Kruchy.Plugin.Utils.Extensions;
 using Kruchy.Plugin.Utils.Wrappers;
 using KruchyParserKodu.ParserKodu;
 
-namespace KruchyCompany.KruchyPlugin1.Akcje
+namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
 {
-    class DodawanieUsingDbContext
+    public class DodawanieUsingDbContext
     {
         private readonly ISolutionWrapper solution;
 
@@ -101,7 +101,8 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
                             ostatni.Poczatek.Wiersz + 1,
                             1);
                 }
-            }else
+            }
+            else
             {
                 MessageBox.Show("Bez dziedziczeń jeszcze nie obsługiwane");
                 return;
