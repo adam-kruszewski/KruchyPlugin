@@ -60,6 +60,7 @@
     <Compile Include="Akcje\ZmianaModyfikatoraMetody.cs" />
     <Compile Include="Akcje\ZmianaNaAsync.cs" />
     <Compile Include="Atrybuty\SpecyficzneDlaPincassoAttribute.cs" />
+    <Compile Include="Interfejs\INewTestClassWindow.cs" />
     <Compile Include="Interfejs\INewTestWindow.cs" />
     <Compile Include="Interfejs\NazwaKlasyTestowForm.cs">
       <SubType>Form</SubType>
