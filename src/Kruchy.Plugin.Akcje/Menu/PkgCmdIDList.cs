@@ -16,7 +16,6 @@
         public const uint cmdidDodajUprawnienieDomyslne = 0x155;
         public const uint cmdidUzupelnijKontruktor = 0x0156;
         public const uint cmdidUzupelnijMetodaWImplementacji = 0x0157;
-        public const uint cmdidGenerujMetodeWBuilderze = 0x0158;
         public const uint cmdidWstawDoSchowkaNazweControllera = 0x0159;
         public const uint cmdidIdzDoKlasyTestowej = 0x0160;
         public const uint cmdidPodzielParametryNaLinie = 0x0161;

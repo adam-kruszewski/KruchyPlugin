@@ -189,16 +189,6 @@
         <CommandFlag>DynamicVisibility</CommandFlag>
       </Button>
 
-      <Button guid="guidCommand1PackageCmdSet" id="cmdidGenerujMetodeWBuilderze" priority="0x0129" type="Button">
-        <Parent guid="guidCommand1PackageCmdSet" id="GenerowanieNowychKlasMetodGroup" />
-        <Strings>
-          <CommandName>cmdidGenerujMetodeWBuilderze</CommandName>
-          <ButtonText>Dodaj &amp;nową metodę w builderze</ButtonText>
-        </Strings>
-        <CommandFlag>DefaultDisabled</CommandFlag>
-        <CommandFlag>DynamicVisibility</CommandFlag>
-      </Button>
-
       <Button guid="guidCommand1PackageCmdSet" id="cmdidZmienNaPublic" priority="0x0115" type="Button">
         <Parent guid="guidCommand1PackageCmdSet" id="ZmianaModyfikatorowGroup" />
         <Strings>
@@ -510,7 +500,6 @@
       <IDSymbol name="cmdidDodajUprawnienieDomyslne" value="0x0155"/>
       <IDSymbol name="cmdidUzupelnijKontruktor" value="0x0156"/>
       <IDSymbol name="cmdidUzupelnijMetodaWImplementacji" value="0x0157"/>
-      <IDSymbol name="cmdidGenerujMetodeWBuilderze" value="0x0158"/>
       <IDSymbol name="cmdidWstawDoSchowkaNazweControllera" value="0x0159"/>
       <IDSymbol name="cmdidIdzDoKlasyTestowej" value="0x0160"/>
       <IDSymbol name="cmdidPodzielParametryNaLinie" value="0x0161"/>

@@ -7,6 +7,7 @@
         public const uint cmdidGenerujBuildera = 0x166;
         public const uint cmdidDodajDaoDoContekstu = 0x168;
         public const uint cmdidGenerujXsdDlaReportView = 0x167;
+        public const uint cmdidGenerujMetodeWBuilderze = 0x0158;
 
     }
 }
