@@ -242,7 +242,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         private void WstawInheritDoc(string poczatek, int numerLinii)
         {
-            solution.AktualnyDokument.WstawWLinii($"{poczatek}<inheritdoc/>", numerLinii);
+            solution.AktualnyDokument.WstawWLinii($"{poczatek}<inheritdoc/>\n", numerLinii);
         }
 
         private string DajSummaryMetody(int jezyk, Metoda metoda)

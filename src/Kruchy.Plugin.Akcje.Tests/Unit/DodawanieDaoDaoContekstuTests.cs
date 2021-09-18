@@ -7,6 +7,7 @@ using KrucheBuilderyKodu.Builders;
 using Kruchy.Plugin.Akcje.Akcje;
 using Kruchy.Plugin.Akcje.Tests.Utils;
 using Kruchy.Plugin.Akcje.Tests.WrappersMocks;
+using Kruchy.Plugin.Pincasso.Akcje.Akcje;
 using Kruchy.Plugin.Utils.Wrappers;
 using NUnit.Framework;
 

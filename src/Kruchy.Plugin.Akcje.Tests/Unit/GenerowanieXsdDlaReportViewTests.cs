@@ -6,6 +6,7 @@ using Kruchy.Plugin.Akcje.Tests.WrappersMocks;
 using Moq;
 using Kruchy.Plugin.Akcje.Akcje.Generowanie.Xsd.Komponenty;
 using System.IO;
+using Kruchy.Plugin.Pincasso.Akcje.Akcje;
 
 namespace Kruchy.Plugin.Akcje.Tests.Unit
 {

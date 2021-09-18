@@ -67,6 +67,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Kruchy.Plugin.Akcje\Kruchy.Plugin.Akcje.csproj" />
+    <ProjectReference Include="..\Kruchy.Plugin.Pincasso.Akcje\Kruchy.Plugin.Pincasso.Akcje.csproj" />
     <ProjectReference Include="..\Kruchy.Plugin.Utils\Kruchy.Plugin.Utils.csproj" />
   </ItemGroup>
 
