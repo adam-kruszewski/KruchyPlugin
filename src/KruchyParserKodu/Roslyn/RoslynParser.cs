@@ -150,6 +150,7 @@ namespace KruchyParserKodu.Roslyn
             UzupelniejTypyDziedziczone(definiowanyObiekt, interfaceSyntax);
 
             ParsujDokumentacje(definiowanyObiekt, interfaceSyntax);
+            ParsujKomentarz(definiowanyObiekt, interfaceSyntax);
 
             ParsujParametryGeneryczne(definiowanyObiekt, interfaceSyntax.TypeParameterList);
 
@@ -284,6 +285,8 @@ namespace KruchyParserKodu.Roslyn
                 UzupelnijAtrybuty(metodaSyntax.AttributeLists, metoda.Atrybuty);
 
                 ParsujDokumentacje(metoda, metodaSyntax);
+
+                ParsujKomentarz(metoda, metodaSyntax);
 
                 ParsujParametryGeneryczne(metoda.ParametryGeneryczne, metodaSyntax.TypeParameterList);
 
