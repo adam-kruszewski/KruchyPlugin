@@ -1,17 +1,54 @@
-﻿using System;
+﻿using KrucheBuilderyKodu.Builders;
+using Kruchy.Plugin.Utils.Wrappers;
+using KruchyParserKodu.ParserKodu;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Windows;
 using System.Windows.Forms;
-using KrucheBuilderyKodu.Builders;
-using Kruchy.Plugin.Utils.Wrappers;
-using KruchyParserKodu.ParserKodu;  namespace KruchyCompany.KruchyPlugin1.Akcje {     class PodzielParametryNaLinie     {         private readonly ISolutionWrapper solution;          public PodzielParametryNaLinie(ISolutionWrapper solution)         {             this.solution = solution;         }          public void Podziel()         {             var dokument = solution.AktualnyDokument;             var parsowane =                 Parser.Parsuj(dokument.DajZawartosc());              var metoda = parsowane                     .SzukajMetodyWLinii(dokument.DajNumerLiniiKursora());              if (metoda == null)             {
+
+namespace Kruchy.Plugin.Akcje.Akcje
+{
+    class PodzielParametryNaLinie
+    {
+        private readonly ISolutionWrapper solution;
+
+        public PodzielParametryNaLinie(ISolutionWrapper solution)
+        {
+            this.solution = solution;
+        }
+
+        public void Podziel()
+        {
+            var dokument = solution.AktualnyDokument;
+            var parsowane =
+                Parser.Parsuj(dokument.DajZawartosc());
+
+            var metoda = parsowane
+                    .SzukajMetodyWLinii(dokument.DajNumerLiniiKursora());
+
+            if (metoda == null)
+            {
                 var konstruktor =
                     parsowane
                         .SzukajKonstruktoraWLinii(dokument.DajNumerLiniiKursora());
                 if (konstruktor != null)
-                    PodzielNaLinieKonstruktor(konstruktor);                 else                     System.Windows.MessageBox.Show("Kursor nie jest w metodzie");                 return;             }              dokument.Usun(                 metoda.NawiasOtwierajacyParametry.Wiersz,                 metoda.NawiasOtwierajacyParametry.Kolumna,                 metoda.NawiasZamykajacyParametry.Wiersz,                 metoda.NawiasZamykajacyParametry.Kolumna + 1);              dokument.WstawWMiejscu(                 GenerujNoweParametry(metoda.Parametry, metoda, metoda),                 metoda.NawiasOtwierajacyParametry.Wiersz,                 metoda.NawiasOtwierajacyParametry.Kolumna);         }
+                    PodzielNaLinieKonstruktor(konstruktor);
+                else
+                    MessageBox.Show("Kursor nie jest w metodzie");
+                return;
+            }
+
+            dokument.Usun(
+                metoda.NawiasOtwierajacyParametry.Wiersz,
+                metoda.NawiasOtwierajacyParametry.Kolumna,
+                metoda.NawiasZamykajacyParametry.Wiersz,
+                metoda.NawiasZamykajacyParametry.Kolumna + 1);
+
+            dokument.WstawWMiejscu(
+                GenerujNoweParametry(metoda.Parametry, metoda, metoda),
+                metoda.NawiasOtwierajacyParametry.Wiersz,
+                metoda.NawiasOtwierajacyParametry.Kolumna);
+        }
 
         private void PodzielNaLinieKonstruktor(Konstruktor konstruktor)
         {
@@ -27,9 +64,19 @@ using KruchyParserKodu.ParserKodu;  namespace KruchyCompany.KruchyPlugin1.Ak
                 GenerujNoweParametry(konstruktor.Parametry, konstruktor),
                 konstruktor.NawiasOtwierajacyParametry.Wiersz,
                 konstruktor.NawiasOtwierajacyParametry.Kolumna);
-        }          private string GenerujNoweParametry(             IEnumerable<Parametr> parametryMetody,             IZWlascicielem obiekt,             Metoda metoda = null)         {             var builder = new StringBuilder();             builder.Append("(");
-            var parametry =                 parametryMetody
-                        .Select(o => DajDefinicjeParametru(o))                             .ToArray();
+        }
+
+        private string GenerujNoweParametry(
+            IEnumerable<Parametr> parametryMetody,
+            IZWlascicielem obiekt,
+            Metoda metoda = null)
+        {
+            var builder = new StringBuilder();
+            builder.Append("(");
+            var parametry =
+                parametryMetody
+                        .Select(o => DajDefinicjeParametru(o))
+                            .ToArray();
             var lacznikBuilder =
                 new StringBuilder()
                     .Append(",")
@@ -47,7 +94,11 @@ using KruchyParserKodu.ParserKodu;  namespace KruchyCompany.KruchyPlugin1.Ak
                 builder.Append(StaleDlaKodu.WcieciaDlaParametruMetody);
                 DodajWciecieWgPoziomuMetody(builder, poziomMetody);
                 DodajThisJesliTrzeba(builder, metoda);
-            }             builder.Append(string.Join(lacznik, parametry));             builder.Append(")");             return builder.ToString();         }
+            }
+            builder.Append(string.Join(lacznik, parametry));
+            builder.Append(")");
+            return builder.ToString();
+        }
 
         private void DodajWciecieWgPoziomuMetody(
             StringBuilder lacznikBuilder,
@@ -100,4 +151,6 @@ using KruchyParserKodu.ParserKodu;  namespace KruchyCompany.KruchyPlugin1.Ak
                 return;
             if (metoda.Parametry.Any() && metoda.Parametry.First().ZThisem)
                 builder.Append("this ");
-        }     } } 
+        }
+    }
+}

@@ -51,6 +51,7 @@
     <Compile Include="Akcje\GenerowaniePlikuZSzablonu.cs" />
     <Compile Include="Akcje\IdzDoPlikuWidoku.cs" />
     <Compile Include="Akcje\InicjalizowanieKlasyTestowejMockami.cs" />
+    <Compile Include="Akcje\PodzielParametryNaLinie.cs" />
     <Compile Include="Akcje\RodzajKlasyTestowej.cs" />
     <Compile Include="Akcje\UzupelnianieDokumentacji.cs" />
     <Compile Include="Akcje\UzupelnianieKonstruktora.cs" />
@@ -87,6 +88,7 @@
     <Compile Include="Menu\PozycjaGenerowanieKlasyTestowej.cs" />
     <Compile Include="Menu\PozycjaGenerujPlik.cs" />
     <Compile Include="Menu\PozycjaInicjalizowanieKlasyTestowejMockami.cs" />
+    <Compile Include="Menu\PozycjaPodzielParametryNaLinie.cs" />
     <Compile Include="Menu\PozycjaPrzejdzDo.cs" />
     <Compile Include="Menu\PozycjaUzupelnianieKonstruktora.cs" />
     <Compile Include="Menu\PozycjaUzupelnianieMetodWImplementacji.cs" />
