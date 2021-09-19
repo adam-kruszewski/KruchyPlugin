@@ -56,7 +56,6 @@
     <Compile Include="Akcje\PodzielParametryNaLinie.cs" />
     <Compile Include="Akcje\PokazywaniaZawartosciZShared.cs" />
     <Compile Include="Akcje\RodzajKlasyTestowej.cs" />
-    <Compile Include="Akcje\UzupelnianieMetodWImplementacji.cs" />
     <Compile Include="Akcje\WstawianieNazwyControlleraDoSchowka.cs" />
     <Compile Include="Akcje\WynikGenerowaniaKlasService.cs" />
     <Compile Include="Menu\PozycjaGenerowanieWidoku.cs" />
@@ -67,7 +66,6 @@
     <Compile Include="Menu\PozycjaInicjowaniePolaWKonstruktorze.cs" />
     <Compile Include="Menu\PozycjaPodzielParametryNaLinie.cs" />
     <Compile Include="Menu\PozycjaPokazywanieZawartosciZShared.cs" />
-    <Compile Include="Menu\PozycjaUzupelnianieMetodWImplementacji.cs" />
     <Compile Include="Menu\PozycjaWstawianieNazwyControlleraDoSchowka.cs" />
   </ItemGroup>
   <ItemGroup>

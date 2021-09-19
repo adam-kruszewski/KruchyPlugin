@@ -1,14 +1,13 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using System.Windows.Forms;
-using KrucheBuilderyKodu.Builders;
+﻿using KrucheBuilderyKodu.Builders;
 using Kruchy.Plugin.Utils.Extensions;
 using Kruchy.Plugin.Utils.Wrappers;
 using KruchyParserKodu.ParserKodu;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
 
-namespace KruchyCompany.KruchyPlugin1.Akcje
+namespace Kruchy.Plugin.Akcje.Akcje
 {
     class UzupelnianieMetodWImplementacji
     {
@@ -28,7 +27,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             var aktualnyPlik = solution.AktualnyPlik;
             if (!aktualnyPlik.JestInterfejsem())
             {
-                System.Windows.MessageBox.Show("Aktualny plik nie jest interfejsem");
+                MessageBox.Show("Aktualny plik nie jest interfejsem");
                 return;
             }
 
@@ -40,7 +39,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 
             if (aktualnaMetoda == null)
             {
-                System.Windows.MessageBox.Show("Kursor nie stoi ma metodzie");
+                MessageBox.Show("Kursor nie stoi ma metodzie");
                 return;
             }
 
@@ -51,7 +50,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 
             if (sciezkaDoImplementacji == null)
             {
-                System.Windows.MessageBox.Show("Nie znaleziono implementacji");
+                MessageBox.Show("Nie znaleziono implementacji");
                 return;
             }
 
@@ -138,6 +137,10 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
                 .SzukajObiektuWLinii(nastepnaMetodaWImplementacji.Poczatek.Wiersz);
 
             numerLiniiGdzieDodawac = nastepnaMetodaWImplementacji.Poczatek.Wiersz - 1;
+
+            if (nastepnaMetodaWImplementacji?.Dokumentacja?.Linie != null)
+                numerLiniiGdzieDodawac -= nastepnaMetodaWImplementacji.Dokumentacja.Linie.Count;
+
             if (numerLiniiGdzieDodawac <= obiekt.PoczatkowaKlamerka.Wiersz)
             {
                 numerLiniiGdzieDodawac = obiekt.PoczatkowaKlamerka.Wiersz + 1;
