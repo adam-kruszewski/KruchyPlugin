@@ -393,6 +393,8 @@ namespace KruchyParserKodu.Roslyn
                 parametr.WartoscDomyslna =
                     parametrSyntax.Default.Value.ToFullString().Trim();
 
+            UzupelnijAtrybuty(parametrSyntax.AttributeLists, parametr.Atrybuty);
+
             return parametr;
         }
 

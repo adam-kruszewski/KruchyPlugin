@@ -1,4 +1,6 @@
 ﻿
+using System.Collections.Generic;
+
 namespace KruchyParserKodu.ParserKodu
 {
     public class Parametr
@@ -14,5 +16,12 @@ namespace KruchyParserKodu.ParserKodu
         public bool ZParams { get; set; }
 
         public string Modyfikator { get; set; }
+
+        public List<Atrybut> Atrybuty { get; private set; }
+
+        public Parametr()
+        {
+            Atrybuty = new List<Atrybut>();
+        }
     }
 }

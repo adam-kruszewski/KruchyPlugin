@@ -93,7 +93,6 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 builder.AppendLine();
                 builder.Append(StaleDlaKodu.WcieciaDlaParametruMetody);
                 DodajWciecieWgPoziomuMetody(builder, poziomMetody);
-                DodajThisJesliTrzeba(builder, metoda);
             }
             builder.Append(string.Join(lacznik, parametry));
             builder.Append(")");
@@ -123,6 +122,22 @@ namespace Kruchy.Plugin.Akcje.Akcje
         private string DajDefinicjeParametru(Parametr parametr)
         {
             var builder = new StringBuilder();
+
+            foreach (var atrybut in parametr.Atrybuty)
+            {
+                var atrybutBuilder = new AtrybutBuilder().ZNazwa(atrybut.Nazwa);
+                foreach (var parametrAtrybutu in atrybut.Parametry)
+                {
+                    atrybutBuilder.DodajWartoscParametruNieStringowa(parametrAtrybutu.Wartosc);
+                }
+
+                builder.Append(atrybutBuilder.Build(true));
+                builder.Append(" ");
+            }
+
+            if (parametr.ZThisem)
+                builder.Append("this ");
+
             if (parametr.ZParams)
                 builder.Append("params ");
             if (parametr.ZOut)
@@ -143,14 +158,6 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 return " = " + parametr.WartoscDomyslna;
             else
                 return string.Empty;
-        }
-
-        private void DodajThisJesliTrzeba(StringBuilder builder, Metoda metoda)
-        {
-            if (metoda == null)
-                return;
-            if (metoda.Parametry.Any() && metoda.Parametry.First().ZThisem)
-                builder.Append("this ");
         }
     }
 }

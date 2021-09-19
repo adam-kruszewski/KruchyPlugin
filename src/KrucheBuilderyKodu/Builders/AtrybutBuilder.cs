@@ -53,6 +53,11 @@ namespace KrucheBuilderyKodu.Builders
 
         public string Build(string wciecie = "")
         {
+            return Build(false, wciecie);
+        }
+
+        public string Build(bool bezKoncaLinii, string wciecie = "")
+        {
             var outputBuilder = new StringBuilder();
             outputBuilder.Append(wciecie);
             if (Nawiasy)
@@ -72,7 +77,11 @@ namespace KrucheBuilderyKodu.Builders
             }
 
             if (Nawiasy)
-                outputBuilder.AppendLine("]");
+            {
+                outputBuilder.Append("]");
+                if (!bezKoncaLinii)
+                    outputBuilder.AppendLine();
+            }
 
             return outputBuilder.ToString();
         }
