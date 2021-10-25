@@ -23,6 +23,7 @@
         public const uint cmdidInicjujTestyMockami = 0x180;
         public const uint cmdidGenerujDokumentacjaDlaPliku = 0x181;
         public const uint cmdidDodajKonfiguracjePolaWlasciwosci = 0x182;
+        public const uint cmdidDodajKonfiguracjeCzasownika = 0x183;
 
         //dla poruszania się po klasach ui
         public const uint cmdidIdzDoImplementacji = 0x0170;

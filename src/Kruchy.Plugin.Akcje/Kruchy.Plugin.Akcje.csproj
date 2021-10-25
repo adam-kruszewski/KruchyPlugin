@@ -43,6 +43,7 @@
     <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Akcje\DodajKonfiguracjeCzasownika.cs" />
     <Compile Include="Akcje\DodajKonfiguracjeWlasciwosciPola.cs" />
     <Compile Include="Akcje\DodawanieNowegoTestu.cs" />
     <Compile Include="Akcje\DodawanieUsinga.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="Akcje\ZmianaModyfikatoraMetody.cs" />
     <Compile Include="Akcje\ZmianaNaAsync.cs" />
     <Compile Include="Interfejs\IAddFieldPropertyConfigurationWindow.cs" />
+    <Compile Include="Interfejs\IAddVerbConfigurationWindow.cs" />
     <Compile Include="Interfejs\INewTestClassWindow.cs" />
     <Compile Include="Interfejs\INewTestWindow.cs" />
     <Compile Include="Interfejs\NazwaKlasyWindow.cs">
@@ -82,6 +84,7 @@
     <Compile Include="KonfiguracjaPlugina\Xml\PrzejdzDo.cs" />
     <Compile Include="KonfiguracjaPlugina\Xml\Testy.cs" />
     <Compile Include="KonfiguracjaPlugina\Xml\WlasciwoscPole.cs" />
+    <Compile Include="Menu\PozycjaDodajKonfiguracjeCzasownika.cs" />
     <Compile Include="Menu\PozycjaDodajKonfiguracjeWlasciwosciPola.cs" />
     <Compile Include="Menu\PkgCmdIDList.cs" />
     <Compile Include="Menu\PozycjaDodawanieDokumentacjiDlaPliku.cs" />

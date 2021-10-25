@@ -361,6 +361,16 @@
 				<CommandFlag>DynamicVisibility</CommandFlag>
 			</Button>
 
+			<Button id="cmdidDodajKonfiguracjeCzasownika" priority="0x0102"  guid="guidCommand1PackageCmdSet" type="Button">
+				<Parent guid="guidCommand1PackageCmdSet" id="DokumentacjaMenuGroup"/>
+				<Strings>
+					<CommandName>cmdidDodajKonfiguracjeCzasownika</CommandName>
+					<ButtonText>Dodaj konfigurację czasownika</ButtonText>
+				</Strings>
+				<CommandFlag>DefaultDisabled</CommandFlag>
+				<CommandFlag>DynamicVisibility</CommandFlag>
+			</Button>
+
 			<Button guid="guidCommand1PackageCmdSet" id="cmdidMyDynamicStartCommand" priority="0x1000" >
 				<Parent guid="guidCommand1PackageCmdSet" id="MenuPrzejdzDoControllerGroup" />
 				<CommandFlag>DynamicItemStart</CommandFlag>
@@ -473,7 +483,8 @@
 			<IDSymbol name="cmdidInicjujTestyMockami" value="0x0180"/>
 			<IDSymbol name="cmdidGenerujDokumentacjaDlaPliku" value="0x0181"/>
 			<IDSymbol name="cmdidDodajKonfiguracjePolaWlasciwosci" value="0x0182"/>
-
+			<IDSymbol name="cmdidDodajKonfiguracjeCzasownika" value="0x0183"/>
+			
 			<IDSymbol name="ToolbarPrzejdzDoItemGroup" value="0x3020" />
 			<IDSymbol name="MenuPrzejdzDoControllerGroup" value="0x3025" />
 			<IDSymbol name="MenuPrzejdzDoController" value ="0x3030"/>

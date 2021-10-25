@@ -41,8 +41,6 @@ namespace Kruchy.Plugin.Akcje.KonfiguracjaPlugina
                 File.Copy(configurationFilePath, newPath);
             }
 
-            var localInstance = GetInstance(solution);
-
             modifyAction(instance.konfiguracjaXml);
 
             var serializer = new XmlSerializer(typeof(KruchyPlugin));
