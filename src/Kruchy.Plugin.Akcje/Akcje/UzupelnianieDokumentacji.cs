@@ -303,7 +303,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             {
                 var nazwaDoPrzetwarzania = pole.Nazwa.TrimStart('_');
 
-                string summary = DajNazwePolaWlasciwosciWgKonfiguracji(nazwaDoPrzetwarzania, pole.Wlasciciel);
+                string summary = DajNazwePolaWlasciwosciWgKonfiguracji(nazwaDoPrzetwarzania, pole.Wlasciciel, pole.NazwaTypu);
 
                 if (string.IsNullOrEmpty(summary))
                 {
@@ -330,7 +330,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         {
             if (property.Dokumentacja == null)
             {
-                var summary = DajNazwePolaWlasciwosciWgKonfiguracji(property.Nazwa, property.Wlasciciel);
+                var summary = DajNazwePolaWlasciwosciWgKonfiguracji(property.Nazwa, property.Wlasciciel, property.NazwaTypu);
 
                 if (string.IsNullOrEmpty(summary))
                     summary = string.Join(" ", property.Nazwa.PodzielNaSlowaOdWielkichLiter().Select(o => o.ToLower())).ZacznijDuzaLitera();
@@ -346,7 +346,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             }
         }
 
-        private string DajNazwePolaWlasciwosciWgKonfiguracji(string nazwa, Obiekt wlasciciel)
+        private string DajNazwePolaWlasciwosciWgKonfiguracji(string nazwa, Obiekt wlasciciel, string nazwaTypu)
         {
             string summary = null;
 
@@ -373,6 +373,15 @@ namespace Kruchy.Plugin.Akcje.Akcje
                         .SingleOrDefault(o => string.IsNullOrEmpty(o.RegexNazwyKlasy));
 
                 summary = definicjaBezRegexaNazwyKlasy?.WyjsciowaWartosc;
+            }
+
+            if (string.IsNullOrEmpty(summary))
+            {
+                var definicjaRegexuNazwyTypu =
+                    konfiguracjaDokumentacji
+                        .SingleOrDefault(o => PasujeRegex(nazwaTypu, o.RegexTypWlasciwosciPola));
+
+                summary = definicjaRegexuNazwyTypu?.WyjsciowaWartosc;
             }
 
             return summary;

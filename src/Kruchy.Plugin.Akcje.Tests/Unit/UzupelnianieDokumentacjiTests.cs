@@ -154,17 +154,33 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
             new UzupelnianieDokumentacji(solution).Uzupelnij();
 
             //assert
-            var a1 = solution.AktualnyDokument.DajZawartosc();
-            var a2 = wczytywacz.DajZawartoscPrzykladu("KlasaDoDokumentacjiWlasciwosciIPolWynik.cs");
-
-            var b1 = a1.Substring(541);
-            var b2 = a2.Substring(541);
-
-            System.IO.File.WriteAllText(@"e:\adam\tmp\a1.txt", a1);
-            System.IO.File.WriteAllText(@"e:\adam\tmp\a2.txt", a2);
-
             solution.AktualnyDokument.DajZawartosc().Should().Be(
                 wczytywacz.DajZawartoscPrzykladu("KlasaDoDokumentacjiWlasciwosciIPolWynik.cs"));
+        }
+
+        [Test]
+        public void WlasciwosciIPolaZKonfiguracjiTypuWlasciwosciDokumentacji()
+        {
+            //arrange
+            var solution = new SolutionWrapper(wczytywacz.DajZawartoscPrzykladu("KlasaDokumentacjiZTypuPola.cs"));
+
+            PrzygotujKonfiguracjeWgSolutionISzablonu(solution, 2,
+                dok =>
+                {
+                    dok.WlasciwosciPola.Add(
+                        new WlasciwoscPole
+                        {
+                            RegexTypWlasciwosciPola = "st..ng",
+                            WyjsciowaWartosc = "Opis z konfiguracji typu"
+                        });
+                });
+
+            //act
+            new UzupelnianieDokumentacji(solution).Uzupelnij();
+
+            //assert
+            solution.AktualnyDokument.DajZawartosc().Should().Be(
+                wczytywacz.DajZawartoscPrzykladu("WynikKlasaDokumentacjiZTypuPola.cs"));
         }
 
         private void PrzygotujKonfiguracjeWgSolutionISzablonu(
