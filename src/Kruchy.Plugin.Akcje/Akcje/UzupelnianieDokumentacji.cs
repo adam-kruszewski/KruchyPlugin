@@ -294,6 +294,9 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         private static bool PasujeRegex(string wartosc, string regex)
         {
+            if (string.IsNullOrEmpty(wartosc) || string.IsNullOrEmpty(regex))
+                return false;
+
             return new Regex(regex).IsMatch(wartosc);
         }
 

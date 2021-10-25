@@ -86,7 +86,7 @@ namespace Kruchy.Plugin.Utils._2017
                 pozycjaMenu.Execute(sender, args);
             }catch (Exception ex)
             {
-                MessageBox.Show(ex.StackTrace);
+                MessageBox.Show(ex.StackTrace, ex.Message);
             }
         }
     }

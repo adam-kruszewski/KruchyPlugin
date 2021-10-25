@@ -45,6 +45,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\WpfAddFieldPropertyConfigurationWindow.xaml.cs">
+      <DependentUpon>WpfAddFieldPropertyConfigurationWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\WpfNewTestClassWindow.xaml.cs">
       <DependentUpon>WpfNewTestClassWindow.xaml</DependentUpon>
     </Compile>
@@ -56,6 +59,10 @@
     <Compile Include="WindowTools.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Controls\WpfAddFieldPropertyConfigurationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\WpfNewTestClassWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -43,6 +43,7 @@
     <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Akcje\DodajKonfiguracjeWlasciwosciPola.cs" />
     <Compile Include="Akcje\DodawanieNowegoTestu.cs" />
     <Compile Include="Akcje\DodawanieUsinga.cs" />
     <Compile Include="Akcje\Generowanie.Xsd.Komponenty\IParametryGenerowaniaXsd.cs" />
@@ -58,6 +59,7 @@
     <Compile Include="Akcje\UzupelnianieMetodWImplementacji.cs" />
     <Compile Include="Akcje\ZmianaModyfikatoraMetody.cs" />
     <Compile Include="Akcje\ZmianaNaAsync.cs" />
+    <Compile Include="Interfejs\IAddFieldPropertyConfigurationWindow.cs" />
     <Compile Include="Interfejs\INewTestClassWindow.cs" />
     <Compile Include="Interfejs\INewTestWindow.cs" />
     <Compile Include="Interfejs\NazwaKlasyWindow.cs">
@@ -80,6 +82,7 @@
     <Compile Include="KonfiguracjaPlugina\Xml\PrzejdzDo.cs" />
     <Compile Include="KonfiguracjaPlugina\Xml\Testy.cs" />
     <Compile Include="KonfiguracjaPlugina\Xml\WlasciwoscPole.cs" />
+    <Compile Include="Menu\PozycjaDodajKonfiguracjeWlasciwosciPola.cs" />
     <Compile Include="Menu\PkgCmdIDList.cs" />
     <Compile Include="Menu\PozycjaDodawanieDokumentacjiDlaPliku.cs" />
     <Compile Include="Menu\PozycjaDodawanieNowegoTestu.cs" />
@@ -99,6 +102,7 @@
     <Compile Include="Utils\KlasaTestowanaExtensions.cs" />
     <Compile Include="Utils\ObiektExtensions.cs" />
     <Compile Include="Utils\SolutionWrapperExtensions.cs" />
+    <Compile Include="Utils\StringExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KrucheBuilderyKodu\KrucheBuilderyKodu.csproj">

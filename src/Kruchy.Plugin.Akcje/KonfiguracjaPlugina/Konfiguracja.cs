@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
 using Kruchy.Plugin.Akcje.KonfiguracjaPlugina.Xml;
@@ -22,12 +23,42 @@ namespace Kruchy.Plugin.Akcje.KonfiguracjaPlugina
             instance = instance1;
             return instance;
         }
+
+        public static void Modify(ISolutionWrapper solution, Action<KruchyPlugin> modifyAction)
+        {
+            var configurationFilePath = DajSciezkePlikuKonfiguracji(solution);
+
+            var backupDirectoryName = ".kruchy-plugin-configuration-backups";
+
+            var fullBackupDirectoryPath = Path.Combine(solution.Katalog, backupDirectoryName);
+
+            if (!Directory.Exists(fullBackupDirectoryPath))
+                Directory.CreateDirectory(fullBackupDirectoryPath);
+
+            if (File.Exists(configurationFilePath))
+            {
+                var newPath = Path.Combine(fullBackupDirectoryPath, solution.Nazwa + $"{DateTime.Now.ToFileTime()}-backup");
+                File.Copy(configurationFilePath, newPath);
+            }
+
+            var localInstance = GetInstance(solution);
+
+            modifyAction(instance.konfiguracjaXml);
+
+            var serializer = new XmlSerializer(typeof(KruchyPlugin));
+
+            using (var stream = new FileStream(configurationFilePath, FileMode.Create))
+            {
+                serializer.Serialize(stream, instance.konfiguracjaXml);
+            }
+
+        }
         #endregion
 
         public virtual ISolutionWrapper Solution { get; set; }
 
         private KonfiguracjaUsingow Usingi { get; set; }
-        private KruchyPlugin konfiguracjaXml;
+        internal KruchyPlugin konfiguracjaXml;
 
         public Konfiguracja()
         {
@@ -65,7 +96,7 @@ namespace Kruchy.Plugin.Akcje.KonfiguracjaPlugina
             return obj as KruchyPlugin;
         }
 
-        private string DajSciezkePlikuKonfiguracji(ISolutionWrapper solution)
+        private static string DajSciezkePlikuKonfiguracji(ISolutionWrapper solution)
         {
             var pelnaSciezkaSolution = solution.PelnaNazwa;
             return pelnaSciezkaSolution + ".kruchy.xml";

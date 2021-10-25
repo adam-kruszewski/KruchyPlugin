@@ -157,7 +157,7 @@ namespace Kruchy.Plugin.Akcje.Tests.WrappersMocks
         public void WstawWLinii(string tekst, int numerLinii)
         {
             var koniecLinii = new StringBuilder().AppendLine().ToString();
-            if (!tekst.EndsWith(koniecLinii))
+            if (!tekst.EndsWith(koniecLinii) && !tekst.EndsWith("\n"))
                 tekst += koniecLinii;
             WstawWMiejscu(tekst, numerLinii, 1);
         }

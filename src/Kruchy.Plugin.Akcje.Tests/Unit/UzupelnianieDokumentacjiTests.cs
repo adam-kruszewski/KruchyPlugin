@@ -7,6 +7,7 @@ using Moq;
 using Kruchy.Plugin.Akcje.KonfiguracjaPlugina;
 using Kruchy.Plugin.Akcje.KonfiguracjaPlugina.Xml;
 using System;
+using Kruchy.Plugin.Akcje.Utils;
 
 namespace Kruchy.Plugin.Akcje.Tests.Unit
 {
@@ -33,8 +34,9 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
             new UzupelnianieDokumentacji(solution).Uzupelnij();
 
             //assert
-            solution.AktualnyDokument.DajZawartosc().Should().Be(
-                wczytywacz.DajZawartoscPrzykladu("WynikKlasyDoDokumentacji.cs"));
+            var expectedContent = wczytywacz.DajZawartoscPrzykladu("WynikKlasyDoDokumentacji.cs").EndLinesToN();
+            var actualContent = solution.AktualnyDokument.DajZawartosc().EndLinesToN();
+            actualContent.Should().Be(expectedContent);
         }
 
         [Test]
