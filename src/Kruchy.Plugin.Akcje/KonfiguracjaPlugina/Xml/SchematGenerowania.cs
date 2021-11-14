@@ -8,6 +8,8 @@ namespace Kruchy.Plugin.Akcje.KonfiguracjaPlugina.Xml
 
         public List<SchematKlasy> SchematyKlas { get; set; }
 
+        public bool WyborSciezki { get; set; }
+
         public SchematGenerowania()
         {
             SchematyKlas = new List<SchematKlasy>();

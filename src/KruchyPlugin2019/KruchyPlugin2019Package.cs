@@ -97,6 +97,7 @@ namespace KruchyPlugin2019
             UIObjects.ShowWindow = WindowTools.ShowWindow;
             UIObjects.FactoryInstance = new Kruchy.Plugin.UI.UIFactory();
             UIObjects.ShowWindowModal = window => WindowTools.ShowWindowModal(window, uiShell);
+            UIObjects.ShowMessageBox = (title, text) => MessageBox.Show(text, title);
         }
         #endregion
     }

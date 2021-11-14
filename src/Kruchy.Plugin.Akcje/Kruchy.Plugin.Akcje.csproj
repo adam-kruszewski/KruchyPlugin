@@ -62,6 +62,7 @@
     <Compile Include="Akcje\ZmianaNaAsync.cs" />
     <Compile Include="Interfejs\IAddFieldPropertyConfigurationWindow.cs" />
     <Compile Include="Interfejs\IAddVerbConfigurationWindow.cs" />
+    <Compile Include="Interfejs\IGeneratingFromTemplateParamsWindow.cs" />
     <Compile Include="Interfejs\INewTestClassWindow.cs" />
     <Compile Include="Interfejs\INewTestWindow.cs" />
     <Compile Include="Interfejs\NazwaKlasyWindow.cs">

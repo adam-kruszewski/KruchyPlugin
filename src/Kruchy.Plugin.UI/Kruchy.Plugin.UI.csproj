@@ -45,11 +45,15 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\Models\PlaceInSolutionItem.cs" />
     <Compile Include="Controls\WpfAddFieldPropertyConfigurationWindow.xaml.cs">
       <DependentUpon>WpfAddFieldPropertyConfigurationWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\WpfAddVerbConfigurationWindow.xaml.cs">
       <DependentUpon>WpfAddVerbConfigurationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\WpfGeneratingFromTemplateParamsWindow.xaml.cs">
+      <DependentUpon>WpfGeneratingFromTemplateParamsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\WpfNewTestClassWindow.xaml.cs">
       <DependentUpon>WpfNewTestClassWindow.xaml</DependentUpon>
@@ -67,6 +71,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\WpfAddVerbConfigurationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\WpfGeneratingFromTemplateParamsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
