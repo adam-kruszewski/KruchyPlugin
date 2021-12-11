@@ -1,10 +1,9 @@
-﻿using System.IO;
-using System.Windows;
-using System.Windows.Forms;
-using Kruchy.Plugin.Utils.Extensions;
+﻿using Kruchy.Plugin.Utils.Extensions;
 using Kruchy.Plugin.Utils.Wrappers;
+using System.IO;
+using System.Windows.Forms;
 
-namespace KruchyCompany.KruchyPlugin1.Akcje
+namespace Kruchy.Plugin.Akcje.Akcje
 {
     class GenerowanieWidoku
     {
@@ -23,7 +22,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
         {
             if (!solution.CzyPlikControllera())
             {
-                System.Windows.MessageBox.Show("To nie jest plik controllera");
+                MessageBox.Show("To nie jest plik controllera");
                 return;
             }
             nazwa = Normalizuj(nazwa);
@@ -36,7 +35,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             var pelnaSciezka = Path.Combine(katalogControllera, nazwa);
             if (File.Exists(pelnaSciezka))
             {
-                System.Windows.MessageBox.Show("Plik " + pelnaSciezka + " już istnieje");
+                MessageBox.Show("Plik " + pelnaSciezka + " już istnieje");
                 return;
             }
             File.WriteAllText(pelnaSciezka, "");

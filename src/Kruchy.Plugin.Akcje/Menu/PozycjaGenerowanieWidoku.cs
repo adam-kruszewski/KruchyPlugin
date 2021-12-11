@@ -1,18 +1,19 @@
 ﻿using Kruchy.Plugin.Akcje.Akcje;
-using Kruchy.Plugin.Akcje.Menu;
+using Kruchy.Plugin.Akcje.Interfejs;
+using Kruchy.Plugin.Utils.Extensions;
 using Kruchy.Plugin.Utils.Menu;
 using Kruchy.Plugin.Utils.Wrappers;
 using System;
 using System.Collections.Generic;
 
-namespace KruchyCompany.KruchyPlugin1.Menu
+namespace Kruchy.Plugin.Akcje.Menu
 {
-    class PozycjaIdzDoPlikuWidoku : IPozycjaMenu
+    class PozycjaGenerowanieWidoku : IPozycjaMenu
     {
-        private readonly ISolutionWrapper solution;
         private readonly ISolutionExplorerWrapper solutionExplorer;
+        private readonly ISolutionWrapper solution;
 
-        public PozycjaIdzDoPlikuWidoku(
+        public PozycjaGenerowanieWidoku(
             ISolutionWrapper solution,
             ISolutionExplorerWrapper solutionExplorer)
         {
@@ -22,7 +23,7 @@ namespace KruchyCompany.KruchyPlugin1.Menu
 
         public uint MenuCommandID
         {
-            get { return PkgCmdIDList.cmdidIdzDoWidoku; }
+            get { return PkgCmdIDList.cmdidGenerujWidok; }
         }
 
         public IEnumerable<WymaganieDostepnosci> Wymagania
@@ -35,7 +36,15 @@ namespace KruchyCompany.KruchyPlugin1.Menu
 
         public void Execute(object sender, EventArgs args)
         {
-            new IdzDoPlikuWidoku(solution, solutionExplorer).PrzejdzDoWidokuDlaAktualnejMetody();
+            var dialog = new NazwaKlasyWindow(false);
+            dialog.EtykietaNazwyPliku = "Nazwa widoku";
+            dialog.InicjalnaWartosc = solution.NazwaAktualnejMetody();
+            dialog.ShowDialog();
+
+            if (!string.IsNullOrEmpty(dialog.NazwaPliku))
+            {
+                new GenerowanieWidoku(solution, solutionExplorer).Generuj(dialog.NazwaPliku);
+            }
         }
     }
 }

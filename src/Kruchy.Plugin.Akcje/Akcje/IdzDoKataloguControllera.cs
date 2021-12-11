@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using Kruchy.Plugin.Utils.Wrappers;
 
-namespace KruchyCompany.KruchyPlugin1.Akcje
+namespace Kruchy.Plugin.Akcje.Akcje
 {
     class IdzDoKataloguControllera
     {

@@ -1,13 +1,11 @@
-﻿using System;
-using System.IO;
-using System.Linq;
-using System.Windows;
-using System.Windows.Forms;
-using Kruchy.Plugin.Utils.Extensions;
+﻿using Kruchy.Plugin.Utils.Extensions;
 using Kruchy.Plugin.Utils.Wrappers;
 using KruchyParserKodu.ParserKodu;
+using System;
+using System.Linq;
+using System.Windows.Forms;
 
-namespace KruchyCompany.KruchyPlugin1.Akcje
+namespace Kruchy.Plugin.Akcje.Akcje
 {
     class IdzMiedzyInterfejsemAImplementacja
     {
@@ -86,7 +84,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             var wynik = aktualny.SzukajSciezkiDoImplementacji();
 
             if (wynik == null)
-                System.Windows.MessageBox.Show("Nie znalazłem");
+                MessageBox.Show("Nie znalazłem");
 
             return wynik;
         }
@@ -102,7 +100,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
             var wynik = aktualny.SzukajSciezkiDoInterfejsu();
 
             if (wynik == null)
-                System.Windows.MessageBox.Show("Nie znalazłem");
+                MessageBox.Show("Nie znalazłem");
 
             return wynik;
         }

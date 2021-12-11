@@ -1,10 +1,9 @@
-﻿using System.IO;
-using System.Windows;
-using System.Windows.Forms;
-using Kruchy.Plugin.Utils.Extensions;
+﻿using Kruchy.Plugin.Utils.Extensions;
 using Kruchy.Plugin.Utils.Wrappers;
+using System.IO;
+using System.Windows.Forms;
 
-namespace KruchyCompany.KruchyPlugin1.Akcje
+namespace Kruchy.Plugin.Akcje.Akcje
 {
     class WstawianieNazwyControlleraDoSchowka
     {
@@ -34,9 +33,8 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
                     return;
                 var fi = new FileInfo(solution.AktualnyPlik.SciezkaPelna);
                 if (fi.Extension.ToLower() == ".cshtml")
-                    System.Windows.Clipboard.SetText(fi.DirectoryName);
+                    Clipboard.SetText(fi.DirectoryName);
             }
         }
-
     }
 }

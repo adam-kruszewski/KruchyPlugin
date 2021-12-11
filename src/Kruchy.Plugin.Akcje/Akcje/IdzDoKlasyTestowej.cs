@@ -1,12 +1,11 @@
-﻿using System.Linq;
-using System.Windows;
-using System.Windows.Forms;
-using Kruchy.Plugin.Akcje.Utils;
+﻿using Kruchy.Plugin.Akcje.Utils;
 using Kruchy.Plugin.Utils.Extensions;
 using Kruchy.Plugin.Utils.Wrappers;
 using KruchyParserKodu.ParserKodu;
+using System.Linq;
+using System.Windows.Forms;
 
-namespace KruchyCompany.KruchyPlugin1.Akcje
+namespace Kruchy.Plugin.Akcje.Akcje
 {
     class IdzDoKlasyTestowej
     {
@@ -35,7 +34,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 
                 if (projektTestow == null)
                 {
-                    System.Windows.MessageBox.Show("Nie znaleziono projektu testowego ");
+                    MessageBox.Show("Nie znaleziono projektu testowego ");
                     return;
                 }
 
@@ -52,7 +51,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 
                 if (projektModulu == null)
                 {
-                    System.Windows.MessageBox.Show("Nie znaleziono projektu modułu");
+                    MessageBox.Show("Nie znaleziono projektu modułu");
                     return;
                 }
 
@@ -73,7 +72,7 @@ namespace KruchyCompany.KruchyPlugin1.Akcje
 
             if (plik == null)
             {
-                System.Windows.MessageBox.Show("Nie znaleziono pliku: ");
+                MessageBox.Show("Nie znaleziono pliku: ");
                 return;
             }
 

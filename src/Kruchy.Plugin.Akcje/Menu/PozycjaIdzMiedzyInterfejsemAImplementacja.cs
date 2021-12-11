@@ -1,18 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using Kruchy.Plugin.Akcje.Menu;
+﻿using Kruchy.Plugin.Akcje.Akcje;
 using Kruchy.Plugin.Utils.Menu;
 using Kruchy.Plugin.Utils.Wrappers;
-using KruchyCompany.KruchyPlugin1.Akcje;
+using System;
+using System.Collections.Generic;
 
-namespace KruchyCompany.KruchyPlugin1.Menu
+namespace Kruchy.Plugin.Akcje.Menu
 {
-    class PozycjaPokazywanieZawartosciZShared : IPozycjaMenu
+    class PozycjaIdzMiedzyInterfejsemAImplementacja : IPozycjaMenu
     {
         private readonly ISolutionWrapper solution;
         private readonly ISolutionExplorerWrapper solutionExplorer;
 
-        public PozycjaPokazywanieZawartosciZShared(
+        public PozycjaIdzMiedzyInterfejsemAImplementacja(
             ISolutionWrapper solution,
             ISolutionExplorerWrapper solutionExplorer)
         {
@@ -22,21 +21,20 @@ namespace KruchyCompany.KruchyPlugin1.Menu
 
         public uint MenuCommandID
         {
-            get { return PkgCmdIDList.cmdidPokazZawartoscZShared; }
+            get { return PkgCmdIDList.cmdidIdzDoImplementacji; }
         }
 
         public IEnumerable<WymaganieDostepnosci> Wymagania
         {
             get
             {
-                yield return WymaganieDostepnosci.Projekt;
-                yield return WymaganieDostepnosci.WidokCshtml;
+                yield return WymaganieDostepnosci.PlikCs;
             }
         }
 
         public void Execute(object sender, EventArgs args)
         {
-            new PokazywaniaZawartosciZShared(solution, solutionExplorer).Pokaz();
+            new IdzMiedzyInterfejsemAImplementacja(solution, solutionExplorer).Przejdz();
         }
     }
 }
