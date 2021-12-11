@@ -37,15 +37,18 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
             var listaParsowanychJednostek = new List<ParsowanaJednostka>();
 
-            listaParsowanychJednostek.AddRange(sparsowane.DefiniowaneObiekty);
+            var definiowaneObiekty = sparsowane.DefiniowaneObiekty
+                .Union(sparsowane.DefiniowaneObiekty.SelectMany( o => DajDefiniowanePodObiekty(o)));
 
-            listaParsowanychJednostek.AddRange(sparsowane.DefiniowaneObiekty.SelectMany(o => o.Konstruktory));
+            listaParsowanychJednostek.AddRange(definiowaneObiekty);
 
-            listaParsowanychJednostek.AddRange(sparsowane.DefiniowaneObiekty.SelectMany(o => o.Pola));
+            listaParsowanychJednostek.AddRange(definiowaneObiekty.SelectMany(o => o.Konstruktory));
 
-            listaParsowanychJednostek.AddRange(sparsowane.DefiniowaneObiekty.SelectMany(o => o.Propertiesy));
+            listaParsowanychJednostek.AddRange(definiowaneObiekty.SelectMany(o => o.Pola));
 
-            listaParsowanychJednostek.AddRange(sparsowane.DefiniowaneObiekty.SelectMany(o => o.Metody));
+            listaParsowanychJednostek.AddRange(definiowaneObiekty.SelectMany(o => o.Propertiesy));
+
+            listaParsowanychJednostek.AddRange(definiowaneObiekty.SelectMany(o => o.Metody));
 
             listaParsowanychJednostek = listaParsowanychJednostek.OrderByDescending(o => o.Poczatek.Wiersz).ToList();
 
@@ -54,6 +57,11 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 if (metodyAnalizy.ContainsKey(parsowanaJednostka.GetType()))
                     metodyAnalizy[parsowanaJednostka.GetType()](this, parsowanaJednostka);
             }
+        }
+
+        private IEnumerable<Obiekt> DajDefiniowanePodObiekty(Obiekt o)
+        {
+            return o.ObiektyWewnetrzne.Union(o.ObiektyWewnetrzne.SelectMany(k => DajDefiniowanePodObiekty(k)));
         }
 
         private void PrzetworzObiekt(Obiekt obiekt)
