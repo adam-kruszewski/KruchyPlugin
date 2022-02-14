@@ -1,6 +1,9 @@
 ﻿using EnvDTE80;
+using Kruchy.Plugin.UI;
 using Kruchy.Plugin.Utils._2017;
 using Kruchy.Plugin.Utils._2017.Wrappers;
+using Kruchy.Plugin.Utils.Menu;
+using Kruchy.Plugin.Utils.UI;
 using Kruchy.Plugin.Utils.Wrappers;
 using KruchyParserKodu.ParserKodu;
 using Microsoft.VisualStudio;
@@ -8,8 +11,10 @@ using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using System;
 using System.ComponentModel.Design;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
+using System.Windows;
 using Task = System.Threading.Tasks.Task;
 
 namespace KruchyPlugin2022
@@ -44,7 +49,7 @@ namespace KruchyPlugin2022
         /// KruchyPlugin2022Package GUID string.
         /// </summary>
         public const string PackageGuidString = "5ffc0f84-e8b7-4742-b523-902d1f2b31e5";
-            //"a6986200-8503-42b0-b0c1-b4293d61575a";
+        //"a6986200-8503-42b0-b0c1-b4293d61575a";
 
         #region Package Members
 
@@ -66,6 +71,35 @@ namespace KruchyPlugin2022
             var sw = new SolutionWrapper(dte);
             IMenuCommandService mcs = await GetServiceAsync(typeof(IMenuCommandService)) as IMenuCommandService;
             var mcs2 = await GetServiceAsync(typeof(IMenuCommandService)) as OleMenuCommandService;
+
+            var wszystkieKlasy = GetType().Assembly.GetTypes().Union(
+                typeof(Kruchy.Plugin.Akcje.Menu.PkgCmdIDList).Assembly.GetTypes());
+            var klasyPozycji =
+                wszystkieKlasy
+                    .Where(o => typeof(IPozycjaMenu).IsAssignableFrom(o))
+                    .Where(o => !typeof(IPodpozycjaMenuDynamicznego).IsAssignableFrom(o))
+                        .ToList();
+
+            foreach (var klasa in klasyPozycji)
+            {
+                var konstruktor = klasa.GetConstructors().Single();
+
+                object[] parametry = new[] { sw };
+                if (konstruktor.GetParameters().Length == 2)
+                    parametry = new[] { sw, (object)SolutionExplorerWrapper.DajDlaSolution(sw, dte) };
+
+                var pozycjaMenu = Activator.CreateInstance(klasa, parametry) as IPozycjaMenu;
+                new PozycjaMenuAdapter(pozycjaMenu, sw).Podlacz(mcs2);
+            }
+
+            Kruchy.Plugin.UI.UIFactory.factoryFunction = type => this.FindToolWindow(type, 0, true);
+
+            IVsUIShell uiShell = (IVsUIShell)(await ServiceProvider.GetGlobalServiceAsync(typeof(SVsUIShell)));
+            UIObjects.ShowWindow = WindowTools.ShowWindow;
+            UIObjects.FactoryInstance = new Kruchy.Plugin.UI.UIFactory();
+            UIObjects.ShowWindowModal = window => WindowTools.ShowWindowModal(window, uiShell);
+            UIObjects.ShowMessageBox = (title, text) => MessageBox.Show(text, title);
+
         }
 
         #endregion
