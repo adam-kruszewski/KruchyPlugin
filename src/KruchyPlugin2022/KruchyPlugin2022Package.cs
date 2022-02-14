@@ -1,4 +1,7 @@
-﻿using Microsoft.VisualStudio.Shell;
+﻿using Kruchy.Plugin.Utils.Wrappers;
+using KruchyParserKodu.ParserKodu;
+using Microsoft.VisualStudio;
+using Microsoft.VisualStudio.Shell;
 using System;
 using System.Runtime.InteropServices;
 using System.Threading;
@@ -26,6 +29,10 @@ namespace KruchyPlugin2022
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
     [Guid(KruchyPlugin2022Package.PackageGuidString)]
     [ProvideMenuResource("Menus.ctmenu", 1)]
+
+    //attributes added manually
+    [ProvideAutoLoad(VSConstants.UICONTEXT.NoSolution_string, PackageAutoLoadFlags.BackgroundLoad)]
+    [ProvideAutoLoad(VSConstants.UICONTEXT.SolutionExists_string, PackageAutoLoadFlags.BackgroundLoad)]
     public sealed class KruchyPlugin2022Package : AsyncPackage
     {
         /// <summary>
@@ -48,6 +55,9 @@ namespace KruchyPlugin2022
             // When initialized asynchronously, the current thread may be a background thread at this point.
             // Do any initialization that requires the UI thread after switching to the UI thread.
             await this.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
+
+            Parser p = null;
+            ISolutionWrapper solutionWrapper = null;
         }
 
         #endregion
