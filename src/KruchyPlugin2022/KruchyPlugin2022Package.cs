@@ -1,8 +1,13 @@
-﻿using Kruchy.Plugin.Utils.Wrappers;
+﻿using EnvDTE80;
+using Kruchy.Plugin.Utils._2017;
+using Kruchy.Plugin.Utils._2017.Wrappers;
+using Kruchy.Plugin.Utils.Wrappers;
 using KruchyParserKodu.ParserKodu;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Shell.Interop;
 using System;
+using System.ComponentModel.Design;
 using System.Runtime.InteropServices;
 using System.Threading;
 using Task = System.Threading.Tasks.Task;
@@ -56,8 +61,11 @@ namespace KruchyPlugin2022
             // Do any initialization that requires the UI thread after switching to the UI thread.
             await this.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
 
-            Parser p = null;
-            ISolutionWrapper solutionWrapper = null;
+            PozycjaMenuAdapter.guidKruchyPluginCmdSetStatic = new Guid("090c66f0-5900-4ef9-a243-d42476371281");
+            var dte = (DTE2)await GetServiceAsync(typeof(SDTE));
+            var sw = new SolutionWrapper(dte);
+            IMenuCommandService mcs = await GetServiceAsync(typeof(IMenuCommandService)) as IMenuCommandService;
+            var mcs2 = await GetServiceAsync(typeof(IMenuCommandService)) as OleMenuCommandService;
         }
 
         #endregion

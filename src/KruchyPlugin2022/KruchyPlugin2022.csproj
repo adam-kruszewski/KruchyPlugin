@@ -79,6 +79,10 @@
       <Project>{b3dfe520-906c-4b30-9464-f934cabb209e}</Project>
       <Name>KrucheBuilderyKodu</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Kruchy.Plugin.Utils.2017\Kruchy.Plugin.Utils.2017.csproj">
+      <Project>{700b6a6b-ce12-4aca-8dcd-fce561bb955e}</Project>
+      <Name>Kruchy.Plugin.Utils.2017</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Kruchy.Plugin.Utils\Kruchy.Plugin.Utils.csproj">
       <Project>{7868c192-f37e-418e-ac84-e507756c3f5f}</Project>
       <Name>Kruchy.Plugin.Utils</Name>
