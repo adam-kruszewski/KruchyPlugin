@@ -78,6 +78,7 @@
     <Compile Include="Interfejs\NazwaKlasyWindow.Designer.cs">
       <DependentUpon>NazwaKlasyWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Interfejs\VariableToFill.cs" />
     <Compile Include="KonfiguracjaPlugina\Konfiguracja.cs" />
     <Compile Include="KonfiguracjaPlugina\KonfiguracjaUsingow.cs" />
     <Compile Include="KonfiguracjaPlugina\Xml\Czasownik.cs" />

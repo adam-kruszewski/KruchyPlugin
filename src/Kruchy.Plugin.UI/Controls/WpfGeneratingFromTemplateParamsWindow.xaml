@@ -8,19 +8,12 @@
             WindowStartupLocation="CenterScreen"
             SizeToContent="WidthAndHeight"
             Title="Parametry generowania z szablonu" 
-            MinWidth="500" Height="200" MaxHeight="200"
+            MinWidth="500" Height="800" MaxHeight="800" MinHeight="400"
             xmlns:self="clr-namespace:Kruchy.Plugin.UI.Controls.Models">
     <StackPanel Orientation="Vertical" Margin="4" VerticalAlignment="Stretch">
-        <!--<Grid VerticalAlignment="Stretch">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*" />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="1*" MinHeight="100"/>
-            </Grid.RowDefinitions>-->
-
+        <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible">
             <TreeView x:Name="TreeViewSelectDirectory" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
-                      HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MinHeight="100" ScrollViewer.VerticalScrollBarVisibility="Visible">
+                          HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MinHeight="300" ScrollViewer.VerticalScrollBarVisibility="Visible">
                 <TreeView.ItemTemplate>
                     <HierarchicalDataTemplate DataType="{x:Type self:PlaceInSolutionItem}" ItemsSource="{Binding Items}">
                         <TextBlock Text="{Binding Title}" />
@@ -32,9 +25,23 @@
                     </Style>
                 </TreeView.ItemContainerStyle>
             </TreeView>
-        <!--</Grid>-->
+        </ScrollViewer>
 
-        <WrapPanel FlowDirection="RightToLeft" Orientation="Horizontal" Height="50" VerticalAlignment="Bottom">
+        <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible">
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="VariablesGrid" Width="500">
+                <Grid.RowDefinitions>
+                    <!--<RowDefinition Height="30" />-->
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <!--<TextBlock Grid.Row="0" Grid.Column="0" Text="Nazwa zmiennej" VerticalAlignment="Center"/>
+                <TextBox Grid.Row="0" Grid.Column="1" Text="" Height="25"/>-->
+            </Grid>
+        </ScrollViewer>
+
+        <WrapPanel FlowDirection="RightToLeft" Orientation="Horizontal" Height="80" MinHeight="80" VerticalAlignment="Bottom">
             <Button x:Name="cancelButton" Margin="3" IsCancel="True" Width="60" Height="40" Click="cancelButton_Click">
                 Anuluj
             </Button>

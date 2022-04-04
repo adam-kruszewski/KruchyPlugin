@@ -6,6 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace Kruchy.Plugin.UI.Controls
 {
@@ -19,14 +21,6 @@ namespace Kruchy.Plugin.UI.Controls
         public WpfGeneratingFromTemplateParamsWindow()
         {
             InitializeComponent();
-
-            //Models.PlaceInSolutionItem root = new Models.PlaceInSolutionItem() { Path = "Menu" };
-            //Models.PlaceInSolutionItem childItem1 = new Models.PlaceInSolutionItem() { Path = "Child item #1" };
-            //childItem1.Items.Add(new Models.PlaceInSolutionItem() { Path = "Child item #1.1" });
-            //childItem1.Items.Add(new Models.PlaceInSolutionItem() { Path = "Child item #1.2" });
-            //root.Items.Add(childItem1);
-            //root.Items.Add(new Models.PlaceInSolutionItem() { Path = "Child item #2" });
-            //TreeViewSelectDirectory.Items.Add(root);
         }
 
         public IEnumerable<IProjektWrapper> Projects
@@ -89,9 +83,65 @@ namespace Kruchy.Plugin.UI.Controls
         public string Directory { get; set; }
         public IProjektWrapper SelectedProject { get; private set; }
 
+        public IEnumerable<VariableToFill> VariablesToFill { set => AddVariableControls(value); }
+
+        private void AddVariableControls(IEnumerable<VariableToFill> value)
+        {
+            var variablesGrid = FindName("VariablesGrid") as Grid;
+
+            var rowIndex = 0;
+
+            foreach (var variableToFill in value)
+            {
+                variablesGrid.RowDefinitions.Add(new RowDefinition { Height = new System.Windows.GridLength(30) });
+
+                var label =
+                    new TextBlock
+                    {
+                        Text = variableToFill.Name,
+                        VerticalAlignment = VerticalAlignment.Center
+                    };
+
+                Grid.SetRow(label, rowIndex);
+                Grid.SetColumn(label, 0);
+
+                variablesGrid.Children.Add(label);
+
+                var valueTextBox =
+                    new TextBox
+                    {
+                        Height = 25,
+                        Text = variableToFill.InitialValue,
+                        VerticalAlignment = VerticalAlignment.Center,
+                        VerticalContentAlignment = VerticalAlignment.Center
+                    };
+
+                Grid.SetRow(valueTextBox, rowIndex);
+                Grid.SetColumn(valueTextBox, 1);
+
+                variablesGrid.Children.Add(valueTextBox);
+
+                controlsDictionary[variableToFill.Name] = valueTextBox;
+
+                rowIndex++;
+            }
+        }
+
+        public IDictionary<string, object> VariablesValues
+        {
+            get => controlsDictionary
+                .Select(o => new KeyValuePair<string, object>(o.Key, o.Value.Text))
+                    .ToDictionary(o => o.Key, o => o.Value);
+        }
+
+
+        private IDictionary<string, TextBox> controlsDictionary = new Dictionary<string, TextBox>();
+
         private void cancelButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            this.Close();
+            foreach (var d in controlsDictionary)
+
+                this.Close();
         }
 
         private void addButton_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -104,6 +154,8 @@ namespace Kruchy.Plugin.UI.Controls
 
             Directory = (TreeViewSelectDirectory.SelectedItem as PlaceInSolutionItem)?.Path;
             SelectedProject = (TreeViewSelectDirectory.SelectedItem as PlaceInSolutionItem)?.Project;
+
+            VariablesValues.Clear();
 
             Close();
         }

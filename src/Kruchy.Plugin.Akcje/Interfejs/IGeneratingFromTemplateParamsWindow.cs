@@ -10,5 +10,9 @@ namespace Kruchy.Plugin.Akcje.Interfejs
         IProjektWrapper SelectedProject { get; }
 
         IEnumerable<IProjektWrapper> Projects { set; }
+
+        IEnumerable<VariableToFill> VariablesToFill { set; }
+
+        IDictionary<string, object> VariablesValues { get; }
     }
 }

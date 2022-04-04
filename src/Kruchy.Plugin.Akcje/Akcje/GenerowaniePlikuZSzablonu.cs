@@ -43,14 +43,24 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
             if (szablon.WyborSciezki)
             {
-                IGeneratingFromTemplateParamsWindow dialogAdd = UIObjects.FactoryInstance.Get<IGeneratingFromTemplateParamsWindow>();
+                IGeneratingFromTemplateParamsWindow dialogAdd =
+                    UIObjects.FactoryInstance.Get<IGeneratingFromTemplateParamsWindow>();
 
                 dialogAdd.Projects = solution.Projekty;
+
+                dialogAdd.VariablesToFill =
+                    szablon.Zmienne.Where(o => o.WprowadzanaWUI)
+                        .Select(o => new VariableToFill {
+                            Name = o.Symbol,
+                            Type = "string",
+                            InitialValue = o.WartoscInicjalna });
 
                 UIObjects.ShowWindowModal(dialogAdd);
 
                 if (string.IsNullOrEmpty(dialogAdd.Directory))
                     return;
+
+                var variableValues = dialogAdd.VariablesValues;
 
                 wybranaSciezka = dialogAdd.Directory;
                 wybranyProjekt = dialogAdd.SelectedProject;
@@ -63,11 +73,12 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
             foreach (var schematKlasy in szablon.SchematyKlas)
             {
-                GenerujWgSchematu(schematKlasy, sparsowane, wybranaSciezka, wybranyProjekt);
+                GenerujWgSchematu(szablon, schematKlasy, sparsowane, wybranaSciezka, wybranyProjekt);
             }
         }
 
         private void GenerujWgSchematu(
+            SchematGenerowania szablon,
             SchematKlasy schematKlasy,
             Plik sparsowane,
             string wybranaSciezka,
@@ -76,7 +87,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             var sciezkaDoPliku =
                 Path.Combine(
                     wybranyProjekt.SciezkaDoKatalogu,
-                    DajNazwePliku(schematKlasy, sparsowane, wybranaSciezka));
+                    DajNazwePliku(szablon, schematKlasy, sparsowane, wybranaSciezka, wybranyProjekt));
 
             if (File.Exists(sciezkaDoPliku))
             {
@@ -86,7 +97,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
             var tresc = schematKlasy.Tresc;
 
-            tresc = ZamienZmienneNaWartosci(tresc, schematKlasy, sparsowane, wybranaSciezka);
+            tresc = ZamienZmienneNaWartosci(szablon, tresc, sparsowane, wybranaSciezka, wybranyProjekt);
 
             var fileInfo = new FileInfo(sciezkaDoPliku);
 
@@ -98,18 +109,29 @@ namespace Kruchy.Plugin.Akcje.Akcje
             solutionExplorer.OtworzPlik(sciezkaDoPliku);
         }
 
-        private string DajNazwePliku(SchematKlasy schematKlasy, Plik sparsowane, string wybranaSciezka)
+        private string DajNazwePliku(
+            SchematGenerowania szablon,
+            SchematKlasy schematKlasy,
+            Plik sparsowane,
+            string wybranaSciezka,
+            IProjektWrapper wybranyProjekt)
         {
-            return ZamienZmienneNaWartosci(schematKlasy.NazwaPliku, schematKlasy, sparsowane, wybranaSciezka);
+            return ZamienZmienneNaWartosci(
+                szablon,
+                schematKlasy.NazwaPliku,
+                sparsowane,
+                wybranaSciezka,
+                wybranyProjekt);
         }
 
         private string ZamienZmienneNaWartosci(
+            SchematGenerowania szablon,
             string tekst,
-            SchematKlasy schematKlasy,
             Plik sparsowane,
-            string wybranaSciezka)
+            string wybranaSciezka,
+            IProjektWrapper wybranyProjekt)
         {
-            var zmienne = PrzygotujWartosciZmiennych(schematKlasy, sparsowane, wybranaSciezka);
+            var zmienne = PrzygotujWartosciZmiennych(sparsowane, wybranaSciezka, wybranyProjekt);
 
             foreach (var zmienna in zmienne)
                 tekst = tekst.Replace("%" + zmienna.Key + "%", zmienna.Value);
@@ -118,9 +140,9 @@ namespace Kruchy.Plugin.Akcje.Akcje
         }
 
         private Dictionary<string, string> PrzygotujWartosciZmiennych(
-            SchematKlasy schematKlasy,
             Plik sparsowane,
-            string wybranaSciezka)
+            string wybranaSciezka,
+            IProjektWrapper wybranyProjekt)
         {
             var wynik = new Dictionary<string, string>();
 
@@ -131,20 +153,31 @@ namespace Kruchy.Plugin.Akcje.Akcje
             wynik["NAZWA_PLIKU_BEZ_ROZSZERZENIA"] =
                 solution.AktualnyPlik.NazwaBezRozszerzenia;
             wynik["WYBRANA_SCIEZKA"] = wybranaSciezka;
+            wynik["SCIEZKA_W_PROJEKCIE"] = DajSciezkeWProjekcie(wybranaSciezka, wybranyProjekt);
 
-            foreach (var zmienna in schematKlasy.Zmienne)
-            {
-                var pasujacyPlik =
-                    solution.AktualnyProjekt.Pliki
-                    .SingleOrDefault(o => PasujePlik(o, zmienna.DopasowaniePliku));
+            //foreach (var zmienna in schematKlasy.Zmienne.Where(o => !o.WprowadzanaWUI))
+            //{
+            //    var pasujacyPlik =
+            //        solution.AktualnyProjekt.Pliki
+            //        .SingleOrDefault(o => PasujePlik(o, zmienna.DopasowaniePliku));
 
-                if (zmienna.BezRozszerzenia)
-                {
-                    wynik[zmienna.Symbol] = pasujacyPlik.NazwaBezRozszerzenia;
-                }
-                else
-                    wynik[zmienna.Symbol] = pasujacyPlik.Nazwa;
-            }
+            //    if (zmienna.BezRozszerzenia)
+            //    {
+            //        wynik[zmienna.Symbol] = pasujacyPlik.NazwaBezRozszerzenia;
+            //    }
+            //    else
+            //        wynik[zmienna.Symbol] = pasujacyPlik.Nazwa;
+            //}
+
+            return wynik;
+        }
+
+        private static string DajSciezkeWProjekcie(string wybranaSciezka, IProjektWrapper wybranyProjekt)
+        {
+            var wynik = wybranaSciezka.Substring(wybranyProjekt.SciezkaDoKatalogu.Length);
+
+            if (wynik.Length > 0 && (wynik[0] == '\\' || wynik[0] == '/'))
+                return wynik.Substring(1);
 
             return wynik;
         }

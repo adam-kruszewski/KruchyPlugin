@@ -10,24 +10,20 @@ namespace Kruchy.Plugin.Akcje.KonfiguracjaPlugina.Xml
 
         public bool WyborSciezki { get; set; }
 
+        public List<Zmienna> Zmienne { get; set; }
+
         public SchematGenerowania()
         {
             SchematyKlas = new List<SchematKlasy>();
+            Zmienne = new List<Zmienna>();
         }
     }
 
     public class SchematKlasy
     {
-        public List<Zmienna> Zmienne { get; set; }
-
         public string NazwaPliku { get; set; }
 
         public string Tresc { get; set; }
-
-        public SchematKlasy()
-        {
-            Zmienne = new List<Zmienna>();
-        }
     }
 
     public class Zmienna
@@ -37,5 +33,9 @@ namespace Kruchy.Plugin.Akcje.KonfiguracjaPlugina.Xml
         public string DopasowaniePliku { get; set; }
 
         public bool BezRozszerzenia { get; set; }
+
+        public bool WprowadzanaWUI { get; set; }
+
+        public string WartoscInicjalna { get; set; }
     }
 }
