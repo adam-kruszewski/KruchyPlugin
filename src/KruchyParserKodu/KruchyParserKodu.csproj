@@ -54,6 +54,7 @@
     <Compile Include="ParserKodu\IZDokumentacja.cs" />
     <Compile Include="ParserKodu\IZKomentarzem.cs" />
     <Compile Include="ParserKodu\IZNawiasamiOtwierajacymiZamykajacymiParametry.cs" />
+    <Compile Include="ParserKodu\IZNazwa.cs" />
     <Compile Include="ParserKodu\IZPoczatkowaIKoncowaKlamerka.cs" />
     <Compile Include="ParserKodu\IZWlascicielem.cs" />
     <Compile Include="ParserKodu\Komentarz.cs" />

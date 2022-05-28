@@ -4,10 +4,11 @@ namespace KruchyParserKodu.ParserKodu
 {
     public class Enumeration
         : ParsowanaJednostka
-            , IZPoczatkowaIKoncowaKlamerka
-                , IZWlascicielem
-                    , IZKomentarzem
-                        , IZDokumentacja
+            ,IZNazwa
+                , IZPoczatkowaIKoncowaKlamerka
+                    , IZWlascicielem
+                        , IZKomentarzem
+                            , IZDokumentacja
     {
         public Obiekt Wlasciciel { get; set; }
 

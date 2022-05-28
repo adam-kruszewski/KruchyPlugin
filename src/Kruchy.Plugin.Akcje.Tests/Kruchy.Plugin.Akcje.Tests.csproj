@@ -41,6 +41,8 @@
     <EmbeddedResource Include="Samples\KlasaDoDokumentacjiWlasciwosciIPolWynik.cs" />
     <EmbeddedResource Include="Samples\KlasaDokumentacjiZTypuPola.cs" />
     <EmbeddedResource Include="Samples\WynikKlasaDokumentacjiZTypuPola.cs" />
+    <EmbeddedResource Include="Samples\EnumeracjaDoDokumentacji.cs" />
+    <EmbeddedResource Include="Samples\WynikEnumeracjaDoDokumentacji.cs" />
     <Compile Include="TestyInfrastrukturyTestow\DokumentWrapperTests.cs" />
     <Compile Include="Unit\UzupelnianieDokumentacjiTests.cs" />
     <EmbeddedResource Include="Samples\UzupelnianieKonstruktoraPrzyStalej.cs" />

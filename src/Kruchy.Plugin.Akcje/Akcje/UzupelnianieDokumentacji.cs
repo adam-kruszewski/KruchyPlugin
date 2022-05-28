@@ -22,7 +22,8 @@ namespace Kruchy.Plugin.Akcje.Akcje
             { typeof(Konstruktor), (ud, konstruktor) => ud.PrzetworzKonstruktor(konstruktor as Konstruktor) },
             { typeof(Metoda), (ud, metoda) => ud.PrzetworzMetode(metoda as Metoda) },
             { typeof(Pole), (ud, pole) => ud.PrzetworzPole(pole as Pole) },
-            { typeof(Property), (ud, wlasciwosc) => ud.PrzetworzWlasciwosc(wlasciwosc as Property) }
+            { typeof(Property), (ud, wlasciwosc) => ud.PrzetworzWlasciwosc(wlasciwosc as Property) },
+            { typeof(Enumeration), (ud, enumeracja) => ud.PrzetworzEnumeracje(enumeracja as Enumeration)}
         };
 
         public UzupelnianieDokumentacji(
@@ -49,6 +50,10 @@ namespace Kruchy.Plugin.Akcje.Akcje
             listaParsowanychJednostek.AddRange(definiowaneObiekty.SelectMany(o => o.Propertiesy));
 
             listaParsowanychJednostek.AddRange(definiowaneObiekty.SelectMany(o => o.Metody));
+
+            listaParsowanychJednostek.AddRange(sparsowane.DefiniowaneEnumeracje);
+
+            listaParsowanychJednostek.AddRange(sparsowane.DefiniowaneEnumeracje.SelectMany(o => o.Pola));
 
             listaParsowanychJednostek = listaParsowanychJednostek.OrderByDescending(o => o.Poczatek.Wiersz).ToList();
 
@@ -122,7 +127,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             builder.AppendLine($"{poczatek}</summary>");
         }
 
-        private string GenerujSummaryKlasyLubInterfejsu(Obiekt obiekt)
+        private string GenerujSummaryKlasyLubInterfejsu(IZNazwa obiekt)
         {
             var slowa = obiekt.Nazwa.PodzielNaSlowaOdWielkichLiter();
 
@@ -354,6 +359,24 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 GennerujSummary(poczatek, builder, summary);
 
                 solution.AktualnyDokument.WstawWLinii(builder.ToString(), DajNumerLiniiDoWstawienia(property, property.Atrybuty));
+            }
+        }
+
+        private void PrzetworzEnumeracje(Enumeration enumeracja)
+        {
+            if (enumeracja.Dokumentacja == null)
+            {
+                var summary = GenerujSummaryKlasyLubInterfejsu(enumeracja);
+
+                var wciecie = (enumeracja.Poczatek.Kolumna - 1).Spacji();
+
+                var poczatek = $"{wciecie}/// ";
+                var builder = new StringBuilder();
+
+                GennerujSummary(poczatek, builder, summary);
+
+                solution.AktualnyDokument.WstawWLinii(builder.ToString(), DajNumerLiniiDoWstawienia(enumeracja, enumeracja.Atrybuty));
+
             }
         }
 

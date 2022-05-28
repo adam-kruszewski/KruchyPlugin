@@ -185,6 +185,20 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
                 wczytywacz.DajZawartoscPrzykladu("WynikKlasaDokumentacjiZTypuPola.cs"));
         }
 
+        [Test]
+        public void DokumentujeEnumeracje()
+        {
+            //arrange
+            var solution = new SolutionWrapper(wczytywacz.DajZawartoscPrzykladu("EnumeracjaDoDokumentacji.cs"));
+
+            //act
+            new UzupelnianieDokumentacji(solution).Uzupelnij();
+
+            //assert
+            solution.AktualnyDokument.DajZawartosc().Should().Be(
+                wczytywacz.DajZawartoscPrzykladu("WynikEnumeracjaDoDokumentacji.cs"));
+        }
+
         private void PrzygotujKonfiguracjeWgSolutionISzablonu(
             SolutionWrapper solution,
             int jezyk,
