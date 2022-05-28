@@ -50,6 +50,7 @@
     <Compile Include="IZWlascicielemExtensions.cs" />
     <Compile Include="ParserKodu\Atrybut.cs" />
     <Compile Include="ParserKodu\Dokumentacja.cs" />
+    <Compile Include="ParserKodu\Enumeration.cs" />
     <Compile Include="ParserKodu\IZDokumentacja.cs" />
     <Compile Include="ParserKodu\IZKomentarzem.cs" />
     <Compile Include="ParserKodu\IZNawiasamiOtwierajacymiZamykajacymiParametry.cs" />

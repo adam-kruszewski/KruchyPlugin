@@ -9,7 +9,7 @@ using NUnit.Framework;
 namespace KruchyParserKoduTests.Unit
 {
     [TestFixture]
-    class ParsowanieAtrybutowTests
+    public class ParsowanieAtrybutowTests
     {
         Plik parsowane;
         IList<Metoda> metody;
