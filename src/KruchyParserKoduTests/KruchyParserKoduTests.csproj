@@ -26,8 +26,10 @@
     <EmbeddedResource Include="Samples\KlasaZDokumentacjaDoParsowania.cs" />
     <EmbeddedResource Include="Samples\KlasaZParametramiGenerycznymi.cs" />
     <EmbeddedResource Include="Samples\IInterfejsZParametramiGenerycznymi.cs" />
+    <EmbeddedResource Include="Samples\EnumerationDoParsowania.cs" />
     <Compile Include="Unit\ParsowanieAtrybutowTests.cs" />
     <Compile Include="Unit\ParsowanieDokumentacjiTests.cs" />
+    <Compile Include="Unit\ParsowanieEnumerationTests.cs" />
     <Compile Include="Unit\ParsowanieInterfejsuTests.cs" />
     <Compile Include="Unit\ParsowanieKlasyNadklasIInterfejsowTests.cs" />
     <Compile Include="Unit\ParsowanieKlasyTests.cs" />
@@ -51,6 +53,10 @@
 
   <ItemGroup>
     <Folder Include="Properties\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
 
 </Project>

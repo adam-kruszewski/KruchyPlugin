@@ -5,12 +5,14 @@ namespace KruchyParserKodu.ParserKodu
 {
     public class Obiekt
         : ParsowanaJednostka
-            , IZPoczatkowaIKoncowaKlamerka
-                , IZWlascicielem
-                    , IZKomentarzem
-                        , IZDokumentacja
+            , IZNazwa
+                , IZPoczatkowaIKoncowaKlamerka
+                    , IZWlascicielem
+                        , IZKomentarzem
+                            , IZDokumentacja
     {
-        public RodzajObiektu Rodzaj {
+        public RodzajObiektu Rodzaj
+        {
             get => RodzajObiektuObiekt.RodzajObiektu;
             set
             {

@@ -44,7 +44,33 @@ namespace KruchyParserKodu.Roslyn
                 wynik.DefiniowaneObiekty.Add(ParsujInterfejs(interfaceSyntax));
             }
 
+            var enumeracje = namespaceDeclaration.Members.OfType<EnumDeclarationSyntax>();
+            foreach(var enumSyntax in enumeracje)
+            {
+                wynik.DefiniowaneEnumeracje.Add(ParsujEnumeracje(enumSyntax));
+            }
+
             return wynik;
+        }
+
+        private Enumeration ParsujEnumeracje(EnumDeclarationSyntax enumSyntax)
+        {
+            var definiowanaEnumeracja = new Enumeration();
+            definiowanaEnumeracja.Nazwa = enumSyntax.Identifier.ValueText;
+            UstawPolozenie(enumSyntax.SyntaxTree, definiowanaEnumeracja, enumSyntax);
+
+            UzupelnijPola(definiowanaEnumeracja.Pola, enumSyntax, null);
+
+            UstawPolozeniePoczatkowejKlamerki(definiowanaEnumeracja, enumSyntax.OpenBraceToken);
+            UstawPolozenieKoncowejKlamerki(definiowanaEnumeracja, enumSyntax.CloseBraceToken);
+
+            UzupelnijAtrybuty(enumSyntax.AttributeLists, definiowanaEnumeracja.Atrybuty);
+            UzupelnijModyfikatory(enumSyntax.Modifiers, definiowanaEnumeracja.Modyfikatory);
+
+            ParsujDokumentacje(definiowanaEnumeracja, enumSyntax);
+            ParsujKomentarz(definiowanaEnumeracja, enumSyntax);
+
+            return definiowanaEnumeracja;
         }
 
         private void DisplayHierachy(CompilationUnitSyntax root)
@@ -463,6 +489,27 @@ namespace KruchyParserKodu.Roslyn
                 pola.Add(pole);
             }
         }
+
+
+        private void UzupelnijPola(IList<Pole> pola, EnumDeclarationSyntax klasa, Obiekt wlasciciel)
+        {
+            var deklaracjePol = klasa.Members.OfType<EnumMemberDeclarationSyntax>();
+
+            foreach (var deklarowanePole in deklaracjePol)
+            {
+                var pole = new Pole();
+                pole.Nazwa = deklarowanePole.Identifier.ValueText;
+
+                UstawPolozenie(deklarowanePole.SyntaxTree, pole, deklarowanePole);
+
+                ParsujDokumentacje(pole, deklarowanePole);
+
+                pole.Wlasciciel = wlasciciel;
+
+                pola.Add(pole);
+            }
+        }
+
 
         private void UzupelnijModyfikatory(
             SyntaxTokenList syntax,
