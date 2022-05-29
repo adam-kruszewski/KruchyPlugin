@@ -107,13 +107,13 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
             var schematKlasy = new SchematKlasy();
             schematKlasy.Tresc = "a %KlasaContext%";
             schematKlasy.NazwaPliku = "ADao.cs";
-            schematKlasy.Zmienne.Add(
-                new Zmienna
-                {
-                    BezRozszerzenia = true,
-                    DopasowaniePliku = ".Context.cs",
-                    Symbol = "KlasaContext"
-                });
+            //schematKlasy.Zmienne.Add(
+            //    new Zmienna
+            //    {
+            //        BezRozszerzenia = true,
+            //        DopasowaniePliku = ".Context.cs",
+            //        Symbol = "KlasaContext"
+            //    });
             szablon.SchematyKlas.Add(schematKlasy);
 
             var konf = new KonfiguracjaPlugina.Xml.KruchyPlugin();
