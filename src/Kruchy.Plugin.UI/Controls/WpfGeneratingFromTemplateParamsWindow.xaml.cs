@@ -159,5 +159,15 @@ namespace Kruchy.Plugin.UI.Controls
 
             Close();
         }
+
+        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            var newHeight = TreeViewSelectDirectory.Height + (e.NewSize.Height - e.PreviousSize.Height);
+
+            if (newHeight > TreeViewSelectDirectory.MaxHeight)
+                newHeight = TreeViewSelectDirectory.MaxHeight;
+
+            TreeViewSelectDirectory.Height = newHeight;
+        }
     }
 }

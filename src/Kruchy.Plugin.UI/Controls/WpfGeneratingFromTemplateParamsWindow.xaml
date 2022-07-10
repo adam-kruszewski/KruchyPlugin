@@ -6,42 +6,46 @@
              xmlns:local="clr-namespace:Kruchy.Plugin.UI.Controls"
              mc:Ignorable="d" d:DesignWidth="496.957" 
             WindowStartupLocation="CenterScreen"
-            SizeToContent="WidthAndHeight"
+            SizeToContent="Manual"
             Title="Parametry generowania z szablonu" 
-            MinWidth="500" Height="800" MaxHeight="800" MinHeight="400"
+            Width="510" MinWidth="500" MaxWidth="800"
+            Height="800" MaxHeight="800" MinHeight="420"
+            SizeChanged="Window_SizeChanged"
             xmlns:self="clr-namespace:Kruchy.Plugin.UI.Controls.Models">
-    <StackPanel Orientation="Vertical" Margin="4" VerticalAlignment="Stretch">
-        <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible">
-            <TreeView x:Name="TreeViewSelectDirectory" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
-                          HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MinHeight="300" ScrollViewer.VerticalScrollBarVisibility="Visible">
-                <TreeView.ItemTemplate>
-                    <HierarchicalDataTemplate DataType="{x:Type self:PlaceInSolutionItem}" ItemsSource="{Binding Items}">
-                        <TextBlock Text="{Binding Title}" />
-                    </HierarchicalDataTemplate>
-                </TreeView.ItemTemplate>
-                <TreeView.ItemContainerStyle>
-                    <Style TargetType="TreeViewItem">
-                        <Setter Property="IsExpanded" Value="true" />
-                    </Style>
-                </TreeView.ItemContainerStyle>
-            </TreeView>
-        </ScrollViewer>
+    <StackPanel Orientation="Vertical" Margin="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <TreeView x:Name="TreeViewSelectDirectory"
+                  MinHeight="300"
+                  MaxHeight="300"
+                  Height="300"
+                  ScrollViewer.VerticalScrollBarVisibility="Visible"
+                  ScrollViewer.CanContentScroll="False">
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate DataType="{x:Type self:PlaceInSolutionItem}" ItemsSource="{Binding Items}">
+                    <TextBlock Text="{Binding Title}" />
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+            <TreeView.ItemContainerStyle>
+                <Style TargetType="TreeViewItem">
+                    <Setter Property="IsExpanded" Value="true" />
+                </Style>
+            </TreeView.ItemContainerStyle>
+        </TreeView>
 
-        <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible">
-            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="VariablesGrid" Width="500">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Name="ScrollViewerParameters"
+                      VerticalAlignment="Stretch" HorizontalAlignment="Stretch" MaxHeight="400">
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="VariablesGrid" >
                 <Grid.RowDefinitions>
-                    <!--<RowDefinition Height="30" />-->
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="200" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <!--<TextBlock Grid.Row="0" Grid.Column="0" Text="Nazwa zmiennej" VerticalAlignment="Center"/>
-                <TextBox Grid.Row="0" Grid.Column="1" Text="" Height="25"/>-->
+
             </Grid>
         </ScrollViewer>
 
-        <WrapPanel FlowDirection="RightToLeft" Orientation="Horizontal" Height="80" MinHeight="80" VerticalAlignment="Bottom">
+        <WrapPanel FlowDirection="RightToLeft" Orientation="Horizontal" Height="80" MinHeight="80" VerticalAlignment="Bottom"
+                   Name="ButtonsWrapPanel">
             <Button x:Name="cancelButton" Margin="3" IsCancel="True" Width="60" Height="40" Click="cancelButton_Click">
                 Anuluj
             </Button>
