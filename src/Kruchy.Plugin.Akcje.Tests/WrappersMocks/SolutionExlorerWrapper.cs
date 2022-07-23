@@ -35,5 +35,10 @@ namespace Kruchy.Plugin.Akcje.Tests.WrappersMocks
         public void SelectPath(string sciezka)
         {
         }
+
+        public ISelectionWrapper GetSelection()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

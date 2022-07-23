@@ -65,6 +65,14 @@
 				</Strings>
 			</Menu>
 
+			<Menu guid="guidCommand1PackageCmdSet" id="MenuGenerujPlikContextMenuController" priority="0x1000" type="MenuController">
+				<Parent guid="guidCommand1PackageCmdSet" id="TestContextMenuGroup" />
+				<CommandFlag>DynamicVisibility</CommandFlag>
+				<Strings>
+					<ButtonText>Generuj pliki/klasy kontekstowo</ButtonText>
+				</Strings>
+			</Menu>
+
 		</Menus>
 
 		<!-- Inside this section we have different sub-sections: one for the menus, another
@@ -126,6 +134,10 @@
 
 			<Group guid="guidCommand1PackageCmdSet" id="MenuGenerujPlikControllerGroup" priority="0x4000" >
 				<Parent guid="guidCommand1PackageCmdSet" id="MenuGenerujPlikController" />
+			</Group>
+
+			<Group guid="guidCommand1PackageCmdSet" id="MenuGenerujPlikContextMenuControllerGroup" priority="0x4001">
+				<Parent guid="guidCommand1PackageCmdSet" id="MenuGenerujPlikContextMenuController" />
 			</Group>
 
 			<Group guid="guidCommand1PackageCmdSet" id="TestContextMenuGroup" priority="0x4000" >
@@ -426,6 +438,50 @@
 				<CommandFlag>DefaultDisabled</CommandFlag>
 				<CommandFlag>DynamicVisibility</CommandFlag>
 			</Button>
+
+			<Button guid="guidCommand1PackageCmdSet" id="cmdidTestActionInMenuConextMenu" priority="0x1000" >
+				<Parent guid="guidCommand1PackageCmdSet" id="TestContextMenuGroup" />
+				<!--<Parent guid="guidCommand1PackageCmdSet" id="MenuGenerujPlikContextMenuControllerGroup" />-->
+				<CommandFlag>DynamicItemStart</CommandFlag>
+				<CommandFlag>DynamicVisibility</CommandFlag>
+				<!--<CommandFlag>TextChanges</CommandFlag>-->
+				<Strings>
+					<ButtonText>Generuj pliki ze schematu</ButtonText>
+				</Strings>
+			</Button>
+
+			<!--<Button guid="guidCommand1PackageCmdSet" id="cmdidTestMenuActionInContextMenu" priority="0x1000" >
+				<Parent guid="guidCommand1PackageCmdSet" id="MenuGenerujPlikContextMenuControllerGroup" />
+				<CommandFlag>DynamicItemStart</CommandFlag>
+				<CommandFlag>DynamicVisibility</CommandFlag>
+				--><!--<CommandFlag>TextChanges</CommandFlag>--><!--
+				<Strings>
+					<ButtonText>Akcja w menu</ButtonText>
+				</Strings>
+			</Button>-->
+
+
+			<Button guid="guidCommand1PackageCmdSet" id="cmdidMenuGenerujPlikContextMenuStartCommand" priority="0x1000" >
+				<Parent guid="guidCommand1PackageCmdSet" id="MenuGenerujPlikContextMenuControllerGroup" />
+				<CommandFlag>DynamicItemStart</CommandFlag>
+				<CommandFlag>DynamicVisibility</CommandFlag>
+				<CommandFlag>TextChanges</CommandFlag>
+				<Strings>
+					<ButtonText>START COMMAND</ButtonText>
+				</Strings>
+			</Button>
+
+			<!-- The anchor item to supply the icon/tooltip for the MenuController -->
+			<Button guid="guidCommand1PackageCmdSet" id="cmdidMenuGenerujPlikContextMenuAnchorCommand" priority="0x0000" >
+				<Parent guid="guidCommand1PackageCmdSet" id="MenuGenerujPlikContextMenuControllerGroup" />
+				<CommandFlag>NoShowOnMenuController</CommandFlag>
+				<CommandFlag>FixMenuController</CommandFlag>
+				<CommandFlag>DynamicVisibility</CommandFlag>
+				<Strings>
+					<ButtonText>TEST TEST TEST</ButtonText>
+				</Strings>
+			</Button>
+
 		</Buttons>
 
 		<!--The bitmaps section is used to define the bitmaps that are used for the commands.-->
@@ -520,6 +576,18 @@
 			<IDSymbol name="cmdidSubMenuPodrozowanieGroup" value="0x0182"/>
 			<IDSymbol name="cmdidSubMenuCommand" value="0x0183"/>
 
+			<IDSymbol name="MenuGenerujPlikContextMenuController" value="0x3060"/>
+			<IDSymbol name="MenuGenerujPlikContextMenuControllerGroup" value="0x3061"/>
+			<IDSymbol name="cmdidMenuGenerujPlikContextMenuAnchorCommand" value="0x0343" />
+			<!-- NOTE: The following command expands at run time to some number of ids.
+     Try not to place command ids after it (e.g. 0x0105, 0x0106).
+     If you must add a command id after it, make the gap very large (e.g. 0x200) -->
+			<IDSymbol name="cmdidMenuGenerujPlikContextMenuStartCommand" value="0x0344" />
+
+
+			<IDSymbol name="cmdidTestActionInMenuConextMenu" value="0x0185"/>
+			<IDSymbol name="cmdidTestMenuActionInContextMenu" value="0x0186"/>
+			
 			<IDSymbol name="TestContextMenuAction" value="0x0500"/>
 			<IDSymbol name="TestContextMenuGroup" value="0x0501"/>
 		</GuidSymbol>

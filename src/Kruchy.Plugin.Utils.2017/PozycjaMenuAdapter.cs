@@ -31,15 +31,22 @@ namespace Kruchy.Plugin.Utils._2017
 
         public void Podlacz(IMenuCommandService service, Guid guidKruchyPluginCmdSet)
         {
-            var menuCommandID =
-                new CommandID(guidKruchyPluginCmdSet, (int)pozycjaMenu.MenuCommandID);
-            if (!(pozycjaMenu is IPozycjaMenuDynamicznieRozwijane))
-                MenuItem = new OleMenuCommand(Execute, menuCommandID);
-            else
-                MenuItem = new DynamicItemMenuCommand(
-                    menuCommandID, (IPozycjaMenuDynamicznieRozwijane)pozycjaMenu);
-            MenuItem.BeforeQueryStatus += BeforeQueryStatus;
-            service.AddCommand(MenuItem);
+            try
+            {
+                var menuCommandID =
+                    new CommandID(guidKruchyPluginCmdSet, (int)pozycjaMenu.MenuCommandID);
+                if (!(pozycjaMenu is IPozycjaMenuDynamicznieRozwijane))
+                    MenuItem = new OleMenuCommand(Execute, menuCommandID);
+                else
+                    MenuItem = new DynamicItemMenuCommand(
+                        menuCommandID, (IPozycjaMenuDynamicznieRozwijane)pozycjaMenu);
+                MenuItem.BeforeQueryStatus += BeforeQueryStatus;
+                service.AddCommand(MenuItem);
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
         void BeforeQueryStatus(object sender, EventArgs e)

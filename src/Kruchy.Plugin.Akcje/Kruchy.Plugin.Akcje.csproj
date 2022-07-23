@@ -104,6 +104,7 @@
     <Compile Include="Menu\PozycjaGenerowanieKlasyTestowej.cs" />
     <Compile Include="Menu\PozycjaGenerowanieWidoku.cs" />
     <Compile Include="Menu\PozycjaGenerujPlik.cs" />
+    <Compile Include="Menu\PozycjaGenerujPlikContextMenu.cs" />
     <Compile Include="Menu\PozycjaIdzDoKataloguControllera.cs" />
     <Compile Include="Menu\PozycjaIdzDoKlasyTestowej.cs" />
     <Compile Include="Menu\PozycjaIdzDoPlikuWidoku.cs" />

@@ -35,6 +35,8 @@
         public const uint cmdidMyDynamicStartCommand = 0x0304;
         public const uint cmdidGenerujPlikStartCommand = 0x0324;
 
+        public const uint cmdidMenuGenerujPlikContextMenuStartCommand = 0x0344;
+
         //nowe pozycje
         public const uint TestContextMenuAction = 0x0500;
     };
