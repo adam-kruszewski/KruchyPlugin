@@ -16,7 +16,7 @@ namespace Kruchy.Plugin.Akcje.Tests.WrappersMocks
                 Guid.NewGuid().ToString());
 
             Directory.CreateDirectory(DirectoryPath);
-            pliki = new List<IPlikWrapper>();
+            pliki = new List<IFileWrapper>();
         }
 
         public string Name { get; set; }
@@ -25,32 +25,32 @@ namespace Kruchy.Plugin.Akcje.Tests.WrappersMocks
 
         public string DirectoryPath { get; private set; }
 
-        public void DodajPlik(IPlikWrapper plik)
+        public void DodajPlik(IFileWrapper plik)
         {
             pliki.Add(plik);
         }
 
-        private List<IPlikWrapper> pliki { get; set; }
+        private List<IFileWrapper> pliki { get; set; }
 
-        public IPlikWrapper[] Files { get { return pliki.ToArray(); } }
+        public IFileWrapper[] Files { get { return pliki.ToArray(); } }
 
         public IEnumerable<string> GetFilesFromNamespace(string nazwaNamespace)
         {
             throw new NotImplementedException();
         }
 
-        public IPlikWrapper AddFile(string sciezka)
+        public IFileWrapper AddFile(string sciezka)
         {
             var plik = new PlikWrapper(sciezka);
 
-            plik.Projekt = this;
+            plik.Project = this;
 
             pliki.Add(plik);
 
             return plik;
         }
 
-        public IPlikWrapper DodajPustyPlik(string nazwaWzgledna)
+        public IFileWrapper DodajPustyPlik(string nazwaWzgledna)
         {
             var pelnaSciezka = System.IO.Path.Combine(DirectoryPath, nazwaWzgledna);
             File.WriteAllText(pelnaSciezka, "");

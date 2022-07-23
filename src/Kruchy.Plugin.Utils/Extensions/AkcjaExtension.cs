@@ -10,7 +10,7 @@ namespace Kruchy.Plugin.Utils.Extensions
             if (aktualny == null)
                 return false;
 
-            if (!aktualny.Nazwa.ToLower().EndsWith("controller.cs"))
+            if (!aktualny.Name.ToLower().EndsWith("controller.cs"))
                 return false;
 
             return true;

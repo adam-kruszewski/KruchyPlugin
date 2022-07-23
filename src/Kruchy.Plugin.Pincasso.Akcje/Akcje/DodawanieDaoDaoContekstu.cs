@@ -54,11 +54,11 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
 
             var plikIDao =
                 solution.AktualnyProjekt.
-                    Files.SingleOrDefault(o => o.Nazwa == nazwaInterfejsuDao + ".cs");
+                    Files.SingleOrDefault(o => o.Name == nazwaInterfejsuDao + ".cs");
 
             var plikDao =
                 solution.AktualnyProjekt
-                    .Files.SingleOrDefault(o => o.Nazwa == nazwaKlasyDao + ".cs");
+                    .Files.SingleOrDefault(o => o.Name == nazwaKlasyDao + ".cs");
 
             var sciezkaDoIContext = SzukajSciezkiDoIContext();
             var sciezkaDoContext = SzukajSciezkiDoContext();
@@ -85,15 +85,15 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             string sciezkaDoContext,
             string nazwaInterfejsuDao,
             string nazwaKlasyDao,
-            IPlikWrapper plikIDao,
-            IPlikWrapper plikDao)
+            IFileWrapper plikIDao,
+            IFileWrapper plikDao)
         {
             solutionExplorer.OpenFile(sciezkaDoContext);
 
             var dokument = solution.AktualnyDokument;
 
-            var sparsowaneDao = Parser.ParsujPlik(plikDao.SciezkaPelna);
-            var sparsowaneIDao = Parser.ParsujPlik(plikIDao.SciezkaPelna);
+            var sparsowaneDao = Parser.ParsujPlik(plikDao.FullPath);
+            var sparsowaneIDao = Parser.ParsujPlik(plikIDao.FullPath);
 
             dokument.DodajUsingaJesliTrzeba(sparsowaneDao.Namespace);
             dokument.DodajUsingaJesliTrzeba(sparsowaneIDao.Namespace);
@@ -111,13 +111,13 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             string sciezkaDoIContext,
             string nazwaInterfejsuDao,
             string nazwaKlasyDao,
-            IPlikWrapper plikIDao)
+            IFileWrapper plikIDao)
         {
             solutionExplorer.OpenFile(sciezkaDoIContext);
 
             var dokument = solution.AktualnyDokument;
 
-            var sparsowaneIDao = Parser.ParsujPlik(plikIDao.SciezkaPelna);
+            var sparsowaneIDao = Parser.ParsujPlik(plikIDao.FullPath);
 
             dokument.DodajUsingaJesliTrzeba(sparsowaneIDao.Namespace);
 
@@ -153,21 +153,21 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
         {
             return
                 SzukajWgWyrazeniaRegularnego("(.)*Context.cs")
-                    .OrderBy(o => o.Nazwa.Length)
+                    .OrderBy(o => o.Name.Length)
                     .FirstOrDefault()
-                        ?.SciezkaPelna;
+                        ?.FullPath;
         }
 
         private string SzukajSciezkiDoIContext()
         {
             return
                 SzukajWgWyrazeniaRegularnego("I(.)*Context.cs")
-                .OrderByDescending(o => o.Nazwa.Length)
+                .OrderByDescending(o => o.Name.Length)
                     .FirstOrDefault()
-                        ?.SciezkaPelna;
+                        ?.FullPath;
         }
 
-        private IEnumerable<IPlikWrapper> SzukajWgWyrazeniaRegularnego(string wyrazenie)
+        private IEnumerable<IFileWrapper> SzukajWgWyrazeniaRegularnego(string wyrazenie)
         {
             return
                 solution
@@ -176,10 +176,10 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
                             .Where(o => PasujeDoWyrazenia(o, wyrazenie));
         }
 
-        private bool PasujeDoWyrazenia(IPlikWrapper o, string wyrazenie)
+        private bool PasujeDoWyrazenia(IFileWrapper o, string wyrazenie)
         {
             var regex = new Regex(wyrazenie);
-            return regex.Match(o.Nazwa).Success;
+            return regex.Match(o.Name).Success;
         }
     }
 }

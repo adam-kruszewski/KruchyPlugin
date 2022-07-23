@@ -41,7 +41,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Menu
         public void Execute(object sender, EventArgs args)
         {
             var nazwaPlikuDoWalidacji =
-                solution.AktualnyPlik.NazwaBezRozszerzenia;
+                solution.AktualnyPlik.NameWithoutExtension;
             var dialog = new NazwaKlasyWindow();
             dialog.EtykietaNazwyPliku = "Nazwa klasy implementacji walidatora";
             dialog.InicjalnaWartosc = nazwaPlikuDoWalidacji + "Validator";

@@ -24,7 +24,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
         public void Generuj(string nazwaKlasy)
         {
             var nazwaKlasyWalidowanej =
-                solution.AktualnyPlik.NazwaBezRozszerzenia;
+                solution.AktualnyPlik.NameWithoutExtension;
 
             var parsowane = Parser.Parsuj(solution.AktualnyDokument.GetContent());
             nazwaKlasyWalidowanej = parsowane.DefiniowaneObiekty[0].Nazwa;
@@ -115,7 +115,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
 
         private string DajNamespaceImplementacji()
         {
-            return solution.AktualnyPlik.Projekt.Name + ".Validation.Impl";
+            return solution.AktualnyPlik.Project.Name + ".Validation.Impl";
         }
 
         private string GenerujZawartoscInterfejsu(
@@ -141,7 +141,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
 
         private string DajNamespaceInterfejsu()
         {
-            return solution.AktualnyPlik.Projekt.Name + ".Validation";
+            return solution.AktualnyPlik.Project.Name + ".Validation";
         }
 
     }

@@ -27,7 +27,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
             var parsowane = Parser.Parsuj(solution.AktualnyDokument.GetContent());
 
-            IPlikWrapper plik;
+            IFileWrapper plik;
             if (solution.AktualnyProjekt.Modul())
             {
                 var projektTestow = solution.SzukajProjektuTestowego();
@@ -42,7 +42,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                     DajRdzenNazwyKlasyTestow(parsowane) + "Tests.cs";
 
                 plik = projektTestow.Files
-                        .Where(o => o.Nazwa.ToLower() == nazwaSzukanegoPliku.ToLower())
+                        .Where(o => o.Name.ToLower() == nazwaSzukanegoPliku.ToLower())
                             .FirstOrDefault();
             }
             else
@@ -56,7 +56,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 }
 
                 var nazwaSzukanegoPliku =
-                    solution.AktualnyPlik.NazwaBezRozszerzenia.ToLower()
+                    solution.AktualnyPlik.NameWithoutExtension.ToLower()
                     .Replace("tests", "");
                 plik = SzukajPlikiKlasyTestowanej(projektModulu, nazwaSzukanegoPliku);
                 if (plik == null)
@@ -109,13 +109,13 @@ namespace Kruchy.Plugin.Akcje.Akcje
             return false;
         }
 
-        private static IPlikWrapper SzukajPlikiKlasyTestowanej(
+        private static IFileWrapper SzukajPlikiKlasyTestowanej(
             IProjectWrapper projektModulu,
             string nazwaSzukanegoPliku)
         {
             return projektModulu
                     .Files
-                        .Where(o => o.NazwaBezRozszerzenia.ToLower() == nazwaSzukanegoPliku.ToLower())
+                        .Where(o => o.NameWithoutExtension.ToLower() == nazwaSzukanegoPliku.ToLower())
                             .FirstOrDefault();
         }
 

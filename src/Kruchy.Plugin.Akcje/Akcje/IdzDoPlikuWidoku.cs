@@ -45,7 +45,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
             var aktualny = solution.AktualnyPlik;
             var nazwaControllera =
-                aktualny.NazwaBezRozszerzenia.DajNazweControllera();
+                aktualny.NameWithoutExtension.DajNazweControllera();
 
             var listaSciezek = new List<string>();
             if (CzyJestWArea(aktualny))
@@ -53,8 +53,8 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 listaSciezek.Add(DajSciezkeWArea(aktualny, nazwaControllera, nazwaPliku));
                 listaSciezek.Add(DajSciezkeSharedWArea(aktualny, nazwaPliku));
             }
-            listaSciezek.Add(DajSciezkeWOgolnych(aktualny.Projekt, nazwaControllera, nazwaPliku));
-            listaSciezek.Add(DajSciezkeSharedWOgolnych(aktualny.Projekt, nazwaPliku));
+            listaSciezek.Add(DajSciezkeWOgolnych(aktualny.Project, nazwaControllera, nazwaPliku));
+            listaSciezek.Add(DajSciezkeSharedWOgolnych(aktualny.Project, nazwaPliku));
 
             foreach (var sciezka in listaSciezek)
             {
@@ -71,7 +71,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         }
 
         private void SprobujStworzyc(
-            IPlikWrapper aktualny,
+            IFileWrapper aktualny,
             List<string> listaSciezek,
             string nazwaPliku)
         {
@@ -84,7 +84,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 var sciezka = listaSciezek.First();
                 UtworzKatalogDlaSciezkiJesliTrzeba(sciezka);
                 File.WriteAllText(sciezka, "", Encoding.UTF8);
-                aktualny.Projekt.AddFile(sciezka);
+                aktualny.Project.AddFile(sciezka);
                 solutionExplorer.OpenFile(sciezka);
             }
         }
@@ -122,11 +122,11 @@ namespace Kruchy.Plugin.Akcje.Akcje
         }
 
         private string DajSciezkeWArea(
-            IPlikWrapper aktualny,
+            IFileWrapper aktualny,
             string nazwaControllera,
             string nazwaPliku)
         {
-            var katalogWArea = Directory.GetParent(aktualny.Katalog);
+            var katalogWArea = Directory.GetParent(aktualny.Directory);
             var sciezkaDoPliku =
                 Path.Combine(
                     katalogWArea.FullName,
@@ -136,9 +136,9 @@ namespace Kruchy.Plugin.Akcje.Akcje
             return sciezkaDoPliku;
         }
 
-        private string DajSciezkeSharedWArea(IPlikWrapper aktualny, string nazwaPliku)
+        private string DajSciezkeSharedWArea(IFileWrapper aktualny, string nazwaPliku)
         {
-            var katalogWArea = Directory.GetParent(aktualny.Katalog);
+            var katalogWArea = Directory.GetParent(aktualny.Directory);
             var sciezkaDoPliku =
                 Path.Combine(
                     katalogWArea.FullName,
@@ -148,9 +148,9 @@ namespace Kruchy.Plugin.Akcje.Akcje
             return sciezkaDoPliku;
         }
 
-        private bool CzyJestWArea(IPlikWrapper aktualny)
+        private bool CzyJestWArea(IFileWrapper aktualny)
         {
-            var elementySciezki = aktualny.SciezkaPelna.Split(
+            var elementySciezki = aktualny.FullPath.Split(
                 System.IO.Path.DirectorySeparatorChar);
             var indeks = elementySciezki.Length - 4;
             if (elementySciezki.Length > 4 &&

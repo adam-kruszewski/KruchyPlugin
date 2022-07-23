@@ -22,12 +22,12 @@ namespace Kruchy.Plugin.Akcje.Akcje
         }
 
         public void Generuj(
-            IPlikWrapper aktualnyPlik,
+            IFileWrapper aktualnyPlik,
             string nazwaKlasyService,
             bool obaWKataloguImpl)
         {
             var aktualny = solution.AktualnyPlik;
-            var projekt = aktualny.Projekt;
+            var projekt = aktualny.Project;
 
             if (aktualny == null)
                 throw new ApplicationException("Nie ma otwartego pliku");
@@ -72,8 +72,8 @@ namespace Kruchy.Plugin.Akcje.Akcje
             var plikImpl = projekt.AddFile(pelnaSciezkaDoImplementacji);
             var plikInt = projekt.AddFile(pelnaSciezkaDoInterfejsu);
 
-            solutionExplorer.OpenFile(plikInt.SciezkaPelna);
-            solutionExplorer.OpenFile(plikImpl.SciezkaPelna);
+            solutionExplorer.OpenFile(plikInt.FullPath);
+            solutionExplorer.OpenFile(plikImpl.FullPath);
         }
 
         private string GenerujPlikImplementacji(

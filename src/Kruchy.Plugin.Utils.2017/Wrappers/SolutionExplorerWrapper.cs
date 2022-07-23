@@ -100,10 +100,10 @@ namespace Kruchy.Plugin.Utils._2017.Wrappers
             dte.ItemOperations.OpenFile(sciezka);
         }
 
-        public void OpenFile(IPlikWrapper plik)
+        public void OpenFile(IFileWrapper plik)
         {
             //ZaladujElementyUI();
-            dte.ItemOperations.OpenFile(plik.SciezkaPelna);
+            dte.ItemOperations.OpenFile(plik.FullPath);
         }
 
         public void SelectPath(string sciezka)

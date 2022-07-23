@@ -10,9 +10,9 @@ namespace Kruchy.Plugin.Utils.Wrappers
 
         string DirectoryPath { get; }
 
-        IPlikWrapper[] Files { get; }
+        IFileWrapper[] Files { get; }
 
-        IPlikWrapper AddFile(string sciezka);
+        IFileWrapper AddFile(string sciezka);
 
         bool ContainsNamespace(string nazwaNamespace);
 

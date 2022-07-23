@@ -50,7 +50,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
 
             solutionExplorer.OpenFile(sciezkaDoXsd);
 
-            if (!aktualnyProjekt.Files.Any(o => o.SciezkaPelna == sciezkaDoXsd))
+            if (!aktualnyProjekt.Files.Any(o => o.FullPath == sciezkaDoXsd))
                 aktualnyProjekt.AddFile(sciezkaDoXsd);
         }
 
@@ -122,11 +122,11 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
                 solution
                     .AktualnyProjekt
                         .Files
-                            .Single(o => o.NazwaBezRozszerzenia == nazwaKlasy);
+                            .Single(o => o.NameWithoutExtension == nazwaKlasy);
 
             var klasaObiektuKolekcjonowanego =
                 Parser
-                    .ParsujPlik(plikZKlasa.SciezkaPelna)
+                    .ParsujPlik(plikZKlasa.FullPath)
                         .DefiniowaneObiekty
                             .Single(o => o.Nazwa == nazwaKlasy);
             return klasaObiektuKolekcjonowanego;

@@ -31,9 +31,9 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 return;
             }
 
-            var parsowane = Parser.Parsuj(aktualnyPlik.Dokument.GetContent());
+            var parsowane = Parser.Parsuj(aktualnyPlik.Document.GetContent());
 
-            var dokument = aktualnyPlik.Dokument;
+            var dokument = aktualnyPlik.Document;
             var aktualnaMetoda =
                 parsowane.SzukajMetodyWLinii(dokument.GetCursorLineNumber());
 

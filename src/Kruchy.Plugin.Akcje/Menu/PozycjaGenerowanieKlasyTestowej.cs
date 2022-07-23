@@ -73,7 +73,7 @@ namespace Kruchy.Plugin.Akcje.Menu
         {
             var projectDirectoryPath = solution.AktualnyProjekt.DirectoryPath;
 
-            var fileDirectoryPath = solution.AktualnyPlik.Katalog;
+            var fileDirectoryPath = solution.AktualnyPlik.Directory;
 
             var result = fileDirectoryPath.Replace(projectDirectoryPath, "");
 

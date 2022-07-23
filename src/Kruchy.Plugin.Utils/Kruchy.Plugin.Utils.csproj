@@ -58,7 +58,7 @@
     <Compile Include="UI\UIObjects.cs" />
     <Compile Include="Wrappers\FileSystemWrapper.cs" />
     <Compile Include="Wrappers\IDocumentWrapper.cs" />
-    <Compile Include="Wrappers\IPlikWrapper.cs" />
+    <Compile Include="Wrappers\IFileWrapper.cs" />
     <Compile Include="Wrappers\IProjectWrapper.cs" />
     <Compile Include="Wrappers\ISolutionExplorerWrapper.cs" />
     <Compile Include="Wrappers\ISolutionWrapper.cs" />

@@ -41,7 +41,7 @@ namespace Kruchy.Plugin.Utils._2017.Wrappers
             }
         }
 
-        public IPlikWrapper AktualnyPlik
+        public IFileWrapper AktualnyPlik
         {
             get
             {
@@ -65,7 +65,7 @@ namespace Kruchy.Plugin.Utils._2017.Wrappers
                 if (plik == null)
                     return null;
 
-                return plik.Projekt;
+                return plik.Project;
             }
         }
 

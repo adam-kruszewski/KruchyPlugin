@@ -24,7 +24,7 @@ namespace Kruchy.Plugin.Akcje.Tests.Utils
 
                 var solution = new SolutionWrapper(projekt, zawartosc);
                 var plik = new PlikWrapper(nazwaZasobuZawartosciAktulnegoPliku, projekt);
-                solution.OtworzPlik(plik.SciezkaPelna);
+                solution.OtworzPlik(plik.FullPath);
 
                 PrzygotujKonfiguracjeWgSolutionISzablonu(solution, akcjaDopasowaniaKonfiguracji);
 

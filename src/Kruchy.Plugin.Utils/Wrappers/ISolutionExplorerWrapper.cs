@@ -4,7 +4,7 @@
     {
         void OpenFile(string sciezka);
 
-        void OpenFile(IPlikWrapper plik);
+        void OpenFile(IFileWrapper plik);
 
         void SelectPath(string sciezka);
     }

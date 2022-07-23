@@ -36,7 +36,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             if (plikTestowany == null)
                 throw new AggregateException("Nie znaleziono pliku testowanego");
 
-            var parserTestowanego = Parser.ParsujPlik(plikTestowany.SciezkaPelna);
+            var parserTestowanego = Parser.ParsujPlik(plikTestowany.FullPath);
 
             var konstruktor = parserTestowanego.DefiniowaneObiekty?.First()?.Konstruktory?.Single();
 
@@ -48,9 +48,9 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
                 DodajPolaMockow(polaMockowDoDodania);
 
-                DodajPoleInstancji(plikTestowany.NazwaBezRozszerzenia);
+                DodajPoleInstancji(plikTestowany.NameWithoutExtension);
 
-                DodajLubZmienMetodeInitialize(polaZTypemZKonstruktora, plikTestowany.NazwaBezRozszerzenia);
+                DodajLubZmienMetodeInitialize(polaZTypemZKonstruktora, plikTestowany.NameWithoutExtension);
 
                 DodajPotrzebneUsingi(polaZTypemZKonstruktora);
             }
@@ -64,11 +64,11 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
             foreach (var poleZTypem in polaZTypemZKonstruktora)
             {
-                var plikZDefinicja = wszystkiePliki.SingleOrDefault(o => o.NazwaBezRozszerzenia == poleZTypem.Item1);
+                var plikZDefinicja = wszystkiePliki.SingleOrDefault(o => o.NameWithoutExtension == poleZTypem.Item1);
 
                 if (plikZDefinicja != null)
                 {
-                    var sparsowane = Parser.ParsujPlik(plikZDefinicja.SciezkaPelna);
+                    var sparsowane = Parser.ParsujPlik(plikZDefinicja.FullPath);
 
                     solution.AktualnyDokument.DodajUsingaJesliTrzeba(sparsowane.Namespace);
                 }

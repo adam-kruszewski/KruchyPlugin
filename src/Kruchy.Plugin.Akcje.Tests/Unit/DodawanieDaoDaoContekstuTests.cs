@@ -28,7 +28,7 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
                 },
                 (solution, projekt, solutionExplorer) =>
                 {
-                    solution.AktualnyPlik.Nazwa.Should().Be("KruchyContext.cs");
+                    solution.AktualnyPlik.Name.Should().Be("KruchyContext.cs");
 
                     var sciezkaDoContext =
                     Path.Combine(projekt.DirectoryPath, "Base", "KruchyContext.cs");
@@ -69,7 +69,7 @@ namespace KruchyProjekt.Base
                     DodajPlikiContekstu(projekt);
                     DodajPlikiDao(projekt);
                     solutionExplorer.OpenFile(
-                        projekt.Files.First(o => o.SciezkaPelna.EndsWith("Dao.cs")));
+                        projekt.Files.First(o => o.FullPath.EndsWith("Dao.cs")));
                 },
                 null);
 

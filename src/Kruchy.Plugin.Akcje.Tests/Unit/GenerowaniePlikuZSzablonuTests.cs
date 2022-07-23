@@ -92,7 +92,7 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
                 {
                     var sciezkaDoPliku =
                         Path.Combine(projekt.DirectoryPath, "PustaKlasaDao.cs");
-                    projekt.Files.Single(o => o.SciezkaPelna == sciezkaDoPliku);
+                    projekt.Files.Single(o => o.FullPath == sciezkaDoPliku);
 
                     File.ReadAllText(sciezkaDoPliku).Should().Be("a");
                 });
@@ -131,7 +131,7 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
                 {
                     var sciezkaDoPliku =
                         Path.Combine(projekt.DirectoryPath, "ADao.cs");
-                    projekt.Files.Single(o => o.SciezkaPelna == sciezkaDoPliku);
+                    projekt.Files.Single(o => o.FullPath == sciezkaDoPliku);
 
                     File.ReadAllText(sciezkaDoPliku).Should().Be("a ModulContext");
                 },
@@ -157,7 +157,7 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
 
                 var solution = new SolutionWrapper(projekt, zawartosc);
                 var plik = new PlikWrapper(nazwaZasobuZawartosciAktulnegoPliku, projekt);
-                solution.OtworzPlik(plik.SciezkaPelna);
+                solution.OtworzPlik(plik.FullPath);
 
                 PrzygotujKonfiguracjeWgSolutionISzablonu(solution, schematGenerowania);
 

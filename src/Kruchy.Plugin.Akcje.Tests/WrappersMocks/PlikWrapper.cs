@@ -6,7 +6,7 @@ using Kruchy.Plugin.Utils.Wrappers;
 
 namespace Kruchy.Plugin.Akcje.Tests.WrappersMocks
 {
-    class PlikWrapper : IPlikWrapper
+    class PlikWrapper : IFileWrapper
     {
         private string sciezkaPelna;
 
@@ -16,30 +16,30 @@ namespace Kruchy.Plugin.Akcje.Tests.WrappersMocks
             IProjectWrapper projekt,
             string zawartosc = null)
         {
-            Nazwa = nazwa;
-            Katalog = Path.Combine(projekt.DirectoryPath, katalog, nazwa);
-            SciezkaWzgledna = Path.Combine(katalog, nazwa);
-            Projekt = projekt;
-            (Projekt as ProjektWrapper).DodajPlik(this);
-            sciezkaPelna = Path.Combine(Katalog, Nazwa);
+            Name = nazwa;
+            Directory = Path.Combine(projekt.DirectoryPath, katalog, nazwa);
+            RelativePath = Path.Combine(katalog, nazwa);
+            Project = projekt;
+            (Project as ProjektWrapper).DodajPlik(this);
+            sciezkaPelna = Path.Combine(Directory, Name);
         }
 
         public PlikWrapper(string sciezkaPelna)
         {
             var fi = new FileInfo(sciezkaPelna);
-            Nazwa = fi.Name;
-            Katalog = fi.DirectoryName;
+            Name = fi.Name;
+            Directory = fi.DirectoryName;
             this.sciezkaPelna = fi.FullName;
         }
 
         public PlikWrapper(string nazwaZasobu, IProjectWrapper projekt)
         {
-            Nazwa = nazwaZasobu;
-            Katalog = projekt.DirectoryPath;
-            SciezkaWzgledna = nazwaZasobu;
-            Projekt = projekt;
-            (Projekt as ProjektWrapper).DodajPlik(this);
-            sciezkaPelna = Path.Combine(Katalog, Nazwa);
+            Name = nazwaZasobu;
+            Directory = projekt.DirectoryPath;
+            RelativePath = nazwaZasobu;
+            Project = projekt;
+            (Project as ProjektWrapper).DodajPlik(this);
+            sciezkaPelna = Path.Combine(Directory, Name);
 
             File.WriteAllText(
                 sciezkaPelna,
@@ -47,33 +47,33 @@ namespace Kruchy.Plugin.Akcje.Tests.WrappersMocks
                 Encoding.UTF8);
         }
 
-        public string Nazwa { get; set; }
+        public string Name { get; set; }
 
-        public string NazwaBezRozszerzenia
+        public string NameWithoutExtension
         {
             get
             {
-                var indekskropki = Nazwa.LastIndexOf(".");
+                var indekskropki = Name.LastIndexOf(".");
                 if (indekskropki > 0)
-                    return Nazwa.Substring(0, indekskropki);
+                    return Name.Substring(0, indekskropki);
                 else
-                    return Nazwa;
+                    return Name;
             }
         }
 
-        public string SciezkaPelna { get { return sciezkaPelna; } }
+        public string FullPath { get { return sciezkaPelna; } }
 
-        public string Katalog { get; set; }
+        public string Directory { get; set; }
 
-        public string SciezkaWzgledna { get; set; }
+        public string RelativePath { get; set; }
 
-        public IProjectWrapper Projekt { get; set; }
+        public IProjectWrapper Project { get; set; }
 
-        public IDocumentWrapper Dokument => throw new NotImplementedException();
+        public IDocumentWrapper Document => throw new NotImplementedException();
 
         public override string ToString()
         {
-            return string.Format("{0} [{1}]", Nazwa, Katalog);
+            return string.Format("{0} [{1}]", Name, Directory);
         }
     }
 }

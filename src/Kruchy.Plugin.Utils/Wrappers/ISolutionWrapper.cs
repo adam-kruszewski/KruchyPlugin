@@ -10,7 +10,7 @@ namespace Kruchy.Plugin.Utils.Wrappers
 
         string Katalog { get; }
 
-        IPlikWrapper AktualnyPlik { get; }
+        IFileWrapper AktualnyPlik { get; }
 
         IProjectWrapper AktualnyProjekt { get; }
 

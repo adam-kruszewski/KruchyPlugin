@@ -32,9 +32,9 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 SprobujPrzejscDoInterfejsu(aktualny);
         }
 
-        private bool JestInterfejsem(IPlikWrapper aktualny)
+        private bool JestInterfejsem(IFileWrapper aktualny)
         {
-            var zawartosc = aktualny.Dokument.GetContent();
+            var zawartosc = aktualny.Document.GetContent();
             var parsowane = Parser.Parsuj(zawartosc);
             if (parsowane.DefiniowaneObiekty.Count == 1)
             {
@@ -44,12 +44,12 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 throw new Exception("Brak zdefiniowanego obiektu");
         }
 
-        private void SprobujPrzejscDoImplementacji(IPlikWrapper aktualny)
+        private void SprobujPrzejscDoImplementacji(IFileWrapper aktualny)
         {
-            var parsowane = Parser.Parsuj(aktualny.Dokument.GetContent());
+            var parsowane = Parser.Parsuj(aktualny.Document.GetContent());
             var metoda =
                 parsowane.SzukajMetodyWLinii(
-                    aktualny.Dokument.GetCursorLineNumber());
+                    aktualny.Document.GetCursorLineNumber());
 
             string sciezkaImplementacji = SzukajSciezkiDoImplementacji(aktualny);
             OtworzJesliSciezkaNieNullowa(sciezkaImplementacji);
@@ -79,7 +79,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                     znalezionaMetoda.Poczatek.Kolumna);
         }
 
-        private string SzukajSciezkiDoImplementacji(IPlikWrapper aktualny)
+        private string SzukajSciezkiDoImplementacji(IFileWrapper aktualny)
         {
             var wynik = aktualny.SzukajSciezkiDoImplementacji();
 
@@ -89,13 +89,13 @@ namespace Kruchy.Plugin.Akcje.Akcje
             return wynik;
         }
 
-        private void SprobujPrzejscDoInterfejsu(IPlikWrapper aktualny)
+        private void SprobujPrzejscDoInterfejsu(IFileWrapper aktualny)
         {
             string sciezkaDoInterfejsu = SzukajSciezkiDoInterfejsu(aktualny);
             OtworzJesliSciezkaNieNullowa(sciezkaDoInterfejsu);
         }
 
-        private string SzukajSciezkiDoInterfejsu(IPlikWrapper aktualny)
+        private string SzukajSciezkiDoInterfejsu(IFileWrapper aktualny)
         {
             var wynik = aktualny.SzukajSciezkiDoInterfejsu();
 

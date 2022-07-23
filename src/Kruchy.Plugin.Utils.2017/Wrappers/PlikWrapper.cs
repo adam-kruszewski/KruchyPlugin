@@ -5,7 +5,7 @@ using Kruchy.Plugin.Utils.Wrappers;
 namespace Kruchy.Plugin.Utils._2017.Wrappers
 {
 #pragma warning disable VSTHRD010
-    public class PlikWrapper : IPlikWrapper
+    public class PlikWrapper : IFileWrapper
     {
         private Document document;
         private ProjectItem projectItem;
@@ -20,7 +20,7 @@ namespace Kruchy.Plugin.Utils._2017.Wrappers
             this.projectItem = projectItem;
         }
 
-        public string Nazwa
+        public string Name
         {
             get
             {
@@ -33,19 +33,19 @@ namespace Kruchy.Plugin.Utils._2017.Wrappers
             }
         }
 
-        public string NazwaBezRozszerzenia
+        public string NameWithoutExtension
         {
             get
             {
-                var index = Nazwa.LastIndexOf('.');
+                var index = Name.LastIndexOf('.');
                 if (index < 0)
-                    return Nazwa;
+                    return Name;
                 else
-                    return Nazwa.Substring(0, index);
+                    return Name.Substring(0, index);
             }
         }
 
-        public string SciezkaPelna
+        public string FullPath
         {
             get
             {
@@ -59,28 +59,28 @@ namespace Kruchy.Plugin.Utils._2017.Wrappers
             }
         }
 
-        public string Katalog
+        public string Directory
         {
             get
             {
-                var fi = new FileInfo(SciezkaPelna);
+                var fi = new FileInfo(FullPath);
                 return fi.DirectoryName;
             }
         }
 
-        public string SciezkaWzgledna
+        public string RelativePath
         {
             get
             {
-                var p = SciezkaPelna;
+                var p = FullPath;
 
-                var katalogProjektu = Projekt.DirectoryPath;
+                var katalogProjektu = Project.DirectoryPath;
                 p = p.Replace(katalogProjektu, "");
                 return p;
             }
         }
 
-        public IProjectWrapper Projekt
+        public IProjectWrapper Project
         {
             get
             {
@@ -94,7 +94,7 @@ namespace Kruchy.Plugin.Utils._2017.Wrappers
             }
         }
 
-        public IDocumentWrapper Dokument
+        public IDocumentWrapper Document
         {
             get
             {
@@ -105,7 +105,7 @@ namespace Kruchy.Plugin.Utils._2017.Wrappers
 
         public override string ToString()
         {
-            return string.Format("{0} [{1}]", Nazwa, Katalog);
+            return string.Format("{0} [{1}]", Name, Directory);
         }
     }
 }

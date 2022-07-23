@@ -155,9 +155,9 @@ namespace Kruchy.Plugin.Akcje.Akcje
             wynik["NAZWA_KLASY"] = DajNazweKlasy(sparsowane);
             wynik["NAZWA_PROJEKTU"] = solution.AktualnyProjekt.Name.Replace(".csproj", "");
             wynik["NAMESPACE_KLASY"] = sparsowane.Namespace;
-            wynik["NAZWA_PLIKU"] = solution.AktualnyPlik.Nazwa;
+            wynik["NAZWA_PLIKU"] = solution.AktualnyPlik.Name;
             wynik["NAZWA_PLIKU_BEZ_ROZSZERZENIA"] =
-                solution.AktualnyPlik.NazwaBezRozszerzenia;
+                solution.AktualnyPlik.NameWithoutExtension;
             wynik["WYBRANA_SCIEZKA"] = wybranaSciezka;
             var sciezkaWProjekcie = DajSciezkeWProjekcie(wybranaSciezka, wybranyProjekt);
             wynik["SCIEZKA_W_PROJEKCIE"] = sciezkaWProjekcie;
@@ -182,11 +182,11 @@ namespace Kruchy.Plugin.Akcje.Akcje
             return wynik;
         }
 
-        private bool PasujePlik(IPlikWrapper plik, string dopasowaniePliku)
+        private bool PasujePlik(IFileWrapper plik, string dopasowaniePliku)
         {
             var regex = new Regex(dopasowaniePliku);
 
-            var match = regex.Match(plik.SciezkaPelna);
+            var match = regex.Match(plik.FullPath);
 
             return match.Success;
         }

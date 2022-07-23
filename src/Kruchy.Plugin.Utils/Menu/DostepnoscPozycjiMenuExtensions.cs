@@ -26,7 +26,7 @@ namespace Kruchy.Plugin.Utils.Menu
             if (o == WymaganieDostepnosci.DomainObject)
             {
                 var aktualnyPlik = solution.AktualnyPlik;
-                var di = new DirectoryInfo(aktualnyPlik.Katalog);
+                var di = new DirectoryInfo(aktualnyPlik.Directory);
                 if (di.Name.ToLower() != "domain")
                     return false;
             }
@@ -42,7 +42,7 @@ namespace Kruchy.Plugin.Utils.Menu
             }
             if (o == WymaganieDostepnosci.KlasaTestowa)
             {
-                return solution.AktualnyPlik.Nazwa.ToLower().EndsWith("tests.cs");
+                return solution.AktualnyPlik.Name.ToLower().EndsWith("tests.cs");
             }
             if (o == WymaganieDostepnosci.PlikCs)
             {
@@ -50,7 +50,7 @@ namespace Kruchy.Plugin.Utils.Menu
             }
             if (o == WymaganieDostepnosci.Controller)
             {
-                return solution.AktualnyPlik.Nazwa.ToLower().EndsWith("controller.cs");
+                return solution.AktualnyPlik.Name.ToLower().EndsWith("controller.cs");
             }
 
             if (o == WymaganieDostepnosci.Klasa)
@@ -71,23 +71,23 @@ namespace Kruchy.Plugin.Utils.Menu
 
             if (o == WymaganieDostepnosci.Builder)
             {
-                return solution.AktualnyPlik.Nazwa.ToLower().EndsWith("builder.cs");
+                return solution.AktualnyPlik.Name.ToLower().EndsWith("builder.cs");
             }
 
             if (o == WymaganieDostepnosci.WidokCshtml)
             {
-                return solution.AktualnyPlik.Nazwa.ToLower().EndsWith(".cshtml");
+                return solution.AktualnyPlik.Name.ToLower().EndsWith(".cshtml");
             }
 
             if (o == WymaganieDostepnosci.PlikDao)
-                return solution.AktualnyPlik.NazwaBezRozszerzenia.EndsWith("Dao");
+                return solution.AktualnyPlik.NameWithoutExtension.EndsWith("Dao");
 
             return true;
         }
 
         private static bool PlikCs(ISolutionWrapper solution)
         {
-            return solution.AktualnyPlik.Nazwa.ToLower().EndsWith(".cs");
+            return solution.AktualnyPlik.Name.ToLower().EndsWith(".cs");
         }
 
         private static Plik Parsuj(ISolutionWrapper solution)

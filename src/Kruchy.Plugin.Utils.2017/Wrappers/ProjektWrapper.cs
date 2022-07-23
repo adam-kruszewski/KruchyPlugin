@@ -28,11 +28,11 @@ namespace Kruchy.Plugin.Utils._2017.Wrappers
             }
         }
 
-        public IPlikWrapper[] Files
+        public IFileWrapper[] Files
         {
             get
             {
-                var listaPlikow = new List<IPlikWrapper>();
+                var listaPlikow = new List<IFileWrapper>();
                 foreach (ProjectItem pi in project.ProjectItems)
                 {
                     SzukajPlikow(listaPlikow, pi);
@@ -42,7 +42,7 @@ namespace Kruchy.Plugin.Utils._2017.Wrappers
         }
 
         private void SzukajPlikow(
-            List<IPlikWrapper> listaPlikow,
+            List<IFileWrapper> listaPlikow,
             ProjectItem pi)
         {
             if (JestPlikiemWProjekcie(pi))
@@ -64,7 +64,7 @@ namespace Kruchy.Plugin.Utils._2017.Wrappers
             return true;
         }
 
-        public IPlikWrapper AddFile(string sciezka)
+        public IFileWrapper AddFile(string sciezka)
         {
             return new PlikWrapper(
                 project.ProjectItems.AddFromFile(sciezka));
@@ -82,9 +82,9 @@ namespace Kruchy.Plugin.Utils._2017.Wrappers
             string sciezkaPolozeniaPlikow = BudujSciezke(wzglednyNamespace);
             foreach (var plik in Files)
             {
-                if (plik.SciezkaPelna.ToLower()
+                if (plik.FullPath.ToLower()
                     .StartsWith(sciezkaPolozeniaPlikow.ToLower()))
-                    yield return plik.SciezkaPelna;
+                    yield return plik.FullPath;
             }
         }
 

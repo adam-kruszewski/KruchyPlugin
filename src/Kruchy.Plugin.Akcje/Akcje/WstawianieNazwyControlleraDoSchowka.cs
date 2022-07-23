@@ -31,7 +31,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             {
                 if (solution.AktualnyPlik == null)
                     return;
-                var fi = new FileInfo(solution.AktualnyPlik.SciezkaPelna);
+                var fi = new FileInfo(solution.AktualnyPlik.FullPath);
                 if (fi.Extension.ToLower() == ".cshtml")
                     Clipboard.SetText(fi.DirectoryName);
             }

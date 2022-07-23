@@ -27,9 +27,9 @@ namespace Kruchy.Plugin.Akcje.Tests.WrappersMocks
             solution.OtworzPlik(sciezka);
         }
 
-        public void OpenFile(IPlikWrapper plik)
+        public void OpenFile(IFileWrapper plik)
         {
-            OpenFile(plik.SciezkaPelna);
+            OpenFile(plik.FullPath);
         }
 
         public void SelectPath(string sciezka)

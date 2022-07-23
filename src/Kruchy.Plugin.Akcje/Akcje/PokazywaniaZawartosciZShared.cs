@@ -24,7 +24,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
             var sciezkaWShared =
                 solution.AktualnyProjekt.SciezkaDoPlikuWShared(
-                    solution.AktualnyPlik.Nazwa);
+                    solution.AktualnyPlik.Name);
 
             if (!File.Exists(sciezkaWShared))
             {

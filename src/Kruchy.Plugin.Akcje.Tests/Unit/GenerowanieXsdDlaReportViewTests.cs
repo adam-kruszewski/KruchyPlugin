@@ -58,7 +58,7 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
                 var zawartosc = solution.AktualnyDokument.GetContent();
 
                 zawartosc.Should().Be(wczytywacz.DajZawartoscPrzykladu("ReportViewXsd.xsd"));
-                solution.AktualnyPlik.SciezkaPelna.Should().Be(sciezkaDoXsd);
+                solution.AktualnyPlik.FullPath.Should().Be(sciezkaDoXsd);
             }
         }
     }

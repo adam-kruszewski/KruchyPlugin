@@ -23,15 +23,15 @@ namespace Kruchy.Plugin.Akcje.Akcje
             if (aktualny == null)
                 return;
 
-            if (!aktualny.Nazwa.ToLower().EndsWith("controller.cs"))
+            if (!aktualny.Name.ToLower().EndsWith("controller.cs"))
             {
                 MessageBox.Show("To nie jest plik controllera");
                 return;
             }
             string nazwaControllera =
-                DajNazweControllera(aktualny.NazwaBezRozszerzenia);
+                DajNazweControllera(aktualny.NameWithoutExtension);
 
-            var katalogPlikControllera = aktualny.Katalog;
+            var katalogPlikControllera = aktualny.Directory;
             var katalogDlaControllera =
                 Path.Combine(
                     Directory.GetParent(katalogPlikControllera).FullName,
