@@ -99,6 +99,7 @@
     <Compile Include="Menu\PozycjaDodawanieDokumentacjiDlaPliku.cs" />
     <Compile Include="Menu\PozycjaDodawanieNowegoTestu.cs" />
     <Compile Include="Menu\PozycjaDodawanieUsingow.cs" />
+    <Compile Include="Menu\PozycjaFolderContextTest.cs" />
     <Compile Include="Menu\PozycjaGenerowanieKlasService.cs" />
     <Compile Include="Menu\PozycjaGenerowanieKlasyTestowej.cs" />
     <Compile Include="Menu\PozycjaGenerowanieWidoku.cs" />

@@ -128,6 +128,10 @@
 				<Parent guid="guidCommand1PackageCmdSet" id="MenuGenerujPlikController" />
 			</Group>
 
+			<Group guid="guidCommand1PackageCmdSet" id="TestContextMenuGroup" priority="0x4000" >
+				<Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_FOLDERNODE" />
+			</Group>
+
 		</Groups>
 
 		<!--Buttons section. -->
@@ -413,6 +417,15 @@
 				</Strings>
 			</Button>
 
+			<Button guid="guidCommand1PackageCmdSet" id="TestContextMenuAction" priority="0x0116" type="Button">
+				<Parent guid="guidCommand1PackageCmdSet" id="TestContextMenuGroup" />
+				<Strings>
+					<CommandName>testContextMenuAction</CommandName>
+					<ButtonText>testContextMenuAction</ButtonText>
+				</Strings>
+				<CommandFlag>DefaultDisabled</CommandFlag>
+				<CommandFlag>DynamicVisibility</CommandFlag>
+			</Button>
 		</Buttons>
 
 		<!--The bitmaps section is used to define the bitmaps that are used for the commands.-->
@@ -507,6 +520,8 @@
 			<IDSymbol name="cmdidSubMenuPodrozowanieGroup" value="0x0182"/>
 			<IDSymbol name="cmdidSubMenuCommand" value="0x0183"/>
 
+			<IDSymbol name="TestContextMenuAction" value="0x0500"/>
+			<IDSymbol name="TestContextMenuGroup" value="0x0501"/>
 		</GuidSymbol>
 
 		<GuidSymbol name="guidImages" value="{c1f609e4-7a1f-4a72-860d-6211440e5f9b}" >

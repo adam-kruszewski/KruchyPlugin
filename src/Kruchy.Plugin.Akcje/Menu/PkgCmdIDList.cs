@@ -34,5 +34,8 @@
         //rozwijane menu
         public const uint cmdidMyDynamicStartCommand = 0x0304;
         public const uint cmdidGenerujPlikStartCommand = 0x0324;
+
+        //nowe pozycje
+        public const uint TestContextMenuAction = 0x0500;
     };
 }
