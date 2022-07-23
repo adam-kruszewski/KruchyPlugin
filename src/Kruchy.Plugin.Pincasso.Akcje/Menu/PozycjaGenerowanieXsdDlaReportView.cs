@@ -71,7 +71,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Menu
                         if (wyniki.Count == 1)
                             return
                                 Path.Combine(
-                                    solution.AktualnyProjekt.SciezkaDoKatalogu,
+                                    solution.AktualnyProjekt.DirectoryPath,
                                     wyniki.Single());
                     }
 
@@ -82,7 +82,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Menu
                     if (!string.IsNullOrEmpty(okno.NazwaPliku))
                     {
                         return Path.Combine(
-                            solution.AktualnyProjekt.SciezkaDoKatalogu,
+                            solution.AktualnyProjekt.DirectoryPath,
                             okno.NazwaPliku);
                     }
                     return okno.NazwaPliku;

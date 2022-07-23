@@ -41,7 +41,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 var nazwaSzukanegoPliku =
                     DajRdzenNazwyKlasyTestow(parsowane) + "Tests.cs";
 
-                plik = projektTestow.Pliki
+                plik = projektTestow.Files
                         .Where(o => o.Nazwa.ToLower() == nazwaSzukanegoPliku.ToLower())
                             .FirstOrDefault();
             }
@@ -110,11 +110,11 @@ namespace Kruchy.Plugin.Akcje.Akcje
         }
 
         private static IPlikWrapper SzukajPlikiKlasyTestowanej(
-            IProjektWrapper projektModulu,
+            IProjectWrapper projektModulu,
             string nazwaSzukanegoPliku)
         {
             return projektModulu
-                    .Pliki
+                    .Files
                         .Where(o => o.NazwaBezRozszerzenia.ToLower() == nazwaSzukanegoPliku.ToLower())
                             .FirstOrDefault();
         }

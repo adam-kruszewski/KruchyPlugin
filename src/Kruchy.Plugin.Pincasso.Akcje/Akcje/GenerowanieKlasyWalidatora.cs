@@ -44,7 +44,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             var nazwaPlikuImplementacji = nazwaKlasy + ".cs";
             var nazwaPlikuInterfejsu = "I" + nazwaKlasy + ".cs";
 
-            var sciezkaDoProjektu = solution.AktualnyProjekt.SciezkaDoKatalogu;
+            var sciezkaDoProjektu = solution.AktualnyProjekt.DirectoryPath;
             var pelnaSciezkaDoPlikuImplementacji =
                 Path.Combine(sciezkaDoProjektu, "Validation", "Impl", nazwaPlikuImplementacji);
             var pelnaSciezkaDoPlikuInterfejsu =
@@ -73,8 +73,8 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
                 pelnaSciezkaDoPlikuInterfejsu,
                 zawartoscInterfejsu,
                 Encoding.UTF8);
-            solution.AktualnyProjekt.DodajPlik(pelnaSciezkaDoPlikuImplementacji);
-            solution.AktualnyProjekt.DodajPlik(pelnaSciezkaDoPlikuInterfejsu);
+            solution.AktualnyProjekt.AddFile(pelnaSciezkaDoPlikuImplementacji);
+            solution.AktualnyProjekt.AddFile(pelnaSciezkaDoPlikuInterfejsu);
 
             solutionExplorer.OpenFile(pelnaSciezkaDoPlikuInterfejsu);
             solutionExplorer.OpenFile(pelnaSciezkaDoPlikuImplementacji);
@@ -115,7 +115,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
 
         private string DajNamespaceImplementacji()
         {
-            return solution.AktualnyPlik.Projekt.Nazwa + ".Validation.Impl";
+            return solution.AktualnyPlik.Projekt.Name + ".Validation.Impl";
         }
 
         private string GenerujZawartoscInterfejsu(
@@ -141,7 +141,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
 
         private string DajNamespaceInterfejsu()
         {
-            return solution.AktualnyPlik.Projekt.Nazwa + ".Validation";
+            return solution.AktualnyPlik.Projekt.Name + ".Validation";
         }
 
     }

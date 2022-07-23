@@ -44,7 +44,7 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
                 projekt =>
                 {
                     var sciezkaDoPliku =
-                        Path.Combine(projekt.SciezkaDoKatalogu, schematKlasy.NazwaPliku);
+                        Path.Combine(projekt.DirectoryPath, schematKlasy.NazwaPliku);
 
                     File.ReadAllText(sciezkaDoPliku).Should().Be(schematKlasy.Tresc);
                 });
@@ -67,7 +67,7 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
                 projekt =>
                 {
                     var sciezkaDoPliku =
-                        Path.Combine(projekt.SciezkaDoKatalogu, schematKlasy.NazwaPliku);
+                        Path.Combine(projekt.DirectoryPath, schematKlasy.NazwaPliku);
 
                     File.ReadAllText(sciezkaDoPliku).Should().Be(
                         "a PustaKlasa b Kruchy.Plugin.Akcje.Tests.Samples c PustaKlasa.cs d PustaKlasa");
@@ -91,8 +91,8 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
                 projekt =>
                 {
                     var sciezkaDoPliku =
-                        Path.Combine(projekt.SciezkaDoKatalogu, "PustaKlasaDao.cs");
-                    projekt.Pliki.Single(o => o.SciezkaPelna == sciezkaDoPliku);
+                        Path.Combine(projekt.DirectoryPath, "PustaKlasaDao.cs");
+                    projekt.Files.Single(o => o.SciezkaPelna == sciezkaDoPliku);
 
                     File.ReadAllText(sciezkaDoPliku).Should().Be("a");
                 });
@@ -130,8 +130,8 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
                 projekt =>
                 {
                     var sciezkaDoPliku =
-                        Path.Combine(projekt.SciezkaDoKatalogu, "ADao.cs");
-                    projekt.Pliki.Single(o => o.SciezkaPelna == sciezkaDoPliku);
+                        Path.Combine(projekt.DirectoryPath, "ADao.cs");
+                    projekt.Files.Single(o => o.SciezkaPelna == sciezkaDoPliku);
 
                     File.ReadAllText(sciezkaDoPliku).Should().Be("a ModulContext");
                 },
@@ -145,7 +145,7 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
         private void UruchomTest(
             string nazwaZasobuZawartosciAktulnegoPliku,
             SchematGenerowania schematGenerowania,
-            Action<IProjektWrapper> akcjaAssert,
+            Action<IProjectWrapper> akcjaAssert,
             Action<SolutionWrapper, ProjektWrapper> akcjaDopasowaniaArrange = null)
         {
             using (var projekt = new ProjektWrapper("kruchy.projekt1"))

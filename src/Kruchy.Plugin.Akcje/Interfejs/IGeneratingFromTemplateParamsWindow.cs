@@ -7,9 +7,9 @@ namespace Kruchy.Plugin.Akcje.Interfejs
     {
         string Directory { get; set; }
 
-        IProjektWrapper SelectedProject { get; }
+        IProjectWrapper SelectedProject { get; }
 
-        IEnumerable<IProjektWrapper> Projects { set; }
+        IEnumerable<IProjectWrapper> Projects { set; }
 
         IEnumerable<VariableToFill> VariablesToFill { set; }
 

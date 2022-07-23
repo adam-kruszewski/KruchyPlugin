@@ -25,11 +25,11 @@ namespace Kruchy.Plugin.Akcje.Utils
         }
 
         private static IPlikWrapper SzukajPlikuKlasyTestowanej(
-            IProjektWrapper projektModulu,
+            IProjectWrapper projektModulu,
             string nazwaSzukanegoPliku)
         {
             return projektModulu
-                    .Pliki
+                    .Files
                         .Where(o => o.NazwaBezRozszerzenia.ToLower() == nazwaSzukanegoPliku.ToLower())
                             .FirstOrDefault();
         }

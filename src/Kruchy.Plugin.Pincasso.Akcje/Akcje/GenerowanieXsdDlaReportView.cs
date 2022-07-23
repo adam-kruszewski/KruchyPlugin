@@ -50,8 +50,8 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
 
             solutionExplorer.OpenFile(sciezkaDoXsd);
 
-            if (!aktualnyProjekt.Pliki.Any(o => o.SciezkaPelna == sciezkaDoXsd))
-                aktualnyProjekt.DodajPlik(sciezkaDoXsd);
+            if (!aktualnyProjekt.Files.Any(o => o.SciezkaPelna == sciezkaDoXsd))
+                aktualnyProjekt.AddFile(sciezkaDoXsd);
         }
 
         private void UzupelnijDefinicjeWgKlasy(
@@ -121,7 +121,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             var plikZKlasa =
                 solution
                     .AktualnyProjekt
-                        .Pliki
+                        .Files
                             .Single(o => o.NazwaBezRozszerzenia == nazwaKlasy);
 
             var klasaObiektuKolekcjonowanego =
@@ -257,7 +257,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
 
             ZapiszDokument(nowyDokument, sciezkaDoXsd);
 
-            solution.AktualnyProjekt.DodajPlik(sciezkaDoXsd);
+            solution.AktualnyProjekt.AddFile(sciezkaDoXsd);
 
             return nowyDokument;
         }

@@ -7,7 +7,7 @@ namespace Kruchy.Plugin.Akcje.Utils
 {
     public static class SolutionWrapperExtensions
     {
-        public static IProjektWrapper SzukajProjektuTestowego(
+        public static IProjectWrapper SzukajProjektuTestowego(
             this ISolutionWrapper solution)
         {
             var konfiguracja = Konfiguracja.GetInstance(solution);
@@ -16,18 +16,18 @@ namespace Kruchy.Plugin.Akcje.Utils
             {
                 var powiazanie =
                     konfiguracja?.PowiazaniaProjektowTestowych
-                    ?.FirstOrDefault(o => o.NazwaProjektu == solution.AktualnyProjekt.Nazwa);
+                    ?.FirstOrDefault(o => o.NazwaProjektu == solution.AktualnyProjekt.Name);
 
                 if (powiazanie != null)
-                    return solution.Projekty.Single(o => o.Nazwa == powiazanie.NazwaProjektuTestowego);
+                    return solution.Projekty.Single(o => o.Name == powiazanie.NazwaProjektuTestowego);
             }
 
-            var nazwaSzukanegoProjektu = solution.AktualnyProjekt.Nazwa + ".Tests";
+            var nazwaSzukanegoProjektu = solution.AktualnyProjekt.Name + ".Tests";
             var projektTestow = solution.SzukajProjektuWgNazwy(nazwaSzukanegoProjektu);
             return projektTestow;
         }
 
-        public static IProjektWrapper SzukajProjektuModulu(
+        public static IProjectWrapper SzukajProjektuModulu(
             this ISolutionWrapper solution)
         {
             var konfiguracja = Konfiguracja.GetInstance(solution);
@@ -36,16 +36,16 @@ namespace Kruchy.Plugin.Akcje.Utils
             {
                 var powiazanie =
                     konfiguracja?.PowiazaniaProjektowTestowych
-                    ?.FirstOrDefault(o => o.NazwaProjektuTestowego == solution.AktualnyProjekt.Nazwa);
+                    ?.FirstOrDefault(o => o.NazwaProjektuTestowego == solution.AktualnyProjekt.Name);
 
                 if (powiazanie != null)
                 {
-                    return solution.Projekty.Single(o => o.Nazwa == powiazanie.NazwaProjektu);
+                    return solution.Projekty.Single(o => o.Name == powiazanie.NazwaProjektu);
                 }
             }
 
             var nazwaSzukanegoProjektu =
-                solution.AktualnyProjekt.Nazwa.Replace(".Tests", "");
+                solution.AktualnyProjekt.Name.Replace(".Tests", "");
             return solution.SzukajProjektuWgNazwy(nazwaSzukanegoProjektu);
         }
     }

@@ -23,31 +23,31 @@ namespace Kruchy.Plugin.UI.Controls
             InitializeComponent();
         }
 
-        public IEnumerable<IProjektWrapper> Projects
+        public IEnumerable<IProjectWrapper> Projects
         {
             set
             {
-                foreach (var project in value.OrderBy(o => o.Nazwa))
+                foreach (var project in value.OrderBy(o => o.Name))
                     AddProjectTreeItem(project);
             }
         }
 
-        private void AddProjectTreeItem(IProjektWrapper project)
+        private void AddProjectTreeItem(IProjectWrapper project)
         {
             var projectItem = new PlaceInSolutionItem
             {
-                Title = project.Nazwa,
+                Title = project.Name,
                 Project = project,
-                Path = project.SciezkaDoKatalogu,
+                Path = project.DirectoryPath,
             };
 
             TreeViewSelectDirectory.Items.Add(projectItem);
 
-            AddDirectories(project, project.SciezkaDoKatalogu, projectItem);
+            AddDirectories(project, project.DirectoryPath, projectItem);
         }
 
         private void AddDirectories(
-            IProjektWrapper project,
+            IProjectWrapper project,
             string startingDirectory,
             PlaceInSolutionItem parentProjectItem)
         {
@@ -72,7 +72,7 @@ namespace Kruchy.Plugin.UI.Controls
             }
         }
 
-        public IProjektWrapper Project
+        public IProjectWrapper Project
         {
             set
             {
@@ -81,7 +81,7 @@ namespace Kruchy.Plugin.UI.Controls
         }
 
         public string Directory { get; set; }
-        public IProjektWrapper SelectedProject { get; private set; }
+        public IProjectWrapper SelectedProject { get; private set; }
 
         public IEnumerable<VariableToFill> VariablesToFill { set => AddVariableControls(value); }
 

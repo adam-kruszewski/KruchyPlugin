@@ -52,7 +52,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
                 return;
             }
 
-            var katalogBuilderow = Path.Combine(projektTestow.SciezkaDoKatalogu, "Builders");
+            var katalogBuilderow = Path.Combine(projektTestow.DirectoryPath, "Builders");
 
             if (!Directory.Exists(katalogBuilderow))
                 Directory.CreateDirectory(katalogBuilderow);
@@ -74,7 +74,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
                     return;
 
                 File.WriteAllText(sciezkaDoPlikuBuilder, zawartosc, Encoding.UTF8);
-                projektTestow.DodajPlik(sciezkaDoPlikuBuilder);
+                projektTestow.AddFile(sciezkaDoPlikuBuilder);
             }
 
             solutionExplorer.OpenFile(sciezkaDoPlikuBuilder);
@@ -246,7 +246,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
         }
 
         private string GenerujZawartosc(
-            IProjektWrapper projektTestow,
+            IProjectWrapper projektTestow,
             Obiekt obiektDoZbudowania,
             List<WlasciwoscDlaBuildera> wlasciwosciDlaBuildera,
             string nazwaKlasyBuildera,
@@ -254,7 +254,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             string namespaceObiektuBudowanego)
         {
             var plik = new PlikClassBuilder();
-            plik.WNamespace(projektTestow.Nazwa + ".Builders");
+            plik.WNamespace(projektTestow.Name + ".Builders");
             plik.DodajUsing("Pincasso.Core.Tests.Builders");
             plik.DodajUsing(namespaceObiektuBudowanego);
             plik.DodajUsing("Piatka.Infrastructure.Tests.Builders");

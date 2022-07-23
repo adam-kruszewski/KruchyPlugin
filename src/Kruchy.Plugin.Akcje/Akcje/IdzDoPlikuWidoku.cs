@@ -84,7 +84,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 var sciezka = listaSciezek.First();
                 UtworzKatalogDlaSciezkiJesliTrzeba(sciezka);
                 File.WriteAllText(sciezka, "", Encoding.UTF8);
-                aktualny.Projekt.DodajPlik(sciezka);
+                aktualny.Projekt.AddFile(sciezka);
                 solutionExplorer.OpenFile(sciezka);
             }
         }
@@ -97,12 +97,12 @@ namespace Kruchy.Plugin.Akcje.Akcje
         }
 
         private string DajSciezkeWOgolnych(
-            IProjektWrapper projekt,
+            IProjectWrapper projekt,
             string nazwaControllera,
             string nazwaPliku)
         {
             var sciezka = Path.Combine(
-                projekt.SciezkaDoKatalogu,
+                projekt.DirectoryPath,
                 "Views",
                 nazwaControllera,
                 nazwaPliku);
@@ -110,11 +110,11 @@ namespace Kruchy.Plugin.Akcje.Akcje
         }
 
         private string DajSciezkeSharedWOgolnych(
-            IProjektWrapper projekt,
+            IProjectWrapper projekt,
             string nazwaPliku)
         {
             var sciezka = Path.Combine(
-                projekt.SciezkaDoKatalogu,
+                projekt.DirectoryPath,
                 "Views",
                 "Shared",
                 nazwaPliku);

@@ -60,7 +60,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         private void DodajPotrzebneUsingi(IEnumerable<Tuple<string, string>> polaZTypemZKonstruktora)
         {
-            var wszystkiePliki = solution.Projekty.SelectMany(o => o.Pliki);
+            var wszystkiePliki = solution.Projekty.SelectMany(o => o.Files);
 
             foreach (var poleZTypem in polaZTypemZKonstruktora)
             {

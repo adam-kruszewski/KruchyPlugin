@@ -69,8 +69,8 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 GenerujPlikInterfejsu(nazwaKlasyService, projekt, obaWKataloguImpl),
                 Encoding.UTF8);
 
-            var plikImpl = projekt.DodajPlik(pelnaSciezkaDoImplementacji);
-            var plikInt = projekt.DodajPlik(pelnaSciezkaDoInterfejsu);
+            var plikImpl = projekt.AddFile(pelnaSciezkaDoImplementacji);
+            var plikInt = projekt.AddFile(pelnaSciezkaDoInterfejsu);
 
             solutionExplorer.OpenFile(plikInt.SciezkaPelna);
             solutionExplorer.OpenFile(plikImpl.SciezkaPelna);
@@ -78,7 +78,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         private string GenerujPlikImplementacji(
             string nazwaKlasyService,
-            IProjektWrapper projekt)
+            IProjectWrapper projekt)
         {
             var klasaBuilder =
                 new ClassBuilder()
@@ -97,7 +97,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         private string GenerujPlikInterfejsu(
             string nazwaKlasyService,
-            IProjektWrapper projekt,
+            IProjectWrapper projekt,
             bool obaWImpl)
         {
             var interfaceBuilder =
@@ -117,12 +117,12 @@ namespace Kruchy.Plugin.Akcje.Akcje
             return zawartosc;
         }
 
-        private string GenerujNamespace(IProjektWrapper projekt)
+        private string GenerujNamespace(IProjectWrapper projekt)
         {
-            return projekt.Nazwa + ".Services";
+            return projekt.Name + ".Services";
         }
 
-        private string GenerujNamespaceImpl(IProjektWrapper projekt)
+        private string GenerujNamespaceImpl(IProjectWrapper projekt)
         {
             return GenerujNamespace(projekt) + ".Impl";
         }

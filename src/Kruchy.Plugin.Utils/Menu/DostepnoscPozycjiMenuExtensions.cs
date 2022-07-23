@@ -38,7 +38,7 @@ namespace Kruchy.Plugin.Utils.Menu
             {
                 if (solution.AktualnyProjekt == null)
                     return false;
-                return !solution.AktualnyProjekt.Nazwa.ToLower().EndsWith(".tests");
+                return !solution.AktualnyProjekt.Name.ToLower().EndsWith(".tests");
             }
             if (o == WymaganieDostepnosci.KlasaTestowa)
             {

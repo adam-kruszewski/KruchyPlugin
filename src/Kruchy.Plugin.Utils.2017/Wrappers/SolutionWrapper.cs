@@ -57,7 +57,7 @@ namespace Kruchy.Plugin.Utils._2017.Wrappers
             }
         }
 
-        public IProjektWrapper AktualnyProjekt
+        public IProjectWrapper AktualnyProjekt
         {
             get
             {
@@ -83,11 +83,11 @@ namespace Kruchy.Plugin.Utils._2017.Wrappers
 
         public DTE2 DTE { get { return dte; } }
 
-        public IList<IProjektWrapper> Projekty
+        public IList<IProjectWrapper> Projekty
         {
             get
             {
-                var wynik = new List<IProjektWrapper>();
+                var wynik = new List<IProjectWrapper>();
                 var solution = dte.Solution;
                 for (int i = 1; i <= solution.Count; i++)
                 {
@@ -101,7 +101,7 @@ namespace Kruchy.Plugin.Utils._2017.Wrappers
             }
         }
 
-        private void SzukajProjektow(Project p, List<IProjektWrapper> wynik)
+        private void SzukajProjektow(Project p, List<IProjectWrapper> wynik)
         {
             for (int i = 1; i <= p.ProjectItems.Count; i++)
             {
@@ -112,7 +112,7 @@ namespace Kruchy.Plugin.Utils._2017.Wrappers
 
         private void SzukajProjektowWProjectItem(
             ProjectItem pi,
-            List<IProjektWrapper> wynik)
+            List<IProjectWrapper> wynik)
         {
             var itemObject = pi.Object as Project;
             if (itemObject == null)
@@ -134,10 +134,10 @@ namespace Kruchy.Plugin.Utils._2017.Wrappers
             throw new System.NotImplementedException();
         }
 
-        public IProjektWrapper ZnajdzProjekt(string nazwa)
+        public IProjectWrapper ZnajdzProjekt(string nazwa)
         {
             var l = Projekty.ToList();
-            return l.Where(o => o.Nazwa == nazwa).FirstOrDefault();
+            return l.Where(o => o.Name == nazwa).FirstOrDefault();
         }
     }
 }

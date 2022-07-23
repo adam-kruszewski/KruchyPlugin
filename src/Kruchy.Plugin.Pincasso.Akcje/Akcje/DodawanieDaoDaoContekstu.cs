@@ -54,11 +54,11 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
 
             var plikIDao =
                 solution.AktualnyProjekt.
-                    Pliki.SingleOrDefault(o => o.Nazwa == nazwaInterfejsuDao + ".cs");
+                    Files.SingleOrDefault(o => o.Nazwa == nazwaInterfejsuDao + ".cs");
 
             var plikDao =
                 solution.AktualnyProjekt
-                    .Pliki.SingleOrDefault(o => o.Nazwa == nazwaKlasyDao + ".cs");
+                    .Files.SingleOrDefault(o => o.Nazwa == nazwaKlasyDao + ".cs");
 
             var sciezkaDoIContext = SzukajSciezkiDoIContext();
             var sciezkaDoContext = SzukajSciezkiDoContext();
@@ -172,7 +172,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             return
                 solution
                     .AktualnyProjekt
-                        .Pliki
+                        .Files
                             .Where(o => PasujeDoWyrazenia(o, wyrazenie));
         }
 

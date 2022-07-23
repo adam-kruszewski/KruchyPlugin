@@ -31,10 +31,10 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
                     solution.AktualnyPlik.Nazwa.Should().Be("KruchyContext.cs");
 
                     var sciezkaDoContext =
-                    Path.Combine(projekt.SciezkaDoKatalogu, "Base", "KruchyContext.cs");
+                    Path.Combine(projekt.DirectoryPath, "Base", "KruchyContext.cs");
 
                     var sciezkaDoIContext =
-                    Path.Combine(projekt.SciezkaDoKatalogu, "Base", "IKruchyContext.cs");
+                    Path.Combine(projekt.DirectoryPath, "Base", "IKruchyContext.cs");
 
                     solution.AktualnyDokument.DajZawartosc().Should().Be(
 @"using Kruchy.Projekt1.Dao;
@@ -69,7 +69,7 @@ namespace KruchyProjekt.Base
                     DodajPlikiContekstu(projekt);
                     DodajPlikiDao(projekt);
                     solutionExplorer.OpenFile(
-                        projekt.Pliki.First(o => o.SciezkaPelna.EndsWith("Dao.cs")));
+                        projekt.Files.First(o => o.SciezkaPelna.EndsWith("Dao.cs")));
                 },
                 null);
 
@@ -82,7 +82,7 @@ namespace KruchyProjekt.Base
 
         private void DodajPlikiDao(ProjektWrapper projekt)
         {
-            var katalogDao = Path.Combine(projekt.SciezkaDoKatalogu, "Dao");
+            var katalogDao = Path.Combine(projekt.DirectoryPath, "Dao");
             var katalogDaoImpl = Path.Combine(katalogDao, "Impl");
 
             Directory.CreateDirectory(katalogDaoImpl);
@@ -97,7 +97,7 @@ namespace KruchyProjekt.Base
 
             var sciezkDoIDao = Path.Combine(katalogDao, "ISamochodDomainDao.cs");
             File.WriteAllText(sciezkDoIDao, zawartoscIDao);
-            projekt.DodajPlik(sciezkDoIDao);
+            projekt.AddFile(sciezkDoIDao);
 
             var plikDaoImplBuilder =
                 new PlikClassBuilder()
@@ -109,7 +109,7 @@ namespace KruchyProjekt.Base
 
             var sciezkaDoDaoImpl = Path.Combine(katalogDaoImpl, "SamochodDomainDao.cs");
             File.WriteAllText(sciezkaDoDaoImpl, zawartoscDao);
-            projekt.DodajPlik(sciezkaDoDaoImpl);
+            projekt.AddFile(sciezkaDoDaoImpl);
 
         }
 
@@ -128,12 +128,12 @@ namespace KruchyProjekt.Base
             builderContekstu.Append(
 @"    }
 }");
-            var sciezkaDoKataloguZKontekstami = Path.Combine(projekt.SciezkaDoKatalogu, "Base");
+            var sciezkaDoKataloguZKontekstami = Path.Combine(projekt.DirectoryPath, "Base");
             var sciezkaDoContext = Path.Combine(sciezkaDoKataloguZKontekstami, "KruchyContext.cs");
             var sciezkaDoIContext = Path.Combine(sciezkaDoKataloguZKontekstami, "IKruchyContext.cs");
             Directory.CreateDirectory(sciezkaDoKataloguZKontekstami);
             File.WriteAllText(sciezkaDoContext, builderContekstu.ToString(), Encoding.UTF8);
-            projekt.DodajPlik(sciezkaDoContext);
+            projekt.AddFile(sciezkaDoContext);
 
             var builderIContekstu = new StringBuilder();
 
@@ -151,7 +151,7 @@ namespace KruchyProjekt.Base
 }");
 
             File.WriteAllText(sciezkaDoIContext, builderIContekstu.ToString());
-            projekt.DodajPlik(sciezkaDoIContext);
+            projekt.AddFile(sciezkaDoIContext);
         }
 
         private void SprawdzZawartosc(

@@ -35,7 +35,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
             if (projektTestowy == null)
                 throw new ApplicationException(
-                    "Nie ma projektu testowego dla projektu " + solution.AktualnyProjekt.Nazwa);
+                    "Nie ma projektu testowego dla projektu " + solution.AktualnyProjekt.Name);
 
             var nazwaPlikuTestow = nazwaKlasy + ".cs";
             var pelnaSciezka = Path.Combine(
@@ -60,21 +60,21 @@ namespace Kruchy.Plugin.Akcje.Akcje
             Directory.CreateDirectory(fileInfo.Directory.FullName);
 
             File.WriteAllText(pelnaSciezka, zawartosc, Encoding.UTF8);
-            var plik = projektTestowy.DodajPlik(pelnaSciezka);
+            var plik = projektTestowy.AddFile(pelnaSciezka);
 
             solutionExplorer.OpenFile(plik);
         }
 
-        private string DajSciezkeDoKataloguTestow(IProjektWrapper projektTestowy, string katalog)
+        private string DajSciezkeDoKataloguTestow(IProjectWrapper projektTestowy, string katalog)
         {
             if (!string.IsNullOrEmpty(katalog))
-                return Path.Combine(projektTestowy.SciezkaDoKatalogu, katalog);
+                return Path.Combine(projektTestowy.DirectoryPath, katalog);
 
-            return projektTestowy.SciezkaDoKatalogu;
+            return projektTestowy.DirectoryPath;
         }
 
         private string GenerujZawartosc(
-            IProjektWrapper projektTestowy,
+            IProjectWrapper projektTestowy,
             string nazwaKlasy,
             string rodzaj,
             string interfejsTestowany,
@@ -104,16 +104,16 @@ namespace Kruchy.Plugin.Akcje.Akcje
             return namespaceTestowanejKlasy;
         }
 
-        private string DajNamespaceKlastyTestowej(IProjektWrapper projektTestowy, string katalog)
+        private string DajNamespaceKlastyTestowej(IProjectWrapper projektTestowy, string katalog)
         {
             if (!string.IsNullOrEmpty(katalog))
-                return projektTestowy.Nazwa + "." + katalog.Replace("\\", ".").Replace("/", ".");
+                return projektTestowy.Name + "." + katalog.Replace("\\", ".").Replace("/", ".");
 
-            return projektTestowy.Nazwa;
+            return projektTestowy.Name;
         }
 
         private string GenerujZawartoscDynamiczna(
-            IProjektWrapper projektTestowy,
+            IProjectWrapper projektTestowy,
             Konfiguracja konfiguracja,
             string nazwaKlasy,
             string rodzaj,
@@ -131,7 +131,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         }
 
         private string WypelnijZnaczniki(
-            IProjektWrapper projektTestowy,
+            IProjectWrapper projektTestowy,
             KlasaTestowa szablon,
             string nazwaKlasy,
             string interfejsTestowany,
@@ -152,7 +152,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         }
 
         private IDictionary<string, string> PrzygotujWartosciZnacznikow(
-            IProjektWrapper projektTestowy,
+            IProjectWrapper projektTestowy,
             string nazwaKlasy,
             string interfejsTestowany,
             string katalog)

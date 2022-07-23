@@ -5,45 +5,45 @@ namespace Kruchy.Plugin.Utils.Extensions
 {
     public static class ProjektWrapperExtension
     {
-        public static string SciezkaDoService(this IProjektWrapper projekt)
+        public static string SciezkaDoService(this IProjectWrapper projekt)
         {
-            return Path.Combine(projekt.SciezkaDoKatalogu, "Services");
+            return Path.Combine(projekt.DirectoryPath, "Services");
         }
 
-        public static string SciezkaDoServiceImpl(this IProjektWrapper projekt)
+        public static string SciezkaDoServiceImpl(this IProjectWrapper projekt)
         {
             return Path.Combine(SciezkaDoService(projekt), "Impl");
         }
 
-        public static string SciezkaDoUnitTests(this IProjektWrapper projekt)
+        public static string SciezkaDoUnitTests(this IProjectWrapper projekt)
         {
-            return Path.Combine(projekt.SciezkaDoKatalogu, "Unit");
+            return Path.Combine(projekt.DirectoryPath, "Unit");
         }
 
-        public static string SciezkaDoIntegrationTests(this IProjektWrapper projekt)
+        public static string SciezkaDoIntegrationTests(this IProjectWrapper projekt)
         {
-            return Path.Combine(projekt.SciezkaDoKatalogu, "Integration");
+            return Path.Combine(projekt.DirectoryPath, "Integration");
         }
 
-        public static bool Testowy(this IProjektWrapper projekt)
+        public static bool Testowy(this IProjectWrapper projekt)
         {
-            return projekt.Nazwa.ToLower().EndsWith(".tests");
+            return projekt.Name.ToLower().EndsWith(".tests");
         }
 
-        public static bool Modul(this IProjektWrapper projekt)
+        public static bool Modul(this IProjectWrapper projekt)
         {
-            return !projekt.Nazwa.ToLower().EndsWith(".tests");
+            return !projekt.Name.ToLower().EndsWith(".tests");
         }
 
-        public static string KatalogSharedViews(this IProjektWrapper projekt)
+        public static string KatalogSharedViews(this IProjectWrapper projekt)
         {
             return Path.Combine(
-                projekt.SciezkaDoKatalogu,
+                projekt.DirectoryPath,
                 "Views",
                 "Shared");
         }
 
-        public static string SciezkaDoPlikuWShared(this IProjektWrapper projekt, string nazwa)
+        public static string SciezkaDoPlikuWShared(this IProjectWrapper projekt, string nazwa)
         {
             return Path.Combine(
                 projekt.KatalogSharedViews(),

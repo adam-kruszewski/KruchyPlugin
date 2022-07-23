@@ -6,7 +6,7 @@ using Kruchy.Plugin.Utils.Wrappers;
 namespace Kruchy.Plugin.Utils._2017.Wrappers
 {
 #pragma warning disable VSTHRD010
-    public class ProjektWrapper : IProjektWrapper
+    public class ProjektWrapper : IProjectWrapper
     {
         private readonly Project project;
 
@@ -15,20 +15,20 @@ namespace Kruchy.Plugin.Utils._2017.Wrappers
             this.project = project;
         }
 
-        public string Nazwa { get { return project.Name; } }
+        public string Name { get { return project.Name; } }
 
-        public string Sciezka { get { return project.FullName; } }
+        public string Path { get { return project.FullName; } }
 
-        public string SciezkaDoKatalogu
+        public string DirectoryPath
         {
             get
             {
-                FileInfo f = new FileInfo(Sciezka);
+                FileInfo f = new FileInfo(Path);
                 return f.DirectoryName;
             }
         }
 
-        public IPlikWrapper[] Pliki
+        public IPlikWrapper[] Files
         {
             get
             {
@@ -64,23 +64,23 @@ namespace Kruchy.Plugin.Utils._2017.Wrappers
             return true;
         }
 
-        public IPlikWrapper DodajPlik(string sciezka)
+        public IPlikWrapper AddFile(string sciezka)
         {
             return new PlikWrapper(
                 project.ProjectItems.AddFromFile(sciezka));
         }
 
-        public bool NamespaceNalezyDoProjektu(string nazwaNamespace)
+        public bool ContainsNamespace(string nazwaNamespace)
         {
-            return nazwaNamespace.ToLower().StartsWith(Nazwa.ToLower());
+            return nazwaNamespace.ToLower().StartsWith(Name.ToLower());
         }
 
-        public IEnumerable<string> DajPlikiZNamespace(string nazwaNamespace)
+        public IEnumerable<string> GetFilesFromNamespace(string nazwaNamespace)
         {
             var wzglednyNamespace =
-                nazwaNamespace.Substring(Nazwa.Length + 1);
+                nazwaNamespace.Substring(Name.Length + 1);
             string sciezkaPolozeniaPlikow = BudujSciezke(wzglednyNamespace);
-            foreach (var plik in Pliki)
+            foreach (var plik in Files)
             {
                 if (plik.SciezkaPelna.ToLower()
                     .StartsWith(sciezkaPolozeniaPlikow.ToLower()))
@@ -90,12 +90,12 @@ namespace Kruchy.Plugin.Utils._2017.Wrappers
 
         private string BudujSciezke(string wzglednyNamespace)
         {
-            var wynik = SciezkaDoKatalogu;
+            var wynik = DirectoryPath;
             var czesci = wzglednyNamespace.Split('.');
             foreach (var c in czesci)
             {
                 if (Directory.Exists(wynik))
-                    wynik = Path.Combine(wynik, c);
+                    wynik = System.IO.Path.Combine(wynik, c);
                 else
                     wynik += "." + c;
             }

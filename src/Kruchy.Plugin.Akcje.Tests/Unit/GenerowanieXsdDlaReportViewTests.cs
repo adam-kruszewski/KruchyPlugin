@@ -48,7 +48,7 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
                 var mockParametrow = new Mock<IParametryGenerowaniaXsd>();
 
                 var sciezkaDoXsd =
-                    Path.Combine(projekt.SciezkaDoKatalogu, "PotwierdzenieSaldaReportView.xsd");
+                    Path.Combine(projekt.DirectoryPath, "PotwierdzenieSaldaReportView.xsd");
                 mockParametrow.Setup(o => o.SciezkaDoXsd).Returns(sciezkaDoXsd);
                 //act
                 new GenerowanieXsdDlaReportView(solution, solutionExplorer)

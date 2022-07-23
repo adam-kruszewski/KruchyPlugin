@@ -13,11 +13,11 @@ namespace Kruchy.Plugin.Akcje.Tests.WrappersMocks
         public PlikWrapper(
             string nazwa,
             string katalog,
-            IProjektWrapper projekt,
+            IProjectWrapper projekt,
             string zawartosc = null)
         {
             Nazwa = nazwa;
-            Katalog = Path.Combine(projekt.SciezkaDoKatalogu, katalog, nazwa);
+            Katalog = Path.Combine(projekt.DirectoryPath, katalog, nazwa);
             SciezkaWzgledna = Path.Combine(katalog, nazwa);
             Projekt = projekt;
             (Projekt as ProjektWrapper).DodajPlik(this);
@@ -32,10 +32,10 @@ namespace Kruchy.Plugin.Akcje.Tests.WrappersMocks
             this.sciezkaPelna = fi.FullName;
         }
 
-        public PlikWrapper(string nazwaZasobu, IProjektWrapper projekt)
+        public PlikWrapper(string nazwaZasobu, IProjectWrapper projekt)
         {
             Nazwa = nazwaZasobu;
-            Katalog = projekt.SciezkaDoKatalogu;
+            Katalog = projekt.DirectoryPath;
             SciezkaWzgledna = nazwaZasobu;
             Projekt = projekt;
             (Projekt as ProjektWrapper).DodajPlik(this);
@@ -67,7 +67,7 @@ namespace Kruchy.Plugin.Akcje.Tests.WrappersMocks
 
         public string SciezkaWzgledna { get; set; }
 
-        public IProjektWrapper Projekt { get; set; }
+        public IProjectWrapper Projekt { get; set; }
 
         public IDokumentWrapper Dokument => throw new NotImplementedException();
 

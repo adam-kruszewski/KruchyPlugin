@@ -12,12 +12,12 @@ namespace Kruchy.Plugin.Utils.Wrappers
 
         IPlikWrapper AktualnyPlik { get; }
 
-        IProjektWrapper AktualnyProjekt { get; }
+        IProjectWrapper AktualnyProjekt { get; }
 
         IDokumentWrapper AktualnyDokument { get; }
 
-        IList<IProjektWrapper> Projekty { get; }
+        IList<IProjectWrapper> Projekty { get; }
 
-        IProjektWrapper ZnajdzProjekt(string nazwa);
+        IProjectWrapper ZnajdzProjekt(string nazwa);
     }
 }

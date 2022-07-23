@@ -59,7 +59,7 @@
     <Compile Include="Wrappers\FileSystemWrapper.cs" />
     <Compile Include="Wrappers\IDokumentWrapper.cs" />
     <Compile Include="Wrappers\IPlikWrapper.cs" />
-    <Compile Include="Wrappers\IProjektWrapper.cs" />
+    <Compile Include="Wrappers\IProjectWrapper.cs" />
     <Compile Include="Wrappers\ISolutionExplorerWrapper.cs" />
     <Compile Include="Wrappers\ISolutionWrapper.cs" />
     <Compile Include="UI\IUIFactory.cs" />

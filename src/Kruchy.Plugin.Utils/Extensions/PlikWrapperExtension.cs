@@ -32,7 +32,7 @@ namespace Kruchy.Plugin.Utils.Extensions
             if (File.Exists(sciezka))
                 return sciezka;
 
-            return aktualny.Projekt.Pliki
+            return aktualny.Projekt.Files
                 .FirstOrDefault(o => o.Nazwa == nazwa)
                 ?.SciezkaPelna;
         }
@@ -50,7 +50,7 @@ namespace Kruchy.Plugin.Utils.Extensions
             if (File.Exists(sciezka))
                 return sciezka;
 
-            return aktualny.Projekt.Pliki
+            return aktualny.Projekt.Files
                 .FirstOrDefault(o => o.Nazwa == nazwa)
                 ?.SciezkaPelna;
         }

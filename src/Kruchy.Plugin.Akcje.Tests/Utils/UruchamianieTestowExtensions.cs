@@ -11,7 +11,7 @@ namespace Kruchy.Plugin.Akcje.Tests.Utils
         internal static void UruchomTest(
             string nazwaZasobuZawartosciAktulnegoPliku,
             Action<SolutionWrapper, ProjektWrapper, SolutionExlorerWrapper> akcjaWykonania,
-            Action<ISolutionWrapper, IProjektWrapper, ISolutionExplorerWrapper> akcjaAssert,
+            Action<ISolutionWrapper, IProjectWrapper, ISolutionExplorerWrapper> akcjaAssert,
             Action<SolutionWrapper, ProjektWrapper, ISolutionExplorerWrapper> akcjaDopasowaniaArrange = null,
             Action<Mock<Konfiguracja>> akcjaDopasowaniaKonfiguracji = null)
         {

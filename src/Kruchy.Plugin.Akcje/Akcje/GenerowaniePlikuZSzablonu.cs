@@ -39,7 +39,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
             string wybranaSciezka = null;
 
-            IProjektWrapper wybranyProjekt = null;
+            IProjectWrapper wybranyProjekt = null;
 
             IDictionary<string, object> variableValues = new Dictionary<string, object>();
             if (szablon.WyborSciezki)
@@ -83,12 +83,12 @@ namespace Kruchy.Plugin.Akcje.Akcje
             SchematKlasy schematKlasy,
             Plik sparsowane,
             string wybranaSciezka,
-            IProjektWrapper wybranyProjekt,
+            IProjectWrapper wybranyProjekt,
             IDictionary<string, object> variableValues)
         {
             var sciezkaDoPliku =
                 Path.Combine(
-                    wybranyProjekt.SciezkaDoKatalogu,
+                    wybranyProjekt.DirectoryPath,
                     DajNazwePliku(szablon, schematKlasy, sparsowane, wybranaSciezka, wybranyProjekt, variableValues));
 
             if (File.Exists(sciezkaDoPliku))
@@ -107,7 +107,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 System.IO.Directory.CreateDirectory(fileInfo.Directory.FullName);
 
             File.WriteAllText(sciezkaDoPliku, tresc, Encoding.UTF8);
-            wybranyProjekt.DodajPlik(sciezkaDoPliku);
+            wybranyProjekt.AddFile(sciezkaDoPliku);
             solutionExplorer.OpenFile(sciezkaDoPliku);
         }
 
@@ -116,7 +116,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             SchematKlasy schematKlasy,
             Plik sparsowane,
             string wybranaSciezka,
-            IProjektWrapper wybranyProjekt,
+            IProjectWrapper wybranyProjekt,
             IDictionary<string, object> variableValues)
         {
             return ZamienZmienneNaWartosci(
@@ -133,7 +133,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             string tekst,
             Plik sparsowane,
             string wybranaSciezka,
-            IProjektWrapper wybranyProjekt,
+            IProjectWrapper wybranyProjekt,
             IDictionary<string, object> variableValues)
         {
             var zmienne = PrzygotujWartosciZmiennych(sparsowane, wybranaSciezka, wybranyProjekt, variableValues);
@@ -147,13 +147,13 @@ namespace Kruchy.Plugin.Akcje.Akcje
         private Dictionary<string, string> PrzygotujWartosciZmiennych(
             Plik sparsowane,
             string wybranaSciezka,
-            IProjektWrapper wybranyProjekt,
+            IProjectWrapper wybranyProjekt,
             IDictionary<string, object> variableValues)
         {
             var wynik = new Dictionary<string, string>();
 
             wynik["NAZWA_KLASY"] = DajNazweKlasy(sparsowane);
-            wynik["NAZWA_PROJEKTU"] = solution.AktualnyProjekt.Nazwa.Replace(".csproj", "");
+            wynik["NAZWA_PROJEKTU"] = solution.AktualnyProjekt.Name.Replace(".csproj", "");
             wynik["NAMESPACE_KLASY"] = sparsowane.Namespace;
             wynik["NAZWA_PLIKU"] = solution.AktualnyPlik.Nazwa;
             wynik["NAZWA_PLIKU_BEZ_ROZSZERZENIA"] =
@@ -162,7 +162,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             var sciezkaWProjekcie = DajSciezkeWProjekcie(wybranaSciezka, wybranyProjekt);
             wynik["SCIEZKA_W_PROJEKCIE"] = sciezkaWProjekcie;
             wynik["NOWY_NAMESPACE"] =
-                $"{wybranyProjekt?.Nazwa}.{sciezkaWProjekcie.Replace("\\", ".").Replace("/", ".")}";
+                $"{wybranyProjekt?.Name}.{sciezkaWProjekcie.Replace("\\", ".").Replace("/", ".")}";
 
             foreach (var pair in variableValues)
             {
@@ -172,9 +172,9 @@ namespace Kruchy.Plugin.Akcje.Akcje
             return wynik;
         }
 
-        private static string DajSciezkeWProjekcie(string wybranaSciezka, IProjektWrapper wybranyProjekt)
+        private static string DajSciezkeWProjekcie(string wybranaSciezka, IProjectWrapper wybranyProjekt)
         {
-            var wynik = wybranaSciezka.Substring(wybranyProjekt.SciezkaDoKatalogu.Length);
+            var wynik = wybranaSciezka.Substring(wybranyProjekt.DirectoryPath.Length);
 
             if (wynik.Length > 0 && (wynik[0] == '\\' || wynik[0] == '/'))
                 return wynik.Substring(1);

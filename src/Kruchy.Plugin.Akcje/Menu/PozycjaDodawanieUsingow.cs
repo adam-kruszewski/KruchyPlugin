@@ -66,7 +66,7 @@ namespace Kruchy.Plugin.Akcje.Menu
 
         private string DajNazweModulu()
         {
-            return solution.AktualnyProjekt.Nazwa;
+            return solution.AktualnyProjekt.Name;
         }
 
         private string DajNazweModuluTestowanego()

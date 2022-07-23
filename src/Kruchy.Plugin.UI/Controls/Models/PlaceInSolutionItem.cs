@@ -11,13 +11,13 @@ namespace Kruchy.Plugin.UI.Controls.Models
         {
             get
             {
-                var result = Path.Replace(Project.SciezkaDoKatalogu, "");
+                var result = Path.Replace(Project.DirectoryPath, "");
 
                 return result.TrimStart(new[] { '\\', '/' });
             }
         }
 
-        public IProjektWrapper Project { get; set; }
+        public IProjectWrapper Project { get; set; }
 
         public string Title { get; set; }
 

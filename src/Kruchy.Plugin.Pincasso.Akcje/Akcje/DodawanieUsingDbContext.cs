@@ -109,9 +109,9 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             }
         }
 
-        private string SzukajPlikuContextu(IProjektWrapper projekt)
+        private string SzukajPlikuContextu(IProjectWrapper projekt)
         {
-            var katalogBase = Path.Combine(projekt.SciezkaDoKatalogu, "Base");
+            var katalogBase = Path.Combine(projekt.DirectoryPath, "Base");
             var pliki = Directory.GetFiles(katalogBase);
             var plikContextu =
                 pliki

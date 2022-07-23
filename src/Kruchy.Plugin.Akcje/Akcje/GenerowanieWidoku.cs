@@ -39,7 +39,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 return;
             }
             File.WriteAllText(pelnaSciezka, "");
-            solution.AktualnyProjekt.DodajPlik(pelnaSciezka);
+            solution.AktualnyProjekt.AddFile(pelnaSciezka);
             solutionExplorer.OpenFile(pelnaSciezka);
         }
 

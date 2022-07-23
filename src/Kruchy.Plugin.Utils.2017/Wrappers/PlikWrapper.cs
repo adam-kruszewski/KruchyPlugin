@@ -74,13 +74,13 @@ namespace Kruchy.Plugin.Utils._2017.Wrappers
             {
                 var p = SciezkaPelna;
 
-                var katalogProjektu = Projekt.SciezkaDoKatalogu;
+                var katalogProjektu = Projekt.DirectoryPath;
                 p = p.Replace(katalogProjektu, "");
                 return p;
             }
         }
 
-        public IProjektWrapper Projekt
+        public IProjectWrapper Projekt
         {
             get
             {

@@ -5,25 +5,25 @@ using Kruchy.Plugin.Utils.Wrappers;
 
 namespace Kruchy.Plugin.Akcje.Tests.WrappersMocks
 {
-    class ProjektWrapper : IProjektWrapper, IDisposable
+    class ProjektWrapper : IProjectWrapper, IDisposable
     {
         public ProjektWrapper(string krotkaNazwa)
         {
-            Nazwa = krotkaNazwa;
+            Name = krotkaNazwa;
 
-            SciezkaDoKatalogu = Path.Combine(
-                Path.GetTempPath(),
+            DirectoryPath = System.IO.Path.Combine(
+                System.IO.Path.GetTempPath(),
                 Guid.NewGuid().ToString());
 
-            Directory.CreateDirectory(SciezkaDoKatalogu);
+            Directory.CreateDirectory(DirectoryPath);
             pliki = new List<IPlikWrapper>();
         }
 
-        public string Nazwa { get; set; }
+        public string Name { get; set; }
 
-        public string Sciezka => Path.Combine(SciezkaDoKatalogu, Nazwa) + ".csproj";
+        public string Path => System.IO.Path.Combine(DirectoryPath, Name) + ".csproj";
 
-        public string SciezkaDoKatalogu { get; private set; }
+        public string DirectoryPath { get; private set; }
 
         public void DodajPlik(IPlikWrapper plik)
         {
@@ -32,14 +32,14 @@ namespace Kruchy.Plugin.Akcje.Tests.WrappersMocks
 
         private List<IPlikWrapper> pliki { get; set; }
 
-        public IPlikWrapper[] Pliki { get { return pliki.ToArray(); } }
+        public IPlikWrapper[] Files { get { return pliki.ToArray(); } }
 
-        public IEnumerable<string> DajPlikiZNamespace(string nazwaNamespace)
+        public IEnumerable<string> GetFilesFromNamespace(string nazwaNamespace)
         {
             throw new NotImplementedException();
         }
 
-        public IPlikWrapper DodajPlik(string sciezka)
+        public IPlikWrapper AddFile(string sciezka)
         {
             var plik = new PlikWrapper(sciezka);
 
@@ -52,19 +52,19 @@ namespace Kruchy.Plugin.Akcje.Tests.WrappersMocks
 
         public IPlikWrapper DodajPustyPlik(string nazwaWzgledna)
         {
-            var pelnaSciezka = Path.Combine(SciezkaDoKatalogu, nazwaWzgledna);
+            var pelnaSciezka = System.IO.Path.Combine(DirectoryPath, nazwaWzgledna);
             File.WriteAllText(pelnaSciezka, "");
-            return DodajPlik(pelnaSciezka);
+            return AddFile(pelnaSciezka);
         }
 
-        public bool NamespaceNalezyDoProjektu(string nazwaNamespace)
+        public bool ContainsNamespace(string nazwaNamespace)
         {
             throw new NotImplementedException();
         }
 
         public void Dispose()
         {
-            Directory.Delete(SciezkaDoKatalogu, true);
+            Directory.Delete(DirectoryPath, true);
         }
     }
 }

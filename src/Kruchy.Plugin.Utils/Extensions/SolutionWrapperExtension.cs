@@ -49,14 +49,14 @@ namespace Kruchy.Plugin.Utils.Extensions
             return Parser.Parsuj(solution.AktualnyDokument.DajZawartosc());
         }
 
-        public static IProjektWrapper SzukajProjektuWgNazwy(
+        public static IProjectWrapper SzukajProjektuWgNazwy(
             this ISolutionWrapper solution,
             string nazwaSzukanegoProjektu)
         {
             var projekt =
                 solution
                     .Projekty
-                        .Where(o => o.Nazwa.ToLower() == nazwaSzukanegoProjektu.ToLower())
+                        .Where(o => o.Name.ToLower() == nazwaSzukanegoProjektu.ToLower())
                             .FirstOrDefault();
             return projekt;
         }
