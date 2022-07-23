@@ -23,7 +23,7 @@ namespace Kruchy.Plugin.Akcje.Tests.WrappersMocks
             OtwartyPlik = sciezka;
             if (solution.AktualnyDokument != null)
                 PoprzednieZawartosciDokumentow.Add(
-                    solution.AktualnyDokument.DajZawartosc());
+                    solution.AktualnyDokument.GetContent());
             solution.OtworzPlik(sciezka);
         }
 

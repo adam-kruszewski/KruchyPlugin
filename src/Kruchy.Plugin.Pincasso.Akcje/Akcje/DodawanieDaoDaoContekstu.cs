@@ -24,10 +24,10 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
 
         public void Dodaj()
         {
-            var sparsowane = Parser.Parsuj(solution.AktualnyDokument.DajZawartosc());
+            var sparsowane = Parser.Parsuj(solution.AktualnyDokument.GetContent());
 
             var obiekt =
-                sparsowane.SzukajObiektuWLinii(solution.AktualnyDokument.DajNumerLiniiKursora());
+                sparsowane.SzukajObiektuWLinii(solution.AktualnyDokument.GetCursorLineNumber());
 
             if (obiekt == null && sparsowane.DefiniowaneObiekty.Count() == 1)
                 obiekt = sparsowane.DefiniowaneObiekty.Single();
@@ -99,7 +99,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             dokument.DodajUsingaJesliTrzeba(sparsowaneIDao.Namespace);
             dokument.DodajUsingaJesliTrzeba("Pincasso.Core.Base");
 
-            dokument.WstawWLinii(
+            dokument.InsertInLine(
                     string.Format("{0}public {1} {2} ", StaleDlaKodu.WciecieDlaMetody, nazwaInterfejsuDao, nazwaKlasyDao)
                      + "{ get { " +
                      string.Format("return GetDao<{0}>();", nazwaKlasyDao)
@@ -121,7 +121,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
 
             dokument.DodajUsingaJesliTrzeba(sparsowaneIDao.Namespace);
 
-            dokument.WstawWLinii(
+            dokument.InsertInLine(
                 string.Format("{0}{1} {2} ",
                     StaleDlaKodu.WciecieDlaMetody,
                     nazwaInterfejsuDao,
@@ -130,10 +130,10 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
         }
 
         private int SzukajLiniiDoDodanieMetody(
-            IDokumentWrapper dokument,
+            IDocumentWrapper dokument,
             string nazwaInterfejsuDao)
         {
-            var sparsowane = Parser.Parsuj(dokument.DajZawartosc());
+            var sparsowane = Parser.Parsuj(dokument.GetContent());
 
             var metodaPo =
             sparsowane

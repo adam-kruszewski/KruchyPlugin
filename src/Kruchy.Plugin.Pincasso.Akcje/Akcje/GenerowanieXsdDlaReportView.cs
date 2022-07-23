@@ -326,7 +326,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
 
         private Obiekt DajKlaseReportView()
         {
-            var sparsowane = Parser.Parsuj(solution.AktualnyDokument.DajZawartosc());
+            var sparsowane = Parser.Parsuj(solution.AktualnyDokument.GetContent());
 
             var klasy =
                 sparsowane
@@ -336,7 +336,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             Obiekt klasaView;
             klasaView =
                 sparsowane
-                    .SzukajKlasyWLinii(solution.AktualnyDokument.DajNumerLiniiKursora());
+                    .SzukajKlasyWLinii(solution.AktualnyDokument.GetCursorLineNumber());
 
             if (klasaView == null)
                 klasaView = klasy.FirstOrDefault();

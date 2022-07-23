@@ -35,7 +35,7 @@ namespace Kruchy.Plugin.Akcje.Menu
         public void Execute(object sender, EventArgs args)
         {
             var konf = Konfiguracja.GetInstance(solution);
-            var aktualnaZawartosc = solution.AktualnyDokument.DajZawartosc();
+            var aktualnaZawartosc = solution.AktualnyDokument.GetContent();
             var aktualnyNamespace = Parser.Parsuj(aktualnaZawartosc).Namespace;
 
             var usingi =

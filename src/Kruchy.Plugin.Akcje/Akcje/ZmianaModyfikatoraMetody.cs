@@ -8,19 +8,19 @@ namespace Kruchy.Plugin.Akcje.Akcje
 {
     class ZmianaModyfikatoraMetody
     {
-        private readonly IDokumentWrapper dokument;
+        private readonly IDocumentWrapper dokument;
         private readonly string[] modyfikatory = { "public", "private", "internal", "protected" };
 
-        public ZmianaModyfikatoraMetody(IDokumentWrapper dokument)
+        public ZmianaModyfikatoraMetody(IDocumentWrapper dokument)
         {
             this.dokument = dokument;
         }
 
         public void ZmienNa(string modyfikator)
         {
-            var parsowane = Parser.Parsuj(dokument.DajZawartosc());
+            var parsowane = Parser.Parsuj(dokument.GetContent());
             var metoda =
-                parsowane.SzukajMetodyWLinii(dokument.DajNumerLiniiKursora());
+                parsowane.SzukajMetodyWLinii(dokument.GetCursorLineNumber());
 
             if (metoda != null)
             {
@@ -31,7 +31,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             }
             else
             {
-                var klasa = parsowane.SzukajObiektuWLinii(dokument.DajNumerLiniiKursora());
+                var klasa = parsowane.SzukajObiektuWLinii(dokument.GetCursorLineNumber());
                 if (klasa != null)
                     ZmienWKlasie(modyfikator, klasa);
             }
@@ -70,12 +70,12 @@ namespace Kruchy.Plugin.Akcje.Akcje
             string modyfikator,
             Modyfikator dotychczasowyModyfikator)
         {
-            dokument.Usun(
+            dokument.Remove(
                 dotychczasowyModyfikator.Poczatek.Wiersz,
                 dotychczasowyModyfikator.Poczatek.Kolumna,
                 dotychczasowyModyfikator.Koniec.Wiersz,
                 dotychczasowyModyfikator.Koniec.Kolumna);
-            dokument.WstawWMiejscu(
+            dokument.InsertInPlace(
                 modyfikator,
                 dotychczasowyModyfikator.Poczatek.Wiersz,
                 dotychczasowyModyfikator.Poczatek.Kolumna);
@@ -83,7 +83,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         private void WstawModyfikator(string modyfikator, PozycjaWPliku polozenie)
         {
-            dokument.WstawWMiejscu(
+            dokument.InsertInPlace(
                 modyfikator + " ",
                 polozenie.Wiersz,
                 polozenie.Kolumna);

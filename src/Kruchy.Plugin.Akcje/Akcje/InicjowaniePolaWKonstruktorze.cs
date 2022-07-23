@@ -26,7 +26,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
             var parsowane =
                 solution.ParsujZawartoscAktualnegoDokumetu();
-            int numerLinii = solution.AktualnyDokument.DajNumerLiniiKursora();
+            int numerLinii = solution.AktualnyDokument.GetCursorLineNumber();
             var properties =
                 parsowane
                     .SzukajPropertiesaWLinii(numerLinii);
@@ -58,7 +58,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             if (klasa.Konstruktory.Any())
             {
                 var konstruktor = klasa.Konstruktory.First();
-                solution.AktualnyDokument.WstawWLinii(
+                solution.AktualnyDokument.InsertInLine(
                     DajZawartoscDoDodania(nazwa, typ, true, poziomKlasy),
                     konstruktor.KoncowaKlamerka.Wiersz);
             }
@@ -68,7 +68,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                     GenerujZawartoscKontruktora(
                         klasa,
                         DajZawartoscDoDodania(nazwa, typ, false, poziomKlasy));
-                solution.AktualnyDokument.WstawWLinii(
+                solution.AktualnyDokument.InsertInLine(
                     new StringBuilder().AppendLine() + zawartoscKontruktora,
                     parsowane.SzukajPierwszejLiniiDlaKonstruktora(numerLinii));
             }

@@ -31,11 +31,11 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 return;
             }
 
-            var parsowane = Parser.Parsuj(aktualnyPlik.Dokument.DajZawartosc());
+            var parsowane = Parser.Parsuj(aktualnyPlik.Dokument.GetContent());
 
             var dokument = aktualnyPlik.Dokument;
             var aktualnaMetoda =
-                parsowane.SzukajMetodyWLinii(dokument.DajNumerLiniiKursora());
+                parsowane.SzukajMetodyWLinii(dokument.GetCursorLineNumber());
 
             if (aktualnaMetoda == null)
             {
@@ -54,7 +54,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 return;
             }
 
-            var definicja = dokument.DajZawartosc(
+            var definicja = dokument.GetContent(
                 aktualnaMetoda.Poczatek.Wiersz, aktualnaMetoda.Poczatek.Kolumna,
                 aktualnaMetoda.Koniec.Wiersz, aktualnaMetoda.Koniec.Kolumna);
 
@@ -87,7 +87,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         {
             solutionExplorer.OpenFile(sciezkaDoImplementacji);
 
-            var zawartosc = solution.AktualnyDokument.DajZawartosc();
+            var zawartosc = solution.AktualnyDokument.GetContent();
             var parsowane = Parser.Parsuj(zawartosc);
             int numerLiniiGdzieDodawac = 0;
 
@@ -118,8 +118,8 @@ namespace Kruchy.Plugin.Akcje.Akcje
             }
 
             solution.AktualnyDokument
-                .WstawWLinii(wstawianyTekst, numerLiniiGdzieDodawac);
-            solution.AktualnyDokument.UstawKursosDlaMetodyDodanejWLinii(
+                .InsertInLine(wstawianyTekst, numerLiniiGdzieDodawac);
+            solution.AktualnyDokument.SetCursorForAddedMethod(
                 numerLiniiGdzieDodawac + 1);
 
             foreach (var u in usingi.Select(o => o.Nazwa))

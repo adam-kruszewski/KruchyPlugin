@@ -21,16 +21,16 @@ namespace Kruchy.Plugin.Akcje.Akcje
         {
             var dokument = solution.AktualnyDokument;
             var parsowane =
-                Parser.Parsuj(dokument.DajZawartosc());
+                Parser.Parsuj(dokument.GetContent());
 
             var metoda = parsowane
-                    .SzukajMetodyWLinii(dokument.DajNumerLiniiKursora());
+                    .SzukajMetodyWLinii(dokument.GetCursorLineNumber());
 
             if (metoda == null)
             {
                 var konstruktor =
                     parsowane
-                        .SzukajKonstruktoraWLinii(dokument.DajNumerLiniiKursora());
+                        .SzukajKonstruktoraWLinii(dokument.GetCursorLineNumber());
                 if (konstruktor != null)
                     PodzielNaLinieKonstruktor(konstruktor);
                 else
@@ -38,13 +38,13 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 return;
             }
 
-            dokument.Usun(
+            dokument.Remove(
                 metoda.NawiasOtwierajacyParametry.Wiersz,
                 metoda.NawiasOtwierajacyParametry.Kolumna,
                 metoda.NawiasZamykajacyParametry.Wiersz,
                 metoda.NawiasZamykajacyParametry.Kolumna + 1);
 
-            dokument.WstawWMiejscu(
+            dokument.InsertInPlace(
                 GenerujNoweParametry(metoda.Parametry, metoda, metoda),
                 metoda.NawiasOtwierajacyParametry.Wiersz,
                 metoda.NawiasOtwierajacyParametry.Kolumna);
@@ -54,13 +54,13 @@ namespace Kruchy.Plugin.Akcje.Akcje
         {
             var dokument = solution.AktualnyDokument;
 
-            dokument.Usun(
+            dokument.Remove(
                 konstruktor.NawiasOtwierajacyParametry.Wiersz,
                 konstruktor.NawiasOtwierajacyParametry.Kolumna,
                 konstruktor.NawiasZamykajacyParametry.Wiersz,
                 konstruktor.NawiasZamykajacyParametry.Kolumna + 1);
 
-            dokument.WstawWMiejscu(
+            dokument.InsertInPlace(
                 GenerujNoweParametry(konstruktor.Parametry, konstruktor),
                 konstruktor.NawiasOtwierajacyParametry.Wiersz,
                 konstruktor.NawiasOtwierajacyParametry.Kolumna);

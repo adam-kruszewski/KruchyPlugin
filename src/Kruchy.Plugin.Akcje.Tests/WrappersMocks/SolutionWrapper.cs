@@ -10,7 +10,7 @@ namespace Kruchy.Plugin.Akcje.Tests.WrappersMocks
 {
     class SolutionWrapper : ISolutionWrapper
     {
-        IDokumentWrapper dokument;
+        IDocumentWrapper dokument;
         private IList<IProjectWrapper> projekty;
 
         public SolutionWrapper()
@@ -48,7 +48,7 @@ namespace Kruchy.Plugin.Akcje.Tests.WrappersMocks
 
         public IProjectWrapper AktualnyProjekt { get; set; }
 
-        public IDokumentWrapper AktualnyDokument { get { return dokument; } }
+        public IDocumentWrapper AktualnyDokument { get { return dokument; } }
 
         public IList<IProjectWrapper> Projekty { get { return projekty.ToList(); } }
 

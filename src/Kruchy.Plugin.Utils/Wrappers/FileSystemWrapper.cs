@@ -4,7 +4,7 @@ namespace Kruchy.Plugin.Utils.Wrappers
 {
     public class FileSystemWrapper
     {
-        public static void UtworzKatalogDlaSciezkiJesliTrzeba(string sciezka)
+        public static void CreateDirectoryForPathIfNeeded(string sciezka)
         {
             var fi = new FileInfo(sciezka);
             if (!Directory.Exists(fi.Directory.FullName))

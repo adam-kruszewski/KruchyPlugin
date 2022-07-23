@@ -6,7 +6,7 @@ using Kruchy.Plugin.Utils.Wrappers;
 
 namespace Kruchy.Plugin.Akcje.Tests.WrappersMocks
 {
-    class DokumentWrapper : IDokumentWrapper
+    class DokumentWrapper : IDocumentWrapper
     {
         int pozycjaKursoraX = 1;
         int pozycjaKursoraY = 1;
@@ -18,22 +18,22 @@ namespace Kruchy.Plugin.Akcje.Tests.WrappersMocks
             this.zawartosc = zawartosc;
         }
 
-        public int DajLiczbeLinii()
+        public int GetLineCount()
         {
             return Linie().Count;
         }
 
-        public int DajNumerLiniiKursora()
+        public int GetCursorLineNumber()
         {
             return pozycjaKursoraY + 1;
         }
 
-        public string DajZawartosc()
+        public string GetContent()
         {
             return zawartosc;
         }
 
-        public string DajZawartosc(
+        public string GetContent(
             int wierszPoczatek,
             int kolumnaPoczatek,
             int wierszKoniec,
@@ -66,23 +66,23 @@ namespace Kruchy.Plugin.Akcje.Tests.WrappersMocks
             return builder.ToString();
         }
 
-        public string DajZawartoscLinii(int numerLinii)
+        public string GetLineContent(int numerLinii)
         {
             return Linie()[numerLinii - 1];
         }
 
-        public void UstawKursor(int wiersz, int kolumna)
+        public void SetCursor(int wiersz, int kolumna)
         {
             pozycjaKursoraX = wiersz - 1;
             pozycjaKursoraY = kolumna - 1;
         }
 
-        public void UstawKursosDlaMetodyDodanejWLinii(int numerLinii)
+        public void SetCursorForAddedMethod(int numerLinii)
         {
             throw new NotImplementedException();
         }
 
-        public void Usun(
+        public void Remove(
             int numerLiniiStart,
             int numerKolumnyStart,
             int numerLiniiKoniec,
@@ -142,27 +142,27 @@ namespace Kruchy.Plugin.Akcje.Tests.WrappersMocks
             zawartosc = builder.ToString();
         }
 
-        public void UsunLinie(int numerLinii)
+        public void RemoveLine(int numerLinii)
         {
             var linie = Linie();
             linie.RemoveAt(numerLinii);
             UstawZawartoscZLinii(linie);
         }
 
-        public void UsunWMiejscu(int numerLinii, int numerKolumny, int dlugosc)
+        public void RemoveInPlace(int numerLinii, int numerKolumny, int dlugosc)
         {
             throw new NotImplementedException();
         }
 
-        public void WstawWLinii(string tekst, int numerLinii)
+        public void InsertInLine(string tekst, int numerLinii)
         {
             var koniecLinii = new StringBuilder().AppendLine().ToString();
             if (!tekst.EndsWith(koniecLinii) && !tekst.EndsWith("\n"))
                 tekst += koniecLinii;
-            WstawWMiejscu(tekst, numerLinii, 1);
+            InsertInPlace(tekst, numerLinii, 1);
         }
 
-        public void WstawWMiejscu(string tekst, int numerLinii, int numerKolumny)
+        public void InsertInPlace(string tekst, int numerLinii, int numerKolumny)
         {
             int aktualnyNumerLinii = 1;
             int aktualnyNumerKolumny = 1;

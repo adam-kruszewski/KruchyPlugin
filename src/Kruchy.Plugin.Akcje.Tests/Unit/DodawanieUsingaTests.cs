@@ -25,7 +25,7 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
             new DodawanieUsinga(solution).Dodaj("a.b.c");
 
             //assert
-            solution.AktualnyDokument.DajZawartosc().Should().Be(
+            solution.AktualnyDokument.GetContent().Should().Be(
 @"using a.b.c;namespace X{
     class a
     {
@@ -51,7 +51,7 @@ namespace X{
             new DodawanieUsinga(solution).Dodaj("a.b.c");
 
             //assert
-            solution.AktualnyDokument.DajZawartosc().Should().Be(
+            solution.AktualnyDokument.GetContent().Should().Be(
 @"using a.b.c;
 
 namespace X{
@@ -80,7 +80,7 @@ namespace X{
             new DodawanieUsinga(solution).Dodaj("b.c.d");
 
             //assert
-            solution.AktualnyDokument.DajZawartosc().Should().Be(
+            solution.AktualnyDokument.GetContent().Should().Be(
 @"using a.b.c;
 using b.c.d;
 
@@ -111,7 +111,7 @@ namespace X{
             new DodawanieUsinga(solution).Dodaj("c.d.e");
 
             //assert
-            solution.AktualnyDokument.DajZawartosc().Should().Be(
+            solution.AktualnyDokument.GetContent().Should().Be(
 @"using a.b.c;
 using b.c.d;
 using c.d.e;
@@ -144,7 +144,7 @@ namespace X{
             new DodawanieUsinga(solution).Dodaj("c.d.e");
 
             //assert
-            solution.AktualnyDokument.DajZawartosc().Should().Be(
+            solution.AktualnyDokument.GetContent().Should().Be(
     @"using a.b.c;
 using b.c.d;
 using c.d.e;
@@ -195,7 +195,7 @@ namespace ClassLibrary1.Tests.Unit
                 du.Dodaj(u);
 
             //assert
-            var wynik = solution.AktualnyDokument.DajZawartosc();
+            var wynik = solution.AktualnyDokument.GetContent();
         }
     }
 }

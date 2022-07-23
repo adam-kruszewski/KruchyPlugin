@@ -8,10 +8,10 @@ namespace Kruchy.Plugin.Utils.Extensions
     public static class DokumentWrapperExtensions
     {
         public static void DodajUsingaJesliTrzeba(
-            this IDokumentWrapper dokument,
+            this IDocumentWrapper dokument,
             params string[] nazwyNamespace)
         {
-            var parsowane = Parser.Parsuj(dokument.DajZawartosc());
+            var parsowane = Parser.Parsuj(dokument.GetContent());
 
             if (nazwyNamespace.All(o => ZawieraUsingNamespace(o, parsowane)))
                 return;
@@ -40,7 +40,7 @@ namespace Kruchy.Plugin.Utils.Extensions
                 builder.AppendLine("using " + u + ";");
             var nowyTekst = builder.ToString().TrimEnd();
 
-            dokument.WstawWMiejscu(nowyTekst, wierszWstawienia, 1);
+            dokument.InsertInPlace(nowyTekst, wierszWstawienia, 1);
         }
 
         private static bool ZawieraUsingNamespace(string nazwaNamespace, Plik parsowane)
@@ -49,7 +49,7 @@ namespace Kruchy.Plugin.Utils.Extensions
         }
 
         private static void UsunWszystkieUsingi(
-            this IDokumentWrapper dokument,
+            this IDocumentWrapper dokument,
             Plik parsowane,
             ref int wierszWstawienia,
             ref int kolumnaWstawienia)
@@ -60,7 +60,7 @@ namespace Kruchy.Plugin.Utils.Extensions
             var pierwszyUsing = dotychczasowePosortowane.First();
             var ostatniUsing = dotychczasowePosortowane.Last();
 
-            dokument.Usun(pierwszyUsing.Poczatek.Wiersz, pierwszyUsing.Poczatek.Kolumna,
+            dokument.Remove(pierwszyUsing.Poczatek.Wiersz, pierwszyUsing.Poczatek.Kolumna,
                 ostatniUsing.Koniec.Wiersz, ostatniUsing.Koniec.Kolumna);
             wierszWstawienia = pierwszyUsing.Poczatek.Wiersz;
             kolumnaWstawienia = pierwszyUsing.Poczatek.Kolumna;

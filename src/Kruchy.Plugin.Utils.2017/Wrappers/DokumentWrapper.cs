@@ -8,7 +8,7 @@ using KruchyParserKodu.ParserKodu;
 #pragma warning disable VSTHRD010
 namespace Kruchy.Plugin.Utils._2017.Wrappers
 {
-    public class DokumentWrapper : IDokumentWrapper
+    public class DokumentWrapper : IDocumentWrapper
     {
         private readonly TextDocument textDocument;
         private readonly ProjektWrapper projektWrapper;
@@ -24,25 +24,25 @@ namespace Kruchy.Plugin.Utils._2017.Wrappers
             this.projektWrapper = projekt;
         }
 
-        public int DajNumerLiniiKursora()
+        public int GetCursorLineNumber()
         {
             return textDocument.Selection.TopPoint.Line;
         }
 
-        public void UstawKursor(int wiersz, int kolumna)
+        public void SetCursor(int wiersz, int kolumna)
         {
             textDocument.Selection.MoveToLineAndOffset(wiersz, kolumna);
         }
 
-        public void UstawKursosDlaMetodyDodanejWLinii(int numerLinii)
+        public void SetCursorForAddedMethod(int numerLinii)
         {
-            UstawKursor(
+            SetCursor(
                 numerLinii + 2,
                 1 + StaleDlaKodu.WciecieDlaMetody.Length
                 + StaleDlaKodu.JednostkaWciecia.Length);
         }
 
-        public string DajZawartosc()
+        public string GetContent()
         {
             EditPoint objEditPoint =
                 (EditPoint)textDocument.StartPoint.CreateEditPoint();
@@ -52,7 +52,7 @@ namespace Kruchy.Plugin.Utils._2017.Wrappers
             return objEditPoint.GetText(endEditPoint.AbsoluteCharOffset);
         }
 
-        public string DajZawartoscLinii(int numerLinii)
+        public string GetLineContent(int numerLinii)
         {
             var poczatekLinii = textDocument.CreateEditPoint();
             poczatekLinii.MoveToLineAndOffset(numerLinii, 1);
@@ -64,7 +64,7 @@ namespace Kruchy.Plugin.Utils._2017.Wrappers
             return poczatekLinii.GetText(koniecLinii);
         }
 
-        public string DajZawartosc(int wierszPoczatek, int kolumnaPoczatek,
+        public string GetContent(int wierszPoczatek, int kolumnaPoczatek,
             int wierszKoniec, int kolumnaKoniec)
         {
             var poczatekLinii = textDocument.CreateEditPoint();
@@ -76,28 +76,28 @@ namespace Kruchy.Plugin.Utils._2017.Wrappers
             return poczatekLinii.GetText(koniecLinii);
         }
 
-        public void WstawWLinii(string tekst, int numerLinii)
+        public void InsertInLine(string tekst, int numerLinii)
         {
             var poczatekLinii =
             DajEditPointPoczatkuLinii(numerLinii);
             poczatekLinii.Insert(tekst);
         }
 
-        public void WstawWMiejscu(string tekst, int numerLinii, int numerKolumny)
+        public void InsertInPlace(string tekst, int numerLinii, int numerKolumny)
         {
             var editPoint = DajEditPointPoczatkuLinii(numerLinii);
             editPoint.MoveToLineAndOffset(numerLinii, numerKolumny);
             editPoint.Insert(tekst);
         }
 
-        public void UsunWMiejscu(int numerLinii, int numerKolumny, int dlugosc)
+        public void RemoveInPlace(int numerLinii, int numerKolumny, int dlugosc)
         {
             var editPoint = DajEditPointMiejsca(numerLinii, numerKolumny);
             var editPointKoniec = DajEditPointMiejsca(numerLinii, numerKolumny + dlugosc);
             editPoint.Delete(editPointKoniec);
         }
 
-        public void Usun(int numerLiniiStart, int numerKolumnyStart,
+        public void Remove(int numerLiniiStart, int numerKolumnyStart,
             int numerLiniiKoniec, int numerKolumnyKoniec)
         {
             var editPoint = DajEditPointMiejsca(numerLiniiStart, numerKolumnyStart);
@@ -105,7 +105,7 @@ namespace Kruchy.Plugin.Utils._2017.Wrappers
             editPoint.Delete(editPointKoniec);
         }
 
-        public void UsunLinie(int numerLinii)
+        public void RemoveLine(int numerLinii)
         {
             var editPoint = DajEditPointPoczatkuLinii(numerLinii);
             var editPointKonca = DajEditPointPoczatkuLinii(numerLinii);
@@ -129,7 +129,7 @@ namespace Kruchy.Plugin.Utils._2017.Wrappers
             return editPoint;
         }
 
-        public int DajLiczbeLinii()
+        public int GetLineCount()
         {
             return textDocument.EndPoint.Line;
         }

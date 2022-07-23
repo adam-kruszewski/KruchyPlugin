@@ -89,7 +89,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 if (obiekt.Atrybuty.Any())
                     numerLinii = obiekt.Atrybuty.OrderBy(o => o.Poczatek.Wiersz).First().Poczatek.Wiersz;
 
-                solution.AktualnyDokument.WstawWLinii(doWstawienia, numerLinii);
+                solution.AktualnyDokument.InsertInLine(doWstawienia, numerLinii);
             }
         }
 
@@ -161,7 +161,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
                 var numerLinii = konstruktor.Poczatek.Wiersz;
 
-                solution.AktualnyDokument.WstawWLinii(builder.ToString(), numerLinii);
+                solution.AktualnyDokument.InsertInLine(builder.ToString(), numerLinii);
             }
         }
 
@@ -210,7 +210,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                     if (metoda.TypZwracany.Nazwa != "void")
                         builder.AppendLine($"{poczatek}<returns>{DajOpisTypuZwracanego(metoda)}</returns>");
 
-                    solution.AktualnyDokument.WstawWLinii(builder.ToString(), numerLinii);
+                    solution.AktualnyDokument.InsertInLine(builder.ToString(), numerLinii);
                 }
             }
         }
@@ -255,7 +255,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         private void WstawInheritDoc(string poczatek, int numerLinii)
         {
-            solution.AktualnyDokument.WstawWLinii($"{poczatek}<inheritdoc/>\n", numerLinii);
+            solution.AktualnyDokument.InsertInLine($"{poczatek}<inheritdoc/>\n", numerLinii);
         }
 
         private string DajSummaryMetody(int jezyk, Metoda metoda)
@@ -338,7 +338,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
                 GennerujSummary(poczatek, builder, summary);
 
-                solution.AktualnyDokument.WstawWLinii(builder.ToString(), DajNumerLiniiDoWstawienia(pole));
+                solution.AktualnyDokument.InsertInLine(builder.ToString(), DajNumerLiniiDoWstawienia(pole));
             }
         }
 
@@ -358,7 +358,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
                 GennerujSummary(poczatek, builder, summary);
 
-                solution.AktualnyDokument.WstawWLinii(builder.ToString(), DajNumerLiniiDoWstawienia(property, property.Atrybuty));
+                solution.AktualnyDokument.InsertInLine(builder.ToString(), DajNumerLiniiDoWstawienia(property, property.Atrybuty));
             }
         }
 
@@ -375,7 +375,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
                 GennerujSummary(poczatek, builder, summary);
 
-                solution.AktualnyDokument.WstawWLinii(builder.ToString(), DajNumerLiniiDoWstawienia(enumeracja, enumeracja.Atrybuty));
+                solution.AktualnyDokument.InsertInLine(builder.ToString(), DajNumerLiniiDoWstawienia(enumeracja, enumeracja.Atrybuty));
 
             }
         }

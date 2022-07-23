@@ -21,7 +21,7 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
             new UzupelnianieKonstruktora(solution).Uzupelnij();
 
             //assert
-            var wynik = solution.AktualnyDokument.DajZawartosc();
+            var wynik = solution.AktualnyDokument.GetContent();
 
             wynik.Should().Be(
 @"using System.Configuration;

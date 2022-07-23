@@ -9,10 +9,10 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
 {
     class UzupelnianieReferencedObject
     {
-        private readonly IDokumentWrapper dokument;
+        private readonly IDocumentWrapper dokument;
         private const string NamespaceDlaAtrybutuReferencedObject = "KomponentyStandardowe.Data";
 
-        public UzupelnianieReferencedObject(IDokumentWrapper dokument)
+        public UzupelnianieReferencedObject(IDocumentWrapper dokument)
         {
             this.dokument = dokument;
         }
@@ -53,7 +53,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             builder.AppendLine("        public int " + nazwaAtrybutu + "ID { get; set; }");
             builder.AppendLine();
 
-            dokument.WstawWLinii(builder.ToString(), numerLiniiDlaAtrybutuKluczaObcego);
+            dokument.InsertInLine(builder.ToString(), numerLiniiDlaAtrybutuKluczaObcego);
         }
 
         private void DodajUsingaJesliTrzeba()
@@ -73,18 +73,18 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
                 new StringBuilder()
                     .AppendLine(string.Format("        [ReferencedObject(\"{0}\")]", nazwaAtrybutu + "ID"))
                         .ToString();
-            dokument.WstawWLinii(nowaLinia, numerLiniiKursora);
+            dokument.InsertInLine(nowaLinia, numerLiniiKursora);
             return true;
         }
 
         private string DajZawartosc()
         {
-            return dokument.DajZawartosc();
+            return dokument.GetContent();
         }
 
         private int DajNumerLiniiKursora()
         {
-            return dokument.DajNumerLiniiKursora();
+            return dokument.GetCursorLineNumber();
         }
     }
 }

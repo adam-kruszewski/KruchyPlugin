@@ -10,7 +10,7 @@ namespace Kruchy.Plugin.Utils.Extensions
     {
         public static bool JestInterfejsem(this IPlikWrapper aktualny)
         {
-            var zawartosc = aktualny.Dokument.DajZawartosc();
+            var zawartosc = aktualny.Dokument.GetContent();
             var parsowane = Parser.Parsuj(zawartosc);
             if (parsowane.DefiniowaneObiekty.Count == 1)
             {
@@ -58,7 +58,7 @@ namespace Kruchy.Plugin.Utils.Extensions
 
         public static bool JestBuilderem(this IPlikWrapper aktualny)
         {
-            var zawartosc = aktualny.Dokument.DajZawartosc();
+            var zawartosc = aktualny.Dokument.GetContent();
             var parsowane = Parser.Parsuj(zawartosc);
             if (parsowane.DefiniowaneObiekty.Count == 1)
             {
@@ -72,10 +72,10 @@ namespace Kruchy.Plugin.Utils.Extensions
 
         public static bool JestWBuilderze(this IPlikWrapper aktualny)
         {
-            var zawartosc = aktualny.Dokument.DajZawartosc();
+            var zawartosc = aktualny.Dokument.GetContent();
             var parsowane = Parser.Parsuj(zawartosc);
             var obiekt =
-                parsowane.SzukajObiektuWLinii(aktualny.Dokument.DajNumerLiniiKursora());
+                parsowane.SzukajObiektuWLinii(aktualny.Dokument.GetCursorLineNumber());
             if (obiekt != null)
             {
                 if (obiekt.Nazwa.EndsWith("Builder")
@@ -87,7 +87,7 @@ namespace Kruchy.Plugin.Utils.Extensions
 
         public static string SciezkaKataloguControllera(this IPlikWrapper plik)
         {
-            var parsowane = Parser.Parsuj(plik.Dokument.DajZawartosc());
+            var parsowane = Parser.Parsuj(plik.Dokument.GetContent());
             string nazwaControllera = DajNazweControllera(parsowane.DefiniowaneObiekty.Single().Nazwa);
 
             var katalogPlikControllera = plik.Katalog;
@@ -110,7 +110,7 @@ namespace Kruchy.Plugin.Utils.Extensions
 
         public static string DajNazweControllera(this IPlikWrapper plik)
         {
-            var zawartosc = plik.Dokument.DajZawartosc();
+            var zawartosc = plik.Dokument.GetContent();
             var parsowane = Parser.Parsuj(zawartosc);
             if (parsowane.DefiniowaneObiekty.Count() == 1)
             {

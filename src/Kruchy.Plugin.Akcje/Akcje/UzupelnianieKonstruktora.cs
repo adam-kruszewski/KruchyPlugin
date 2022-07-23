@@ -73,12 +73,12 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
                 if (konstruktor != null)
                 {
-                    solution.AktualnyDokument.Usun(
+                    solution.AktualnyDokument.Remove(
                         konstruktor.Poczatek.Wiersz,
                         1,
                         konstruktor.Koniec.Wiersz,
                         konstruktor.Koniec.Kolumna);
-                    solution.AktualnyDokument.WstawWLinii(
+                    solution.AktualnyDokument.InsertInLine(
                         nowyKonstruktor, konstruktor.Poczatek.Wiersz);
                 }
                 else
@@ -95,7 +95,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                             obiekt.Propertiesy.Select(o => o.Koniec.Wiersz).Max();
 
                     var dodatek = new StringBuilder().AppendLine().ToString();
-                    solution.AktualnyDokument.WstawWLinii(
+                    solution.AktualnyDokument.InsertInLine(
                         PrzygotujTekstDoWstawienia(nowyKonstruktor, dodatek),
                         maksymalnyNumerLiniiPol + 1);
                 }
@@ -134,12 +134,12 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 builder.Append(poleBuilder.Build(StaleDlaKodu.WciecieDlaMetody));
             }
 
-            solution.AktualnyDokument.WstawWLinii(builder.ToString(), liniaPierwszego);
+            solution.AktualnyDokument.InsertInLine(builder.ToString(), liniaPierwszego);
         }
 
         private void UsunPole(Pole p)
         {
-            solution.AktualnyDokument.Usun(
+            solution.AktualnyDokument.Remove(
                 p.Poczatek.Wiersz,
                 //p.Poczatek.Kolumna,
                 1,
@@ -147,7 +147,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 p.Koniec.Kolumna);
 
             //if (p.Poczatek.Wiersz != p.Koniec.Wiersz)
-            solution.AktualnyDokument.UsunLinie(p.Koniec.Wiersz);
+            solution.AktualnyDokument.RemoveLine(p.Koniec.Wiersz);
         }
 
         private string PrzygotujTekstDoWstawienia(
@@ -165,7 +165,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         private Obiekt SzukajKlasy()
         {
-            var kod = solution.AktualnyDokument.DajZawartosc();
+            var kod = solution.AktualnyDokument.GetContent();
 
             var parsowanyPlik = Parser.Parsuj(kod);
             var klasy =
@@ -179,7 +179,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             return
                 parsowanyPlik
                     .SzukajKlasyWLinii(
-                        solution.AktualnyDokument.DajNumerLiniiKursora());
+                        solution.AktualnyDokument.GetCursorLineNumber());
         }
 
         private string GenerujKonstruktor(

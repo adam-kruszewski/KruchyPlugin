@@ -21,7 +21,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
                 return;
 
             var dokument = solution.AktualnyDokument;
-            var parsowane = Parser.Parsuj(dokument.DajZawartosc());
+            var parsowane = Parser.Parsuj(dokument.GetContent());
 
             var metodaBuilder =
                 new MetodaBuilder()
@@ -29,16 +29,16 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
                     .ZNazwa(nazwaMetody)
                     .ZTypemZwracanym(
                         parsowane
-                            .SzukajObiektuWLinii(dokument.DajNumerLiniiKursora()).Nazwa)
+                            .SzukajObiektuWLinii(dokument.GetCursorLineNumber()).Nazwa)
                     .DodajLinie("return this;");
 
-            var numerLiniiWstawiania = dokument.DajNumerLiniiKursora();
-            dokument.WstawWLinii(
+            var numerLiniiWstawiania = dokument.GetCursorLineNumber();
+            dokument.InsertInLine(
                 metodaBuilder.Build(StaleDlaKodu.WciecieDlaMetody),
                 numerLiniiWstawiania);
 
-            var zawartoscLinii = dokument.DajZawartoscLinii(numerLiniiWstawiania);
-            dokument.UstawKursor(numerLiniiWstawiania, zawartoscLinii.Length);
+            var zawartoscLinii = dokument.GetLineContent(numerLiniiWstawiania);
+            dokument.SetCursor(numerLiniiWstawiania, zawartoscLinii.Length);
         }
     }
 }

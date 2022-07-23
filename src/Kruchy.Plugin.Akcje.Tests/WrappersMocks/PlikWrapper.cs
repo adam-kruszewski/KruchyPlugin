@@ -69,7 +69,7 @@ namespace Kruchy.Plugin.Akcje.Tests.WrappersMocks
 
         public IProjectWrapper Projekt { get; set; }
 
-        public IDokumentWrapper Dokument => throw new NotImplementedException();
+        public IDocumentWrapper Dokument => throw new NotImplementedException();
 
         public override string ToString()
         {

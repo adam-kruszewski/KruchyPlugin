@@ -13,21 +13,21 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
         private const string NamespaceDlaAtrybutowOpisujacychTabele =
             "KomponentyStandardowe.Data";
 
-        private readonly IDokumentWrapper dokument;
+        private readonly IDocumentWrapper dokument;
 
-        public UzupelnianieTagowDefiniujacychTabele(IDokumentWrapper dokument)
+        public UzupelnianieTagowDefiniujacychTabele(IDocumentWrapper dokument)
         {
             this.dokument = dokument;
         }
 
         public void Uzupelnij()
         {
-            var parsowane = Parser.Parsuj(dokument.DajZawartosc());
+            var parsowane = Parser.Parsuj(dokument.GetContent());
 
             var prefiks = SzukajPrefiksu();
             var numerLiniiClass = DajNumerLiniiZClass(parsowane);
             DodajAtrybutKlasie(prefiks, parsowane);
-            parsowane = Parser.Parsuj(dokument.DajZawartosc());
+            parsowane = Parser.Parsuj(dokument.GetContent());
             List<int> linieZKolumnami = ZnajdzLinieZKolumnami(parsowane);
             DodajAtrybutyKolumnowe(linieZKolumnami, prefiks);
             dokument.DodajUsingaJesliTrzeba(NamespaceDlaAtrybutowOpisujacychTabele);
@@ -35,10 +35,10 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
 
         private string SzukajPrefiksu()
         {
-            var liczbaLinii = dokument.DajLiczbeLinii();
+            var liczbaLinii = dokument.GetLineCount();
             for (int i = 1; i <= liczbaLinii; i++)
             {
-                var linia = dokument.DajZawartoscLinii(i);
+                var linia = dokument.GetLineContent(i);
                 if (linia.ToLower().Contains("//prefix="))
                     return linia.ToLower().Trim().Replace("//prefix=", "");
             }
@@ -57,7 +57,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
         private void DodajAtrybutKlasie(string prefiks, Plik plik)
         {
             var liniaZClass = DajNumerLiniiZClass(plik);
-            dokument.WstawWLinii(
+            dokument.InsertInLine(
                 PrzygotujTableDescription(prefiks), liniaZClass);
         }
 
@@ -100,7 +100,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
                 + new StringBuilder().AppendLine().ToString();
             for (int i = 0; i < linieKolumn.Count; i++)
             {
-                dokument.WstawWLinii(szablonAtrybutu, i + linieKolumn[i]);
+                dokument.InsertInLine(szablonAtrybutu, i + linieKolumn[i]);
             }
         }
     }

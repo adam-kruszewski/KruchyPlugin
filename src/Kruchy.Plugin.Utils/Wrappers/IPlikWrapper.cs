@@ -14,6 +14,6 @@
 
         IProjectWrapper Projekt { get; }
 
-        IDokumentWrapper Dokument { get; }
+        IDocumentWrapper Dokument { get; }
     }
 }

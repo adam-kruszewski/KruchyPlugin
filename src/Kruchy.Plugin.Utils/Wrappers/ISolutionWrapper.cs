@@ -14,7 +14,7 @@ namespace Kruchy.Plugin.Utils.Wrappers
 
         IProjectWrapper AktualnyProjekt { get; }
 
-        IDokumentWrapper AktualnyDokument { get; }
+        IDocumentWrapper AktualnyDokument { get; }
 
         IList<IProjectWrapper> Projekty { get; }
 

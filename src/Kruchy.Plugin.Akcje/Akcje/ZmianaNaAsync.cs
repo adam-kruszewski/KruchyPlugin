@@ -7,19 +7,19 @@ namespace Kruchy.Plugin.Akcje.Akcje
 {
     public class ZmianaNaAsync
     {
-        private readonly IDokumentWrapper dokument;
+        private readonly IDocumentWrapper dokument;
 
         public ZmianaNaAsync(
-            IDokumentWrapper dokument)
+            IDocumentWrapper dokument)
         {
             this.dokument = dokument;
         }
 
         public void ZamienNaAsyncMethod()
         {
-            var parsowane = Parser.Parsuj(dokument.DajZawartosc());
+            var parsowane = Parser.Parsuj(dokument.GetContent());
             var metoda =
-                parsowane.SzukajMetodyWLinii(dokument.DajNumerLiniiKursora());
+                parsowane.SzukajMetodyWLinii(dokument.GetCursorLineNumber());
 
             if (metoda != null)
             {
@@ -33,8 +33,8 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         private void DodajTaskDoTypuZwracanegoJesliTrzeba()
         {
-            var parsowane = Parser.Parsuj(dokument.DajZawartosc());
-            var metoda = parsowane.SzukajMetodyWLinii(dokument.DajNumerLiniiKursora());
+            var parsowane = Parser.Parsuj(dokument.GetContent());
+            var metoda = parsowane.SzukajMetodyWLinii(dokument.GetCursorLineNumber());
 
             if (!metoda.TypZwracany.Nazwa.StartsWith("Task"))
             {
@@ -42,7 +42,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 var slowoDoWstawienia = "Task";
                 if (metoda.TypZwracany.Nazwa != "void")
                 {
-                    dokument.WstawWMiejscu(
+                    dokument.InsertInPlace(
                         ">",
                         metoda.TypZwracany.Koniec.Wiersz,
                         metoda.TypZwracany.Koniec.Kolumna);
@@ -51,11 +51,11 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 else
                 {
                     var typZwracany = metoda.TypZwracany;
-                    dokument.Usun(typZwracany.Poczatek.Wiersz, typZwracany.Poczatek.Kolumna,
+                    dokument.Remove(typZwracany.Poczatek.Wiersz, typZwracany.Poczatek.Kolumna,
                         typZwracany.Koniec.Wiersz, typZwracany.Koniec.Kolumna);
                 }
 
-                dokument.WstawWMiejscu(
+                dokument.InsertInPlace(
                     slowoDoWstawienia,
                     metoda.TypZwracany.Poczatek.Wiersz,
                     metoda.TypZwracany.Poczatek.Kolumna);
@@ -70,11 +70,11 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 {
                     var koniecModyfikatorow = metoda.Modyfikatory.Max(o => o.Koniec.Kolumna);
                     var ostatni = metoda.Modyfikatory.Last();
-                    dokument.WstawWMiejscu("async ", ostatni.Koniec.Wiersz, ostatni.Koniec.Kolumna + 1);
+                    dokument.InsertInPlace("async ", ostatni.Koniec.Wiersz, ostatni.Koniec.Kolumna + 1);
                 }
                 else
                 {
-                    dokument.WstawWMiejscu("async ", metoda.Poczatek.Wiersz, metoda.Poczatek.Kolumna);
+                    dokument.InsertInPlace("async ", metoda.Poczatek.Wiersz, metoda.Poczatek.Kolumna);
                 }
             }
         }

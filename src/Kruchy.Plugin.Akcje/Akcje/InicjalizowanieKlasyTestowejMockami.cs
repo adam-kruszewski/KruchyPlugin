@@ -83,7 +83,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         private IEnumerable<Tuple<string, string>> DajPolaMockowDoDodania(
             IEnumerable<Tuple<string, string>> polaZTypemZKonstruktora)
         {
-            var parsowane = Parser.Parsuj(solution.AktualnyDokument.DajZawartosc());
+            var parsowane = Parser.Parsuj(solution.AktualnyDokument.GetContent());
 
             var polaZdefiniowane = parsowane.DefiniowaneObiekty.First().Pola;
 
@@ -95,7 +95,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         private void DodajPolaMockow(IEnumerable<Tuple<string, string>> polaMockowDoDodania)
         {
-            var parsowane = Parser.Parsuj(solution.AktualnyDokument.DajZawartosc());
+            var parsowane = Parser.Parsuj(solution.AktualnyDokument.GetContent());
 
             int numerLiniiDoDodawaniaPol = SzukajLiniiDoWstawieniaPola(parsowane);
 
@@ -109,7 +109,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                     .ZNazwaTypu($"Mock<{array[i].Item1}>")
                     .Build(StaleDlaKodu.WcieciaDlaPolaKlasy);
 
-                solution.AktualnyDokument.WstawWLinii(nowaLinia, numerLiniiDoDodawaniaPol);
+                solution.AktualnyDokument.InsertInLine(nowaLinia, numerLiniiDoDodawaniaPol);
             }
         }
 
@@ -133,7 +133,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         private void DodajPoleInstancji(string nazwaBezRozszerzenia)
         {
-            var parsowane = Parser.Parsuj(solution.AktualnyDokument.DajZawartosc());
+            var parsowane = Parser.Parsuj(solution.AktualnyDokument.GetContent());
 
             if (!parsowane.DefiniowaneObiekty.First().Pola.Any(o => o.Nazwa == NazwaPolaInstancji))
             {
@@ -142,7 +142,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                     .ZNazwaTypu(nazwaBezRozszerzenia)
                     .Build(StaleDlaKodu.WcieciaDlaPolaKlasy);
 
-                solution.AktualnyDokument.WstawWLinii(nowaLinia, SzukajLiniiDoWstawieniaPola(parsowane));
+                solution.AktualnyDokument.InsertInLine(nowaLinia, SzukajLiniiDoWstawieniaPola(parsowane));
             }
         }
 
@@ -155,7 +155,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             IEnumerable<Tuple<string, string>> polaZTypemZKontruktora,
             string nazwaKlasyTestowanej)
         {
-            var parsowane = Parser.Parsuj(solution.AktualnyDokument.DajZawartosc());
+            var parsowane = Parser.Parsuj(solution.AktualnyDokument.GetContent());
 
             var aktualna = parsowane.DefiniowaneObiekty.First().Metody.SingleOrDefault(o => o.Nazwa == NazwaMetody);
 
@@ -165,7 +165,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             {
                 poczatek = aktualna.Poczatek;
 
-                solution.AktualnyDokument.Usun(
+                solution.AktualnyDokument.Remove(
                     aktualna.Poczatek.Wiersz, aktualna.Poczatek.Kolumna,
                     aktualna.Koniec.Wiersz, aktualna.Koniec.Kolumna);
             }else
@@ -186,7 +186,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 poczatek.Wiersz = parsowane.DefiniowaneObiekty.First().KoncowaKlamerka.Wiersz;
             }
 
-            solution.AktualnyDokument.WstawWLinii(GenerujMetode(polaZTypemZKontruktora, nazwaKlasyTestowanej), poczatek.Wiersz);
+            solution.AktualnyDokument.InsertInLine(GenerujMetode(polaZTypemZKontruktora, nazwaKlasyTestowanej), poczatek.Wiersz);
         }
 
         private string GenerujMetode(

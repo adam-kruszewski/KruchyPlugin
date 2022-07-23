@@ -27,7 +27,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
         public void Generuj(
             IParametryGenerowaniaBuildera parametry)
         {
-            var zawartoscAktualnego = solution.AktualnyDokument.DajZawartosc();
+            var zawartoscAktualnego = solution.AktualnyDokument.GetContent();
 
             var sparsowane = Parser.Parsuj(zawartoscAktualnego);
 
@@ -127,7 +127,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
                 obiektDoZbudowania =
                     sparsowane
                         .SzukajKlasyWLinii(
-                            solution.AktualnyDokument.DajNumerLiniiKursora());
+                            solution.AktualnyDokument.GetCursorLineNumber());
             }
 
             return obiektDoZbudowania;
@@ -138,7 +138,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             string nazwaKlasyBuildera,
             IEnumerable<string> usingiZObiektuBudowanego)
         {
-            var sparsowane = Parser.Parsuj(solution.AktualnyDokument.DajZawartosc());
+            var sparsowane = Parser.Parsuj(solution.AktualnyDokument.GetContent());
 
             var klasaBuildera =
                 sparsowane.DefiniowaneObiekty.Single(o => o.Nazwa == nazwaKlasyBuildera);
@@ -152,7 +152,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
 
                 string tesktMetody = GenerujTrescMetody(nazwaKlasyBuildera, wlasciwosc);
 
-                solution.AktualnyDokument.WstawWLinii(
+                solution.AktualnyDokument.InsertInLine(
                     tesktMetody + new StringBuilder().AppendLine().ToString(),
                     miejsceWstawiania.Wiersz);
             }
@@ -228,7 +228,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
         {
             for (int i = metoda.Poczatek.Wiersz; i < metoda.Koniec.Wiersz; i++)
             {
-                if (solution.AktualnyDokument.DajZawartoscLinii(i)
+                if (solution.AktualnyDokument.GetLineContent(i)
                     .Contains(napisUstawiajacyWartoscPola))
                     return true;
             }

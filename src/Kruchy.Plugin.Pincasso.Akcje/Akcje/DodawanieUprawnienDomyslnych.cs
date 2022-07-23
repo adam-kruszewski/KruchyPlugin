@@ -23,17 +23,17 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             }
             var nazwaKlasy = "";
             var dokument = solution.AktualnyDokument;
-            var liczbaLinii = dokument.DajLiczbeLinii();
-            for (int i = 1; i <= dokument.DajLiczbeLinii(); i++)
+            var liczbaLinii = dokument.GetLineCount();
+            for (int i = 1; i <= dokument.GetLineCount(); i++)
             {
-                var linia = dokument.DajZawartoscLinii(i);
+                var linia = dokument.GetLineContent(i);
                 if (linia.Contains("class ") && linia.Contains(nazwaKlasy))
                 {
                     var trescWstawiana =
                         new AtrybutBuilder()
                             .ZNazwa("UprawnieniaDomyslne")
                                 .Build(StaleDlaKodu.WciecieDlaKlasy);
-                    dokument.WstawWLinii(trescWstawiana, i);
+                    dokument.InsertInLine(trescWstawiana, i);
                     dokument.DodajUsingaJesliTrzeba("Pincasso.MvcApp.Security");
                     break;
                 }

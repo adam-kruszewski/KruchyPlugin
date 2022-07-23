@@ -10,7 +10,7 @@ namespace Kruchy.Plugin.Akcje.Tests.TestyInfrastrukturyTestow
     [TestFixture]
     public class DokumentWrapperTests
     {
-        IDokumentWrapper dokument;
+        IDocumentWrapper dokument;
 
         [SetUp]
         public void SetUpEachTest()
@@ -25,10 +25,10 @@ namespace Kruchy.Plugin.Akcje.Tests.TestyInfrastrukturyTestow
         public void WstawiaWLinii()
         {
             //act
-            dokument.WstawWMiejscu("abc", 1, 1);
+            dokument.InsertInPlace("abc", 1, 1);
 
             //assert
-            dokument.DajZawartosc()
+            dokument.GetContent()
                 .Should()
                     .Be(
 @"abcnamespace Kruchy.Plugin.Akcje.Tests.Samples
@@ -43,10 +43,10 @@ namespace Kruchy.Plugin.Akcje.Tests.TestyInfrastrukturyTestow
         public void WstawiaWLiniiTeskstZEnterem()
         {
             //act
-            dokument.WstawWMiejscu("abc" + new StringBuilder().AppendLine().ToString(), 1, 1);
+            dokument.InsertInPlace("abc" + new StringBuilder().AppendLine().ToString(), 1, 1);
 
             //assert
-            dokument.DajZawartosc()
+            dokument.GetContent()
                 .Should()
                     .Be(
 @"abc
@@ -62,10 +62,10 @@ namespace Kruchy.Plugin.Akcje.Tests.Samples
         public void WstawiaWSrodkuLinii()
         {
             //act
-            dokument.WstawWMiejscu("abc", 1, 3);
+            dokument.InsertInPlace("abc", 1, 3);
 
             //assert
-            dokument.DajZawartosc()
+            dokument.GetContent()
                 .Should()
                     .Be(
 @"naabcmespace Kruchy.Plugin.Akcje.Tests.Samples
@@ -92,10 +92,10 @@ namespace x.y.z{
             var dokument = new DokumentWrapper(zrodlo);
 
             //act
-            dokument.Usun(1, 1, 3, 13);
+            dokument.Remove(1, 1, 3, 13);
 
             //assert
-            dokument.DajZawartosc().Should().Be(
+            dokument.GetContent().Should().Be(
 @"
 
 namespace x.y.z{
@@ -119,10 +119,10 @@ namespace x.y.z{
             var dokument = new DokumentWrapper(zrodlo);
 
             //act
-            dokument.Usun(1, 2, 1, 4);
+            dokument.Remove(1, 2, 1, 4);
 
             //assert
-            dokument.DajZawartosc().Should().Be(
+            dokument.GetContent().Should().Be(
 @"ug a.b.c;
 using c.d.e;
 using g.h.i;
@@ -143,10 +143,10 @@ using c.d.e;";
             var dokument = new DokumentWrapper(zrodlo);
 
             //act
-            dokument.Usun(1, 1, 1, 4);
+            dokument.Remove(1, 1, 1, 4);
 
             //assert
-            dokument.DajZawartosc().Should().Be(
+            dokument.GetContent().Should().Be(
 @"g a.b.c;
 using c.d.e;");
         }
@@ -162,10 +162,10 @@ using c.d.e;";
             var dokument = new DokumentWrapper(zrodlo);
 
             //act
-            dokument.Usun(1, 1, 1, 13);
+            dokument.Remove(1, 1, 1, 13);
 
             //assert
-            dokument.DajZawartosc().Should().Be(
+            dokument.GetContent().Should().Be(
 @"
 using c.d.e;");
         }
@@ -181,10 +181,10 @@ using c.d.e;";
             var dokument = new DokumentWrapper(zrodlo);
 
             //act
-            dokument.Usun(1, 1, 1, 14);
+            dokument.Remove(1, 1, 1, 14);
 
             //assert
-            dokument.DajZawartosc().Should().Be(
+            dokument.GetContent().Should().Be(
 @"using c.d.e;");
         }
 
@@ -205,10 +205,10 @@ namespace X{
             var dokument = new DokumentWrapper(zrodlo);
 
             //act
-            dokument.Usun(1, 1, 2, 13);
+            dokument.Remove(1, 1, 2, 13);
 
             //assert
-            dokument.DajZawartosc().Should().Be(
+            dokument.GetContent().Should().Be(
 @"
 
 namespace X{

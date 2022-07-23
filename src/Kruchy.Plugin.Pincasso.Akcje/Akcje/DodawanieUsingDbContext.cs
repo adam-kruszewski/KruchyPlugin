@@ -39,7 +39,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             aktualnyDokument.DodajUsingaJesliTrzeba("Pincasso.Core.Base");
 
             var parsowaneAktualny =
-                Parser.Parsuj(solution.AktualnyDokument.DajZawartosc());
+                Parser.Parsuj(solution.AktualnyDokument.GetContent());
             DodajAtrybutContext(nazwaKlasyContextu, parsowaneAktualny);
             DodajInterfejsUsingContext(nazwaKlasyContextu, parsowaneAktualny);
         }
@@ -65,7 +65,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
                     .ZNazwaTypu(nazwaKlasyContextu)
                     .ZModyfikatorem("public");
 
-            solution.AktualnyDokument.WstawWLinii(
+            solution.AktualnyDokument.InsertInLine(
                 propBuilder.Build(StaleDlaKodu.WciecieDlaMetody),
                 numerLiniiWstawiania);
         }
@@ -82,7 +82,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
                 if (ostatni.Poczatek.Wiersz == klasa.Poczatek.Wiersz)
                 {
                     solution.AktualnyDokument.
-                        WstawWMiejscu(
+                        InsertInPlace(
                             wstawianyTekst,
                             ostatni.Poczatek.Wiersz,
                             ostatni.Koniec.Kolumna);
@@ -96,7 +96,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
                     sb.Append(wstawianyTekst);
                     sb.AppendLine();
                     solution.AktualnyDokument
-                        .WstawWMiejscu(
+                        .InsertInPlace(
                             sb.ToString(),
                             ostatni.Poczatek.Wiersz + 1,
                             1);

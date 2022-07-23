@@ -42,10 +42,10 @@ namespace Kruchy.Plugin.Akcje.Akcje
             if (dokument == null)
                 return;
 
-            var numerLinii = dokument.DajNumerLiniiKursora();
+            var numerLinii = dokument.GetCursorLineNumber();
             var trescMetody = builder.Build(StaleDlaKodu.WciecieDlaMetody).TrimEnd();
-            dokument.WstawWLinii(trescMetody, numerLinii);
-            dokument.UstawKursosDlaMetodyDodanejWLinii(numerLinii + 2);
+            dokument.InsertInLine(trescMetody, numerLinii);
+            dokument.SetCursorForAddedMethod(numerLinii + 2);
             dokument.DodajUsingaJesliTrzeba(DajUsingaDoDodania(konfiguracja));
         }
 

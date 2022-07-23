@@ -94,7 +94,7 @@ namespace Kruchy.Plugin.Utils._2017.Wrappers
             }
         }
 
-        public IDokumentWrapper Dokument
+        public IDocumentWrapper Dokument
         {
             get
             {

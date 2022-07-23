@@ -34,7 +34,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         private bool JestInterfejsem(IPlikWrapper aktualny)
         {
-            var zawartosc = aktualny.Dokument.DajZawartosc();
+            var zawartosc = aktualny.Dokument.GetContent();
             var parsowane = Parser.Parsuj(zawartosc);
             if (parsowane.DefiniowaneObiekty.Count == 1)
             {
@@ -46,10 +46,10 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         private void SprobujPrzejscDoImplementacji(IPlikWrapper aktualny)
         {
-            var parsowane = Parser.Parsuj(aktualny.Dokument.DajZawartosc());
+            var parsowane = Parser.Parsuj(aktualny.Dokument.GetContent());
             var metoda =
                 parsowane.SzukajMetodyWLinii(
-                    aktualny.Dokument.DajNumerLiniiKursora());
+                    aktualny.Dokument.GetCursorLineNumber());
 
             string sciezkaImplementacji = SzukajSciezkiDoImplementacji(aktualny);
             OtworzJesliSciezkaNieNullowa(sciezkaImplementacji);
@@ -63,7 +63,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         private void UstawSieNaMetodzie(Metoda metoda)
         {
             var parsowane =
-                Parser.Parsuj(solution.AktualnyDokument.DajZawartosc());
+                Parser.Parsuj(solution.AktualnyDokument.GetContent());
 
             if (parsowane.DefiniowaneObiekty.Count != 1)
                 return;
@@ -74,7 +74,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                         .FirstOrDefault();
 
             if (znalezionaMetoda != null)
-                solution.AktualnyDokument.UstawKursor(
+                solution.AktualnyDokument.SetCursor(
                     znalezionaMetoda.Poczatek.Wiersz,
                     znalezionaMetoda.Poczatek.Kolumna);
         }

@@ -22,9 +22,9 @@ namespace Kruchy.Plugin.Akcje.Akcje
         {
             IAddFieldPropertyConfigurationWindow dialogAdd = UIObjects.FactoryInstance.Get<IAddFieldPropertyConfigurationWindow>();
 
-            var aktualnyNumerLinii = solution.AktualnyDokument.DajNumerLiniiKursora();
+            var aktualnyNumerLinii = solution.AktualnyDokument.GetCursorLineNumber();
 
-            var parsowane = Parser.Parsuj(solution.AktualnyDokument.DajZawartosc());
+            var parsowane = Parser.Parsuj(solution.AktualnyDokument.GetContent());
 
             var aktualnaWlasciwosc = parsowane.SzukajPropertiesaWLinii(aktualnyNumerLinii);
 

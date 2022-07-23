@@ -70,7 +70,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             if (wybranyProjekt == null)
                 wybranyProjekt = solution.AktualnyProjekt;
 
-            var sparsowane = Parser.Parsuj(solution.AktualnyDokument.DajZawartosc());
+            var sparsowane = Parser.Parsuj(solution.AktualnyDokument.GetContent());
 
             foreach (var schematKlasy in szablon.SchematyKlas)
             {
@@ -194,7 +194,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         private string DajNazweKlasy(Plik sparsowane)
         {
             var obiekt =
-            sparsowane.SzukajKlasyWLinii(solution.AktualnyDokument.DajNumerLiniiKursora());
+            sparsowane.SzukajKlasyWLinii(solution.AktualnyDokument.GetCursorLineNumber());
 
             if (obiekt == null)
                 return sparsowane.DefiniowaneObiekty.Single().Nazwa;
