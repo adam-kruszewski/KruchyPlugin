@@ -48,7 +48,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
 
             ZapiszDokument(dokument, sciezkaDoXsd);
 
-            solutionExplorer.OtworzPlik(sciezkaDoXsd);
+            solutionExplorer.OpenFile(sciezkaDoXsd);
 
             if (!aktualnyProjekt.Pliki.Any(o => o.SciezkaPelna == sciezkaDoXsd))
                 aktualnyProjekt.DodajPlik(sciezkaDoXsd);

@@ -76,8 +76,8 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             solution.AktualnyProjekt.DodajPlik(pelnaSciezkaDoPlikuImplementacji);
             solution.AktualnyProjekt.DodajPlik(pelnaSciezkaDoPlikuInterfejsu);
 
-            solutionExplorer.OtworzPlik(pelnaSciezkaDoPlikuInterfejsu);
-            solutionExplorer.OtworzPlik(pelnaSciezkaDoPlikuImplementacji);
+            solutionExplorer.OpenFile(pelnaSciezkaDoPlikuInterfejsu);
+            solutionExplorer.OpenFile(pelnaSciezkaDoPlikuImplementacji);
         }
 
         private string GenerujZawartoscImplementacji(

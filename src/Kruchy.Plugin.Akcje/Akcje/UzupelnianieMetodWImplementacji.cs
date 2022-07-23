@@ -85,7 +85,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             IEnumerable<UsingNamespace> usingi,
             Metoda nastepnaMetoda)
         {
-            solutionExplorer.OtworzPlik(sciezkaDoImplementacji);
+            solutionExplorer.OpenFile(sciezkaDoImplementacji);
 
             var zawartosc = solution.AktualnyDokument.DajZawartosc();
             var parsowane = Parser.Parsuj(zawartosc);

@@ -77,7 +77,7 @@ namespace Kruchy.Plugin.Akcje.Menu
                 }
 
                 if (File.Exists(sciezkaDoOtwarcia))
-                    solutionExplorer.OtworzPlik(sciezkaDoOtwarcia);
+                    solutionExplorer.OpenFile(sciezkaDoOtwarcia);
                 else
                     MessageBox.Show("Brak pliku: " + sciezkaDoOtwarcia);
             }

@@ -88,7 +88,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             IPlikWrapper plikIDao,
             IPlikWrapper plikDao)
         {
-            solutionExplorer.OtworzPlik(sciezkaDoContext);
+            solutionExplorer.OpenFile(sciezkaDoContext);
 
             var dokument = solution.AktualnyDokument;
 
@@ -113,7 +113,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             string nazwaKlasyDao,
             IPlikWrapper plikIDao)
         {
-            solutionExplorer.OtworzPlik(sciezkaDoIContext);
+            solutionExplorer.OpenFile(sciezkaDoIContext);
 
             var dokument = solution.AktualnyDokument;
 

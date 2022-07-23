@@ -62,7 +62,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             File.WriteAllText(pelnaSciezka, zawartosc, Encoding.UTF8);
             var plik = projektTestowy.DodajPlik(pelnaSciezka);
 
-            solutionExplorer.OtworzPlik(plik);
+            solutionExplorer.OpenFile(plik);
         }
 
         private string DajSciezkeDoKataloguTestow(IProjektWrapper projektTestowy, string katalog)

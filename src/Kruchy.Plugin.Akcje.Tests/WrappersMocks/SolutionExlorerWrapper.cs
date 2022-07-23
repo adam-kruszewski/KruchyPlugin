@@ -18,7 +18,7 @@ namespace Kruchy.Plugin.Akcje.Tests.WrappersMocks
             PoprzednieZawartosciDokumentow = new List<string>();
         }
 
-        public void OtworzPlik(string sciezka)
+        public void OpenFile(string sciezka)
         {
             OtwartyPlik = sciezka;
             if (solution.AktualnyDokument != null)
@@ -27,12 +27,12 @@ namespace Kruchy.Plugin.Akcje.Tests.WrappersMocks
             solution.OtworzPlik(sciezka);
         }
 
-        public void OtworzPlik(IPlikWrapper plik)
+        public void OpenFile(IPlikWrapper plik)
         {
-            OtworzPlik(plik.SciezkaPelna);
+            OpenFile(plik.SciezkaPelna);
         }
 
-        public void UstawSieNaMiejscu(string sciezka)
+        public void SelectPath(string sciezka)
         {
         }
     }

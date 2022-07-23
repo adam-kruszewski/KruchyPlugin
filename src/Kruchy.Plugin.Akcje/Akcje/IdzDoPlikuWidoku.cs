@@ -60,7 +60,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             {
                 if (File.Exists(sciezka))
                 {
-                    solutionExplorer.OtworzPlik(sciezka);
+                    solutionExplorer.OpenFile(sciezka);
                     return;
                 }
             }
@@ -85,7 +85,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 UtworzKatalogDlaSciezkiJesliTrzeba(sciezka);
                 File.WriteAllText(sciezka, "", Encoding.UTF8);
                 aktualny.Projekt.DodajPlik(sciezka);
-                solutionExplorer.OtworzPlik(sciezka);
+                solutionExplorer.OpenFile(sciezka);
             }
         }
 

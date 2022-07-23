@@ -94,19 +94,19 @@ namespace Kruchy.Plugin.Utils._2017.Wrappers
             }
         }
 
-        public void OtworzPlik(string sciezka)
+        public void OpenFile(string sciezka)
         {
             //ZaladujElementyUI();
             dte.ItemOperations.OpenFile(sciezka);
         }
 
-        public void OtworzPlik(IPlikWrapper plik)
+        public void OpenFile(IPlikWrapper plik)
         {
             //ZaladujElementyUI();
             dte.ItemOperations.OpenFile(plik.SciezkaPelna);
         }
 
-        public void UstawSieNaMiejscu(string sciezka)
+        public void SelectPath(string sciezka)
         {
             var wezlyProjektow = SzukajWezlowProjektow(3);
             if (Directory.Exists(sciezka))

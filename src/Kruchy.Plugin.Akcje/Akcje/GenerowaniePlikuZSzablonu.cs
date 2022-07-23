@@ -108,7 +108,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
             File.WriteAllText(sciezkaDoPliku, tresc, Encoding.UTF8);
             wybranyProjekt.DodajPlik(sciezkaDoPliku);
-            solutionExplorer.OtworzPlik(sciezkaDoPliku);
+            solutionExplorer.OpenFile(sciezkaDoPliku);
         }
 
         private string DajNazwePliku(

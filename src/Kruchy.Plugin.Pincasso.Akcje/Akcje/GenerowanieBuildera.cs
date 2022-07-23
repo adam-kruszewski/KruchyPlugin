@@ -77,7 +77,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
                 projektTestow.DodajPlik(sciezkaDoPlikuBuilder);
             }
 
-            solutionExplorer.OtworzPlik(sciezkaDoPlikuBuilder);
+            solutionExplorer.OpenFile(sciezkaDoPlikuBuilder);
 
             UzupelnijMetody(
                 wlasciwosciDlaBuildera,

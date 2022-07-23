@@ -68,7 +68,7 @@ namespace KruchyProjekt.Base
                 {
                     DodajPlikiContekstu(projekt);
                     DodajPlikiDao(projekt);
-                    solutionExplorer.OtworzPlik(
+                    solutionExplorer.OpenFile(
                         projekt.Pliki.First(o => o.SciezkaPelna.EndsWith("Dao.cs")));
                 },
                 null);
@@ -160,7 +160,7 @@ namespace KruchyProjekt.Base
             string sciezka,
             string oczekiwanaZawartosc)
         {
-            solutionExplorer.OtworzPlik(sciezka);
+            solutionExplorer.OpenFile(sciezka);
             var zawartosc = solution.AktualnyDokument.DajZawartosc();
 
             zawartosc.Should().Be(oczekiwanaZawartosc);

@@ -32,7 +32,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 return;
             }
 
-            solutionExplorer.OtworzPlik(sciezkaWShared);
+            solutionExplorer.OpenFile(sciezkaWShared);
         }
     }
 }

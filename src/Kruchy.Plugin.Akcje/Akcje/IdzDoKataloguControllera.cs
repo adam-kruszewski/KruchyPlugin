@@ -44,7 +44,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             }
 
 
-            solutionExplorer.UstawSieNaMiejscu(katalogDlaControllera);
+            solutionExplorer.SelectPath(katalogDlaControllera);
         }
 
         private string DajNazweControllera(string nazwaKlasyControllera)

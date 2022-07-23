@@ -77,7 +77,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             }
 
 
-            solutionExplorer.OtworzPlik(plik);
+            solutionExplorer.OpenFile(plik);
         }
 
         private string SzukajNazwyKlasyTestowanejZServiceTests()

@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Kruchy.Plugin.Utils.Wrappers
+﻿namespace Kruchy.Plugin.Utils.Wrappers
 {
     public interface ISolutionExplorerWrapper
     {
-        void OtworzPlik(string sciezka);
+        void OpenFile(string sciezka);
 
-        void OtworzPlik(IPlikWrapper plik);
+        void OpenFile(IPlikWrapper plik);
 
-        void UstawSieNaMiejscu(string sciezka);
+        void SelectPath(string sciezka);
     }
 }

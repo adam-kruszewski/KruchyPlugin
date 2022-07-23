@@ -72,8 +72,8 @@ namespace Kruchy.Plugin.Akcje.Akcje
             var plikImpl = projekt.DodajPlik(pelnaSciezkaDoImplementacji);
             var plikInt = projekt.DodajPlik(pelnaSciezkaDoInterfejsu);
 
-            solutionExplorer.OtworzPlik(plikInt.SciezkaPelna);
-            solutionExplorer.OtworzPlik(plikImpl.SciezkaPelna);
+            solutionExplorer.OpenFile(plikInt.SciezkaPelna);
+            solutionExplorer.OpenFile(plikImpl.SciezkaPelna);
         }
 
         private string GenerujPlikImplementacji(

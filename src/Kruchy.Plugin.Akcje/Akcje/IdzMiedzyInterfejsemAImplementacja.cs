@@ -109,7 +109,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         {
             if (sciezka == null)
                 return;
-            solutionExplorer.OtworzPlik(sciezka);
+            solutionExplorer.OpenFile(sciezka);
         }
     }
 }

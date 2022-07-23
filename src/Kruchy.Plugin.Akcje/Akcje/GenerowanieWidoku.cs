@@ -40,7 +40,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             }
             File.WriteAllText(pelnaSciezka, "");
             solution.AktualnyProjekt.DodajPlik(pelnaSciezka);
-            solutionExplorer.OtworzPlik(pelnaSciezka);
+            solutionExplorer.OpenFile(pelnaSciezka);
         }
 
         private string Normalizuj(string nazwa)
