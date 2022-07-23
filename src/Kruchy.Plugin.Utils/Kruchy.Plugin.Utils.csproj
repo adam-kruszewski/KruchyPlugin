@@ -60,6 +60,8 @@
     <Compile Include="Wrappers\IDocumentWrapper.cs" />
     <Compile Include="Wrappers\IFileWrapper.cs" />
     <Compile Include="Wrappers\IProjectWrapper.cs" />
+    <Compile Include="Wrappers\ISelectedFolder.cs" />
+    <Compile Include="Wrappers\ISelectionWrapper.cs" />
     <Compile Include="Wrappers\ISolutionExplorerWrapper.cs" />
     <Compile Include="Wrappers\ISolutionWrapper.cs" />
     <Compile Include="UI\IUIFactory.cs" />

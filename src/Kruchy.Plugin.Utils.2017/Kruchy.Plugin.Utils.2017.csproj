@@ -48,6 +48,8 @@
     <Compile Include="Wrappers\DokumentWrapper.cs" />
     <Compile Include="Wrappers\PlikWrapper.cs" />
     <Compile Include="Wrappers\ProjektWrapper.cs" />
+    <Compile Include="Wrappers\SelectedFolder.cs" />
+    <Compile Include="Wrappers\SelectionWrapper.cs" />
     <Compile Include="Wrappers\SolutionExplorerWrapper.cs" />
     <Compile Include="Wrappers\SolutionWrapper.cs" />
   </ItemGroup>

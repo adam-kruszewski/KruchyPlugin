@@ -7,5 +7,7 @@
         void OpenFile(IFileWrapper plik);
 
         void SelectPath(string sciezka);
+
+        ISelectionWrapper GetSelection();
     }
 }

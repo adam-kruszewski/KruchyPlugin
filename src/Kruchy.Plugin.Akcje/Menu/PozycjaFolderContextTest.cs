@@ -10,10 +10,14 @@ namespace Kruchy.Plugin.Akcje.Menu
     {
         private readonly ISolutionWrapper solution;
 
+        private readonly ISolutionExplorerWrapper solutionExplorer;
+
         public PozycjaFolderContextTest(
-            ISolutionWrapper solution)
+            ISolutionWrapper solution,
+            ISolutionExplorerWrapper solutionExplorer)
         {
             this.solution = solution;
+            this.solutionExplorer = solutionExplorer;
         }
 
         public uint MenuCommandID => PkgCmdIDList.TestContextMenuAction;
@@ -22,7 +26,7 @@ namespace Kruchy.Plugin.Akcje.Menu
 
         public void Execute(object sender, EventArgs args)
         {
-            
+            var folder = solutionExplorer.GetSelection().GetSingleSelectedFolder();
         }
     }
 }

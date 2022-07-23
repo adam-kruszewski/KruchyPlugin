@@ -290,5 +290,10 @@ namespace Kruchy.Plugin.Utils._2017.Wrappers
                 return true;
             return false;
         }
+
+        public ISelectionWrapper GetSelection()
+        {
+            return new SelectionWrapper(this.dte);
+        }
     }
 }
