@@ -14,5 +14,9 @@ namespace Kruchy.Plugin.Akcje.Interfejs
         IEnumerable<VariableToFill> VariablesToFill { set; }
 
         IDictionary<string, object> VariablesValues { get; }
+
+        bool CanSelectDirectory { set; }
+
+        bool Cancelled { get; }
     }
 }

@@ -21,7 +21,22 @@ namespace Kruchy.Plugin.UI.Controls
         public WpfGeneratingFromTemplateParamsWindow()
         {
             InitializeComponent();
+
+            TreeViewSelectDirectory.Visibility = DirectorySelectionTreeVisibility;
+
+            if (!CanSelectDirectory)
+            {
+                FullWindow.MinHeight -= TreeViewSelectDirectory.MinHeight;
+                FullWindow.Height -= TreeViewSelectDirectory.Height;
+            }
+
+            FullWindow.InvalidateArrange();
         }
+
+        public Visibility DirectorySelectionTreeVisibility =>
+            CanSelectDirectory ? Visibility.Visible : Visibility.Collapsed;
+
+        public bool Cancelled { get; private set; } = false;
 
         public IEnumerable<IProjectWrapper> Projects
         {
@@ -134,19 +149,19 @@ namespace Kruchy.Plugin.UI.Controls
                     .ToDictionary(o => o.Key, o => o.Value);
         }
 
+        public bool CanSelectDirectory { private get; set; }
 
         private IDictionary<string, TextBox> controlsDictionary = new Dictionary<string, TextBox>();
 
         private void cancelButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            foreach (var d in controlsDictionary)
-
-                this.Close();
+            Cancelled = true;
+            this.Close();
         }
 
         private void addButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            if (TreeViewSelectDirectory.SelectedItem == null)
+            if (CanSelectDirectory && TreeViewSelectDirectory.SelectedItem == null)
             {
                 UIObjects.ShowMessageBox(null, "Nie wybrano katalogu");
                 return;

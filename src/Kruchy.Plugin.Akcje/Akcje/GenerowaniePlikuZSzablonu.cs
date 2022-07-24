@@ -28,7 +28,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             this.solution = solution;
         }
 
-        public void Generuj(string nazwaSzablonu)
+        public void Generuj(string nazwaSzablonu, bool directoryFromSelectemItem = false)
         {
             var konf = Konfiguracja.GetInstance(solution);
 
@@ -42,28 +42,38 @@ namespace Kruchy.Plugin.Akcje.Akcje
             IProjectWrapper wybranyProjekt = null;
 
             IDictionary<string, object> variableValues = new Dictionary<string, object>();
-            if (szablon.WyborSciezki)
+            IGeneratingFromTemplateParamsWindow dialogAdd =
+                UIObjects.FactoryInstance.Get<IGeneratingFromTemplateParamsWindow>();
+
+            dialogAdd.CanSelectDirectory = szablon.WyborSciezki && !directoryFromSelectemItem;
+
+            dialogAdd.Projects = solution.Projekty;
+
+            dialogAdd.VariablesToFill =
+                szablon.Zmienne.Where(o => o.WprowadzanaWUI)
+                    .Select(o => new VariableToFill
+                    {
+                        Name = o.Symbol,
+                        Type = "string",
+                        InitialValue = o.WartoscInicjalna
+                    });
+
+            UIObjects.ShowWindowModal(dialogAdd);
+
+            if (dialogAdd.Cancelled)
+                return;
+
+            variableValues = dialogAdd.VariablesValues;
+
+            if (directoryFromSelectemItem)
             {
-                IGeneratingFromTemplateParamsWindow dialogAdd =
-                    UIObjects.FactoryInstance.Get<IGeneratingFromTemplateParamsWindow>();
-
-                dialogAdd.Projects = solution.Projekty;
-
-                dialogAdd.VariablesToFill =
-                    szablon.Zmienne.Where(o => o.WprowadzanaWUI)
-                        .Select(o => new VariableToFill {
-                            Name = o.Symbol,
-                            Type = "string",
-                            InitialValue = o.WartoscInicjalna });
-
-                UIObjects.ShowWindowModal(dialogAdd);
-
-                if (string.IsNullOrEmpty(dialogAdd.Directory))
-                    return;
-
-                variableValues = dialogAdd.VariablesValues;
-
+                wybranaSciezka = solutionExplorer.GetSelection().GetSingleSelectedFolder()?.FullPath;
+                wybranyProjekt = solution.Projekty.Single(o => wybranaSciezka.StartsWith(o.DirectoryPath));
+            }
+            else
+            {
                 wybranaSciezka = dialogAdd.Directory;
+
                 wybranyProjekt = dialogAdd.SelectedProject;
             }
 
@@ -162,7 +172,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             var sciezkaWProjekcie = DajSciezkeWProjekcie(wybranaSciezka, wybranyProjekt);
             wynik["SCIEZKA_W_PROJEKCIE"] = sciezkaWProjekcie;
             wynik["NOWY_NAMESPACE"] =
-                $"{wybranyProjekt?.Name}.{sciezkaWProjekcie.Replace("\\", ".").Replace("/", ".")}";
+                $"{wybranyProjekt?.Name}.{sciezkaWProjekcie.Replace("\\", ".").Replace("/", ".")}".TrimEnd('.');
 
             foreach (var pair in variableValues)
             {

@@ -69,7 +69,7 @@ namespace Kruchy.Plugin.Akcje.Menu
             public void Execute(object sender, EventArgs args)
             {
                 new GenerowaniePlikuZSzablonu(solutionExplorer, solution)
-                    .Generuj(schemat.TytulSchematu);
+                    .Generuj(schemat.TytulSchematu, directoryFromSelectemItem: true);
             }
         }
     }
