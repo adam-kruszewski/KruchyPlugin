@@ -20,7 +20,7 @@
                   Height="300"
                   ScrollViewer.VerticalScrollBarVisibility="Visible"
                   ScrollViewer.CanContentScroll="False"
-                  Visibility="{Binding DirectorySelectionTreeVisibility}">
+                  Visibility="{Binding DirectorySelectionTreeVisibility}" AutomationProperties.Name="Title">
             <TreeView.ItemTemplate>
                 <HierarchicalDataTemplate DataType="{x:Type self:PlaceInSolutionItem}" ItemsSource="{Binding Items}">
                     <TextBlock Text="{Binding Title}" />
@@ -28,7 +28,7 @@
             </TreeView.ItemTemplate>
             <TreeView.ItemContainerStyle>
                 <Style TargetType="TreeViewItem">
-                    <Setter Property="IsExpanded" Value="true" />
+                    <Setter Property="IsExpanded" Value="false" />
                 </Style>
             </TreeView.ItemContainerStyle>
         </TreeView>

@@ -1,9 +1,10 @@
 ﻿using Kruchy.Plugin.Utils.Wrappers;
 using System.Collections.ObjectModel;
+using System.Windows.Controls;
 
 namespace Kruchy.Plugin.UI.Controls.Models
 {
-    public class PlaceInSolutionItem
+    public class PlaceInSolutionItem //: TreeViewItem
     {
         public string Path { get; set; }
 
@@ -22,8 +23,6 @@ namespace Kruchy.Plugin.UI.Controls.Models
         public string Title { get; set; }
 
         public ObservableCollection<PlaceInSolutionItem> Items { get; set; }
-
-        public bool Expanded { get; set; } = true;
 
         public PlaceInSolutionItem()
         {
