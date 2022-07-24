@@ -22,28 +22,20 @@ namespace Kruchy.Plugin.UI.Controls
         {
             InitializeComponent();
 
-            TreeViewSelectDirectory.Visibility = DirectorySelectionTreeVisibility;
-
-            if (!CanSelectDirectory)
-            {
-                FullWindow.MinHeight -= TreeViewSelectDirectory.MinHeight;
-                FullWindow.Height -= TreeViewSelectDirectory.Height;
-            }
-
-            FullWindow.InvalidateArrange();
         }
 
         public Visibility DirectorySelectionTreeVisibility =>
             CanSelectDirectory ? Visibility.Visible : Visibility.Collapsed;
 
-        public bool Cancelled { get; private set; } = false;
+        public bool Cancelled { get; private set; } = true;
 
         public IEnumerable<IProjectWrapper> Projects
         {
             set
             {
-                foreach (var project in value.OrderBy(o => o.Name))
-                    AddProjectTreeItem(project);
+                if (_canSelectDirectory)
+                    foreach (var project in value.OrderBy(o => o.Name))
+                        AddProjectTreeItem(project);
             }
         }
 
@@ -149,7 +141,28 @@ namespace Kruchy.Plugin.UI.Controls
                     .ToDictionary(o => o.Key, o => o.Value);
         }
 
-        public bool CanSelectDirectory { private get; set; }
+
+        private bool _canSelectDirectory = true;
+        public bool CanSelectDirectory
+        {
+            private get
+            {
+                return _canSelectDirectory;
+            }
+            set
+            {
+                if (_canSelectDirectory && !value)
+                {
+                    MainPanel.Children.Remove(TreeViewSelectDirectory);
+                    MainPanel.InvalidateArrange();
+                    FullWindow.MinHeight -= TreeViewSelectDirectory.MinHeight;
+                    FullWindow.Height -= TreeViewSelectDirectory.Height;
+                }
+                _canSelectDirectory = value;
+
+                FullWindow.InvalidateArrange();
+            }
+        }
 
         private IDictionary<string, TextBox> controlsDictionary = new Dictionary<string, TextBox>();
 
@@ -167,10 +180,13 @@ namespace Kruchy.Plugin.UI.Controls
                 return;
             }
 
+
             Directory = (TreeViewSelectDirectory.SelectedItem as PlaceInSolutionItem)?.Path;
             SelectedProject = (TreeViewSelectDirectory.SelectedItem as PlaceInSolutionItem)?.Project;
 
             VariablesValues.Clear();
+
+            Cancelled = false;
 
             Close();
         }

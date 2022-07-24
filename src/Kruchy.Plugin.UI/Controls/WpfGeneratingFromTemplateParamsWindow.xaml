@@ -13,7 +13,7 @@
             SizeChanged="Window_SizeChanged"
             xmlns:self="clr-namespace:Kruchy.Plugin.UI.Controls.Models"
         x:Name="FullWindow">
-    <StackPanel Orientation="Vertical" Margin="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+    <StackPanel Orientation="Vertical" Margin="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" x:Name="MainPanel">
         <TreeView x:Name="TreeViewSelectDirectory"
                   MinHeight="300"
                   MaxHeight="300"
