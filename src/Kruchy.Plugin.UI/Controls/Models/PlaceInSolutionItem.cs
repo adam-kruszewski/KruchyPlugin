@@ -23,6 +23,8 @@ namespace Kruchy.Plugin.UI.Controls.Models
 
         public ObservableCollection<PlaceInSolutionItem> Items { get; set; }
 
+        public bool Expanded { get; set; } = true;
+
         public PlaceInSolutionItem()
         {
             Items = new ObservableCollection<PlaceInSolutionItem>();

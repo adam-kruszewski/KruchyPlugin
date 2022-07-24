@@ -46,6 +46,7 @@ namespace Kruchy.Plugin.UI.Controls
                 Title = project.Name,
                 Project = project,
                 Path = project.DirectoryPath,
+                Expanded = true
             };
 
             TreeViewSelectDirectory.Items.Add(projectItem);
@@ -68,7 +69,8 @@ namespace Kruchy.Plugin.UI.Controls
                 var projectItem = new PlaceInSolutionItem
                 {
                     Project = project,
-                    Path = directory
+                    Path = directory,
+                    Expanded = false
                 };
 
                 projectItem.Title = projectItem.RelativePath;
