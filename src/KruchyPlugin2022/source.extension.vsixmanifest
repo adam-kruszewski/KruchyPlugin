@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="KruchyPlugin2022.b1cf292f-8c74-45db-bd1e-100e218d3dea" Version="4.5" Language="en-US" Publisher="Adam Kruszewski" />
+        <Identity Id="KruchyPlugin2022.b1cf292f-8c74-45db-bd1e-100e218d3dea" Version="4.6" Language="en-US" Publisher="Adam Kruszewski" />
         <DisplayName>KruchyPlugin2022</DisplayName>
         <Description xml:space="preserve">Kruchy plugin for Visual Studio 2022</Description>
     </Metadata>

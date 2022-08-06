@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.Design;
 using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 using EnvDTE80;
 using Kruchy.Plugin.Utils.Menu;
@@ -70,10 +71,22 @@ namespace Kruchy.Plugin.Utils._2017
 
         private static void OnInvokedDynamicItem(object sender, EventArgs args)
         {
-            DynamicItemMenuCommand invokedCommand = (DynamicItemMenuCommand)sender;
-            var matchedCommandID = invokedCommand.MatchedCommandId;
+            try
+            {
+                DynamicItemMenuCommand invokedCommand = (DynamicItemMenuCommand)sender;
+                var matchedCommandID = invokedCommand.MatchedCommandId;
 
-            invokedCommand.Pozycja.WykonajPodakcje(matchedCommandID);
+                invokedCommand.Pozycja.WykonajPodakcje(matchedCommandID);
+            }catch (Exception ex)
+            {
+                var messageBuilder = new StringBuilder();
+
+                messageBuilder.AppendLine($"EXCEPTION {ex.Message}");
+                messageBuilder.AppendLine(ex.StackTrace);
+
+                MessageBox.Show(messageBuilder.ToString(), "DYNAMIC ACTION EXCEPTION");
+                throw;
+            }
         }
 
         private static void OnBeforeQueryStatusDynamicItem(object sender, EventArgs args)

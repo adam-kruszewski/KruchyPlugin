@@ -429,7 +429,7 @@
 				</Strings>
 			</Button>
 
-			<Button guid="guidCommand1PackageCmdSet" id="TestContextMenuAction" priority="0x0116" type="Button">
+			<!--<Button guid="guidCommand1PackageCmdSet" id="TestContextMenuAction" priority="0x0116" type="Button">
 				<Parent guid="guidCommand1PackageCmdSet" id="TestContextMenuGroup" />
 				<Strings>
 					<CommandName>testContextMenuAction</CommandName>
@@ -437,18 +437,18 @@
 				</Strings>
 				<CommandFlag>DefaultDisabled</CommandFlag>
 				<CommandFlag>DynamicVisibility</CommandFlag>
-			</Button>
+			</Button>-->
 
-			<Button guid="guidCommand1PackageCmdSet" id="cmdidTestActionInMenuConextMenu" priority="0x1000" >
+			<!--<Button guid="guidCommand1PackageCmdSet" id="cmdidTestActionInMenuConextMenu" priority="0x1000" >
 				<Parent guid="guidCommand1PackageCmdSet" id="TestContextMenuGroup" />
-				<!--<Parent guid="guidCommand1PackageCmdSet" id="MenuGenerujPlikContextMenuControllerGroup" />-->
+				--><!--<Parent guid="guidCommand1PackageCmdSet" id="MenuGenerujPlikContextMenuControllerGroup" />--><!--
 				<CommandFlag>DynamicItemStart</CommandFlag>
 				<CommandFlag>DynamicVisibility</CommandFlag>
-				<!--<CommandFlag>TextChanges</CommandFlag>-->
+				--><!--<CommandFlag>TextChanges</CommandFlag>--><!--
 				<Strings>
 					<ButtonText>Generuj pliki ze schematu</ButtonText>
 				</Strings>
-			</Button>
+			</Button>-->
 
 			<!--<Button guid="guidCommand1PackageCmdSet" id="cmdidTestMenuActionInContextMenu" priority="0x1000" >
 				<Parent guid="guidCommand1PackageCmdSet" id="MenuGenerujPlikContextMenuControllerGroup" />
