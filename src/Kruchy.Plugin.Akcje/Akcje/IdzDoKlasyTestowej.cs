@@ -48,16 +48,13 @@ namespace Kruchy.Plugin.Akcje.Akcje
             {
                 var projektModulu = solution.SzukajProjektuModulu();
 
-                if (projektModulu == null)
-                {
-                    MessageBox.Show("Nie znaleziono projektu modułu");
-                    return;
-                }
 
                 var nazwaSzukanegoPliku =
                     solution.AktualnyPlik.NameWithoutExtension.ToLower()
                     .Replace("tests", "");
+
                 plik = SzukajPlikiKlasyTestowanej(projektModulu, nazwaSzukanegoPliku);
+
                 if (plik == null)
                 {
                     var nazwaNaPodstawieKlasyTestowanej =
@@ -108,14 +105,21 @@ namespace Kruchy.Plugin.Akcje.Akcje
             return false;
         }
 
-        private static IFileWrapper SzukajPlikiKlasyTestowanej(
+        private IFileWrapper SzukajPlikiKlasyTestowanej(
             IProjectWrapper projektModulu,
             string nazwaSzukanegoPliku)
         {
-            return projektModulu
+            var fileWrapper = projektModulu
                     .Files
                         .Where(o => o.NameWithoutExtension.ToLower() == nazwaSzukanegoPliku.ToLower())
                             .FirstOrDefault();
+
+            if (fileWrapper == null)
+                fileWrapper = solution.Projekty.SelectMany(o => o.Files)
+                    .Where(o => o.NameWithoutExtension.ToLower() == nazwaSzukanegoPliku.ToLower())
+                        .FirstOrDefault();
+
+            return fileWrapper;
         }
 
         private string DajRdzenNazwyKlasyTestow(Plik parsowane)
