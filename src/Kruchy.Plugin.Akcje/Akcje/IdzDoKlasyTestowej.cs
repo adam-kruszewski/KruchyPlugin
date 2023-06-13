@@ -32,16 +32,15 @@ namespace Kruchy.Plugin.Akcje.Akcje
             {
                 var projektTestow = solution.SzukajProjektuTestowego();
 
-                if (projektTestow == null)
-                {
-                    MessageBox.Show("Nie znaleziono projektu testowego ");
-                    return;
-                }
-
                 var nazwaSzukanegoPliku =
                     DajRdzenNazwyKlasyTestow(parsowane) + "Tests.cs";
 
                 plik = projektTestow.Files
+                        .Where(o => o.Name.ToLower() == nazwaSzukanegoPliku.ToLower())
+                            .FirstOrDefault();
+
+                if (plik == null)
+                    plik = solution.Projekty.SelectMany(o =>o.Files)
                         .Where(o => o.Name.ToLower() == nazwaSzukanegoPliku.ToLower())
                             .FirstOrDefault();
             }
