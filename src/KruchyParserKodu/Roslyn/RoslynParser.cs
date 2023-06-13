@@ -21,9 +21,19 @@ namespace KruchyParserKodu.Roslyn
 
             var wynik = new Plik();
 
-            var namespaceDeclaration =
-                root.Members.OfType<NamespaceDeclarationSyntax>().First();
-            wynik.Namespace = namespaceDeclaration.Name.ToString();
+
+            BaseNamespaceDeclarationSyntax namespaceDeclaration =
+                root.Members.OfType<NamespaceDeclarationSyntax>().FirstOrDefault();
+
+            var fileScopedNamespaceDeclaration =
+                root.Members.OfType<FileScopedNamespaceDeclarationSyntax>().FirstOrDefault();
+
+            if (fileScopedNamespaceDeclaration != null)
+                namespaceDeclaration = fileScopedNamespaceDeclaration;
+
+            if (namespaceDeclaration != null)
+                wynik.Namespace = namespaceDeclaration.Name.ToString();
+
 
             foreach (var u in root.Usings)
                 wynik.Usingi.Add(DajUsing(u));
@@ -45,7 +55,7 @@ namespace KruchyParserKodu.Roslyn
             }
 
             var enumeracje = namespaceDeclaration.Members.OfType<EnumDeclarationSyntax>();
-            foreach(var enumSyntax in enumeracje)
+            foreach (var enumSyntax in enumeracje)
             {
                 wynik.DefiniowaneEnumeracje.Add(ParsujEnumeracje(enumSyntax));
             }
