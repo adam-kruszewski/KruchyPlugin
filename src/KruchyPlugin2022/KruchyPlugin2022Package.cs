@@ -15,6 +15,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows;
+using System.Windows.Forms;
 using Task = System.Threading.Tasks.Task;
 
 namespace KruchyPlugin2022

@@ -29,8 +29,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kruchy.Plugin.Akcje.Tests",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kruchy.Plugin.UI", "Kruchy.Plugin.UI\Kruchy.Plugin.UI.csproj", "{15B17FF2-B9AA-445B-A1AA-2E5D54D289D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KruchyPlugin2019", "KruchyPlugin2019\KruchyPlugin2019.csproj", "{D9EF634C-DF9E-4197-83E7-EB0C81F1C562}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kruchy.Plugin.Pincasso.Akcje", "Kruchy.Plugin.Pincasso.Akcje\Kruchy.Plugin.Pincasso.Akcje.csproj", "{3E444894-807C-43AC-86B1-F6D81EEE4BE3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KruchyPlugin2022", "KruchyPlugin2022\KruchyPlugin2022.csproj", "{6ED4D2C7-FE1D-4D59-ACFB-F09CA00F1829}"
@@ -96,11 +94,6 @@ Global
 		{15B17FF2-B9AA-445B-A1AA-2E5D54D289D6}.Debug-2022|Any CPU.Build.0 = Debug|Any CPU
 		{15B17FF2-B9AA-445B-A1AA-2E5D54D289D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{15B17FF2-B9AA-445B-A1AA-2E5D54D289D6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D9EF634C-DF9E-4197-83E7-EB0C81F1C562}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D9EF634C-DF9E-4197-83E7-EB0C81F1C562}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D9EF634C-DF9E-4197-83E7-EB0C81F1C562}.Debug-2022|Any CPU.ActiveCfg = Debug|Any CPU
-		{D9EF634C-DF9E-4197-83E7-EB0C81F1C562}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D9EF634C-DF9E-4197-83E7-EB0C81F1C562}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3E444894-807C-43AC-86B1-F6D81EEE4BE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3E444894-807C-43AC-86B1-F6D81EEE4BE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E444894-807C-43AC-86B1-F6D81EEE4BE3}.Debug-2022|Any CPU.ActiveCfg = Debug|Any CPU
