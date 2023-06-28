@@ -1,7 +1,6 @@
 ﻿using KruchyParserKodu.ParserKodu.Interfaces;
-using KruchyParserKodu.ParserKodu.Models;
 
-namespace KruchyParserKodu.ParserKodu
+namespace KruchyParserKodu.ParserKodu.Models
 {
     public class Instruction : ParsowanaJednostka, IWithPlaceInCode
     {

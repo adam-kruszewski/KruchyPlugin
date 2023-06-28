@@ -1,5 +1,7 @@
 ﻿using FluentAssertions;
 using KruchyParserKodu.ParserKodu;
+using KruchyParserKodu.ParserKodu.Models;
+using KruchyParserKodu.ParserKodu.Models.Instructions;
 using KruchyParserKoduTests.Utils;
 using NUnit.Framework;
 using System.Collections.Generic;
@@ -71,6 +73,12 @@ namespace KruchyParserKoduTests.Unit
             _instruction1.CodeUnit.Should().Be(_constructor);
 
             _instruction2.CodeUnit.Should().Be(_constructor);
+        }
+
+        [Test]
+        public void ParsedCode_Constructor_ShouldInstruction1BeOfTypeAssignmentInstruction()
+        {
+            _instruction1.GetType().Should().Be(typeof(AssignmentInstruction));
         }
     }
 }

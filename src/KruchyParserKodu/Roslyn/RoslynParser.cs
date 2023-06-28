@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using KruchyParserKodu.ParserKodu;
 using KruchyParserKodu.ParserKodu.Models;
+using KruchyParserKodu.ParserKodu.Models.Instructions;
 using KruchyParserKodu.Utils;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -398,7 +399,7 @@ namespace KruchyParserKodu.Roslyn
             {
                 foreach (StatementSyntax instructionSyntax in constructorSyntax.Body.Statements)
                 {
-                    var instruction = new Instruction();
+                    Instruction instruction = GetInstruction(instructionSyntax);
 
                     UstawPolozenie(instruction, instructionSyntax);
 
@@ -407,6 +408,29 @@ namespace KruchyParserKodu.Roslyn
                     yield return instruction;
                 }
             }
+        }
+
+        private static Instruction GetInstruction(StatementSyntax instructionSyntax)
+        {
+            if (instructionSyntax is ExpressionStatementSyntax)
+            {
+                AssignmentExpressionSyntax assignmentExpressionSyntax =
+                    (instructionSyntax as ExpressionStatementSyntax)
+                        .Expression as AssignmentExpressionSyntax;
+
+                if (assignmentExpressionSyntax != null)
+                {
+                    var expressionInstruction = new AssignmentInstruction();
+
+                    expressionInstruction.LeftSide = assignmentExpressionSyntax.Left.ToString();
+
+                    expressionInstruction.AssignedValue = assignmentExpressionSyntax.Right.ToString();
+
+                    return expressionInstruction;
+                }
+            }
+
+            return new Instruction();
         }
 
         private void UzupelnijPozycjeNawiasowOtwierajacychIZamykajacych(
