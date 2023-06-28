@@ -322,6 +322,8 @@ namespace KruchyParserKodu.Roslyn
 
                 UzupelnijAtrybuty(metodaSyntax.AttributeLists, metoda.Atrybuty);
 
+                metoda.Instructions.AddRange(ParseInstructions(metodaSyntax, metoda));
+
                 ParsujDokumentacje(metoda, metodaSyntax);
 
                 ParsujKomentarz(metoda, metodaSyntax);
@@ -391,7 +393,7 @@ namespace KruchyParserKodu.Roslyn
         }
 
         private IEnumerable<Instruction> ParseInstructions(
-            ConstructorDeclarationSyntax constructorSyntax,
+            BaseMethodDeclarationSyntax constructorSyntax,
             MethodConstructorBase parentCodeUnit)
         {
 
