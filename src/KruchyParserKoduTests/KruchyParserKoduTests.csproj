@@ -27,6 +27,8 @@
     <EmbeddedResource Include="Samples\KlasaZParametramiGenerycznymi.cs" />
     <EmbeddedResource Include="Samples\IInterfejsZParametramiGenerycznymi.cs" />
     <EmbeddedResource Include="Samples\EnumerationDoParsowania.cs" />
+    <EmbeddedResource Include="Samples\MethodAndConstructorWithCode.cs" />
+    <Compile Include="Unit\ParsingMethodAndConstructorWithCodeTests.cs" />
     <Compile Include="Unit\ParsowanieAtrybutowTests.cs" />
     <Compile Include="Unit\ParsowanieDokumentacjiTests.cs" />
     <Compile Include="Unit\ParsowanieEnumerationTests.cs" />

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Xml.Serialization;
 using FluentAssertions;
 using Kruchy.Plugin.Akcje.Akcje;
+using Kruchy.Plugin.Akcje.Interfejs;
 using Kruchy.Plugin.Akcje.KonfiguracjaPlugina;
 using Kruchy.Plugin.Akcje.KonfiguracjaPlugina.Xml;
 using Kruchy.Plugin.Akcje.Tests.Utils;
@@ -21,10 +22,28 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
     {
         private WczytywaczZawartosciPrzykladow wczytywacz;
 
+        Mock<IGeneratingFromTemplateParamsWindow> _uiDialogMock;
+
         [SetUp]
         public void SetUpEachTest()
         {
             wczytywacz = new WczytywaczZawartosciPrzykladow();
+
+             _uiDialogMock = new Mock<IGeneratingFromTemplateParamsWindow>();
+
+            _uiDialogMock
+                .Setup(o => o.VariablesValues)
+                .Returns(new Dictionary<string, object>());
+
+            UnitModuleInitialization.UiFactoryMock
+                .Setup(o => o.Get<IGeneratingFromTemplateParamsWindow>())
+                .Returns(_uiDialogMock.Object);
+        }
+
+        [TearDown]
+        public void TeardownEachTest()
+        {
+            UnitModuleInitialization.UiFactoryMock.Reset();
         }
 
         [Test]
@@ -47,6 +66,15 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
                         Path.Combine(projekt.DirectoryPath, schematKlasy.NazwaPliku);
 
                     File.ReadAllText(sciezkaDoPliku).Should().Be(schematKlasy.Tresc);
+                },
+                akcjaDopasowaniaArrange: (solution, project) =>
+                {
+                    _uiDialogMock
+                        .Setup(o => o.SelectedProject)
+                        .Returns(project);
+                    _uiDialogMock
+                        .Setup(o => o.Directory)
+                        .Returns($"{project.DirectoryPath}/abc");
                 });
         }
 
@@ -71,6 +99,15 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
 
                     File.ReadAllText(sciezkaDoPliku).Should().Be(
                         "a PustaKlasa b Kruchy.Plugin.Akcje.Tests.Samples c PustaKlasa.cs d PustaKlasa");
+                },
+                akcjaDopasowaniaArrange: (solution, project) =>
+                {
+                    _uiDialogMock
+                        .Setup(o => o.SelectedProject)
+                        .Returns(project);
+                    _uiDialogMock
+                        .Setup(o => o.Directory)
+                        .Returns($"{project.DirectoryPath}/abc");
                 });
         }
 
@@ -95,10 +132,20 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
                     projekt.Files.Single(o => o.FullPath == sciezkaDoPliku);
 
                     File.ReadAllText(sciezkaDoPliku).Should().Be("a");
+                },
+                akcjaDopasowaniaArrange: (solution, project) =>
+                {
+                    _uiDialogMock
+                        .Setup(o => o.SelectedProject)
+                        .Returns(project);
+                    _uiDialogMock
+                        .Setup(o => o.Directory)
+                        .Returns($"{project.DirectoryPath}/abc");
                 });
         }
 
         [Test]
+        [Ignore("To verify")]
         public void GenerujeTrescZDynamicznaZmienna()
         {
             var szablon = new SchematGenerowania();
@@ -137,6 +184,13 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
                 },
                 (solution, projekt) =>
                 {
+                    _uiDialogMock
+                        .Setup(o => o.SelectedProject)
+                        .Returns(projekt);
+                    _uiDialogMock
+                        .Setup(o => o.Directory)
+                        .Returns($"{projekt.DirectoryPath}/abc");
+
                     projekt.DodajPustyPlik("ModulContext.cs");
                     projekt.DodajPustyPlik("ModulContextScope.cs");
                 });

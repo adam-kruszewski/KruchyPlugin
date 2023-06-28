@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using KruchyParserKodu.ParserKodu;
+using KruchyParserKodu.ParserKodu.Models;
 using KruchyParserKodu.Utils;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -339,41 +340,72 @@ namespace KruchyParserKodu.Roslyn
         {
             foreach (var konstruktorSyntax in klasa.Members.OfType<ConstructorDeclarationSyntax>())
             {
-                var konstruktor = new Konstruktor();
-
-                UstawPolozenie(konstruktorSyntax.SyntaxTree, konstruktor, konstruktorSyntax);
-                konstruktor.Modyfikator =
-                    SzukajModyfikatorow(konstruktorSyntax.Modifiers)
-                        .Select(o => o.Nazwa)
-                            .SingleOrDefault();
-
-                UzupelnijParametry(konstruktorSyntax.ParameterList, konstruktor.Parametry);
-
-                UzupelnijPozycjeNawiasowOtwierajacychIZamykajacych(
-                    konstruktorSyntax,
-                    konstruktor);
-
-                UzupelnijPozycjeKlamerek(konstruktorSyntax, konstruktor);
-
-                ParsujDokumentacje(konstruktor, konstruktorSyntax);
-
-                konstruktor.Wlasciciel = obiektWlasciciel;
-
-                if (konstruktorSyntax.Initializer != null
-                    && konstruktorSyntax.Initializer.ArgumentList != null)
-                {
-                    konstruktor.SlowoKluczoweInicjalizacji =
-                        konstruktorSyntax.Initializer.ThisOrBaseKeyword.ToString();
-                    konstruktor.ParametryKonstruktoraZNadKlasy =
-                        konstruktorSyntax
-                            .Initializer
-                                .ArgumentList
-                                    .Arguments
-                                        .Select(o => o.ToString().Trim())
-                                            .ToList();
-                }
+                Konstruktor konstruktor = ParseConstructor(obiektWlasciciel, konstruktorSyntax);
 
                 konstruktory.Add(konstruktor);
+            }
+        }
+
+        private Konstruktor ParseConstructor(
+            Obiekt obiektWlasciciel,
+            ConstructorDeclarationSyntax konstruktorSyntax)
+        {
+            var konstruktor = new Konstruktor();
+
+            UstawPolozenie(konstruktorSyntax.SyntaxTree, konstruktor, konstruktorSyntax);
+            konstruktor.Modyfikator =
+                SzukajModyfikatorow(konstruktorSyntax.Modifiers)
+                    .Select(o => o.Nazwa)
+                        .SingleOrDefault();
+
+            UzupelnijParametry(konstruktorSyntax.ParameterList, konstruktor.Parametry);
+
+            UzupelnijPozycjeNawiasowOtwierajacychIZamykajacych(
+                konstruktorSyntax,
+                konstruktor);
+
+            UzupelnijPozycjeKlamerek(konstruktorSyntax, konstruktor);
+
+            ParsujDokumentacje(konstruktor, konstruktorSyntax);
+
+            konstruktor.Wlasciciel = obiektWlasciciel;
+
+            if (konstruktorSyntax.Initializer != null
+                && konstruktorSyntax.Initializer.ArgumentList != null)
+            {
+                konstruktor.SlowoKluczoweInicjalizacji =
+                    konstruktorSyntax.Initializer.ThisOrBaseKeyword.ToString();
+                konstruktor.ParametryKonstruktoraZNadKlasy =
+                    konstruktorSyntax
+                        .Initializer
+                            .ArgumentList
+                                .Arguments
+                                    .Select(o => o.ToString().Trim())
+                                        .ToList();
+            }
+
+            konstruktor.Instructions.AddRange(ParseInstructions(konstruktorSyntax, konstruktor));
+
+            return konstruktor;
+        }
+
+        private IEnumerable<Instruction> ParseInstructions(
+            ConstructorDeclarationSyntax constructorSyntax,
+            MethodConstructorBase parentCodeUnit)
+        {
+
+            if (constructorSyntax.Body != null)
+            {
+                foreach (StatementSyntax instructionSyntax in constructorSyntax.Body.Statements)
+                {
+                    var instruction = new Instruction();
+
+                    UstawPolozenie(instruction, instructionSyntax);
+
+                    instruction.CodeUnit = parentCodeUnit;
+
+                    yield return instruction;
+                }
             }
         }
 
@@ -621,6 +653,16 @@ namespace KruchyParserKodu.Roslyn
 
             return wynik;
 
+        }
+
+        private void UstawPolozenie(
+            ParsowanaJednostka obiekt,
+            SyntaxNode wezel)
+        {
+            UstawPolozenie(
+                wezel.SyntaxTree,
+                obiekt,
+                wezel);
         }
 
         private void UstawPolozenie(

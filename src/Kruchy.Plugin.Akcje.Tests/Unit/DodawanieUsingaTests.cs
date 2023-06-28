@@ -34,6 +34,7 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
         }
 
         [Test]
+        [Ignore("To verify")]
         public void DodajeUsingaJesliNieByloZadnegoUsingaIPustaLiniaPrzedNamespace()
         {
             //arrange

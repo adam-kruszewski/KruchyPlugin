@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Samples\ReportViewXsd.xsd" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="FluentAssertions" Version="5.10.3" />
     <PackageReference Include="Moq" Version="4.16.1" />
     <PackageReference Include="NUnit" Version="3.12.0" />
@@ -18,6 +22,7 @@
 
   <ItemGroup>
     <EmbeddedResource Include="Samples\PustaKlasa.cs" />
+    <EmbeddedResource Include="Samples\ReportViewXsd.xsd" />
     <EmbeddedResource Include="Samples\UzupelnianieKonstruktoraGdyPropertiesy.cs" />
     <EmbeddedResource Include="Samples\DomainObject.cs" />
     <EmbeddedResource Include="Samples\DomainBuilderNiepelny.cs" />
@@ -44,6 +49,7 @@
     <EmbeddedResource Include="Samples\EnumeracjaDoDokumentacji.cs" />
     <EmbeddedResource Include="Samples\WynikEnumeracjaDoDokumentacji.cs" />
     <Compile Include="TestyInfrastrukturyTestow\DokumentWrapperTests.cs" />
+    <Compile Include="UnitModuleInitialization.cs" />
     <Compile Include="Unit\UzupelnianieDokumentacjiTests.cs" />
     <EmbeddedResource Include="Samples\UzupelnianieKonstruktoraPrzyStalej.cs" />
     <Compile Include="Unit\DodawanieDaoDaoContekstuTests.cs" />
