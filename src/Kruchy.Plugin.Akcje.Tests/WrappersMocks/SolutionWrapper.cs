@@ -8,7 +8,7 @@ using Moq;
 
 namespace Kruchy.Plugin.Akcje.Tests.WrappersMocks
 {
-    class SolutionWrapper : ISolutionWrapper
+    public class SolutionWrapper : ISolutionWrapper
     {
         IDocumentWrapper dokument;
         private IList<IProjectWrapper> projekty;

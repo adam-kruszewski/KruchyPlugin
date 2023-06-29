@@ -1,12 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using KrucheBuilderyKodu.Builders;
 using Kruchy.Plugin.Akcje.KonfiguracjaPlugina;
 using Kruchy.Plugin.Akcje.Utils;
 using Kruchy.Plugin.Utils.Wrappers;
 using KruchyParserKodu.ParserKodu;
+using KruchyParserKodu.ParserKodu.Models;
+using KruchyParserKodu.ParserKodu.Models.Instructions;
 
 namespace Kruchy.Plugin.Akcje.Akcje
 {
@@ -38,7 +42,10 @@ namespace Kruchy.Plugin.Akcje.Akcje
             if (solution.AktualnyDokument == null)
                 return;
 
-            var obiekt = SzukajKlasy();
+            Plik parsowanyPlik = GetParsedCode();
+
+            var obiekt = SzukajKlasy(parsowanyPlik);
+
             if (obiekt == null)
             {
                 MessageBox.Show(
@@ -69,7 +76,8 @@ namespace Kruchy.Plugin.Akcje.Akcje
                         polaReadOnly,
                         obiekt.Nazwa,
                         polaDoKonstruktoraNadklasy,
-                        konstruktor?.SlowoKluczoweInicjalizacji);
+                        konstruktor?.SlowoKluczoweInicjalizacji,
+                        konstruktor);
 
                 if (konstruktor != null)
                 {
@@ -102,6 +110,37 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 if (Konfiguracja.GetInstance(solution).SortowacZaleznosciSerwisu())
                     PosortujZdefiniowanePola(obiekt.SzukajPolPrivateReadOnly());
             }
+        }
+
+        private bool IsSimpleParameterAssignment(
+            Instruction instruction,
+            IEnumerable<Pole> readonlyFields,
+            IEnumerable<Parametr> parametry)
+        {
+            var assignmentInstruction = instruction as AssignmentInstruction;
+
+            if (assignmentInstruction == null)
+                return false;
+
+
+            var regexPattern = $"^(this\\.)*(?<field>\\w+)\\s*=\\s(?<parameter>\\w+);$";
+
+            var regex = new Regex(regexPattern);
+
+            var match = regex.Match(assignmentInstruction.Text);
+
+            if (match.Success)
+            {
+                var fieldName = match.Groups["field"].Value;
+
+                var parameterName = match.Groups["parameter"].Value;
+
+                if (readonlyFields.Select(o => o.Nazwa).Contains(fieldName) &&
+                    parametry.Select(o => o.NazwaParametru).Contains(parameterName))
+                    return true;
+            }
+
+            return false;
         }
 
         private IList<Parametr> WyliczPolaPotrzebneDoKonstruktoraNadklasy(Konstruktor konstruktor)
@@ -163,11 +202,8 @@ namespace Kruchy.Plugin.Akcje.Akcje
                     .ToString();
         }
 
-        private Obiekt SzukajKlasy()
+        private Obiekt SzukajKlasy(Plik parsowanyPlik)
         {
-            var kod = solution.AktualnyDokument.GetContent();
-
-            var parsowanyPlik = Parser.Parsuj(kod);
             var klasy =
                 parsowanyPlik
                     .DefiniowaneObiekty
@@ -182,11 +218,20 @@ namespace Kruchy.Plugin.Akcje.Akcje
                         solution.AktualnyDokument.GetCursorLineNumber());
         }
 
+        private Plik GetParsedCode()
+        {
+            var kod = solution.AktualnyDokument.GetContent();
+
+            var parsowanyPlik = Parser.Parsuj(kod);
+            return parsowanyPlik;
+        }
+
         private string GenerujKonstruktor(
             IEnumerable<Pole> pola,
             string nazwaKlasy,
             IEnumerable<Parametr> parametryDlaKonstruktoraNadklasy,
-            string slowoKluczowe)
+            string slowoKluczowe,
+            Konstruktor constructor)
         {
             var builder = new MetodaBuilder();
             builder.JedenParametrWLinii(true);
@@ -209,6 +254,12 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 builder.DodajLinie(napisThisJesliTrzeba + pole.Nazwa + " = " + nazwaParametru + ";");
             }
 
+            if (constructor != null)
+                AddOtherInstructionsFromOriginalConstructor(
+                    constructor,
+                    pola,
+                    builder);
+
             if (parametryDlaKonstruktoraNadklasy != null)
             {
                 foreach (var parametrDlaNadklasy in parametryDlaKonstruktoraNadklasy)
@@ -224,9 +275,50 @@ namespace Kruchy.Plugin.Akcje.Akcje
             return builder.Build(StaleDlaKodu.WciecieDlaMetody).TrimEnd();
         }
 
+        private void AddOtherInstructionsFromOriginalConstructor(
+            Konstruktor constructor,
+            IEnumerable<Pole> fields,
+            MetodaBuilder builder)
+        {
+            Instruction previousOtherInstruction = null;
+
+            foreach (var originalInstruction in constructor.Instructions)
+            {
+                if (!IsSimpleParameterAssignment(originalInstruction, fields, constructor.Parametry))
+                {
+                    if (previousOtherInstruction == null)
+                    {
+                        builder.DodajLinie("");
+                    }
+                    else
+                    {
+                        var difference =
+                            originalInstruction.Poczatek.Wiersz - previousOtherInstruction.Poczatek.Wiersz;
+
+                        if (difference > 1)
+                            builder.DodajLinie("");
+
+                    }
+
+                    builder.DodajLinie(originalInstruction.Text);
+
+                    previousOtherInstruction = originalInstruction;
+                }
+            }
+        }
+
+        private IEnumerable<Instruction> GetOtherInstructionsFromOriginalConstructor(
+            Konstruktor constructor, IEnumerable<Pole> readonlyFields)
+        {
+            return constructor.Instructions
+                .Where(o => !IsSimpleParameterAssignment(o, readonlyFields, constructor.Parametry));
+        }
+
         private IEnumerable<Pole> SortujPola(IEnumerable<Pole> pola)
         {
-            if (!Konfiguracja.GetInstance(solution).SortowacZaleznosciSerwisu())
+            var konf = Konfiguracja.GetInstance(solution);
+
+            if (!konf.SortowacZaleznosciSerwisu())
                 return pola;
             return
                 pola

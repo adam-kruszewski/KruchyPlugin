@@ -48,8 +48,13 @@
     <EmbeddedResource Include="Samples\WynikKlasaDokumentacjiZTypuPola.cs" />
     <EmbeddedResource Include="Samples\EnumeracjaDoDokumentacji.cs" />
     <EmbeddedResource Include="Samples\WynikEnumeracjaDoDokumentacji.cs" />
+    <EmbeddedResource Include="Samples\FillingConstructor\ConstructorWithOtherInstructionsNewConstructor.cs" />
+    <EmbeddedResource Include="Samples\FillingConstructor\ConstructorWithOtherInstructionsNewConstructorResult.cs" />
+    <EmbeddedResource Include="Samples\FillingConstructor\ConstructorWithOtherInstructionAddLackingAssignments.cs" />
+    <EmbeddedResource Include="Samples\FillingConstructor\ConstructorWithOtherInstructionAddLackingAssignmentsResult.cs" />
     <Compile Include="TestyInfrastrukturyTestow\DokumentWrapperTests.cs" />
     <Compile Include="UnitModuleInitialization.cs" />
+    <Compile Include="Unit\FillingConstructor\FillingConstructorWithOtherInstructionsTests.cs" />
     <Compile Include="Unit\UzupelnianieDokumentacjiTests.cs" />
     <EmbeddedResource Include="Samples\UzupelnianieKonstruktoraPrzyStalej.cs" />
     <Compile Include="Unit\DodawanieDaoDaoContekstuTests.cs" />

@@ -2,6 +2,7 @@
 using Kruchy.Plugin.Akcje.Akcje;
 using Kruchy.Plugin.Akcje.Tests.Utils;
 using Kruchy.Plugin.Akcje.Tests.WrappersMocks;
+using Moq;
 using NUnit.Framework;
 
 namespace Kruchy.Plugin.Akcje.Tests.Unit
@@ -16,6 +17,12 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
             var solution = new SolutionWrapper(
                 new WczytywaczZawartosciPrzykladow()
                     .DajZawartoscPrzykladu("UzupelnianieKonstruktoraGdyPropertiesy.cs"));
+
+            UnitModuleInitialization.KonfiguracjaMock
+                .Setup(o => o.SortowacZaleznosciSerwisu())
+                .Returns(false);
+
+            UnitModuleInitialization.SetSolutionToKonfiguracjaMock(solution);
 
             //act
             new UzupelnianieKonstruktora(solution).Uzupelnij();
@@ -71,6 +78,12 @@ namespace Pincasso.MvcApp.WebServices.Logging
         }
     }
 }");
+        }
+
+        [TearDown]
+        public void CleanUp()
+        {
+            UnitModuleInitialization.KonfiguracjaMock.Reset();
         }
     }
 }

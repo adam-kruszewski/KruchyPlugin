@@ -100,27 +100,27 @@ namespace Kruchy.Plugin.Akcje.KonfiguracjaPlugina
             return pelnaSciezkaSolution + ".kruchy.xml";
         }
 
-        public KonfiguracjaUsingow DajKonfiguracjeUsingow(ISolutionWrapper solution)
+        public virtual KonfiguracjaUsingow DajKonfiguracjeUsingow(ISolutionWrapper solution)
         {
             return Usingi;
         }
 
-        public bool SortowacZaleznosciSerwisu()
+        public virtual bool SortowacZaleznosciSerwisu()
         {
             return konfiguracjaXml.SortowanieZaleznosciSerwisow;
         }
 
-        public IEnumerable<PrzejdzDo> PrzejdzDo()
+        public virtual IEnumerable<PrzejdzDo> PrzejdzDo()
         {
             return konfiguracjaXml.PrzejdzDo;
         }
 
-        public IEnumerable<KlasaTestowa> KlasyTestowe()
+        public virtual IEnumerable<KlasaTestowa> KlasyTestowe()
         {
             return konfiguracjaXml.KlasyTestowe;
         }
 
-        public IEnumerable<MapowanieTypuXsd> MapowaniaTypowXsd()
+        public virtual IEnumerable<MapowanieTypuXsd> MapowaniaTypowXsd()
         {
             return konfiguracjaXml.MapowaniaTypowXsd;
         }
@@ -130,12 +130,12 @@ namespace Kruchy.Plugin.Akcje.KonfiguracjaPlugina
             return konfiguracjaXml.Schematy;
         }
 
-        public Testy Testy()
+        public virtual Testy Testy()
         {
             return konfiguracjaXml.Testy;
         }
 
-        public IEnumerable<ProjektTestowy> PowiazaniaProjektowTestowych => konfiguracjaXml.PowiazaniaProjektowTestowych;
+        public virtual IEnumerable<ProjektTestowy> PowiazaniaProjektowTestowych => konfiguracjaXml.PowiazaniaProjektowTestowych;
 
         public virtual Dokumentacja Dokumentacja()
         {

@@ -87,6 +87,14 @@ namespace KruchyParserKoduTests.Unit
         }
 
         [Test]
+        public void ParsedCode_Constructor_ShouldInstructionsSetText()
+        {
+            _constructorInstruction1.Text.Should().Be("_a1 = a1;");
+
+            _constructorInstruction2.Text.Should().Be("var v1 = 1 + 2;");
+        }
+
+        [Test]
         public void ParsedCode_Constructor_ShouldInstructionsHaveSetCodeUnit()
         {
             _constructorInstruction1.CodeUnit.Should().Be(_constructor);
