@@ -403,6 +403,8 @@ namespace KruchyParserKodu.Roslyn
                 {
                     Instruction instruction = GetInstruction(instructionSyntax);
 
+                    instruction.Text = instructionSyntax.ToString();
+
                     UstawPolozenie(instruction, instructionSyntax);
 
                     instruction.CodeUnit = parentCodeUnit;

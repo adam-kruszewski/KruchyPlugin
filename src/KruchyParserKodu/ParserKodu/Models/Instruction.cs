@@ -17,5 +17,7 @@ namespace KruchyParserKodu.ParserKodu.Models
             get => Koniec;
             set => Koniec = value;
         }
+
+        public string Text { get; set; }
     }
 }
