@@ -13,7 +13,7 @@ namespace Kruchy.Plugin.Akcje.KonfiguracjaPlugina
         private static Konfiguracja instance;
         public static Konfiguracja GetInstance(ISolutionWrapper solution)
         {
-            if (instance == null || instance.Solution.PelnaNazwa != solution.PelnaNazwa)
+            if (instance == null || instance.Solution?.PelnaNazwa != solution.PelnaNazwa)
                 instance = new Konfiguracja(solution);
             return instance;
         }
