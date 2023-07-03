@@ -1,4 +1,4 @@
-﻿namespace KruchyParserKodu.ParserKodu
+﻿namespace KruchyParserKodu.ParserKodu.Interfaces
 {
     public interface IZKomentarzem
     {
