@@ -1,6 +1,6 @@
 ﻿namespace KruchyParserKodu.ParserKodu.Interfaces
 {
-    public interface IZKomentarzem
+    public interface IWithComment
     {
         Komentarz Komentarz { get; set; }
     }

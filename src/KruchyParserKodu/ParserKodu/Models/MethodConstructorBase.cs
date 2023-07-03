@@ -9,7 +9,7 @@ namespace KruchyParserKodu.ParserKodu.Models
         : ParsowanaJednostka
             , IZNawiasamiOtwierajacymiZamykajacymiParametry
                 , IZWlascicielem
-                    , IZKomentarzem
+                    , IWithComment
                         , IWithDocumentation
     {
         public Obiekt Wlasciciel { get; set; }

@@ -10,7 +10,7 @@ namespace KruchyParserKodu.ParserKodu
             , IZNazwa
                 , IZPoczatkowaIKoncowaKlamerka
                     , IZWlascicielem
-                        , IZKomentarzem
+                        , IWithComment
                             , IWithDocumentation
     {
         public RodzajObiektu Rodzaj

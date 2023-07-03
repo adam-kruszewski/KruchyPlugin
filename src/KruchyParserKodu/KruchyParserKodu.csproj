@@ -54,7 +54,7 @@
     <Compile Include="ParserKodu\Models\Instruction.cs" />
     <Compile Include="ParserKodu\Interfaces\IWithPlaceInCode.cs" />
     <Compile Include="ParserKodu\Interfaces\IWithDocumentation.cs" />
-    <Compile Include="ParserKodu\Interfaces\IZKomentarzem.cs" />
+    <Compile Include="ParserKodu\Interfaces\IWithComment.cs" />
     <Compile Include="ParserKodu\IZNawiasamiOtwierajacymiZamykajacymiParametry.cs" />
     <Compile Include="ParserKodu\IZNazwa.cs" />
     <Compile Include="ParserKodu\IZPoczatkowaIKoncowaKlamerka.cs" />

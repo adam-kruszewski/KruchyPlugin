@@ -136,7 +136,7 @@ namespace KruchyParserKodu.Roslyn
             }
         }
 
-        private void ParsujKomentarz(IZKomentarzem obiekt, SyntaxNode syntaxNode)
+        private void ParsujKomentarz(IWithComment obiekt, SyntaxNode syntaxNode)
         {
             var trivias = syntaxNode.GetLeadingTrivia();
 

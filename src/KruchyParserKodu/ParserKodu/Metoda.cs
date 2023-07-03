@@ -8,7 +8,7 @@ namespace KruchyParserKodu.ParserKodu
         : MethodConstructorBase
             , IZNawiasamiOtwierajacymiZamykajacymiParametry
                 , IZWlascicielem
-                    , IZKomentarzem
+                    , IWithComment
                         , IWithDocumentation
     {
         public IList<ParametrGeneryczny> ParametryGeneryczne { get; set; }
