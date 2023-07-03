@@ -149,7 +149,7 @@ namespace KruchyParserKodu.Roslyn
             }
         }
 
-        private void ParsujDokumentacje(IZDokumentacja obiekt, SyntaxNode syntaxNode)
+        private void ParsujDokumentacje(IWithDocumentation obiekt, SyntaxNode syntaxNode)
         {
             var trivias = syntaxNode.GetLeadingTrivia();
 

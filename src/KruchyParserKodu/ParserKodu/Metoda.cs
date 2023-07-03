@@ -9,7 +9,7 @@ namespace KruchyParserKodu.ParserKodu
             , IZNawiasamiOtwierajacymiZamykajacymiParametry
                 , IZWlascicielem
                     , IZKomentarzem
-                        , IZDokumentacja
+                        , IWithDocumentation
     {
         public IList<ParametrGeneryczny> ParametryGeneryczne { get; set; }
 
