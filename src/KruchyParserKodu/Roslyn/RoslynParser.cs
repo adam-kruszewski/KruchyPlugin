@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using KruchyParserKodu.ParserKodu;
+using KruchyParserKodu.ParserKodu.Interfaces;
 using KruchyParserKodu.ParserKodu.Models;
 using KruchyParserKodu.ParserKodu.Models.Instructions;
 using KruchyParserKodu.Utils;

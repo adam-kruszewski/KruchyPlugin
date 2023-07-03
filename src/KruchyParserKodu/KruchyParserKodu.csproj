@@ -53,7 +53,7 @@
     <Compile Include="ParserKodu\Enumeration.cs" />
     <Compile Include="ParserKodu\Models\Instruction.cs" />
     <Compile Include="ParserKodu\Interfaces\IWithPlaceInCode.cs" />
-    <Compile Include="ParserKodu\IZDokumentacja.cs" />
+    <Compile Include="ParserKodu\Interfaces\IZDokumentacja.cs" />
     <Compile Include="ParserKodu\IZKomentarzem.cs" />
     <Compile Include="ParserKodu\IZNawiasamiOtwierajacymiZamykajacymiParametry.cs" />
     <Compile Include="ParserKodu\IZNazwa.cs" />
