@@ -144,9 +144,9 @@ namespace Kruchy.Plugin.Akcje.Akcje
             if (nastepnaMetodaWImplementacji?.Komentarz?.Lines != null)
                 numerLiniiGdzieDodawac -= nastepnaMetodaWImplementacji.Komentarz.Lines.Count;
 
-            if (numerLiniiGdzieDodawac <= obiekt.PoczatkowaKlamerka.Wiersz)
+            if (numerLiniiGdzieDodawac <= obiekt.StartingBrace.Wiersz)
             {
-                numerLiniiGdzieDodawac = obiekt.PoczatkowaKlamerka.Wiersz + 1;
+                numerLiniiGdzieDodawac = obiekt.StartingBrace.Wiersz + 1;
                 wstawianyTekst += new StringBuilder().AppendLine().ToString();
             }
 

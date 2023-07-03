@@ -450,13 +450,13 @@ namespace KruchyParserKodu.Roslyn
 
         private void UzupelnijPozycjeKlamerek(
             BaseMethodDeclarationSyntax syntax,
-            IZPoczatkowaIKoncowaKlamerka obiekt)
+            IWithBraces obiekt)
         {
-            obiekt.PoczatkowaKlamerka =
+            obiekt.StartingBrace =
                 DajPolozenie(syntax.Body.OpenBraceToken)
                     .Item1.ToPozycjaWPliku();
 
-            obiekt.KoncowaKlamerka =
+            obiekt.FinishingBrace =
                 DajPolozenie(syntax.Body.CloseBraceToken)
                     .Item1.ToPozycjaWPliku();
 
@@ -605,22 +605,22 @@ namespace KruchyParserKodu.Roslyn
         }
 
         private void UstawPolozeniePoczatkowejKlamerki(
-            IZPoczatkowaIKoncowaKlamerka obiekt,
+            IWithBraces obiekt,
             SyntaxToken token)
         {
             var pozycjaPoczatkowejKlamerki = DajPolozenie(token.SyntaxTree, token);
-            obiekt.PoczatkowaKlamerka.Wiersz =
+            obiekt.StartingBrace.Wiersz =
                 pozycjaPoczatkowejKlamerki.Item1.Line;
-            obiekt.PoczatkowaKlamerka.Kolumna =
+            obiekt.StartingBrace.Kolumna =
                 pozycjaPoczatkowejKlamerki.Item1.Character;
         }
 
         private void UstawPolozenieKoncowejKlamerki(
-            IZPoczatkowaIKoncowaKlamerka obiekt,
+            IWithBraces obiekt,
             SyntaxToken token)
         {
             var pozycjaKoncowejKlamerki = DajPolozenie(token.SyntaxTree, token);
-            obiekt.KoncowaKlamerka = pozycjaKoncowejKlamerki.Item1.ToPozycjaWPliku();
+            obiekt.FinishingBrace = pozycjaKoncowejKlamerki.Item1.ToPozycjaWPliku();
         }
 
         private void UzupelnijAtrybuty(

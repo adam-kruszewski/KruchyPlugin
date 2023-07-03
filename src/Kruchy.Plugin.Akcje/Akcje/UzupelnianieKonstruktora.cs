@@ -93,7 +93,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 {
                     //tu zawsze będzie jakieś pole lub właściwośc
                     //, bo są pola które czekają na dodanie do konstruktora
-                    int maksymalnyNumerLiniiPol = obiekt.PoczatkowaKlamerka.Wiersz + 1;
+                    int maksymalnyNumerLiniiPol = obiekt.StartingBrace.Wiersz + 1;
 
                     if (obiekt.Pola.Any())
                         maksymalnyNumerLiniiPol =

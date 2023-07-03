@@ -125,7 +125,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             }
             else
             {
-                numerLiniiDoDodawaniaPol = parsowane.DefiniowaneObiekty.First().PoczatkowaKlamerka.Wiersz + 1;
+                numerLiniiDoDodawaniaPol = parsowane.DefiniowaneObiekty.First().StartingBrace.Wiersz + 1;
             }
 
             return numerLiniiDoDodawaniaPol;
@@ -181,9 +181,9 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 }
             }
 
-            if (poczatek.Wiersz > parsowane.DefiniowaneObiekty.First().KoncowaKlamerka.Wiersz)
+            if (poczatek.Wiersz > parsowane.DefiniowaneObiekty.First().FinishingBrace.Wiersz)
             {
-                poczatek.Wiersz = parsowane.DefiniowaneObiekty.First().KoncowaKlamerka.Wiersz;
+                poczatek.Wiersz = parsowane.DefiniowaneObiekty.First().FinishingBrace.Wiersz;
             }
 
             solution.AktualnyDokument.InsertInLine(GenerujMetode(polaZTypemZKontruktora, nazwaKlasyTestowanej), poczatek.Wiersz);

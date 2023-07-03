@@ -30,8 +30,8 @@ namespace KruchyParserKoduTests.Unit
             var obiekt = plik.DefiniowaneObiekty.First();
             obiekt.Rodzaj.Should().Be(RodzajObiektu.Klasa);
             obiekt.Name.Should().Be("KlasaDoParsowania");
-            obiekt.PoczatkowaKlamerka.Wiersz.Should().Be(12);
-            obiekt.PoczatkowaKlamerka.Kolumna.Should().Be(5);
+            obiekt.StartingBrace.Wiersz.Should().Be(12);
+            obiekt.FinishingBrace.Kolumna.Should().Be(5);
             obiekt.Atrybuty.Count().Should().Be(1);
             obiekt.Atrybuty.First().Nazwa.Should().Be("Testowo");
             obiekt.Modyfikatory.Should().BeEmpty();
@@ -101,10 +101,10 @@ namespace KruchyParserKoduTests.Unit
                 konstrZ1Parametrem.NawiasZamykajacyParametry,
                 19, 39);
             SprawdzPozycje(
-                konstrZ1Parametrem.PoczatkowaKlamerka,
+                konstrZ1Parametrem.StartingBrace,
                 20, 9);
             SprawdzPozycje(
-                konstrZ1Parametrem.KoncowaKlamerka,
+                konstrZ1Parametrem.FinishingBrace,
                 24, 9);
             konstrZ1Parametrem.Modyfikator.Should().Be("public");
         }

@@ -60,7 +60,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 var konstruktor = klasa.Konstruktory.First();
                 solution.AktualnyDokument.InsertInLine(
                     DajZawartoscDoDodania(nazwa, typ, true, poziomKlasy),
-                    konstruktor.KoncowaKlamerka.Wiersz);
+                    konstruktor.FinishingBrace.Wiersz);
             }
             else
             {

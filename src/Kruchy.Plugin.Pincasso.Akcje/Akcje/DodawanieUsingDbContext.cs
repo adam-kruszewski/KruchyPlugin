@@ -56,7 +56,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
                     klasa.Propertiesy.Select(o => o.Poczatek.Wiersz).Min();
             else
             {
-                numerLiniiWstawiania = klasa.PoczatkowaKlamerka.Wiersz + 1;
+                numerLiniiWstawiania = klasa.StartingBrace.Wiersz + 1;
             }
 
             var propBuilder =

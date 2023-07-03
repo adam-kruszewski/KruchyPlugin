@@ -8,7 +8,7 @@ namespace KruchyParserKodu.ParserKodu
     public class Obiekt
         : ParsowanaJednostka
             , IWithName
-                , IZPoczatkowaIKoncowaKlamerka
+                , IWithBraces
                     , IWithOwner
                         , IWithComment
                             , IWithDocumentation
@@ -42,8 +42,8 @@ namespace KruchyParserKodu.ParserKodu
 
         public IList<Obiekt> ObiektyWewnetrzne { get; private set; }
 
-        public PozycjaWPliku PoczatkowaKlamerka { get; set; }
-        public PozycjaWPliku KoncowaKlamerka { get; set; }
+        public PozycjaWPliku StartingBrace { get; set; }
+        public PozycjaWPliku FinishingBrace { get; set; }
 
         public Comment Komentarz { get; set; }
 
@@ -60,8 +60,8 @@ namespace KruchyParserKodu.ParserKodu
             Atrybuty = new List<Atrybut>();
             NadklasaIInterfejsy = new List<ObiektDziedziczony>();
 
-            PoczatkowaKlamerka = new PozycjaWPliku();
-            KoncowaKlamerka = new PozycjaWPliku();
+            StartingBrace = new PozycjaWPliku();
+            FinishingBrace = new PozycjaWPliku();
             ObiektyWewnetrzne = new List<Obiekt>();
             Modyfikatory = new List<Modyfikator>();
 

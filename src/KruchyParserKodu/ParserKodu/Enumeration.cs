@@ -7,7 +7,7 @@ namespace KruchyParserKodu.ParserKodu
     public class Enumeration
         : ParsowanaJednostka
             ,IWithName
-                , IZPoczatkowaIKoncowaKlamerka
+                , IWithBraces
                     , IWithOwner
                         , IWithComment
                             , IWithDocumentation
@@ -22,9 +22,9 @@ namespace KruchyParserKodu.ParserKodu
 
         public List<Atrybut> Atrybuty { get; private set; }
 
-        public PozycjaWPliku PoczatkowaKlamerka { get; set; }
+        public PozycjaWPliku StartingBrace { get; set; }
 
-        public PozycjaWPliku KoncowaKlamerka { get; set; }
+        public PozycjaWPliku FinishingBrace { get; set; }
 
         public Comment Komentarz { get; set; }
 
@@ -33,8 +33,8 @@ namespace KruchyParserKodu.ParserKodu
         public Enumeration()
         {
             Pola = new List<Pole>();
-            PoczatkowaKlamerka = new PozycjaWPliku();
-            KoncowaKlamerka = new PozycjaWPliku();
+            StartingBrace = new PozycjaWPliku();
+            FinishingBrace = new PozycjaWPliku();
             Modyfikatory = new List<Modyfikator>();
             Atrybuty = new List<Atrybut>();
         }

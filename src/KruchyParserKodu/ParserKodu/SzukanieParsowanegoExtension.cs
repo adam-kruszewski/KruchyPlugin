@@ -104,7 +104,7 @@ namespace KruchyParserKodu.ParserKodu
                     .Select(o => o.Wiersz);
             if (ostatnieLinieDefinicji.Count() == 0)
             {
-                return obiekt.PoczatkowaKlamerka.Wiersz + 1;
+                return obiekt.StartingBrace.Wiersz + 1;
             }
 
             return ostatnieLinieDefinicji.Max() + 1;
@@ -123,7 +123,7 @@ namespace KruchyParserKodu.ParserKodu
 
             if (ostatnieLinieDefinicji.Count() == 0)
             {
-                return obiekt.PoczatkowaKlamerka.Wiersz + 1;
+                return obiekt.StartingBrace.Wiersz + 1;
             }
 
             return ostatnieLinieDefinicji.Max() + 1;

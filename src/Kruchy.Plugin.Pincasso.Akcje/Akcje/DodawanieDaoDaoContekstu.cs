@@ -144,7 +144,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
                                 .FirstOrDefault();
 
             if (metodaPo == null)
-                return sparsowane.DefiniowaneObiekty.Single().KoncowaKlamerka.Wiersz;
+                return sparsowane.DefiniowaneObiekty.Single().FinishingBrace.Wiersz;
             else
                 return metodaPo.Poczatek.Wiersz;
         }

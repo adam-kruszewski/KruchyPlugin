@@ -189,7 +189,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             var miejsceWstawiania = metodaSave?.Poczatek;
 
             if (miejsceWstawiania == null)
-                miejsceWstawiania = klasaBuildera.KoncowaKlamerka;
+                miejsceWstawiania = klasaBuildera.FinishingBrace;
             return miejsceWstawiania;
         }
 
