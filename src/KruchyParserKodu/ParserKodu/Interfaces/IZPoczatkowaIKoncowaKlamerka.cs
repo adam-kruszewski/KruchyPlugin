@@ -1,5 +1,5 @@
 ﻿
-namespace KruchyParserKodu.ParserKodu
+namespace KruchyParserKodu.ParserKodu.Interfaces
 {
     interface IZPoczatkowaIKoncowaKlamerka
     {
