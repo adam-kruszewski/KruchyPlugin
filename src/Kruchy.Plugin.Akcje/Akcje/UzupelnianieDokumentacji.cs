@@ -3,6 +3,7 @@ using Kruchy.Plugin.Akcje.KonfiguracjaPlugina.Xml;
 using Kruchy.Plugin.Utils.Extensions;
 using Kruchy.Plugin.Utils.Wrappers;
 using KruchyParserKodu.ParserKodu;
+using KruchyParserKodu.ParserKodu.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
