@@ -7,7 +7,7 @@ namespace KruchyParserKodu.ParserKodu
 {
     public class Obiekt
         : ParsowanaJednostka
-            , IZNazwa
+            , IWithName
                 , IZPoczatkowaIKoncowaKlamerka
                     , IWithOwner
                         , IWithComment

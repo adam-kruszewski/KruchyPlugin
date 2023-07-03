@@ -1,6 +1,6 @@
 ﻿namespace KruchyParserKodu.ParserKodu.Interfaces
 {
-    public interface IZNazwa
+    public interface IWithName
     {
         string Nazwa { get; set; }
     }

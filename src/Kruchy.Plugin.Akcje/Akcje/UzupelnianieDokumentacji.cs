@@ -128,7 +128,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             builder.AppendLine($"{poczatek}</summary>");
         }
 
-        private string GenerujSummaryKlasyLubInterfejsu(IZNazwa obiekt)
+        private string GenerujSummaryKlasyLubInterfejsu(IWithName obiekt)
         {
             var slowa = obiekt.Nazwa.PodzielNaSlowaOdWielkichLiter();
 

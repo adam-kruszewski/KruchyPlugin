@@ -6,7 +6,7 @@ namespace KruchyParserKodu.ParserKodu
 {
     public class Enumeration
         : ParsowanaJednostka
-            ,IZNazwa
+            ,IWithName
                 , IZPoczatkowaIKoncowaKlamerka
                     , IWithOwner
                         , IWithComment
