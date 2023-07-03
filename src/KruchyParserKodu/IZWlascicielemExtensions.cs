@@ -1,4 +1,5 @@
 ﻿using KruchyParserKodu.ParserKodu;
+using KruchyParserKodu.ParserKodu.Interfaces;
 
 namespace KruchyParserKodu
 {

@@ -1,6 +1,7 @@
 ﻿using KrucheBuilderyKodu.Builders;
 using Kruchy.Plugin.Utils.Wrappers;
 using KruchyParserKodu.ParserKodu;
+using KruchyParserKodu.ParserKodu.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
