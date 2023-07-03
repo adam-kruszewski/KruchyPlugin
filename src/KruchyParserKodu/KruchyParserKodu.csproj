@@ -58,7 +58,7 @@
     <Compile Include="ParserKodu\IZNawiasamiOtwierajacymiZamykajacymiParametry.cs" />
     <Compile Include="ParserKodu\IZNazwa.cs" />
     <Compile Include="ParserKodu\IZPoczatkowaIKoncowaKlamerka.cs" />
-    <Compile Include="ParserKodu\Interfaces\IZWlascicielem.cs" />
+    <Compile Include="ParserKodu\Interfaces\IWithOwner.cs" />
     <Compile Include="ParserKodu\Konstruktor.cs" />
     <Compile Include="ParserKodu\Metoda.cs" />
     <Compile Include="ParserKodu\MetodaExtension.cs" />

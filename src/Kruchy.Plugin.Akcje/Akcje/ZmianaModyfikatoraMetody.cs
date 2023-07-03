@@ -42,7 +42,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             var dotychczasowyModyfikator =
                 SzukajDotychczasowegoModyfikatora(klasa.Modyfikatory);
 
-            if (klasa.Wlasciciel == null && modyfikator == "private")
+            if (klasa.Owner == null && modyfikator == "private")
                 modyfikator = "";
 
             if (dotychczasowyModyfikator == null)

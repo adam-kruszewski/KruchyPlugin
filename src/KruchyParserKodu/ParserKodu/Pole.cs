@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace KruchyParserKodu.ParserKodu
 {
-    public class Pole : ParsowanaJednostka, IWithDocumentation, IZWlascicielem
+    public class Pole : ParsowanaJednostka, IWithDocumentation, IWithOwner
     {
         public string Nazwa { get; set; }
         public string NazwaTypu { get; set; }
@@ -13,7 +13,7 @@ namespace KruchyParserKodu.ParserKodu
         public IList<Modyfikator> Modyfikatory { get; private set; }
 
         public Documentation Dokumentacja { get; set; }
-        public Obiekt Wlasciciel { get; set; }
+        public Obiekt Owner { get; set; }
 
         public Pole()
         {

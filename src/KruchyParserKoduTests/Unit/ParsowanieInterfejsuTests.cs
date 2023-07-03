@@ -22,7 +22,7 @@ namespace KruchyParserKoduTests.Unit
 
             interfejs.Rodzaj = RodzajObiektu.Interfejs;
             interfejs.Nazwa = "InterfejsDoParsowania";
-            interfejs.Wlasciciel.Should().BeNull();
+            interfejs.Owner.Should().BeNull();
 
             interfejs.Konstruktory.Should().BeEmpty();
             interfejs.Pola.Should().BeEmpty();

@@ -9,7 +9,7 @@ namespace KruchyParserKodu.ParserKodu
         : ParsowanaJednostka
             , IZNazwa
                 , IZPoczatkowaIKoncowaKlamerka
-                    , IZWlascicielem
+                    , IWithOwner
                         , IWithComment
                             , IWithDocumentation
     {
@@ -24,7 +24,7 @@ namespace KruchyParserKodu.ParserKodu
 
         public RodzajObiektuObiekt RodzajObiektuObiekt { get; set; }
 
-        public Obiekt Wlasciciel { get; set; }
+        public Obiekt Owner { get; set; }
 
         public string Nazwa { get; set; }
         public IList<Konstruktor> Konstruktory { get; private set; }

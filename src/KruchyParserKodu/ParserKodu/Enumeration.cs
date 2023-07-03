@@ -8,11 +8,11 @@ namespace KruchyParserKodu.ParserKodu
         : ParsowanaJednostka
             ,IZNazwa
                 , IZPoczatkowaIKoncowaKlamerka
-                    , IZWlascicielem
+                    , IWithOwner
                         , IWithComment
                             , IWithDocumentation
     {
-        public Obiekt Wlasciciel { get; set; }
+        public Obiekt Owner { get; set; }
 
         public string Nazwa { get; set; }
 

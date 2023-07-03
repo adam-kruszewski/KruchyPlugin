@@ -5,15 +5,15 @@ namespace KruchyParserKodu
 {
     public static class IZWlascicielemExtensions
     {
-        public static int WyliczPoziomMetody(this IZWlascicielem obiekt)
+        public static int WyliczPoziomMetody(this IWithOwner obiekt)
         {
             if (obiekt == null)
                 return 0;
 
-            if (obiekt.Wlasciciel == null)
+            if (obiekt.Owner == null)
                 return 1;
 
-            return WyliczPoziomMetody(obiekt.Wlasciciel) + 1;
+            return WyliczPoziomMetody(obiekt.Owner) + 1;
         }
     }
 }

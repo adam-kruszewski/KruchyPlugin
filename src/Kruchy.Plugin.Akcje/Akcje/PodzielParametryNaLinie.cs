@@ -69,7 +69,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         private string GenerujNoweParametry(
             IEnumerable<Parametr> parametryMetody,
-            IZWlascicielem obiekt,
+            IWithOwner obiekt,
             Metoda metoda = null)
         {
             var builder = new StringBuilder();
@@ -84,7 +84,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                     .AppendLine()
                     .Append(StaleDlaKodu.WcieciaDlaParametruMetody);
 
-            var poziomMetody = WyliczPoziomMetody(obiekt.Wlasciciel);
+            var poziomMetody = WyliczPoziomMetody(obiekt.Owner);
 
             DodajWciecieWgPoziomuMetody(lacznikBuilder, poziomMetody);
 
@@ -109,15 +109,15 @@ namespace Kruchy.Plugin.Akcje.Akcje
                     lacznikBuilder.Append(StaleDlaKodu.JednostkaWciecia);
         }
 
-        private int WyliczPoziomMetody(IZWlascicielem obiekt)
+        private int WyliczPoziomMetody(IWithOwner obiekt)
         {
             if (obiekt == null)
                 return 0;
 
-            if (obiekt.Wlasciciel == null)
+            if (obiekt.Owner == null)
                 return 1;
 
-            return WyliczPoziomMetody(obiekt.Wlasciciel) + 1;
+            return WyliczPoziomMetody(obiekt.Owner) + 1;
         }
 
         private string DajDefinicjeParametru(Parametr parametr)

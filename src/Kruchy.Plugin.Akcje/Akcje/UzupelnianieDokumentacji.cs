@@ -302,7 +302,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         {
             return
                 o.RegexNazwyKlasy != null &&
-                PasujeRegex(metoda.Wlasciciel.Nazwa, o.RegexNazwyKlasy);
+                PasujeRegex(metoda.Owner.Nazwa, o.RegexNazwyKlasy);
         }
 
         private static bool PasujeRegex(string wartosc, string regex)
@@ -319,7 +319,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             {
                 var nazwaDoPrzetwarzania = pole.Nazwa.TrimStart('_');
 
-                string summary = DajNazwePolaWlasciwosciWgKonfiguracji(nazwaDoPrzetwarzania, pole.Wlasciciel, pole.NazwaTypu);
+                string summary = DajNazwePolaWlasciwosciWgKonfiguracji(nazwaDoPrzetwarzania, pole.Owner, pole.NazwaTypu);
 
                 if (string.IsNullOrEmpty(summary))
                 {
@@ -346,7 +346,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         {
             if (property.Dokumentacja == null)
             {
-                var summary = DajNazwePolaWlasciwosciWgKonfiguracji(property.Nazwa, property.Wlasciciel, property.NazwaTypu);
+                var summary = DajNazwePolaWlasciwosciWgKonfiguracji(property.Nazwa, property.Owner, property.NazwaTypu);
 
                 if (string.IsNullOrEmpty(summary))
                     summary = string.Join(" ", property.Nazwa.PodzielNaSlowaOdWielkichLiter().Select(o => o.ToLower())).ZacznijDuzaLitera();

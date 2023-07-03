@@ -37,14 +37,14 @@ namespace KruchyParserKoduTests.Unit
             klasaWewnetrzna.Rodzaj.Should().Be(RodzajObiektu.Klasa);
             klasaWewnetrzna.Nazwa.Should().Be("KlasaWewnetrzna");
             klasaWewnetrzna.Propertiesy.Single().Nazwa.Should().Be("WlasciwoscWWewnetrznym");
-            klasaWewnetrzna.Wlasciciel.Should().Be(klasaGlowna);
+            klasaWewnetrzna.Owner.Should().Be(klasaGlowna);
 
             var metodaWewnetrzna = klasaWewnetrzna.Metody.Single();
             metodaWewnetrzna.Nazwa.Should().Be("Metoda1");
-            metodaWewnetrzna.Wlasciciel.Should().Be(klasaWewnetrzna);
+            metodaWewnetrzna.Owner.Should().Be(klasaWewnetrzna);
 
             var konstruktorWewnetrznej = klasaWewnetrzna.Konstruktory.Single();
-            konstruktorWewnetrznej.Wlasciciel.Should().Be(klasaWewnetrzna);
+            konstruktorWewnetrznej.Owner.Should().Be(klasaWewnetrzna);
         }
     }
 }

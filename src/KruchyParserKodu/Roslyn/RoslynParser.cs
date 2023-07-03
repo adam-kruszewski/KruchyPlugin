@@ -231,7 +231,7 @@ namespace KruchyParserKodu.Roslyn
 
             foreach (var klasaWewnetrzna in klasyWewnetrzne)
             {
-                klasaWewnetrzna.Wlasciciel = definiowanyObiekt;
+                klasaWewnetrzna.Owner = definiowanyObiekt;
                 definiowanyObiekt.ObiektyWewnetrzne.Add(klasaWewnetrzna);
             }
 
@@ -331,7 +331,7 @@ namespace KruchyParserKodu.Roslyn
 
                 ParsujParametryGeneryczne(metoda.ParametryGeneryczne, metodaSyntax.TypeParameterList);
 
-                metoda.Wlasciciel = obiektWlasciciela;
+                metoda.Owner = obiektWlasciciela;
 
                 metody.Add(metoda);
             }
@@ -372,7 +372,7 @@ namespace KruchyParserKodu.Roslyn
 
             ParsujDokumentacje(konstruktor, konstruktorSyntax);
 
-            konstruktor.Wlasciciel = obiektWlasciciel;
+            konstruktor.Owner = obiektWlasciciel;
 
             if (konstruktorSyntax.Initializer != null
                 && konstruktorSyntax.Initializer.ArgumentList != null)
@@ -515,7 +515,7 @@ namespace KruchyParserKodu.Roslyn
                 properties.JestGet = JestAccessorr(wlasciwoscSyntax, "get");
                 properties.JestSet = JestAccessorr(wlasciwoscSyntax, "set");
 
-                properties.Wlasciciel = definiowanyObiekt;
+                properties.Owner = definiowanyObiekt;
 
                 propertiesy.Add(properties);
             }
@@ -555,7 +555,7 @@ namespace KruchyParserKodu.Roslyn
 
                 ParsujDokumentacje(pole, deklarowanePole);
 
-                pole.Wlasciciel = wlasciciel;
+                pole.Owner = wlasciciel;
 
                 pola.Add(pole);
             }
@@ -575,7 +575,7 @@ namespace KruchyParserKodu.Roslyn
 
                 ParsujDokumentacje(pole, deklarowanePole);
 
-                pole.Wlasciciel = wlasciciel;
+                pole.Owner = wlasciciel;
 
                 pola.Add(pole);
             }

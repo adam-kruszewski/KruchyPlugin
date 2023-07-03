@@ -8,11 +8,11 @@ namespace KruchyParserKodu.ParserKodu.Models
     public class MethodConstructorBase
         : ParsowanaJednostka
             , IZNawiasamiOtwierajacymiZamykajacymiParametry
-                , IZWlascicielem
+                , IWithOwner
                     , IWithComment
                         , IWithDocumentation
     {
-        public Obiekt Wlasciciel { get; set; }
+        public Obiekt Owner { get; set; }
 
         public IList<Parametr> Parametry { get; private set; }
 

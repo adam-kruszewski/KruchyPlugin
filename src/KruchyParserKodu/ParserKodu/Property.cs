@@ -6,7 +6,7 @@ using System.Text;
 
 namespace KruchyParserKodu.ParserKodu
 {
-    public class Property : ParsowanaJednostka, IWithDocumentation, IZWlascicielem
+    public class Property : ParsowanaJednostka, IWithDocumentation, IWithOwner
     {
         public string Nazwa { get; set; }
         public string NazwaTypu { get; set; }
@@ -15,7 +15,7 @@ namespace KruchyParserKodu.ParserKodu
         public bool JestGet { get; set; }
         public bool JestSet { get; set; }
         public Documentation Dokumentacja { get; set; }
-        public Obiekt Wlasciciel { get; set; }
+        public Obiekt Owner { get; set; }
 
         public Property()
         {

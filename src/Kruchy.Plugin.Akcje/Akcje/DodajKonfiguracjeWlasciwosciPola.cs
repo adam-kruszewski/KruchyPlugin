@@ -30,7 +30,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
             if (aktualnaWlasciwosc != null)
             {
-                dialogAdd.ClassNameRegex = aktualnaWlasciwosc.Wlasciciel.Nazwa;
+                dialogAdd.ClassNameRegex = aktualnaWlasciwosc.Owner.Nazwa;
                 dialogAdd.FieldPropertyTypeRegex = aktualnaWlasciwosc.NazwaTypu;
                 dialogAdd.Value = aktualnaWlasciwosc.Nazwa;
             }
@@ -39,7 +39,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
             if (aktualnePole != null)
             {
-                dialogAdd.ClassNameRegex = aktualnePole.Wlasciciel.Nazwa;
+                dialogAdd.ClassNameRegex = aktualnePole.Owner.Nazwa;
                 dialogAdd.FieldPropertyTypeRegex = aktualnePole.NazwaTypu;
                 dialogAdd.Value = aktualnePole.Nazwa;
             }
