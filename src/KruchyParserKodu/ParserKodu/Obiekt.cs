@@ -45,7 +45,7 @@ namespace KruchyParserKodu.ParserKodu
         public PozycjaWPliku PoczatkowaKlamerka { get; set; }
         public PozycjaWPliku KoncowaKlamerka { get; set; }
 
-        public Komentarz Komentarz { get; set; }
+        public Comment Komentarz { get; set; }
 
         public Documentation Dokumentacja { get; set; }
 

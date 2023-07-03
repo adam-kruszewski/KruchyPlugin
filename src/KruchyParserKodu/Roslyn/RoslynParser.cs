@@ -143,8 +143,8 @@ namespace KruchyParserKodu.Roslyn
             foreach (var trivia in trivias.Where(o => o.IsKind(SyntaxKind.SingleLineCommentTrivia)))
             {
                 if (obiekt.Komentarz == null)
-                    obiekt.Komentarz = new Komentarz();
-                obiekt.Komentarz.DodajLinie(trivia.ToString());
+                    obiekt.Komentarz = new Comment();
+                obiekt.Komentarz.AddLine(trivia.ToString());
                 UstawPolozenie(trivia, obiekt.Komentarz);
             }
         }

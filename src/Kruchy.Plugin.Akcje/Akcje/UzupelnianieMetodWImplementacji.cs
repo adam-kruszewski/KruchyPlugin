@@ -141,8 +141,8 @@ namespace Kruchy.Plugin.Akcje.Akcje
             if (nastepnaMetodaWImplementacji?.Dokumentacja?.Lines != null)
                 numerLiniiGdzieDodawac -= nastepnaMetodaWImplementacji.Dokumentacja.Lines.Count;
 
-            if (nastepnaMetodaWImplementacji?.Komentarz?.Linie != null)
-                numerLiniiGdzieDodawac -= nastepnaMetodaWImplementacji.Komentarz.Linie.Count;
+            if (nastepnaMetodaWImplementacji?.Komentarz?.Lines != null)
+                numerLiniiGdzieDodawac -= nastepnaMetodaWImplementacji.Komentarz.Lines.Count;
 
             if (numerLiniiGdzieDodawac <= obiekt.PoczatkowaKlamerka.Wiersz)
             {
