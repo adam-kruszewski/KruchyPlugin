@@ -63,7 +63,7 @@ namespace Kruchy.Plugin.Utils.Extensions
             if (parsowane.DefiniowaneObiekty.Count == 1)
             {
                 var obiekt = parsowane.DefiniowaneObiekty[0];
-                if (obiekt.Nazwa.EndsWith("Builder")
+                if (obiekt.Name.EndsWith("Builder")
                     && obiekt.Rodzaj == RodzajObiektu.Klasa)
                     return true;
             }
@@ -78,7 +78,7 @@ namespace Kruchy.Plugin.Utils.Extensions
                 parsowane.SzukajObiektuWLinii(aktualny.Document.GetCursorLineNumber());
             if (obiekt != null)
             {
-                if (obiekt.Nazwa.EndsWith("Builder")
+                if (obiekt.Name.EndsWith("Builder")
                     && obiekt.Rodzaj == RodzajObiektu.Klasa)
                     return true;
             }
@@ -88,7 +88,7 @@ namespace Kruchy.Plugin.Utils.Extensions
         public static string SciezkaKataloguControllera(this IFileWrapper plik)
         {
             var parsowane = Parser.Parsuj(plik.Document.GetContent());
-            string nazwaControllera = DajNazweControllera(parsowane.DefiniowaneObiekty.Single().Nazwa);
+            string nazwaControllera = DajNazweControllera(parsowane.DefiniowaneObiekty.Single().Name);
 
             var katalogPlikControllera = plik.Directory;
             var katalogDlaControllera =
@@ -114,7 +114,7 @@ namespace Kruchy.Plugin.Utils.Extensions
             var parsowane = Parser.Parsuj(zawartosc);
             if (parsowane.DefiniowaneObiekty.Count() == 1)
             {
-                var nazwa = parsowane.DefiniowaneObiekty.First().Nazwa;
+                var nazwa = parsowane.DefiniowaneObiekty.First().Name;
                 if (nazwa.EndsWith("Controller"))
                     return DajNazweControllera(nazwa);
             }

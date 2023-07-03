@@ -128,7 +128,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
                 Parser
                     .ParsujPlik(plikZKlasa.FullPath)
                         .DefiniowaneObiekty
-                            .Single(o => o.Nazwa == nazwaKlasy);
+                            .Single(o => o.Name == nazwaKlasy);
             return klasaObiektuKolekcjonowanego;
         }
 
@@ -306,7 +306,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
 
         private static string DajNazweKlasyWXsd(Obiekt klasa)
         {
-            var nazwa = klasa.Nazwa;
+            var nazwa = klasa.Name;
             return DajNazweKlasyWXsd(nazwa);
         }
 

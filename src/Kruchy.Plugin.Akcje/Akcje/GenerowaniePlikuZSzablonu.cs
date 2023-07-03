@@ -207,9 +207,9 @@ namespace Kruchy.Plugin.Akcje.Akcje
             sparsowane.SzukajKlasyWLinii(solution.AktualnyDokument.GetCursorLineNumber());
 
             if (obiekt == null)
-                return sparsowane.DefiniowaneObiekty.Single().Nazwa;
+                return sparsowane.DefiniowaneObiekty.Single().Name;
             else
-                return obiekt.Nazwa;
+                return obiekt.Name;
         }
     }
 }

@@ -74,7 +74,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 var nowyKonstruktor =
                     GenerujKonstruktor(
                         polaReadOnly,
-                        obiekt.Nazwa,
+                        obiekt.Name,
                         polaDoKonstruktoraNadklasy,
                         konstruktor?.SlowoKluczoweInicjalizacji,
                         konstruktor);

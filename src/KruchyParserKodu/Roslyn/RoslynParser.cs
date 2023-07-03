@@ -69,7 +69,7 @@ namespace KruchyParserKodu.Roslyn
         private Enumeration ParsujEnumeracje(EnumDeclarationSyntax enumSyntax)
         {
             var definiowanaEnumeracja = new Enumeration();
-            definiowanaEnumeracja.Nazwa = enumSyntax.Identifier.ValueText;
+            definiowanaEnumeracja.Name = enumSyntax.Identifier.ValueText;
             UstawPolozenie(enumSyntax.SyntaxTree, definiowanaEnumeracja, enumSyntax);
 
             UzupelnijPola(definiowanaEnumeracja.Pola, enumSyntax, null);
@@ -174,7 +174,7 @@ namespace KruchyParserKodu.Roslyn
         private Obiekt ParsujInterfejs(InterfaceDeclarationSyntax interfaceSyntax)
         {
             var definiowanyObiekt = new Obiekt();
-            definiowanyObiekt.Nazwa = interfaceSyntax.Identifier.ValueText;
+            definiowanyObiekt.Name = interfaceSyntax.Identifier.ValueText;
             definiowanyObiekt.Rodzaj = RodzajObiektu.Interfejs;
             UstawPolozenie(interfaceSyntax.Keyword, definiowanyObiekt.RodzajObiektuObiekt);
 
@@ -199,7 +199,7 @@ namespace KruchyParserKodu.Roslyn
         private Obiekt ParsujKlase(SyntaxTree syntaxTree, ClassDeclarationSyntax klasa)
         {
             var definiowanyObiekt = new Obiekt();
-            definiowanyObiekt.Nazwa = klasa.Identifier.ValueText;
+            definiowanyObiekt.Name = klasa.Identifier.ValueText;
             definiowanyObiekt.Rodzaj = RodzajObiektu.Klasa;
             UstawPolozenie(klasa.Keyword, definiowanyObiekt.RodzajObiektuObiekt);
 

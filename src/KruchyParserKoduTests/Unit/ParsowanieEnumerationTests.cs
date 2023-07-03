@@ -26,7 +26,7 @@ namespace KruchyParserKoduTests.Unit
         [Test]
         public void ParsujeNazweIPozycjeEnumeracji()
         {
-            enumeration.Nazwa.Should().Be("Enum1");
+            enumeration.Name.Should().Be("Enum1");
             enumeration.Poczatek.Sprawdz(6, 5);
             enumeration.Koniec.Sprawdz(12, 6);
         }

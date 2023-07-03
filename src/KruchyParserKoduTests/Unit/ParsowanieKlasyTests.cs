@@ -29,7 +29,7 @@ namespace KruchyParserKoduTests.Unit
 
             var obiekt = plik.DefiniowaneObiekty.First();
             obiekt.Rodzaj.Should().Be(RodzajObiektu.Klasa);
-            obiekt.Nazwa.Should().Be("KlasaDoParsowania");
+            obiekt.Name.Should().Be("KlasaDoParsowania");
             obiekt.PoczatkowaKlamerka.Wiersz.Should().Be(12);
             obiekt.PoczatkowaKlamerka.Kolumna.Should().Be(5);
             obiekt.Atrybuty.Count().Should().Be(1);

@@ -31,7 +31,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             var nazwaPlikuContextu = SzukajPlikuContextu(projekt);
             var parsowane = Parser.ParsujPlik(nazwaPlikuContextu);
 
-            var nazwaKlasyContextu = parsowane.DefiniowaneObiekty.First().Nazwa;
+            var nazwaKlasyContextu = parsowane.DefiniowaneObiekty.First().Name;
             var namespaceKlasy = parsowane.Namespace;
 
             var aktualnyDokument = solution.AktualnyDokument;

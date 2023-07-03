@@ -41,7 +41,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
 
             var wlasciwosciDlaBuildera = SzukajWlasciwosciDlaBuildera(obiektDoZbudowania);
 
-            var nazwaKlasyBuildera = obiektDoZbudowania.Nazwa + "Builder";
+            var nazwaKlasyBuildera = obiektDoZbudowania.Name + "Builder";
             var nazwaPlikuBuildera = nazwaKlasyBuildera + ".cs";
 
             var projektTestow = solution.SzukajProjektuTestowego();
@@ -141,7 +141,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             var sparsowane = Parser.Parsuj(solution.AktualnyDokument.GetContent());
 
             var klasaBuildera =
-                sparsowane.DefiniowaneObiekty.Single(o => o.Nazwa == nazwaKlasyBuildera);
+                sparsowane.DefiniowaneObiekty.Single(o => o.Name == nazwaKlasyBuildera);
 
             PozycjaWPliku miejsceWstawiania = UstalMiejsceWstawienia(klasaBuildera);
 
@@ -271,7 +271,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
                     .ZNadklasa(
                         string.Format("Builder<{0}, {1}>",
                         nazwaKlasyInterfejsuSerwisu,
-                        obiektDoZbudowania.Nazwa))
+                        obiektDoZbudowania.Name))
                     .DodajMetode(
                         new MetodaBuilder()
                             .ZNazwa("Init")
@@ -279,7 +279,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
                             .DodajModyfikator("protected")
                             .DodajModyfikator("override")
                             .DodajLinie(
-                            string.Format("this.Object = new {0}();", obiektDoZbudowania.Nazwa)))
+                            string.Format("this.Object = new {0}();", obiektDoZbudowania.Name)))
                     .DodajMetode(
                         new MetodaBuilder()
                             .ZNazwa("Save")

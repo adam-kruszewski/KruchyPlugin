@@ -29,7 +29,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
                     .ZNazwa(nazwaMetody)
                     .ZTypemZwracanym(
                         parsowane
-                            .SzukajObiektuWLinii(dokument.GetCursorLineNumber()).Nazwa)
+                            .SzukajObiektuWLinii(dokument.GetCursorLineNumber()).Name)
                     .DodajLinie("return this;");
 
             var numerLiniiWstawiania = dokument.GetCursorLineNumber();

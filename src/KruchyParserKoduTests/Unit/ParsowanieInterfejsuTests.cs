@@ -21,7 +21,7 @@ namespace KruchyParserKoduTests.Unit
             var interfejs = sparsowane.DefiniowaneObiekty.Single();
 
             interfejs.Rodzaj = RodzajObiektu.Interfejs;
-            interfejs.Nazwa = "InterfejsDoParsowania";
+            interfejs.Name = "InterfejsDoParsowania";
             interfejs.Owner.Should().BeNull();
 
             interfejs.Konstruktory.Should().BeEmpty();

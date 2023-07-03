@@ -14,7 +14,7 @@ namespace KruchyParserKodu.ParserKodu
     {
         public Obiekt Owner { get; set; }
 
-        public string Nazwa { get; set; }
+        public string Name { get; set; }
 
         public IList<Pole> Pola { get; private set; }
 

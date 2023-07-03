@@ -108,7 +108,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         {
             var builder = new MetodaBuilder();
             builder.JedenParametrWLinii(false);
-            builder.ZNazwa(klasa.Nazwa);
+            builder.ZNazwa(klasa.Name);
             builder.ZTypemZwracanym("");
             builder.DodajModyfikator("public");
             builder.DodajLinie(zawartoscDoDodania.TrimStart());

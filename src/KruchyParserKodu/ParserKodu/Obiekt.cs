@@ -26,7 +26,7 @@ namespace KruchyParserKodu.ParserKodu
 
         public Obiekt Owner { get; set; }
 
-        public string Nazwa { get; set; }
+        public string Name { get; set; }
         public IList<Konstruktor> Konstruktory { get; private set; }
         public IList<Pole> Pola { get; private set; }
         public IList<Pole> NiestatycznePola

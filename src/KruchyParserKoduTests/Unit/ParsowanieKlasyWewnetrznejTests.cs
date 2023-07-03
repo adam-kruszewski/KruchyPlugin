@@ -30,12 +30,12 @@ namespace KruchyParserKoduTests.Unit
             //assert
             var klasaGlowna = sparsowane.DefiniowaneObiekty.Single();
             klasaGlowna.Rodzaj.Should().Be(RodzajObiektu.Klasa);
-            klasaGlowna.Nazwa.Should().Be("ZKlasaWewnetrzna");
+            klasaGlowna.Name.Should().Be("ZKlasaWewnetrzna");
             klasaGlowna.Propertiesy.Single().Nazwa.Should().Be("WlasciwoscWGlownym");
 
             var klasaWewnetrzna = klasaGlowna.ObiektyWewnetrzne.Single();
             klasaWewnetrzna.Rodzaj.Should().Be(RodzajObiektu.Klasa);
-            klasaWewnetrzna.Nazwa.Should().Be("KlasaWewnetrzna");
+            klasaWewnetrzna.Name.Should().Be("KlasaWewnetrzna");
             klasaWewnetrzna.Propertiesy.Single().Nazwa.Should().Be("WlasciwoscWWewnetrznym");
             klasaWewnetrzna.Owner.Should().Be(klasaGlowna);
 

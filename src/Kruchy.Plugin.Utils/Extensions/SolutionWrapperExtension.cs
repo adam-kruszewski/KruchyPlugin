@@ -26,7 +26,7 @@ namespace Kruchy.Plugin.Utils.Extensions
             if (parsowane.DefiniowaneObiekty.Count <= 0)
                 return null;
 
-            return parsowane.DefiniowaneObiekty[0].Nazwa;
+            return parsowane.DefiniowaneObiekty[0].Name;
         }
 
         public static string NazwaAktualnejMetody(this ISolutionWrapper solution)

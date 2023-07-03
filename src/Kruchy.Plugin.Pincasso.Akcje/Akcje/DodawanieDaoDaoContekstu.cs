@@ -42,13 +42,13 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             string nazwaInterfejsuDao = null;
             if (obiekt.Rodzaj == RodzajObiektu.Klasa)
             {
-                nazwaKlasyDao = obiekt.Nazwa;
+                nazwaKlasyDao = obiekt.Name;
                 nazwaInterfejsuDao = "I" + nazwaKlasyDao;
             }
 
             if (obiekt.Rodzaj == RodzajObiektu.Interfejs)
             {
-                nazwaInterfejsuDao = obiekt.Nazwa;
+                nazwaInterfejsuDao = obiekt.Name;
                 nazwaKlasyDao = nazwaInterfejsuDao.Substring(1);
             }
 

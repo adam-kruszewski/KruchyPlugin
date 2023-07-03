@@ -130,7 +130,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         private string GenerujSummaryKlasyLubInterfejsu(IWithName obiekt)
         {
-            var slowa = obiekt.Nazwa.PodzielNaSlowaOdWielkichLiter();
+            var slowa = obiekt.Name.PodzielNaSlowaOdWielkichLiter();
 
             if (slowa.First() == "I")
                 slowa = slowa.Skip(1);
@@ -303,7 +303,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         {
             return
                 o.RegexNazwyKlasy != null &&
-                PasujeRegex(metoda.Owner.Nazwa, o.RegexNazwyKlasy);
+                PasujeRegex(metoda.Owner.Name, o.RegexNazwyKlasy);
         }
 
         private static bool PasujeRegex(string wartosc, string regex)
@@ -394,7 +394,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             var definicjaZRegexemNazwyKlasy =
                 konfiguracjaDokumentacjiDlaNazwy
                     .Where(o => !string.IsNullOrEmpty(o.RegexNazwyKlasy))
-                    .SingleOrDefault(o => PasujeRegex(wlasciciel.Nazwa, o.RegexNazwyKlasy));
+                    .SingleOrDefault(o => PasujeRegex(wlasciciel.Name, o.RegexNazwyKlasy));
 
             if (definicjaZRegexemNazwyKlasy != null)
             {

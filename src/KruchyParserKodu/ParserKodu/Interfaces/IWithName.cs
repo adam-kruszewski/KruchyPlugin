@@ -2,6 +2,6 @@
 {
     public interface IWithName
     {
-        string Nazwa { get; set; }
+        string Name { get; set; }
     }
 }
