@@ -456,7 +456,7 @@ namespace KruchyParserKodu.Roslyn
                 DajPolozenie(syntax.Body.OpenBraceToken)
                     .Item1.ToPozycjaWPliku();
 
-            obiekt.FinishingBrace =
+            obiekt.ClosingBrace =
                 DajPolozenie(syntax.Body.CloseBraceToken)
                     .Item1.ToPozycjaWPliku();
 
@@ -620,7 +620,7 @@ namespace KruchyParserKodu.Roslyn
             SyntaxToken token)
         {
             var pozycjaKoncowejKlamerki = DajPolozenie(token.SyntaxTree, token);
-            obiekt.FinishingBrace = pozycjaKoncowejKlamerki.Item1.ToPozycjaWPliku();
+            obiekt.ClosingBrace = pozycjaKoncowejKlamerki.Item1.ToPozycjaWPliku();
         }
 
         private void UzupelnijAtrybuty(

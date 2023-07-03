@@ -35,7 +35,7 @@ namespace KruchyParserKoduTests.Unit
             interfejs.ObiektyWewnetrzne.Should().BeEmpty();
 
             interfejs.StartingBrace.Sprawdz(7, 5);
-            interfejs.FinishingBrace.Sprawdz(12, 5);
+            interfejs.ClosingBrace.Sprawdz(12, 5);
 
             interfejs.Poczatek.Sprawdz(6, 5);
             interfejs.Koniec.Sprawdz(12, 6);

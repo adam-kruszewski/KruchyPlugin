@@ -13,7 +13,7 @@ namespace KruchyParserKodu.ParserKodu
         public PozycjaWPliku PoczatekParametrow { get; private set; }
         public PozycjaWPliku KoniecParametrow { get; private set; }
         public PozycjaWPliku StartingBrace { get; set; }
-        public PozycjaWPliku FinishingBrace { get; set; }
+        public PozycjaWPliku ClosingBrace { get; set; }
 
         //jeśli nie ma wołania kontruktora z nadklasy, to pole jest nullem
         public IList<string> ParametryKonstruktoraZNadKlasy;
@@ -22,7 +22,7 @@ namespace KruchyParserKodu.ParserKodu
         public Konstruktor() : base()
         {
             StartingBrace = new PozycjaWPliku();
-            FinishingBrace = new PozycjaWPliku();
+            ClosingBrace = new PozycjaWPliku();
             
         }
     }

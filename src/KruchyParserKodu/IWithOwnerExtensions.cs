@@ -1,9 +1,8 @@
-﻿using KruchyParserKodu.ParserKodu;
-using KruchyParserKodu.ParserKodu.Interfaces;
+﻿using KruchyParserKodu.ParserKodu.Interfaces;
 
 namespace KruchyParserKodu
 {
-    public static class IZWlascicielemExtensions
+    public static class IWithOwnerExtensions
     {
         public static int WyliczPoziomMetody(this IWithOwner obiekt)
         {

@@ -24,7 +24,7 @@ namespace KruchyParserKodu.ParserKodu
 
         public PozycjaWPliku StartingBrace { get; set; }
 
-        public PozycjaWPliku FinishingBrace { get; set; }
+        public PozycjaWPliku ClosingBrace { get; set; }
 
         public Comment Komentarz { get; set; }
 
@@ -34,7 +34,7 @@ namespace KruchyParserKodu.ParserKodu
         {
             Pola = new List<Pole>();
             StartingBrace = new PozycjaWPliku();
-            FinishingBrace = new PozycjaWPliku();
+            ClosingBrace = new PozycjaWPliku();
             Modyfikatory = new List<Modyfikator>();
             Atrybuty = new List<Atrybut>();
         }

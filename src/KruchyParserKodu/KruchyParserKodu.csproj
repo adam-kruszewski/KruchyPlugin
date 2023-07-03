@@ -47,7 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IZWlascicielemExtensions.cs" />
+    <Compile Include="IWithOwnerExtensions.cs" />
     <Compile Include="ParserKodu\Atrybut.cs" />
     <Compile Include="ParserKodu\Models\Documentation.cs" />
     <Compile Include="ParserKodu\Enumeration.cs" />

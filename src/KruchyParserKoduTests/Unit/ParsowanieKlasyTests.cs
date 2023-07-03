@@ -31,7 +31,7 @@ namespace KruchyParserKoduTests.Unit
             obiekt.Rodzaj.Should().Be(RodzajObiektu.Klasa);
             obiekt.Name.Should().Be("KlasaDoParsowania");
             obiekt.StartingBrace.Wiersz.Should().Be(12);
-            obiekt.FinishingBrace.Kolumna.Should().Be(5);
+            obiekt.ClosingBrace.Kolumna.Should().Be(5);
             obiekt.Atrybuty.Count().Should().Be(1);
             obiekt.Atrybuty.First().Nazwa.Should().Be("Testowo");
             obiekt.Modyfikatory.Should().BeEmpty();
@@ -104,7 +104,7 @@ namespace KruchyParserKoduTests.Unit
                 konstrZ1Parametrem.StartingBrace,
                 20, 9);
             SprawdzPozycje(
-                konstrZ1Parametrem.FinishingBrace,
+                konstrZ1Parametrem.ClosingBrace,
                 24, 9);
             konstrZ1Parametrem.Modyfikator.Should().Be("public");
         }

@@ -181,9 +181,9 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 }
             }
 
-            if (poczatek.Wiersz > parsowane.DefiniowaneObiekty.First().FinishingBrace.Wiersz)
+            if (poczatek.Wiersz > parsowane.DefiniowaneObiekty.First().ClosingBrace.Wiersz)
             {
-                poczatek.Wiersz = parsowane.DefiniowaneObiekty.First().FinishingBrace.Wiersz;
+                poczatek.Wiersz = parsowane.DefiniowaneObiekty.First().ClosingBrace.Wiersz;
             }
 
             solution.AktualnyDokument.InsertInLine(GenerujMetode(polaZTypemZKontruktora, nazwaKlasyTestowanej), poczatek.Wiersz);
