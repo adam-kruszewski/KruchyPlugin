@@ -26,12 +26,12 @@ namespace KruchyParserKoduTests.Unit
         [Test]
         public void ParsujeDokumentacjeNadKlasa()
         {
-            klasa.Dokumentacja.PelnyTeskt.Should().Be(@"/// <summary>
+            klasa.Dokumentacja.FullText.Should().Be(@"/// <summary>
     /// klasa do testowania dokumentacji
     /// </summary>
 ");
 
-            klasa.Dokumentacja.Linie.Should().BeEquivalentTo(
+            klasa.Dokumentacja.Lines.Should().BeEquivalentTo(
                 new[]
                 {
                     "<summary>",
@@ -49,7 +49,7 @@ namespace KruchyParserKoduTests.Unit
             var metoda = klasa.Metody.Single(o => o.Nazwa == "Metoda1");
 
             //assert
-            metoda.Dokumentacja.Linie.Should().BeEquivalentTo(
+            metoda.Dokumentacja.Lines.Should().BeEquivalentTo(
                 new[]
                 {
                     "<summary>",
@@ -67,7 +67,7 @@ namespace KruchyParserKoduTests.Unit
             var konstruktor = klasa.Konstruktory.Single();
 
             //assert
-            konstruktor.Dokumentacja.Linie.Should().BeEquivalentTo(
+            konstruktor.Dokumentacja.Lines.Should().BeEquivalentTo(
                 new[]
                 {
                     "<summary>",
@@ -85,7 +85,7 @@ namespace KruchyParserKoduTests.Unit
             var pole = klasa.Pola.Single(o => o.Nazwa == "poleString");
 
             //assert
-            pole.Dokumentacja.Linie.Should().BeEquivalentTo(
+            pole.Dokumentacja.Lines.Should().BeEquivalentTo(
                 new[]
                 {
                     "<summary>",
@@ -104,7 +104,7 @@ namespace KruchyParserKoduTests.Unit
             //act
 
             //assert
-            property.Dokumentacja.Linie.Should().BeEquivalentTo(
+            property.Dokumentacja.Lines.Should().BeEquivalentTo(
                 new[]
                 {
                     "<summary>",

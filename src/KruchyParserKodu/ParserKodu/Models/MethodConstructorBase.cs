@@ -26,7 +26,7 @@ namespace KruchyParserKodu.ParserKodu.Models
 
         public Komentarz Komentarz { get; set; }
 
-        public Dokumentacja Dokumentacja { get; set; }
+        public Documentation Dokumentacja { get; set; }
 
         public IList<Instruction> Instructions { get; private set; }
 

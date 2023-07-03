@@ -12,7 +12,7 @@ namespace KruchyParserKodu.ParserKodu
         public bool Generyczny { get; set; }
         public IList<Modyfikator> Modyfikatory { get; private set; }
 
-        public Dokumentacja Dokumentacja { get; set; }
+        public Documentation Dokumentacja { get; set; }
         public Obiekt Wlasciciel { get; set; }
 
         public Pole()

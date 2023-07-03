@@ -156,8 +156,8 @@ namespace KruchyParserKodu.Roslyn
             foreach (var trivia in trivias.Where(o => o.IsKind(SyntaxKind.SingleLineDocumentationCommentTrivia)))
             {
                 if (obiekt.Dokumentacja == null)
-                    obiekt.Dokumentacja = new Dokumentacja();
-                obiekt.Dokumentacja.DodajDokumentacje(trivia.ToFullString());
+                    obiekt.Dokumentacja = new Documentation();
+                obiekt.Dokumentacja.AddDocumentation(trivia.ToFullString());
                 UstawPolozenie(trivia, obiekt.Dokumentacja);
             }
         }

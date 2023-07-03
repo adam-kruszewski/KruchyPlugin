@@ -28,7 +28,7 @@ namespace KruchyParserKodu.ParserKodu
 
         public Komentarz Komentarz { get; set; }
 
-        public Dokumentacja Dokumentacja { get; set; }
+        public Documentation Dokumentacja { get; set; }
 
         public Enumeration()
         {
