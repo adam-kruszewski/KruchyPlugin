@@ -34,7 +34,7 @@ namespace KruchyParserKodu.ParserKodu
             get { return SzukajPolNiestatycznych().ToList(); }
         }
 
-        public IList<Modyfikator> Modyfikatory { get; set; }
+        public IList<Modifier> Modyfikatory { get; set; }
         public IList<Property> Propertiesy { get; private set; }
         public IList<Method> Metody { get; private set; }
         public List<Attribute> Atrybuty { get; private set; }
@@ -63,7 +63,7 @@ namespace KruchyParserKodu.ParserKodu
             StartingBrace = new PlaceInFile();
             ClosingBrace = new PlaceInFile();
             ObiektyWewnetrzne = new List<Obiekt>();
-            Modyfikatory = new List<Modyfikator>();
+            Modyfikatory = new List<Modifier>();
 
             RodzajObiektuObiekt = new RodzajObiektuObiekt();
             ParametryGeneryczne = new List<ParametrGeneryczny>();
@@ -71,7 +71,7 @@ namespace KruchyParserKodu.ParserKodu
 
         private IEnumerable<Pole> SzukajPolNiestatycznych()
         {
-            return Pola.Where(o => !o.Modyfikatory.Any(p => p.Nazwa == "static"));
+            return Pola.Where(o => !o.Modyfikatory.Any(p => p.Name == "static"));
         }
     }
 }

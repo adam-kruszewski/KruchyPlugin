@@ -15,7 +15,7 @@ namespace KruchyParserKodu.ParserKodu.Models
 
         public IList<Parametr> Parametry { get; private set; }
 
-        public IList<Modyfikator> Modyfikatory { get; set; }
+        public IList<Modifier> Modyfikatory { get; set; }
 
         public List<Attribute> Atrybuty { get; private set; }
 
@@ -33,7 +33,7 @@ namespace KruchyParserKodu.ParserKodu.Models
         {
             get
             {
-                return Modyfikatory.Any(o => o.Nazwa == "private");
+                return Modyfikatory.Any(o => o.Name == "private");
             }
         }
 
@@ -41,14 +41,14 @@ namespace KruchyParserKodu.ParserKodu.Models
         {
             get
             {
-                return Modyfikatory.Any(o => o.Nazwa == "public");
+                return Modyfikatory.Any(o => o.Name == "public");
             }
         }
 
         public MethodConstructorBase()
         {
             Parametry = new List<Parametr>();
-            Modyfikatory = new List<Modyfikator>();
+            Modyfikatory = new List<Modifier>();
             Atrybuty = new List<Attribute>();
             StartingParameterBrace = new PlaceInFile();
             ClosingParameterBrace = new PlaceInFile();
@@ -57,7 +57,7 @@ namespace KruchyParserKodu.ParserKodu.Models
 
         public bool ZawieraModyfikator(string nazwa)
         {
-            return Modyfikatory.Any(o => o.Nazwa == nazwa);
+            return Modyfikatory.Any(o => o.Name == nazwa);
         }
     }
 }

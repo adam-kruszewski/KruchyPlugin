@@ -378,7 +378,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         private static bool InicjowaneWKontruktorze(Pole pole)
         {
-            var stringiModyfikatorow = pole.Modyfikatory.Select(m => m.Nazwa);
+            var stringiModyfikatorow = pole.Modyfikatory.Select(m => m.Name);
             return
                 stringiModyfikatorow.Contains("readonly")
                 && !stringiModyfikatorow.Contains("static");

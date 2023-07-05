@@ -69,7 +69,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         private void ZmienModyfikator(
             string modyfikator,
-            Modyfikator dotychczasowyModyfikator)
+            Modifier dotychczasowyModyfikator)
         {
             dokument.Remove(
                 dotychczasowyModyfikator.Poczatek.Row,
@@ -90,12 +90,12 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 polozenie.Column);
         }
 
-        private Modyfikator SzukajDotychczasowegoModyfikatora(
-            IEnumerable<Modyfikator> aktualneModyfikatory)
+        private Modifier SzukajDotychczasowegoModyfikatora(
+            IEnumerable<Modifier> aktualneModyfikatory)
         {
             var dotychczasowyModyfikator =
                 aktualneModyfikatory
-                    .Where(o => modyfikatory.Any(m => m == o.Nazwa))
+                    .Where(o => modyfikatory.Any(m => m == o.Name))
                         .FirstOrDefault();
 
             return dotychczasowyModyfikator;

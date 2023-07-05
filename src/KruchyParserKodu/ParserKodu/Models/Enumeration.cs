@@ -17,7 +17,7 @@ namespace KruchyParserKodu.ParserKodu.Models
 
         public IList<Pole> Fields { get; private set; }
 
-        public IList<Modyfikator> Modifiers { get; set; }
+        public IList<Modifier> Modifiers { get; set; }
 
         public List<Attribute> Attributes { get; private set; }
 
@@ -34,7 +34,7 @@ namespace KruchyParserKodu.ParserKodu.Models
             Fields = new List<Pole>();
             StartingBrace = new PlaceInFile();
             ClosingBrace = new PlaceInFile();
-            Modifiers = new List<Modyfikator>();
+            Modifiers = new List<Modifier>();
             Attributes = new List<Attribute>();
         }
 

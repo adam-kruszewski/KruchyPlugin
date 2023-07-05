@@ -14,7 +14,7 @@ namespace Kruchy.Plugin.Akcje.Utils
 
         private static bool SzukajPolPrivateReadOnly(Pole pole)
         {
-            var modyfikatory = pole.Modyfikatory.Select(o => o.Nazwa);
+            var modyfikatory = pole.Modyfikatory.Select(o => o.Name);
             return modyfikatory.Contains("private")
                 && modyfikatory.Contains("readonly");
         }

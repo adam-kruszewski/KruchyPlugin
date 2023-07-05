@@ -10,7 +10,7 @@ namespace KruchyParserKodu.ParserKodu
     {
         public string Nazwa { get; set; }
         public string NazwaTypu { get; set; }
-        public IList<Modyfikator> Modyfikatory { get; private set; }
+        public IList<Modifier> Modyfikatory { get; private set; }
         public List<Attribute> Atrybuty { get; private set; }
         public bool JestGet { get; set; }
         public bool JestSet { get; set; }
@@ -19,7 +19,7 @@ namespace KruchyParserKodu.ParserKodu
 
         public Property()
         {
-            Modyfikatory = new List<Modyfikator>();
+            Modyfikatory = new List<Modifier>();
             Atrybuty = new List<Attribute>();
         }
 
@@ -34,7 +34,7 @@ namespace KruchyParserKodu.ParserKodu
             builder.Append("}");
 
             builder.Append(" [");
-            builder.Append(string.Join(", " ,Modyfikatory.Select(o => o.Nazwa)));
+            builder.Append(string.Join(", " ,Modyfikatory.Select(o => o.Name)));
             builder.Append("]");
 
             return builder.ToString();

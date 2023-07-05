@@ -359,7 +359,7 @@ namespace KruchyParserKodu.Roslyn
             UstawPolozenie(konstruktorSyntax.SyntaxTree, konstruktor, konstruktorSyntax);
             konstruktor.Modifier =
                 SzukajModyfikatorow(konstruktorSyntax.Modifiers)
-                    .Select(o => o.Nazwa)
+                    .Select(o => o.Name)
                         .SingleOrDefault();
 
             UzupelnijParametry(konstruktorSyntax.ParameterList, konstruktor.Parametry);
@@ -475,7 +475,7 @@ namespace KruchyParserKodu.Roslyn
 
             parametr.Modyfikator =
                 SzukajModyfikatorow(parametrSyntax.Modifiers)
-                    .Select(o => o.Nazwa)
+                    .Select(o => o.Name)
                         .SingleOrDefault();
 
             if (parametr.Modyfikator == "this")
@@ -584,20 +584,20 @@ namespace KruchyParserKodu.Roslyn
 
         private void UzupelnijModyfikatory(
             SyntaxTokenList syntax,
-            IList<Modyfikator> modyfikatory)
+            IList<Modifier> modyfikatory)
         {
             foreach (var modyfikator in SzukajModyfikatorow(syntax))
                 modyfikatory.Add(modyfikator);
         }
 
-        private IEnumerable<Modyfikator> SzukajModyfikatorow(SyntaxTokenList syntax)
+        private IEnumerable<Modifier> SzukajModyfikatorow(SyntaxTokenList syntax)
         {
             return syntax.Select(o => DajModifikator(o));
         }
 
-        private Modyfikator DajModifikator(SyntaxToken o)
+        private Modifier DajModifikator(SyntaxToken o)
         {
-            var modyfikator = new Modyfikator(o.ValueText);
+            var modyfikator = new Modifier(o.ValueText);
 
             UstawPolozenie(o, modyfikator);
 

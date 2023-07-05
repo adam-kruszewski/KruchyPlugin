@@ -10,14 +10,14 @@ namespace KruchyParserKodu.ParserKodu
         public string Nazwa { get; set; }
         public string NazwaTypu { get; set; }
         public bool Generyczny { get; set; }
-        public IList<Modyfikator> Modyfikatory { get; private set; }
+        public IList<Modifier> Modyfikatory { get; private set; }
 
         public Documentation Documentation { get; set; }
         public Obiekt Owner { get; set; }
 
         public Pole()
         {
-            Modyfikatory = new List<Modyfikator>();
+            Modyfikatory = new List<Modifier>();
         }
 
         public override string ToString()
@@ -27,7 +27,7 @@ namespace KruchyParserKodu.ParserKodu
 
         private string ScalModyfikatory()
         {
-            return string.Join(", ", Modyfikatory.Select(o => o.Nazwa));
+            return string.Join(", ", Modyfikatory.Select(o => o.Name));
         }
     }
 }
