@@ -207,9 +207,9 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
                     GenerujOpisParametrow(metoda.Parametry, poczatek, builder);
 
-                    DodajOpisParametrowGenerycznych(metoda.ParametryGeneryczne, poczatek, builder);
+                    DodajOpisParametrowGenerycznych(metoda.GenericParameters, poczatek, builder);
 
-                    if (metoda.TypZwracany.Nazwa != "void")
+                    if (metoda.ReturnType.Nazwa != "void")
                         builder.AppendLine($"{poczatek}<returns>{DajOpisTypuZwracanego(metoda)}</returns>");
 
                     solution.AktualnyDokument.InsertInLine(builder.ToString(), numerLinii);
@@ -219,10 +219,10 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         private string DajOpisTypuZwracanego(Metoda metoda)
         {
-            if (metoda.TypZwracany.Nazwa == "Task")
+            if (metoda.ReturnType.Nazwa == "Task")
                 return "Awaitable object";
 
-            var slowaNazwyMetody = metoda.Nazwa.PodzielNaSlowaOdWielkichLiter();
+            var slowaNazwyMetody = metoda.Name.PodzielNaSlowaOdWielkichLiter();
 
             if (slowaNazwyMetody.First() == "Get")
             {
@@ -230,7 +230,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
                 var regex = new Regex("Task<[a-zA-Z0-9_]+>");
 
-                if (regex.IsMatch(metoda.TypZwracany.Nazwa))
+                if (regex.IsMatch(metoda.ReturnType.Nazwa))
                 {
                     slowaDoBudowy = new[] { "Async" }.Union(slowaDoBudowy);
                 }
@@ -244,7 +244,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
                 var regex = new Regex("Task<[a-zA-Z0-9_]+>");
 
-                if (regex.IsMatch(metoda.TypZwracany.Nazwa))
+                if (regex.IsMatch(metoda.ReturnType.Nazwa))
                 {
                     slowaDoBudowy = new[] { "Async" }.Union(slowaDoBudowy);
                 }
@@ -262,7 +262,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         private string DajSummaryMetody(int jezyk, Metoda metoda)
         {
-            var slowa = metoda.Nazwa.PodzielNaSlowaOdWielkichLiter().ToList();
+            var slowa = metoda.Name.PodzielNaSlowaOdWielkichLiter().ToList();
 
             slowa[0] = DajCzasownikOpisuMetody(jezyk, slowa, metoda);
 

@@ -38,7 +38,7 @@ namespace Kruchy.Plugin.Utils.Extensions
             var aktualnaMetoda = parsowane.SzukajMetodyWLinii(liniaKursora);
 
             if (aktualnaMetoda != null)
-                return aktualnaMetoda.Nazwa;
+                return aktualnaMetoda.Name;
             else
                 return string.Empty;
         }

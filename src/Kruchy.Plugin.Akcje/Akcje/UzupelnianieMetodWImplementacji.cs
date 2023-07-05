@@ -2,6 +2,7 @@
 using Kruchy.Plugin.Utils.Extensions;
 using Kruchy.Plugin.Utils.Wrappers;
 using KruchyParserKodu.ParserKodu;
+using KruchyParserKodu.ParserKodu.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

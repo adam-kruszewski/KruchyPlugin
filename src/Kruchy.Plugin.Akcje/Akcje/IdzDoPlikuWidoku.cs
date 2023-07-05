@@ -33,7 +33,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             var aktualnaMetoda = parsowane.SzukajMetodyWLinii(liniaKursora);
 
             if (aktualnaMetoda != null)
-                PrzejdzLubStworz(aktualnaMetoda.Nazwa + ".cshtml", false);
+                PrzejdzLubStworz(aktualnaMetoda.Name + ".cshtml", false);
             else
                 MessageBox.Show("Kursor nie znajduje się w żadnej metodzie");
         }

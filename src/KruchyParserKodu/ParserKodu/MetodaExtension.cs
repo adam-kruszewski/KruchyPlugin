@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using KruchyParserKodu.ParserKodu.Models;
+using System.Collections.Generic;
 
 namespace KruchyParserKodu.ParserKodu
 {
@@ -6,7 +7,7 @@ namespace KruchyParserKodu.ParserKodu
     {
         public static bool TaSamaMetoda(this Metoda m1, Metoda m2)
         {
-            if (m1.Nazwa != m2.Nazwa)
+            if (m1.Name != m2.Name)
                 return false;
 
             if (m1.Parametry.Count != m2.Parametry.Count)

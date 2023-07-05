@@ -1,6 +1,7 @@
 ﻿using Kruchy.Plugin.Utils.Extensions;
 using Kruchy.Plugin.Utils.Wrappers;
 using KruchyParserKodu.ParserKodu;
+using KruchyParserKodu.ParserKodu.Models;
 using System.Linq;
 
 namespace Kruchy.Plugin.Akcje.Akcje
@@ -36,29 +37,29 @@ namespace Kruchy.Plugin.Akcje.Akcje
             var parsowane = Parser.Parsuj(dokument.GetContent());
             var metoda = parsowane.SzukajMetodyWLinii(dokument.GetCursorLineNumber());
 
-            if (!metoda.TypZwracany.Nazwa.StartsWith("Task"))
+            if (!metoda.ReturnType.Nazwa.StartsWith("Task"))
             {
-                var wiersz = metoda.TypZwracany.Poczatek.Row;
+                var wiersz = metoda.ReturnType.Poczatek.Row;
                 var slowoDoWstawienia = "Task";
-                if (metoda.TypZwracany.Nazwa != "void")
+                if (metoda.ReturnType.Nazwa != "void")
                 {
                     dokument.InsertInPlace(
                         ">",
-                        metoda.TypZwracany.Koniec.Row,
-                        metoda.TypZwracany.Koniec.Column);
+                        metoda.ReturnType.Koniec.Row,
+                        metoda.ReturnType.Koniec.Column);
                     slowoDoWstawienia += "<";
                 }
                 else
                 {
-                    var typZwracany = metoda.TypZwracany;
+                    var typZwracany = metoda.ReturnType;
                     dokument.Remove(typZwracany.Poczatek.Row, typZwracany.Poczatek.Column,
                         typZwracany.Koniec.Row, typZwracany.Koniec.Column);
                 }
 
                 dokument.InsertInPlace(
                     slowoDoWstawienia,
-                    metoda.TypZwracany.Poczatek.Row,
-                    metoda.TypZwracany.Poczatek.Column);
+                    metoda.ReturnType.Poczatek.Row,
+                    metoda.ReturnType.Poczatek.Column);
             }
         }
 

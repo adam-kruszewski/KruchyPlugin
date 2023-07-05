@@ -185,7 +185,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
 
         private PlaceInFile UstalMiejsceWstawienia(Obiekt klasaBuildera)
         {
-            var metodaSave = klasaBuildera.Metody.FirstOrDefault(o => o.Nazwa == "Save");
+            var metodaSave = klasaBuildera.Metody.FirstOrDefault(o => o.Name == "Save");
 
             var miejsceWstawiania = metodaSave?.Poczatek;
 
@@ -214,7 +214,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             WlasciwoscDlaBuildera wlasciwosc)
         {
             var metodyDoAnalizy = klasaBuildera.Metody.Where(
-                o => !(new[] { "Save", "Init" }.Contains(o.Nazwa)));
+                o => !(new[] { "Save", "Init" }.Contains(o.Name)));
 
             var napisUstawiajacyWartoscPola =
                 string.Format("Object.{0} =", wlasciwosc.Property.Nazwa);

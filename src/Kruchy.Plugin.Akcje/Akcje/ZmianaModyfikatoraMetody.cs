@@ -61,7 +61,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             {
                 WstawModyfikator(
                     modyfikator,
-                    metoda.TypZwracany.Poczatek);
+                    metoda.ReturnType.Poczatek);
             }
             else
                 ZmienModyfikator(modyfikator, dotychczasowyModyfikator);

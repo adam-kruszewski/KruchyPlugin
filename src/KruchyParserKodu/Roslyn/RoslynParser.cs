@@ -306,18 +306,18 @@ namespace KruchyParserKodu.Roslyn
             foreach (var metodaSyntax in klasa.Members.OfType<MethodDeclarationSyntax>())
             {
                 var metoda = new Metoda();
-                metoda.Nazwa = metodaSyntax.Identifier.ValueText;
+                metoda.Name = metodaSyntax.Identifier.ValueText;
                 UzupelnijModyfikatory(metodaSyntax.Modifiers, metoda.Modyfikatory);
                 UzupelnijParametry(metodaSyntax.ParameterList, metoda.Parametry);
 
                 UstawPolozenie(klasa.SyntaxTree, metoda, metodaSyntax);
 
-                metoda.TypZwracany = new TypZwracany
+                metoda.ReturnType = new TypZwracany
                 {
                     Nazwa = metodaSyntax.ReturnType.DajNazweTypu()
                 };
 
-                UstawPolozenie(klasa.SyntaxTree, metoda.TypZwracany, metodaSyntax.ReturnType);
+                UstawPolozenie(klasa.SyntaxTree, metoda.ReturnType, metodaSyntax.ReturnType);
 
                 UzupelnijPozycjeNawiasowOtwierajacychIZamykajacych(metodaSyntax, metoda);
 
@@ -329,7 +329,7 @@ namespace KruchyParserKodu.Roslyn
 
                 ParsujKomentarz(metoda, metodaSyntax);
 
-                ParsujParametryGeneryczne(metoda.ParametryGeneryczne, metodaSyntax.TypeParameterList);
+                ParsujParametryGeneryczne(metoda.GenericParameters, metodaSyntax.TypeParameterList);
 
                 metoda.Owner = obiektWlasciciela;
 

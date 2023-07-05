@@ -46,7 +46,7 @@ namespace KruchyParserKoduTests.Unit
         [Test]
         public void ParsujeDokumentacjeNadMetoda()
         {
-            var metoda = klasa.Metody.Single(o => o.Nazwa == "Metoda1");
+            var metoda = klasa.Metody.Single(o => o.Name == "Metoda1");
 
             //assert
             metoda.Documentation.Lines.Should().BeEquivalentTo(

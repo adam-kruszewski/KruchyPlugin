@@ -158,7 +158,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         {
             var parsowane = Parser.Parsuj(solution.AktualnyDokument.GetContent());
 
-            var aktualna = parsowane.DefiniowaneObiekty.First().Metody.SingleOrDefault(o => o.Nazwa == NazwaMetody);
+            var aktualna = parsowane.DefiniowaneObiekty.First().Metody.SingleOrDefault(o => o.Name == NazwaMetody);
 
             PlaceInFile poczatek;
 

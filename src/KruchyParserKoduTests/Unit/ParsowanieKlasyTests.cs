@@ -115,7 +115,7 @@ namespace KruchyParserKoduTests.Unit
             obiekt.Metody.Count().Should().Be(2);
 
             var metodaStatyczna = obiekt.Metody[0];
-            metodaStatyczna.Nazwa.Should().Be("MetodaStatyczna");
+            metodaStatyczna.Name.Should().Be("MetodaStatyczna");
             metodaStatyczna.Parametry.Count().Should().Be(3);
             SprawdzModyfikatorMetodyStatycznej(metodaStatyczna);
             var p = metodaStatyczna.Parametry.First();
@@ -125,7 +125,7 @@ namespace KruchyParserKoduTests.Unit
             metodaStatyczna.Parametry[2].NazwaTypu.Should().Be("DateTime?");
             metodaStatyczna.Modyfikatory[0].Nazwa.Should().Be("private");
             metodaStatyczna.Modyfikatory[1].Nazwa.Should().Be("static");
-            metodaStatyczna.TypZwracany.Nazwa.Should().Be("void");
+            metodaStatyczna.ReturnType.Nazwa.Should().Be("void");
             metodaStatyczna.StartingParameterBrace.Row.Should().Be(31);
             metodaStatyczna.StartingParameterBrace.Column.Should().Be(44);
             metodaStatyczna.ClosingParameterBrace.Row.Should().Be(31);
@@ -133,8 +133,8 @@ namespace KruchyParserKoduTests.Unit
 
             var metodaZwykla = obiekt.Metody[1];
             metodaZwykla.Modyfikatory.First().Nazwa.Should().Be("private");
-            metodaZwykla.Nazwa.Should().Be("MetodaZwykla");
-            metodaZwykla.TypZwracany.Nazwa.Should().Be("int");
+            metodaZwykla.Name.Should().Be("MetodaZwykla");
+            metodaZwykla.ReturnType.Nazwa.Should().Be("int");
             metodaZwykla.Parametry.Count().Should().Be(2);
             metodaZwykla.Parametry[0].NazwaTypu.Should().Be("System.DateTime");
             metodaZwykla.Parametry[1].NazwaTypu.Should().Be("System.DateTime?");

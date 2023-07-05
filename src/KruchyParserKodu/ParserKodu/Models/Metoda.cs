@@ -1,8 +1,7 @@
 ﻿using KruchyParserKodu.ParserKodu.Interfaces;
-using KruchyParserKodu.ParserKodu.Models;
 using System.Collections.Generic;
 
-namespace KruchyParserKodu.ParserKodu
+namespace KruchyParserKodu.ParserKodu.Models
 {
     public class Metoda
         : MethodConstructorBase
@@ -11,20 +10,20 @@ namespace KruchyParserKodu.ParserKodu
                     , IWithComment
                         , IWithDocumentation
     {
-        public IList<ParametrGeneryczny> ParametryGeneryczne { get; set; }
+        public IList<ParametrGeneryczny> GenericParameters { get; set; }
 
-        public TypZwracany TypZwracany { get; set; }
+        public TypZwracany ReturnType { get; set; }
 
-        public string Nazwa { get; set; }
+        public string Name { get; set; }
 
         public Metoda()
         {
-            ParametryGeneryczne = new List<ParametrGeneryczny>();
+            GenericParameters = new List<ParametrGeneryczny>();
         }
 
         public override string ToString()
         {
-            return Nazwa;
+            return Name;
         }
     }
 }

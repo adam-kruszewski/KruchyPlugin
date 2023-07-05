@@ -40,7 +40,7 @@ namespace KruchyParserKoduTests.Unit
             klasaWewnetrzna.Owner.Should().Be(klasaGlowna);
 
             var metodaWewnetrzna = klasaWewnetrzna.Metody.Single();
-            metodaWewnetrzna.Nazwa.Should().Be("Metoda1");
+            metodaWewnetrzna.Name.Should().Be("Metoda1");
             metodaWewnetrzna.Owner.Should().Be(klasaWewnetrzna);
 
             var konstruktorWewnetrznej = klasaWewnetrzna.Konstruktory.Single();
