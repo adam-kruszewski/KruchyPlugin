@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace KruchyParserKodu.ParserKodu.Models
 {
-    public class Metoda
+    public class Method
         : MethodConstructorBase
             , IWithParameterBraces
                 , IWithOwner
@@ -16,7 +16,7 @@ namespace KruchyParserKodu.ParserKodu.Models
 
         public string Name { get; set; }
 
-        public Metoda()
+        public Method()
         {
             GenericParameters = new List<ParametrGeneryczny>();
         }

@@ -13,7 +13,7 @@ namespace KruchyParserKoduTests.Unit
     public class ParsowanieAtrybutowTests
     {
         Plik parsowane;
-        IList<Metoda> metody;
+        IList<Method> metody;
 
         [SetUp]
         public void SetUpEachTest()

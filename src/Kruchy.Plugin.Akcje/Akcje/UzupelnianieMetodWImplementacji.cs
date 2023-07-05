@@ -44,7 +44,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 return;
             }
 
-            Metoda nastepnaMetoda = SzukajNastepnejMetody(parsowane, aktualnaMetoda);
+            Method nastepnaMetoda = SzukajNastepnejMetody(parsowane, aktualnaMetoda);
 
             var sciezkaDoImplementacji =
                 solution.AktualnyPlik.SzukajSciezkiDoImplementacji();
@@ -66,7 +66,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 nastepnaMetoda);
         }
 
-        private Metoda SzukajNastepnejMetody(Plik parsowane, Metoda aktualnaMetoda)
+        private Method SzukajNastepnejMetody(Plik parsowane, Method aktualnaMetoda)
         {
             var interfejs = parsowane.SzukajObiektuWLinii(aktualnaMetoda.Poczatek.Row);
             if (interfejs == null)
@@ -84,7 +84,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             string sciezkaDoImplementacji,
             string definicja,
             IEnumerable<UsingNamespace> usingi,
-            Metoda nastepnaMetoda)
+            Method nastepnaMetoda)
         {
             solutionExplorer.OpenFile(sciezkaDoImplementacji);
 
@@ -92,7 +92,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             var parsowane = Parser.Parsuj(zawartosc);
             int numerLiniiGdzieDodawac = 0;
 
-            Metoda nastepnaMetodaWImplementacji = null;
+            Method nastepnaMetodaWImplementacji = null;
             if (nastepnaMetoda == null)
                 numerLiniiGdzieDodawac = parsowane.SzukajPierwszejLiniiDlaMetody();
             else
@@ -129,7 +129,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         private static int WyliczLinieDodanieWgNastepnejMetody(
             Plik parsowane,
-            Metoda nastepnaMetodaWImplementacji,
+            Method nastepnaMetodaWImplementacji,
             ref string wstawianyTekst)
         {
             int numerLiniiGdzieDodawac;

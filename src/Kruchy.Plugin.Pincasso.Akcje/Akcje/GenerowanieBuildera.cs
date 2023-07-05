@@ -225,7 +225,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             return metodyDoAnalizy.Any(o => ZawieraNapis(o, napisUstawiajacyWartoscPola));
         }
 
-        private bool ZawieraNapis(Metoda metoda, string napisUstawiajacyWartoscPola)
+        private bool ZawieraNapis(Method metoda, string napisUstawiajacyWartoscPola)
         {
             for (int i = metoda.Poczatek.Row; i < metoda.Koniec.Row; i++)
             {

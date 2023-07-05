@@ -7,7 +7,7 @@ namespace KruchyParserKodu.ParserKodu
 {
     public static class SzukanieParsowanegoExtension
     {
-        public static Metoda SzukajMetodyWLinii(
+        public static Method SzukajMetodyWLinii(
             this Plik parsowane,
             int numerLinii)
         {
@@ -24,7 +24,7 @@ namespace KruchyParserKodu.ParserKodu
                             .FirstOrDefault();
         }
 
-        private static IEnumerable<Metoda> WszystkieMetodyObiektu(Obiekt obiekt)
+        private static IEnumerable<Method> WszystkieMetodyObiektu(Obiekt obiekt)
         {
             var metodyObiektowWewnetrznych =
                 obiekt.ObiektyWewnetrzne.SelectMany(o => WszystkieMetodyObiektu(o));

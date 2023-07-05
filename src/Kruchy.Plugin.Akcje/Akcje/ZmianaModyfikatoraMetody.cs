@@ -52,7 +52,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 ZmienModyfikator(modyfikator, dotychczasowyModyfikator);
         }
 
-        private void ZmienWMetodzie(string modyfikator, Metoda metoda)
+        private void ZmienWMetodzie(string modyfikator, Method metoda)
         {
             var dotychczasowyModyfikator =
                 SzukajDotychczasowegoModyfikatora(metoda.Modyfikatory);

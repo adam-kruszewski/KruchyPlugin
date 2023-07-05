@@ -299,13 +299,13 @@ namespace KruchyParserKodu.Roslyn
         }
 
         private void UzupelnijMetody(
-            IList<Metoda> metody,
+            IList<Method> metody,
             TypeDeclarationSyntax klasa,
             Obiekt obiektWlasciciela)
         {
             foreach (var metodaSyntax in klasa.Members.OfType<MethodDeclarationSyntax>())
             {
-                var metoda = new Metoda();
+                var metoda = new Method();
                 metoda.Name = metodaSyntax.Identifier.ValueText;
                 UzupelnijModyfikatory(metodaSyntax.Modifiers, metoda.Modyfikatory);
                 UzupelnijParametry(metodaSyntax.ParameterList, metoda.Parametry);

@@ -142,7 +142,7 @@ namespace KruchyParserKoduTests.Unit
             metodaZwykla.Atrybuty.First().Name.Should().Be("Testowo");
         }
 
-        private void SprawdzModyfikatorMetodyStatycznej(Metoda metodaStatyczna)
+        private void SprawdzModyfikatorMetodyStatycznej(Method metodaStatyczna)
         {
             metodaStatyczna.Modyfikatory.Count().Should().Be(2);
             var modyfikatorPublic = metodaStatyczna.Modyfikatory[0];

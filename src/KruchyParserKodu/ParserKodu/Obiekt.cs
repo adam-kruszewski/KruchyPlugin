@@ -36,7 +36,7 @@ namespace KruchyParserKodu.ParserKodu
 
         public IList<Modyfikator> Modyfikatory { get; set; }
         public IList<Property> Propertiesy { get; private set; }
-        public IList<Metoda> Metody { get; private set; }
+        public IList<Method> Metody { get; private set; }
         public List<Attribute> Atrybuty { get; private set; }
         public IList<ObiektDziedziczony> NadklasaIInterfejsy { get; private set; }
 
@@ -56,7 +56,7 @@ namespace KruchyParserKodu.ParserKodu
             Konstruktory = new List<Constructor>();
             Pola = new List<Pole>();
             Propertiesy = new List<Property>();
-            Metody = new List<Metoda>();
+            Metody = new List<Method>();
             Atrybuty = new List<Attribute>();
             NadklasaIInterfejsy = new List<ObiektDziedziczony>();
 

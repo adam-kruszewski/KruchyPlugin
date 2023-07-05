@@ -22,7 +22,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         {
             { typeof(Obiekt), (ud, pj) => ud.PrzetworzObiekt(pj as Obiekt) },
             { typeof(Constructor), (ud, konstruktor) => ud.PrzetworzKonstruktor(konstruktor as Constructor) },
-            { typeof(Metoda), (ud, metoda) => ud.PrzetworzMetode(metoda as Metoda) },
+            { typeof(Method), (ud, metoda) => ud.PrzetworzMetode(metoda as Method) },
             { typeof(Pole), (ud, pole) => ud.PrzetworzPole(pole as Pole) },
             { typeof(Property), (ud, wlasciwosc) => ud.PrzetworzWlasciwosc(wlasciwosc as Property) },
             { typeof(Enumeration), (ud, enumeracja) => ud.PrzetworzEnumeracje(enumeracja as Enumeration)}
@@ -184,7 +184,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             builder.AppendLine($"{poczatek}<param name=\"{parameter.NazwaParametru}\">{opis}</param>");
         }
 
-        private void PrzetworzMetode(Metoda metoda)
+        private void PrzetworzMetode(Method metoda)
         {
             if (metoda.Documentation == null)
             {
@@ -217,7 +217,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             }
         }
 
-        private string DajOpisTypuZwracanego(Metoda metoda)
+        private string DajOpisTypuZwracanego(Method metoda)
         {
             if (metoda.ReturnType.Nazwa == "Task")
                 return "Awaitable object";
@@ -260,7 +260,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             solution.AktualnyDokument.InsertInLine($"{poczatek}<inheritdoc/>\n", numerLinii);
         }
 
-        private string DajSummaryMetody(int jezyk, Metoda metoda)
+        private string DajSummaryMetody(int jezyk, Method metoda)
         {
             var slowa = metoda.Name.PodzielNaSlowaOdWielkichLiter().ToList();
 
@@ -269,7 +269,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             return string.Join(" ", slowa.Select(o => o.ToLower())).ZacznijDuzaLitera();
         }
 
-        private string DajCzasownikOpisuMetody(int jezyk, List<string> slowa, Metoda metoda)
+        private string DajCzasownikOpisuMetody(int jezyk, List<string> slowa, Method metoda)
         {
             var konfiguracja = Konfiguracja.GetInstance(solution);
 
@@ -300,7 +300,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             return jezyk.PrzygotujCzasownik(slowa[0]);
         }
 
-        private static bool PasujeRegexNazwyKlasy(Metoda metoda, Czasownik o)
+        private static bool PasujeRegexNazwyKlasy(Method metoda, Czasownik o)
         {
             return
                 o.RegexNazwyKlasy != null &&

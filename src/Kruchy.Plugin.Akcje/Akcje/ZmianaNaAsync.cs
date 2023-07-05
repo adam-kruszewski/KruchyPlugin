@@ -63,7 +63,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             }
         }
 
-        private void DodajAsyncModyfikator(Metoda metoda)
+        private void DodajAsyncModyfikator(Method metoda)
         {
             if (!metoda.ZawieraModyfikator("async"))
             {

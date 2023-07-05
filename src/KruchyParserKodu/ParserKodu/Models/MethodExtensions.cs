@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace KruchyParserKodu.ParserKodu
 {
-    public static class MetodaExtension
+    public static class MethodExtensions
     {
-        public static bool TaSamaMetoda(this Metoda m1, Metoda m2)
+        public static bool TaSamaMetoda(this Method m1, Method m2)
         {
             if (m1.Name != m2.Name)
                 return false;

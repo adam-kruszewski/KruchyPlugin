@@ -71,7 +71,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         private string GenerujNoweParametry(
             IEnumerable<Parametr> parametryMetody,
             IWithOwner obiekt,
-            Metoda metoda = null)
+            Method metoda = null)
         {
             var builder = new StringBuilder();
             builder.Append("(");

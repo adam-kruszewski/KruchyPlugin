@@ -61,7 +61,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             }
         }
 
-        private void UstawSieNaMetodzie(Metoda metoda)
+        private void UstawSieNaMetodzie(Method metoda)
         {
             var parsowane =
                 Parser.Parsuj(solution.AktualnyDokument.GetContent());

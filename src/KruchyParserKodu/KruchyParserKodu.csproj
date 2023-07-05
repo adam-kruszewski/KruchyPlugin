@@ -60,8 +60,8 @@
     <Compile Include="ParserKodu\Interfaces\IWithBraces.cs" />
     <Compile Include="ParserKodu\Interfaces\IWithOwner.cs" />
     <Compile Include="ParserKodu\Models\Constructor.cs" />
-    <Compile Include="ParserKodu\Models\Metoda.cs" />
-    <Compile Include="ParserKodu\MetodaExtension.cs" />
+    <Compile Include="ParserKodu\Models\Method.cs" />
+    <Compile Include="ParserKodu\Models\MethodExtensions.cs" />
     <Compile Include="ParserKodu\Models\Instructions\AssignmentInstruction.cs" />
     <Compile Include="ParserKodu\Models\Comment.cs" />
     <Compile Include="ParserKodu\Models\MethodConstructorBase.cs" />

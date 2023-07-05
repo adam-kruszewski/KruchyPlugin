@@ -22,7 +22,7 @@ namespace KruchyParserKoduTests.Unit
 
         Instruction _constructorInstruction2;
 
-        Metoda _method;
+        Method _method;
 
         IList<Instruction> _methodInstructions;
 
