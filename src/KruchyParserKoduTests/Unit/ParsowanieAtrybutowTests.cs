@@ -34,7 +34,7 @@ namespace KruchyParserKoduTests.Unit
                 klasa.Atrybuty.Where(o => o.Name == "Map").FirstOrDefault();
             atrybutMapowan.Should().NotBeNull();
             atrybutMapowan.Parameters.Count.Should().Be(1);
-            atrybutMapowan.Parameters.First().Wartosc
+            atrybutMapowan.Parameters.First().Value
                 .Should().Be("typeof(KlasaDoParsowaniaAtrybutow)");
         }
 
@@ -67,8 +67,8 @@ namespace KruchyParserKoduTests.Unit
             atrybutTestowo2.Koniec.Sprawdz(14, 32);
             atrybutTestowo2.Parameters.Count().Should().Be(1);
             var parametr = atrybutTestowo2.Parameters.First();
-            parametr.Nazwa.Should().Be("Param");
-            parametr.Wartosc.Should().Be("\"aa\"");
+            parametr.Name.Should().Be("Param");
+            parametr.Value.Should().Be("\"aa\"");
 
             metoda2.Atrybuty[1].Name.Should().Be("Testowo3");
             metoda2.Atrybuty[1].Poczatek.Sprawdz(15, 10);
@@ -102,8 +102,8 @@ namespace KruchyParserKoduTests.Unit
             metoda4.Atrybuty[0].Koniec.Sprawdz(27, 21);
             metoda4.Atrybuty.Count().Should().Be(1);
             var p = metoda4.Atrybuty.First().Parameters.First();
-            p.Nazwa.Should().Be("");
-            p.Wartosc.Should().Be("1");
+            p.Name.Should().Be("");
+            p.Value.Should().Be("1");
         }
     }
 }

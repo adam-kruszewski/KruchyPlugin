@@ -653,11 +653,11 @@ namespace KruchyParserKodu.Roslyn
             return atrybut;
         }
 
-        private IList<ParametrAtrybutu> SzukajParametrowAtrybutu(
+        private IList<AttributeParameter> SzukajParametrowAtrybutu(
             AttributeSyntax atrybutSyntax)
         {
             if (atrybutSyntax.ArgumentList == null)
-                return new List<ParametrAtrybutu>();
+                return new List<AttributeParameter>();
             else
                 return
                     atrybutSyntax
@@ -667,18 +667,18 @@ namespace KruchyParserKodu.Roslyn
                                     .ToList();
         }
 
-        private ParametrAtrybutu DajParametrAtrybutu(AttributeArgumentSyntax o)
+        private AttributeParameter DajParametrAtrybutu(AttributeArgumentSyntax o)
         {
-            var wynik = new ParametrAtrybutu();
+            var wynik = new AttributeParameter();
             var polozenie = DajPolozenie(o.SyntaxTree, o.Span);
 
             wynik.Poczatek = polozenie.Item1.ToPozycjaWPliku();
             wynik.Koniec = polozenie.Item2.ToPozycjaWPliku();
-            wynik.Wartosc = o.Expression?.ToFullString()?.Trim();
-            wynik.Nazwa = o.NameEquals?.Name?.ToFullString()?.Trim();
+            wynik.Value = o.Expression?.ToFullString()?.Trim();
+            wynik.Name = o.NameEquals?.Name?.ToFullString()?.Trim();
 
-            if (wynik.Nazwa == null)
-                wynik.Nazwa = "";
+            if (wynik.Name == null)
+                wynik.Name = "";
 
             return wynik;
 

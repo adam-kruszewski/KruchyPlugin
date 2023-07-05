@@ -6,11 +6,11 @@ namespace KruchyParserKodu.ParserKodu.Models
     {
         public string Name { get; set; }
 
-        public IList<ParametrAtrybutu> Parameters;
+        public IList<AttributeParameter> Parameters;
 
         public Attribute()
         {
-            Parameters = new List<ParametrAtrybutu>();
+            Parameters = new List<AttributeParameter>();
         }
     }
 }
