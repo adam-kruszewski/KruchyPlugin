@@ -22,9 +22,9 @@ namespace KruchyParserKodu.ParserKodu
 
         public List<Atrybut> Atrybuty { get; private set; }
 
-        public PozycjaWPliku StartingBrace { get; set; }
+        public PlaceInFile StartingBrace { get; set; }
 
-        public PozycjaWPliku ClosingBrace { get; set; }
+        public PlaceInFile ClosingBrace { get; set; }
 
         public Comment Komentarz { get; set; }
 
@@ -33,8 +33,8 @@ namespace KruchyParserKodu.ParserKodu
         public Enumeration()
         {
             Pola = new List<Pole>();
-            StartingBrace = new PozycjaWPliku();
-            ClosingBrace = new PozycjaWPliku();
+            StartingBrace = new PlaceInFile();
+            ClosingBrace = new PlaceInFile();
             Modyfikatory = new List<Modyfikator>();
             Atrybuty = new List<Atrybut>();
         }

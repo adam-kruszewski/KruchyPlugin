@@ -10,8 +10,8 @@ namespace KruchyParserKodu.ParserKodu
         public UsingNamespace(string nazwa)
         {
             Nazwa = nazwa;
-            Poczatek = new PozycjaWPliku();
-            Koniec = new PozycjaWPliku();
+            Poczatek = new PlaceInFile();
+            Koniec = new PlaceInFile();
         }
 
         public override string ToString()

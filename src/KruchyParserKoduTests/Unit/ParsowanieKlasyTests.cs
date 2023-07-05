@@ -153,7 +153,7 @@ namespace KruchyParserKoduTests.Unit
             modyfikatorStatic.Nazwa.Should().Be("static");
         }
 
-        private void SprawdzPozycje(PozycjaWPliku pozycja, int wiersz, int kolumna)
+        private void SprawdzPozycje(PlaceInFile pozycja, int wiersz, int kolumna)
         {
             pozycja.Row.Should().Be(wiersz);
             pozycja.Column.Should().Be(kolumna);

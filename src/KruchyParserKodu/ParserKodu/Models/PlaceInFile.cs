@@ -1,14 +1,14 @@
 ﻿
 namespace KruchyParserKodu.ParserKodu.Models
 {
-    public class PozycjaWPliku
+    public class PlaceInFile
     {
         public int Row { get; set; }
         public int Column { get; set; }
 
-        public PozycjaWPliku() { }
+        public PlaceInFile() { }
 
-        public PozycjaWPliku(int row, int column)
+        public PlaceInFile(int row, int column)
         {
             Row = row;
             Column = column;

@@ -6,8 +6,8 @@ namespace KruchyParserKodu.ParserKodu
     public class Plik
     {
         public string Namespace { get; set; }
-        public PozycjaWPliku PoczatekNamespace { get; set; }
-        public PozycjaWPliku KoniecNamespace { get; set; }
+        public PlaceInFile PoczatekNamespace { get; set; }
+        public PlaceInFile KoniecNamespace { get; set; }
         public IList<UsingNamespace> Usingi { get; private set; }
 
         public IList<Obiekt> DefiniowaneObiekty { get; private set; }

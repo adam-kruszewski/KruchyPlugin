@@ -6,7 +6,7 @@ namespace KruchyParserKoduTests.Utils
     static class PozycjaWPlikuExtension
     {
         public static void Sprawdz(
-            this PozycjaWPliku pozycja,
+            this PlaceInFile pozycja,
             int wiersz,
             int kolumna)
         {

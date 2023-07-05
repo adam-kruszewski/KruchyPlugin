@@ -5,9 +5,9 @@ namespace KruchyParserKodu.Utils
 {
     public static class PozycjaWPlikuExtensions
     {
-        public static PozycjaWPliku ToPozycjaWPliku(this LinePosition linePosition)
+        public static PlaceInFile ToPozycjaWPliku(this LinePosition linePosition)
         {
-            return new PozycjaWPliku(
+            return new PlaceInFile(
                 linePosition.Line,
                 linePosition.Character);
         }

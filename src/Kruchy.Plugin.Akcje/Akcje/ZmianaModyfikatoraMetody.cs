@@ -82,7 +82,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 dotychczasowyModyfikator.Poczatek.Column);
         }
 
-        private void WstawModyfikator(string modyfikator, PozycjaWPliku polozenie)
+        private void WstawModyfikator(string modyfikator, PlaceInFile polozenie)
         {
             dokument.InsertInPlace(
                 modyfikator + " ",

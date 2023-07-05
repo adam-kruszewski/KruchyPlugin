@@ -6,13 +6,13 @@ namespace KruchyParserKodu.ParserKodu.Models
     {
         public MethodConstructorBase CodeUnit { get; set; }
 
-        public PozycjaWPliku StartPosition
+        public PlaceInFile StartPosition
         {
             get => Poczatek;
             set => Poczatek = value;
         }
 
-        public PozycjaWPliku EndPosition
+        public PlaceInFile EndPosition
         {
             get => Koniec;
             set => Koniec = value;

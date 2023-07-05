@@ -5,13 +5,13 @@ namespace KruchyParserKodu.ParserKodu
 {
     public abstract class ParsowanaJednostka
     {
-        public PozycjaWPliku Poczatek { get; set; }
-        public PozycjaWPliku Koniec { get; set; }
+        public PlaceInFile Poczatek { get; set; }
+        public PlaceInFile Koniec { get; set; }
 
         public ParsowanaJednostka()
         {
-            Poczatek = new PozycjaWPliku();
-            Koniec = new PozycjaWPliku();
+            Poczatek = new PlaceInFile();
+            Koniec = new PlaceInFile();
         }
 
         public override string ToString()

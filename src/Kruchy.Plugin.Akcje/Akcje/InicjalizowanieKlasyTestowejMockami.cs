@@ -160,7 +160,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
             var aktualna = parsowane.DefiniowaneObiekty.First().Metody.SingleOrDefault(o => o.Nazwa == NazwaMetody);
 
-            PozycjaWPliku poczatek;
+            PlaceInFile poczatek;
 
             if (aktualna != null)
             {
@@ -178,7 +178,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                     throw new ArgumentException("Brak zdefiniowanych pól - to nie powinno się zdarzyć");
                 }else
                 {
-                    poczatek = new PozycjaWPliku(poczatek.Row + 2, poczatek.Column);
+                    poczatek = new PlaceInFile(poczatek.Row + 2, poczatek.Column);
                 }
             }
 

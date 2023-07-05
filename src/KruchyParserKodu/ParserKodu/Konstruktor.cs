@@ -10,10 +10,10 @@ namespace KruchyParserKodu.ParserKodu
     {
         public string Modyfikator { get; set; }
 
-        public PozycjaWPliku PoczatekParametrow { get; private set; }
-        public PozycjaWPliku KoniecParametrow { get; private set; }
-        public PozycjaWPliku StartingBrace { get; set; }
-        public PozycjaWPliku ClosingBrace { get; set; }
+        public PlaceInFile PoczatekParametrow { get; private set; }
+        public PlaceInFile KoniecParametrow { get; private set; }
+        public PlaceInFile StartingBrace { get; set; }
+        public PlaceInFile ClosingBrace { get; set; }
 
         //jeśli nie ma wołania kontruktora z nadklasy, to pole jest nullem
         public IList<string> ParametryKonstruktoraZNadKlasy;
@@ -21,8 +21,8 @@ namespace KruchyParserKodu.ParserKodu
 
         public Konstruktor() : base()
         {
-            StartingBrace = new PozycjaWPliku();
-            ClosingBrace = new PozycjaWPliku();
+            StartingBrace = new PlaceInFile();
+            ClosingBrace = new PlaceInFile();
             
         }
     }

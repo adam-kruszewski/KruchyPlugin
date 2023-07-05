@@ -144,7 +144,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             var klasaBuildera =
                 sparsowane.DefiniowaneObiekty.Single(o => o.Name == nazwaKlasyBuildera);
 
-            PozycjaWPliku miejsceWstawiania = UstalMiejsceWstawienia(klasaBuildera);
+            PlaceInFile miejsceWstawiania = UstalMiejsceWstawienia(klasaBuildera);
 
             foreach (var wlasciwosc in wlasciwosciDlaBuildera)
             {
@@ -183,7 +183,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             return tesktMetody;
         }
 
-        private PozycjaWPliku UstalMiejsceWstawienia(Obiekt klasaBuildera)
+        private PlaceInFile UstalMiejsceWstawienia(Obiekt klasaBuildera)
         {
             var metodaSave = klasaBuildera.Metody.FirstOrDefault(o => o.Nazwa == "Save");
 

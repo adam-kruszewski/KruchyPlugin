@@ -703,10 +703,10 @@ namespace KruchyParserKodu.Roslyn
             var l1 = l.StartLinePosition;
             var l2 = l.EndLinePosition;
 
-            obiekt.Poczatek = new PozycjaWPliku(
+            obiekt.Poczatek = new PlaceInFile(
                 l1.Line + 1,
                 l1.Character + 1);
-            obiekt.Koniec = new PozycjaWPliku(
+            obiekt.Koniec = new PlaceInFile(
                 l2.Line + 1,
                 l2.Character + 1);
         }
