@@ -6,7 +6,7 @@ namespace KruchyParserKodu.ParserKodu
 {
     public class Metoda
         : MethodConstructorBase
-            , IZNawiasamiOtwierajacymiZamykajacymiParametry
+            , IWithParameterBraces
                 , IWithOwner
                     , IWithComment
                         , IWithDocumentation

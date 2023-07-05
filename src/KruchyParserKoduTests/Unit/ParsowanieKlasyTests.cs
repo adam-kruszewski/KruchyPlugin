@@ -95,10 +95,10 @@ namespace KruchyParserKoduTests.Unit
             SprawdzPozycje(konstrZ1Parametrem.Poczatek, 19, 9);
             SprawdzPozycje(konstrZ1Parametrem.Koniec, 24, 10);
             SprawdzPozycje(
-                konstrZ1Parametrem.NawiasOtwierajacyParametry,
+                konstrZ1Parametrem.StartingParameterBrace,
                 19, 33);
             SprawdzPozycje(
-                konstrZ1Parametrem.NawiasZamykajacyParametry,
+                konstrZ1Parametrem.ClosingParameterBrace,
                 19, 39);
             SprawdzPozycje(
                 konstrZ1Parametrem.StartingBrace,
@@ -125,10 +125,10 @@ namespace KruchyParserKoduTests.Unit
             metodaStatyczna.Modyfikatory[0].Nazwa.Should().Be("private");
             metodaStatyczna.Modyfikatory[1].Nazwa.Should().Be("static");
             metodaStatyczna.TypZwracany.Nazwa.Should().Be("void");
-            metodaStatyczna.NawiasOtwierajacyParametry.Wiersz.Should().Be(31);
-            metodaStatyczna.NawiasOtwierajacyParametry.Kolumna.Should().Be(44);
-            metodaStatyczna.NawiasZamykajacyParametry.Wiersz.Should().Be(31);
-            metodaStatyczna.NawiasZamykajacyParametry.Kolumna.Should().Be(74);
+            metodaStatyczna.StartingParameterBrace.Wiersz.Should().Be(31);
+            metodaStatyczna.StartingParameterBrace.Kolumna.Should().Be(44);
+            metodaStatyczna.ClosingParameterBrace.Wiersz.Should().Be(31);
+            metodaStatyczna.ClosingParameterBrace.Kolumna.Should().Be(74);
 
             var metodaZwykla = obiekt.Metody[1];
             metodaZwykla.Modyfikatory.First().Nazwa.Should().Be("private");

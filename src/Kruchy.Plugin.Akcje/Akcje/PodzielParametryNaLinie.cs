@@ -40,15 +40,15 @@ namespace Kruchy.Plugin.Akcje.Akcje
             }
 
             dokument.Remove(
-                metoda.NawiasOtwierajacyParametry.Wiersz,
-                metoda.NawiasOtwierajacyParametry.Kolumna,
-                metoda.NawiasZamykajacyParametry.Wiersz,
-                metoda.NawiasZamykajacyParametry.Kolumna + 1);
+                metoda.StartingParameterBrace.Wiersz,
+                metoda.StartingParameterBrace.Kolumna,
+                metoda.ClosingParameterBrace.Wiersz,
+                metoda.ClosingParameterBrace.Kolumna + 1);
 
             dokument.InsertInPlace(
                 GenerujNoweParametry(metoda.Parametry, metoda, metoda),
-                metoda.NawiasOtwierajacyParametry.Wiersz,
-                metoda.NawiasOtwierajacyParametry.Kolumna);
+                metoda.StartingParameterBrace.Wiersz,
+                metoda.StartingParameterBrace.Kolumna);
         }
 
         private void PodzielNaLinieKonstruktor(Konstruktor konstruktor)
@@ -56,15 +56,15 @@ namespace Kruchy.Plugin.Akcje.Akcje
             var dokument = solution.AktualnyDokument;
 
             dokument.Remove(
-                konstruktor.NawiasOtwierajacyParametry.Wiersz,
-                konstruktor.NawiasOtwierajacyParametry.Kolumna,
-                konstruktor.NawiasZamykajacyParametry.Wiersz,
-                konstruktor.NawiasZamykajacyParametry.Kolumna + 1);
+                konstruktor.StartingParameterBrace.Wiersz,
+                konstruktor.StartingParameterBrace.Kolumna,
+                konstruktor.ClosingParameterBrace.Wiersz,
+                konstruktor.ClosingParameterBrace.Kolumna + 1);
 
             dokument.InsertInPlace(
                 GenerujNoweParametry(konstruktor.Parametry, konstruktor),
-                konstruktor.NawiasOtwierajacyParametry.Wiersz,
-                konstruktor.NawiasOtwierajacyParametry.Kolumna);
+                konstruktor.StartingParameterBrace.Wiersz,
+                konstruktor.StartingParameterBrace.Kolumna);
         }
 
         private string GenerujNoweParametry(

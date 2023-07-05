@@ -7,7 +7,7 @@ namespace KruchyParserKodu.ParserKodu.Models
 {
     public class MethodConstructorBase
         : ParsowanaJednostka
-            , IZNawiasamiOtwierajacymiZamykajacymiParametry
+            , IWithParameterBraces
                 , IWithOwner
                     , IWithComment
                         , IWithDocumentation
@@ -20,9 +20,9 @@ namespace KruchyParserKodu.ParserKodu.Models
 
         public List<Atrybut> Atrybuty { get; private set; }
 
-        public PozycjaWPliku NawiasOtwierajacyParametry { get; set; }
+        public PozycjaWPliku StartingParameterBrace { get; set; }
 
-        public PozycjaWPliku NawiasZamykajacyParametry { get; set; }
+        public PozycjaWPliku ClosingParameterBrace { get; set; }
 
         public Comment Komentarz { get; set; }
 
@@ -51,8 +51,8 @@ namespace KruchyParserKodu.ParserKodu.Models
             Parametry = new List<Parametr>();
             Modyfikatory = new List<Modyfikator>();
             Atrybuty = new List<Atrybut>();
-            NawiasOtwierajacyParametry = new PozycjaWPliku();
-            NawiasZamykajacyParametry = new PozycjaWPliku();
+            StartingParameterBrace = new PozycjaWPliku();
+            ClosingParameterBrace = new PozycjaWPliku();
             Instructions = new List<Instruction>();
         }
 

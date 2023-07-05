@@ -440,11 +440,11 @@ namespace KruchyParserKodu.Roslyn
 
         private void UzupelnijPozycjeNawiasowOtwierajacychIZamykajacych(
             BaseMethodDeclarationSyntax syntax,
-            IZNawiasamiOtwierajacymiZamykajacymiParametry obiekt)
+            IWithParameterBraces obiekt)
         {
-            obiekt.NawiasOtwierajacyParametry =
+            obiekt.StartingParameterBrace =
                 DajPolozenie(syntax.ParameterList.OpenParenToken).Item1.ToPozycjaWPliku();
-            obiekt.NawiasZamykajacyParametry =
+            obiekt.ClosingParameterBrace =
                 DajPolozenie(syntax.ParameterList.CloseParenToken).Item1.ToPozycjaWPliku();
         }
 

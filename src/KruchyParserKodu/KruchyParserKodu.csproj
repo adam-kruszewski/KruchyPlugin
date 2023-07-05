@@ -55,7 +55,7 @@
     <Compile Include="ParserKodu\Interfaces\IWithPlaceInCode.cs" />
     <Compile Include="ParserKodu\Interfaces\IWithDocumentation.cs" />
     <Compile Include="ParserKodu\Interfaces\IWithComment.cs" />
-    <Compile Include="ParserKodu\IZNawiasamiOtwierajacymiZamykajacymiParametry.cs" />
+    <Compile Include="ParserKodu\Interfaces\IWithParameterBraces.cs" />
     <Compile Include="ParserKodu\Interfaces\IWithName.cs" />
     <Compile Include="ParserKodu\Interfaces\IWithBraces.cs" />
     <Compile Include="ParserKodu\Interfaces\IWithOwner.cs" />
