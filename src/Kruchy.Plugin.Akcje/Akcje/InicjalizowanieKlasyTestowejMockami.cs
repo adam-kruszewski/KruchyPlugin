@@ -76,7 +76,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             }
         }
 
-        private IEnumerable<Tuple<string, string>> DajPolaKonstruktora(Konstruktor konstruktor)
+        private IEnumerable<Tuple<string, string>> DajPolaKonstruktora(Constructor konstruktor)
         {
             return konstruktor.Parametry.Select(o => Tuple.Create(o.NazwaTypu, o.NazwaParametru));
         }

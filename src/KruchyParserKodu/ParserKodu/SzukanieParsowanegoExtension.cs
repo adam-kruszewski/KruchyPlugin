@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KruchyParserKodu.ParserKodu.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -31,7 +32,7 @@ namespace KruchyParserKodu.ParserKodu
             return obiekt.Metody.Union(metodyObiektowWewnetrznych);
         }
 
-        public static Konstruktor SzukajKonstruktoraWLinii(
+        public static Constructor SzukajKonstruktoraWLinii(
             this Plik parsowane,
             int numerLinii)
         {
@@ -45,7 +46,7 @@ namespace KruchyParserKodu.ParserKodu
                         .FirstOrDefault();
         }
 
-        private static IEnumerable<Konstruktor> WszystkieKonstruktoryObiektow(Obiekt obiekt)
+        private static IEnumerable<Constructor> WszystkieKonstruktoryObiektow(Obiekt obiekt)
         {
             var konstruktoryObiektowWewnetrznych =
                 obiekt.ObiektyWewnetrzne

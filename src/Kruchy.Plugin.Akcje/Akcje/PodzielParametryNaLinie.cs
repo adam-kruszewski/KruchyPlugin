@@ -2,6 +2,7 @@
 using Kruchy.Plugin.Utils.Wrappers;
 using KruchyParserKodu.ParserKodu;
 using KruchyParserKodu.ParserKodu.Interfaces;
+using KruchyParserKodu.ParserKodu.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -51,7 +52,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 metoda.StartingParameterBrace.Column);
         }
 
-        private void PodzielNaLinieKonstruktor(Konstruktor konstruktor)
+        private void PodzielNaLinieKonstruktor(Constructor konstruktor)
         {
             var dokument = solution.AktualnyDokument;
 

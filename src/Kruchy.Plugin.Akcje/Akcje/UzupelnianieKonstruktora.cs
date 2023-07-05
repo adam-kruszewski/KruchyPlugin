@@ -76,7 +76,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                         polaReadOnly,
                         obiekt.Name,
                         polaDoKonstruktoraNadklasy,
-                        konstruktor?.SlowoKluczoweInicjalizacji,
+                        konstruktor?.InitializationKeyWord,
                         konstruktor);
 
                 if (konstruktor != null)
@@ -143,12 +143,12 @@ namespace Kruchy.Plugin.Akcje.Akcje
             return false;
         }
 
-        private IList<Parametr> WyliczPolaPotrzebneDoKonstruktoraNadklasy(Konstruktor konstruktor)
+        private IList<Parametr> WyliczPolaPotrzebneDoKonstruktoraNadklasy(Constructor konstruktor)
         {
-            if (konstruktor == null || konstruktor.ParametryKonstruktoraZNadKlasy == null)
+            if (konstruktor == null || konstruktor.ParentClassContructorParameters == null)
                 return null;
             var p = konstruktor.Parametry
-                .Where(o => konstruktor.ParametryKonstruktoraZNadKlasy.Contains(o.NazwaParametru));
+                .Where(o => konstruktor.ParentClassContructorParameters.Contains(o.NazwaParametru));
             return p.ToList();
         }
 
@@ -231,7 +231,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             string nazwaKlasy,
             IEnumerable<Parametr> parametryDlaKonstruktoraNadklasy,
             string slowoKluczowe,
-            Konstruktor constructor)
+            Constructor constructor)
         {
             var builder = new MetodaBuilder();
             builder.JedenParametrWLinii(true);
@@ -276,7 +276,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         }
 
         private void AddOtherInstructionsFromOriginalConstructor(
-            Konstruktor constructor,
+            Constructor constructor,
             IEnumerable<Pole> fields,
             MetodaBuilder builder)
         {
@@ -308,7 +308,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         }
 
         private IEnumerable<Instruction> GetOtherInstructionsFromOriginalConstructor(
-            Konstruktor constructor, IEnumerable<Pole> readonlyFields)
+            Constructor constructor, IEnumerable<Pole> readonlyFields)
         {
             return constructor.Instructions
                 .Where(o => !IsSimpleParameterAssignment(o, readonlyFields, constructor.Parametry));
@@ -363,7 +363,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         private List<Pole> WyliczPolaDoDodaniaDoKonstruktora(
             IList<Pole> pola,
-            Konstruktor konstruktor)
+            Constructor konstruktor)
         {
             var wynik = new List<Pole>();
             var polaReadOnly =
@@ -385,7 +385,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         }
 
         private bool KonstruktorMaWParametrzePole(
-            Konstruktor konstruktor,
+            Constructor konstruktor,
             Pole pole)
         {
             if (konstruktor == null)

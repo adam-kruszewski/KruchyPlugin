@@ -107,7 +107,7 @@ namespace KruchyParserKoduTests.Unit
             SprawdzPozycje(
                 konstrZ1Parametrem.ClosingBrace,
                 24, 9);
-            konstrZ1Parametrem.Modyfikator.Should().Be("public");
+            konstrZ1Parametrem.Modifier.Should().Be("public");
         }
 
         private void SprawdzMetody(Obiekt obiekt)

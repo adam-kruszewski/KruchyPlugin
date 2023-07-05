@@ -338,26 +338,26 @@ namespace KruchyParserKodu.Roslyn
         }
 
         private void UzupelnijKontruktory(
-            IList<Konstruktor> konstruktory,
+            IList<Constructor> konstruktory,
             ClassDeclarationSyntax klasa,
             Obiekt obiektWlasciciel)
         {
             foreach (var konstruktorSyntax in klasa.Members.OfType<ConstructorDeclarationSyntax>())
             {
-                Konstruktor konstruktor = ParseConstructor(obiektWlasciciel, konstruktorSyntax);
+                Constructor konstruktor = ParseConstructor(obiektWlasciciel, konstruktorSyntax);
 
                 konstruktory.Add(konstruktor);
             }
         }
 
-        private Konstruktor ParseConstructor(
+        private Constructor ParseConstructor(
             Obiekt obiektWlasciciel,
             ConstructorDeclarationSyntax konstruktorSyntax)
         {
-            var konstruktor = new Konstruktor();
+            var konstruktor = new Constructor();
 
             UstawPolozenie(konstruktorSyntax.SyntaxTree, konstruktor, konstruktorSyntax);
-            konstruktor.Modyfikator =
+            konstruktor.Modifier =
                 SzukajModyfikatorow(konstruktorSyntax.Modifiers)
                     .Select(o => o.Nazwa)
                         .SingleOrDefault();
@@ -377,9 +377,9 @@ namespace KruchyParserKodu.Roslyn
             if (konstruktorSyntax.Initializer != null
                 && konstruktorSyntax.Initializer.ArgumentList != null)
             {
-                konstruktor.SlowoKluczoweInicjalizacji =
+                konstruktor.InitializationKeyWord =
                     konstruktorSyntax.Initializer.ThisOrBaseKeyword.ToString();
-                konstruktor.ParametryKonstruktoraZNadKlasy =
+                konstruktor.ParentClassContructorParameters =
                     konstruktorSyntax
                         .Initializer
                             .ArgumentList

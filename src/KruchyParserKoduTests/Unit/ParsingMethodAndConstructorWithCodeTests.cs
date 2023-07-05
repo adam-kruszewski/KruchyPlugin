@@ -16,7 +16,7 @@ namespace KruchyParserKoduTests.Unit
 
         IList<Instruction> _contructorInstructions;
 
-        Konstruktor _constructor;
+        Constructor _constructor;
 
         Instruction _constructorInstruction1;
 

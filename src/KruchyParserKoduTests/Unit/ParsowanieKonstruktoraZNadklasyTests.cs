@@ -28,11 +28,11 @@ namespace KruchyParserKoduTests.Unit
                             .Konstruktory
                                 .Single();
             var parametrKonstruktoraZNadklasy
-                = konstruktor.ParametryKonstruktoraZNadKlasy.SingleOrDefault();
+                = konstruktor.ParentClassContructorParameters.SingleOrDefault();
 
             parametrKonstruktoraZNadklasy.Should().NotBeNull();
             parametrKonstruktoraZNadklasy.Should().Be("serwis0");
-            konstruktor.SlowoKluczoweInicjalizacji.Should().Be("base");
+            konstruktor.InitializationKeyWord.Should().Be("base");
         }
     }
 }

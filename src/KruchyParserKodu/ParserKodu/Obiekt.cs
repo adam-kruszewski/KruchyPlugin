@@ -27,7 +27,7 @@ namespace KruchyParserKodu.ParserKodu
         public Obiekt Owner { get; set; }
 
         public string Name { get; set; }
-        public IList<Konstruktor> Konstruktory { get; private set; }
+        public IList<Constructor> Konstruktory { get; private set; }
         public IList<Pole> Pola { get; private set; }
         public IList<Pole> NiestatycznePola
         {
@@ -53,7 +53,7 @@ namespace KruchyParserKodu.ParserKodu
 
         public Obiekt() : base()
         {
-            Konstruktory = new List<Konstruktor>();
+            Konstruktory = new List<Constructor>();
             Pola = new List<Pole>();
             Propertiesy = new List<Property>();
             Metody = new List<Metoda>();

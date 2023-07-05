@@ -21,7 +21,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             new Dictionary<Type, Action<UzupelnianieDokumentacji, ParsowanaJednostka>>
         {
             { typeof(Obiekt), (ud, pj) => ud.PrzetworzObiekt(pj as Obiekt) },
-            { typeof(Konstruktor), (ud, konstruktor) => ud.PrzetworzKonstruktor(konstruktor as Konstruktor) },
+            { typeof(Constructor), (ud, konstruktor) => ud.PrzetworzKonstruktor(konstruktor as Constructor) },
             { typeof(Metoda), (ud, metoda) => ud.PrzetworzMetode(metoda as Metoda) },
             { typeof(Pole), (ud, pole) => ud.PrzetworzPole(pole as Pole) },
             { typeof(Property), (ud, wlasciwosc) => ud.PrzetworzWlasciwosc(wlasciwosc as Property) },
@@ -146,7 +146,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             return char.ToUpper(wynik[0]) + wynik.Substring(1);
         }
 
-        private void PrzetworzKonstruktor(Konstruktor konstruktor)
+        private void PrzetworzKonstruktor(Constructor konstruktor)
         {
             if (konstruktor.Documentation == null)
             {
