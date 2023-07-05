@@ -1,4 +1,4 @@
-﻿using KruchyParserKodu.ParserKodu;
+﻿using KruchyParserKodu.ParserKodu.Models;
 using Microsoft.CodeAnalysis.Text;
 
 namespace KruchyParserKodu.Utils

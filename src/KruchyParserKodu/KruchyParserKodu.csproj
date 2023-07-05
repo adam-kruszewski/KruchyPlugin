@@ -76,7 +76,7 @@
     <Compile Include="ParserKodu\ParsowanaJednostka.cs" />
     <Compile Include="ParserKodu\Plik.cs" />
     <Compile Include="ParserKodu\Pole.cs" />
-    <Compile Include="ParserKodu\PozycjaWPliku.cs" />
+    <Compile Include="ParserKodu\Models\PozycjaWPliku.cs" />
     <Compile Include="ParserKodu\Property.cs" />
     <Compile Include="ParserKodu\RodzajObiektu.cs" />
     <Compile Include="ParserKodu\RodzajObiektuObiekt.cs" />

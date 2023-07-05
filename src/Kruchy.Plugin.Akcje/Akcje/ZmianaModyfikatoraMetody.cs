@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Kruchy.Plugin.Utils.Wrappers;
 using KruchyParserKodu.ParserKodu;
+using KruchyParserKodu.ParserKodu.Models;
 
 namespace Kruchy.Plugin.Akcje.Akcje
 {

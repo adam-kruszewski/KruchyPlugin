@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using KruchyParserKodu.ParserKodu;
+using KruchyParserKodu.ParserKodu.Models;
 
 namespace KruchyParserKoduTests.Utils
 {

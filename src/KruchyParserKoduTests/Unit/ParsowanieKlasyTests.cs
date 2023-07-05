@@ -2,6 +2,7 @@
 using System.Linq;
 using FluentAssertions;
 using KruchyParserKodu.ParserKodu;
+using KruchyParserKodu.ParserKodu.Models;
 using KruchyParserKoduTests.Utils;
 using NUnit.Framework;
 

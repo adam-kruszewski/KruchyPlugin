@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using KruchyParserKodu.ParserKodu.Models;
+using System.Collections.Generic;
 
 namespace KruchyParserKodu.ParserKodu
 {

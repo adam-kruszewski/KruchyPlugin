@@ -1,4 +1,6 @@
 ﻿
+using KruchyParserKodu.ParserKodu.Models;
+
 namespace KruchyParserKodu.ParserKodu.Interfaces
 {
     interface IWithBraces
