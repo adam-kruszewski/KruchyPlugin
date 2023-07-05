@@ -40,15 +40,15 @@ namespace Kruchy.Plugin.Akcje.Akcje
             }
 
             dokument.Remove(
-                metoda.StartingParameterBrace.Wiersz,
-                metoda.StartingParameterBrace.Kolumna,
-                metoda.ClosingParameterBrace.Wiersz,
-                metoda.ClosingParameterBrace.Kolumna + 1);
+                metoda.StartingParameterBrace.Row,
+                metoda.StartingParameterBrace.Column,
+                metoda.ClosingParameterBrace.Row,
+                metoda.ClosingParameterBrace.Column + 1);
 
             dokument.InsertInPlace(
                 GenerujNoweParametry(metoda.Parametry, metoda, metoda),
-                metoda.StartingParameterBrace.Wiersz,
-                metoda.StartingParameterBrace.Kolumna);
+                metoda.StartingParameterBrace.Row,
+                metoda.StartingParameterBrace.Column);
         }
 
         private void PodzielNaLinieKonstruktor(Konstruktor konstruktor)
@@ -56,15 +56,15 @@ namespace Kruchy.Plugin.Akcje.Akcje
             var dokument = solution.AktualnyDokument;
 
             dokument.Remove(
-                konstruktor.StartingParameterBrace.Wiersz,
-                konstruktor.StartingParameterBrace.Kolumna,
-                konstruktor.ClosingParameterBrace.Wiersz,
-                konstruktor.ClosingParameterBrace.Kolumna + 1);
+                konstruktor.StartingParameterBrace.Row,
+                konstruktor.StartingParameterBrace.Column,
+                konstruktor.ClosingParameterBrace.Row,
+                konstruktor.ClosingParameterBrace.Column + 1);
 
             dokument.InsertInPlace(
                 GenerujNoweParametry(konstruktor.Parametry, konstruktor),
-                konstruktor.StartingParameterBrace.Wiersz,
-                konstruktor.StartingParameterBrace.Kolumna);
+                konstruktor.StartingParameterBrace.Row,
+                konstruktor.StartingParameterBrace.Column);
         }
 
         private string GenerujNoweParametry(

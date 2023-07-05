@@ -69,21 +69,21 @@ namespace KruchyParserKoduTests.Unit
         [Test]
         public void ParsedCode_Constructor_ShouldInstructionsSetPosition()
         {
-            _constructorInstruction1.StartPosition.Wiersz.Should().Be(10);
+            _constructorInstruction1.StartPosition.Row.Should().Be(10);
 
-            _constructorInstruction1.StartPosition.Kolumna.Should().Be(13);
+            _constructorInstruction1.StartPosition.Column.Should().Be(13);
 
-            _constructorInstruction1.EndPosition.Wiersz.Should().Be(10);
+            _constructorInstruction1.EndPosition.Row.Should().Be(10);
 
-            _constructorInstruction1.EndPosition.Kolumna.Should().Be(22);
+            _constructorInstruction1.EndPosition.Column.Should().Be(22);
 
-            _constructorInstruction2.StartPosition.Wiersz.Should().Be(12);
+            _constructorInstruction2.StartPosition.Row.Should().Be(12);
 
-            _constructorInstruction2.StartPosition.Kolumna.Should().Be(13);
+            _constructorInstruction2.StartPosition.Column.Should().Be(13);
 
-            _constructorInstruction2.EndPosition.Wiersz.Should().Be(12);
+            _constructorInstruction2.EndPosition.Row.Should().Be(12);
 
-            _constructorInstruction2.EndPosition.Kolumna.Should().Be(28);
+            _constructorInstruction2.EndPosition.Column.Should().Be(28);
         }
 
         [Test]
@@ -117,21 +117,21 @@ namespace KruchyParserKoduTests.Unit
         [Test]
         public void ParsedCode_Method_ShouldInstructionsSetPosition()
         {
-            _methodInstruction1.StartPosition.Wiersz.Should().Be(17);
+            _methodInstruction1.StartPosition.Row.Should().Be(17);
 
-            _methodInstruction1.StartPosition.Kolumna.Should().Be(13);
+            _methodInstruction1.StartPosition.Column.Should().Be(13);
 
-            _methodInstruction1.EndPosition.Wiersz.Should().Be(17);
+            _methodInstruction1.EndPosition.Row.Should().Be(17);
 
-            _methodInstruction1.EndPosition.Kolumna.Should().Be(26);
+            _methodInstruction1.EndPosition.Column.Should().Be(26);
 
-            _methodInstruction2.StartPosition.Wiersz.Should().Be(19);
+            _methodInstruction2.StartPosition.Row.Should().Be(19);
 
-            _methodInstruction2.StartPosition.Kolumna.Should().Be(13);
+            _methodInstruction2.StartPosition.Column.Should().Be(13);
 
-            _methodInstruction2.EndPosition.Wiersz.Should().Be(22);
+            _methodInstruction2.EndPosition.Row.Should().Be(22);
 
-            _methodInstruction2.EndPosition.Kolumna.Should().Be(14);
+            _methodInstruction2.EndPosition.Column.Should().Be(14);
         }
 
         [Test]

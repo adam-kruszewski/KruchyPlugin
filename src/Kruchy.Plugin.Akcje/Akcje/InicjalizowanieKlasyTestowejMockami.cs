@@ -121,11 +121,11 @@ namespace Kruchy.Plugin.Akcje.Akcje
             {
                 var ostatnie = parsowane.DefiniowaneObiekty.First().Pola.Last();
 
-                numerLiniiDoDodawaniaPol = ostatnie.Koniec.Wiersz + 1;
+                numerLiniiDoDodawaniaPol = ostatnie.Koniec.Row + 1;
             }
             else
             {
-                numerLiniiDoDodawaniaPol = parsowane.DefiniowaneObiekty.First().StartingBrace.Wiersz + 1;
+                numerLiniiDoDodawaniaPol = parsowane.DefiniowaneObiekty.First().StartingBrace.Row + 1;
             }
 
             return numerLiniiDoDodawaniaPol;
@@ -166,8 +166,8 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 poczatek = aktualna.Poczatek;
 
                 solution.AktualnyDokument.Remove(
-                    aktualna.Poczatek.Wiersz, aktualna.Poczatek.Kolumna,
-                    aktualna.Koniec.Wiersz, aktualna.Koniec.Kolumna);
+                    aktualna.Poczatek.Row, aktualna.Poczatek.Column,
+                    aktualna.Koniec.Row, aktualna.Koniec.Column);
             }else
             {
                 poczatek = parsowane.DefiniowaneObiekty.First().Pola.LastOrDefault()?.Koniec;
@@ -177,16 +177,16 @@ namespace Kruchy.Plugin.Akcje.Akcje
                     throw new ArgumentException("Brak zdefiniowanych pól - to nie powinno się zdarzyć");
                 }else
                 {
-                    poczatek = new PozycjaWPliku(poczatek.Wiersz + 2, poczatek.Kolumna);
+                    poczatek = new PozycjaWPliku(poczatek.Row + 2, poczatek.Column);
                 }
             }
 
-            if (poczatek.Wiersz > parsowane.DefiniowaneObiekty.First().ClosingBrace.Wiersz)
+            if (poczatek.Row > parsowane.DefiniowaneObiekty.First().ClosingBrace.Row)
             {
-                poczatek.Wiersz = parsowane.DefiniowaneObiekty.First().ClosingBrace.Wiersz;
+                poczatek.Row = parsowane.DefiniowaneObiekty.First().ClosingBrace.Row;
             }
 
-            solution.AktualnyDokument.InsertInLine(GenerujMetode(polaZTypemZKontruktora, nazwaKlasyTestowanej), poczatek.Wiersz);
+            solution.AktualnyDokument.InsertInLine(GenerujMetode(polaZTypemZKontruktora, nazwaKlasyTestowanej), poczatek.Row);
         }
 
         private string GenerujMetode(

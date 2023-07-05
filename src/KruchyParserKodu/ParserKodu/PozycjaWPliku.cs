@@ -3,15 +3,15 @@ namespace KruchyParserKodu.ParserKodu
 {
     public class PozycjaWPliku
     {
-        public int Wiersz { get; set; }
-        public int Kolumna { get; set; }
+        public int Row { get; set; }
+        public int Column { get; set; }
 
         public PozycjaWPliku() { }
 
-        public PozycjaWPliku(int wiersz, int kolumna)
+        public PozycjaWPliku(int row, int column)
         {
-            Wiersz = wiersz;
-            Kolumna = kolumna;
+            Row = row;
+            Column = column;
         }
     }
 }

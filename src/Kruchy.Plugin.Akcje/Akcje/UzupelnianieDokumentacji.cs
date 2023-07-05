@@ -56,7 +56,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
             listaParsowanychJednostek.AddRange(sparsowane.DefiniowaneEnumeracje.SelectMany(o => o.Pola));
 
-            listaParsowanychJednostek = listaParsowanychJednostek.OrderByDescending(o => o.Poczatek.Wiersz).ToList();
+            listaParsowanychJednostek = listaParsowanychJednostek.OrderByDescending(o => o.Poczatek.Row).ToList();
 
             foreach (var parsowanaJednostka in listaParsowanychJednostek)
             {
@@ -74,7 +74,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         {
             if (obiekt.Dokumentacja == null)
             {
-                var wciecie = (obiekt.Poczatek.Kolumna - 1).Spacji();
+                var wciecie = (obiekt.Poczatek.Column - 1).Spacji();
 
                 var poczatek = $"{wciecie}/// ";
                 var builder = new StringBuilder();
@@ -85,10 +85,10 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
                 var doWstawienia = builder.ToString();
 
-                var numerLinii = obiekt.Poczatek.Wiersz;
+                var numerLinii = obiekt.Poczatek.Row;
 
                 if (obiekt.Atrybuty.Any())
-                    numerLinii = obiekt.Atrybuty.OrderBy(o => o.Poczatek.Wiersz).First().Poczatek.Wiersz;
+                    numerLinii = obiekt.Atrybuty.OrderBy(o => o.Poczatek.Row).First().Poczatek.Row;
 
                 solution.AktualnyDokument.InsertInLine(doWstawienia, numerLinii);
             }
@@ -149,7 +149,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         {
             if (konstruktor.Dokumentacja == null)
             {
-                var wciecie = (konstruktor.Poczatek.Kolumna - 1).Spacji();
+                var wciecie = (konstruktor.Poczatek.Column - 1).Spacji();
 
                 var poczatek = $"{wciecie}/// ";
                 var builder = new StringBuilder();
@@ -160,7 +160,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
                 GenerujOpisParametrow(konstruktor.Parametry, poczatek, builder);
 
-                var numerLinii = konstruktor.Poczatek.Wiersz;
+                var numerLinii = konstruktor.Poczatek.Row;
 
                 solution.AktualnyDokument.InsertInLine(builder.ToString(), numerLinii);
             }
@@ -187,7 +187,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         {
             if (metoda.Dokumentacja == null)
             {
-                var wciecie = (metoda.Poczatek.Kolumna - 1).Spacji();
+                var wciecie = (metoda.Poczatek.Column - 1).Spacji();
 
                 var poczatek = $"{wciecie}/// ";
                 var builder = new StringBuilder();
@@ -332,7 +332,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                     summary = string.Join(" ", slowa).ZacznijDuzaLitera();
                 }
 
-                var wciecie = (pole.Poczatek.Kolumna - 1).Spacji();
+                var wciecie = (pole.Poczatek.Column - 1).Spacji();
 
                 var poczatek = $"{wciecie}/// ";
                 var builder = new StringBuilder();
@@ -352,7 +352,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 if (string.IsNullOrEmpty(summary))
                     summary = string.Join(" ", property.Nazwa.PodzielNaSlowaOdWielkichLiter().Select(o => o.ToLower())).ZacznijDuzaLitera();
 
-                var wciecie = (property.Poczatek.Kolumna - 1).Spacji();
+                var wciecie = (property.Poczatek.Column - 1).Spacji();
 
                 var poczatek = $"{wciecie}/// ";
                 var builder = new StringBuilder();
@@ -369,7 +369,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             {
                 var summary = GenerujSummaryKlasyLubInterfejsu(enumeracja);
 
-                var wciecie = (enumeracja.Poczatek.Kolumna - 1).Spacji();
+                var wciecie = (enumeracja.Poczatek.Column - 1).Spacji();
 
                 var poczatek = $"{wciecie}/// ";
                 var builder = new StringBuilder();
@@ -424,10 +424,10 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         private int DajNumerLiniiDoWstawienia(ParsowanaJednostka parsowanaJednostka, IEnumerable<Atrybut> atrybuty = null)
         {
-            var numerLinii = parsowanaJednostka.Poczatek.Wiersz;
+            var numerLinii = parsowanaJednostka.Poczatek.Row;
 
             if (atrybuty != null && atrybuty.Any())
-                numerLinii = atrybuty.OrderBy(o => o.Poczatek.Wiersz).First().Poczatek.Wiersz;
+                numerLinii = atrybuty.OrderBy(o => o.Poczatek.Row).First().Poczatek.Row;
 
             return numerLinii;
         }

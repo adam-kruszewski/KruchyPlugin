@@ -18,8 +18,8 @@ namespace KruchyParserKodu.ParserKodu
             return
                 metody
                     .Where(o =>
-                        o.Poczatek.Wiersz <= numerLinii
-                            && o.Koniec.Wiersz >= numerLinii)
+                        o.Poczatek.Row <= numerLinii
+                            && o.Koniec.Row >= numerLinii)
                             .FirstOrDefault();
         }
 
@@ -65,8 +65,8 @@ namespace KruchyParserKodu.ParserKodu
             return
                 propertiesy
                     .Where(o =>
-                        o.Poczatek.Wiersz <= numerLinii
-                            && o.Koniec.Wiersz >= numerLinii)
+                        o.Poczatek.Row <= numerLinii
+                            && o.Koniec.Row >= numerLinii)
                             .FirstOrDefault();
         }
 
@@ -86,8 +86,8 @@ namespace KruchyParserKodu.ParserKodu
             return
                 pola
                     .Where(o =>
-                        o.Poczatek.Wiersz <= numerLinii
-                            && o.Koniec.Wiersz >= numerLinii)
+                        o.Poczatek.Row <= numerLinii
+                            && o.Koniec.Row >= numerLinii)
                             .FirstOrDefault();
         }
 
@@ -101,10 +101,10 @@ namespace KruchyParserKodu.ParserKodu
                 .Union(obiekt.Propertiesy.Select(o => o.Koniec))
                 .Union(obiekt.Konstruktory.Select(o => o.Koniec))
                 .Union(obiekt.Metody.Select(o => o.Koniec))
-                    .Select(o => o.Wiersz);
+                    .Select(o => o.Row);
             if (ostatnieLinieDefinicji.Count() == 0)
             {
-                return obiekt.StartingBrace.Wiersz + 1;
+                return obiekt.StartingBrace.Row + 1;
             }
 
             return ostatnieLinieDefinicji.Max() + 1;
@@ -119,11 +119,11 @@ namespace KruchyParserKodu.ParserKodu
             var ostatnieLinieDefinicji =
                 obiekt.Pola.Select(o => o.Koniec)
                     .Union(obiekt.Propertiesy.Select(o => o.Koniec))
-                        .Select(o => o.Wiersz);
+                        .Select(o => o.Row);
 
             if (ostatnieLinieDefinicji.Count() == 0)
             {
-                return obiekt.StartingBrace.Wiersz + 1;
+                return obiekt.StartingBrace.Row + 1;
             }
 
             return ostatnieLinieDefinicji.Max() + 1;
@@ -145,8 +145,8 @@ namespace KruchyParserKodu.ParserKodu
 
         private static object WyliczOdleglosc(Obiekt o, int numerLinii)
         {
-            return Math.Abs(o.Poczatek.Wiersz - numerLinii)
-                + Math.Abs(o.Koniec.Wiersz - numerLinii);
+            return Math.Abs(o.Poczatek.Row - numerLinii)
+                + Math.Abs(o.Koniec.Row - numerLinii);
         }
 
         public static IEnumerable<Obiekt> WszystkieObiektyObiektu(Obiekt obiekt)
@@ -176,8 +176,8 @@ namespace KruchyParserKodu.ParserKodu
             this ParsowanaJednostka jednostka,
             int numerLinii)
         {
-            if (jednostka.Poczatek.Wiersz <= numerLinii
-                    && jednostka.Koniec.Wiersz >= numerLinii)
+            if (jednostka.Poczatek.Row <= numerLinii
+                    && jednostka.Koniec.Row >= numerLinii)
                 return true;
             else
                 return false;

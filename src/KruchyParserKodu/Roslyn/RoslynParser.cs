@@ -609,9 +609,9 @@ namespace KruchyParserKodu.Roslyn
             SyntaxToken token)
         {
             var pozycjaPoczatkowejKlamerki = DajPolozenie(token.SyntaxTree, token);
-            obiekt.StartingBrace.Wiersz =
+            obiekt.StartingBrace.Row =
                 pozycjaPoczatkowejKlamerki.Item1.Line;
-            obiekt.StartingBrace.Kolumna =
+            obiekt.StartingBrace.Column =
                 pozycjaPoczatkowejKlamerki.Item1.Character;
         }
 

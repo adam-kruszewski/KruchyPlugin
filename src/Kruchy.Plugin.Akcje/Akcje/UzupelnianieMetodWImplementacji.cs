@@ -55,8 +55,8 @@ namespace Kruchy.Plugin.Akcje.Akcje
             }
 
             var definicja = dokument.GetContent(
-                aktualnaMetoda.Poczatek.Wiersz, aktualnaMetoda.Poczatek.Kolumna,
-                aktualnaMetoda.Koniec.Wiersz, aktualnaMetoda.Koniec.Kolumna);
+                aktualnaMetoda.Poczatek.Row, aktualnaMetoda.Poczatek.Column,
+                aktualnaMetoda.Koniec.Row, aktualnaMetoda.Koniec.Column);
 
             DodajDefincjeWImplementacji(
                 sciezkaDoImplementacji,
@@ -67,7 +67,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         private Metoda SzukajNastepnejMetody(Plik parsowane, Metoda aktualnaMetoda)
         {
-            var interfejs = parsowane.SzukajObiektuWLinii(aktualnaMetoda.Poczatek.Wiersz);
+            var interfejs = parsowane.SzukajObiektuWLinii(aktualnaMetoda.Poczatek.Row);
             if (interfejs == null)
                 return null;
 
@@ -134,9 +134,9 @@ namespace Kruchy.Plugin.Akcje.Akcje
             int numerLiniiGdzieDodawac;
             var obiekt =
                 parsowane
-                .SzukajObiektuWLinii(nastepnaMetodaWImplementacji.Poczatek.Wiersz);
+                .SzukajObiektuWLinii(nastepnaMetodaWImplementacji.Poczatek.Row);
 
-            numerLiniiGdzieDodawac = nastepnaMetodaWImplementacji.Poczatek.Wiersz - 1;
+            numerLiniiGdzieDodawac = nastepnaMetodaWImplementacji.Poczatek.Row - 1;
 
             if (nastepnaMetodaWImplementacji?.Dokumentacja?.Lines != null)
                 numerLiniiGdzieDodawac -= nastepnaMetodaWImplementacji.Dokumentacja.Lines.Count;
@@ -144,9 +144,9 @@ namespace Kruchy.Plugin.Akcje.Akcje
             if (nastepnaMetodaWImplementacji?.Komentarz?.Lines != null)
                 numerLiniiGdzieDodawac -= nastepnaMetodaWImplementacji.Komentarz.Lines.Count;
 
-            if (numerLiniiGdzieDodawac <= obiekt.StartingBrace.Wiersz)
+            if (numerLiniiGdzieDodawac <= obiekt.StartingBrace.Row)
             {
-                numerLiniiGdzieDodawac = obiekt.StartingBrace.Wiersz + 1;
+                numerLiniiGdzieDodawac = obiekt.StartingBrace.Row + 1;
                 wstawianyTekst += new StringBuilder().AppendLine().ToString();
             }
 

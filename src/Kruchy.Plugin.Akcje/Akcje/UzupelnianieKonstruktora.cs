@@ -82,25 +82,25 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 if (konstruktor != null)
                 {
                     solution.AktualnyDokument.Remove(
-                        konstruktor.Poczatek.Wiersz,
+                        konstruktor.Poczatek.Row,
                         1,
-                        konstruktor.Koniec.Wiersz,
-                        konstruktor.Koniec.Kolumna);
+                        konstruktor.Koniec.Row,
+                        konstruktor.Koniec.Column);
                     solution.AktualnyDokument.InsertInLine(
-                        nowyKonstruktor, konstruktor.Poczatek.Wiersz);
+                        nowyKonstruktor, konstruktor.Poczatek.Row);
                 }
                 else
                 {
                     //tu zawsze będzie jakieś pole lub właściwośc
                     //, bo są pola które czekają na dodanie do konstruktora
-                    int maksymalnyNumerLiniiPol = obiekt.StartingBrace.Wiersz + 1;
+                    int maksymalnyNumerLiniiPol = obiekt.StartingBrace.Row + 1;
 
                     if (obiekt.Pola.Any())
                         maksymalnyNumerLiniiPol =
-                            obiekt.Pola.Select(o => o.Koniec.Wiersz).Max();
+                            obiekt.Pola.Select(o => o.Koniec.Row).Max();
                     else
                         maksymalnyNumerLiniiPol =
-                            obiekt.Propertiesy.Select(o => o.Koniec.Wiersz).Max();
+                            obiekt.Propertiesy.Select(o => o.Koniec.Row).Max();
 
                     var dodatek = new StringBuilder().AppendLine().ToString();
                     solution.AktualnyDokument.InsertInLine(
@@ -155,9 +155,9 @@ namespace Kruchy.Plugin.Akcje.Akcje
         private void PosortujZdefiniowanePola(IEnumerable<Pole> list)
         {
             var liniaPierwszego =
-                list.OrderBy(o => o.Poczatek.Wiersz).First().Poczatek.Wiersz;
+                list.OrderBy(o => o.Poczatek.Row).First().Poczatek.Row;
 
-            foreach (var p in list.OrderByDescending(o => o.Poczatek.Wiersz))
+            foreach (var p in list.OrderByDescending(o => o.Poczatek.Row))
                 UsunPole(p);
 
             var builder = new StringBuilder();
@@ -179,14 +179,14 @@ namespace Kruchy.Plugin.Akcje.Akcje
         private void UsunPole(Pole p)
         {
             solution.AktualnyDokument.Remove(
-                p.Poczatek.Wiersz,
+                p.Poczatek.Row,
                 //p.Poczatek.Kolumna,
                 1,
-                p.Koniec.Wiersz,
-                p.Koniec.Kolumna);
+                p.Koniec.Row,
+                p.Koniec.Column);
 
             //if (p.Poczatek.Wiersz != p.Koniec.Wiersz)
-            solution.AktualnyDokument.RemoveLine(p.Koniec.Wiersz);
+            solution.AktualnyDokument.RemoveLine(p.Koniec.Row);
         }
 
         private string PrzygotujTekstDoWstawienia(
@@ -293,7 +293,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                     else
                     {
                         var difference =
-                            originalInstruction.Poczatek.Wiersz - previousOtherInstruction.Poczatek.Wiersz;
+                            originalInstruction.Poczatek.Row - previousOtherInstruction.Poczatek.Row;
 
                         if (difference > 1)
                             builder.DodajLinie("");

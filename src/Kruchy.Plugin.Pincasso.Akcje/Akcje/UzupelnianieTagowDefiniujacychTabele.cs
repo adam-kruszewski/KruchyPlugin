@@ -51,7 +51,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
                 throw new ApplicationException(
                     "Musi być zdefiniowana dokładnie jedna klasa");
 
-            return plik.DefiniowaneObiekty.First().Poczatek.Wiersz;
+            return plik.DefiniowaneObiekty.First().Poczatek.Row;
         }
 
         private void DodajAtrybutKlasie(string prefiks, Plik plik)
@@ -85,7 +85,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
                         .Propertiesy
                             .Where(o => o.JestGet && o.JestSet)
                                 .Where(o => !MaAtrybutuReferencedObject(o));
-            return propertiesyKolumn.Select(o => o.Poczatek.Wiersz).ToList();
+            return propertiesyKolumn.Select(o => o.Poczatek.Row).ToList();
         }
 
         private bool MaAtrybutuReferencedObject(Property property)

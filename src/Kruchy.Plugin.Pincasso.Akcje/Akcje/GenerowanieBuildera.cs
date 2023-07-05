@@ -154,7 +154,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
 
                 solution.AktualnyDokument.InsertInLine(
                     tesktMetody + new StringBuilder().AppendLine().ToString(),
-                    miejsceWstawiania.Wiersz);
+                    miejsceWstawiania.Row);
             }
 
             foreach (var usingBudowanego in usingiZObiektuBudowanego)
@@ -226,7 +226,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
 
         private bool ZawieraNapis(Metoda metoda, string napisUstawiajacyWartoscPola)
         {
-            for (int i = metoda.Poczatek.Wiersz; i < metoda.Koniec.Wiersz; i++)
+            for (int i = metoda.Poczatek.Row; i < metoda.Koniec.Row; i++)
             {
                 if (solution.AktualnyDokument.GetLineContent(i)
                     .Contains(napisUstawiajacyWartoscPola))

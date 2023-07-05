@@ -55,15 +55,15 @@ namespace Kruchy.Plugin.Utils.Extensions
             ref int kolumnaWstawienia)
         {
             var dotychczasowePosortowane =
-                parsowane.Usingi.OrderBy(o => o.Poczatek.Wiersz);
+                parsowane.Usingi.OrderBy(o => o.Poczatek.Row);
 
             var pierwszyUsing = dotychczasowePosortowane.First();
             var ostatniUsing = dotychczasowePosortowane.Last();
 
-            dokument.Remove(pierwszyUsing.Poczatek.Wiersz, pierwszyUsing.Poczatek.Kolumna,
-                ostatniUsing.Koniec.Wiersz, ostatniUsing.Koniec.Kolumna);
-            wierszWstawienia = pierwszyUsing.Poczatek.Wiersz;
-            kolumnaWstawienia = pierwszyUsing.Poczatek.Kolumna;
+            dokument.Remove(pierwszyUsing.Poczatek.Row, pierwszyUsing.Poczatek.Column,
+                ostatniUsing.Koniec.Row, ostatniUsing.Koniec.Column);
+            wierszWstawienia = pierwszyUsing.Poczatek.Row;
+            kolumnaWstawienia = pierwszyUsing.Poczatek.Column;
         }
 
         private static string DajKluczDoSortowaniaUsingow(string nazwaUsinga)

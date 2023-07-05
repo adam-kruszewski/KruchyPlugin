@@ -38,27 +38,27 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
             if (!metoda.TypZwracany.Nazwa.StartsWith("Task"))
             {
-                var wiersz = metoda.TypZwracany.Poczatek.Wiersz;
+                var wiersz = metoda.TypZwracany.Poczatek.Row;
                 var slowoDoWstawienia = "Task";
                 if (metoda.TypZwracany.Nazwa != "void")
                 {
                     dokument.InsertInPlace(
                         ">",
-                        metoda.TypZwracany.Koniec.Wiersz,
-                        metoda.TypZwracany.Koniec.Kolumna);
+                        metoda.TypZwracany.Koniec.Row,
+                        metoda.TypZwracany.Koniec.Column);
                     slowoDoWstawienia += "<";
                 }
                 else
                 {
                     var typZwracany = metoda.TypZwracany;
-                    dokument.Remove(typZwracany.Poczatek.Wiersz, typZwracany.Poczatek.Kolumna,
-                        typZwracany.Koniec.Wiersz, typZwracany.Koniec.Kolumna);
+                    dokument.Remove(typZwracany.Poczatek.Row, typZwracany.Poczatek.Column,
+                        typZwracany.Koniec.Row, typZwracany.Koniec.Column);
                 }
 
                 dokument.InsertInPlace(
                     slowoDoWstawienia,
-                    metoda.TypZwracany.Poczatek.Wiersz,
-                    metoda.TypZwracany.Poczatek.Kolumna);
+                    metoda.TypZwracany.Poczatek.Row,
+                    metoda.TypZwracany.Poczatek.Column);
             }
         }
 
@@ -68,13 +68,13 @@ namespace Kruchy.Plugin.Akcje.Akcje
             {
                 if (metoda.Modyfikatory.Any())
                 {
-                    var koniecModyfikatorow = metoda.Modyfikatory.Max(o => o.Koniec.Kolumna);
+                    var koniecModyfikatorow = metoda.Modyfikatory.Max(o => o.Koniec.Column);
                     var ostatni = metoda.Modyfikatory.Last();
-                    dokument.InsertInPlace("async ", ostatni.Koniec.Wiersz, ostatni.Koniec.Kolumna + 1);
+                    dokument.InsertInPlace("async ", ostatni.Koniec.Row, ostatni.Koniec.Column + 1);
                 }
                 else
                 {
-                    dokument.InsertInPlace("async ", metoda.Poczatek.Wiersz, metoda.Poczatek.Kolumna);
+                    dokument.InsertInPlace("async ", metoda.Poczatek.Row, metoda.Poczatek.Column);
                 }
             }
         }

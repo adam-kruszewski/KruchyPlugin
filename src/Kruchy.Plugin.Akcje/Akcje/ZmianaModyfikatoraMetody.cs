@@ -71,22 +71,22 @@ namespace Kruchy.Plugin.Akcje.Akcje
             Modyfikator dotychczasowyModyfikator)
         {
             dokument.Remove(
-                dotychczasowyModyfikator.Poczatek.Wiersz,
-                dotychczasowyModyfikator.Poczatek.Kolumna,
-                dotychczasowyModyfikator.Koniec.Wiersz,
-                dotychczasowyModyfikator.Koniec.Kolumna);
+                dotychczasowyModyfikator.Poczatek.Row,
+                dotychczasowyModyfikator.Poczatek.Column,
+                dotychczasowyModyfikator.Koniec.Row,
+                dotychczasowyModyfikator.Koniec.Column);
             dokument.InsertInPlace(
                 modyfikator,
-                dotychczasowyModyfikator.Poczatek.Wiersz,
-                dotychczasowyModyfikator.Poczatek.Kolumna);
+                dotychczasowyModyfikator.Poczatek.Row,
+                dotychczasowyModyfikator.Poczatek.Column);
         }
 
         private void WstawModyfikator(string modyfikator, PozycjaWPliku polozenie)
         {
             dokument.InsertInPlace(
                 modyfikator + " ",
-                polozenie.Wiersz,
-                polozenie.Kolumna);
+                polozenie.Row,
+                polozenie.Column);
         }
 
         private Modyfikator SzukajDotychczasowegoModyfikatora(

@@ -30,8 +30,8 @@ namespace KruchyParserKoduTests.Unit
             var obiekt = plik.DefiniowaneObiekty.First();
             obiekt.Rodzaj.Should().Be(RodzajObiektu.Klasa);
             obiekt.Name.Should().Be("KlasaDoParsowania");
-            obiekt.StartingBrace.Wiersz.Should().Be(12);
-            obiekt.ClosingBrace.Kolumna.Should().Be(5);
+            obiekt.StartingBrace.Row.Should().Be(12);
+            obiekt.ClosingBrace.Column.Should().Be(5);
             obiekt.Atrybuty.Count().Should().Be(1);
             obiekt.Atrybuty.First().Nazwa.Should().Be("Testowo");
             obiekt.Modyfikatory.Should().BeEmpty();
@@ -125,10 +125,10 @@ namespace KruchyParserKoduTests.Unit
             metodaStatyczna.Modyfikatory[0].Nazwa.Should().Be("private");
             metodaStatyczna.Modyfikatory[1].Nazwa.Should().Be("static");
             metodaStatyczna.TypZwracany.Nazwa.Should().Be("void");
-            metodaStatyczna.StartingParameterBrace.Wiersz.Should().Be(31);
-            metodaStatyczna.StartingParameterBrace.Kolumna.Should().Be(44);
-            metodaStatyczna.ClosingParameterBrace.Wiersz.Should().Be(31);
-            metodaStatyczna.ClosingParameterBrace.Kolumna.Should().Be(74);
+            metodaStatyczna.StartingParameterBrace.Row.Should().Be(31);
+            metodaStatyczna.StartingParameterBrace.Column.Should().Be(44);
+            metodaStatyczna.ClosingParameterBrace.Row.Should().Be(31);
+            metodaStatyczna.ClosingParameterBrace.Column.Should().Be(74);
 
             var metodaZwykla = obiekt.Metody[1];
             metodaZwykla.Modyfikatory.First().Nazwa.Should().Be("private");
@@ -154,8 +154,8 @@ namespace KruchyParserKoduTests.Unit
 
         private void SprawdzPozycje(PozycjaWPliku pozycja, int wiersz, int kolumna)
         {
-            pozycja.Wiersz.Should().Be(wiersz);
-            pozycja.Kolumna.Should().Be(kolumna);
+            pozycja.Row.Should().Be(wiersz);
+            pozycja.Column.Should().Be(kolumna);
         }
     }
 }

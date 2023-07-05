@@ -10,8 +10,8 @@ namespace KruchyParserKoduTests.Utils
             int wiersz,
             int kolumna)
         {
-            pozycja.Wiersz.Should().Be(wiersz);
-            pozycja.Kolumna.Should().Be(kolumna);
+            pozycja.Row.Should().Be(wiersz);
+            pozycja.Column.Should().Be(kolumna);
         }
     }
 }
