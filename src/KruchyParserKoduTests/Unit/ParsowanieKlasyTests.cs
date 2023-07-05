@@ -34,7 +34,7 @@ namespace KruchyParserKoduTests.Unit
             obiekt.StartingBrace.Row.Should().Be(12);
             obiekt.ClosingBrace.Column.Should().Be(5);
             obiekt.Atrybuty.Count().Should().Be(1);
-            obiekt.Atrybuty.First().Nazwa.Should().Be("Testowo");
+            obiekt.Atrybuty.First().Name.Should().Be("Testowo");
             obiekt.Modyfikatory.Should().BeEmpty();
 
             SprawdzPola(obiekt);
@@ -139,7 +139,7 @@ namespace KruchyParserKoduTests.Unit
             metodaZwykla.Parametry[0].NazwaTypu.Should().Be("System.DateTime");
             metodaZwykla.Parametry[1].NazwaTypu.Should().Be("System.DateTime?");
             metodaZwykla.Atrybuty.Count().Should().Be(1);
-            metodaZwykla.Atrybuty.First().Nazwa.Should().Be("Testowo");
+            metodaZwykla.Atrybuty.First().Name.Should().Be("Testowo");
         }
 
         private void SprawdzModyfikatorMetodyStatycznej(Metoda metodaStatyczna)

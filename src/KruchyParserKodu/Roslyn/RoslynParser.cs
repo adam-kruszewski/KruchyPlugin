@@ -625,7 +625,7 @@ namespace KruchyParserKodu.Roslyn
 
         private void UzupelnijAtrybuty(
             SyntaxList<AttributeListSyntax> attributeLists,
-            List<Atrybut> listaAtrybutow)
+            List<ParserKodu.Models.Attribute> listaAtrybutow)
         {
             foreach (var atrybut in attributeLists)
             {
@@ -633,7 +633,7 @@ namespace KruchyParserKodu.Roslyn
             }
         }
 
-        private IEnumerable<Atrybut> ParsujAtrybut(AttributeListSyntax listaAtrybutow)
+        private IEnumerable<ParserKodu.Models.Attribute> ParsujAtrybut(AttributeListSyntax listaAtrybutow)
         {
             foreach (var atrybutSyntax in listaAtrybutow.Attributes)
             {
@@ -641,13 +641,13 @@ namespace KruchyParserKodu.Roslyn
             }
         }
 
-        private Atrybut ParsujAtrybut(AttributeSyntax atrybutSyntax)
+        private ParserKodu.Models.Attribute ParsujAtrybut(AttributeSyntax atrybutSyntax)
         {
             var atrybut =
-                new Atrybut
+                new ParserKodu.Models.Attribute
                 {
-                    Nazwa = atrybutSyntax.Name.GetText().ToString(),
-                    Parametry = SzukajParametrowAtrybutu(atrybutSyntax)
+                    Name = atrybutSyntax.Name.GetText().ToString(),
+                    Parameters = SzukajParametrowAtrybutu(atrybutSyntax)
                 };
             UstawPolozenie(atrybutSyntax.SyntaxTree, atrybut, atrybutSyntax);
             return atrybut;

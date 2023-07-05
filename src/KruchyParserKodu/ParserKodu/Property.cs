@@ -11,7 +11,7 @@ namespace KruchyParserKodu.ParserKodu
         public string Nazwa { get; set; }
         public string NazwaTypu { get; set; }
         public IList<Modyfikator> Modyfikatory { get; private set; }
-        public List<Atrybut> Atrybuty { get; private set; }
+        public List<Attribute> Atrybuty { get; private set; }
         public bool JestGet { get; set; }
         public bool JestSet { get; set; }
         public Documentation Dokumentacja { get; set; }
@@ -20,7 +20,7 @@ namespace KruchyParserKodu.ParserKodu
         public Property()
         {
             Modyfikatory = new List<Modyfikator>();
-            Atrybuty = new List<Atrybut>();
+            Atrybuty = new List<Attribute>();
         }
 
         public override string ToString()

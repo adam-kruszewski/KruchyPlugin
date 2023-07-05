@@ -48,7 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IWithOwnerExtensions.cs" />
-    <Compile Include="ParserKodu\Atrybut.cs" />
+    <Compile Include="ParserKodu\Models\Attribute.cs" />
     <Compile Include="ParserKodu\Models\Documentation.cs" />
     <Compile Include="ParserKodu\Enumeration.cs" />
     <Compile Include="ParserKodu\Models\Instruction.cs" />

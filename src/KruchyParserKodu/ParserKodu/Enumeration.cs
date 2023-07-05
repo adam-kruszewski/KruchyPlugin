@@ -20,7 +20,7 @@ namespace KruchyParserKodu.ParserKodu
 
         public IList<Modyfikator> Modyfikatory { get; set; }
 
-        public List<Atrybut> Atrybuty { get; private set; }
+        public List<Attribute> Atrybuty { get; private set; }
 
         public PlaceInFile StartingBrace { get; set; }
 
@@ -36,7 +36,7 @@ namespace KruchyParserKodu.ParserKodu
             StartingBrace = new PlaceInFile();
             ClosingBrace = new PlaceInFile();
             Modyfikatory = new List<Modyfikator>();
-            Atrybuty = new List<Atrybut>();
+            Atrybuty = new List<Attribute>();
         }
 
     }

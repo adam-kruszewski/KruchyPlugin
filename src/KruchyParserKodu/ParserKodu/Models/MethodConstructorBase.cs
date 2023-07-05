@@ -18,7 +18,7 @@ namespace KruchyParserKodu.ParserKodu.Models
 
         public IList<Modyfikator> Modyfikatory { get; set; }
 
-        public List<Atrybut> Atrybuty { get; private set; }
+        public List<Attribute> Atrybuty { get; private set; }
 
         public PlaceInFile StartingParameterBrace { get; set; }
 
@@ -50,7 +50,7 @@ namespace KruchyParserKodu.ParserKodu.Models
         {
             Parametry = new List<Parametr>();
             Modyfikatory = new List<Modyfikator>();
-            Atrybuty = new List<Atrybut>();
+            Atrybuty = new List<Attribute>();
             StartingParameterBrace = new PlaceInFile();
             ClosingParameterBrace = new PlaceInFile();
             Instructions = new List<Instruction>();

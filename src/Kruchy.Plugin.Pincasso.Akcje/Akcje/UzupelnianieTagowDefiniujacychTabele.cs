@@ -90,7 +90,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
 
         private bool MaAtrybutuReferencedObject(Property property)
         {
-            return property.Atrybuty.Any(o => o.Nazwa == "ReferencedObject");
+            return property.Atrybuty.Any(o => o.Name == "ReferencedObject");
         }
 
         private void DodajAtrybutyKolumnowe(List<int> linieKolumn, string prefiks)

@@ -66,7 +66,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             string nazwaAtrybutu,
             KruchyParserKodu.ParserKodu.Property property)
         {
-            if (property.Atrybuty.Any(o => o.Nazwa == "ReferencedObject"))
+            if (property.Atrybuty.Any(o => o.Name == "ReferencedObject"))
                 return false;
 
             var nowaLinia =

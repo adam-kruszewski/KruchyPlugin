@@ -295,12 +295,12 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
 
         private bool PrzechowujeObiektReferencji(Property p)
         {
-            return p.Atrybuty.Any(o => o.Nazwa == "ReferencedObject");
+            return p.Atrybuty.Any(o => o.Name == "ReferencedObject");
         }
 
         private bool JestKluczemObcym(Property p)
         {
-            return p.Atrybuty.Any(o => o.Nazwa == "ForeignKey");
+            return p.Atrybuty.Any(o => o.Name == "ForeignKey");
         }
 
         private class WlasciwoscDlaBuildera

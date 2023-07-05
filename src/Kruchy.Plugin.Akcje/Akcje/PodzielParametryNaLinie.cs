@@ -126,8 +126,8 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
             foreach (var atrybut in parametr.Atrybuty)
             {
-                var atrybutBuilder = new AtrybutBuilder().ZNazwa(atrybut.Nazwa);
-                foreach (var parametrAtrybutu in atrybut.Parametry)
+                var atrybutBuilder = new AtrybutBuilder().ZNazwa(atrybut.Name);
+                foreach (var parametrAtrybutu in atrybut.Parameters)
                 {
                     atrybutBuilder.DodajWartoscParametruNieStringowa(parametrAtrybutu.Wartosc);
                 }

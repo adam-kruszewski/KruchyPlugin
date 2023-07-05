@@ -31,10 +31,10 @@ namespace KruchyParserKoduTests.Unit
             //assert
             klasa.Atrybuty.Count().Should().Be(2);
             var atrybutMapowan =
-                klasa.Atrybuty.Where(o => o.Nazwa == "Map").FirstOrDefault();
+                klasa.Atrybuty.Where(o => o.Name == "Map").FirstOrDefault();
             atrybutMapowan.Should().NotBeNull();
-            atrybutMapowan.Parametry.Count.Should().Be(1);
-            atrybutMapowan.Parametry.First().Wartosc
+            atrybutMapowan.Parameters.Count.Should().Be(1);
+            atrybutMapowan.Parameters.First().Wartosc
                 .Should().Be("typeof(KlasaDoParsowaniaAtrybutow)");
         }
 
@@ -45,10 +45,10 @@ namespace KruchyParserKoduTests.Unit
             var metoda1 = metody.First();
             //assert
             metoda1.Atrybuty.Count().Should().Be(2);
-            metoda1.Atrybuty[0].Nazwa.Should().Be("Testowo");
+            metoda1.Atrybuty[0].Name.Should().Be("Testowo");
             metoda1.Atrybuty[0].Poczatek.Sprawdz(8, 10);
             metoda1.Atrybuty[0].Koniec.Sprawdz(8, 17);
-            metoda1.Atrybuty[1].Nazwa.Should().Be("Testowo3");
+            metoda1.Atrybuty[1].Name.Should().Be("Testowo3");
             metoda1.Atrybuty[1].Poczatek.Sprawdz(8, 19);
             metoda1.Atrybuty[1].Koniec.Sprawdz(8, 27);
         }
@@ -62,15 +62,15 @@ namespace KruchyParserKoduTests.Unit
             //assert
             metoda2.Atrybuty.Count().Should().Be(2);
             var atrybutTestowo2 = metoda2.Atrybuty[0];
-            atrybutTestowo2.Nazwa.Should().Be("Testowo2");
+            atrybutTestowo2.Name.Should().Be("Testowo2");
             atrybutTestowo2.Poczatek.Sprawdz(14, 10);
             atrybutTestowo2.Koniec.Sprawdz(14, 32);
-            atrybutTestowo2.Parametry.Count().Should().Be(1);
-            var parametr = atrybutTestowo2.Parametry.First();
+            atrybutTestowo2.Parameters.Count().Should().Be(1);
+            var parametr = atrybutTestowo2.Parameters.First();
             parametr.Nazwa.Should().Be("Param");
             parametr.Wartosc.Should().Be("\"aa\"");
 
-            metoda2.Atrybuty[1].Nazwa.Should().Be("Testowo3");
+            metoda2.Atrybuty[1].Name.Should().Be("Testowo3");
             metoda2.Atrybuty[1].Poczatek.Sprawdz(15, 10);
             metoda2.Atrybuty[1].Koniec.Sprawdz(15, 18);
         }
@@ -82,10 +82,10 @@ namespace KruchyParserKoduTests.Unit
             var metoda3 = metody[2];
             //assert
             metoda3.Atrybuty.Count().Should().Be(2);
-            metoda3.Atrybuty[0].Nazwa.Should().Be("Testowo2");
+            metoda3.Atrybuty[0].Name.Should().Be("Testowo2");
             metoda3.Atrybuty[0].Poczatek.Sprawdz(21, 10);
             metoda3.Atrybuty[0].Koniec.Sprawdz(21, 32);
-            metoda3.Atrybuty[1].Nazwa.Should().Be("Testowo");
+            metoda3.Atrybuty[1].Name.Should().Be("Testowo");
             metoda3.Atrybuty[1].Poczatek.Sprawdz(21, 34);
             metoda3.Atrybuty[1].Koniec.Sprawdz(21, 41);
         }
@@ -97,11 +97,11 @@ namespace KruchyParserKoduTests.Unit
             var metoda4 = metody[3];
             //assert
             metoda4.Atrybuty.Count().Should().Be(1);
-            metoda4.Atrybuty[0].Nazwa.Should().Be("Testowo4");
+            metoda4.Atrybuty[0].Name.Should().Be("Testowo4");
             metoda4.Atrybuty[0].Poczatek.Sprawdz(27, 10);
             metoda4.Atrybuty[0].Koniec.Sprawdz(27, 21);
             metoda4.Atrybuty.Count().Should().Be(1);
-            var p = metoda4.Atrybuty.First().Parametry.First();
+            var p = metoda4.Atrybuty.First().Parameters.First();
             p.Nazwa.Should().Be("");
             p.Wartosc.Should().Be("1");
         }

@@ -36,10 +36,10 @@ namespace KruchyParserKoduTests.Unit
         {
             var atrybut = enumeration.Atrybuty.Single();
 
-            atrybut.Nazwa.Should().Be("Serializable");
+            atrybut.Name.Should().Be("Serializable");
             atrybut.Poczatek.Sprawdz(6, 6);
             atrybut.Koniec.Sprawdz(6, 18);
-            atrybut.Parametry.Should().BeNullOrEmpty();
+            atrybut.Parameters.Should().BeNullOrEmpty();
         }
 
         [Test]

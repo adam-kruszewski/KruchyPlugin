@@ -4,6 +4,7 @@ using Kruchy.Plugin.Utils.Extensions;
 using Kruchy.Plugin.Utils.Wrappers;
 using KruchyParserKodu.ParserKodu;
 using KruchyParserKodu.ParserKodu.Interfaces;
+using KruchyParserKodu.ParserKodu.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -422,7 +423,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             return summary;
         }
 
-        private int DajNumerLiniiDoWstawienia(ParsowanaJednostka parsowanaJednostka, IEnumerable<Atrybut> atrybuty = null)
+        private int DajNumerLiniiDoWstawienia(ParsowanaJednostka parsowanaJednostka, IEnumerable<KruchyParserKodu.ParserKodu.Models.Attribute> atrybuty = null)
         {
             var numerLinii = parsowanaJednostka.Poczatek.Row;
 

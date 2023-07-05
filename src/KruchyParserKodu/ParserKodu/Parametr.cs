@@ -1,4 +1,5 @@
 ﻿
+using KruchyParserKodu.ParserKodu.Models;
 using System.Collections.Generic;
 
 namespace KruchyParserKodu.ParserKodu
@@ -17,11 +18,11 @@ namespace KruchyParserKodu.ParserKodu
 
         public string Modyfikator { get; set; }
 
-        public List<Atrybut> Atrybuty { get; private set; }
+        public List<Attribute> Atrybuty { get; private set; }
 
         public Parametr()
         {
-            Atrybuty = new List<Atrybut>();
+            Atrybuty = new List<Attribute>();
         }
     }
 }
