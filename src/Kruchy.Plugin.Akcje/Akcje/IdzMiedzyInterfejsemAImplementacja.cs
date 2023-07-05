@@ -71,7 +71,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
             var znalezionaMetoda =
                 parsowane.DefiniowaneObiekty[0].Metody
-                    .Where(o => metoda.TaSamaMetoda(o))
+                    .Where(o => metoda.TheSameMethod(o))
                         .FirstOrDefault();
 
             if (znalezionaMetoda != null)

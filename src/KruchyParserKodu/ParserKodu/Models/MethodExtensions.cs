@@ -5,7 +5,7 @@ namespace KruchyParserKodu.ParserKodu
 {
     public static class MethodExtensions
     {
-        public static bool TaSamaMetoda(this Method m1, Method m2)
+        public static bool TheSameMethod(this Method m1, Method m2)
         {
             if (m1.Name != m2.Name)
                 return false;
@@ -13,13 +13,13 @@ namespace KruchyParserKodu.ParserKodu
             if (m1.Parametry.Count != m2.Parametry.Count)
                 return false;
 
-            if (!TakieSameParametry(m1.Parametry, m2.Parametry))
+            if (!TheSameParameters(m1.Parametry, m2.Parametry))
                 return false;
 
             return true;
         }
 
-        private static bool TakieSameParametry(
+        private static bool TheSameParameters(
             IList<Parametr> list1,
             IList<Parametr> list2)
         {

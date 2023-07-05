@@ -75,7 +75,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             return
                 interfejs
                     .Metody
-                        .SkipWhile(o => !o.TaSamaMetoda(aktualnaMetoda))
+                        .SkipWhile(o => !o.TheSameMethod(aktualnaMetoda))
                             .Skip(1)
                                 .FirstOrDefault();
         }
@@ -101,7 +101,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                     parsowane
                         .DefiniowaneObiekty
                             .SelectMany(o => o.Metody)
-                                .FirstOrDefault(o => o.TaSamaMetoda(nastepnaMetoda));
+                                .FirstOrDefault(o => o.TheSameMethod(nastepnaMetoda));
 
             }
             string wstawianyTekst = GenerujTekstDoWstawienia(definicja);
