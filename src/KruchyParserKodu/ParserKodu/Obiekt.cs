@@ -45,9 +45,9 @@ namespace KruchyParserKodu.ParserKodu
         public PlaceInFile StartingBrace { get; set; }
         public PlaceInFile ClosingBrace { get; set; }
 
-        public Comment Komentarz { get; set; }
+        public Comment Comment { get; set; }
 
-        public Documentation Dokumentacja { get; set; }
+        public Documentation Documentation { get; set; }
 
         public IList<ParametrGeneryczny> ParametryGeneryczne { get; set; }
 

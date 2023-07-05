@@ -1,8 +1,7 @@
 ﻿using KruchyParserKodu.ParserKodu.Interfaces;
-using KruchyParserKodu.ParserKodu.Models;
 using System.Collections.Generic;
 
-namespace KruchyParserKodu.ParserKodu
+namespace KruchyParserKodu.ParserKodu.Models
 {
     public class Enumeration
         : ParsowanaJednostka
@@ -16,27 +15,27 @@ namespace KruchyParserKodu.ParserKodu
 
         public string Name { get; set; }
 
-        public IList<Pole> Pola { get; private set; }
+        public IList<Pole> Fields { get; private set; }
 
-        public IList<Modyfikator> Modyfikatory { get; set; }
+        public IList<Modyfikator> Modifiers { get; set; }
 
-        public List<Attribute> Atrybuty { get; private set; }
+        public List<Attribute> Attributes { get; private set; }
 
         public PlaceInFile StartingBrace { get; set; }
 
         public PlaceInFile ClosingBrace { get; set; }
 
-        public Comment Komentarz { get; set; }
+        public Comment Comment { get; set; }
 
-        public Documentation Dokumentacja { get; set; }
+        public Documentation Documentation { get; set; }
 
         public Enumeration()
         {
-            Pola = new List<Pole>();
+            Fields = new List<Pole>();
             StartingBrace = new PlaceInFile();
             ClosingBrace = new PlaceInFile();
-            Modyfikatory = new List<Modyfikator>();
-            Atrybuty = new List<Attribute>();
+            Modifiers = new List<Modyfikator>();
+            Attributes = new List<Attribute>();
         }
 
     }

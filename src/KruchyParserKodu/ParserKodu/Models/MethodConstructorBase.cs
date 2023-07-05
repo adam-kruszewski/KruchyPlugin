@@ -24,9 +24,9 @@ namespace KruchyParserKodu.ParserKodu.Models
 
         public PlaceInFile ClosingParameterBrace { get; set; }
 
-        public Comment Komentarz { get; set; }
+        public Comment Comment { get; set; }
 
-        public Documentation Dokumentacja { get; set; }
+        public Documentation Documentation { get; set; }
 
         public IList<Instruction> Instructions { get; private set; }
 

@@ -26,9 +26,9 @@ namespace KruchyParserKoduTests.Unit
         [Test]
         public void ParsujeKomentarzJednolinijkowyNadKlasa()
         {
-            klasa.Komentarz.Lines.Single().Should().Be("// komentarz jednolinijkowy");
-            klasa.Komentarz.Poczatek.Sprawdz(3, 5);
-            klasa.Komentarz.Koniec.Sprawdz(3, 32);
+            klasa.Comment.Lines.Single().Should().Be("// komentarz jednolinijkowy");
+            klasa.Comment.Poczatek.Sprawdz(3, 5);
+            klasa.Comment.Koniec.Sprawdz(3, 32);
         }
     }
 }

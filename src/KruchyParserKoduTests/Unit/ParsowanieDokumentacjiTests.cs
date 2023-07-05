@@ -26,12 +26,12 @@ namespace KruchyParserKoduTests.Unit
         [Test]
         public void ParsujeDokumentacjeNadKlasa()
         {
-            klasa.Dokumentacja.FullText.Should().Be(@"/// <summary>
+            klasa.Documentation.FullText.Should().Be(@"/// <summary>
     /// klasa do testowania dokumentacji
     /// </summary>
 ");
 
-            klasa.Dokumentacja.Lines.Should().BeEquivalentTo(
+            klasa.Documentation.Lines.Should().BeEquivalentTo(
                 new[]
                 {
                     "<summary>",
@@ -39,8 +39,8 @@ namespace KruchyParserKoduTests.Unit
                     "</summary>"
                 });
 
-            klasa.Dokumentacja.Poczatek.Sprawdz(3, 5);
-            klasa.Dokumentacja.Koniec.Sprawdz(6, 1);
+            klasa.Documentation.Poczatek.Sprawdz(3, 5);
+            klasa.Documentation.Koniec.Sprawdz(6, 1);
         }
 
         [Test]
@@ -49,7 +49,7 @@ namespace KruchyParserKoduTests.Unit
             var metoda = klasa.Metody.Single(o => o.Nazwa == "Metoda1");
 
             //assert
-            metoda.Dokumentacja.Lines.Should().BeEquivalentTo(
+            metoda.Documentation.Lines.Should().BeEquivalentTo(
                 new[]
                 {
                     "<summary>",
@@ -57,8 +57,8 @@ namespace KruchyParserKoduTests.Unit
                     "</summary>"
                 });
 
-            metoda.Dokumentacja.Poczatek.Sprawdz(8, 9);
-            metoda.Dokumentacja.Koniec.Sprawdz(11, 1);
+            metoda.Documentation.Poczatek.Sprawdz(8, 9);
+            metoda.Documentation.Koniec.Sprawdz(11, 1);
         }
 
         [Test]
@@ -67,7 +67,7 @@ namespace KruchyParserKoduTests.Unit
             var konstruktor = klasa.Konstruktory.Single();
 
             //assert
-            konstruktor.Dokumentacja.Lines.Should().BeEquivalentTo(
+            konstruktor.Documentation.Lines.Should().BeEquivalentTo(
                 new[]
                 {
                     "<summary>",
@@ -75,8 +75,8 @@ namespace KruchyParserKoduTests.Unit
                     "</summary>"
                 });
 
-            konstruktor.Dokumentacja.Poczatek.Sprawdz(16, 9);
-            konstruktor.Dokumentacja.Koniec.Sprawdz(19, 1);
+            konstruktor.Documentation.Poczatek.Sprawdz(16, 9);
+            konstruktor.Documentation.Koniec.Sprawdz(19, 1);
         }
 
         [Test]
@@ -85,7 +85,7 @@ namespace KruchyParserKoduTests.Unit
             var pole = klasa.Pola.Single(o => o.Nazwa == "poleString");
 
             //assert
-            pole.Dokumentacja.Lines.Should().BeEquivalentTo(
+            pole.Documentation.Lines.Should().BeEquivalentTo(
                 new[]
                 {
                     "<summary>",
@@ -93,8 +93,8 @@ namespace KruchyParserKoduTests.Unit
                     "</summary>"
                 });
 
-            pole.Dokumentacja.Poczatek.Sprawdz(24, 9);
-            pole.Dokumentacja.Koniec.Sprawdz(27, 1);
+            pole.Documentation.Poczatek.Sprawdz(24, 9);
+            pole.Documentation.Koniec.Sprawdz(27, 1);
         }
 
         [Test]
@@ -104,7 +104,7 @@ namespace KruchyParserKoduTests.Unit
             //act
 
             //assert
-            property.Dokumentacja.Lines.Should().BeEquivalentTo(
+            property.Documentation.Lines.Should().BeEquivalentTo(
                 new[]
                 {
                     "<summary>",
@@ -112,8 +112,8 @@ namespace KruchyParserKoduTests.Unit
                     "</summary>"
                 });
 
-            property.Dokumentacja.Poczatek.Sprawdz(29, 9);
-            property.Dokumentacja.Koniec.Sprawdz(32, 1);
+            property.Documentation.Poczatek.Sprawdz(29, 9);
+            property.Documentation.Koniec.Sprawdz(32, 1);
         }
     }
 }

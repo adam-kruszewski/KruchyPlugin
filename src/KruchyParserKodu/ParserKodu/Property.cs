@@ -14,7 +14,7 @@ namespace KruchyParserKodu.ParserKodu
         public List<Attribute> Atrybuty { get; private set; }
         public bool JestGet { get; set; }
         public bool JestSet { get; set; }
-        public Documentation Dokumentacja { get; set; }
+        public Documentation Documentation { get; set; }
         public Obiekt Owner { get; set; }
 
         public Property()

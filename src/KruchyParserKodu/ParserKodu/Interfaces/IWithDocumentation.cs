@@ -4,6 +4,6 @@ namespace KruchyParserKodu.ParserKodu.Interfaces
 {
     public interface IWithDocumentation
     {
-        Documentation Dokumentacja { get; set; }
+        Documentation Documentation { get; set; }
     }
 }

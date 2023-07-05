@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using KruchyParserKodu.ParserKodu;
+using KruchyParserKodu.ParserKodu.Models;
 using KruchyParserKoduTests.Utils;
 using NUnit.Framework;
 using System.Linq;
@@ -34,7 +35,7 @@ namespace KruchyParserKoduTests.Unit
         [Test]
         public void ParsujeAtrybutyEnumeracji()
         {
-            var atrybut = enumeration.Atrybuty.Single();
+            var atrybut = enumeration.Attributes.Single();
 
             atrybut.Name.Should().Be("Serializable");
             atrybut.Poczatek.Sprawdz(6, 6);
@@ -45,7 +46,7 @@ namespace KruchyParserKoduTests.Unit
         [Test]
         public void ParsujePola()
         {
-            var pola = enumeration.Pola;
+            var pola = enumeration.Fields;
 
             pola.Should().HaveCount(2);
 

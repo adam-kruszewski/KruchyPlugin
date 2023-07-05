@@ -72,13 +72,13 @@ namespace KruchyParserKodu.Roslyn
             definiowanaEnumeracja.Name = enumSyntax.Identifier.ValueText;
             UstawPolozenie(enumSyntax.SyntaxTree, definiowanaEnumeracja, enumSyntax);
 
-            UzupelnijPola(definiowanaEnumeracja.Pola, enumSyntax, null);
+            UzupelnijPola(definiowanaEnumeracja.Fields, enumSyntax, null);
 
             UstawPolozeniePoczatkowejKlamerki(definiowanaEnumeracja, enumSyntax.OpenBraceToken);
             UstawPolozenieKoncowejKlamerki(definiowanaEnumeracja, enumSyntax.CloseBraceToken);
 
-            UzupelnijAtrybuty(enumSyntax.AttributeLists, definiowanaEnumeracja.Atrybuty);
-            UzupelnijModyfikatory(enumSyntax.Modifiers, definiowanaEnumeracja.Modyfikatory);
+            UzupelnijAtrybuty(enumSyntax.AttributeLists, definiowanaEnumeracja.Attributes);
+            UzupelnijModyfikatory(enumSyntax.Modifiers, definiowanaEnumeracja.Modifiers);
 
             ParsujDokumentacje(definiowanaEnumeracja, enumSyntax);
             ParsujKomentarz(definiowanaEnumeracja, enumSyntax);
@@ -142,10 +142,10 @@ namespace KruchyParserKodu.Roslyn
 
             foreach (var trivia in trivias.Where(o => o.IsKind(SyntaxKind.SingleLineCommentTrivia)))
             {
-                if (obiekt.Komentarz == null)
-                    obiekt.Komentarz = new Comment();
-                obiekt.Komentarz.AddLine(trivia.ToString());
-                UstawPolozenie(trivia, obiekt.Komentarz);
+                if (obiekt.Comment == null)
+                    obiekt.Comment = new Comment();
+                obiekt.Comment.AddLine(trivia.ToString());
+                UstawPolozenie(trivia, obiekt.Comment);
             }
         }
 
@@ -155,10 +155,10 @@ namespace KruchyParserKodu.Roslyn
 
             foreach (var trivia in trivias.Where(o => o.IsKind(SyntaxKind.SingleLineDocumentationCommentTrivia)))
             {
-                if (obiekt.Dokumentacja == null)
-                    obiekt.Dokumentacja = new Documentation();
-                obiekt.Dokumentacja.AddDocumentation(trivia.ToFullString());
-                UstawPolozenie(trivia, obiekt.Dokumentacja);
+                if (obiekt.Documentation == null)
+                    obiekt.Documentation = new Documentation();
+                obiekt.Documentation.AddDocumentation(trivia.ToFullString());
+                UstawPolozenie(trivia, obiekt.Documentation);
             }
         }
 

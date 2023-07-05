@@ -55,7 +55,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
             listaParsowanychJednostek.AddRange(sparsowane.DefiniowaneEnumeracje);
 
-            listaParsowanychJednostek.AddRange(sparsowane.DefiniowaneEnumeracje.SelectMany(o => o.Pola));
+            listaParsowanychJednostek.AddRange(sparsowane.DefiniowaneEnumeracje.SelectMany(o => o.Fields));
 
             listaParsowanychJednostek = listaParsowanychJednostek.OrderByDescending(o => o.Poczatek.Row).ToList();
 
@@ -73,7 +73,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         private void PrzetworzObiekt(Obiekt obiekt)
         {
-            if (obiekt.Dokumentacja == null)
+            if (obiekt.Documentation == null)
             {
                 var wciecie = (obiekt.Poczatek.Column - 1).Spacji();
 
@@ -148,7 +148,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         private void PrzetworzKonstruktor(Konstruktor konstruktor)
         {
-            if (konstruktor.Dokumentacja == null)
+            if (konstruktor.Documentation == null)
             {
                 var wciecie = (konstruktor.Poczatek.Column - 1).Spacji();
 
@@ -186,7 +186,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         private void PrzetworzMetode(Metoda metoda)
         {
-            if (metoda.Dokumentacja == null)
+            if (metoda.Documentation == null)
             {
                 var wciecie = (metoda.Poczatek.Column - 1).Spacji();
 
@@ -317,7 +317,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         private void PrzetworzPole(Pole pole)
         {
-            if (pole.Dokumentacja == null)
+            if (pole.Documentation == null)
             {
                 var nazwaDoPrzetwarzania = pole.Nazwa.TrimStart('_');
 
@@ -346,7 +346,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         private void PrzetworzWlasciwosc(Property property)
         {
-            if (property.Dokumentacja == null)
+            if (property.Documentation == null)
             {
                 var summary = DajNazwePolaWlasciwosciWgKonfiguracji(property.Nazwa, property.Owner, property.NazwaTypu);
 
@@ -366,7 +366,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         private void PrzetworzEnumeracje(Enumeration enumeracja)
         {
-            if (enumeracja.Dokumentacja == null)
+            if (enumeracja.Documentation == null)
             {
                 var summary = GenerujSummaryKlasyLubInterfejsu(enumeracja);
 
@@ -377,7 +377,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
                 GennerujSummary(poczatek, builder, summary);
 
-                solution.AktualnyDokument.InsertInLine(builder.ToString(), DajNumerLiniiDoWstawienia(enumeracja, enumeracja.Atrybuty));
+                solution.AktualnyDokument.InsertInLine(builder.ToString(), DajNumerLiniiDoWstawienia(enumeracja, enumeracja.Attributes));
 
             }
         }

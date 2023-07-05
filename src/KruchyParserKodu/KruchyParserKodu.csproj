@@ -50,7 +50,7 @@
     <Compile Include="IWithOwnerExtensions.cs" />
     <Compile Include="ParserKodu\Models\Attribute.cs" />
     <Compile Include="ParserKodu\Models\Documentation.cs" />
-    <Compile Include="ParserKodu\Enumeration.cs" />
+    <Compile Include="ParserKodu\Models\Enumeration.cs" />
     <Compile Include="ParserKodu\Models\Instruction.cs" />
     <Compile Include="ParserKodu\Interfaces\IWithPlaceInCode.cs" />
     <Compile Include="ParserKodu\Interfaces\IWithDocumentation.cs" />
