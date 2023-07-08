@@ -90,8 +90,8 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
             return polaZTypemZKonstruktora
                 .Where(o =>
-                !polaZdefiniowane.Any(pz => pz.Nazwa == $"_{o.Item2}Mock") &&
-                !polaZdefiniowane.Any(pz => pz.Nazwa == $"{o.Item2}Mock"));
+                !polaZdefiniowane.Any(pz => pz.Name == $"_{o.Item2}Mock") &&
+                !polaZdefiniowane.Any(pz => pz.Name == $"{o.Item2}Mock"));
         }
 
         private void DodajPolaMockow(IEnumerable<Tuple<string, string>> polaMockowDoDodania)
@@ -136,7 +136,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         {
             var parsowane = Parser.Parsuj(solution.AktualnyDokument.GetContent());
 
-            if (!parsowane.DefinedItems.First().Fields.Any(o => o.Nazwa == NazwaPolaInstancji))
+            if (!parsowane.DefinedItems.First().Fields.Any(o => o.Name == NazwaPolaInstancji))
             {
                 var nowaLinia = new PoleBuilder()
                     .ZNazwa(NazwaPolaInstancji)

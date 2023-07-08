@@ -83,7 +83,7 @@ namespace KruchyParserKoduTests.Unit
         [Test]
         public void ParsujeDokumentacjaNadPolem()
         {
-            var pole = klasa.Fields.Single(o => o.Nazwa == "poleString");
+            var pole = klasa.Fields.Single(o => o.Name == "poleString");
 
             //assert
             pole.Documentation.Lines.Should().BeEquivalentTo(

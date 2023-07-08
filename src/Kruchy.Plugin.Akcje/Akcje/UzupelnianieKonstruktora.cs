@@ -114,7 +114,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         private bool IsSimpleParameterAssignment(
             Instruction instruction,
-            IEnumerable<Pole> readonlyFields,
+            IEnumerable<Field> readonlyFields,
             IEnumerable<Parameter> parametry)
         {
             var assignmentInstruction = instruction as AssignmentInstruction;
@@ -135,7 +135,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
                 var parameterName = match.Groups["parameter"].Value;
 
-                if (readonlyFields.Select(o => o.Nazwa).Contains(fieldName) &&
+                if (readonlyFields.Select(o => o.Name).Contains(fieldName) &&
                     parametry.Select(o => o.ParameterName).Contains(parameterName))
                     return true;
             }
@@ -152,7 +152,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             return p.ToList();
         }
 
-        private void PosortujZdefiniowanePola(IEnumerable<Pole> list)
+        private void PosortujZdefiniowanePola(IEnumerable<Field> list)
         {
             var liniaPierwszego =
                 list.OrderBy(o => o.StartPosition.Row).First().StartPosition.Row;
@@ -165,8 +165,8 @@ namespace Kruchy.Plugin.Akcje.Akcje
             {
                 var poleBuilder =
                     new PoleBuilder()
-                        .ZNazwa(p.Nazwa)
-                        .ZNazwaTypu(p.NazwaTypu)
+                        .ZNazwa(p.Name)
+                        .ZNazwaTypu(p.TypeName)
                         .DodajModyfikatorem("private")
                         .DodajModyfikatorem("readonly");
 
@@ -176,7 +176,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             solution.AktualnyDokument.InsertInLine(builder.ToString(), liniaPierwszego);
         }
 
-        private void UsunPole(Pole p)
+        private void UsunPole(Field p)
         {
             solution.AktualnyDokument.Remove(
                 p.StartPosition.Row,
@@ -227,7 +227,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         }
 
         private string GenerujKonstruktor(
-            IEnumerable<Pole> pola,
+            IEnumerable<Field> pola,
             string nazwaKlasy,
             IEnumerable<Parameter> parametryDlaKonstruktoraNadklasy,
             string slowoKluczowe,
@@ -241,17 +241,17 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
             foreach (var pole in SortujPola(pola))
             {
-                var nazwaParametru = pole.Nazwa;
+                var nazwaParametru = pole.Name;
                 if (nazwaParametru.StartsWith("_"))
-                    nazwaParametru = pole.Nazwa.Substring(1);
+                    nazwaParametru = pole.Name.Substring(1);
 
-                builder.DodajParametr(pole.NazwaTypu, nazwaParametru);
+                builder.DodajParametr(pole.TypeName, nazwaParametru);
 
                 var napisThisJesliTrzeba = "this.";
-                if (pole.Nazwa != nazwaParametru)
+                if (pole.Name != nazwaParametru)
                     napisThisJesliTrzeba = "";
 
-                builder.DodajLinie(napisThisJesliTrzeba + pole.Nazwa + " = " + nazwaParametru + ";");
+                builder.DodajLinie(napisThisJesliTrzeba + pole.Name + " = " + nazwaParametru + ";");
             }
 
             if (constructor != null)
@@ -277,7 +277,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         private void AddOtherInstructionsFromOriginalConstructor(
             Constructor constructor,
-            IEnumerable<Pole> fields,
+            IEnumerable<Field> fields,
             MetodaBuilder builder)
         {
             Instruction previousOtherInstruction = null;
@@ -308,13 +308,13 @@ namespace Kruchy.Plugin.Akcje.Akcje
         }
 
         private IEnumerable<Instruction> GetOtherInstructionsFromOriginalConstructor(
-            Constructor constructor, IEnumerable<Pole> readonlyFields)
+            Constructor constructor, IEnumerable<Field> readonlyFields)
         {
             return constructor.Instructions
                 .Where(o => !IsSimpleParameterAssignment(o, readonlyFields, constructor.Parametry));
         }
 
-        private IEnumerable<Pole> SortujPola(IEnumerable<Pole> pola)
+        private IEnumerable<Field> SortujPola(IEnumerable<Field> pola)
         {
             var konf = Konfiguracja.GetInstance(solution);
 
@@ -323,10 +323,10 @@ namespace Kruchy.Plugin.Akcje.Akcje
             return
                 pola
                     .OrderBy(o => DajKolejnoscWgRodzajuPola(o))
-                        .ThenBy(o => o.Nazwa);
+                        .ThenBy(o => o.Name);
         }
 
-        private int DajKolejnoscWgRodzajuPola(Pole pole)
+        private int DajKolejnoscWgRodzajuPola(Field pole)
         {
             var rodzajPola = DajRodzajPola(pole);
             if (kolejnoscWgTypu.ContainsKey(rodzajPola))
@@ -334,20 +334,20 @@ namespace Kruchy.Plugin.Akcje.Akcje
             return 9999;
         }
 
-        private string DajRodzajPola(Pole pole)
+        private string DajRodzajPola(Field pole)
         {
-            var lowerNazwaTypu = pole.NazwaTypu.ToLower();
+            var lowerNazwaTypu = pole.TypeName.ToLower();
 
-            if (pole.NazwaTypu.Contains("<"))
+            if (pole.TypeName.Contains("<"))
             {
                 //generic - domyślamy się, że lista
-                var t = pole.NazwaTypu.Substring(pole.NazwaTypu.IndexOf("<") + 1);
+                var t = pole.TypeName.Substring(pole.TypeName.IndexOf("<") + 1);
                 t = t.Substring(0, t.IndexOf(">"));
                 return "list<" + DajRodzajPolaZNazwyTypu(t) + ">";
             }
             else
             {
-                return DajRodzajPolaZNazwyTypu(pole.NazwaTypu);
+                return DajRodzajPolaZNazwyTypu(pole.TypeName);
             }
         }
 
@@ -361,11 +361,11 @@ namespace Kruchy.Plugin.Akcje.Akcje
             return nazwaTypu;
         }
 
-        private List<Pole> WyliczPolaDoDodaniaDoKonstruktora(
-            IList<Pole> pola,
+        private List<Field> WyliczPolaDoDodaniaDoKonstruktora(
+            IList<Field> pola,
             Constructor konstruktor)
         {
-            var wynik = new List<Pole>();
+            var wynik = new List<Field>();
             var polaReadOnly =
                 pola.Where(o => InicjowaneWKontruktorze(o));
             foreach (var pole in polaReadOnly)
@@ -376,9 +376,9 @@ namespace Kruchy.Plugin.Akcje.Akcje
             return wynik;
         }
 
-        private static bool InicjowaneWKontruktorze(Pole pole)
+        private static bool InicjowaneWKontruktorze(Field pole)
         {
-            var stringiModyfikatorow = pole.Modyfikatory.Select(m => m.Name);
+            var stringiModyfikatorow = pole.Modifiers.Select(m => m.Name);
             return
                 stringiModyfikatorow.Contains("readonly")
                 && !stringiModyfikatorow.Contains("static");
@@ -386,14 +386,14 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         private bool KonstruktorMaWParametrzePole(
             Constructor konstruktor,
-            Pole pole)
+            Field pole)
         {
             if (konstruktor == null)
                 return false;
 
             return konstruktor.Parametry
-                .Any(o => o.ParameterName == pole.Nazwa
-                    && o.TypeName == pole.NazwaTypu);
+                .Any(o => o.ParameterName == pole.Name
+                    && o.TypeName == pole.TypeName);
         }
     }
 }

@@ -529,13 +529,13 @@ namespace KruchyParserKodu.Roslyn
             return syntax.AccessorList.Accessors.Any(o => o.Keyword.ValueText == nazwa);
         }
 
-        private void UzupelnijPola(IList<Pole> pola, ClassDeclarationSyntax klasa, DefinedItem wlasciciel)
+        private void UzupelnijPola(IList<Field> pola, ClassDeclarationSyntax klasa, DefinedItem wlasciciel)
         {
             var deklaracjePol = klasa.Members.OfType<FieldDeclarationSyntax>();
 
             foreach (var deklarowanePole in deklaracjePol)
             {
-                var pole = new Pole();
+                var pole = new Field();
                 var identyfikator = deklarowanePole
                         .Declaration
                             .Variables
@@ -544,11 +544,11 @@ namespace KruchyParserKodu.Roslyn
                 if (identyfikator == null)
                     continue;
 
-                pole.Nazwa = identyfikator.Identifier.ValueText;
+                pole.Name = identyfikator.Identifier.ValueText;
 
-                pole.NazwaTypu = deklarowanePole.Declaration.Type.DajNazweTypu();
+                pole.TypeName = deklarowanePole.Declaration.Type.DajNazweTypu();
 
-                pole.Modyfikatory.AddRange(
+                pole.Modifiers.AddRange(
                     deklarowanePole.Modifiers.Select(o => DajModifikator(o)));
 
                 UstawPolozenie(deklarowanePole.SyntaxTree, pole, deklarowanePole);
@@ -562,14 +562,14 @@ namespace KruchyParserKodu.Roslyn
         }
 
 
-        private void UzupelnijPola(IList<Pole> pola, EnumDeclarationSyntax klasa, DefinedItem wlasciciel)
+        private void UzupelnijPola(IList<Field> pola, EnumDeclarationSyntax klasa, DefinedItem wlasciciel)
         {
             var deklaracjePol = klasa.Members.OfType<EnumMemberDeclarationSyntax>();
 
             foreach (var deklarowanePole in deklaracjePol)
             {
-                var pole = new Pole();
-                pole.Nazwa = deklarowanePole.Identifier.ValueText;
+                var pole = new Field();
+                pole.Name = deklarowanePole.Identifier.ValueText;
 
                 UstawPolozenie(deklarowanePole.SyntaxTree, pole, deklarowanePole);
 

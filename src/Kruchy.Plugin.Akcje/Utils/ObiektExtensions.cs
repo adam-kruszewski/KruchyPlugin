@@ -7,15 +7,15 @@ namespace Kruchy.Plugin.Akcje.Utils
 {
     public static class ObiektExtensions
     {
-        public static IEnumerable<Pole> SzukajPolPrivateReadOnly(
+        public static IEnumerable<Field> SzukajPolPrivateReadOnly(
             this DefinedItem obiekt)
         {
             return obiekt.Fields.Where(o => SzukajPolPrivateReadOnly(o));
         }
 
-        private static bool SzukajPolPrivateReadOnly(Pole pole)
+        private static bool SzukajPolPrivateReadOnly(Field pole)
         {
-            var modyfikatory = pole.Modyfikatory.Select(o => o.Name);
+            var modyfikatory = pole.Modifiers.Select(o => o.Name);
             return modyfikatory.Contains("private")
                 && modyfikatory.Contains("readonly");
         }

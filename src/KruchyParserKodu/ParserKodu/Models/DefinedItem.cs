@@ -27,8 +27,8 @@ namespace KruchyParserKodu.ParserKodu.Models
 
         public string Name { get; set; }
         public IList<Constructor> Constructors { get; private set; }
-        public IList<Pole> Fields { get; private set; }
-        public IList<Pole> NonStaticFields
+        public IList<Field> Fields { get; private set; }
+        public IList<Field> NonStaticFields
         {
             get { return FindNonStaticFields().ToList(); }
         }
@@ -53,7 +53,7 @@ namespace KruchyParserKodu.ParserKodu.Models
         public DefinedItem() : base()
         {
             Constructors = new List<Constructor>();
-            Fields = new List<Pole>();
+            Fields = new List<Field>();
             Properties = new List<Property>();
             Methods = new List<Method>();
             Attributes = new List<Attribute>();
@@ -68,9 +68,9 @@ namespace KruchyParserKodu.ParserKodu.Models
             GenericParameters = new List<GenericParameter>();
         }
 
-        private IEnumerable<Pole> FindNonStaticFields()
+        private IEnumerable<Field> FindNonStaticFields()
         {
-            return Fields.Where(o => !o.Modyfikatory.Any(p => p.Name == "static"));
+            return Fields.Where(o => !o.Modifiers.Any(p => p.Name == "static"));
         }
     }
 }

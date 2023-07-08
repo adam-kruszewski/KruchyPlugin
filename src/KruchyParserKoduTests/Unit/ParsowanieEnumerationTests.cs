@@ -51,14 +51,14 @@ namespace KruchyParserKoduTests.Unit
             pola.Should().HaveCount(2);
 
             var pierwszePole = pola[0];
-            pierwszePole.Nazwa.Should().Be("Pierwsza");
-            pierwszePole.NazwaTypu.Should().Be(null);
-            pierwszePole.Generyczny.Should().BeFalse();
+            pierwszePole.Name.Should().Be("Pierwsza");
+            pierwszePole.TypeName.Should().Be(null);
+            pierwszePole.IsGeneric.Should().BeFalse();
 
             var drugiePole = pola[1];
-            drugiePole.Nazwa.Should().Be("Druga");
-            drugiePole.NazwaTypu.Should().Be(null);
-            drugiePole.Generyczny.Should().BeFalse();
+            drugiePole.Name.Should().Be("Druga");
+            drugiePole.TypeName.Should().Be(null);
+            drugiePole.IsGeneric.Should().BeFalse();
         }
     }
 }

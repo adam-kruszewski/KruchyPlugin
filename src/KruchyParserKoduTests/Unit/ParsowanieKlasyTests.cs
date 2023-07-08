@@ -50,18 +50,18 @@ namespace KruchyParserKoduTests.Unit
         {
             obiekt.Fields.Count().Should().Be(2);
             var pole = obiekt.Fields.First();
-            pole.Nazwa.Should().Be("PoleReadOnly");
-            pole.NazwaTypu.Should().Be("IParser");
-            pole.Modyfikatory[0].Name.Should().Be("private");
-            pole.Modyfikatory[1].Name.Should().Be("readonly");
+            pole.Name.Should().Be("PoleReadOnly");
+            pole.TypeName.Should().Be("IParser");
+            pole.Modifiers[0].Name.Should().Be("private");
+            pole.Modifiers[1].Name.Should().Be("readonly");
             pole.StartPosition.Sprawdz(13, 9);
             pole.EndPosition.Sprawdz(13, 47);
 
             var poleStringReadonly = obiekt.Fields[1];
-            poleStringReadonly.Nazwa.Should().Be("PoleStringReadOnly");
-            poleStringReadonly.NazwaTypu.Should().Be("IList<string>");
-            poleStringReadonly.Modyfikatory[0].Name.Should().Be("public");
-            poleStringReadonly.Modyfikatory[1].Name.Should().Be("readonly");
+            poleStringReadonly.Name.Should().Be("PoleStringReadOnly");
+            poleStringReadonly.TypeName.Should().Be("IList<string>");
+            poleStringReadonly.Modifiers[0].Name.Should().Be("public");
+            poleStringReadonly.Modifiers[1].Name.Should().Be("readonly");
         }
 
         private static void SprawdzPropertiesy(DefinedItem obiekt)

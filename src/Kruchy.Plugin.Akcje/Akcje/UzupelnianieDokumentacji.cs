@@ -23,7 +23,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             { typeof(DefinedItem), (ud, pj) => ud.PrzetworzObiekt(pj as DefinedItem) },
             { typeof(Constructor), (ud, konstruktor) => ud.PrzetworzKonstruktor(konstruktor as Constructor) },
             { typeof(Method), (ud, metoda) => ud.PrzetworzMetode(metoda as Method) },
-            { typeof(Pole), (ud, pole) => ud.PrzetworzPole(pole as Pole) },
+            { typeof(Field), (ud, pole) => ud.PrzetworzPole(pole as Field) },
             { typeof(Property), (ud, wlasciwosc) => ud.PrzetworzWlasciwosc(wlasciwosc as Property) },
             { typeof(Enumeration), (ud, enumeracja) => ud.PrzetworzEnumeracje(enumeracja as Enumeration)}
         };
@@ -315,13 +315,13 @@ namespace Kruchy.Plugin.Akcje.Akcje
             return new Regex(regex).IsMatch(wartosc);
         }
 
-        private void PrzetworzPole(Pole pole)
+        private void PrzetworzPole(Field pole)
         {
             if (pole.Documentation == null)
             {
-                var nazwaDoPrzetwarzania = pole.Nazwa.TrimStart('_');
+                var nazwaDoPrzetwarzania = pole.Name.TrimStart('_');
 
-                string summary = DajNazwePolaWlasciwosciWgKonfiguracji(nazwaDoPrzetwarzania, pole.Owner, pole.NazwaTypu);
+                string summary = DajNazwePolaWlasciwosciWgKonfiguracji(nazwaDoPrzetwarzania, pole.Owner, pole.TypeName);
 
                 if (string.IsNullOrEmpty(summary))
                 {

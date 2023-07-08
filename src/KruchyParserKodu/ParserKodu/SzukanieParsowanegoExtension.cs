@@ -79,7 +79,7 @@ namespace KruchyParserKodu.ParserKodu
             return obiekt.Properties.Union(propertiesyObiektowWewnetrznych);
         }
 
-        public static Pole SzukajPolaWLinii(
+        public static Field SzukajPolaWLinii(
             this FileWithCode parsowane,
             int numerLinii)
         {

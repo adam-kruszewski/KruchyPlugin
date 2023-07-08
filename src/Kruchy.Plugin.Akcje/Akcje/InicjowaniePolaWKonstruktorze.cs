@@ -43,8 +43,8 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 if (pole == null)
                     return;
 
-                nazwaDoZainicjowania = pole.Nazwa;
-                typDoZainicjowania = pole.NazwaTypu;
+                nazwaDoZainicjowania = pole.Name;
+                typDoZainicjowania = pole.TypeName;
             }
 
             Inicjuj(nazwaDoZainicjowania, typDoZainicjowania, parsowane, numerLinii);

@@ -75,7 +75,7 @@
     <Compile Include="ParserKodu\Parser.cs" />
     <Compile Include="ParserKodu\Models\ParsedUnit.cs" />
     <Compile Include="ParserKodu\Models\FileWithCode.cs" />
-    <Compile Include="ParserKodu\Pole.cs" />
+    <Compile Include="ParserKodu\Models\Field.cs" />
     <Compile Include="ParserKodu\Models\PlaceInFile.cs" />
     <Compile Include="ParserKodu\Property.cs" />
     <Compile Include="ParserKodu\RodzajObiektu.cs" />

@@ -40,8 +40,8 @@ namespace Kruchy.Plugin.Akcje.Akcje
             if (aktualnePole != null)
             {
                 dialogAdd.ClassNameRegex = aktualnePole.Owner.Name;
-                dialogAdd.FieldPropertyTypeRegex = aktualnePole.NazwaTypu;
-                dialogAdd.Value = aktualnePole.Nazwa;
+                dialogAdd.FieldPropertyTypeRegex = aktualnePole.TypeName;
+                dialogAdd.Value = aktualnePole.Name;
             }
 
             UIObjects.ShowWindowModal(dialogAdd);

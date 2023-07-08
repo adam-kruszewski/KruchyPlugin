@@ -15,7 +15,7 @@ namespace KruchyParserKodu.ParserKodu.Models
 
         public string Name { get; set; }
 
-        public IList<Pole> Fields { get; private set; }
+        public IList<Field> Fields { get; private set; }
 
         public IList<Modifier> Modifiers { get; set; }
 
@@ -31,7 +31,7 @@ namespace KruchyParserKodu.ParserKodu.Models
 
         public Enumeration()
         {
-            Fields = new List<Pole>();
+            Fields = new List<Field>();
             StartingBrace = new PlaceInFile();
             ClosingBrace = new PlaceInFile();
             Modifiers = new List<Modifier>();
