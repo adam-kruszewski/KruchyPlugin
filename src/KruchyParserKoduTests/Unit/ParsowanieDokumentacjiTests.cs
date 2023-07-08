@@ -10,7 +10,7 @@ namespace KruchyParserKoduTests.Unit
     [TestFixture]
     public class ParsowanieDokumentacjiTests
     {
-        Plik parsowane;
+        FileWithCode parsowane;
         DefinedItem klasa;
 
         [SetUp]
@@ -20,7 +20,7 @@ namespace KruchyParserKoduTests.Unit
                 new WczytywaczZawartosciPrzykladow()
                     .DajZawartoscPrzykladu("KlasaZDokumentacjaDoParsowania.cs"));
 
-            klasa = parsowane.DefiniowaneObiekty.Single();
+            klasa = parsowane.DefinedItems.Single();
         }
 
 

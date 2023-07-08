@@ -22,7 +22,7 @@ namespace KruchyParserKoduTests.Unit
             var plik = Parser.Parsuj(zawartosc);
 
             //assert
-            var klasa = plik.DefiniowaneObiekty.First();
+            var klasa = plik.DefinedItems.First();
 
             klasa.SuperClassAndInterfaces.Count().Should().Be(3);
             klasa.SuperClassAndInterfaces.First().Name.Should().Be("Test3");

@@ -83,7 +83,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             UzupelnijMetody(
                 wlasciwosciDlaBuildera,
                 nazwaKlasyBuildera,
-                sparsowane.Usingi.Select(o => o.Nazwa));
+                sparsowane.Usings.Select(o => o.Nazwa));
         }
 
         private List<WlasciwoscDlaBuildera> SzukajWlasciwosciDlaBuildera(DefinedItem obiektDoZbudowania)
@@ -114,14 +114,14 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             return wlasciwosciDlaBuildera;
         }
 
-        private DefinedItem DajObiektDoZbudowania(Plik sparsowane)
+        private DefinedItem DajObiektDoZbudowania(FileWithCode sparsowane)
         {
             DefinedItem obiektDoZbudowania = null;
 
-            if (sparsowane.DefiniowaneObiekty.Count(o => o.KindOfItem == RodzajObiektu.Klasa) == 1)
+            if (sparsowane.DefinedItems.Count(o => o.KindOfItem == RodzajObiektu.Klasa) == 1)
             {
                 obiektDoZbudowania =
-                    sparsowane.DefiniowaneObiekty.Single(o => o.KindOfItem == RodzajObiektu.Klasa);
+                    sparsowane.DefinedItems.Single(o => o.KindOfItem == RodzajObiektu.Klasa);
             }
             else
             {
@@ -142,7 +142,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             var sparsowane = Parser.Parsuj(solution.AktualnyDokument.GetContent());
 
             var klasaBuildera =
-                sparsowane.DefiniowaneObiekty.Single(o => o.Name == nazwaKlasyBuildera);
+                sparsowane.DefinedItems.Single(o => o.Name == nazwaKlasyBuildera);
 
             PlaceInFile miejsceWstawiania = UstalMiejsceWstawienia(klasaBuildera);
 

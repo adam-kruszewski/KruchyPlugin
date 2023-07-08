@@ -23,7 +23,7 @@ namespace KruchyParserKoduTests.Unit
             //assert
             var konstruktor =
                 sparsowane
-                    .DefiniowaneObiekty
+                    .DefinedItems
                         .Single()
                             .Constructors
                                 .Single();

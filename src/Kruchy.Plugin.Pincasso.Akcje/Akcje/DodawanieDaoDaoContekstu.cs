@@ -29,8 +29,8 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             var obiekt =
                 sparsowane.SzukajObiektuWLinii(solution.AktualnyDokument.GetCursorLineNumber());
 
-            if (obiekt == null && sparsowane.DefiniowaneObiekty.Count() == 1)
-                obiekt = sparsowane.DefiniowaneObiekty.Single();
+            if (obiekt == null && sparsowane.DefinedItems.Count() == 1)
+                obiekt = sparsowane.DefinedItems.Single();
 
             if (obiekt == null)
             {
@@ -137,14 +137,14 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
 
             var metodaPo =
             sparsowane
-                .DefiniowaneObiekty
+                .DefinedItems
                     .Single()
                         .Methods
                             .Where(o => o.ReturnType.Nazwa.CompareTo(nazwaInterfejsuDao) > 0)
                                 .FirstOrDefault();
 
             if (metodaPo == null)
-                return sparsowane.DefiniowaneObiekty.Single().ClosingBrace.Row;
+                return sparsowane.DefinedItems.Single().ClosingBrace.Row;
             else
                 return metodaPo.StartPosition.Row;
         }

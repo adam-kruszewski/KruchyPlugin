@@ -50,7 +50,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             Inicjuj(nazwaDoZainicjowania, typDoZainicjowania, parsowane, numerLinii);
         }
 
-        private void Inicjuj(string nazwa, string typ, Plik parsowane, int numerLinii)
+        private void Inicjuj(string nazwa, string typ, FileWithCode parsowane, int numerLinii)
         {
             var klasa = parsowane.SzukajKlasyWLinii(numerLinii);
 

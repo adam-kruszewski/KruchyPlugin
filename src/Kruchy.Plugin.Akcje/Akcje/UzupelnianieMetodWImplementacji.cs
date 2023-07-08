@@ -62,11 +62,11 @@ namespace Kruchy.Plugin.Akcje.Akcje
             DodajDefincjeWImplementacji(
                 sciezkaDoImplementacji,
                 definicja,
-                parsowane.Usingi,
+                parsowane.Usings,
                 nastepnaMetoda);
         }
 
-        private Method SzukajNastepnejMetody(Plik parsowane, Method aktualnaMetoda)
+        private Method SzukajNastepnejMetody(FileWithCode parsowane, Method aktualnaMetoda)
         {
             var interfejs = parsowane.SzukajObiektuWLinii(aktualnaMetoda.StartPosition.Row);
             if (interfejs == null)
@@ -99,7 +99,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             {
                 nastepnaMetodaWImplementacji =
                     parsowane
-                        .DefiniowaneObiekty
+                        .DefinedItems
                             .SelectMany(o => o.Methods)
                                 .FirstOrDefault(o => o.TheSameMethod(nastepnaMetoda));
 
@@ -128,7 +128,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         }
 
         private static int WyliczLinieDodanieWgNastepnejMetody(
-            Plik parsowane,
+            FileWithCode parsowane,
             Method nastepnaMetodaWImplementacji,
             ref string wstawianyTekst)
         {

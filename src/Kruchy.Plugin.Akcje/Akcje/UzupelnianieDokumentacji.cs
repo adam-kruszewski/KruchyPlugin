@@ -40,8 +40,8 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
             var listaParsowanychJednostek = new List<ParsedUnit>();
 
-            var definiowaneObiekty = sparsowane.DefiniowaneObiekty
-                .Union(sparsowane.DefiniowaneObiekty.SelectMany( o => DajDefiniowanePodObiekty(o)));
+            var definiowaneObiekty = sparsowane.DefinedItems
+                .Union(sparsowane.DefinedItems.SelectMany( o => DajDefiniowanePodObiekty(o)));
 
             listaParsowanychJednostek.AddRange(definiowaneObiekty);
 
@@ -53,9 +53,9 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
             listaParsowanychJednostek.AddRange(definiowaneObiekty.SelectMany(o => o.Methods));
 
-            listaParsowanychJednostek.AddRange(sparsowane.DefiniowaneEnumeracje);
+            listaParsowanychJednostek.AddRange(sparsowane.DefinedEnumerations);
 
-            listaParsowanychJednostek.AddRange(sparsowane.DefiniowaneEnumeracje.SelectMany(o => o.Fields));
+            listaParsowanychJednostek.AddRange(sparsowane.DefinedEnumerations.SelectMany(o => o.Fields));
 
             listaParsowanychJednostek = listaParsowanychJednostek.OrderByDescending(o => o.StartPosition.Row).ToList();
 

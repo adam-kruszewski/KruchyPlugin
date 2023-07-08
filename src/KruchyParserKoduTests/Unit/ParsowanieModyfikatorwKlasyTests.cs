@@ -10,7 +10,7 @@ namespace KruchyParserKoduTests.Unit
     [TestFixture]
     public class ParsowanieModyfikatorwKlasyTests
     {
-        Plik sparsowane;
+        FileWithCode sparsowane;
 
         [SetUp]
         public void SetUpEachTest()
@@ -25,7 +25,7 @@ namespace KruchyParserKoduTests.Unit
         [Test]
         public void ParsujeModyfikatorKlasy()
         {
-            var klasa = sparsowane.DefiniowaneObiekty.Single();
+            var klasa = sparsowane.DefinedItems.Single();
 
             klasa.Modifiers.Should().HaveCount(2);
             var modyfikatorPublic = klasa.Modifiers[0];
@@ -42,7 +42,7 @@ namespace KruchyParserKoduTests.Unit
         [Test]
         public void ParsujeModyfikatorKlasyWewntrzenej()
         {
-            var klasa = sparsowane.DefiniowaneObiekty.Single().InternalDefinedItems.Single();
+            var klasa = sparsowane.DefinedItems.Single().InternalDefinedItems.Single();
 
             klasa.Modifiers.Should().HaveCount(1);
             var modyfikatorPublic = klasa.Modifiers[0];

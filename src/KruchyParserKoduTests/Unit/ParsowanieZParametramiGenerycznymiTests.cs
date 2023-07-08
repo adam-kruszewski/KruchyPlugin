@@ -28,7 +28,7 @@ namespace KruchyParserKoduTests.Unit
             var sparsowane = Parser.Parsuj(zawartosc);
 
             //assert
-            var klasaGlowna = sparsowane.DefiniowaneObiekty.Single();
+            var klasaGlowna = sparsowane.DefinedItems.Single();
 
             klasaGlowna.GenericParameters.Should().HaveCount(2);
 
@@ -58,7 +58,7 @@ namespace KruchyParserKoduTests.Unit
             var sparsowane = Parser.Parsuj(zawartosc);
 
             //assert
-            var klasaGlowna = sparsowane.DefiniowaneObiekty.Single();
+            var klasaGlowna = sparsowane.DefinedItems.Single();
 
             klasaGlowna.GenericParameters.Should().HaveCount(2);
 

@@ -10,7 +10,7 @@ namespace KruchyParserKoduTests.Unit
     [TestFixture]
     public class ParsowanieEnumerationTests
     {
-        Plik parsowane;
+        FileWithCode parsowane;
 
         Enumeration enumeration;
 
@@ -21,7 +21,7 @@ namespace KruchyParserKoduTests.Unit
                 new WczytywaczZawartosciPrzykladow()
                     .DajZawartoscPrzykladu("EnumerationDoParsowania.cs"));
 
-            enumeration = parsowane.DefiniowaneEnumeracje.Single();
+            enumeration = parsowane.DefinedEnumerations.Single();
         }
 
         [Test]

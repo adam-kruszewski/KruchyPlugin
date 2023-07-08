@@ -10,7 +10,7 @@ namespace KruchyParserKoduTests.Unit
     [TestFixture]
     public class ParsowanieRozszerzoneTests
     {
-        Plik parsowane;
+        FileWithCode parsowane;
 
         [SetUp]
         public void SetUpEachTest()
@@ -24,7 +24,7 @@ namespace KruchyParserKoduTests.Unit
         public void RozpoznajeThis()
         {
             //arrange
-            var metoda = parsowane.DefiniowaneObiekty.First().Methods.First();
+            var metoda = parsowane.DefinedItems.First().Methods.First();
 
             //assert
             metoda.Parametry.Count.Should().Be(3);
@@ -46,7 +46,7 @@ namespace KruchyParserKoduTests.Unit
         public void RozpoznajeRefIOut()
         {
             //arrange
-            var metoda = parsowane.DefiniowaneObiekty.First().Methods[2];
+            var metoda = parsowane.DefinedItems.First().Methods[2];
 
             //assert
             metoda.Parametry.Should().HaveCount(2);
@@ -65,7 +65,7 @@ namespace KruchyParserKoduTests.Unit
         public void RozpoznajeParam()
         {
             //arrange
-            var metoda = parsowane.DefiniowaneObiekty.First().Methods[1];
+            var metoda = parsowane.DefinedItems.First().Methods[1];
 
             //assert
             metoda.Parametry.Should().HaveCount(2);

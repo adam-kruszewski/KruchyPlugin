@@ -19,11 +19,11 @@ namespace Kruchy.Plugin.Utils.Extensions
 
             int wierszWstawienia = 1;
             int kolumnaWstawienia = 1;
-            var aktualneUsingi = parsowane.Usingi.Select(o => o.Nazwa).ToList();
+            var aktualneUsingi = parsowane.Usings.Select(o => o.Nazwa).ToList();
             aktualneUsingi.AddRange(
                 nazwyNamespace.Where(o => !ZawieraUsingNamespace(o, parsowane)));
 
-            if (parsowane.Usingi.Any())
+            if (parsowane.Usings.Any())
             {
                 UsunWszystkieUsingi(
                     dokument,
@@ -44,19 +44,19 @@ namespace Kruchy.Plugin.Utils.Extensions
             dokument.InsertInPlace(nowyTekst, wierszWstawienia, 1);
         }
 
-        private static bool ZawieraUsingNamespace(string nazwaNamespace, Plik parsowane)
+        private static bool ZawieraUsingNamespace(string nazwaNamespace, FileWithCode parsowane)
         {
-            return parsowane.Usingi.Select(o => o.Nazwa).Contains(nazwaNamespace);
+            return parsowane.Usings.Select(o => o.Nazwa).Contains(nazwaNamespace);
         }
 
         private static void UsunWszystkieUsingi(
             this IDocumentWrapper dokument,
-            Plik parsowane,
+            FileWithCode parsowane,
             ref int wierszWstawienia,
             ref int kolumnaWstawienia)
         {
             var dotychczasowePosortowane =
-                parsowane.Usingi.OrderBy(o => o.StartPosition.Row);
+                parsowane.Usings.OrderBy(o => o.StartPosition.Row);
 
             var pierwszyUsing = dotychczasowePosortowane.First();
             var ostatniUsing = dotychczasowePosortowane.Last();

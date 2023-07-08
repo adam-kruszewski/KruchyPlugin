@@ -15,14 +15,14 @@ namespace KruchyParserKodu.Roslyn
 {
     class RoslynParser : IParser
     {
-        public Plik Parsuj(string zawartosc)
+        public FileWithCode Parsuj(string zawartosc)
         {
             var syntaxTree = CSharpSyntaxTree.ParseText(zawartosc);
             var root = syntaxTree.GetRoot() as CompilationUnitSyntax;
 
             DisplayHierachy(root);
 
-            var wynik = new Plik();
+            var wynik = new FileWithCode();
 
 
             BaseNamespaceDeclarationSyntax namespaceDeclaration =
@@ -39,7 +39,7 @@ namespace KruchyParserKodu.Roslyn
 
 
             foreach (var u in root.Usings)
-                wynik.Usingi.Add(DajUsing(u));
+                wynik.Usings.Add(DajUsing(u));
 
             var klasy =
                 namespaceDeclaration.Members.OfType<ClassDeclarationSyntax>();
@@ -48,19 +48,19 @@ namespace KruchyParserKodu.Roslyn
             {
                 var definiowanyObiekt = ParsujKlase(syntaxTree, klasa);
 
-                wynik.DefiniowaneObiekty.Add(definiowanyObiekt);
+                wynik.DefinedItems.Add(definiowanyObiekt);
             }
 
             var interfejsy = namespaceDeclaration.Members.OfType<InterfaceDeclarationSyntax>();
             foreach (var interfaceSyntax in interfejsy)
             {
-                wynik.DefiniowaneObiekty.Add(ParsujInterfejs(interfaceSyntax));
+                wynik.DefinedItems.Add(ParsujInterfejs(interfaceSyntax));
             }
 
             var enumeracje = namespaceDeclaration.Members.OfType<EnumDeclarationSyntax>();
             foreach (var enumSyntax in enumeracje)
             {
-                wynik.DefiniowaneEnumeracje.Add(ParsujEnumeracje(enumSyntax));
+                wynik.DefinedEnumerations.Add(ParsujEnumeracje(enumSyntax));
             }
 
             return wynik;

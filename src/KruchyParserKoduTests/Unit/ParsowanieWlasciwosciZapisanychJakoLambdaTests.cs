@@ -27,7 +27,7 @@ namespace KruchyParserKoduTests.Unit
             var sparsowane = Parser.Parsuj(zawartosc);
 
             //assert
-            var wlasciwosc = sparsowane.DefiniowaneObiekty.First().Properties.Single();
+            var wlasciwosc = sparsowane.DefinedItems.First().Properties.Single();
 
             wlasciwosc.Nazwa.Should().Be("MyProperty");
             wlasciwosc.NazwaTypu.Should().Be("int");

@@ -39,7 +39,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
             var parserTestowanego = Parser.ParsujPlik(plikTestowany.FullPath);
 
-            var konstruktor = parserTestowanego.DefiniowaneObiekty?.First()?.Constructors?.Single();
+            var konstruktor = parserTestowanego.DefinedItems?.First()?.Constructors?.Single();
 
             if (konstruktor != null)
             {
@@ -86,7 +86,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         {
             var parsowane = Parser.Parsuj(solution.AktualnyDokument.GetContent());
 
-            var polaZdefiniowane = parsowane.DefiniowaneObiekty.First().Fields;
+            var polaZdefiniowane = parsowane.DefinedItems.First().Fields;
 
             return polaZTypemZKonstruktora
                 .Where(o =>
@@ -114,19 +114,19 @@ namespace Kruchy.Plugin.Akcje.Akcje
             }
         }
 
-        private static int SzukajLiniiDoWstawieniaPola(Plik parsowane)
+        private static int SzukajLiniiDoWstawieniaPola(FileWithCode parsowane)
         {
             int numerLiniiDoDodawaniaPol;
 
-            if (parsowane.DefiniowaneObiekty.First().Fields.Any())
+            if (parsowane.DefinedItems.First().Fields.Any())
             {
-                var ostatnie = parsowane.DefiniowaneObiekty.First().Fields.Last();
+                var ostatnie = parsowane.DefinedItems.First().Fields.Last();
 
                 numerLiniiDoDodawaniaPol = ostatnie.EndPosition.Row + 1;
             }
             else
             {
-                numerLiniiDoDodawaniaPol = parsowane.DefiniowaneObiekty.First().StartingBrace.Row + 1;
+                numerLiniiDoDodawaniaPol = parsowane.DefinedItems.First().StartingBrace.Row + 1;
             }
 
             return numerLiniiDoDodawaniaPol;
@@ -136,7 +136,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         {
             var parsowane = Parser.Parsuj(solution.AktualnyDokument.GetContent());
 
-            if (!parsowane.DefiniowaneObiekty.First().Fields.Any(o => o.Nazwa == NazwaPolaInstancji))
+            if (!parsowane.DefinedItems.First().Fields.Any(o => o.Nazwa == NazwaPolaInstancji))
             {
                 var nowaLinia = new PoleBuilder()
                     .ZNazwa(NazwaPolaInstancji)
@@ -158,7 +158,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         {
             var parsowane = Parser.Parsuj(solution.AktualnyDokument.GetContent());
 
-            var aktualna = parsowane.DefiniowaneObiekty.First().Methods.SingleOrDefault(o => o.Name == NazwaMetody);
+            var aktualna = parsowane.DefinedItems.First().Methods.SingleOrDefault(o => o.Name == NazwaMetody);
 
             PlaceInFile poczatek;
 
@@ -171,7 +171,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                     aktualna.EndPosition.Row, aktualna.EndPosition.Column);
             }else
             {
-                poczatek = parsowane.DefiniowaneObiekty.First().Fields.LastOrDefault()?.EndPosition;
+                poczatek = parsowane.DefinedItems.First().Fields.LastOrDefault()?.EndPosition;
 
                 if (poczatek == null)
                 {
@@ -182,9 +182,9 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 }
             }
 
-            if (poczatek.Row > parsowane.DefiniowaneObiekty.First().ClosingBrace.Row)
+            if (poczatek.Row > parsowane.DefinedItems.First().ClosingBrace.Row)
             {
-                poczatek.Row = parsowane.DefiniowaneObiekty.First().ClosingBrace.Row;
+                poczatek.Row = parsowane.DefinedItems.First().ClosingBrace.Row;
             }
 
             solution.AktualnyDokument.InsertInLine(GenerujMetode(polaZTypemZKontruktora, nazwaKlasyTestowanej), poczatek.Row);

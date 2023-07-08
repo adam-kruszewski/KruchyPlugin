@@ -12,7 +12,7 @@ namespace KruchyParserKoduTests.Unit
     [TestFixture]
     public class ParsowanieAtrybutowTests
     {
-        Plik parsowane;
+        FileWithCode parsowane;
         IList<Method> metody;
 
         [SetUp]
@@ -21,14 +21,14 @@ namespace KruchyParserKoduTests.Unit
             parsowane = Parser.Parsuj(
                 new WczytywaczZawartosciPrzykladow()
                     .DajZawartoscPrzykladu("KlasaDoParsowaniaAtrybutow.cs"));
-            metody = parsowane.DefiniowaneObiekty.First().Methods;
+            metody = parsowane.DefinedItems.First().Methods;
         }
 
         [Test]
         public void ZnajdujeAtrybutMapowan()
         {
             //arrange
-            var klasa = parsowane.DefiniowaneObiekty.First();
+            var klasa = parsowane.DefinedItems.First();
             //assert
             klasa.Attributes.Count().Should().Be(2);
             var atrybutMapowan =

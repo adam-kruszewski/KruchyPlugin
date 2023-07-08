@@ -24,11 +24,11 @@ namespace KruchyParserKoduTests.Unit
             //assert
             plik.Should().NotBeNull();
             plik.Namespace.Should().Be("KruchyCompany.KruchyPlugin1Tests.ParserTests");
-            plik.Usingi.Count.Should().Be(6);
-            plik.Usingi[5].StartPosition.Sprawdz(6, 1);
-            plik.Usingi[5].EndPosition.Sprawdz(6, 35);
+            plik.Usings.Count.Should().Be(6);
+            plik.Usings[5].StartPosition.Sprawdz(6, 1);
+            plik.Usings[5].EndPosition.Sprawdz(6, 35);
 
-            var obiekt = plik.DefiniowaneObiekty.First();
+            var obiekt = plik.DefinedItems.First();
             obiekt.KindOfItem.Should().Be(RodzajObiektu.Klasa);
             obiekt.Name.Should().Be("KlasaDoParsowania");
             obiekt.StartingBrace.Row.Should().Be(12);

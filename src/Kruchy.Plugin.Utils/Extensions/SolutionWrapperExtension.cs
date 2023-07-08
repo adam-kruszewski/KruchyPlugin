@@ -24,10 +24,10 @@ namespace Kruchy.Plugin.Utils.Extensions
 
             var zawartosc = solution.AktualnyDokument.GetContent();
             var parsowane = Parser.Parsuj(zawartosc);
-            if (parsowane.DefiniowaneObiekty.Count <= 0)
+            if (parsowane.DefinedItems.Count <= 0)
                 return null;
 
-            return parsowane.DefiniowaneObiekty[0].Name;
+            return parsowane.DefinedItems[0].Name;
         }
 
         public static string NazwaAktualnejMetody(this ISolutionWrapper solution)
@@ -44,7 +44,7 @@ namespace Kruchy.Plugin.Utils.Extensions
                 return string.Empty;
         }
 
-        public static Plik ParsujZawartoscAktualnegoDokumetu(
+        public static FileWithCode ParsujZawartoscAktualnegoDokumetu(
             this ISolutionWrapper solution)
         {
             return Parser.Parsuj(solution.AktualnyDokument.GetContent());

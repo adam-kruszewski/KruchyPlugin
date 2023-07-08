@@ -18,7 +18,7 @@ namespace KruchyParserKoduTests.Unit
                     .DajZawartoscPrzykladu("InterfejsDoParsowania.cs"));
 
             //assert
-            var interfejs = sparsowane.DefiniowaneObiekty.Single();
+            var interfejs = sparsowane.DefinedItems.Single();
 
             interfejs.KindOfItem = RodzajObiektu.Interfejs;
             interfejs.Name = "InterfejsDoParsowania";
@@ -50,7 +50,7 @@ namespace KruchyParserKoduTests.Unit
                     .DajZawartoscPrzykladu("InterfejsZDziedziczeniemIAtrybutami.cs"));
 
             //assert
-            var interfejs = sparsowane.DefiniowaneObiekty.Single();
+            var interfejs = sparsowane.DefinedItems.Single();
 
             interfejs.SuperClassAndInterfaces.Should().HaveCount(2);
 

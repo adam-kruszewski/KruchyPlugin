@@ -28,7 +28,7 @@ namespace KruchyParserKoduTests.Unit
             var sparsowane = Parser.Parsuj(zawartosc);
 
             //assert
-            var klasaGlowna = sparsowane.DefiniowaneObiekty.Single();
+            var klasaGlowna = sparsowane.DefinedItems.Single();
             klasaGlowna.KindOfItem.Should().Be(RodzajObiektu.Klasa);
             klasaGlowna.Name.Should().Be("ZKlasaWewnetrzna");
             klasaGlowna.Properties.Single().Nazwa.Should().Be("WlasciwoscWGlownym");

@@ -46,16 +46,16 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             return "";
         }
 
-        private int DajNumerLiniiZClass(Plik plik)
+        private int DajNumerLiniiZClass(FileWithCode plik)
         {
-            if (plik.DefiniowaneObiekty.Count != 1)
+            if (plik.DefinedItems.Count != 1)
                 throw new ApplicationException(
                     "Musi być zdefiniowana dokładnie jedna klasa");
 
-            return plik.DefiniowaneObiekty.First().StartPosition.Row;
+            return plik.DefinedItems.First().StartPosition.Row;
         }
 
-        private void DodajAtrybutKlasie(string prefiks, Plik plik)
+        private void DodajAtrybutKlasie(string prefiks, FileWithCode plik)
         {
             var liniaZClass = DajNumerLiniiZClass(plik);
             dokument.InsertInLine(
@@ -76,12 +76,12 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             return builder.ToString();
         }
 
-        private List<int> ZnajdzLinieZKolumnami(Plik plik)
+        private List<int> ZnajdzLinieZKolumnami(FileWithCode plik)
         {
             var wynik = new List<int>();
 
             var propertiesyKolumn = plik
-                .DefiniowaneObiekty
+                .DefinedItems
                     .First()
                         .Properties
                             .Where(o => o.JestGet && o.JestSet)

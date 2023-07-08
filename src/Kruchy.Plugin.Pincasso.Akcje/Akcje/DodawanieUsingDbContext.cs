@@ -32,7 +32,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             var nazwaPlikuContextu = SzukajPlikuContextu(projekt);
             var parsowane = Parser.ParsujPlik(nazwaPlikuContextu);
 
-            var nazwaKlasyContextu = parsowane.DefiniowaneObiekty.First().Name;
+            var nazwaKlasyContextu = parsowane.DefinedItems.First().Name;
             var namespaceKlasy = parsowane.Namespace;
 
             var aktualnyDokument = solution.AktualnyDokument;
@@ -47,9 +47,9 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
 
         private void DodajAtrybutContext(
             string nazwaKlasyContextu,
-            Plik parsowaneAktualny)
+            FileWithCode parsowaneAktualny)
         {
-            var klasa = parsowaneAktualny.DefiniowaneObiekty.First();
+            var klasa = parsowaneAktualny.DefinedItems.First();
 
             int numerLiniiWstawiania = -1;
             if (klasa.Properties.Any())
@@ -73,9 +73,9 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
 
         private void DodajInterfejsUsingContext(
             string nazwaKlasyContextu,
-            Plik parsowaneAktualny)
+            FileWithCode parsowaneAktualny)
         {
-            var klasa = parsowaneAktualny.DefiniowaneObiekty.First();
+            var klasa = parsowaneAktualny.DefinedItems.First();
             if (klasa.SuperClassAndInterfaces.Any())
             {
                 var ostatni = klasa.SuperClassAndInterfaces.Last();

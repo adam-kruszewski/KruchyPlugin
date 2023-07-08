@@ -8,12 +8,12 @@ namespace KruchyParserKodu.ParserKodu
     public static class SzukanieParsowanegoExtension
     {
         public static Method SzukajMetodyWLinii(
-            this Plik parsowane,
+            this FileWithCode parsowane,
             int numerLinii)
         {
             var metody =
                 parsowane
-                    .DefiniowaneObiekty
+                    .DefinedItems
                         .SelectMany(o => WszystkieMetodyObiektu(o));
 
             return
@@ -33,12 +33,12 @@ namespace KruchyParserKodu.ParserKodu
         }
 
         public static Constructor SzukajKonstruktoraWLinii(
-            this Plik parsowane,
+            this FileWithCode parsowane,
             int numerLinii)
         {
             var konstruktory = 
                 parsowane
-                    .DefiniowaneObiekty
+                    .DefinedItems
                         .SelectMany(o => WszystkieKonstruktoryObiektow(o));
 
             return konstruktory
@@ -56,12 +56,12 @@ namespace KruchyParserKodu.ParserKodu
         }
 
         public static Property SzukajPropertiesaWLinii(
-            this Plik parsowane,
+            this FileWithCode parsowane,
             int numerLinii)
         {
             var propertiesy =
                 parsowane
-                    .DefiniowaneObiekty
+                    .DefinedItems
                         .SelectMany(o => WszystkiePropertiesyObiektow(o));
             return
                 propertiesy
@@ -80,10 +80,10 @@ namespace KruchyParserKodu.ParserKodu
         }
 
         public static Pole SzukajPolaWLinii(
-            this Plik parsowane,
+            this FileWithCode parsowane,
             int numerLinii)
         {
-            var pola = parsowane.DefiniowaneObiekty.SelectMany(o => o.Fields);
+            var pola = parsowane.DefinedItems.SelectMany(o => o.Fields);
             return
                 pola
                     .Where(o =>
@@ -92,11 +92,11 @@ namespace KruchyParserKodu.ParserKodu
                             .FirstOrDefault();
         }
 
-        public static int SzukajPierwszejLiniiDlaMetody(this Plik parsowane)
+        public static int SzukajPierwszejLiniiDlaMetody(this FileWithCode parsowane)
         {
-            if (parsowane.DefiniowaneObiekty.Count != 1)
+            if (parsowane.DefinedItems.Count != 1)
                 throw new Exception("Liczba definiowanych obiektów rózna od 1");
-            var obiekt = parsowane.DefiniowaneObiekty.First();
+            var obiekt = parsowane.DefinedItems.First();
 
             var ostatnieLinieDefinicji = obiekt.Fields.Select(o => o.EndPosition)
                 .Union(obiekt.Properties.Select(o => o.EndPosition))
@@ -112,7 +112,7 @@ namespace KruchyParserKodu.ParserKodu
         }
 
         public static int SzukajPierwszejLiniiDlaKonstruktora(
-            this Plik parsowane,
+            this FileWithCode parsowane,
             int numerLiniiWObiekcie)
         {
             var obiekt = parsowane.SzukajKlasyWLinii(numerLiniiWObiekcie);
@@ -131,12 +131,12 @@ namespace KruchyParserKodu.ParserKodu
         }
 
         public static DefinedItem SzukajKlasyWLinii(
-            this Plik parsowane,
+            this FileWithCode parsowane,
             int numerLinii)
         {
             return
                 parsowane
-                    .DefiniowaneObiekty
+                    .DefinedItems
                     .SelectMany(o => WszystkieObiektyObiektu(o))
                     .Where(o => o.KindOfItem == RodzajObiektu.Klasa)
                     .Where(o => o.ZawieraLinie(numerLinii))
@@ -163,12 +163,12 @@ namespace KruchyParserKodu.ParserKodu
         }
 
         public static DefinedItem SzukajObiektuWLinii(
-            this Plik parsowane,
+            this FileWithCode parsowane,
             int numerLinii)
         {
             return
                 parsowane
-                    .DefiniowaneObiekty
+                    .DefinedItems
                         .Where(o => o.ZawieraLinie(numerLinii))
                             .FirstOrDefault();
         }

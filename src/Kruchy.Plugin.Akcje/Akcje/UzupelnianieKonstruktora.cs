@@ -42,7 +42,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             if (solution.AktualnyDokument == null)
                 return;
 
-            Plik parsowanyPlik = GetParsedCode();
+            FileWithCode parsowanyPlik = GetParsedCode();
 
             var obiekt = SzukajKlasy(parsowanyPlik);
 
@@ -202,11 +202,11 @@ namespace Kruchy.Plugin.Akcje.Akcje
                     .ToString();
         }
 
-        private DefinedItem SzukajKlasy(Plik parsowanyPlik)
+        private DefinedItem SzukajKlasy(FileWithCode parsowanyPlik)
         {
             var klasy =
                 parsowanyPlik
-                    .DefiniowaneObiekty
+                    .DefinedItems
                         .Where(o => o.KindOfItem == RodzajObiektu.Klasa);
 
             if (klasy.Count() == 1)
@@ -218,7 +218,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                         solution.AktualnyDokument.GetCursorLineNumber());
         }
 
-        private Plik GetParsedCode()
+        private FileWithCode GetParsedCode()
         {
             var kod = solution.AktualnyDokument.GetContent();
 

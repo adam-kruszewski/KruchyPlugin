@@ -128,7 +128,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             var klasaObiektuKolekcjonowanego =
                 Parser
                     .ParsujPlik(plikZKlasa.FullPath)
-                        .DefiniowaneObiekty
+                        .DefinedItems
                             .Single(o => o.Name == nazwaKlasy);
             return klasaObiektuKolekcjonowanego;
         }
@@ -331,7 +331,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
 
             var klasy =
                 sparsowane
-                    .DefiniowaneObiekty
+                    .DefinedItems
                         .Where(o => o.KindOfItem == RodzajObiektu.Klasa);
 
             DefinedItem klasaView;

@@ -57,17 +57,17 @@ namespace Kruchy.Plugin.Utils.Menu
             if (o == WymaganieDostepnosci.Klasa)
             {
                 var p = Parsuj(solution);
-                if (p == null || p.DefiniowaneObiekty.Count < 1)
+                if (p == null || p.DefinedItems.Count < 1)
                     return false;
-                return p.DefiniowaneObiekty.First().KindOfItem == RodzajObiektu.Klasa;
+                return p.DefinedItems.First().KindOfItem == RodzajObiektu.Klasa;
             }
 
             if (o == WymaganieDostepnosci.Interfejs)
             {
                 var p = Parsuj(solution);
-                if (p == null || p.DefiniowaneObiekty.Count < 1)
+                if (p == null || p.DefinedItems.Count < 1)
                     return false;
-                return p.DefiniowaneObiekty.First().KindOfItem == RodzajObiektu.Interfejs;
+                return p.DefinedItems.First().KindOfItem == RodzajObiektu.Interfejs;
             }
 
             if (o == WymaganieDostepnosci.Builder)
@@ -91,7 +91,7 @@ namespace Kruchy.Plugin.Utils.Menu
             return solution.AktualnyPlik.Name.ToLower().EndsWith(".cs");
         }
 
-        private static Plik Parsuj(ISolutionWrapper solution)
+        private static FileWithCode Parsuj(ISolutionWrapper solution)
         {
             try
             {

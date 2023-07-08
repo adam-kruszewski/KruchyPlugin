@@ -12,9 +12,9 @@ namespace Kruchy.Plugin.Utils.Extensions
         {
             var zawartosc = aktualny.Document.GetContent();
             var parsowane = Parser.Parsuj(zawartosc);
-            if (parsowane.DefiniowaneObiekty.Count == 1)
+            if (parsowane.DefinedItems.Count == 1)
             {
-                return parsowane.DefiniowaneObiekty[0].KindOfItem == RodzajObiektu.Interfejs;
+                return parsowane.DefinedItems[0].KindOfItem == RodzajObiektu.Interfejs;
             }
             else
                 throw new Exception("Brak zdefiniowanego obiektu");
@@ -60,9 +60,9 @@ namespace Kruchy.Plugin.Utils.Extensions
         {
             var zawartosc = aktualny.Document.GetContent();
             var parsowane = Parser.Parsuj(zawartosc);
-            if (parsowane.DefiniowaneObiekty.Count == 1)
+            if (parsowane.DefinedItems.Count == 1)
             {
-                var obiekt = parsowane.DefiniowaneObiekty[0];
+                var obiekt = parsowane.DefinedItems[0];
                 if (obiekt.Name.EndsWith("Builder")
                     && obiekt.KindOfItem == RodzajObiektu.Klasa)
                     return true;
@@ -88,7 +88,7 @@ namespace Kruchy.Plugin.Utils.Extensions
         public static string SciezkaKataloguControllera(this IFileWrapper plik)
         {
             var parsowane = Parser.Parsuj(plik.Document.GetContent());
-            string nazwaControllera = DajNazweControllera(parsowane.DefiniowaneObiekty.Single().Name);
+            string nazwaControllera = DajNazweControllera(parsowane.DefinedItems.Single().Name);
 
             var katalogPlikControllera = plik.Directory;
             var katalogDlaControllera =
@@ -112,9 +112,9 @@ namespace Kruchy.Plugin.Utils.Extensions
         {
             var zawartosc = plik.Document.GetContent();
             var parsowane = Parser.Parsuj(zawartosc);
-            if (parsowane.DefiniowaneObiekty.Count() == 1)
+            if (parsowane.DefinedItems.Count() == 1)
             {
-                var nazwa = parsowane.DefiniowaneObiekty.First().Name;
+                var nazwa = parsowane.DefinedItems.First().Name;
                 if (nazwa.EndsWith("Controller"))
                     return DajNazweControllera(nazwa);
             }

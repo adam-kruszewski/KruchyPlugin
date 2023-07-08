@@ -80,7 +80,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         private string SzukajNazwyKlasyTestowanejZServiceTests()
         {
             var parsowane = Parser.Parsuj(solution.AktualnyDokument.GetContent());
-            var klasa = parsowane.DefiniowaneObiekty.First();
+            var klasa = parsowane.DefinedItems.First();
             if (KlasaServiceTests(klasa))
             {
                 var nazwaKlasyLubInterfejsu =
@@ -126,10 +126,10 @@ namespace Kruchy.Plugin.Akcje.Akcje
             return fileWrapper;
         }
 
-        private string DajRdzenNazwyKlasyTestow(Plik parsowane)
+        private string DajRdzenNazwyKlasyTestow(FileWithCode parsowane)
         {
-            var nazwa = parsowane.DefiniowaneObiekty.First().Name;
-            if (parsowane.DefiniowaneObiekty.First().KindOfItem == RodzajObiektu.Klasa)
+            var nazwa = parsowane.DefinedItems.First().Name;
+            if (parsowane.DefinedItems.First().KindOfItem == RodzajObiektu.Klasa)
                 return nazwa;
             else
                 return nazwa.Substring(1);

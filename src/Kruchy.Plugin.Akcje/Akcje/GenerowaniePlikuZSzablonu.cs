@@ -92,7 +92,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         private void GenerujWgSchematu(
             SchematGenerowania szablon,
             SchematKlasy schematKlasy,
-            Plik sparsowane,
+            FileWithCode sparsowane,
             string wybranaSciezka,
             IProjectWrapper wybranyProjekt,
             IDictionary<string, object> variableValues)
@@ -125,7 +125,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         private string DajNazwePliku(
             SchematGenerowania szablon,
             SchematKlasy schematKlasy,
-            Plik sparsowane,
+            FileWithCode sparsowane,
             string wybranaSciezka,
             IProjectWrapper wybranyProjekt,
             IDictionary<string, object> variableValues)
@@ -142,7 +142,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         private string ZamienZmienneNaWartosci(
             SchematGenerowania szablon,
             string tekst,
-            Plik sparsowane,
+            FileWithCode sparsowane,
             string wybranaSciezka,
             IProjectWrapper wybranyProjekt,
             IDictionary<string, object> variableValues)
@@ -156,7 +156,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         }
 
         private Dictionary<string, string> PrzygotujWartosciZmiennych(
-            Plik sparsowane,
+            FileWithCode sparsowane,
             string wybranaSciezka,
             IProjectWrapper wybranyProjekt,
             IDictionary<string, object> variableValues)
@@ -202,13 +202,13 @@ namespace Kruchy.Plugin.Akcje.Akcje
             return match.Success;
         }
 
-        private string DajNazweKlasy(Plik sparsowane)
+        private string DajNazweKlasy(FileWithCode sparsowane)
         {
             var obiekt =
             sparsowane.SzukajKlasyWLinii(solution.AktualnyDokument.GetCursorLineNumber());
 
             if (obiekt == null)
-                return sparsowane.DefiniowaneObiekty.Single().Name;
+                return sparsowane.DefinedItems.Single().Name;
             else
                 return obiekt.Name;
         }
