@@ -69,7 +69,7 @@
     <Compile Include="ParserKodu\Models\ModifiersExtensions.cs" />
     <Compile Include="ParserKodu\Models\DefinedItem.cs" />
     <Compile Include="ParserKodu\Models\DerivedObject.cs" />
-    <Compile Include="ParserKodu\Parametr.cs" />
+    <Compile Include="ParserKodu\Models\Parameter.cs" />
     <Compile Include="ParserKodu\Models\AttributeParameter.cs" />
     <Compile Include="ParserKodu\ParametrGeneryczny.cs" />
     <Compile Include="ParserKodu\Parser.cs" />

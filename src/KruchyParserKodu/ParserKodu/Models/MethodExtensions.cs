@@ -20,14 +20,14 @@ namespace KruchyParserKodu.ParserKodu.Models
         }
 
         private static bool TheSameParameters(
-            IList<Parametr> list1,
-            IList<Parametr> list2)
+            IList<Parameter> list1,
+            IList<Parameter> list2)
         {
             for (int i = 0; i < list1.Count; i++)
             {
-                if (list1[i].NazwaTypu != list2[i].NazwaTypu)
+                if (list1[i].TypeName != list2[i].TypeName)
                     return false;
-                if (list1[i].NazwaParametru != list2[i].NazwaParametru)
+                if (list1[i].ParameterName != list2[i].ParameterName)
                     return false;
             }
             return true;

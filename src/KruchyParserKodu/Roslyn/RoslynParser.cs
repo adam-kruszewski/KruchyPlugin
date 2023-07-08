@@ -462,35 +462,35 @@ namespace KruchyParserKodu.Roslyn
 
         }
 
-        private void UzupelnijParametry(ParameterListSyntax parameterList, IList<Parametr> parametry)
+        private void UzupelnijParametry(ParameterListSyntax parameterList, IList<Parameter> parametry)
         {
             parametry.AddRange(parameterList.Parameters.Select(o => DajParametr(o)));
         }
 
-        private Parametr DajParametr(ParameterSyntax parametrSyntax)
+        private Parameter DajParametr(ParameterSyntax parametrSyntax)
         {
-            var parametr = new Parametr();
-            parametr.NazwaParametru = parametrSyntax.Identifier.ValueText;
-            parametr.NazwaTypu = parametrSyntax.Type.DajNazweTypu();
+            var parametr = new Parameter();
+            parametr.ParameterName = parametrSyntax.Identifier.ValueText;
+            parametr.TypeName = parametrSyntax.Type.DajNazweTypu();
 
-            parametr.Modyfikator =
+            parametr.Modifier =
                 SzukajModyfikatorow(parametrSyntax.Modifiers)
                     .Select(o => o.Name)
                         .SingleOrDefault();
 
-            if (parametr.Modyfikator == "this")
-                parametr.ZThisem = true;
-            if (parametr.Modyfikator == "out")
-                parametr.ZOut = true;
-            if (parametr.Modyfikator == "params")
-                parametr.ZParams = true;
-            if (parametr.Modyfikator == "ref")
-                parametr.ZRef = true;
+            if (parametr.Modifier == "this")
+                parametr.WithThis = true;
+            if (parametr.Modifier == "out")
+                parametr.WithOut = true;
+            if (parametr.Modifier == "params")
+                parametr.WithParams = true;
+            if (parametr.Modifier == "ref")
+                parametr.WithRef = true;
             if (parametrSyntax.Default != null)
-                parametr.WartoscDomyslna =
+                parametr.DefaultValue =
                     parametrSyntax.Default.Value.ToFullString().Trim();
 
-            UzupelnijAtrybuty(parametrSyntax.AttributeLists, parametr.Atrybuty);
+            UzupelnijAtrybuty(parametrSyntax.AttributeLists, parametr.Attributes);
 
             return parametr;
         }

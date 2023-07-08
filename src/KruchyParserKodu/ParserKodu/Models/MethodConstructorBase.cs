@@ -13,7 +13,7 @@ namespace KruchyParserKodu.ParserKodu.Models
     {
         public DefinedItem Owner { get; set; }
 
-        public IList<Parametr> Parametry { get; private set; }
+        public IList<Parameter> Parametry { get; private set; }
 
         public IList<Modifier> Modyfikatory { get; set; }
 
@@ -47,7 +47,7 @@ namespace KruchyParserKodu.ParserKodu.Models
 
         public MethodConstructorBase()
         {
-            Parametry = new List<Parametr>();
+            Parametry = new List<Parameter>();
             Modyfikatory = new List<Modifier>();
             Atrybuty = new List<Attribute>();
             StartingParameterBrace = new PlaceInFile();

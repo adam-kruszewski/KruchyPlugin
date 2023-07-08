@@ -28,17 +28,17 @@ namespace KruchyParserKoduTests.Unit
             //assert
             metoda.Parametry.Count.Should().Be(3);
             var pierwszyParametr = metoda.Parametry[0];
-            pierwszyParametr.ZThisem.Should().BeTrue();
-            pierwszyParametr.NazwaParametru.Should().Be("liczba");
-            pierwszyParametr.NazwaTypu.Should().Be("int");
-            pierwszyParametr.WartoscDomyslna.Should().BeNullOrEmpty();
+            pierwszyParametr.WithThis.Should().BeTrue();
+            pierwszyParametr.ParameterName.Should().Be("liczba");
+            pierwszyParametr.TypeName.Should().Be("int");
+            pierwszyParametr.DefaultValue.Should().BeNullOrEmpty();
             var drugiParametr = metoda.Parametry[1];
-            drugiParametr.ZThisem.Should().BeFalse();
-            drugiParametr.WartoscDomyslna.Should().Be("2");
-            drugiParametr.NazwaParametru.Should().Be("liczba2");
-            drugiParametr.NazwaTypu.Should().Be("int");
+            drugiParametr.WithThis.Should().BeFalse();
+            drugiParametr.DefaultValue.Should().Be("2");
+            drugiParametr.ParameterName.Should().Be("liczba2");
+            drugiParametr.TypeName.Should().Be("int");
             var trzecieParametr = metoda.Parametry[2];
-            trzecieParametr.WartoscDomyslna.Should().Be("\"aa\"");
+            trzecieParametr.DefaultValue.Should().Be("\"aa\"");
         }
 
         [Test]
@@ -51,13 +51,13 @@ namespace KruchyParserKoduTests.Unit
             metoda.Parametry.Should().HaveCount(2);
 
             var parametr1 = metoda.Parametry.First();
-            parametr1.ZRef.Should().BeTrue();
-            parametr1.ZOut.Should().BeFalse();
-            parametr1.NazwaParametru.Should().Be("obiekt");
+            parametr1.WithRef.Should().BeTrue();
+            parametr1.WithOut.Should().BeFalse();
+            parametr1.ParameterName.Should().Be("obiekt");
 
             var parametr2 = metoda.Parametry[1];
-            parametr2.ZOut.Should().BeTrue();
-            parametr2.ZRef.Should().BeFalse();
+            parametr2.WithOut.Should().BeTrue();
+            parametr2.WithRef.Should().BeFalse();
         }
 
         [Test]
@@ -70,7 +70,7 @@ namespace KruchyParserKoduTests.Unit
             metoda.Parametry.Should().HaveCount(2);
 
             var parametr = metoda.Parametry[1];
-            parametr.ZParams.Should().BeTrue();
+            parametr.WithParams.Should().BeTrue();
         }
     }
 }

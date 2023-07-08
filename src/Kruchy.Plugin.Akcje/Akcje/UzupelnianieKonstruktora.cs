@@ -115,7 +115,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         private bool IsSimpleParameterAssignment(
             Instruction instruction,
             IEnumerable<Pole> readonlyFields,
-            IEnumerable<Parametr> parametry)
+            IEnumerable<Parameter> parametry)
         {
             var assignmentInstruction = instruction as AssignmentInstruction;
 
@@ -136,19 +136,19 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 var parameterName = match.Groups["parameter"].Value;
 
                 if (readonlyFields.Select(o => o.Nazwa).Contains(fieldName) &&
-                    parametry.Select(o => o.NazwaParametru).Contains(parameterName))
+                    parametry.Select(o => o.ParameterName).Contains(parameterName))
                     return true;
             }
 
             return false;
         }
 
-        private IList<Parametr> WyliczPolaPotrzebneDoKonstruktoraNadklasy(Constructor konstruktor)
+        private IList<Parameter> WyliczPolaPotrzebneDoKonstruktoraNadklasy(Constructor konstruktor)
         {
             if (konstruktor == null || konstruktor.ParentClassContructorParameters == null)
                 return null;
             var p = konstruktor.Parametry
-                .Where(o => konstruktor.ParentClassContructorParameters.Contains(o.NazwaParametru));
+                .Where(o => konstruktor.ParentClassContructorParameters.Contains(o.ParameterName));
             return p.ToList();
         }
 
@@ -229,7 +229,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         private string GenerujKonstruktor(
             IEnumerable<Pole> pola,
             string nazwaKlasy,
-            IEnumerable<Parametr> parametryDlaKonstruktoraNadklasy,
+            IEnumerable<Parameter> parametryDlaKonstruktoraNadklasy,
             string slowoKluczowe,
             Constructor constructor)
         {
@@ -264,12 +264,12 @@ namespace Kruchy.Plugin.Akcje.Akcje
             {
                 foreach (var parametrDlaNadklasy in parametryDlaKonstruktoraNadklasy)
                 {
-                    builder.DodajParametr(parametrDlaNadklasy.NazwaTypu, parametrDlaNadklasy.NazwaParametru);
+                    builder.DodajParametr(parametrDlaNadklasy.TypeName, parametrDlaNadklasy.ParameterName);
                 }
 
                 builder.DodajInicjalizacjeKonstruktora(
                     slowoKluczowe,
-                    parametryDlaKonstruktoraNadklasy.Select(o => o.NazwaParametru));
+                    parametryDlaKonstruktoraNadklasy.Select(o => o.ParameterName));
             }
 
             return builder.Build(StaleDlaKodu.WciecieDlaMetody).TrimEnd();
@@ -392,8 +392,8 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 return false;
 
             return konstruktor.Parametry
-                .Any(o => o.NazwaParametru == pole.Nazwa
-                    && o.NazwaTypu == pole.NazwaTypu);
+                .Any(o => o.ParameterName == pole.Nazwa
+                    && o.TypeName == pole.NazwaTypu);
         }
     }
 }

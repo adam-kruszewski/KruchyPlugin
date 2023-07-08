@@ -167,7 +167,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             }
         }
 
-        private void GenerujOpisParametrow(IEnumerable<Parametr> parametry, string poczatek, StringBuilder builder)
+        private void GenerujOpisParametrow(IEnumerable<Parameter> parametry, string poczatek, StringBuilder builder)
         {
             foreach (var parameter in parametry)
             {
@@ -175,13 +175,13 @@ namespace Kruchy.Plugin.Akcje.Akcje
             }
         }
 
-        private void GenerujDokumentacjeParametru(string poczatek, StringBuilder builder, Parametr parameter)
+        private void GenerujDokumentacjeParametru(string poczatek, StringBuilder builder, Parameter parameter)
         {
-            var opis = string.Join(" ", parameter.NazwaParametru.PodzielNaSlowaOdWielkichLiter().Select(o => o.ToLower()));
+            var opis = string.Join(" ", parameter.ParameterName.PodzielNaSlowaOdWielkichLiter().Select(o => o.ToLower()));
 
             opis = opis.ZacznijDuzaLitera();
 
-            builder.AppendLine($"{poczatek}<param name=\"{parameter.NazwaParametru}\">{opis}</param>");
+            builder.AppendLine($"{poczatek}<param name=\"{parameter.ParameterName}\">{opis}</param>");
         }
 
         private void PrzetworzMetode(Method metoda)

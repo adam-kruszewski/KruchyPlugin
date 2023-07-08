@@ -69,7 +69,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         }
 
         private string GenerujNoweParametry(
-            IEnumerable<Parametr> parametryMetody,
+            IEnumerable<Parameter> parametryMetody,
             IWithOwner obiekt,
             Method metoda = null)
         {
@@ -121,11 +121,11 @@ namespace Kruchy.Plugin.Akcje.Akcje
             return WyliczPoziomMetody(obiekt.Owner) + 1;
         }
 
-        private string DajDefinicjeParametru(Parametr parametr)
+        private string DajDefinicjeParametru(Parameter parametr)
         {
             var builder = new StringBuilder();
 
-            foreach (var atrybut in parametr.Atrybuty)
+            foreach (var atrybut in parametr.Attributes)
             {
                 var atrybutBuilder = new AtrybutBuilder().ZNazwa(atrybut.Name);
                 foreach (var parametrAtrybutu in atrybut.Parameters)
@@ -137,27 +137,27 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 builder.Append(" ");
             }
 
-            if (parametr.ZThisem)
+            if (parametr.WithThis)
                 builder.Append("this ");
 
-            if (parametr.ZParams)
+            if (parametr.WithParams)
                 builder.Append("params ");
-            if (parametr.ZOut)
+            if (parametr.WithOut)
                 builder.Append("out ");
-            if (parametr.ZRef)
+            if (parametr.WithRef)
                 builder.Append("ref ");
 
-            builder.Append(parametr.NazwaTypu + " ");
-            builder.Append(parametr.NazwaParametru);
+            builder.Append(parametr.TypeName + " ");
+            builder.Append(parametr.ParameterName);
             builder.Append(DajOpisWartosciDomyslnej(parametr));
 
             return builder.ToString();
         }
 
-        private string DajOpisWartosciDomyslnej(Parametr parametr)
+        private string DajOpisWartosciDomyslnej(Parameter parametr)
         {
-            if (!string.IsNullOrEmpty(parametr.WartoscDomyslna))
-                return " = " + parametr.WartoscDomyslna;
+            if (!string.IsNullOrEmpty(parametr.DefaultValue))
+                return " = " + parametr.DefaultValue;
             else
                 return string.Empty;
         }

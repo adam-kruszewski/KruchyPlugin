@@ -91,8 +91,8 @@ namespace KruchyParserKoduTests.Unit
             var konstrZ1Parametrem = obiekt.Constructors.First();
             konstrZ1Parametrem.Parametry.Count().Should().Be(1);
             var parametr = konstrZ1Parametrem.Parametry.First();
-            parametr.NazwaParametru.Should().Be("a");
-            parametr.NazwaTypu.Should().Be("int");
+            parametr.ParameterName.Should().Be("a");
+            parametr.TypeName.Should().Be("int");
             SprawdzPozycje(konstrZ1Parametrem.Poczatek, 19, 9);
             SprawdzPozycje(konstrZ1Parametrem.Koniec, 24, 10);
             SprawdzPozycje(
@@ -119,10 +119,10 @@ namespace KruchyParserKoduTests.Unit
             metodaStatyczna.Parametry.Count().Should().Be(3);
             SprawdzModyfikatorMetodyStatycznej(metodaStatyczna);
             var p = metodaStatyczna.Parametry.First();
-            p.NazwaTypu.Should().Be("string");
-            p.NazwaParametru.Should().Be("b");
-            metodaStatyczna.Parametry[1].NazwaTypu.Should().Be("int?");
-            metodaStatyczna.Parametry[2].NazwaTypu.Should().Be("DateTime?");
+            p.TypeName.Should().Be("string");
+            p.ParameterName.Should().Be("b");
+            metodaStatyczna.Parametry[1].TypeName.Should().Be("int?");
+            metodaStatyczna.Parametry[2].TypeName.Should().Be("DateTime?");
             metodaStatyczna.Modyfikatory[0].Name.Should().Be("private");
             metodaStatyczna.Modyfikatory[1].Name.Should().Be("static");
             metodaStatyczna.ReturnType.Nazwa.Should().Be("void");
@@ -136,8 +136,8 @@ namespace KruchyParserKoduTests.Unit
             metodaZwykla.Name.Should().Be("MetodaZwykla");
             metodaZwykla.ReturnType.Nazwa.Should().Be("int");
             metodaZwykla.Parametry.Count().Should().Be(2);
-            metodaZwykla.Parametry[0].NazwaTypu.Should().Be("System.DateTime");
-            metodaZwykla.Parametry[1].NazwaTypu.Should().Be("System.DateTime?");
+            metodaZwykla.Parametry[0].TypeName.Should().Be("System.DateTime");
+            metodaZwykla.Parametry[1].TypeName.Should().Be("System.DateTime?");
             metodaZwykla.Atrybuty.Count().Should().Be(1);
             metodaZwykla.Atrybuty.First().Name.Should().Be("Testowo");
         }
