@@ -21,7 +21,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         {
             var parsowane = Parser.Parsuj(dokument.GetContent());
             var metoda =
-                parsowane.SzukajMetodyWLinii(dokument.GetCursorLineNumber());
+                parsowane.FindMethodByLineNumber(dokument.GetCursorLineNumber());
 
             if (metoda != null)
             {
@@ -32,7 +32,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             }
             else
             {
-                var klasa = parsowane.SzukajObiektuWLinii(dokument.GetCursorLineNumber());
+                var klasa = parsowane.FindDefinedItemByLineNumber(dokument.GetCursorLineNumber());
                 if (klasa != null)
                     ZmienWKlasie(modyfikator, klasa);
             }

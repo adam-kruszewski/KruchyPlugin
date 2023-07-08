@@ -4,6 +4,7 @@ using Kruchy.Plugin.Akcje.Utils;
 using Kruchy.Plugin.Utils.UI;
 using Kruchy.Plugin.Utils.Wrappers;
 using KruchyParserKodu.ParserKodu;
+using KruchyParserKodu.ParserKodu.Models;
 using System.Collections.Generic;
 
 namespace Kruchy.Plugin.Akcje.Akcje
@@ -26,7 +27,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
             var parsowane = Parser.Parsuj(solution.AktualnyDokument.GetContent());
 
-            var aktualnaWlasciwosc = parsowane.SzukajPropertiesaWLinii(aktualnyNumerLinii);
+            var aktualnaWlasciwosc = parsowane.FindPropertyByLineNumber(aktualnyNumerLinii);
 
             if (aktualnaWlasciwosc != null)
             {
@@ -35,7 +36,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 dialogAdd.Value = aktualnaWlasciwosc.Name;
             }
 
-            var aktualnePole = parsowane.SzukajPolaWLinii(aktualnyNumerLinii);
+            var aktualnePole = parsowane.FindFieldByLineNumber(aktualnyNumerLinii);
 
             if (aktualnePole != null)
             {

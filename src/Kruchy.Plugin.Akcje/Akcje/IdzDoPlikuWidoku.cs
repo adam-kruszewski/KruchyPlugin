@@ -1,6 +1,7 @@
 ﻿using Kruchy.Plugin.Utils.Extensions;
 using Kruchy.Plugin.Utils.Wrappers;
 using KruchyParserKodu.ParserKodu;
+using KruchyParserKodu.ParserKodu.Models;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -30,7 +31,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             var parsowane = Parser.Parsuj(zawartosc);
             var liniaKursora = solution.AktualnyDokument.GetCursorLineNumber();
 
-            var aktualnaMetoda = parsowane.SzukajMetodyWLinii(liniaKursora);
+            var aktualnaMetoda = parsowane.FindMethodByLineNumber(liniaKursora);
 
             if (aktualnaMetoda != null)
                 PrzejdzLubStworz(aktualnaMetoda.Name + ".cshtml", false);

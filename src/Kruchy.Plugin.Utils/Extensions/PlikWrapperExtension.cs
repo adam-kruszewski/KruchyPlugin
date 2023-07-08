@@ -76,7 +76,7 @@ namespace Kruchy.Plugin.Utils.Extensions
             var zawartosc = aktualny.Document.GetContent();
             var parsowane = Parser.Parsuj(zawartosc);
             var obiekt =
-                parsowane.SzukajObiektuWLinii(aktualny.Document.GetCursorLineNumber());
+                parsowane.FindDefinedItemByLineNumber(aktualny.Document.GetCursorLineNumber());
             if (obiekt != null)
             {
                 if (obiekt.Name.EndsWith("Builder")

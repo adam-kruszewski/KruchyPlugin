@@ -127,7 +127,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             {
                 obiektDoZbudowania =
                     sparsowane
-                        .SzukajKlasyWLinii(
+                        .FindClassByLineNumber(
                             solution.AktualnyDokument.GetCursorLineNumber());
             }
 

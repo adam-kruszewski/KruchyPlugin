@@ -28,7 +28,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             var sparsowane = Parser.Parsuj(solution.AktualnyDokument.GetContent());
 
             var obiekt =
-                sparsowane.SzukajObiektuWLinii(solution.AktualnyDokument.GetCursorLineNumber());
+                sparsowane.FindDefinedItemByLineNumber(solution.AktualnyDokument.GetCursorLineNumber());
 
             if (obiekt == null && sparsowane.DefinedItems.Count() == 1)
                 obiekt = sparsowane.DefinedItems.Single();

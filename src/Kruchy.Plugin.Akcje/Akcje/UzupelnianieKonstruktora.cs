@@ -214,7 +214,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
             return
                 parsowanyPlik
-                    .SzukajKlasyWLinii(
+                    .FindClassByLineNumber(
                         solution.AktualnyDokument.GetCursorLineNumber());
         }
 

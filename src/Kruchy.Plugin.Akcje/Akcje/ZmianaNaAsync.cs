@@ -20,7 +20,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         {
             var parsowane = Parser.Parsuj(dokument.GetContent());
             var metoda =
-                parsowane.SzukajMetodyWLinii(dokument.GetCursorLineNumber());
+                parsowane.FindMethodByLineNumber(dokument.GetCursorLineNumber());
 
             if (metoda != null)
             {
@@ -35,7 +35,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         private void DodajTaskDoTypuZwracanegoJesliTrzeba()
         {
             var parsowane = Parser.Parsuj(dokument.GetContent());
-            var metoda = parsowane.SzukajMetodyWLinii(dokument.GetCursorLineNumber());
+            var metoda = parsowane.FindMethodByLineNumber(dokument.GetCursorLineNumber());
 
             if (!metoda.ReturnType.Nazwa.StartsWith("Task"))
             {

@@ -2,6 +2,7 @@
 using Kruchy.Plugin.Utils.Extensions;
 using Kruchy.Plugin.Utils.Wrappers;
 using KruchyParserKodu.ParserKodu;
+using KruchyParserKodu.ParserKodu.Models;
 
 namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
 {
@@ -29,7 +30,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
                     .ZNazwa(nazwaMetody)
                     .ZTypemZwracanym(
                         parsowane
-                            .SzukajObiektuWLinii(dokument.GetCursorLineNumber()).Name)
+                            .FindDefinedItemByLineNumber(dokument.GetCursorLineNumber()).Name)
                     .DodajLinie("return this;");
 
             var numerLiniiWstawiania = dokument.GetCursorLineNumber();

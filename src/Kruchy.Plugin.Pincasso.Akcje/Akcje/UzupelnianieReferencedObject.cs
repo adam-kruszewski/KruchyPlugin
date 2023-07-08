@@ -1,9 +1,10 @@
-﻿using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using Kruchy.Plugin.Utils.Extensions;
+﻿using Kruchy.Plugin.Utils.Extensions;
 using Kruchy.Plugin.Utils.Wrappers;
 using KruchyParserKodu.ParserKodu;
+using KruchyParserKodu.ParserKodu.Models;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
 
 namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
 {
@@ -22,7 +23,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             var numerLinii = DajNumerLiniiKursora();
             var zawartosc = DajZawartosc();
             var parsowane = Parser.Parsuj(zawartosc);
-            var property = parsowane.SzukajPropertiesaWLinii(numerLinii);
+            var property = parsowane.FindPropertyByLineNumber(numerLinii);
 
             if (property == null)
             {

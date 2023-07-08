@@ -205,7 +205,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         private string DajNazweKlasy(FileWithCode sparsowane)
         {
             var obiekt =
-            sparsowane.SzukajKlasyWLinii(solution.AktualnyDokument.GetCursorLineNumber());
+            sparsowane.FindClassByLineNumber(solution.AktualnyDokument.GetCursorLineNumber());
 
             if (obiekt == null)
                 return sparsowane.DefinedItems.Single().Name;

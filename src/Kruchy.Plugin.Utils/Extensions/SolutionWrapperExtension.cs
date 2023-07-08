@@ -36,7 +36,7 @@ namespace Kruchy.Plugin.Utils.Extensions
             var parsowane = Parser.Parsuj(zawartosc);
             var liniaKursora = solution.AktualnyDokument.GetCursorLineNumber();
 
-            var aktualnaMetoda = parsowane.SzukajMetodyWLinii(liniaKursora);
+            var aktualnaMetoda = parsowane.FindMethodByLineNumber(liniaKursora);
 
             if (aktualnaMetoda != null)
                 return aktualnaMetoda.Name;

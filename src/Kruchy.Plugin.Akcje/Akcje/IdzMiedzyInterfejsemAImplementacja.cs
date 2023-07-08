@@ -49,7 +49,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         {
             var parsowane = Parser.Parsuj(aktualny.Document.GetContent());
             var metoda =
-                parsowane.SzukajMetodyWLinii(
+                parsowane.FindMethodByLineNumber(
                     aktualny.Document.GetCursorLineNumber());
 
             string sciezkaImplementacji = SzukajSciezkiDoImplementacji(aktualny);

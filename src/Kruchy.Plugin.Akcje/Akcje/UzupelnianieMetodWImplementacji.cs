@@ -36,7 +36,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
             var dokument = aktualnyPlik.Document;
             var aktualnaMetoda =
-                parsowane.SzukajMetodyWLinii(dokument.GetCursorLineNumber());
+                parsowane.FindMethodByLineNumber(dokument.GetCursorLineNumber());
 
             if (aktualnaMetoda == null)
             {
@@ -68,7 +68,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         private Method SzukajNastepnejMetody(FileWithCode parsowane, Method aktualnaMetoda)
         {
-            var interfejs = parsowane.SzukajObiektuWLinii(aktualnaMetoda.StartPosition.Row);
+            var interfejs = parsowane.FindDefinedItemByLineNumber(aktualnaMetoda.StartPosition.Row);
             if (interfejs == null)
                 return null;
 
@@ -94,7 +94,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
             Method nastepnaMetodaWImplementacji = null;
             if (nastepnaMetoda == null)
-                numerLiniiGdzieDodawac = parsowane.SzukajPierwszejLiniiDlaMetody();
+                numerLiniiGdzieDodawac = parsowane.FindFirstLineForMethod();
             else
             {
                 nastepnaMetodaWImplementacji =
@@ -107,7 +107,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             string wstawianyTekst = GenerujTekstDoWstawienia(definicja);
 
             if (nastepnaMetodaWImplementacji == null)
-                numerLiniiGdzieDodawac = parsowane.SzukajPierwszejLiniiDlaMetody();
+                numerLiniiGdzieDodawac = parsowane.FindFirstLineForMethod();
             else
             {
                 numerLiniiGdzieDodawac =
@@ -135,7 +135,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             int numerLiniiGdzieDodawac;
             var obiekt =
                 parsowane
-                .SzukajObiektuWLinii(nastepnaMetodaWImplementacji.StartPosition.Row);
+                .FindDefinedItemByLineNumber(nastepnaMetodaWImplementacji.StartPosition.Row);
 
             numerLiniiGdzieDodawac = nastepnaMetodaWImplementacji.StartPosition.Row - 1;
 

@@ -26,13 +26,13 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 Parser.Parsuj(dokument.GetContent());
 
             var metoda = parsowane
-                    .SzukajMetodyWLinii(dokument.GetCursorLineNumber());
+                    .FindMethodByLineNumber(dokument.GetCursorLineNumber());
 
             if (metoda == null)
             {
                 var konstruktor =
                     parsowane
-                        .SzukajKonstruktoraWLinii(dokument.GetCursorLineNumber());
+                        .FindConstructorByLineNumber(dokument.GetCursorLineNumber());
                 if (konstruktor != null)
                     PodzielNaLinieKonstruktor(konstruktor);
                 else

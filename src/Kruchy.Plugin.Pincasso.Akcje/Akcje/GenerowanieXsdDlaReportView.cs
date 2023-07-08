@@ -337,7 +337,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             DefinedItem klasaView;
             klasaView =
                 sparsowane
-                    .SzukajKlasyWLinii(solution.AktualnyDokument.GetCursorLineNumber());
+                    .FindClassByLineNumber(solution.AktualnyDokument.GetCursorLineNumber());
 
             if (klasaView == null)
                 klasaView = klasy.FirstOrDefault();

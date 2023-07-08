@@ -30,7 +30,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             int numerLinii = solution.AktualnyDokument.GetCursorLineNumber();
             var properties =
                 parsowane
-                    .SzukajPropertiesaWLinii(numerLinii);
+                    .FindPropertyByLineNumber(numerLinii);
 
             if (properties != null)
             {
@@ -39,7 +39,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             }
             else
             {
-                var pole = parsowane.SzukajPolaWLinii(numerLinii);
+                var pole = parsowane.FindFieldByLineNumber(numerLinii);
                 if (pole == null)
                     return;
 
@@ -52,7 +52,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         private void Inicjuj(string nazwa, string typ, FileWithCode parsowane, int numerLinii)
         {
-            var klasa = parsowane.SzukajKlasyWLinii(numerLinii);
+            var klasa = parsowane.FindClassByLineNumber(numerLinii);
 
             var poziomKlasy = klasa.WyliczPoziomMetody();
 
@@ -71,7 +71,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                         DajZawartoscDoDodania(nazwa, typ, false, poziomKlasy));
                 solution.AktualnyDokument.InsertInLine(
                     new StringBuilder().AppendLine() + zawartoscKontruktora,
-                    parsowane.SzukajPierwszejLiniiDlaKonstruktora(numerLinii));
+                    parsowane.FindFirstLineForConstructor(numerLinii));
             }
         }
 
