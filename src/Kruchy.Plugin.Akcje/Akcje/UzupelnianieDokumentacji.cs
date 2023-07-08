@@ -348,10 +348,10 @@ namespace Kruchy.Plugin.Akcje.Akcje
         {
             if (property.Documentation == null)
             {
-                var summary = DajNazwePolaWlasciwosciWgKonfiguracji(property.Nazwa, property.Owner, property.NazwaTypu);
+                var summary = DajNazwePolaWlasciwosciWgKonfiguracji(property.Name, property.Owner, property.TypeName);
 
                 if (string.IsNullOrEmpty(summary))
-                    summary = string.Join(" ", property.Nazwa.PodzielNaSlowaOdWielkichLiter().Select(o => o.ToLower())).ZacznijDuzaLitera();
+                    summary = string.Join(" ", property.Name.PodzielNaSlowaOdWielkichLiter().Select(o => o.ToLower())).ZacznijDuzaLitera();
 
                 var wciecie = (property.StartPosition.Column - 1).Spacji();
 
@@ -360,7 +360,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
                 GennerujSummary(poczatek, builder, summary);
 
-                solution.AktualnyDokument.InsertInLine(builder.ToString(), DajNumerLiniiDoWstawienia(property, property.Atrybuty));
+                solution.AktualnyDokument.InsertInLine(builder.ToString(), DajNumerLiniiDoWstawienia(property, property.Attributes));
             }
         }
 

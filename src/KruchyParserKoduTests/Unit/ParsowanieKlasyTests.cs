@@ -68,15 +68,15 @@ namespace KruchyParserKoduTests.Unit
         {
             obiekt.Properties.Count().Should().Be(2);
             var wlasciwosc = obiekt.Properties.First();
-            wlasciwosc.Nazwa.Should().Be("Wlasciwosc");
-            wlasciwosc.NazwaTypu.Should().Be("int");
-            wlasciwosc.Modyfikatory[0].Name.Should().Be("public");
-            wlasciwosc.JestGet.Should().BeTrue();
-            wlasciwosc.JestSet.Should().BeTrue();
+            wlasciwosc.Name.Should().Be("Wlasciwosc");
+            wlasciwosc.TypeName.Should().Be("int");
+            wlasciwosc.Modifiers[0].Name.Should().Be("public");
+            wlasciwosc.HasGet.Should().BeTrue();
+            wlasciwosc.HasSet.Should().BeTrue();
 
             var wlasciwosc2 = obiekt.Properties[1];
-            wlasciwosc2.JestGet.Should().BeTrue();
-            wlasciwosc2.JestSet.Should().BeFalse();
+            wlasciwosc2.HasGet.Should().BeTrue();
+            wlasciwosc2.HasSet.Should().BeFalse();
         }
 
         private void SprawdzKonstruktory(DefinedItem obiekt)

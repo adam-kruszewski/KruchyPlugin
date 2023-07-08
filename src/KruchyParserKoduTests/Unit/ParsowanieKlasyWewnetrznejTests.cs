@@ -31,12 +31,12 @@ namespace KruchyParserKoduTests.Unit
             var klasaGlowna = sparsowane.DefinedItems.Single();
             klasaGlowna.KindOfItem.Should().Be(RodzajObiektu.Klasa);
             klasaGlowna.Name.Should().Be("ZKlasaWewnetrzna");
-            klasaGlowna.Properties.Single().Nazwa.Should().Be("WlasciwoscWGlownym");
+            klasaGlowna.Properties.Single().Name.Should().Be("WlasciwoscWGlownym");
 
             var klasaWewnetrzna = klasaGlowna.InternalDefinedItems.Single();
             klasaWewnetrzna.KindOfItem.Should().Be(RodzajObiektu.Klasa);
             klasaWewnetrzna.Name.Should().Be("KlasaWewnetrzna");
-            klasaWewnetrzna.Properties.Single().Nazwa.Should().Be("WlasciwoscWWewnetrznym");
+            klasaWewnetrzna.Properties.Single().Name.Should().Be("WlasciwoscWWewnetrznym");
             klasaWewnetrzna.Owner.Should().Be(klasaGlowna);
 
             var metodaWewnetrzna = klasaWewnetrzna.Methods.Single();

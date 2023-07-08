@@ -66,12 +66,12 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             foreach (var wlasciwosc in klasaView.Properties.Where(o => !Kolekcja(o)))
             {
                 var elementOdpowiadajacy =
-                    SzukajElementuWgAttrybutuName(elementSequenceWHeader, wlasciwosc.Nazwa);
+                    SzukajElementuWgAttrybutuName(elementSequenceWHeader, wlasciwosc.Name);
 
                 if (elementOdpowiadajacy == null)
                 {
                     elementOdpowiadajacy = dokument.CreateElement("xs", "element", NamespaceXS);
-                    elementOdpowiadajacy.SetAttribute("name", wlasciwosc.Nazwa);
+                    elementOdpowiadajacy.SetAttribute("name", wlasciwosc.Name);
                     elementSequenceWHeader.AppendChild(elementOdpowiadajacy);
                 }
 
@@ -99,13 +99,13 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             Property wlasciwosc)
         {
             var elementDlaWlasciwosci =
-                SzukajElementuWgAttrybutuName(rootElement, wlasciwosc.Nazwa);
+                SzukajElementuWgAttrybutuName(rootElement, wlasciwosc.Name);
 
             string nazwaKlasy = DajNazweKlasyObiektuKolekcjonowanego(wlasciwosc);
 
             if (elementDlaWlasciwosci == null)
             {
-                elementDlaWlasciwosci = CreateElementDefinicjiObiektu(dokument, wlasciwosc.Nazwa);
+                elementDlaWlasciwosci = CreateElementDefinicjiObiektu(dokument, wlasciwosc.Name);
                 rootElement.AppendChild(elementDlaWlasciwosci);
             }
 
@@ -136,7 +136,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
         private string DajNazweKlasyObiektuKolekcjonowanego(Property wlasciwosc)
         {
             var regex = new Regex(@"<([A-Za-z0-9_]+)>");
-            var match = regex.Match(wlasciwosc.NazwaTypu);
+            var match = regex.Match(wlasciwosc.TypeName);
 
             var nazwaKlasy = match.Groups[1].Value;
             return nazwaKlasy;
@@ -147,11 +147,11 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             Property wlasciwosc)
         {
             elementOdpowiadajacy
-                .SetAttribute("type", DajNazweTypuDoXml(wlasciwosc.NazwaTypu));
+                .SetAttribute("type", DajNazweTypuDoXml(wlasciwosc.TypeName));
 
-            if (wlasciwosc.NazwaTypu != "string")
+            if (wlasciwosc.TypeName != "string")
             {
-                var nullowalny = wlasciwosc.NazwaTypu.EndsWith("?");
+                var nullowalny = wlasciwosc.TypeName.EndsWith("?");
                 elementOdpowiadajacy
                     .SetAttribute("nillable", nullowalny.ToString().ToLower());
             }
@@ -221,7 +221,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
 
         private bool Kolekcja(Property wlasciwosc)
         {
-            var nazwaTypu = wlasciwosc.NazwaTypu;
+            var nazwaTypu = wlasciwosc.TypeName;
 
             string[] poczatkiKolekcji =
             {

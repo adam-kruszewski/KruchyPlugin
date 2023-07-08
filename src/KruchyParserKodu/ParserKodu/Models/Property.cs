@@ -1,40 +1,39 @@
 ﻿using KruchyParserKodu.ParserKodu.Interfaces;
-using KruchyParserKodu.ParserKodu.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace KruchyParserKodu.ParserKodu
+namespace KruchyParserKodu.ParserKodu.Models
 {
     public class Property : ParsedUnit, IWithDocumentation, IWithOwner
     {
-        public string Nazwa { get; set; }
-        public string NazwaTypu { get; set; }
-        public IList<Modifier> Modyfikatory { get; private set; }
-        public List<Attribute> Atrybuty { get; private set; }
-        public bool JestGet { get; set; }
-        public bool JestSet { get; set; }
+        public string Name { get; set; }
+        public string TypeName { get; set; }
+        public IList<Modifier> Modifiers { get; private set; }
+        public List<Attribute> Attributes { get; private set; }
+        public bool HasGet { get; set; }
+        public bool HasSet { get; set; }
         public Documentation Documentation { get; set; }
         public DefinedItem Owner { get; set; }
 
         public Property()
         {
-            Modyfikatory = new List<Modifier>();
-            Atrybuty = new List<Attribute>();
+            Modifiers = new List<Modifier>();
+            Attributes = new List<Attribute>();
         }
 
         public override string ToString()
         {
             var builder = new StringBuilder();
 
-            builder.Append(Nazwa);
+            builder.Append(Name);
 
             builder.Append(" {");
-            builder.Append(NazwaTypu);
+            builder.Append(TypeName);
             builder.Append("}");
 
             builder.Append(" [");
-            builder.Append(string.Join(", " ,Modyfikatory.Select(o => o.Name)));
+            builder.Append(string.Join(", " ,Modifiers.Select(o => o.Name)));
             builder.Append("]");
 
             return builder.ToString();

@@ -77,7 +77,7 @@
     <Compile Include="ParserKodu\Models\FileWithCode.cs" />
     <Compile Include="ParserKodu\Models\Field.cs" />
     <Compile Include="ParserKodu\Models\PlaceInFile.cs" />
-    <Compile Include="ParserKodu\Property.cs" />
+    <Compile Include="ParserKodu\Models\Property.cs" />
     <Compile Include="ParserKodu\RodzajObiektu.cs" />
     <Compile Include="ParserKodu\RodzajObiektuObiekt.cs" />
     <Compile Include="ParserKodu\SzukanieParsowanegoExtension.cs" />

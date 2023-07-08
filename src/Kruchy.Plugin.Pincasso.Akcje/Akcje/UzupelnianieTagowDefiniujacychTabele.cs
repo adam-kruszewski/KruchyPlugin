@@ -84,14 +84,14 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
                 .DefinedItems
                     .First()
                         .Properties
-                            .Where(o => o.JestGet && o.JestSet)
+                            .Where(o => o.HasGet && o.HasSet)
                                 .Where(o => !MaAtrybutuReferencedObject(o));
             return propertiesyKolumn.Select(o => o.StartPosition.Row).ToList();
         }
 
         private bool MaAtrybutuReferencedObject(Property property)
         {
-            return property.Atrybuty.Any(o => o.Name == "ReferencedObject");
+            return property.Attributes.Any(o => o.Name == "ReferencedObject");
         }
 
         private void DodajAtrybutyKolumnowe(List<int> linieKolumn, string prefiks)

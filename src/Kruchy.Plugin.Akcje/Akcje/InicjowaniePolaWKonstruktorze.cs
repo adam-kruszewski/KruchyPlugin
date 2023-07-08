@@ -34,8 +34,8 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
             if (properties != null)
             {
-                nazwaDoZainicjowania = properties.Nazwa;
-                typDoZainicjowania = properties.NazwaTypu;
+                nazwaDoZainicjowania = properties.Name;
+                typDoZainicjowania = properties.TypeName;
             }
             else
             {

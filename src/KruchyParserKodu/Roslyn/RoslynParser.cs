@@ -505,15 +505,15 @@ namespace KruchyParserKodu.Roslyn
             foreach (var wlasciwoscSyntax in wlasciwosciSyntax)
             {
                 var properties = new Property();
-                properties.Nazwa = wlasciwoscSyntax.Identifier.ValueText;
-                properties.NazwaTypu = wlasciwoscSyntax.Type.DajNazweTypu();
-                UzupelnijAtrybuty(wlasciwoscSyntax.AttributeLists, properties.Atrybuty);
-                UzupelnijModyfikatory(wlasciwoscSyntax.Modifiers, properties.Modyfikatory);
+                properties.Name = wlasciwoscSyntax.Identifier.ValueText;
+                properties.TypeName = wlasciwoscSyntax.Type.DajNazweTypu();
+                UzupelnijAtrybuty(wlasciwoscSyntax.AttributeLists, properties.Attributes);
+                UzupelnijModyfikatory(wlasciwoscSyntax.Modifiers, properties.Modifiers);
                 UstawPolozenie(wlasciwoscSyntax.SyntaxTree, properties, wlasciwoscSyntax);
                 ParsujDokumentacje(properties, wlasciwoscSyntax);
 
-                properties.JestGet = JestAccessorr(wlasciwoscSyntax, "get");
-                properties.JestSet = JestAccessorr(wlasciwoscSyntax, "set");
+                properties.HasGet = JestAccessorr(wlasciwoscSyntax, "get");
+                properties.HasSet = JestAccessorr(wlasciwoscSyntax, "set");
 
                 properties.Owner = definiowanyObiekt;
 

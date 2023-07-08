@@ -31,8 +31,8 @@ namespace Kruchy.Plugin.Akcje.Akcje
             if (aktualnaWlasciwosc != null)
             {
                 dialogAdd.ClassNameRegex = aktualnaWlasciwosc.Owner.Name;
-                dialogAdd.FieldPropertyTypeRegex = aktualnaWlasciwosc.NazwaTypu;
-                dialogAdd.Value = aktualnaWlasciwosc.Nazwa;
+                dialogAdd.FieldPropertyTypeRegex = aktualnaWlasciwosc.TypeName;
+                dialogAdd.Value = aktualnaWlasciwosc.Name;
             }
 
             var aktualnePole = parsowane.SzukajPolaWLinii(aktualnyNumerLinii);

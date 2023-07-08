@@ -101,7 +101,7 @@ namespace KruchyParserKoduTests.Unit
         [Test]
         public void ParsujeDokumentacjaNadProperty()
         {
-            var property = klasa.Properties.Single(o => o.Nazwa == "MyProperty");
+            var property = klasa.Properties.Single(o => o.Name == "MyProperty");
             //act
 
             //assert

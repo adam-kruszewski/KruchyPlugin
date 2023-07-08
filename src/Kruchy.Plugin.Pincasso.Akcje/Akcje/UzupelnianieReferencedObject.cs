@@ -30,8 +30,8 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
                 return;
             }
 
-            var nazwaAtrybutu = property.Nazwa;
-            var nazwaTypu = property.NazwaTypu;
+            var nazwaAtrybutu = property.Name;
+            var nazwaTypu = property.TypeName;
 
             var numerLiniiDlaAtrybutuKluczaObcego = numerLinii;
 
@@ -64,9 +64,9 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
         private bool DodajJesliTrzebaAtrybutReferencedObject(
             int numerLiniiKursora,
             string nazwaAtrybutu,
-            KruchyParserKodu.ParserKodu.Property property)
+            KruchyParserKodu.ParserKodu.Models.Property property)
         {
-            if (property.Atrybuty.Any(o => o.Name == "ReferencedObject"))
+            if (property.Attributes.Any(o => o.Name == "ReferencedObject"))
                 return false;
 
             var nowaLinia =

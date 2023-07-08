@@ -29,8 +29,8 @@ namespace KruchyParserKoduTests.Unit
             //assert
             var wlasciwosc = sparsowane.DefinedItems.First().Properties.Single();
 
-            wlasciwosc.Nazwa.Should().Be("MyProperty");
-            wlasciwosc.NazwaTypu.Should().Be("int");
+            wlasciwosc.Name.Should().Be("MyProperty");
+            wlasciwosc.TypeName.Should().Be("int");
         }
     }
 }

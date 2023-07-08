@@ -166,14 +166,14 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             string nazwaKlasyBuildera,
             WlasciwoscDlaBuildera wlasciwosc)
         {
-            var nazwaParametru = DajNazweParametru(wlasciwosc.Property.Nazwa);
+            var nazwaParametru = DajNazweParametru(wlasciwosc.Property.Name);
 
             var tesktMetodyBuilder =
                 new MetodaBuilder()
                     .DodajModyfikator("public")
-                    .ZNazwa("Z" + wlasciwosc.Property.Nazwa)
+                    .ZNazwa("Z" + wlasciwosc.Property.Name)
                     .ZTypemZwracanym(nazwaKlasyBuildera)
-                    .DodajParametr(wlasciwosc.Property.NazwaTypu, nazwaParametru);
+                    .DodajParametr(wlasciwosc.Property.TypeName, nazwaParametru);
 
             tesktMetodyBuilder.DodajLinie(
                 DajLinieUstawiajacaWartosc(wlasciwosc, nazwaParametru));
@@ -200,12 +200,12 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
         {
             if (!wlasciwosc.Referencyjne)
                 return string.Format("Object.{0} = {1};",
-                    wlasciwosc.Property.Nazwa,
+                    wlasciwosc.Property.Name,
                     nazwaParametru);
             else
                 return string.Format(
                     "SetReferencedObject(o => o.{0}, {1});",
-                    wlasciwosc.Property.Nazwa,
+                    wlasciwosc.Property.Name,
                     nazwaParametru);
         }
 
@@ -217,10 +217,10 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
                 o => !(new[] { "Save", "Init" }.Contains(o.Name)));
 
             var napisUstawiajacyWartoscPola =
-                string.Format("Object.{0} =", wlasciwosc.Property.Nazwa);
+                string.Format("Object.{0} =", wlasciwosc.Property.Name);
             if (wlasciwosc.Referencyjne)
                 napisUstawiajacyWartoscPola =
-                    string.Format("SetReferencedObject(o => o.{0}", wlasciwosc.Property.Nazwa);
+                    string.Format("SetReferencedObject(o => o.{0}", wlasciwosc.Property.Name);
 
             return metodyDoAnalizy.Any(o => ZawieraNapis(o, napisUstawiajacyWartoscPola));
         }
@@ -295,12 +295,12 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
 
         private bool PrzechowujeObiektReferencji(Property p)
         {
-            return p.Atrybuty.Any(o => o.Name == "ReferencedObject");
+            return p.Attributes.Any(o => o.Name == "ReferencedObject");
         }
 
         private bool JestKluczemObcym(Property p)
         {
-            return p.Atrybuty.Any(o => o.Name == "ForeignKey");
+            return p.Attributes.Any(o => o.Name == "ForeignKey");
         }
 
         private class WlasciwoscDlaBuildera
