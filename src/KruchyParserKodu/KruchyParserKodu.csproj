@@ -79,7 +79,7 @@
     <Compile Include="ParserKodu\Models\PlaceInFile.cs" />
     <Compile Include="ParserKodu\Models\Property.cs" />
     <Compile Include="ParserKodu\Models\KindOfItem.cs" />
-    <Compile Include="ParserKodu\RodzajObiektuObiekt.cs" />
+    <Compile Include="ParserKodu\Models\KindOfItemUnit.cs" />
     <Compile Include="ParserKodu\SzukanieParsowanegoExtension.cs" />
     <Compile Include="ParserKodu\TypZwracany.cs" />
     <Compile Include="ParserKodu\UsingNamespace.cs" />

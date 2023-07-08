@@ -14,14 +14,14 @@ namespace KruchyParserKodu.ParserKodu.Models
     {
         public KindOfItem KindOfItem
         {
-            get => KindOfObjectUnit.RodzajObiektu;
+            get => KindOfObjectUnit.KindOfItem;
             set
             {
-                KindOfObjectUnit.RodzajObiektu = value;
+                KindOfObjectUnit.KindOfItem = value;
             }
         }
 
-        public RodzajObiektuObiekt KindOfObjectUnit { get; set; }
+        public KindOfItemUnit KindOfObjectUnit { get; set; }
 
         public DefinedItem Owner { get; set; }
 
@@ -64,7 +64,7 @@ namespace KruchyParserKodu.ParserKodu.Models
             InternalDefinedItems = new List<DefinedItem>();
             Modifiers = new List<Modifier>();
 
-            KindOfObjectUnit = new RodzajObiektuObiekt();
+            KindOfObjectUnit = new KindOfItemUnit();
             GenericParameters = new List<GenericParameter>();
         }
 
