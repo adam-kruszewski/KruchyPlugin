@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Text;
+using KruchyParserKodu.ParserKodu.Models;
 using KruchyParserKodu.Roslyn;
 
 namespace KruchyParserKodu.ParserKodu

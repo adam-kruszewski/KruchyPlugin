@@ -74,7 +74,7 @@
     <Compile Include="ParserKodu\Models\GenericParameter.cs" />
     <Compile Include="ParserKodu\Parser.cs" />
     <Compile Include="ParserKodu\Models\ParsedUnit.cs" />
-    <Compile Include="ParserKodu\Plik.cs" />
+    <Compile Include="ParserKodu\Models\Plik.cs" />
     <Compile Include="ParserKodu\Pole.cs" />
     <Compile Include="ParserKodu\Models\PlaceInFile.cs" />
     <Compile Include="ParserKodu\Property.cs" />

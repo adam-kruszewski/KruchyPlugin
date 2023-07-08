@@ -1,7 +1,6 @@
-﻿using KruchyParserKodu.ParserKodu.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace KruchyParserKodu.ParserKodu
+namespace KruchyParserKodu.ParserKodu.Models
 {
     public class Plik
     {
