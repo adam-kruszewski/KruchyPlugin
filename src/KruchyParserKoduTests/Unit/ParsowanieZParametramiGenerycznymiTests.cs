@@ -30,15 +30,15 @@ namespace KruchyParserKoduTests.Unit
             //assert
             var klasaGlowna = sparsowane.DefiniowaneObiekty.Single();
 
-            klasaGlowna.ParametryGeneryczne.Should().HaveCount(2);
+            klasaGlowna.GenericParameters.Should().HaveCount(2);
 
-            klasaGlowna.ParametryGeneryczne[0].Nazwa.Should().Be("TParam1");
-            klasaGlowna.ParametryGeneryczne[0].Poczatek.Sprawdz(3, 41);
-            klasaGlowna.ParametryGeneryczne[0].Koniec.Sprawdz(3, 48);
+            klasaGlowna.GenericParameters[0].Nazwa.Should().Be("TParam1");
+            klasaGlowna.GenericParameters[0].Poczatek.Sprawdz(3, 41);
+            klasaGlowna.GenericParameters[0].Koniec.Sprawdz(3, 48);
 
-            klasaGlowna.ParametryGeneryczne[1].Nazwa.Should().Be("TParam2");
-            klasaGlowna.ParametryGeneryczne[1].Poczatek.Sprawdz(3, 50);
-            klasaGlowna.ParametryGeneryczne[1].Koniec.Sprawdz(3, 57);
+            klasaGlowna.GenericParameters[1].Nazwa.Should().Be("TParam2");
+            klasaGlowna.GenericParameters[1].Poczatek.Sprawdz(3, 50);
+            klasaGlowna.GenericParameters[1].Koniec.Sprawdz(3, 57);
         }
 
         [Test]
@@ -60,15 +60,15 @@ namespace KruchyParserKoduTests.Unit
             //assert
             var klasaGlowna = sparsowane.DefiniowaneObiekty.Single();
 
-            klasaGlowna.ParametryGeneryczne.Should().HaveCount(2);
+            klasaGlowna.GenericParameters.Should().HaveCount(2);
 
-            klasaGlowna.ParametryGeneryczne[0].Nazwa.Should().Be("TParam1");
-            klasaGlowna.ParametryGeneryczne[0].Poczatek.Sprawdz(3, 50);
-            klasaGlowna.ParametryGeneryczne[0].Koniec.Sprawdz(3, 57);
+            klasaGlowna.GenericParameters[0].Nazwa.Should().Be("TParam1");
+            klasaGlowna.GenericParameters[0].Poczatek.Sprawdz(3, 50);
+            klasaGlowna.GenericParameters[0].Koniec.Sprawdz(3, 57);
 
-            klasaGlowna.ParametryGeneryczne[1].Nazwa.Should().Be("TParam2");
-            klasaGlowna.ParametryGeneryczne[1].Poczatek.Sprawdz(3, 59);
-            klasaGlowna.ParametryGeneryczne[1].Koniec.Sprawdz(3, 66);
+            klasaGlowna.GenericParameters[1].Nazwa.Should().Be("TParam2");
+            klasaGlowna.GenericParameters[1].Poczatek.Sprawdz(3, 59);
+            klasaGlowna.GenericParameters[1].Koniec.Sprawdz(3, 66);
         }
     }
 }

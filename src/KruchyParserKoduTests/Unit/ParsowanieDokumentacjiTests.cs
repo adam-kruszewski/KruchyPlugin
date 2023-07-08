@@ -47,7 +47,7 @@ namespace KruchyParserKoduTests.Unit
         [Test]
         public void ParsujeDokumentacjeNadMetoda()
         {
-            var metoda = klasa.Metody.Single(o => o.Name == "Metoda1");
+            var metoda = klasa.Methods.Single(o => o.Name == "Metoda1");
 
             //assert
             metoda.Documentation.Lines.Should().BeEquivalentTo(
@@ -65,7 +65,7 @@ namespace KruchyParserKoduTests.Unit
         [Test]
         public void ParsujeDokumentacjeNadKontruktorem()
         {
-            var konstruktor = klasa.Konstruktory.Single();
+            var konstruktor = klasa.Constructors.Single();
 
             //assert
             konstruktor.Documentation.Lines.Should().BeEquivalentTo(
@@ -83,7 +83,7 @@ namespace KruchyParserKoduTests.Unit
         [Test]
         public void ParsujeDokumentacjaNadPolem()
         {
-            var pole = klasa.Pola.Single(o => o.Nazwa == "poleString");
+            var pole = klasa.Fields.Single(o => o.Nazwa == "poleString");
 
             //assert
             pole.Documentation.Lines.Should().BeEquivalentTo(
@@ -101,7 +101,7 @@ namespace KruchyParserKoduTests.Unit
         [Test]
         public void ParsujeDokumentacjaNadProperty()
         {
-            var property = klasa.Propertiesy.Single(o => o.Nazwa == "MyProperty");
+            var property = klasa.Properties.Single(o => o.Nazwa == "MyProperty");
             //act
 
             //assert

@@ -29,13 +29,13 @@ namespace KruchyParserKoduTests.Unit
             plik.Usingi[5].Koniec.Sprawdz(6, 35);
 
             var obiekt = plik.DefiniowaneObiekty.First();
-            obiekt.Rodzaj.Should().Be(RodzajObiektu.Klasa);
+            obiekt.KindOfItem.Should().Be(RodzajObiektu.Klasa);
             obiekt.Name.Should().Be("KlasaDoParsowania");
             obiekt.StartingBrace.Row.Should().Be(12);
             obiekt.ClosingBrace.Column.Should().Be(5);
-            obiekt.Atrybuty.Count().Should().Be(1);
-            obiekt.Atrybuty.First().Name.Should().Be("Testowo");
-            obiekt.Modyfikatory.Should().BeEmpty();
+            obiekt.Attributes.Count().Should().Be(1);
+            obiekt.Attributes.First().Name.Should().Be("Testowo");
+            obiekt.Modifiers.Should().BeEmpty();
 
             SprawdzPola(obiekt);
 
@@ -48,8 +48,8 @@ namespace KruchyParserKoduTests.Unit
 
         private static void SprawdzPola(DefinedItem obiekt)
         {
-            obiekt.Pola.Count().Should().Be(2);
-            var pole = obiekt.Pola.First();
+            obiekt.Fields.Count().Should().Be(2);
+            var pole = obiekt.Fields.First();
             pole.Nazwa.Should().Be("PoleReadOnly");
             pole.NazwaTypu.Should().Be("IParser");
             pole.Modyfikatory[0].Name.Should().Be("private");
@@ -57,7 +57,7 @@ namespace KruchyParserKoduTests.Unit
             pole.Poczatek.Sprawdz(13, 9);
             pole.Koniec.Sprawdz(13, 47);
 
-            var poleStringReadonly = obiekt.Pola[1];
+            var poleStringReadonly = obiekt.Fields[1];
             poleStringReadonly.Nazwa.Should().Be("PoleStringReadOnly");
             poleStringReadonly.NazwaTypu.Should().Be("IList<string>");
             poleStringReadonly.Modyfikatory[0].Name.Should().Be("public");
@@ -66,29 +66,29 @@ namespace KruchyParserKoduTests.Unit
 
         private static void SprawdzPropertiesy(DefinedItem obiekt)
         {
-            obiekt.Propertiesy.Count().Should().Be(2);
-            var wlasciwosc = obiekt.Propertiesy.First();
+            obiekt.Properties.Count().Should().Be(2);
+            var wlasciwosc = obiekt.Properties.First();
             wlasciwosc.Nazwa.Should().Be("Wlasciwosc");
             wlasciwosc.NazwaTypu.Should().Be("int");
             wlasciwosc.Modyfikatory[0].Name.Should().Be("public");
             wlasciwosc.JestGet.Should().BeTrue();
             wlasciwosc.JestSet.Should().BeTrue();
 
-            var wlasciwosc2 = obiekt.Propertiesy[1];
+            var wlasciwosc2 = obiekt.Properties[1];
             wlasciwosc2.JestGet.Should().BeTrue();
             wlasciwosc2.JestSet.Should().BeFalse();
         }
 
         private void SprawdzKonstruktory(DefinedItem obiekt)
         {
-            obiekt.Konstruktory.Count().Should().Be(2);
+            obiekt.Constructors.Count().Should().Be(2);
 
-            var bezparametrowyKonstruktor = obiekt.Konstruktory[1];
+            var bezparametrowyKonstruktor = obiekt.Constructors[1];
             bezparametrowyKonstruktor.Parametry.Count().Should().Be(0);
             SprawdzPozycje(bezparametrowyKonstruktor.Poczatek, 26, 9);
             SprawdzPozycje(bezparametrowyKonstruktor.Koniec, 29, 10);
 
-            var konstrZ1Parametrem = obiekt.Konstruktory.First();
+            var konstrZ1Parametrem = obiekt.Constructors.First();
             konstrZ1Parametrem.Parametry.Count().Should().Be(1);
             var parametr = konstrZ1Parametrem.Parametry.First();
             parametr.NazwaParametru.Should().Be("a");
@@ -112,9 +112,9 @@ namespace KruchyParserKoduTests.Unit
 
         private void SprawdzMetody(DefinedItem obiekt)
         {
-            obiekt.Metody.Count().Should().Be(2);
+            obiekt.Methods.Count().Should().Be(2);
 
-            var metodaStatyczna = obiekt.Metody[0];
+            var metodaStatyczna = obiekt.Methods[0];
             metodaStatyczna.Name.Should().Be("MetodaStatyczna");
             metodaStatyczna.Parametry.Count().Should().Be(3);
             SprawdzModyfikatorMetodyStatycznej(metodaStatyczna);
@@ -131,7 +131,7 @@ namespace KruchyParserKoduTests.Unit
             metodaStatyczna.ClosingParameterBrace.Row.Should().Be(31);
             metodaStatyczna.ClosingParameterBrace.Column.Should().Be(74);
 
-            var metodaZwykla = obiekt.Metody[1];
+            var metodaZwykla = obiekt.Methods[1];
             metodaZwykla.Modyfikatory.First().Name.Should().Be("private");
             metodaZwykla.Name.Should().Be("MetodaZwykla");
             metodaZwykla.ReturnType.Nazwa.Should().Be("int");

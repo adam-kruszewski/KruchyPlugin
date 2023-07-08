@@ -41,13 +41,13 @@ namespace Kruchy.Plugin.Akcje.Akcje
         private void ZmienWKlasie(string modyfikator, DefinedItem klasa)
         {
             var dotychczasowyModyfikator =
-                SzukajDotychczasowegoModyfikatora(klasa.Modyfikatory);
+                SzukajDotychczasowegoModyfikatora(klasa.Modifiers);
 
             if (klasa.Owner == null && modyfikator == "private")
                 modyfikator = "";
 
             if (dotychczasowyModyfikator == null)
-                WstawModyfikator(modyfikator, klasa.RodzajObiektuObiekt.Poczatek);
+                WstawModyfikator(modyfikator, klasa.KindOfObjectUnit.Poczatek);
             else
                 ZmienModyfikator(modyfikator, dotychczasowyModyfikator);
         }

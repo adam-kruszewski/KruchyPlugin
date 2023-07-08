@@ -37,7 +37,7 @@ namespace KruchyParserKoduTests.Unit
                 new WczytywaczZawartosciPrzykladow()
                     .DajZawartoscPrzykladu("MethodAndConstructorWithCode.cs"));
 
-            _constructor = parsedCode.DefiniowaneObiekty.Single().Konstruktory.Single();
+            _constructor = parsedCode.DefiniowaneObiekty.Single().Constructors.Single();
 
             _contructorInstructions = _constructor.Instructions;
 
@@ -48,7 +48,7 @@ namespace KruchyParserKoduTests.Unit
                 _constructorInstruction2 = _contructorInstructions.Skip(1).FirstOrDefault();
             }
 
-            _method = parsedCode.DefiniowaneObiekty.Single().Metody.Single();
+            _method = parsedCode.DefiniowaneObiekty.Single().Methods.Single();
 
             _methodInstructions = _method.Instructions;
 

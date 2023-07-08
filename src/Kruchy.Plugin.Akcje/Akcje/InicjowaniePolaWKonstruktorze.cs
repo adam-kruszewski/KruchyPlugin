@@ -56,9 +56,9 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
             var poziomKlasy = klasa.WyliczPoziomMetody();
 
-            if (klasa.Konstruktory.Any())
+            if (klasa.Constructors.Any())
             {
-                var konstruktor = klasa.Konstruktory.First();
+                var konstruktor = klasa.Constructors.First();
                 solution.AktualnyDokument.InsertInLine(
                     DajZawartoscDoDodania(nazwa, typ, true, poziomKlasy),
                     konstruktor.ClosingBrace.Row);

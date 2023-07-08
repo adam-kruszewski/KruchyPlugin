@@ -63,7 +63,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             var elementComplexType = SzukajElementuWgNazwy(element, "xs:complexType");
             var elementSequenceWHeader = SzukajElementuWgNazwy(elementComplexType, "xs:sequence");
 
-            foreach (var wlasciwosc in klasaView.Propertiesy.Where(o => !Kolekcja(o)))
+            foreach (var wlasciwosc in klasaView.Properties.Where(o => !Kolekcja(o)))
             {
                 var elementOdpowiadajacy =
                     SzukajElementuWgAttrybutuName(elementSequenceWHeader, wlasciwosc.Nazwa);
@@ -89,7 +89,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
         {
             var rootElement = dokument.DocumentElement;
 
-            foreach (var wlasciwosc in klasaView.Propertiesy.Where(o => Kolekcja(o)))
+            foreach (var wlasciwosc in klasaView.Properties.Where(o => Kolekcja(o)))
                 UzupelnijDefinicjePolaTypuKolekcja(dokument, rootElement, wlasciwosc);
         }
 
@@ -332,7 +332,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             var klasy =
                 sparsowane
                     .DefiniowaneObiekty
-                        .Where(o => o.Rodzaj == RodzajObiektu.Klasa);
+                        .Where(o => o.KindOfItem == RodzajObiektu.Klasa);
 
             DefinedItem klasaView;
             klasaView =

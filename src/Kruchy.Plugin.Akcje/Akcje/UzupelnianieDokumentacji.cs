@@ -45,13 +45,13 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
             listaParsowanychJednostek.AddRange(definiowaneObiekty);
 
-            listaParsowanychJednostek.AddRange(definiowaneObiekty.SelectMany(o => o.Konstruktory));
+            listaParsowanychJednostek.AddRange(definiowaneObiekty.SelectMany(o => o.Constructors));
 
-            listaParsowanychJednostek.AddRange(definiowaneObiekty.SelectMany(o => o.Pola));
+            listaParsowanychJednostek.AddRange(definiowaneObiekty.SelectMany(o => o.Fields));
 
-            listaParsowanychJednostek.AddRange(definiowaneObiekty.SelectMany(o => o.Propertiesy));
+            listaParsowanychJednostek.AddRange(definiowaneObiekty.SelectMany(o => o.Properties));
 
-            listaParsowanychJednostek.AddRange(definiowaneObiekty.SelectMany(o => o.Metody));
+            listaParsowanychJednostek.AddRange(definiowaneObiekty.SelectMany(o => o.Methods));
 
             listaParsowanychJednostek.AddRange(sparsowane.DefiniowaneEnumeracje);
 
@@ -68,7 +68,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         private IEnumerable<DefinedItem> DajDefiniowanePodObiekty(DefinedItem o)
         {
-            return o.ObiektyWewnetrzne.Union(o.ObiektyWewnetrzne.SelectMany(k => DajDefiniowanePodObiekty(k)));
+            return o.InternalDefinedItems.Union(o.InternalDefinedItems.SelectMany(k => DajDefiniowanePodObiekty(k)));
         }
 
         private void PrzetworzObiekt(DefinedItem obiekt)
@@ -82,14 +82,14 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
                 GennerujSummary(poczatek, builder, GenerujSummaryKlasyLubInterfejsu(obiekt));
 
-                DodajOpisParametrowGenerycznych(obiekt.ParametryGeneryczne, poczatek, builder);
+                DodajOpisParametrowGenerycznych(obiekt.GenericParameters, poczatek, builder);
 
                 var doWstawienia = builder.ToString();
 
                 var numerLinii = obiekt.Poczatek.Row;
 
-                if (obiekt.Atrybuty.Any())
-                    numerLinii = obiekt.Atrybuty.OrderBy(o => o.Poczatek.Row).First().Poczatek.Row;
+                if (obiekt.Attributes.Any())
+                    numerLinii = obiekt.Attributes.OrderBy(o => o.Poczatek.Row).First().Poczatek.Row;
 
                 solution.AktualnyDokument.InsertInLine(doWstawienia, numerLinii);
             }

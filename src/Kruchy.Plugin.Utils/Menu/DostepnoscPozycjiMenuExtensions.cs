@@ -58,7 +58,7 @@ namespace Kruchy.Plugin.Utils.Menu
                 var p = Parsuj(solution);
                 if (p == null || p.DefiniowaneObiekty.Count < 1)
                     return false;
-                return p.DefiniowaneObiekty.First().Rodzaj == RodzajObiektu.Klasa;
+                return p.DefiniowaneObiekty.First().KindOfItem == RodzajObiektu.Klasa;
             }
 
             if (o == WymaganieDostepnosci.Interfejs)
@@ -66,7 +66,7 @@ namespace Kruchy.Plugin.Utils.Menu
                 var p = Parsuj(solution);
                 if (p == null || p.DefiniowaneObiekty.Count < 1)
                     return false;
-                return p.DefiniowaneObiekty.First().Rodzaj == RodzajObiektu.Interfejs;
+                return p.DefiniowaneObiekty.First().KindOfItem == RodzajObiektu.Interfejs;
             }
 
             if (o == WymaganieDostepnosci.Builder)

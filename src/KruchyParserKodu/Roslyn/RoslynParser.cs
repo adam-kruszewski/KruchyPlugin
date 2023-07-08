@@ -175,17 +175,17 @@ namespace KruchyParserKodu.Roslyn
         {
             var definiowanyObiekt = new DefinedItem();
             definiowanyObiekt.Name = interfaceSyntax.Identifier.ValueText;
-            definiowanyObiekt.Rodzaj = RodzajObiektu.Interfejs;
-            UstawPolozenie(interfaceSyntax.Keyword, definiowanyObiekt.RodzajObiektuObiekt);
+            definiowanyObiekt.KindOfItem = RodzajObiektu.Interfejs;
+            UstawPolozenie(interfaceSyntax.Keyword, definiowanyObiekt.KindOfObjectUnit);
 
             UstawPolozenie(interfaceSyntax.SyntaxTree, definiowanyObiekt, interfaceSyntax);
             UstawPolozeniePoczatkowejKlamerki(definiowanyObiekt, interfaceSyntax.OpenBraceToken);
             UstawPolozenieKoncowejKlamerki(definiowanyObiekt, interfaceSyntax.CloseBraceToken);
 
-            UzupelnijAtrybuty(interfaceSyntax.AttributeLists, definiowanyObiekt.Atrybuty);
-            UzupelnijModyfikatory(interfaceSyntax.Modifiers, definiowanyObiekt.Modyfikatory);
-            UzupelnijWlasciwosci(definiowanyObiekt.Propertiesy, interfaceSyntax, definiowanyObiekt);
-            UzupelnijMetody(definiowanyObiekt.Metody, interfaceSyntax, definiowanyObiekt);
+            UzupelnijAtrybuty(interfaceSyntax.AttributeLists, definiowanyObiekt.Attributes);
+            UzupelnijModyfikatory(interfaceSyntax.Modifiers, definiowanyObiekt.Modifiers);
+            UzupelnijWlasciwosci(definiowanyObiekt.Properties, interfaceSyntax, definiowanyObiekt);
+            UzupelnijMetody(definiowanyObiekt.Methods, interfaceSyntax, definiowanyObiekt);
             UzupelniejTypyDziedziczone(definiowanyObiekt, interfaceSyntax);
 
             ParsujDokumentacje(definiowanyObiekt, interfaceSyntax);
@@ -200,24 +200,24 @@ namespace KruchyParserKodu.Roslyn
         {
             var definiowanyObiekt = new DefinedItem();
             definiowanyObiekt.Name = klasa.Identifier.ValueText;
-            definiowanyObiekt.Rodzaj = RodzajObiektu.Klasa;
-            UstawPolozenie(klasa.Keyword, definiowanyObiekt.RodzajObiektuObiekt);
+            definiowanyObiekt.KindOfItem = RodzajObiektu.Klasa;
+            UstawPolozenie(klasa.Keyword, definiowanyObiekt.KindOfObjectUnit);
 
             UstawPolozenie(syntaxTree, definiowanyObiekt, klasa);
             UstawPolozeniePoczatkowejKlamerki(definiowanyObiekt, klasa.OpenBraceToken);
             UstawPolozenieKoncowejKlamerki(definiowanyObiekt, klasa.CloseBraceToken);
 
-            UzupelnijAtrybuty(klasa.AttributeLists, definiowanyObiekt.Atrybuty);
+            UzupelnijAtrybuty(klasa.AttributeLists, definiowanyObiekt.Attributes);
 
-            UzupelnijModyfikatory(klasa.Modifiers, definiowanyObiekt.Modyfikatory);
+            UzupelnijModyfikatory(klasa.Modifiers, definiowanyObiekt.Modifiers);
 
-            UzupelnijPola(definiowanyObiekt.Pola, klasa, definiowanyObiekt);
+            UzupelnijPola(definiowanyObiekt.Fields, klasa, definiowanyObiekt);
 
-            UzupelnijWlasciwosci(definiowanyObiekt.Propertiesy, klasa, definiowanyObiekt);
+            UzupelnijWlasciwosci(definiowanyObiekt.Properties, klasa, definiowanyObiekt);
 
-            UzupelnijKontruktory(definiowanyObiekt.Konstruktory, klasa, definiowanyObiekt);
+            UzupelnijKontruktory(definiowanyObiekt.Constructors, klasa, definiowanyObiekt);
 
-            UzupelnijMetody(definiowanyObiekt.Metody, klasa, definiowanyObiekt);
+            UzupelnijMetody(definiowanyObiekt.Methods, klasa, definiowanyObiekt);
 
             UzupelniejTypyDziedziczone(definiowanyObiekt, klasa);
 
@@ -232,7 +232,7 @@ namespace KruchyParserKodu.Roslyn
             foreach (var klasaWewnetrzna in klasyWewnetrzne)
             {
                 klasaWewnetrzna.Owner = definiowanyObiekt;
-                definiowanyObiekt.ObiektyWewnetrzne.Add(klasaWewnetrzna);
+                definiowanyObiekt.InternalDefinedItems.Add(klasaWewnetrzna);
             }
 
             return definiowanyObiekt;
@@ -240,7 +240,7 @@ namespace KruchyParserKodu.Roslyn
 
         private void ParsujParametryGeneryczne(DefinedItem obiekt, TypeParameterListSyntax parameterListSyntax)
         {
-            ParsujParametryGeneryczne(obiekt.ParametryGeneryczne, parameterListSyntax);
+            ParsujParametryGeneryczne(obiekt.GenericParameters, parameterListSyntax);
         }
 
         private void ParsujParametryGeneryczne(
@@ -266,7 +266,7 @@ namespace KruchyParserKodu.Roslyn
         private void UzupelniejTypyDziedziczone(DefinedItem obiekt, TypeDeclarationSyntax syntax)
         {
             if (syntax.BaseList != null)
-                obiekt.NadklasaIInterfejsy.AddRange(
+                obiekt.SuperClassAndInterfaces.AddRange(
                     syntax.BaseList.Types.Select(o => DajTypDziedziczony(o)));
 
         }

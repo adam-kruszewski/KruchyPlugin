@@ -40,13 +40,13 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
 
             string nazwaKlasyDao = null;
             string nazwaInterfejsuDao = null;
-            if (obiekt.Rodzaj == RodzajObiektu.Klasa)
+            if (obiekt.KindOfItem == RodzajObiektu.Klasa)
             {
                 nazwaKlasyDao = obiekt.Name;
                 nazwaInterfejsuDao = "I" + nazwaKlasyDao;
             }
 
-            if (obiekt.Rodzaj == RodzajObiektu.Interfejs)
+            if (obiekt.KindOfItem == RodzajObiektu.Interfejs)
             {
                 nazwaInterfejsuDao = obiekt.Name;
                 nazwaKlasyDao = nazwaInterfejsuDao.Substring(1);
@@ -139,7 +139,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             sparsowane
                 .DefiniowaneObiekty
                     .Single()
-                        .Metody
+                        .Methods
                             .Where(o => o.ReturnType.Nazwa.CompareTo(nazwaInterfejsuDao) > 0)
                                 .FirstOrDefault();
 

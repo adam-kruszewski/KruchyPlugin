@@ -21,7 +21,7 @@ namespace KruchyParserKoduTests.Unit
             parsowane = Parser.Parsuj(
                 new WczytywaczZawartosciPrzykladow()
                     .DajZawartoscPrzykladu("KlasaDoParsowaniaAtrybutow.cs"));
-            metody = parsowane.DefiniowaneObiekty.First().Metody;
+            metody = parsowane.DefiniowaneObiekty.First().Methods;
         }
 
         [Test]
@@ -30,9 +30,9 @@ namespace KruchyParserKoduTests.Unit
             //arrange
             var klasa = parsowane.DefiniowaneObiekty.First();
             //assert
-            klasa.Atrybuty.Count().Should().Be(2);
+            klasa.Attributes.Count().Should().Be(2);
             var atrybutMapowan =
-                klasa.Atrybuty.Where(o => o.Name == "Map").FirstOrDefault();
+                klasa.Attributes.Where(o => o.Name == "Map").FirstOrDefault();
             atrybutMapowan.Should().NotBeNull();
             atrybutMapowan.Parameters.Count.Should().Be(1);
             atrybutMapowan.Parameters.First().Value

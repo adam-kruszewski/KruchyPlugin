@@ -29,21 +29,21 @@ namespace KruchyParserKoduTests.Unit
 
             //assert
             var klasaGlowna = sparsowane.DefiniowaneObiekty.Single();
-            klasaGlowna.Rodzaj.Should().Be(RodzajObiektu.Klasa);
+            klasaGlowna.KindOfItem.Should().Be(RodzajObiektu.Klasa);
             klasaGlowna.Name.Should().Be("ZKlasaWewnetrzna");
-            klasaGlowna.Propertiesy.Single().Nazwa.Should().Be("WlasciwoscWGlownym");
+            klasaGlowna.Properties.Single().Nazwa.Should().Be("WlasciwoscWGlownym");
 
-            var klasaWewnetrzna = klasaGlowna.ObiektyWewnetrzne.Single();
-            klasaWewnetrzna.Rodzaj.Should().Be(RodzajObiektu.Klasa);
+            var klasaWewnetrzna = klasaGlowna.InternalDefinedItems.Single();
+            klasaWewnetrzna.KindOfItem.Should().Be(RodzajObiektu.Klasa);
             klasaWewnetrzna.Name.Should().Be("KlasaWewnetrzna");
-            klasaWewnetrzna.Propertiesy.Single().Nazwa.Should().Be("WlasciwoscWWewnetrznym");
+            klasaWewnetrzna.Properties.Single().Nazwa.Should().Be("WlasciwoscWWewnetrznym");
             klasaWewnetrzna.Owner.Should().Be(klasaGlowna);
 
-            var metodaWewnetrzna = klasaWewnetrzna.Metody.Single();
+            var metodaWewnetrzna = klasaWewnetrzna.Methods.Single();
             metodaWewnetrzna.Name.Should().Be("Metoda1");
             metodaWewnetrzna.Owner.Should().Be(klasaWewnetrzna);
 
-            var konstruktorWewnetrznej = klasaWewnetrzna.Konstruktory.Single();
+            var konstruktorWewnetrznej = klasaWewnetrzna.Constructors.Single();
             konstruktorWewnetrznej.Owner.Should().Be(klasaWewnetrzna);
         }
     }

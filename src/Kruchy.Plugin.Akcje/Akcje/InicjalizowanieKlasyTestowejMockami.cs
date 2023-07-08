@@ -39,7 +39,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
             var parserTestowanego = Parser.ParsujPlik(plikTestowany.FullPath);
 
-            var konstruktor = parserTestowanego.DefiniowaneObiekty?.First()?.Konstruktory?.Single();
+            var konstruktor = parserTestowanego.DefiniowaneObiekty?.First()?.Constructors?.Single();
 
             if (konstruktor != null)
             {
@@ -86,7 +86,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         {
             var parsowane = Parser.Parsuj(solution.AktualnyDokument.GetContent());
 
-            var polaZdefiniowane = parsowane.DefiniowaneObiekty.First().Pola;
+            var polaZdefiniowane = parsowane.DefiniowaneObiekty.First().Fields;
 
             return polaZTypemZKonstruktora
                 .Where(o =>
@@ -118,9 +118,9 @@ namespace Kruchy.Plugin.Akcje.Akcje
         {
             int numerLiniiDoDodawaniaPol;
 
-            if (parsowane.DefiniowaneObiekty.First().Pola.Any())
+            if (parsowane.DefiniowaneObiekty.First().Fields.Any())
             {
-                var ostatnie = parsowane.DefiniowaneObiekty.First().Pola.Last();
+                var ostatnie = parsowane.DefiniowaneObiekty.First().Fields.Last();
 
                 numerLiniiDoDodawaniaPol = ostatnie.Koniec.Row + 1;
             }
@@ -136,7 +136,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         {
             var parsowane = Parser.Parsuj(solution.AktualnyDokument.GetContent());
 
-            if (!parsowane.DefiniowaneObiekty.First().Pola.Any(o => o.Nazwa == NazwaPolaInstancji))
+            if (!parsowane.DefiniowaneObiekty.First().Fields.Any(o => o.Nazwa == NazwaPolaInstancji))
             {
                 var nowaLinia = new PoleBuilder()
                     .ZNazwa(NazwaPolaInstancji)
@@ -158,7 +158,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         {
             var parsowane = Parser.Parsuj(solution.AktualnyDokument.GetContent());
 
-            var aktualna = parsowane.DefiniowaneObiekty.First().Metody.SingleOrDefault(o => o.Name == NazwaMetody);
+            var aktualna = parsowane.DefiniowaneObiekty.First().Methods.SingleOrDefault(o => o.Name == NazwaMetody);
 
             PlaceInFile poczatek;
 
@@ -171,7 +171,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                     aktualna.Koniec.Row, aktualna.Koniec.Column);
             }else
             {
-                poczatek = parsowane.DefiniowaneObiekty.First().Pola.LastOrDefault()?.Koniec;
+                poczatek = parsowane.DefiniowaneObiekty.First().Fields.LastOrDefault()?.Koniec;
 
                 if (poczatek == null)
                 {

@@ -39,7 +39,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             var parsowane = Parser.Parsuj(zawartosc);
             if (parsowane.DefiniowaneObiekty.Count == 1)
             {
-                return parsowane.DefiniowaneObiekty[0].Rodzaj == RodzajObiektu.Interfejs;
+                return parsowane.DefiniowaneObiekty[0].KindOfItem == RodzajObiektu.Interfejs;
             }
             else
                 throw new Exception("Brak zdefiniowanego obiektu");
@@ -70,7 +70,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 return;
 
             var znalezionaMetoda =
-                parsowane.DefiniowaneObiekty[0].Metody
+                parsowane.DefiniowaneObiekty[0].Methods
                     .Where(o => metoda.TheSameMethod(o))
                         .FirstOrDefault();
 

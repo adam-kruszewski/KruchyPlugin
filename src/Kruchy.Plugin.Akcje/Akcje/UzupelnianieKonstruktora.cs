@@ -53,19 +53,19 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 return;
             }
 
-            if (obiekt.Konstruktory.Count > 1)
+            if (obiekt.Constructors.Count > 1)
             {
                 MessageBox.Show("Klasa ma więcej niż jeden konstruktor");
                 return;
             }
-            var konstruktor = obiekt.Konstruktory.FirstOrDefault();
+            var konstruktor = obiekt.Constructors.FirstOrDefault();
 
             var polaDoDodania =
-                WyliczPolaDoDodaniaDoKonstruktora(obiekt.Pola, konstruktor);
+                WyliczPolaDoDodaniaDoKonstruktora(obiekt.Fields, konstruktor);
 
             if (polaDoDodania.Count > 0)
             {
-                var polaReadOnly = obiekt.Pola.Where(
+                var polaReadOnly = obiekt.Fields.Where(
                     o => InicjowaneWKontruktorze(o));
 
                 var polaDoKonstruktoraNadklasy =
@@ -95,12 +95,12 @@ namespace Kruchy.Plugin.Akcje.Akcje
                     //, bo są pola które czekają na dodanie do konstruktora
                     int maksymalnyNumerLiniiPol = obiekt.StartingBrace.Row + 1;
 
-                    if (obiekt.Pola.Any())
+                    if (obiekt.Fields.Any())
                         maksymalnyNumerLiniiPol =
-                            obiekt.Pola.Select(o => o.Koniec.Row).Max();
+                            obiekt.Fields.Select(o => o.Koniec.Row).Max();
                     else
                         maksymalnyNumerLiniiPol =
-                            obiekt.Propertiesy.Select(o => o.Koniec.Row).Max();
+                            obiekt.Properties.Select(o => o.Koniec.Row).Max();
 
                     var dodatek = new StringBuilder().AppendLine().ToString();
                     solution.AktualnyDokument.InsertInLine(
@@ -207,7 +207,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             var klasy =
                 parsowanyPlik
                     .DefiniowaneObiekty
-                        .Where(o => o.Rodzaj == RodzajObiektu.Klasa);
+                        .Where(o => o.KindOfItem == RodzajObiektu.Klasa);
 
             if (klasy.Count() == 1)
                 return klasy.First();

@@ -27,9 +27,9 @@ namespace KruchyParserKodu.ParserKodu
         private static IEnumerable<Method> WszystkieMetodyObiektu(DefinedItem obiekt)
         {
             var metodyObiektowWewnetrznych =
-                obiekt.ObiektyWewnetrzne.SelectMany(o => WszystkieMetodyObiektu(o));
+                obiekt.InternalDefinedItems.SelectMany(o => WszystkieMetodyObiektu(o));
 
-            return obiekt.Metody.Union(metodyObiektowWewnetrznych);
+            return obiekt.Methods.Union(metodyObiektowWewnetrznych);
         }
 
         public static Constructor SzukajKonstruktoraWLinii(
@@ -49,10 +49,10 @@ namespace KruchyParserKodu.ParserKodu
         private static IEnumerable<Constructor> WszystkieKonstruktoryObiektow(DefinedItem obiekt)
         {
             var konstruktoryObiektowWewnetrznych =
-                obiekt.ObiektyWewnetrzne
+                obiekt.InternalDefinedItems
                     .SelectMany(o => WszystkieKonstruktoryObiektow(o));
 
-            return obiekt.Konstruktory.Union(konstruktoryObiektowWewnetrznych);
+            return obiekt.Constructors.Union(konstruktoryObiektowWewnetrznych);
         }
 
         public static Property SzukajPropertiesaWLinii(
@@ -74,16 +74,16 @@ namespace KruchyParserKodu.ParserKodu
         private static IEnumerable<Property> WszystkiePropertiesyObiektow(DefinedItem obiekt)
         {
             var propertiesyObiektowWewnetrznych =
-                obiekt.ObiektyWewnetrzne.SelectMany(o => WszystkiePropertiesyObiektow(o));
+                obiekt.InternalDefinedItems.SelectMany(o => WszystkiePropertiesyObiektow(o));
 
-            return obiekt.Propertiesy.Union(propertiesyObiektowWewnetrznych);
+            return obiekt.Properties.Union(propertiesyObiektowWewnetrznych);
         }
 
         public static Pole SzukajPolaWLinii(
             this Plik parsowane,
             int numerLinii)
         {
-            var pola = parsowane.DefiniowaneObiekty.SelectMany(o => o.Pola);
+            var pola = parsowane.DefiniowaneObiekty.SelectMany(o => o.Fields);
             return
                 pola
                     .Where(o =>
@@ -98,10 +98,10 @@ namespace KruchyParserKodu.ParserKodu
                 throw new Exception("Liczba definiowanych obiektów rózna od 1");
             var obiekt = parsowane.DefiniowaneObiekty.First();
 
-            var ostatnieLinieDefinicji = obiekt.Pola.Select(o => o.Koniec)
-                .Union(obiekt.Propertiesy.Select(o => o.Koniec))
-                .Union(obiekt.Konstruktory.Select(o => o.Koniec))
-                .Union(obiekt.Metody.Select(o => o.Koniec))
+            var ostatnieLinieDefinicji = obiekt.Fields.Select(o => o.Koniec)
+                .Union(obiekt.Properties.Select(o => o.Koniec))
+                .Union(obiekt.Constructors.Select(o => o.Koniec))
+                .Union(obiekt.Methods.Select(o => o.Koniec))
                     .Select(o => o.Row);
             if (ostatnieLinieDefinicji.Count() == 0)
             {
@@ -118,8 +118,8 @@ namespace KruchyParserKodu.ParserKodu
             var obiekt = parsowane.SzukajKlasyWLinii(numerLiniiWObiekcie);
 
             var ostatnieLinieDefinicji =
-                obiekt.Pola.Select(o => o.Koniec)
-                    .Union(obiekt.Propertiesy.Select(o => o.Koniec))
+                obiekt.Fields.Select(o => o.Koniec)
+                    .Union(obiekt.Properties.Select(o => o.Koniec))
                         .Select(o => o.Row);
 
             if (ostatnieLinieDefinicji.Count() == 0)
@@ -138,7 +138,7 @@ namespace KruchyParserKodu.ParserKodu
                 parsowane
                     .DefiniowaneObiekty
                     .SelectMany(o => WszystkieObiektyObiektu(o))
-                    .Where(o => o.Rodzaj == RodzajObiektu.Klasa)
+                    .Where(o => o.KindOfItem == RodzajObiektu.Klasa)
                     .Where(o => o.ZawieraLinie(numerLinii))
                     .OrderBy(o => WyliczOdleglosc(o, numerLinii))
                             .FirstOrDefault();
@@ -153,7 +153,7 @@ namespace KruchyParserKodu.ParserKodu
         public static IEnumerable<DefinedItem> WszystkieObiektyObiektu(DefinedItem obiekt)
         {
             var wynik =
-                obiekt.ObiektyWewnetrzne
+                obiekt.InternalDefinedItems
                     .SelectMany(o => WszystkieObiektyObiektu(o))
                         .ToList();
 

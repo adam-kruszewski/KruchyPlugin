@@ -14,7 +14,7 @@ namespace Kruchy.Plugin.Utils.Extensions
             var parsowane = Parser.Parsuj(zawartosc);
             if (parsowane.DefiniowaneObiekty.Count == 1)
             {
-                return parsowane.DefiniowaneObiekty[0].Rodzaj == RodzajObiektu.Interfejs;
+                return parsowane.DefiniowaneObiekty[0].KindOfItem == RodzajObiektu.Interfejs;
             }
             else
                 throw new Exception("Brak zdefiniowanego obiektu");
@@ -64,7 +64,7 @@ namespace Kruchy.Plugin.Utils.Extensions
             {
                 var obiekt = parsowane.DefiniowaneObiekty[0];
                 if (obiekt.Name.EndsWith("Builder")
-                    && obiekt.Rodzaj == RodzajObiektu.Klasa)
+                    && obiekt.KindOfItem == RodzajObiektu.Klasa)
                     return true;
             }
             return false;
@@ -79,7 +79,7 @@ namespace Kruchy.Plugin.Utils.Extensions
             if (obiekt != null)
             {
                 if (obiekt.Name.EndsWith("Builder")
-                    && obiekt.Rodzaj == RodzajObiektu.Klasa)
+                    && obiekt.KindOfItem == RodzajObiektu.Klasa)
                     return true;
             }
             return false;

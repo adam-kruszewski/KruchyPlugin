@@ -20,19 +20,19 @@ namespace KruchyParserKoduTests.Unit
             //assert
             var interfejs = sparsowane.DefiniowaneObiekty.Single();
 
-            interfejs.Rodzaj = RodzajObiektu.Interfejs;
+            interfejs.KindOfItem = RodzajObiektu.Interfejs;
             interfejs.Name = "InterfejsDoParsowania";
             interfejs.Owner.Should().BeNull();
 
-            interfejs.Konstruktory.Should().BeEmpty();
-            interfejs.Pola.Should().BeEmpty();
+            interfejs.Constructors.Should().BeEmpty();
+            interfejs.Fields.Should().BeEmpty();
 
-            interfejs.Propertiesy.Should().HaveCount(2);
-            interfejs.Metody.Should().HaveCount(1);
+            interfejs.Properties.Should().HaveCount(2);
+            interfejs.Methods.Should().HaveCount(1);
 
-            interfejs.Atrybuty.Should().BeEmpty();
-            interfejs.NadklasaIInterfejsy.Should().BeEmpty();
-            interfejs.ObiektyWewnetrzne.Should().BeEmpty();
+            interfejs.Attributes.Should().BeEmpty();
+            interfejs.SuperClassAndInterfaces.Should().BeEmpty();
+            interfejs.InternalDefinedItems.Should().BeEmpty();
 
             interfejs.StartingBrace.Sprawdz(7, 5);
             interfejs.ClosingBrace.Sprawdz(12, 5);
@@ -52,20 +52,20 @@ namespace KruchyParserKoduTests.Unit
             //assert
             var interfejs = sparsowane.DefiniowaneObiekty.Single();
 
-            interfejs.NadklasaIInterfejsy.Should().HaveCount(2);
+            interfejs.SuperClassAndInterfaces.Should().HaveCount(2);
 
-            interfejs.NadklasaIInterfejsy[0].Nazwa.Should().Be("InterfejsDoParsowania");
-            interfejs.NadklasaIInterfejsy[0].NazwyTypowParametrow.Should().BeEmpty();
-            interfejs.NadklasaIInterfejsy[0].Poczatek.Sprawdz(5, 53);
-            interfejs.NadklasaIInterfejsy[0].Koniec.Sprawdz(5, 74);
+            interfejs.SuperClassAndInterfaces[0].Nazwa.Should().Be("InterfejsDoParsowania");
+            interfejs.SuperClassAndInterfaces[0].NazwyTypowParametrow.Should().BeEmpty();
+            interfejs.SuperClassAndInterfaces[0].Poczatek.Sprawdz(5, 53);
+            interfejs.SuperClassAndInterfaces[0].Koniec.Sprawdz(5, 74);
 
-            interfejs.NadklasaIInterfejsy[1].Nazwa.Should().Be("Interfejs2");
-            interfejs.NadklasaIInterfejsy[1].NazwyTypowParametrow.Should().HaveCount(2);
-            var parametryTypu = interfejs.NadklasaIInterfejsy[1].NazwyTypowParametrow;
+            interfejs.SuperClassAndInterfaces[1].Nazwa.Should().Be("Interfejs2");
+            interfejs.SuperClassAndInterfaces[1].NazwyTypowParametrow.Should().HaveCount(2);
+            var parametryTypu = interfejs.SuperClassAndInterfaces[1].NazwyTypowParametrow;
             parametryTypu[0].Should().Be("Klasa1");
             parametryTypu[1].Should().Be("int?");
-            interfejs.NadklasaIInterfejsy[1].Poczatek.Sprawdz(5, 76);
-            interfejs.NadklasaIInterfejsy[1].Koniec.Sprawdz(5, 100);
+            interfejs.SuperClassAndInterfaces[1].Poczatek.Sprawdz(5, 76);
+            interfejs.SuperClassAndInterfaces[1].Koniec.Sprawdz(5, 100);
         }
     }
 }

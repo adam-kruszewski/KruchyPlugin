@@ -26,13 +26,13 @@ namespace KruchyParserKoduTests.Unit
         {
             var klasa = sparsowane.DefiniowaneObiekty.Single();
 
-            klasa.Modyfikatory.Should().HaveCount(2);
-            var modyfikatorPublic = klasa.Modyfikatory[0];
+            klasa.Modifiers.Should().HaveCount(2);
+            var modyfikatorPublic = klasa.Modifiers[0];
             modyfikatorPublic.Name.Should().Be("public");
             modyfikatorPublic.Poczatek.Sprawdz(3, 5);
             modyfikatorPublic.Koniec.Sprawdz(3, 11);
 
-            var modyfikatorStatic = klasa.Modyfikatory[1];
+            var modyfikatorStatic = klasa.Modifiers[1];
             modyfikatorStatic.Name.Should().Be("static");
             modyfikatorStatic.Poczatek.Sprawdz(3, 12);
             modyfikatorStatic.Koniec.Sprawdz(3, 18);
@@ -41,10 +41,10 @@ namespace KruchyParserKoduTests.Unit
         [Test]
         public void ParsujeModyfikatorKlasyWewntrzenej()
         {
-            var klasa = sparsowane.DefiniowaneObiekty.Single().ObiektyWewnetrzne.Single();
+            var klasa = sparsowane.DefiniowaneObiekty.Single().InternalDefinedItems.Single();
 
-            klasa.Modyfikatory.Should().HaveCount(1);
-            var modyfikatorPublic = klasa.Modyfikatory[0];
+            klasa.Modifiers.Should().HaveCount(1);
+            var modyfikatorPublic = klasa.Modifiers[0];
             modyfikatorPublic.Name.Should().Be("private");
             modyfikatorPublic.Poczatek.Sprawdz(5, 9);
             modyfikatorPublic.Koniec.Sprawdz(5, 16);

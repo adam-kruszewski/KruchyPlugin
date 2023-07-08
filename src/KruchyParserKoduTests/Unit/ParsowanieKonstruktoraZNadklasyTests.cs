@@ -25,7 +25,7 @@ namespace KruchyParserKoduTests.Unit
                 sparsowane
                     .DefiniowaneObiekty
                         .Single()
-                            .Konstruktory
+                            .Constructors
                                 .Single();
             var parametrKonstruktoraZNadklasy
                 = konstruktor.ParentClassContructorParameters.SingleOrDefault();

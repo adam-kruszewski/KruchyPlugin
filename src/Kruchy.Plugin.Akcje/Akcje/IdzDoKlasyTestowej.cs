@@ -84,7 +84,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             if (KlasaServiceTests(klasa))
             {
                 var nazwaKlasyLubInterfejsu =
-                    klasa.NadklasaIInterfejsy.First().NazwyTypowParametrow.First();
+                    klasa.SuperClassAndInterfaces.First().NazwyTypowParametrow.First();
                 if (nazwaKlasyLubInterfejsu.StartsWith("I") && char.IsUpper(nazwaKlasyLubInterfejsu[1]))
                     return nazwaKlasyLubInterfejsu.Substring(1);
                 else
@@ -96,7 +96,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         private bool KlasaServiceTests(DefinedItem klasa)
         {
-            var nadklasa = klasa.NadklasaIInterfejsy.FirstOrDefault();
+            var nadklasa = klasa.SuperClassAndInterfaces.FirstOrDefault();
             if (nadklasa == null)
                 return false;
 
@@ -129,7 +129,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         private string DajRdzenNazwyKlasyTestow(Plik parsowane)
         {
             var nazwa = parsowane.DefiniowaneObiekty.First().Name;
-            if (parsowane.DefiniowaneObiekty.First().Rodzaj == RodzajObiektu.Klasa)
+            if (parsowane.DefiniowaneObiekty.First().KindOfItem == RodzajObiektu.Klasa)
                 return nazwa;
             else
                 return nazwa.Substring(1);

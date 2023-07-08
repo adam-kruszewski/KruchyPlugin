@@ -82,7 +82,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             var propertiesyKolumn = plik
                 .DefiniowaneObiekty
                     .First()
-                        .Propertiesy
+                        .Properties
                             .Where(o => o.JestGet && o.JestSet)
                                 .Where(o => !MaAtrybutuReferencedObject(o));
             return propertiesyKolumn.Select(o => o.Poczatek.Row).ToList();

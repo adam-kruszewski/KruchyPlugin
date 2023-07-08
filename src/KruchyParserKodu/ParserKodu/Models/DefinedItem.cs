@@ -12,34 +12,34 @@ namespace KruchyParserKodu.ParserKodu.Models
                         , IWithComment
                             , IWithDocumentation
     {
-        public RodzajObiektu Rodzaj
+        public RodzajObiektu KindOfItem
         {
-            get => RodzajObiektuObiekt.RodzajObiektu;
+            get => KindOfObjectUnit.RodzajObiektu;
             set
             {
-                RodzajObiektuObiekt.RodzajObiektu = value;
+                KindOfObjectUnit.RodzajObiektu = value;
             }
         }
 
-        public RodzajObiektuObiekt RodzajObiektuObiekt { get; set; }
+        public RodzajObiektuObiekt KindOfObjectUnit { get; set; }
 
         public DefinedItem Owner { get; set; }
 
         public string Name { get; set; }
-        public IList<Constructor> Konstruktory { get; private set; }
-        public IList<Pole> Pola { get; private set; }
-        public IList<Pole> NiestatycznePola
+        public IList<Constructor> Constructors { get; private set; }
+        public IList<Pole> Fields { get; private set; }
+        public IList<Pole> NonStaticFields
         {
-            get { return SzukajPolNiestatycznych().ToList(); }
+            get { return FindNonStaticFields().ToList(); }
         }
 
-        public IList<Modifier> Modyfikatory { get; set; }
-        public IList<Property> Propertiesy { get; private set; }
-        public IList<Method> Metody { get; private set; }
-        public List<Attribute> Atrybuty { get; private set; }
-        public IList<ObiektDziedziczony> NadklasaIInterfejsy { get; private set; }
+        public IList<Modifier> Modifiers { get; set; }
+        public IList<Property> Properties { get; private set; }
+        public IList<Method> Methods { get; private set; }
+        public List<Attribute> Attributes { get; private set; }
+        public IList<ObiektDziedziczony> SuperClassAndInterfaces { get; private set; }
 
-        public IList<DefinedItem> ObiektyWewnetrzne { get; private set; }
+        public IList<DefinedItem> InternalDefinedItems { get; private set; }
 
         public PlaceInFile StartingBrace { get; set; }
         public PlaceInFile ClosingBrace { get; set; }
@@ -48,29 +48,29 @@ namespace KruchyParserKodu.ParserKodu.Models
 
         public Documentation Documentation { get; set; }
 
-        public IList<ParametrGeneryczny> ParametryGeneryczne { get; set; }
+        public IList<ParametrGeneryczny> GenericParameters { get; set; }
 
         public DefinedItem() : base()
         {
-            Konstruktory = new List<Constructor>();
-            Pola = new List<Pole>();
-            Propertiesy = new List<Property>();
-            Metody = new List<Method>();
-            Atrybuty = new List<Attribute>();
-            NadklasaIInterfejsy = new List<ObiektDziedziczony>();
+            Constructors = new List<Constructor>();
+            Fields = new List<Pole>();
+            Properties = new List<Property>();
+            Methods = new List<Method>();
+            Attributes = new List<Attribute>();
+            SuperClassAndInterfaces = new List<ObiektDziedziczony>();
 
             StartingBrace = new PlaceInFile();
             ClosingBrace = new PlaceInFile();
-            ObiektyWewnetrzne = new List<DefinedItem>();
-            Modyfikatory = new List<Modifier>();
+            InternalDefinedItems = new List<DefinedItem>();
+            Modifiers = new List<Modifier>();
 
-            RodzajObiektuObiekt = new RodzajObiektuObiekt();
-            ParametryGeneryczne = new List<ParametrGeneryczny>();
+            KindOfObjectUnit = new RodzajObiektuObiekt();
+            GenericParameters = new List<ParametrGeneryczny>();
         }
 
-        private IEnumerable<Pole> SzukajPolNiestatycznych()
+        private IEnumerable<Pole> FindNonStaticFields()
         {
-            return Pola.Where(o => !o.Modyfikatory.Any(p => p.Name == "static"));
+            return Fields.Where(o => !o.Modyfikatory.Any(p => p.Name == "static"));
         }
     }
 }

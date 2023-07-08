@@ -51,9 +51,9 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             var klasa = parsowaneAktualny.DefiniowaneObiekty.First();
 
             int numerLiniiWstawiania = -1;
-            if (klasa.Propertiesy.Any())
+            if (klasa.Properties.Any())
                 numerLiniiWstawiania =
-                    klasa.Propertiesy.Select(o => o.Poczatek.Row).Min();
+                    klasa.Properties.Select(o => o.Poczatek.Row).Min();
             else
             {
                 numerLiniiWstawiania = klasa.StartingBrace.Row + 1;
@@ -75,9 +75,9 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             Plik parsowaneAktualny)
         {
             var klasa = parsowaneAktualny.DefiniowaneObiekty.First();
-            if (klasa.NadklasaIInterfejsy.Any())
+            if (klasa.SuperClassAndInterfaces.Any())
             {
-                var ostatni = klasa.NadklasaIInterfejsy.Last();
+                var ostatni = klasa.SuperClassAndInterfaces.Last();
                 var wstawianyTekst = ", IUseDbDaoContext<" + nazwaKlasyContextu + ">";
                 if (ostatni.Poczatek.Row == klasa.Poczatek.Row)
                 {
@@ -91,7 +91,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
                 {
                     var sb = new StringBuilder();
                     sb.Append(StaleDlaKodu.WciecieDlaKlasy);
-                    for (int i = 0; i <= klasa.NadklasaIInterfejsy.Count(); i++)
+                    for (int i = 0; i <= klasa.SuperClassAndInterfaces.Count(); i++)
                         sb.Append(StaleDlaKodu.JednostkaWciecia);
                     sb.Append(wstawianyTekst);
                     sb.AppendLine();

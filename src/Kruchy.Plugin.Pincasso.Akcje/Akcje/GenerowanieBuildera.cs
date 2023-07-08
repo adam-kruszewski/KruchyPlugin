@@ -90,17 +90,17 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
         {
             var polaBedaceReferencja =
                 obiektDoZbudowania
-                    .Propertiesy
+                    .Properties
                         .Where(o => JestKluczemObcym(o));
 
             var polaPrzechowujaceObiektReferencji =
                 obiektDoZbudowania
-                    .Propertiesy
+                    .Properties
                         .Where(o => PrzechowujeObiektReferencji(o));
 
             var polaZwykle =
                 obiektDoZbudowania
-                    .Propertiesy
+                    .Properties
                         .Where(o => !JestKluczemObcym(o) && !PrzechowujeObiektReferencji(o));
 
             var wlasciwosciDlaBuildera = new List<WlasciwoscDlaBuildera>();
@@ -118,10 +118,10 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
         {
             DefinedItem obiektDoZbudowania = null;
 
-            if (sparsowane.DefiniowaneObiekty.Count(o => o.Rodzaj == RodzajObiektu.Klasa) == 1)
+            if (sparsowane.DefiniowaneObiekty.Count(o => o.KindOfItem == RodzajObiektu.Klasa) == 1)
             {
                 obiektDoZbudowania =
-                    sparsowane.DefiniowaneObiekty.Single(o => o.Rodzaj == RodzajObiektu.Klasa);
+                    sparsowane.DefiniowaneObiekty.Single(o => o.KindOfItem == RodzajObiektu.Klasa);
             }
             else
             {
@@ -185,7 +185,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
 
         private PlaceInFile UstalMiejsceWstawienia(DefinedItem klasaBuildera)
         {
-            var metodaSave = klasaBuildera.Metody.FirstOrDefault(o => o.Name == "Save");
+            var metodaSave = klasaBuildera.Methods.FirstOrDefault(o => o.Name == "Save");
 
             var miejsceWstawiania = metodaSave?.Poczatek;
 
@@ -213,7 +213,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             DefinedItem klasaBuildera,
             WlasciwoscDlaBuildera wlasciwosc)
         {
-            var metodyDoAnalizy = klasaBuildera.Metody.Where(
+            var metodyDoAnalizy = klasaBuildera.Methods.Where(
                 o => !(new[] { "Save", "Init" }.Contains(o.Name)));
 
             var napisUstawiajacyWartoscPola =
