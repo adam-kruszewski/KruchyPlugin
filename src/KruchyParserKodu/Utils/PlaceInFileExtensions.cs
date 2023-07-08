@@ -3,9 +3,9 @@ using Microsoft.CodeAnalysis.Text;
 
 namespace KruchyParserKodu.Utils
 {
-    public static class PozycjaWPlikuExtensions
+    public static class PlaceInFileExtensions
     {
-        public static PlaceInFile ToPozycjaWPliku(this LinePosition linePosition)
+        public static PlaceInFile ToPlaceInFile(this LinePosition linePosition)
         {
             return new PlaceInFile(
                 linePosition.Line,

@@ -166,8 +166,8 @@ namespace KruchyParserKodu.Roslyn
         {
             var wynik = new UsingNamespace(u.Name.ToString());
             var polozenie = DajPolozenie(u.SyntaxTree, u.Span);
-            wynik.StartPosition = polozenie.Item1.ToPozycjaWPliku();
-            wynik.EndPosition = polozenie.Item2.ToPozycjaWPliku();
+            wynik.StartPosition = polozenie.Item1.ToPlaceInFile();
+            wynik.EndPosition = polozenie.Item2.ToPlaceInFile();
             return wynik;
         }
 
@@ -285,8 +285,8 @@ namespace KruchyParserKodu.Roslyn
             var wynik = new DerivedObject();
 
             wynik.Name = o.Type.GetTypeName();
-            wynik.StartPosition = DajPolozenie(o.SyntaxTree, o.Span).Item1.ToPozycjaWPliku();
-            wynik.EndPosition = DajPolozenie(o.SyntaxTree, o.Span).Item2.ToPozycjaWPliku();
+            wynik.StartPosition = DajPolozenie(o.SyntaxTree, o.Span).Item1.ToPlaceInFile();
+            wynik.EndPosition = DajPolozenie(o.SyntaxTree, o.Span).Item2.ToPlaceInFile();
 
             if (o.Type.IsGeneric())
             {
@@ -443,9 +443,9 @@ namespace KruchyParserKodu.Roslyn
             IWithParameterBraces obiekt)
         {
             obiekt.StartingParameterBrace =
-                DajPolozenie(syntax.ParameterList.OpenParenToken).Item1.ToPozycjaWPliku();
+                DajPolozenie(syntax.ParameterList.OpenParenToken).Item1.ToPlaceInFile();
             obiekt.ClosingParameterBrace =
-                DajPolozenie(syntax.ParameterList.CloseParenToken).Item1.ToPozycjaWPliku();
+                DajPolozenie(syntax.ParameterList.CloseParenToken).Item1.ToPlaceInFile();
         }
 
         private void UzupelnijPozycjeKlamerek(
@@ -454,11 +454,11 @@ namespace KruchyParserKodu.Roslyn
         {
             obiekt.StartingBrace =
                 DajPolozenie(syntax.Body.OpenBraceToken)
-                    .Item1.ToPozycjaWPliku();
+                    .Item1.ToPlaceInFile();
 
             obiekt.ClosingBrace =
                 DajPolozenie(syntax.Body.CloseBraceToken)
-                    .Item1.ToPozycjaWPliku();
+                    .Item1.ToPlaceInFile();
 
         }
 
@@ -620,7 +620,7 @@ namespace KruchyParserKodu.Roslyn
             SyntaxToken token)
         {
             var pozycjaKoncowejKlamerki = DajPolozenie(token.SyntaxTree, token);
-            obiekt.ClosingBrace = pozycjaKoncowejKlamerki.Item1.ToPozycjaWPliku();
+            obiekt.ClosingBrace = pozycjaKoncowejKlamerki.Item1.ToPlaceInFile();
         }
 
         private void UzupelnijAtrybuty(
@@ -672,8 +672,8 @@ namespace KruchyParserKodu.Roslyn
             var wynik = new AttributeParameter();
             var polozenie = DajPolozenie(o.SyntaxTree, o.Span);
 
-            wynik.StartPosition = polozenie.Item1.ToPozycjaWPliku();
-            wynik.EndPosition = polozenie.Item2.ToPozycjaWPliku();
+            wynik.StartPosition = polozenie.Item1.ToPlaceInFile();
+            wynik.EndPosition = polozenie.Item2.ToPlaceInFile();
             wynik.Value = o.Expression?.ToFullString()?.Trim();
             wynik.Name = o.NameEquals?.Name?.ToFullString()?.Trim();
 
@@ -714,15 +714,15 @@ namespace KruchyParserKodu.Roslyn
         private void UstawPolozenie(SyntaxToken token, ParsedUnit obiekt)
         {
             var polozenie = DajPolozenie(token);
-            obiekt.StartPosition = polozenie.Item1.ToPozycjaWPliku();
-            obiekt.EndPosition = polozenie.Item2.ToPozycjaWPliku();
+            obiekt.StartPosition = polozenie.Item1.ToPlaceInFile();
+            obiekt.EndPosition = polozenie.Item2.ToPlaceInFile();
         }
 
         private void UstawPolozenie(SyntaxTrivia trivia, ParsedUnit jednostka)
         {
             var polozenie = DajPolozenie(trivia.SyntaxTree, trivia.FullSpan);
-            jednostka.StartPosition = polozenie.Item1.ToPozycjaWPliku();
-            jednostka.EndPosition = polozenie.Item2.ToPozycjaWPliku();
+            jednostka.StartPosition = polozenie.Item1.ToPlaceInFile();
+            jednostka.EndPosition = polozenie.Item2.ToPlaceInFile();
         }
 
         private Tuple<LinePosition, LinePosition> DajPolozenie(
