@@ -138,7 +138,7 @@ namespace KruchyParserKodu.ParserKodu
                 parsowane
                     .DefinedItems
                     .SelectMany(o => WszystkieObiektyObiektu(o))
-                    .Where(o => o.KindOfItem == RodzajObiektu.Klasa)
+                    .Where(o => o.KindOfItem == KindOfItem.Class)
                     .Where(o => o.ZawieraLinie(numerLinii))
                     .OrderBy(o => WyliczOdleglosc(o, numerLinii))
                             .FirstOrDefault();

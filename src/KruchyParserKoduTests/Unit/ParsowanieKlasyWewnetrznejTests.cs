@@ -3,6 +3,7 @@ using System.Linq;
 using System.Text;
 using FluentAssertions;
 using KruchyParserKodu.ParserKodu;
+using KruchyParserKodu.ParserKodu.Models;
 using NUnit.Framework;
 
 namespace KruchyParserKoduTests.Unit
@@ -29,12 +30,12 @@ namespace KruchyParserKoduTests.Unit
 
             //assert
             var klasaGlowna = sparsowane.DefinedItems.Single();
-            klasaGlowna.KindOfItem.Should().Be(RodzajObiektu.Klasa);
+            klasaGlowna.KindOfItem.Should().Be(KindOfItem.Class);
             klasaGlowna.Name.Should().Be("ZKlasaWewnetrzna");
             klasaGlowna.Properties.Single().Name.Should().Be("WlasciwoscWGlownym");
 
             var klasaWewnetrzna = klasaGlowna.InternalDefinedItems.Single();
-            klasaWewnetrzna.KindOfItem.Should().Be(RodzajObiektu.Klasa);
+            klasaWewnetrzna.KindOfItem.Should().Be(KindOfItem.Class);
             klasaWewnetrzna.Name.Should().Be("KlasaWewnetrzna");
             klasaWewnetrzna.Properties.Single().Name.Should().Be("WlasciwoscWWewnetrznym");
             klasaWewnetrzna.Owner.Should().Be(klasaGlowna);

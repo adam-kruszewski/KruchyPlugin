@@ -12,7 +12,7 @@ namespace KruchyParserKodu.ParserKodu.Models
                         , IWithComment
                             , IWithDocumentation
     {
-        public RodzajObiektu KindOfItem
+        public KindOfItem KindOfItem
         {
             get => KindOfObjectUnit.RodzajObiektu;
             set

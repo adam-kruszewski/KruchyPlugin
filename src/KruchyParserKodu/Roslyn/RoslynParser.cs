@@ -175,7 +175,7 @@ namespace KruchyParserKodu.Roslyn
         {
             var definiowanyObiekt = new DefinedItem();
             definiowanyObiekt.Name = interfaceSyntax.Identifier.ValueText;
-            definiowanyObiekt.KindOfItem = RodzajObiektu.Interfejs;
+            definiowanyObiekt.KindOfItem = KindOfItem.Interface;
             UstawPolozenie(interfaceSyntax.Keyword, definiowanyObiekt.KindOfObjectUnit);
 
             UstawPolozenie(interfaceSyntax.SyntaxTree, definiowanyObiekt, interfaceSyntax);
@@ -200,7 +200,7 @@ namespace KruchyParserKodu.Roslyn
         {
             var definiowanyObiekt = new DefinedItem();
             definiowanyObiekt.Name = klasa.Identifier.ValueText;
-            definiowanyObiekt.KindOfItem = RodzajObiektu.Klasa;
+            definiowanyObiekt.KindOfItem = KindOfItem.Class;
             UstawPolozenie(klasa.Keyword, definiowanyObiekt.KindOfObjectUnit);
 
             UstawPolozenie(syntaxTree, definiowanyObiekt, klasa);

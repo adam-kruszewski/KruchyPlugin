@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Kruchy.Plugin.Utils.Wrappers;
+using KruchyParserKodu.ParserKodu;
+using KruchyParserKodu.ParserKodu.Models;
+using System;
 using System.IO;
 using System.Linq;
-using Kruchy.Plugin.Utils.Wrappers;
-using KruchyParserKodu.ParserKodu;
 
 namespace Kruchy.Plugin.Utils.Extensions
 {
@@ -14,7 +15,7 @@ namespace Kruchy.Plugin.Utils.Extensions
             var parsowane = Parser.Parsuj(zawartosc);
             if (parsowane.DefinedItems.Count == 1)
             {
-                return parsowane.DefinedItems[0].KindOfItem == RodzajObiektu.Interfejs;
+                return parsowane.DefinedItems[0].KindOfItem == KindOfItem.Interface;
             }
             else
                 throw new Exception("Brak zdefiniowanego obiektu");
@@ -64,7 +65,7 @@ namespace Kruchy.Plugin.Utils.Extensions
             {
                 var obiekt = parsowane.DefinedItems[0];
                 if (obiekt.Name.EndsWith("Builder")
-                    && obiekt.KindOfItem == RodzajObiektu.Klasa)
+                    && obiekt.KindOfItem == KindOfItem.Class)
                     return true;
             }
             return false;
@@ -79,7 +80,7 @@ namespace Kruchy.Plugin.Utils.Extensions
             if (obiekt != null)
             {
                 if (obiekt.Name.EndsWith("Builder")
-                    && obiekt.KindOfItem == RodzajObiektu.Klasa)
+                    && obiekt.KindOfItem == KindOfItem.Class)
                     return true;
             }
             return false;

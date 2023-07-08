@@ -332,7 +332,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             var klasy =
                 sparsowane
                     .DefinedItems
-                        .Where(o => o.KindOfItem == RodzajObiektu.Klasa);
+                        .Where(o => o.KindOfItem == KindOfItem.Class);
 
             DefinedItem klasaView;
             klasaView =

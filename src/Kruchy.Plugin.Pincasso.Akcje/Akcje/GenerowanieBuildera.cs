@@ -118,10 +118,10 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
         {
             DefinedItem obiektDoZbudowania = null;
 
-            if (sparsowane.DefinedItems.Count(o => o.KindOfItem == RodzajObiektu.Klasa) == 1)
+            if (sparsowane.DefinedItems.Count(o => o.KindOfItem == KindOfItem.Class) == 1)
             {
                 obiektDoZbudowania =
-                    sparsowane.DefinedItems.Single(o => o.KindOfItem == RodzajObiektu.Klasa);
+                    sparsowane.DefinedItems.Single(o => o.KindOfItem == KindOfItem.Class);
             }
             else
             {

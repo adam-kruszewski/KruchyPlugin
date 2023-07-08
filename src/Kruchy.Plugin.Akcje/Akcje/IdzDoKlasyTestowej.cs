@@ -129,7 +129,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         private string DajRdzenNazwyKlasyTestow(FileWithCode parsowane)
         {
             var nazwa = parsowane.DefinedItems.First().Name;
-            if (parsowane.DefinedItems.First().KindOfItem == RodzajObiektu.Klasa)
+            if (parsowane.DefinedItems.First().KindOfItem == KindOfItem.Class)
                 return nazwa;
             else
                 return nazwa.Substring(1);

@@ -207,7 +207,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             var klasy =
                 parsowanyPlik
                     .DefinedItems
-                        .Where(o => o.KindOfItem == RodzajObiektu.Klasa);
+                        .Where(o => o.KindOfItem == KindOfItem.Class);
 
             if (klasy.Count() == 1)
                 return klasy.First();

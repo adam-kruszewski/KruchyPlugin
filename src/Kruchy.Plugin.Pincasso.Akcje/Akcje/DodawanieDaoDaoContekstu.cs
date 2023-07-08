@@ -2,6 +2,7 @@
 using Kruchy.Plugin.Utils.Extensions;
 using Kruchy.Plugin.Utils.Wrappers;
 using KruchyParserKodu.ParserKodu;
+using KruchyParserKodu.ParserKodu.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -40,13 +41,13 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
 
             string nazwaKlasyDao = null;
             string nazwaInterfejsuDao = null;
-            if (obiekt.KindOfItem == RodzajObiektu.Klasa)
+            if (obiekt.KindOfItem == KindOfItem.Class)
             {
                 nazwaKlasyDao = obiekt.Name;
                 nazwaInterfejsuDao = "I" + nazwaKlasyDao;
             }
 
-            if (obiekt.KindOfItem == RodzajObiektu.Interfejs)
+            if (obiekt.KindOfItem == KindOfItem.Interface)
             {
                 nazwaInterfejsuDao = obiekt.Name;
                 nazwaKlasyDao = nazwaInterfejsuDao.Substring(1);

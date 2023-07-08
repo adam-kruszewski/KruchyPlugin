@@ -39,7 +39,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             var parsowane = Parser.Parsuj(zawartosc);
             if (parsowane.DefinedItems.Count == 1)
             {
-                return parsowane.DefinedItems[0].KindOfItem == RodzajObiektu.Interfejs;
+                return parsowane.DefinedItems[0].KindOfItem == KindOfItem.Interface;
             }
             else
                 throw new Exception("Brak zdefiniowanego obiektu");
