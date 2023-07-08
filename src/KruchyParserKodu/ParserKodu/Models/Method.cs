@@ -10,7 +10,7 @@ namespace KruchyParserKodu.ParserKodu.Models
                     , IWithComment
                         , IWithDocumentation
     {
-        public IList<ParametrGeneryczny> GenericParameters { get; set; }
+        public IList<GenericParameter> GenericParameters { get; set; }
 
         public TypZwracany ReturnType { get; set; }
 
@@ -18,7 +18,7 @@ namespace KruchyParserKodu.ParserKodu.Models
 
         public Method()
         {
-            GenericParameters = new List<ParametrGeneryczny>();
+            GenericParameters = new List<GenericParameter>();
         }
 
         public override string ToString()

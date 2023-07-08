@@ -244,7 +244,7 @@ namespace KruchyParserKodu.Roslyn
         }
 
         private void ParsujParametryGeneryczne(
-            IList<ParametrGeneryczny> parametryGeneryczne,
+            IList<GenericParameter> parametryGeneryczne,
             TypeParameterListSyntax parameterListSyntax)
         {
             if (parameterListSyntax == null)
@@ -252,9 +252,9 @@ namespace KruchyParserKodu.Roslyn
 
             foreach (var typeParameter in parameterListSyntax.Parameters)
             {
-                var parametrGeneryczny = new ParametrGeneryczny
+                var parametrGeneryczny = new GenericParameter
                 {
-                    Nazwa = typeParameter.Identifier.ValueText
+                    Name = typeParameter.Identifier.ValueText
                 };
 
                 UstawPolozenie(typeParameter.SyntaxTree, parametrGeneryczny, typeParameter);

@@ -48,7 +48,7 @@ namespace KruchyParserKodu.ParserKodu.Models
 
         public Documentation Documentation { get; set; }
 
-        public IList<ParametrGeneryczny> GenericParameters { get; set; }
+        public IList<GenericParameter> GenericParameters { get; set; }
 
         public DefinedItem() : base()
         {
@@ -65,7 +65,7 @@ namespace KruchyParserKodu.ParserKodu.Models
             Modifiers = new List<Modifier>();
 
             KindOfObjectUnit = new RodzajObiektuObiekt();
-            GenericParameters = new List<ParametrGeneryczny>();
+            GenericParameters = new List<GenericParameter>();
         }
 
         private IEnumerable<Pole> FindNonStaticFields()

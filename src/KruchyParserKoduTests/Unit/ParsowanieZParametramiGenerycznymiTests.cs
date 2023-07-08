@@ -32,11 +32,11 @@ namespace KruchyParserKoduTests.Unit
 
             klasaGlowna.GenericParameters.Should().HaveCount(2);
 
-            klasaGlowna.GenericParameters[0].Nazwa.Should().Be("TParam1");
+            klasaGlowna.GenericParameters[0].Name.Should().Be("TParam1");
             klasaGlowna.GenericParameters[0].Poczatek.Sprawdz(3, 41);
             klasaGlowna.GenericParameters[0].Koniec.Sprawdz(3, 48);
 
-            klasaGlowna.GenericParameters[1].Nazwa.Should().Be("TParam2");
+            klasaGlowna.GenericParameters[1].Name.Should().Be("TParam2");
             klasaGlowna.GenericParameters[1].Poczatek.Sprawdz(3, 50);
             klasaGlowna.GenericParameters[1].Koniec.Sprawdz(3, 57);
         }
@@ -62,11 +62,11 @@ namespace KruchyParserKoduTests.Unit
 
             klasaGlowna.GenericParameters.Should().HaveCount(2);
 
-            klasaGlowna.GenericParameters[0].Nazwa.Should().Be("TParam1");
+            klasaGlowna.GenericParameters[0].Name.Should().Be("TParam1");
             klasaGlowna.GenericParameters[0].Poczatek.Sprawdz(3, 50);
             klasaGlowna.GenericParameters[0].Koniec.Sprawdz(3, 57);
 
-            klasaGlowna.GenericParameters[1].Nazwa.Should().Be("TParam2");
+            klasaGlowna.GenericParameters[1].Name.Should().Be("TParam2");
             klasaGlowna.GenericParameters[1].Poczatek.Sprawdz(3, 59);
             klasaGlowna.GenericParameters[1].Koniec.Sprawdz(3, 66);
         }

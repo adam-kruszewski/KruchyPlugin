@@ -96,19 +96,19 @@ namespace Kruchy.Plugin.Akcje.Akcje
         }
 
         private void DodajOpisParametrowGenerycznych(
-            IEnumerable<ParametrGeneryczny> parametryGeneryczne,
+            IEnumerable<GenericParameter> parametryGeneryczne,
             string poczatek,
             StringBuilder builder)
         {
             foreach (var parametrGeneryczny in parametryGeneryczne)
             {
-                builder.AppendLine($"{poczatek}<typeparam name=\"{parametrGeneryczny.Nazwa}\">{DajOpisParametruGenerycznego(parametrGeneryczny)}</typeparam>");
+                builder.AppendLine($"{poczatek}<typeparam name=\"{parametrGeneryczny.Name}\">{DajOpisParametruGenerycznego(parametrGeneryczny)}</typeparam>");
             }
         }
 
-        private string DajOpisParametruGenerycznego(ParametrGeneryczny parametr)
+        private string DajOpisParametruGenerycznego(GenericParameter parametr)
         {
-            var slowa = parametr.Nazwa.PodzielNaSlowaOdWielkichLiter();
+            var slowa = parametr.Name.PodzielNaSlowaOdWielkichLiter();
 
             if (slowa.Count() == 1 && slowa.First().Length == 1)
                 return "";

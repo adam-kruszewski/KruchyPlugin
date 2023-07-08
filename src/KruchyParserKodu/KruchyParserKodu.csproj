@@ -71,7 +71,7 @@
     <Compile Include="ParserKodu\Models\DerivedObject.cs" />
     <Compile Include="ParserKodu\Models\Parameter.cs" />
     <Compile Include="ParserKodu\Models\AttributeParameter.cs" />
-    <Compile Include="ParserKodu\ParametrGeneryczny.cs" />
+    <Compile Include="ParserKodu\Models\GenericParameter.cs" />
     <Compile Include="ParserKodu\Parser.cs" />
     <Compile Include="ParserKodu\ParsowanaJednostka.cs" />
     <Compile Include="ParserKodu\Plik.cs" />
