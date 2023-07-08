@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace KruchyParserKodu.ParserKodu.Models
 {
     public class Enumeration
-        : ParsowanaJednostka
+        : ParsedUnit
             ,IWithName
                 , IWithBraces
                     , IWithOwner

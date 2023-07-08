@@ -28,8 +28,8 @@ namespace KruchyParserKoduTests.Unit
         public void ParsujeKomentarzJednolinijkowyNadKlasa()
         {
             klasa.Comment.Lines.Single().Should().Be("// komentarz jednolinijkowy");
-            klasa.Comment.Poczatek.Sprawdz(3, 5);
-            klasa.Comment.Koniec.Sprawdz(3, 32);
+            klasa.Comment.StartPosition.Sprawdz(3, 5);
+            klasa.Comment.EndPosition.Sprawdz(3, 32);
         }
     }
 }

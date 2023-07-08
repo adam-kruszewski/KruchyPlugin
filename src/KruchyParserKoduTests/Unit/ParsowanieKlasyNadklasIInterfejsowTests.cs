@@ -28,8 +28,8 @@ namespace KruchyParserKoduTests.Unit
             klasa.SuperClassAndInterfaces.First().Name.Should().Be("Test3");
             klasa.SuperClassAndInterfaces[1].Name.Should().Be("ITest1");
             klasa.SuperClassAndInterfaces[2].Name.Should().Be("ITest2");
-            klasa.SuperClassAndInterfaces[2].Poczatek.Sprawdz(9, 65);
-            klasa.SuperClassAndInterfaces[2].Koniec.Sprawdz(9, 71);
+            klasa.SuperClassAndInterfaces[2].StartPosition.Sprawdz(9, 65);
+            klasa.SuperClassAndInterfaces[2].EndPosition.Sprawdz(9, 71);
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace KruchyParserKodu.ParserKodu.Models
 {
-    public class GenericParameter : ParsowanaJednostka, IWithName
+    public class GenericParameter : ParsedUnit, IWithName
     {
         public string Name { get; set; }
     }

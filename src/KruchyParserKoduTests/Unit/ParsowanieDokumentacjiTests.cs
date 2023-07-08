@@ -40,8 +40,8 @@ namespace KruchyParserKoduTests.Unit
                     "</summary>"
                 });
 
-            klasa.Documentation.Poczatek.Sprawdz(3, 5);
-            klasa.Documentation.Koniec.Sprawdz(6, 1);
+            klasa.Documentation.StartPosition.Sprawdz(3, 5);
+            klasa.Documentation.EndPosition.Sprawdz(6, 1);
         }
 
         [Test]
@@ -58,8 +58,8 @@ namespace KruchyParserKoduTests.Unit
                     "</summary>"
                 });
 
-            metoda.Documentation.Poczatek.Sprawdz(8, 9);
-            metoda.Documentation.Koniec.Sprawdz(11, 1);
+            metoda.Documentation.StartPosition.Sprawdz(8, 9);
+            metoda.Documentation.EndPosition.Sprawdz(11, 1);
         }
 
         [Test]
@@ -76,8 +76,8 @@ namespace KruchyParserKoduTests.Unit
                     "</summary>"
                 });
 
-            konstruktor.Documentation.Poczatek.Sprawdz(16, 9);
-            konstruktor.Documentation.Koniec.Sprawdz(19, 1);
+            konstruktor.Documentation.StartPosition.Sprawdz(16, 9);
+            konstruktor.Documentation.EndPosition.Sprawdz(19, 1);
         }
 
         [Test]
@@ -94,8 +94,8 @@ namespace KruchyParserKoduTests.Unit
                     "</summary>"
                 });
 
-            pole.Documentation.Poczatek.Sprawdz(24, 9);
-            pole.Documentation.Koniec.Sprawdz(27, 1);
+            pole.Documentation.StartPosition.Sprawdz(24, 9);
+            pole.Documentation.EndPosition.Sprawdz(27, 1);
         }
 
         [Test]
@@ -113,8 +113,8 @@ namespace KruchyParserKoduTests.Unit
                     "</summary>"
                 });
 
-            property.Documentation.Poczatek.Sprawdz(29, 9);
-            property.Documentation.Koniec.Sprawdz(32, 1);
+            property.Documentation.StartPosition.Sprawdz(29, 9);
+            property.Documentation.EndPosition.Sprawdz(32, 1);
         }
     }
 }

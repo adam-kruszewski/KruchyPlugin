@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace KruchyParserKodu.ParserKodu
 {
-    public class Pole : ParsowanaJednostka, IWithDocumentation, IWithOwner
+    public class Pole : ParsedUnit, IWithDocumentation, IWithOwner
     {
         public string Nazwa { get; set; }
         public string NazwaTypu { get; set; }

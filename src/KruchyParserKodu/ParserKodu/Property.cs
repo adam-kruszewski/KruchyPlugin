@@ -6,7 +6,7 @@ using System.Text;
 
 namespace KruchyParserKodu.ParserKodu
 {
-    public class Property : ParsowanaJednostka, IWithDocumentation, IWithOwner
+    public class Property : ParsedUnit, IWithDocumentation, IWithOwner
     {
         public string Nazwa { get; set; }
         public string NazwaTypu { get; set; }

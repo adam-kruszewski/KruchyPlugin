@@ -122,7 +122,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             {
                 var ostatnie = parsowane.DefiniowaneObiekty.First().Fields.Last();
 
-                numerLiniiDoDodawaniaPol = ostatnie.Koniec.Row + 1;
+                numerLiniiDoDodawaniaPol = ostatnie.EndPosition.Row + 1;
             }
             else
             {
@@ -164,14 +164,14 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
             if (aktualna != null)
             {
-                poczatek = aktualna.Poczatek;
+                poczatek = aktualna.StartPosition;
 
                 solution.AktualnyDokument.Remove(
-                    aktualna.Poczatek.Row, aktualna.Poczatek.Column,
-                    aktualna.Koniec.Row, aktualna.Koniec.Column);
+                    aktualna.StartPosition.Row, aktualna.StartPosition.Column,
+                    aktualna.EndPosition.Row, aktualna.EndPosition.Column);
             }else
             {
-                poczatek = parsowane.DefiniowaneObiekty.First().Fields.LastOrDefault()?.Koniec;
+                poczatek = parsowane.DefiniowaneObiekty.First().Fields.LastOrDefault()?.EndPosition;
 
                 if (poczatek == null)
                 {

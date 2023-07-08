@@ -29,13 +29,13 @@ namespace KruchyParserKoduTests.Unit
             klasa.Modifiers.Should().HaveCount(2);
             var modyfikatorPublic = klasa.Modifiers[0];
             modyfikatorPublic.Name.Should().Be("public");
-            modyfikatorPublic.Poczatek.Sprawdz(3, 5);
-            modyfikatorPublic.Koniec.Sprawdz(3, 11);
+            modyfikatorPublic.StartPosition.Sprawdz(3, 5);
+            modyfikatorPublic.EndPosition.Sprawdz(3, 11);
 
             var modyfikatorStatic = klasa.Modifiers[1];
             modyfikatorStatic.Name.Should().Be("static");
-            modyfikatorStatic.Poczatek.Sprawdz(3, 12);
-            modyfikatorStatic.Koniec.Sprawdz(3, 18);
+            modyfikatorStatic.StartPosition.Sprawdz(3, 12);
+            modyfikatorStatic.EndPosition.Sprawdz(3, 18);
         }
 
         [Test]
@@ -46,8 +46,8 @@ namespace KruchyParserKoduTests.Unit
             klasa.Modifiers.Should().HaveCount(1);
             var modyfikatorPublic = klasa.Modifiers[0];
             modyfikatorPublic.Name.Should().Be("private");
-            modyfikatorPublic.Poczatek.Sprawdz(5, 9);
-            modyfikatorPublic.Koniec.Sprawdz(5, 16);
+            modyfikatorPublic.StartPosition.Sprawdz(5, 9);
+            modyfikatorPublic.EndPosition.Sprawdz(5, 16);
         }
     }
 }

@@ -53,7 +53,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             int numerLiniiWstawiania = -1;
             if (klasa.Properties.Any())
                 numerLiniiWstawiania =
-                    klasa.Properties.Select(o => o.Poczatek.Row).Min();
+                    klasa.Properties.Select(o => o.StartPosition.Row).Min();
             else
             {
                 numerLiniiWstawiania = klasa.StartingBrace.Row + 1;
@@ -79,13 +79,13 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             {
                 var ostatni = klasa.SuperClassAndInterfaces.Last();
                 var wstawianyTekst = ", IUseDbDaoContext<" + nazwaKlasyContextu + ">";
-                if (ostatni.Poczatek.Row == klasa.Poczatek.Row)
+                if (ostatni.StartPosition.Row == klasa.StartPosition.Row)
                 {
                     solution.AktualnyDokument.
                         InsertInPlace(
                             wstawianyTekst,
-                            ostatni.Poczatek.Row,
-                            ostatni.Koniec.Column);
+                            ostatni.StartPosition.Row,
+                            ostatni.EndPosition.Column);
                 }
                 else
                 {
@@ -98,7 +98,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
                     solution.AktualnyDokument
                         .InsertInPlace(
                             sb.ToString(),
-                            ostatni.Poczatek.Row + 1,
+                            ostatni.StartPosition.Row + 1,
                             1);
                 }
             }

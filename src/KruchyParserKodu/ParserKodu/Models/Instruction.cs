@@ -2,20 +2,20 @@
 
 namespace KruchyParserKodu.ParserKodu.Models
 {
-    public class Instruction : ParsowanaJednostka, IWithPlaceInCode
+    public class Instruction : ParsedUnit, IWithPlaceInCode
     {
         public MethodConstructorBase CodeUnit { get; set; }
 
         public PlaceInFile StartPosition
         {
-            get => Poczatek;
-            set => Poczatek = value;
+            get => base.StartPosition;
+            set => base.StartPosition = value;
         }
 
         public PlaceInFile EndPosition
         {
-            get => Koniec;
-            set => Koniec = value;
+            get => base.EndPosition;
+            set => base.EndPosition = value;
         }
 
         public string Text { get; set; }

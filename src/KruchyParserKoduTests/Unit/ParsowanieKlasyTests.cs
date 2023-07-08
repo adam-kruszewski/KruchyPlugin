@@ -25,8 +25,8 @@ namespace KruchyParserKoduTests.Unit
             plik.Should().NotBeNull();
             plik.Namespace.Should().Be("KruchyCompany.KruchyPlugin1Tests.ParserTests");
             plik.Usingi.Count.Should().Be(6);
-            plik.Usingi[5].Poczatek.Sprawdz(6, 1);
-            plik.Usingi[5].Koniec.Sprawdz(6, 35);
+            plik.Usingi[5].StartPosition.Sprawdz(6, 1);
+            plik.Usingi[5].EndPosition.Sprawdz(6, 35);
 
             var obiekt = plik.DefiniowaneObiekty.First();
             obiekt.KindOfItem.Should().Be(RodzajObiektu.Klasa);
@@ -54,8 +54,8 @@ namespace KruchyParserKoduTests.Unit
             pole.NazwaTypu.Should().Be("IParser");
             pole.Modyfikatory[0].Name.Should().Be("private");
             pole.Modyfikatory[1].Name.Should().Be("readonly");
-            pole.Poczatek.Sprawdz(13, 9);
-            pole.Koniec.Sprawdz(13, 47);
+            pole.StartPosition.Sprawdz(13, 9);
+            pole.EndPosition.Sprawdz(13, 47);
 
             var poleStringReadonly = obiekt.Fields[1];
             poleStringReadonly.Nazwa.Should().Be("PoleStringReadOnly");
@@ -85,16 +85,16 @@ namespace KruchyParserKoduTests.Unit
 
             var bezparametrowyKonstruktor = obiekt.Constructors[1];
             bezparametrowyKonstruktor.Parametry.Count().Should().Be(0);
-            SprawdzPozycje(bezparametrowyKonstruktor.Poczatek, 26, 9);
-            SprawdzPozycje(bezparametrowyKonstruktor.Koniec, 29, 10);
+            SprawdzPozycje(bezparametrowyKonstruktor.StartPosition, 26, 9);
+            SprawdzPozycje(bezparametrowyKonstruktor.EndPosition, 29, 10);
 
             var konstrZ1Parametrem = obiekt.Constructors.First();
             konstrZ1Parametrem.Parametry.Count().Should().Be(1);
             var parametr = konstrZ1Parametrem.Parametry.First();
             parametr.ParameterName.Should().Be("a");
             parametr.TypeName.Should().Be("int");
-            SprawdzPozycje(konstrZ1Parametrem.Poczatek, 19, 9);
-            SprawdzPozycje(konstrZ1Parametrem.Koniec, 24, 10);
+            SprawdzPozycje(konstrZ1Parametrem.StartPosition, 19, 9);
+            SprawdzPozycje(konstrZ1Parametrem.EndPosition, 24, 10);
             SprawdzPozycje(
                 konstrZ1Parametrem.StartingParameterBrace,
                 19, 33);
@@ -147,8 +147,8 @@ namespace KruchyParserKoduTests.Unit
             metodaStatyczna.Modyfikatory.Count().Should().Be(2);
             var modyfikatorPublic = metodaStatyczna.Modyfikatory[0];
             modyfikatorPublic.Name.Should().Be("private");
-            SprawdzPozycje(modyfikatorPublic.Poczatek, 31, 9);
-            SprawdzPozycje(modyfikatorPublic.Koniec, 31, 16);
+            SprawdzPozycje(modyfikatorPublic.StartPosition, 31, 9);
+            SprawdzPozycje(modyfikatorPublic.EndPosition, 31, 16);
             var modyfikatorStatic = metodaStatyczna.Modyfikatory[1];
             modyfikatorStatic.Name.Should().Be("static");
         }

@@ -47,7 +47,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 modyfikator = "";
 
             if (dotychczasowyModyfikator == null)
-                WstawModyfikator(modyfikator, klasa.KindOfObjectUnit.Poczatek);
+                WstawModyfikator(modyfikator, klasa.KindOfObjectUnit.StartPosition);
             else
                 ZmienModyfikator(modyfikator, dotychczasowyModyfikator);
         }
@@ -61,7 +61,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             {
                 WstawModyfikator(
                     modyfikator,
-                    metoda.ReturnType.Poczatek);
+                    metoda.ReturnType.StartPosition);
             }
             else
                 ZmienModyfikator(modyfikator, dotychczasowyModyfikator);
@@ -72,14 +72,14 @@ namespace Kruchy.Plugin.Akcje.Akcje
             Modifier dotychczasowyModyfikator)
         {
             dokument.Remove(
-                dotychczasowyModyfikator.Poczatek.Row,
-                dotychczasowyModyfikator.Poczatek.Column,
-                dotychczasowyModyfikator.Koniec.Row,
-                dotychczasowyModyfikator.Koniec.Column);
+                dotychczasowyModyfikator.StartPosition.Row,
+                dotychczasowyModyfikator.StartPosition.Column,
+                dotychczasowyModyfikator.EndPosition.Row,
+                dotychczasowyModyfikator.EndPosition.Column);
             dokument.InsertInPlace(
                 modyfikator,
-                dotychczasowyModyfikator.Poczatek.Row,
-                dotychczasowyModyfikator.Poczatek.Column);
+                dotychczasowyModyfikator.StartPosition.Row,
+                dotychczasowyModyfikator.StartPosition.Column);
         }
 
         private void WstawModyfikator(string modyfikator, PlaceInFile polozenie)

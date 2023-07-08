@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace KruchyParserKodu.ParserKodu.Models
 {
-    public class DerivedObject : ParsowanaJednostka, IWithName
+    public class DerivedObject : ParsedUnit, IWithName
     {
         public string Name { get; set; }
 

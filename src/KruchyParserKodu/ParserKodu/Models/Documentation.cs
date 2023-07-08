@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace KruchyParserKodu.ParserKodu.Models
 {
-    public class Documentation : ParsowanaJednostka
+    public class Documentation : ParsedUnit
     {
         public List<string> Lines { get; set; }
 

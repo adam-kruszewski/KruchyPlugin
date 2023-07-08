@@ -19,8 +19,8 @@ namespace KruchyParserKodu.ParserKodu
             return
                 metody
                     .Where(o =>
-                        o.Poczatek.Row <= numerLinii
-                            && o.Koniec.Row >= numerLinii)
+                        o.StartPosition.Row <= numerLinii
+                            && o.EndPosition.Row >= numerLinii)
                             .FirstOrDefault();
         }
 
@@ -66,8 +66,8 @@ namespace KruchyParserKodu.ParserKodu
             return
                 propertiesy
                     .Where(o =>
-                        o.Poczatek.Row <= numerLinii
-                            && o.Koniec.Row >= numerLinii)
+                        o.StartPosition.Row <= numerLinii
+                            && o.EndPosition.Row >= numerLinii)
                             .FirstOrDefault();
         }
 
@@ -87,8 +87,8 @@ namespace KruchyParserKodu.ParserKodu
             return
                 pola
                     .Where(o =>
-                        o.Poczatek.Row <= numerLinii
-                            && o.Koniec.Row >= numerLinii)
+                        o.StartPosition.Row <= numerLinii
+                            && o.EndPosition.Row >= numerLinii)
                             .FirstOrDefault();
         }
 
@@ -98,10 +98,10 @@ namespace KruchyParserKodu.ParserKodu
                 throw new Exception("Liczba definiowanych obiektów rózna od 1");
             var obiekt = parsowane.DefiniowaneObiekty.First();
 
-            var ostatnieLinieDefinicji = obiekt.Fields.Select(o => o.Koniec)
-                .Union(obiekt.Properties.Select(o => o.Koniec))
-                .Union(obiekt.Constructors.Select(o => o.Koniec))
-                .Union(obiekt.Methods.Select(o => o.Koniec))
+            var ostatnieLinieDefinicji = obiekt.Fields.Select(o => o.EndPosition)
+                .Union(obiekt.Properties.Select(o => o.EndPosition))
+                .Union(obiekt.Constructors.Select(o => o.EndPosition))
+                .Union(obiekt.Methods.Select(o => o.EndPosition))
                     .Select(o => o.Row);
             if (ostatnieLinieDefinicji.Count() == 0)
             {
@@ -118,8 +118,8 @@ namespace KruchyParserKodu.ParserKodu
             var obiekt = parsowane.SzukajKlasyWLinii(numerLiniiWObiekcie);
 
             var ostatnieLinieDefinicji =
-                obiekt.Fields.Select(o => o.Koniec)
-                    .Union(obiekt.Properties.Select(o => o.Koniec))
+                obiekt.Fields.Select(o => o.EndPosition)
+                    .Union(obiekt.Properties.Select(o => o.EndPosition))
                         .Select(o => o.Row);
 
             if (ostatnieLinieDefinicji.Count() == 0)
@@ -146,8 +146,8 @@ namespace KruchyParserKodu.ParserKodu
 
         private static object WyliczOdleglosc(DefinedItem o, int numerLinii)
         {
-            return Math.Abs(o.Poczatek.Row - numerLinii)
-                + Math.Abs(o.Koniec.Row - numerLinii);
+            return Math.Abs(o.StartPosition.Row - numerLinii)
+                + Math.Abs(o.EndPosition.Row - numerLinii);
         }
 
         public static IEnumerable<DefinedItem> WszystkieObiektyObiektu(DefinedItem obiekt)
@@ -174,11 +174,11 @@ namespace KruchyParserKodu.ParserKodu
         }
 
         private static bool ZawieraLinie(
-            this ParsowanaJednostka jednostka,
+            this ParsedUnit jednostka,
             int numerLinii)
         {
-            if (jednostka.Poczatek.Row <= numerLinii
-                    && jednostka.Koniec.Row >= numerLinii)
+            if (jednostka.StartPosition.Row <= numerLinii
+                    && jednostka.EndPosition.Row >= numerLinii)
                 return true;
             else
                 return false;

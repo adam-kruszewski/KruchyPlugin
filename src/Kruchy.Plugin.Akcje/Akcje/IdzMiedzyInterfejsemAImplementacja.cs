@@ -76,8 +76,8 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
             if (znalezionaMetoda != null)
                 solution.AktualnyDokument.SetCursor(
-                    znalezionaMetoda.Poczatek.Row,
-                    znalezionaMetoda.Poczatek.Column);
+                    znalezionaMetoda.StartPosition.Row,
+                    znalezionaMetoda.StartPosition.Column);
         }
 
         private string SzukajSciezkiDoImplementacji(IFileWrapper aktualny)

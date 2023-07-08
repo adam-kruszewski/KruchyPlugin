@@ -17,8 +17,8 @@ namespace Kruchy.Plugin.Akcje.Akcje
     {
         private readonly ISolutionWrapper solution;
 
-        private static Dictionary<Type, Action<UzupelnianieDokumentacji, ParsowanaJednostka>> metodyAnalizy =
-            new Dictionary<Type, Action<UzupelnianieDokumentacji, ParsowanaJednostka>>
+        private static Dictionary<Type, Action<UzupelnianieDokumentacji, ParsedUnit>> metodyAnalizy =
+            new Dictionary<Type, Action<UzupelnianieDokumentacji, ParsedUnit>>
         {
             { typeof(DefinedItem), (ud, pj) => ud.PrzetworzObiekt(pj as DefinedItem) },
             { typeof(Constructor), (ud, konstruktor) => ud.PrzetworzKonstruktor(konstruktor as Constructor) },
@@ -38,7 +38,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         {
             var sparsowane = solution.ParsujZawartoscAktualnegoDokumetu();
 
-            var listaParsowanychJednostek = new List<ParsowanaJednostka>();
+            var listaParsowanychJednostek = new List<ParsedUnit>();
 
             var definiowaneObiekty = sparsowane.DefiniowaneObiekty
                 .Union(sparsowane.DefiniowaneObiekty.SelectMany( o => DajDefiniowanePodObiekty(o)));
@@ -57,7 +57,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
             listaParsowanychJednostek.AddRange(sparsowane.DefiniowaneEnumeracje.SelectMany(o => o.Fields));
 
-            listaParsowanychJednostek = listaParsowanychJednostek.OrderByDescending(o => o.Poczatek.Row).ToList();
+            listaParsowanychJednostek = listaParsowanychJednostek.OrderByDescending(o => o.StartPosition.Row).ToList();
 
             foreach (var parsowanaJednostka in listaParsowanychJednostek)
             {
@@ -75,7 +75,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         {
             if (obiekt.Documentation == null)
             {
-                var wciecie = (obiekt.Poczatek.Column - 1).Spacji();
+                var wciecie = (obiekt.StartPosition.Column - 1).Spacji();
 
                 var poczatek = $"{wciecie}/// ";
                 var builder = new StringBuilder();
@@ -86,10 +86,10 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
                 var doWstawienia = builder.ToString();
 
-                var numerLinii = obiekt.Poczatek.Row;
+                var numerLinii = obiekt.StartPosition.Row;
 
                 if (obiekt.Attributes.Any())
-                    numerLinii = obiekt.Attributes.OrderBy(o => o.Poczatek.Row).First().Poczatek.Row;
+                    numerLinii = obiekt.Attributes.OrderBy(o => o.StartPosition.Row).First().StartPosition.Row;
 
                 solution.AktualnyDokument.InsertInLine(doWstawienia, numerLinii);
             }
@@ -150,7 +150,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         {
             if (konstruktor.Documentation == null)
             {
-                var wciecie = (konstruktor.Poczatek.Column - 1).Spacji();
+                var wciecie = (konstruktor.StartPosition.Column - 1).Spacji();
 
                 var poczatek = $"{wciecie}/// ";
                 var builder = new StringBuilder();
@@ -161,7 +161,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
                 GenerujOpisParametrow(konstruktor.Parametry, poczatek, builder);
 
-                var numerLinii = konstruktor.Poczatek.Row;
+                var numerLinii = konstruktor.StartPosition.Row;
 
                 solution.AktualnyDokument.InsertInLine(builder.ToString(), numerLinii);
             }
@@ -188,7 +188,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         {
             if (metoda.Documentation == null)
             {
-                var wciecie = (metoda.Poczatek.Column - 1).Spacji();
+                var wciecie = (metoda.StartPosition.Column - 1).Spacji();
 
                 var poczatek = $"{wciecie}/// ";
                 var builder = new StringBuilder();
@@ -333,7 +333,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                     summary = string.Join(" ", slowa).ZacznijDuzaLitera();
                 }
 
-                var wciecie = (pole.Poczatek.Column - 1).Spacji();
+                var wciecie = (pole.StartPosition.Column - 1).Spacji();
 
                 var poczatek = $"{wciecie}/// ";
                 var builder = new StringBuilder();
@@ -353,7 +353,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 if (string.IsNullOrEmpty(summary))
                     summary = string.Join(" ", property.Nazwa.PodzielNaSlowaOdWielkichLiter().Select(o => o.ToLower())).ZacznijDuzaLitera();
 
-                var wciecie = (property.Poczatek.Column - 1).Spacji();
+                var wciecie = (property.StartPosition.Column - 1).Spacji();
 
                 var poczatek = $"{wciecie}/// ";
                 var builder = new StringBuilder();
@@ -370,7 +370,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             {
                 var summary = GenerujSummaryKlasyLubInterfejsu(enumeracja);
 
-                var wciecie = (enumeracja.Poczatek.Column - 1).Spacji();
+                var wciecie = (enumeracja.StartPosition.Column - 1).Spacji();
 
                 var poczatek = $"{wciecie}/// ";
                 var builder = new StringBuilder();
@@ -423,12 +423,12 @@ namespace Kruchy.Plugin.Akcje.Akcje
             return summary;
         }
 
-        private int DajNumerLiniiDoWstawienia(ParsowanaJednostka parsowanaJednostka, IEnumerable<KruchyParserKodu.ParserKodu.Models.Attribute> atrybuty = null)
+        private int DajNumerLiniiDoWstawienia(ParsedUnit parsowanaJednostka, IEnumerable<KruchyParserKodu.ParserKodu.Models.Attribute> atrybuty = null)
         {
-            var numerLinii = parsowanaJednostka.Poczatek.Row;
+            var numerLinii = parsowanaJednostka.StartPosition.Row;
 
             if (atrybuty != null && atrybuty.Any())
-                numerLinii = atrybuty.OrderBy(o => o.Poczatek.Row).First().Poczatek.Row;
+                numerLinii = atrybuty.OrderBy(o => o.StartPosition.Row).First().StartPosition.Row;
 
             return numerLinii;
         }

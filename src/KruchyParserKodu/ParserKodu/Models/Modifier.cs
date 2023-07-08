@@ -1,7 +1,7 @@
 ﻿
 namespace KruchyParserKodu.ParserKodu.Models
 {
-    public class Modifier : ParsowanaJednostka
+    public class Modifier : ParsedUnit
     {
         public string Name { get; private set; }
 

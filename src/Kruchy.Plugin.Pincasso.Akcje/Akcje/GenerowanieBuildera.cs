@@ -187,7 +187,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
         {
             var metodaSave = klasaBuildera.Methods.FirstOrDefault(o => o.Name == "Save");
 
-            var miejsceWstawiania = metodaSave?.Poczatek;
+            var miejsceWstawiania = metodaSave?.StartPosition;
 
             if (miejsceWstawiania == null)
                 miejsceWstawiania = klasaBuildera.ClosingBrace;
@@ -227,7 +227,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
 
         private bool ZawieraNapis(Method metoda, string napisUstawiajacyWartoscPola)
         {
-            for (int i = metoda.Poczatek.Row; i < metoda.Koniec.Row; i++)
+            for (int i = metoda.StartPosition.Row; i < metoda.EndPosition.Row; i++)
             {
                 if (solution.AktualnyDokument.GetLineContent(i)
                     .Contains(napisUstawiajacyWartoscPola))

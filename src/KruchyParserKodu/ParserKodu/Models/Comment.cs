@@ -2,7 +2,7 @@
 
 namespace KruchyParserKodu.ParserKodu.Models
 {
-    public class Comment : ParsowanaJednostka
+    public class Comment : ParsedUnit
     {
         public List<string> Lines { get; set; }
 

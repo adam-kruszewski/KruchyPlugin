@@ -28,8 +28,8 @@ namespace KruchyParserKoduTests.Unit
         public void ParsujeNazweIPozycjeEnumeracji()
         {
             enumeration.Name.Should().Be("Enum1");
-            enumeration.Poczatek.Sprawdz(6, 5);
-            enumeration.Koniec.Sprawdz(12, 6);
+            enumeration.StartPosition.Sprawdz(6, 5);
+            enumeration.EndPosition.Sprawdz(12, 6);
         }
 
         [Test]
@@ -38,8 +38,8 @@ namespace KruchyParserKoduTests.Unit
             var atrybut = enumeration.Attributes.Single();
 
             atrybut.Name.Should().Be("Serializable");
-            atrybut.Poczatek.Sprawdz(6, 6);
-            atrybut.Koniec.Sprawdz(6, 18);
+            atrybut.StartPosition.Sprawdz(6, 6);
+            atrybut.EndPosition.Sprawdz(6, 18);
             atrybut.Parameters.Should().BeNullOrEmpty();
         }
 

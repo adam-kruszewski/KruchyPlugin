@@ -5,7 +5,7 @@ using System.Linq;
 namespace KruchyParserKodu.ParserKodu.Models
 {
     public class DefinedItem
-        : ParsowanaJednostka
+        : ParsedUnit
             , IWithName
                 , IWithBraces
                     , IWithOwner

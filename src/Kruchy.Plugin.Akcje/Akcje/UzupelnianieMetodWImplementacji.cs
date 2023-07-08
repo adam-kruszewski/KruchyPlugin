@@ -56,8 +56,8 @@ namespace Kruchy.Plugin.Akcje.Akcje
             }
 
             var definicja = dokument.GetContent(
-                aktualnaMetoda.Poczatek.Row, aktualnaMetoda.Poczatek.Column,
-                aktualnaMetoda.Koniec.Row, aktualnaMetoda.Koniec.Column);
+                aktualnaMetoda.StartPosition.Row, aktualnaMetoda.StartPosition.Column,
+                aktualnaMetoda.EndPosition.Row, aktualnaMetoda.EndPosition.Column);
 
             DodajDefincjeWImplementacji(
                 sciezkaDoImplementacji,
@@ -68,7 +68,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         private Method SzukajNastepnejMetody(Plik parsowane, Method aktualnaMetoda)
         {
-            var interfejs = parsowane.SzukajObiektuWLinii(aktualnaMetoda.Poczatek.Row);
+            var interfejs = parsowane.SzukajObiektuWLinii(aktualnaMetoda.StartPosition.Row);
             if (interfejs == null)
                 return null;
 
@@ -135,9 +135,9 @@ namespace Kruchy.Plugin.Akcje.Akcje
             int numerLiniiGdzieDodawac;
             var obiekt =
                 parsowane
-                .SzukajObiektuWLinii(nastepnaMetodaWImplementacji.Poczatek.Row);
+                .SzukajObiektuWLinii(nastepnaMetodaWImplementacji.StartPosition.Row);
 
-            numerLiniiGdzieDodawac = nastepnaMetodaWImplementacji.Poczatek.Row - 1;
+            numerLiniiGdzieDodawac = nastepnaMetodaWImplementacji.StartPosition.Row - 1;
 
             if (nastepnaMetodaWImplementacji?.Documentation?.Lines != null)
                 numerLiniiGdzieDodawac -= nastepnaMetodaWImplementacji.Documentation.Lines.Count;

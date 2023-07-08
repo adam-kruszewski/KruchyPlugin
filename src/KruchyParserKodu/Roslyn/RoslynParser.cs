@@ -166,8 +166,8 @@ namespace KruchyParserKodu.Roslyn
         {
             var wynik = new UsingNamespace(u.Name.ToString());
             var polozenie = DajPolozenie(u.SyntaxTree, u.Span);
-            wynik.Poczatek = polozenie.Item1.ToPozycjaWPliku();
-            wynik.Koniec = polozenie.Item2.ToPozycjaWPliku();
+            wynik.StartPosition = polozenie.Item1.ToPozycjaWPliku();
+            wynik.EndPosition = polozenie.Item2.ToPozycjaWPliku();
             return wynik;
         }
 
@@ -285,8 +285,8 @@ namespace KruchyParserKodu.Roslyn
             var wynik = new DerivedObject();
 
             wynik.Name = o.Type.DajNazweTypu();
-            wynik.Poczatek = DajPolozenie(o.SyntaxTree, o.Span).Item1.ToPozycjaWPliku();
-            wynik.Koniec = DajPolozenie(o.SyntaxTree, o.Span).Item2.ToPozycjaWPliku();
+            wynik.StartPosition = DajPolozenie(o.SyntaxTree, o.Span).Item1.ToPozycjaWPliku();
+            wynik.EndPosition = DajPolozenie(o.SyntaxTree, o.Span).Item2.ToPozycjaWPliku();
 
             if (o.Type.JestGeneryczny())
             {
@@ -672,8 +672,8 @@ namespace KruchyParserKodu.Roslyn
             var wynik = new AttributeParameter();
             var polozenie = DajPolozenie(o.SyntaxTree, o.Span);
 
-            wynik.Poczatek = polozenie.Item1.ToPozycjaWPliku();
-            wynik.Koniec = polozenie.Item2.ToPozycjaWPliku();
+            wynik.StartPosition = polozenie.Item1.ToPozycjaWPliku();
+            wynik.EndPosition = polozenie.Item2.ToPozycjaWPliku();
             wynik.Value = o.Expression?.ToFullString()?.Trim();
             wynik.Name = o.NameEquals?.Name?.ToFullString()?.Trim();
 
@@ -685,7 +685,7 @@ namespace KruchyParserKodu.Roslyn
         }
 
         private void UstawPolozenie(
-            ParsowanaJednostka obiekt,
+            ParsedUnit obiekt,
             SyntaxNode wezel)
         {
             UstawPolozenie(
@@ -696,33 +696,33 @@ namespace KruchyParserKodu.Roslyn
 
         private void UstawPolozenie(
             SyntaxTree syntaxTree,
-            ParsowanaJednostka obiekt,
+            ParsedUnit obiekt,
             SyntaxNode wezel)
         {
             var l = syntaxTree.GetLineSpan(wezel.Span);
             var l1 = l.StartLinePosition;
             var l2 = l.EndLinePosition;
 
-            obiekt.Poczatek = new PlaceInFile(
+            obiekt.StartPosition = new PlaceInFile(
                 l1.Line + 1,
                 l1.Character + 1);
-            obiekt.Koniec = new PlaceInFile(
+            obiekt.EndPosition = new PlaceInFile(
                 l2.Line + 1,
                 l2.Character + 1);
         }
 
-        private void UstawPolozenie(SyntaxToken token, ParsowanaJednostka obiekt)
+        private void UstawPolozenie(SyntaxToken token, ParsedUnit obiekt)
         {
             var polozenie = DajPolozenie(token);
-            obiekt.Poczatek = polozenie.Item1.ToPozycjaWPliku();
-            obiekt.Koniec = polozenie.Item2.ToPozycjaWPliku();
+            obiekt.StartPosition = polozenie.Item1.ToPozycjaWPliku();
+            obiekt.EndPosition = polozenie.Item2.ToPozycjaWPliku();
         }
 
-        private void UstawPolozenie(SyntaxTrivia trivia, ParsowanaJednostka jednostka)
+        private void UstawPolozenie(SyntaxTrivia trivia, ParsedUnit jednostka)
         {
             var polozenie = DajPolozenie(trivia.SyntaxTree, trivia.FullSpan);
-            jednostka.Poczatek = polozenie.Item1.ToPozycjaWPliku();
-            jednostka.Koniec = polozenie.Item2.ToPozycjaWPliku();
+            jednostka.StartPosition = polozenie.Item1.ToPozycjaWPliku();
+            jednostka.EndPosition = polozenie.Item2.ToPozycjaWPliku();
         }
 
         private Tuple<LinePosition, LinePosition> DajPolozenie(
