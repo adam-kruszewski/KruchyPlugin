@@ -23,12 +23,12 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
 
         public void Uzupelnij()
         {
-            var parsowane = Parser.Parsuj(dokument.GetContent());
+            var parsowane = Parser.Parse(dokument.GetContent());
 
             var prefiks = SzukajPrefiksu();
             var numerLiniiClass = DajNumerLiniiZClass(parsowane);
             DodajAtrybutKlasie(prefiks, parsowane);
-            parsowane = Parser.Parsuj(dokument.GetContent());
+            parsowane = Parser.Parse(dokument.GetContent());
             List<int> linieZKolumnami = ZnajdzLinieZKolumnami(parsowane);
             DodajAtrybutyKolumnowe(linieZKolumnami, prefiks);
             dokument.DodajUsingaJesliTrzeba(NamespaceDlaAtrybutowOpisujacychTabele);

@@ -36,7 +36,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         private bool JestInterfejsem(IFileWrapper aktualny)
         {
             var zawartosc = aktualny.Document.GetContent();
-            var parsowane = Parser.Parsuj(zawartosc);
+            var parsowane = Parser.Parse(zawartosc);
             if (parsowane.DefinedItems.Count == 1)
             {
                 return parsowane.DefinedItems[0].KindOfItem == KindOfItem.Interface;
@@ -47,7 +47,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         private void SprobujPrzejscDoImplementacji(IFileWrapper aktualny)
         {
-            var parsowane = Parser.Parsuj(aktualny.Document.GetContent());
+            var parsowane = Parser.Parse(aktualny.Document.GetContent());
             var metoda =
                 parsowane.FindMethodByLineNumber(
                     aktualny.Document.GetCursorLineNumber());
@@ -64,7 +64,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         private void UstawSieNaMetodzie(Method metoda)
         {
             var parsowane =
-                Parser.Parsuj(solution.AktualnyDokument.GetContent());
+                Parser.Parse(solution.AktualnyDokument.GetContent());
 
             if (parsowane.DefinedItems.Count != 1)
                 return;

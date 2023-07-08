@@ -28,7 +28,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             if (solution.AktualnyDokument == null)
                 return;
             var zawartosc = solution.AktualnyDokument.GetContent();
-            var parsowane = Parser.Parsuj(zawartosc);
+            var parsowane = Parser.Parse(zawartosc);
             var liniaKursora = solution.AktualnyDokument.GetCursorLineNumber();
 
             var aktualnaMetoda = parsowane.FindMethodByLineNumber(liniaKursora);

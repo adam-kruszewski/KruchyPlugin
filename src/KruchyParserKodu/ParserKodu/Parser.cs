@@ -1,29 +1,28 @@
-﻿using System.IO;
-using System.Text;
-using KruchyParserKodu.ParserKodu.Models;
+﻿using KruchyParserKodu.ParserKodu.Models;
 using KruchyParserKodu.Roslyn;
+using System.IO;
+using System.Text;
 
 namespace KruchyParserKodu.ParserKodu
 {
     public interface IParser
     {
-        FileWithCode Parsuj(string zawartosc);
+        FileWithCode Parse(string content);
     }
 
     public class Parser
     {
         static IParser Instance = new RoslynParser();
-            //new NRefactoryParser();
 
-        public static FileWithCode Parsuj(string zawartosc)
+        public static FileWithCode Parse(string content)
         {
-            return Instance.Parsuj(zawartosc);
+            return Instance.Parse(content);
         }
 
-        public static FileWithCode ParsujPlik(string nazwaPliku)
+        public static FileWithCode ParseFile(string fileName)
         {
-            var zawartosc = File.ReadAllText(nazwaPliku, Encoding.UTF8);
-            return Parsuj(zawartosc);
+            var content = File.ReadAllText(fileName, Encoding.UTF8);
+            return Parse(content);
         }
     }
 }

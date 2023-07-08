@@ -12,7 +12,7 @@ namespace Kruchy.Plugin.Utils.Extensions
         public static bool JestInterfejsem(this IFileWrapper aktualny)
         {
             var zawartosc = aktualny.Document.GetContent();
-            var parsowane = Parser.Parsuj(zawartosc);
+            var parsowane = Parser.Parse(zawartosc);
             if (parsowane.DefinedItems.Count == 1)
             {
                 return parsowane.DefinedItems[0].KindOfItem == KindOfItem.Interface;
@@ -60,7 +60,7 @@ namespace Kruchy.Plugin.Utils.Extensions
         public static bool JestBuilderem(this IFileWrapper aktualny)
         {
             var zawartosc = aktualny.Document.GetContent();
-            var parsowane = Parser.Parsuj(zawartosc);
+            var parsowane = Parser.Parse(zawartosc);
             if (parsowane.DefinedItems.Count == 1)
             {
                 var obiekt = parsowane.DefinedItems[0];
@@ -74,7 +74,7 @@ namespace Kruchy.Plugin.Utils.Extensions
         public static bool JestWBuilderze(this IFileWrapper aktualny)
         {
             var zawartosc = aktualny.Document.GetContent();
-            var parsowane = Parser.Parsuj(zawartosc);
+            var parsowane = Parser.Parse(zawartosc);
             var obiekt =
                 parsowane.FindDefinedItemByLineNumber(aktualny.Document.GetCursorLineNumber());
             if (obiekt != null)
@@ -88,7 +88,7 @@ namespace Kruchy.Plugin.Utils.Extensions
 
         public static string SciezkaKataloguControllera(this IFileWrapper plik)
         {
-            var parsowane = Parser.Parsuj(plik.Document.GetContent());
+            var parsowane = Parser.Parse(plik.Document.GetContent());
             string nazwaControllera = DajNazweControllera(parsowane.DefinedItems.Single().Name);
 
             var katalogPlikControllera = plik.Directory;
@@ -112,7 +112,7 @@ namespace Kruchy.Plugin.Utils.Extensions
         public static string DajNazweControllera(this IFileWrapper plik)
         {
             var zawartosc = plik.Document.GetContent();
-            var parsowane = Parser.Parsuj(zawartosc);
+            var parsowane = Parser.Parse(zawartosc);
             if (parsowane.DefinedItems.Count() == 1)
             {
                 var nazwa = parsowane.DefinedItems.First().Name;

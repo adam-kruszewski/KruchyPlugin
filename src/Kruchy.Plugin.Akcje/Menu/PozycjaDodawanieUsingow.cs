@@ -36,7 +36,7 @@ namespace Kruchy.Plugin.Akcje.Menu
         {
             var konf = Konfiguracja.GetInstance(solution);
             var aktualnaZawartosc = solution.AktualnyDokument.GetContent();
-            var aktualnyNamespace = Parser.Parsuj(aktualnaZawartosc).Namespace;
+            var aktualnyNamespace = Parser.Parse(aktualnaZawartosc).Namespace;
 
             var usingi =
                 konf.DajKonfiguracjeUsingow(solution)

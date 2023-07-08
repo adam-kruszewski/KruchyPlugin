@@ -33,7 +33,7 @@ namespace KruchyParserKoduTests.Unit
         [SetUp]
         public void SetUpEachTest()
         {
-            parsedCode = Parser.Parsuj(
+            parsedCode = Parser.Parse(
                 new WczytywaczZawartosciPrzykladow()
                     .DajZawartoscPrzykladu("MethodAndConstructorWithCode.cs"));
 

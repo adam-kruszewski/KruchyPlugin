@@ -32,7 +32,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 return;
             }
 
-            var parsowane = Parser.Parsuj(aktualnyPlik.Document.GetContent());
+            var parsowane = Parser.Parse(aktualnyPlik.Document.GetContent());
 
             var dokument = aktualnyPlik.Document;
             var aktualnaMetoda =
@@ -89,7 +89,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             solutionExplorer.OpenFile(sciezkaDoImplementacji);
 
             var zawartosc = solution.AktualnyDokument.GetContent();
-            var parsowane = Parser.Parsuj(zawartosc);
+            var parsowane = Parser.Parse(zawartosc);
             int numerLiniiGdzieDodawac = 0;
 
             Method nastepnaMetodaWImplementacji = null;

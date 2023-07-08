@@ -19,7 +19,7 @@ namespace KruchyParserKoduTests.Unit
                 new WczytywaczZawartosciPrzykladow()
                     .DajZawartoscPrzykladu("KlasaDoParsowania.cs");
             //act
-            var plik = Parser.Parsuj(zawartosc);
+            var plik = Parser.Parse(zawartosc);
 
             //assert
             plik.Should().NotBeNull();

@@ -222,7 +222,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         {
             var kod = solution.AktualnyDokument.GetContent();
 
-            var parsowanyPlik = Parser.Parsuj(kod);
+            var parsowanyPlik = Parser.Parse(kod);
             return parsowanyPlik;
         }
 

@@ -19,7 +19,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         public void ZmienNa(string modyfikator)
         {
-            var parsowane = Parser.Parsuj(dokument.GetContent());
+            var parsowane = Parser.Parse(dokument.GetContent());
             var metoda =
                 parsowane.FindMethodByLineNumber(dokument.GetCursorLineNumber());
 

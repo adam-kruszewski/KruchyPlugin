@@ -12,7 +12,7 @@ namespace Kruchy.Plugin.Utils.Extensions
             this IDocumentWrapper dokument,
             params string[] nazwyNamespace)
         {
-            var parsowane = Parser.Parsuj(dokument.GetContent());
+            var parsowane = Parser.Parse(dokument.GetContent());
 
             if (nazwyNamespace.All(o => ZawieraUsingNamespace(o, parsowane)))
                 return;

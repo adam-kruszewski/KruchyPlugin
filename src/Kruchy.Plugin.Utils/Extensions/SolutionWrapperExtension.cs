@@ -13,7 +13,7 @@ namespace Kruchy.Plugin.Utils.Extensions
                 return null;
 
             var zawartosc = solution.AktualnyDokument.GetContent();
-            return Parser.Parsuj(zawartosc).Namespace;
+            return Parser.Parse(zawartosc).Namespace;
         }
 
         public static string NazwaObiektuAktualnegoPliku(
@@ -23,7 +23,7 @@ namespace Kruchy.Plugin.Utils.Extensions
                 return null;
 
             var zawartosc = solution.AktualnyDokument.GetContent();
-            var parsowane = Parser.Parsuj(zawartosc);
+            var parsowane = Parser.Parse(zawartosc);
             if (parsowane.DefinedItems.Count <= 0)
                 return null;
 
@@ -33,7 +33,7 @@ namespace Kruchy.Plugin.Utils.Extensions
         public static string NazwaAktualnejMetody(this ISolutionWrapper solution)
         {
             var zawartosc = solution.AktualnyDokument.GetContent();
-            var parsowane = Parser.Parsuj(zawartosc);
+            var parsowane = Parser.Parse(zawartosc);
             var liniaKursora = solution.AktualnyDokument.GetCursorLineNumber();
 
             var aktualnaMetoda = parsowane.FindMethodByLineNumber(liniaKursora);
@@ -47,7 +47,7 @@ namespace Kruchy.Plugin.Utils.Extensions
         public static FileWithCode ParsujZawartoscAktualnegoDokumetu(
             this ISolutionWrapper solution)
         {
-            return Parser.Parsuj(solution.AktualnyDokument.GetContent());
+            return Parser.Parse(solution.AktualnyDokument.GetContent());
         }
 
         public static IProjectWrapper SzukajProjektuWgNazwy(

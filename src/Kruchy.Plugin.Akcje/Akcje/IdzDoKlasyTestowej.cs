@@ -26,7 +26,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             if (solution.AktualnyPlik == null)
                 return;
 
-            var parsowane = Parser.Parsuj(solution.AktualnyDokument.GetContent());
+            var parsowane = Parser.Parse(solution.AktualnyDokument.GetContent());
 
             IFileWrapper plik = null;
             if (solution.AktualnyProjekt.Modul())
@@ -79,7 +79,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         private string SzukajNazwyKlasyTestowanejZServiceTests()
         {
-            var parsowane = Parser.Parsuj(solution.AktualnyDokument.GetContent());
+            var parsowane = Parser.Parse(solution.AktualnyDokument.GetContent());
             var klasa = parsowane.DefinedItems.First();
             if (KlasaServiceTests(klasa))
             {

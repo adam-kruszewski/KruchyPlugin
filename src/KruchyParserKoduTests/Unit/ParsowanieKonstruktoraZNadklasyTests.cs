@@ -18,7 +18,7 @@ namespace KruchyParserKoduTests.Unit
                     .DajZawartoscPrzykladu("KontruktorZNadKlasy.cs");
 
             //act
-            var sparsowane = Parser.Parsuj(zawartosc);
+            var sparsowane = Parser.Parse(zawartosc);
 
             //assert
             var konstruktor =

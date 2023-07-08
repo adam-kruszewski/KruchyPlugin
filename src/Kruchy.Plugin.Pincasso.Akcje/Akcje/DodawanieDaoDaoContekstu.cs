@@ -25,7 +25,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
 
         public void Dodaj()
         {
-            var sparsowane = Parser.Parsuj(solution.AktualnyDokument.GetContent());
+            var sparsowane = Parser.Parse(solution.AktualnyDokument.GetContent());
 
             var obiekt =
                 sparsowane.FindDefinedItemByLineNumber(solution.AktualnyDokument.GetCursorLineNumber());
@@ -93,8 +93,8 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
 
             var dokument = solution.AktualnyDokument;
 
-            var sparsowaneDao = Parser.ParsujPlik(plikDao.FullPath);
-            var sparsowaneIDao = Parser.ParsujPlik(plikIDao.FullPath);
+            var sparsowaneDao = Parser.ParseFile(plikDao.FullPath);
+            var sparsowaneIDao = Parser.ParseFile(plikIDao.FullPath);
 
             dokument.DodajUsingaJesliTrzeba(sparsowaneDao.Namespace);
             dokument.DodajUsingaJesliTrzeba(sparsowaneIDao.Namespace);
@@ -118,7 +118,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
 
             var dokument = solution.AktualnyDokument;
 
-            var sparsowaneIDao = Parser.ParsujPlik(plikIDao.FullPath);
+            var sparsowaneIDao = Parser.ParseFile(plikIDao.FullPath);
 
             dokument.DodajUsingaJesliTrzeba(sparsowaneIDao.Namespace);
 
@@ -134,7 +134,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             IDocumentWrapper dokument,
             string nazwaInterfejsuDao)
         {
-            var sparsowane = Parser.Parsuj(dokument.GetContent());
+            var sparsowane = Parser.Parse(dokument.GetContent());
 
             var metodaPo =
             sparsowane

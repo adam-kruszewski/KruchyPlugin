@@ -30,7 +30,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             }
 
             var nazwaPlikuContextu = SzukajPlikuContextu(projekt);
-            var parsowane = Parser.ParsujPlik(nazwaPlikuContextu);
+            var parsowane = Parser.ParseFile(nazwaPlikuContextu);
 
             var nazwaKlasyContextu = parsowane.DefinedItems.First().Name;
             var namespaceKlasy = parsowane.Namespace;
@@ -40,7 +40,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             aktualnyDokument.DodajUsingaJesliTrzeba("Pincasso.Core.Base");
 
             var parsowaneAktualny =
-                Parser.Parsuj(solution.AktualnyDokument.GetContent());
+                Parser.Parse(solution.AktualnyDokument.GetContent());
             DodajAtrybutContext(nazwaKlasyContextu, parsowaneAktualny);
             DodajInterfejsUsingContext(nazwaKlasyContextu, parsowaneAktualny);
         }

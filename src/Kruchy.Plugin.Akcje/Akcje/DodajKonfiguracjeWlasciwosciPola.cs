@@ -25,7 +25,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
             var aktualnyNumerLinii = solution.AktualnyDokument.GetCursorLineNumber();
 
-            var parsowane = Parser.Parsuj(solution.AktualnyDokument.GetContent());
+            var parsowane = Parser.Parse(solution.AktualnyDokument.GetContent());
 
             var aktualnaWlasciwosc = parsowane.FindPropertyByLineNumber(aktualnyNumerLinii);
 

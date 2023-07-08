@@ -19,7 +19,7 @@ namespace KruchyParserKoduTests.Unit
                 new WczytywaczZawartosciPrzykladow()
                     .DajZawartoscPrzykladu("KlasaDoParsowaniaModyfikatorow.cs");
 
-            sparsowane = Parser.Parsuj(zawartosc);
+            sparsowane = Parser.Parse(zawartosc);
         }
 
         [Test]

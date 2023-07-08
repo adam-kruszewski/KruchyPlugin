@@ -18,7 +18,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         public void ZamienNaAsyncMethod()
         {
-            var parsowane = Parser.Parsuj(dokument.GetContent());
+            var parsowane = Parser.Parse(dokument.GetContent());
             var metoda =
                 parsowane.FindMethodByLineNumber(dokument.GetCursorLineNumber());
 
@@ -34,7 +34,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         private void DodajTaskDoTypuZwracanegoJesliTrzeba()
         {
-            var parsowane = Parser.Parsuj(dokument.GetContent());
+            var parsowane = Parser.Parse(dokument.GetContent());
             var metoda = parsowane.FindMethodByLineNumber(dokument.GetCursorLineNumber());
 
             if (!metoda.ReturnType.Name.StartsWith("Task"))

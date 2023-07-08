@@ -30,7 +30,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
         {
             var zawartoscAktualnego = solution.AktualnyDokument.GetContent();
 
-            var sparsowane = Parser.Parsuj(zawartoscAktualnego);
+            var sparsowane = Parser.Parse(zawartoscAktualnego);
 
             DefinedItem obiektDoZbudowania = DajObiektDoZbudowania(sparsowane);
 
@@ -139,7 +139,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             string nazwaKlasyBuildera,
             IEnumerable<string> usingiZObiektuBudowanego)
         {
-            var sparsowane = Parser.Parsuj(solution.AktualnyDokument.GetContent());
+            var sparsowane = Parser.Parse(solution.AktualnyDokument.GetContent());
 
             var klasaBuildera =
                 sparsowane.DefinedItems.Single(o => o.Name == nazwaKlasyBuildera);

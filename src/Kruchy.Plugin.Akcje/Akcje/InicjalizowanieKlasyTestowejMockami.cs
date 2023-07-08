@@ -37,7 +37,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             if (plikTestowany == null)
                 throw new AggregateException("Nie znaleziono pliku testowanego");
 
-            var parserTestowanego = Parser.ParsujPlik(plikTestowany.FullPath);
+            var parserTestowanego = Parser.ParseFile(plikTestowany.FullPath);
 
             var konstruktor = parserTestowanego.DefinedItems?.First()?.Constructors?.Single();
 
@@ -69,7 +69,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
                 if (plikZDefinicja != null)
                 {
-                    var sparsowane = Parser.ParsujPlik(plikZDefinicja.FullPath);
+                    var sparsowane = Parser.ParseFile(plikZDefinicja.FullPath);
 
                     solution.AktualnyDokument.DodajUsingaJesliTrzeba(sparsowane.Namespace);
                 }
@@ -84,7 +84,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         private IEnumerable<Tuple<string, string>> DajPolaMockowDoDodania(
             IEnumerable<Tuple<string, string>> polaZTypemZKonstruktora)
         {
-            var parsowane = Parser.Parsuj(solution.AktualnyDokument.GetContent());
+            var parsowane = Parser.Parse(solution.AktualnyDokument.GetContent());
 
             var polaZdefiniowane = parsowane.DefinedItems.First().Fields;
 
@@ -96,7 +96,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         private void DodajPolaMockow(IEnumerable<Tuple<string, string>> polaMockowDoDodania)
         {
-            var parsowane = Parser.Parsuj(solution.AktualnyDokument.GetContent());
+            var parsowane = Parser.Parse(solution.AktualnyDokument.GetContent());
 
             int numerLiniiDoDodawaniaPol = SzukajLiniiDoWstawieniaPola(parsowane);
 
@@ -134,7 +134,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         private void DodajPoleInstancji(string nazwaBezRozszerzenia)
         {
-            var parsowane = Parser.Parsuj(solution.AktualnyDokument.GetContent());
+            var parsowane = Parser.Parse(solution.AktualnyDokument.GetContent());
 
             if (!parsowane.DefinedItems.First().Fields.Any(o => o.Name == NazwaPolaInstancji))
             {
@@ -156,7 +156,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             IEnumerable<Tuple<string, string>> polaZTypemZKontruktora,
             string nazwaKlasyTestowanej)
         {
-            var parsowane = Parser.Parsuj(solution.AktualnyDokument.GetContent());
+            var parsowane = Parser.Parse(solution.AktualnyDokument.GetContent());
 
             var aktualna = parsowane.DefinedItems.First().Methods.SingleOrDefault(o => o.Name == NazwaMetody);
 

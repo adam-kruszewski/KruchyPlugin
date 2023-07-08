@@ -26,7 +26,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             var nazwaKlasyWalidowanej =
                 solution.AktualnyPlik.NameWithoutExtension;
 
-            var parsowane = Parser.Parsuj(solution.AktualnyDokument.GetContent());
+            var parsowane = Parser.Parse(solution.AktualnyDokument.GetContent());
             nazwaKlasyWalidowanej = parsowane.DefinedItems[0].Name;
 
             var zawartoscImplementacji =

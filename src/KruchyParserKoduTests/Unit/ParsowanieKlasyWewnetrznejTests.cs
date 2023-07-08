@@ -26,7 +26,7 @@ namespace KruchyParserKoduTests.Unit
             }
 
             //act
-            var sparsowane = Parser.Parsuj(zawartosc);
+            var sparsowane = Parser.Parse(zawartosc);
 
             //assert
             var klasaGlowna = sparsowane.DefinedItems.Single();

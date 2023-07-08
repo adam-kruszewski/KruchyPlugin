@@ -22,7 +22,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
                 return;
 
             var dokument = solution.AktualnyDokument;
-            var parsowane = Parser.Parsuj(dokument.GetContent());
+            var parsowane = Parser.Parse(dokument.GetContent());
 
             var metodaBuilder =
                 new MetodaBuilder()

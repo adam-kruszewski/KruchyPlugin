@@ -15,7 +15,7 @@ namespace KruchyParserKoduTests.Unit
         [SetUp]
         public void SetUpEachTest()
         {
-            parsowane = Parser.Parsuj(
+            parsowane = Parser.Parse(
                 new WczytywaczZawartosciPrzykladow()
                     .DajZawartoscPrzykladu("KlasaDoParsowaniaRozszerzone.cs"));
         }

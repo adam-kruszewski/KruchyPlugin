@@ -15,7 +15,7 @@ namespace KruchyParserKodu.Roslyn
 {
     class RoslynParser : IParser
     {
-        public FileWithCode Parsuj(string zawartosc)
+        public FileWithCode Parse(string zawartosc)
         {
             var syntaxTree = CSharpSyntaxTree.ParseText(zawartosc);
             var root = syntaxTree.GetRoot() as CompilationUnitSyntax;

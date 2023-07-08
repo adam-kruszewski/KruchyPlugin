@@ -23,7 +23,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         {
             var dokument = solution.AktualnyDokument;
             var parsowane =
-                Parser.Parsuj(dokument.GetContent());
+                Parser.Parse(dokument.GetContent());
 
             var metoda = parsowane
                     .FindMethodByLineNumber(dokument.GetCursorLineNumber());

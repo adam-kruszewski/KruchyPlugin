@@ -22,7 +22,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
         {
             var numerLinii = DajNumerLiniiKursora();
             var zawartosc = DajZawartosc();
-            var parsowane = Parser.Parsuj(zawartosc);
+            var parsowane = Parser.Parse(zawartosc);
             var property = parsowane.FindPropertyByLineNumber(numerLinii);
 
             if (property == null)

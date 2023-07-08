@@ -14,7 +14,7 @@ namespace KruchyParserKoduTests.Unit
         public void ParsujeInterfejs()
         {
             //act
-            var sparsowane = Parser.Parsuj(
+            var sparsowane = Parser.Parse(
                 new WczytywaczZawartosciPrzykladow()
                     .DajZawartoscPrzykladu("InterfejsDoParsowania.cs"));
 
@@ -46,7 +46,7 @@ namespace KruchyParserKoduTests.Unit
         public void ParsujeInterfejsZDziedziczeniemIAtrybutami()
         {
             //act
-            var sparsowane = Parser.Parsuj(
+            var sparsowane = Parser.Parse(
                 new WczytywaczZawartosciPrzykladow()
                     .DajZawartoscPrzykladu("InterfejsZDziedziczeniemIAtrybutami.cs"));
 
