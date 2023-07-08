@@ -209,7 +209,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
                     DodajOpisParametrowGenerycznych(metoda.GenericParameters, poczatek, builder);
 
-                    if (metoda.ReturnType.Nazwa != "void")
+                    if (metoda.ReturnType.Name != "void")
                         builder.AppendLine($"{poczatek}<returns>{DajOpisTypuZwracanego(metoda)}</returns>");
 
                     solution.AktualnyDokument.InsertInLine(builder.ToString(), numerLinii);
@@ -219,7 +219,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         private string DajOpisTypuZwracanego(Method metoda)
         {
-            if (metoda.ReturnType.Nazwa == "Task")
+            if (metoda.ReturnType.Name == "Task")
                 return "Awaitable object";
 
             var slowaNazwyMetody = metoda.Name.PodzielNaSlowaOdWielkichLiter();
@@ -230,7 +230,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
                 var regex = new Regex("Task<[a-zA-Z0-9_]+>");
 
-                if (regex.IsMatch(metoda.ReturnType.Nazwa))
+                if (regex.IsMatch(metoda.ReturnType.Name))
                 {
                     slowaDoBudowy = new[] { "Async" }.Union(slowaDoBudowy);
                 }
@@ -244,7 +244,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
                 var regex = new Regex("Task<[a-zA-Z0-9_]+>");
 
-                if (regex.IsMatch(metoda.ReturnType.Nazwa))
+                if (regex.IsMatch(metoda.ReturnType.Name))
                 {
                     slowaDoBudowy = new[] { "Async" }.Union(slowaDoBudowy);
                 }

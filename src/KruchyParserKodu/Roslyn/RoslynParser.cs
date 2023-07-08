@@ -312,9 +312,9 @@ namespace KruchyParserKodu.Roslyn
 
                 UstawPolozenie(klasa.SyntaxTree, metoda, metodaSyntax);
 
-                metoda.ReturnType = new TypZwracany
+                metoda.ReturnType = new ReturnedType
                 {
-                    Nazwa = metodaSyntax.ReturnType.DajNazweTypu()
+                    Name = metodaSyntax.ReturnType.DajNazweTypu()
                 };
 
                 UstawPolozenie(klasa.SyntaxTree, metoda.ReturnType, metodaSyntax.ReturnType);

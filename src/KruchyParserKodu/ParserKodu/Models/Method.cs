@@ -12,7 +12,7 @@ namespace KruchyParserKodu.ParserKodu.Models
     {
         public IList<GenericParameter> GenericParameters { get; set; }
 
-        public TypZwracany ReturnType { get; set; }
+        public ReturnedType ReturnType { get; set; }
 
         public string Name { get; set; }
 

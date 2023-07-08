@@ -37,11 +37,11 @@ namespace Kruchy.Plugin.Akcje.Akcje
             var parsowane = Parser.Parsuj(dokument.GetContent());
             var metoda = parsowane.FindMethodByLineNumber(dokument.GetCursorLineNumber());
 
-            if (!metoda.ReturnType.Nazwa.StartsWith("Task"))
+            if (!metoda.ReturnType.Name.StartsWith("Task"))
             {
                 var wiersz = metoda.ReturnType.StartPosition.Row;
                 var slowoDoWstawienia = "Task";
-                if (metoda.ReturnType.Nazwa != "void")
+                if (metoda.ReturnType.Name != "void")
                 {
                     dokument.InsertInPlace(
                         ">",

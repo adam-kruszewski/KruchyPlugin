@@ -141,7 +141,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
                 .DefinedItems
                     .Single()
                         .Methods
-                            .Where(o => o.ReturnType.Nazwa.CompareTo(nazwaInterfejsuDao) > 0)
+                            .Where(o => o.ReturnType.Name.CompareTo(nazwaInterfejsuDao) > 0)
                                 .FirstOrDefault();
 
             if (metodaPo == null)
