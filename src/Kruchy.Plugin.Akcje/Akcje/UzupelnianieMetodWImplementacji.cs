@@ -123,7 +123,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             solution.AktualnyDokument.SetCursorForAddedMethod(
                 numerLiniiGdzieDodawac + 1);
 
-            foreach (var u in usingi.Select(o => o.Nazwa))
+            foreach (var u in usingi.Select(o => o.Name))
                 solution.AktualnyDokument.DodajUsingaJesliTrzeba(u);
         }
 

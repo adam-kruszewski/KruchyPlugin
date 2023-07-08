@@ -83,7 +83,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             UzupelnijMetody(
                 wlasciwosciDlaBuildera,
                 nazwaKlasyBuildera,
-                sparsowane.Usings.Select(o => o.Nazwa));
+                sparsowane.Usings.Select(o => o.Name));
         }
 
         private List<WlasciwoscDlaBuildera> SzukajWlasciwosciDlaBuildera(DefinedItem obiektDoZbudowania)

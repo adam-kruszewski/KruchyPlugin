@@ -19,7 +19,7 @@ namespace Kruchy.Plugin.Utils.Extensions
 
             int wierszWstawienia = 1;
             int kolumnaWstawienia = 1;
-            var aktualneUsingi = parsowane.Usings.Select(o => o.Nazwa).ToList();
+            var aktualneUsingi = parsowane.Usings.Select(o => o.Name).ToList();
             aktualneUsingi.AddRange(
                 nazwyNamespace.Where(o => !ZawieraUsingNamespace(o, parsowane)));
 
@@ -46,7 +46,7 @@ namespace Kruchy.Plugin.Utils.Extensions
 
         private static bool ZawieraUsingNamespace(string nazwaNamespace, FileWithCode parsowane)
         {
-            return parsowane.Usings.Select(o => o.Nazwa).Contains(nazwaNamespace);
+            return parsowane.Usings.Select(o => o.Name).Contains(nazwaNamespace);
         }
 
         private static void UsunWszystkieUsingi(

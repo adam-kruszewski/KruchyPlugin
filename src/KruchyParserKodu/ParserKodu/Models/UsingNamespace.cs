@@ -1,22 +1,19 @@
-﻿
-using KruchyParserKodu.ParserKodu.Models;
-
-namespace KruchyParserKodu.ParserKodu
+﻿namespace KruchyParserKodu.ParserKodu.Models
 {
     public class UsingNamespace : ParsedUnit
     {
-        public string Nazwa { get; private set; }
+        public string Name { get; private set; }
 
-        public UsingNamespace(string nazwa)
+        public UsingNamespace(string name)
         {
-            Nazwa = nazwa;
+            Name = name;
             StartPosition = new PlaceInFile();
             EndPosition = new PlaceInFile();
         }
 
         public override string ToString()
         {
-            return Nazwa;
+            return Name;
         }
     }
 }
