@@ -22,8 +22,7 @@ namespace KruchyParserKodu.Roslyn
 
             DisplayHierachy(root);
 
-            var wynik = new FileWithCode();
-
+            var result = new FileWithCode();
 
             BaseNamespaceDeclarationSyntax namespaceDeclaration =
                 root.Members.OfType<NamespaceDeclarationSyntax>().FirstOrDefault();
@@ -35,55 +34,55 @@ namespace KruchyParserKodu.Roslyn
                 namespaceDeclaration = fileScopedNamespaceDeclaration;
 
             if (namespaceDeclaration != null)
-                wynik.Namespace = namespaceDeclaration.Name.ToString();
+                result.Namespace = namespaceDeclaration.Name.ToString();
 
 
             foreach (var u in root.Usings)
-                wynik.Usings.Add(DajUsing(u));
+                result.Usings.Add(GetUsing(u));
 
-            var klasy =
+            var classes =
                 namespaceDeclaration.Members.OfType<ClassDeclarationSyntax>();
 
-            foreach (var klasa in klasy)
+            foreach (var definedClass in classes)
             {
-                var definiowanyObiekt = ParsujKlase(syntaxTree, klasa);
+                var definedItem = ParseClass(syntaxTree, definedClass);
 
-                wynik.DefinedItems.Add(definiowanyObiekt);
+                result.DefinedItems.Add(definedItem);
             }
 
-            var interfejsy = namespaceDeclaration.Members.OfType<InterfaceDeclarationSyntax>();
-            foreach (var interfaceSyntax in interfejsy)
+            var interfaces = namespaceDeclaration.Members.OfType<InterfaceDeclarationSyntax>();
+            foreach (var interfaceSyntax in interfaces)
             {
-                wynik.DefinedItems.Add(ParsujInterfejs(interfaceSyntax));
+                result.DefinedItems.Add(ParseInterface(interfaceSyntax));
             }
 
-            var enumeracje = namespaceDeclaration.Members.OfType<EnumDeclarationSyntax>();
-            foreach (var enumSyntax in enumeracje)
+            var enums = namespaceDeclaration.Members.OfType<EnumDeclarationSyntax>();
+            foreach (var enumSyntax in enums)
             {
-                wynik.DefinedEnumerations.Add(ParsujEnumeracje(enumSyntax));
+                result.DefinedEnumerations.Add(ParseEnum(enumSyntax));
             }
 
-            return wynik;
+            return result;
         }
 
-        private Enumeration ParsujEnumeracje(EnumDeclarationSyntax enumSyntax)
+        private Enumeration ParseEnum(EnumDeclarationSyntax enumSyntax)
         {
-            var definiowanaEnumeracja = new Enumeration();
-            definiowanaEnumeracja.Name = enumSyntax.Identifier.ValueText;
-            UstawPolozenie(enumSyntax.SyntaxTree, definiowanaEnumeracja, enumSyntax);
+            var definedEnum = new Enumeration();
+            definedEnum.Name = enumSyntax.Identifier.ValueText;
+            SetPosition(enumSyntax.SyntaxTree, definedEnum, enumSyntax);
 
-            UzupelnijPola(definiowanaEnumeracja.Fields, enumSyntax, null);
+            FillField(definedEnum.Fields, enumSyntax, null);
 
-            UstawPolozeniePoczatkowejKlamerki(definiowanaEnumeracja, enumSyntax.OpenBraceToken);
-            UstawPolozenieKoncowejKlamerki(definiowanaEnumeracja, enumSyntax.CloseBraceToken);
+            SetOpeningBracePosition(definedEnum, enumSyntax.OpenBraceToken);
+            SetClosingBracePosition(definedEnum, enumSyntax.CloseBraceToken);
 
-            UzupelnijAtrybuty(enumSyntax.AttributeLists, definiowanaEnumeracja.Attributes);
-            UzupelnijModyfikatory(enumSyntax.Modifiers, definiowanaEnumeracja.Modifiers);
+            FillAttributes(enumSyntax.AttributeLists, definedEnum.Attributes);
+            FillModifiers(enumSyntax.Modifiers, definedEnum.Modifiers);
 
-            ParsujDokumentacje(definiowanaEnumeracja, enumSyntax);
-            ParsujKomentarz(definiowanaEnumeracja, enumSyntax);
+            ParseDocumentation(definedEnum, enumSyntax);
+            ParseComment(definedEnum, enumSyntax);
 
-            return definiowanaEnumeracja;
+            return definedEnum;
         }
 
         private void DisplayHierachy(CompilationUnitSyntax root)
@@ -136,115 +135,115 @@ namespace KruchyParserKodu.Roslyn
             }
         }
 
-        private void ParsujKomentarz(IWithComment obiekt, SyntaxNode syntaxNode)
+        private void ParseComment(IWithComment definedItem, SyntaxNode syntaxNode)
         {
             var trivias = syntaxNode.GetLeadingTrivia();
 
             foreach (var trivia in trivias.Where(o => o.IsKind(SyntaxKind.SingleLineCommentTrivia)))
             {
-                if (obiekt.Comment == null)
-                    obiekt.Comment = new Comment();
-                obiekt.Comment.AddLine(trivia.ToString());
-                UstawPolozenie(trivia, obiekt.Comment);
+                if (definedItem.Comment == null)
+                    definedItem.Comment = new Comment();
+                definedItem.Comment.AddLine(trivia.ToString());
+                SetPosition(trivia, definedItem.Comment);
             }
         }
 
-        private void ParsujDokumentacje(IWithDocumentation obiekt, SyntaxNode syntaxNode)
+        private void ParseDocumentation(IWithDocumentation definedItem, SyntaxNode syntaxNode)
         {
             var trivias = syntaxNode.GetLeadingTrivia();
 
             foreach (var trivia in trivias.Where(o => o.IsKind(SyntaxKind.SingleLineDocumentationCommentTrivia)))
             {
-                if (obiekt.Documentation == null)
-                    obiekt.Documentation = new Documentation();
-                obiekt.Documentation.AddDocumentation(trivia.ToFullString());
-                UstawPolozenie(trivia, obiekt.Documentation);
+                if (definedItem.Documentation == null)
+                    definedItem.Documentation = new Documentation();
+                definedItem.Documentation.AddDocumentation(trivia.ToFullString());
+                SetPosition(trivia, definedItem.Documentation);
             }
         }
 
-        private UsingNamespace DajUsing(UsingDirectiveSyntax u)
+        private UsingNamespace GetUsing(UsingDirectiveSyntax u)
         {
-            var wynik = new UsingNamespace(u.Name.ToString());
-            var polozenie = DajPolozenie(u.SyntaxTree, u.Span);
-            wynik.StartPosition = polozenie.Item1.ToPlaceInFile();
-            wynik.EndPosition = polozenie.Item2.ToPlaceInFile();
-            return wynik;
+            var result = new UsingNamespace(u.Name.ToString());
+            var position = GetPosition(u.SyntaxTree, u.Span);
+            result.StartPosition = position.Item1.ToPlaceInFile();
+            result.EndPosition = position.Item2.ToPlaceInFile();
+            return result;
         }
 
-        private DefinedItem ParsujInterfejs(InterfaceDeclarationSyntax interfaceSyntax)
+        private DefinedItem ParseInterface(InterfaceDeclarationSyntax interfaceSyntax)
         {
-            var definiowanyObiekt = new DefinedItem();
-            definiowanyObiekt.Name = interfaceSyntax.Identifier.ValueText;
-            definiowanyObiekt.KindOfItem = KindOfItem.Interface;
-            UstawPolozenie(interfaceSyntax.Keyword, definiowanyObiekt.KindOfObjectUnit);
+            var definedItem = new DefinedItem();
+            definedItem.Name = interfaceSyntax.Identifier.ValueText;
+            definedItem.KindOfItem = KindOfItem.Interface;
+            SetPosition(interfaceSyntax.Keyword, definedItem.KindOfObjectUnit);
 
-            UstawPolozenie(interfaceSyntax.SyntaxTree, definiowanyObiekt, interfaceSyntax);
-            UstawPolozeniePoczatkowejKlamerki(definiowanyObiekt, interfaceSyntax.OpenBraceToken);
-            UstawPolozenieKoncowejKlamerki(definiowanyObiekt, interfaceSyntax.CloseBraceToken);
+            SetPosition(interfaceSyntax.SyntaxTree, definedItem, interfaceSyntax);
+            SetOpeningBracePosition(definedItem, interfaceSyntax.OpenBraceToken);
+            SetClosingBracePosition(definedItem, interfaceSyntax.CloseBraceToken);
 
-            UzupelnijAtrybuty(interfaceSyntax.AttributeLists, definiowanyObiekt.Attributes);
-            UzupelnijModyfikatory(interfaceSyntax.Modifiers, definiowanyObiekt.Modifiers);
-            UzupelnijWlasciwosci(definiowanyObiekt.Properties, interfaceSyntax, definiowanyObiekt);
-            UzupelnijMetody(definiowanyObiekt.Methods, interfaceSyntax, definiowanyObiekt);
-            UzupelniejTypyDziedziczone(definiowanyObiekt, interfaceSyntax);
+            FillAttributes(interfaceSyntax.AttributeLists, definedItem.Attributes);
+            FillModifiers(interfaceSyntax.Modifiers, definedItem.Modifiers);
+            FillProperties(definedItem.Properties, interfaceSyntax, definedItem);
+            FillMethods(definedItem.Methods, interfaceSyntax, definedItem);
+            FillDerivedTypes(definedItem, interfaceSyntax);
 
-            ParsujDokumentacje(definiowanyObiekt, interfaceSyntax);
-            ParsujKomentarz(definiowanyObiekt, interfaceSyntax);
+            ParseDocumentation(definedItem, interfaceSyntax);
+            ParseComment(definedItem, interfaceSyntax);
 
-            ParsujParametryGeneryczne(definiowanyObiekt, interfaceSyntax.TypeParameterList);
+            ParseGenericParameters(definedItem, interfaceSyntax.TypeParameterList);
 
-            return definiowanyObiekt;
+            return definedItem;
         }
 
-        private DefinedItem ParsujKlase(SyntaxTree syntaxTree, ClassDeclarationSyntax klasa)
+        private DefinedItem ParseClass(SyntaxTree syntaxTree, ClassDeclarationSyntax classSyntax)
         {
-            var definiowanyObiekt = new DefinedItem();
-            definiowanyObiekt.Name = klasa.Identifier.ValueText;
-            definiowanyObiekt.KindOfItem = KindOfItem.Class;
-            UstawPolozenie(klasa.Keyword, definiowanyObiekt.KindOfObjectUnit);
+            var definedItem = new DefinedItem();
+            definedItem.Name = classSyntax.Identifier.ValueText;
+            definedItem.KindOfItem = KindOfItem.Class;
+            SetPosition(classSyntax.Keyword, definedItem.KindOfObjectUnit);
 
-            UstawPolozenie(syntaxTree, definiowanyObiekt, klasa);
-            UstawPolozeniePoczatkowejKlamerki(definiowanyObiekt, klasa.OpenBraceToken);
-            UstawPolozenieKoncowejKlamerki(definiowanyObiekt, klasa.CloseBraceToken);
+            SetPosition(syntaxTree, definedItem, classSyntax);
+            SetOpeningBracePosition(definedItem, classSyntax.OpenBraceToken);
+            SetClosingBracePosition(definedItem, classSyntax.CloseBraceToken);
 
-            UzupelnijAtrybuty(klasa.AttributeLists, definiowanyObiekt.Attributes);
+            FillAttributes(classSyntax.AttributeLists, definedItem.Attributes);
 
-            UzupelnijModyfikatory(klasa.Modifiers, definiowanyObiekt.Modifiers);
+            FillModifiers(classSyntax.Modifiers, definedItem.Modifiers);
 
-            UzupelnijPola(definiowanyObiekt.Fields, klasa, definiowanyObiekt);
+            FillFields(definedItem.Fields, classSyntax, definedItem);
 
-            UzupelnijWlasciwosci(definiowanyObiekt.Properties, klasa, definiowanyObiekt);
+            FillProperties(definedItem.Properties, classSyntax, definedItem);
 
-            UzupelnijKontruktory(definiowanyObiekt.Constructors, klasa, definiowanyObiekt);
+            FillConstructors(definedItem.Constructors, classSyntax, definedItem);
 
-            UzupelnijMetody(definiowanyObiekt.Methods, klasa, definiowanyObiekt);
+            FillMethods(definedItem.Methods, classSyntax, definedItem);
 
-            UzupelniejTypyDziedziczone(definiowanyObiekt, klasa);
+            FillDerivedTypes(definedItem, classSyntax);
 
-            ParsujKomentarz(definiowanyObiekt, klasa);
+            ParseComment(definedItem, classSyntax);
 
-            ParsujDokumentacje(definiowanyObiekt, klasa);
+            ParseDocumentation(definedItem, classSyntax);
 
-            ParsujParametryGeneryczne(definiowanyObiekt, klasa.TypeParameterList);
+            ParseGenericParameters(definedItem, classSyntax.TypeParameterList);
 
-            var klasyWewnetrzne = SzukajKlasWewnetrznych(klasa);
+            var internalClasses = FindInternalClasses(classSyntax);
 
-            foreach (var klasaWewnetrzna in klasyWewnetrzne)
+            foreach (var internalClass in internalClasses)
             {
-                klasaWewnetrzna.Owner = definiowanyObiekt;
-                definiowanyObiekt.InternalDefinedItems.Add(klasaWewnetrzna);
+                internalClass.Owner = definedItem;
+                definedItem.InternalDefinedItems.Add(internalClass);
             }
 
-            return definiowanyObiekt;
+            return definedItem;
         }
 
-        private void ParsujParametryGeneryczne(DefinedItem obiekt, TypeParameterListSyntax parameterListSyntax)
+        private void ParseGenericParameters(DefinedItem definedItem, TypeParameterListSyntax parameterListSyntax)
         {
-            ParsujParametryGeneryczne(obiekt.GenericParameters, parameterListSyntax);
+            ParseGenericParameters(definedItem.GenericParameters, parameterListSyntax);
         }
 
-        private void ParsujParametryGeneryczne(
-            IList<GenericParameter> parametryGeneryczne,
+        private void ParseGenericParameters(
+            IList<GenericParameter> genericParameters,
             TypeParameterListSyntax parameterListSyntax)
         {
             if (parameterListSyntax == null)
@@ -252,135 +251,135 @@ namespace KruchyParserKodu.Roslyn
 
             foreach (var typeParameter in parameterListSyntax.Parameters)
             {
-                var parametrGeneryczny = new GenericParameter
+                var genericParameter = new GenericParameter
                 {
                     Name = typeParameter.Identifier.ValueText
                 };
 
-                UstawPolozenie(typeParameter.SyntaxTree, parametrGeneryczny, typeParameter);
+                SetPosition(typeParameter.SyntaxTree, genericParameter, typeParameter);
 
-                parametryGeneryczne.Add(parametrGeneryczny);
+                genericParameters.Add(genericParameter);
             }
         }
 
-        private void UzupelniejTypyDziedziczone(DefinedItem obiekt, TypeDeclarationSyntax syntax)
+        private void FillDerivedTypes(DefinedItem definedItem, TypeDeclarationSyntax syntax)
         {
             if (syntax.BaseList != null)
-                obiekt.SuperClassAndInterfaces.AddRange(
-                    syntax.BaseList.Types.Select(o => DajTypDziedziczony(o)));
+                definedItem.SuperClassAndInterfaces.AddRange(
+                    syntax.BaseList.Types.Select(o => GetDerivedType(o)));
 
         }
 
-        private IEnumerable<DefinedItem> SzukajKlasWewnetrznych(ClassDeclarationSyntax klasaZewnetrzna)
+        private IEnumerable<DefinedItem> FindInternalClasses(ClassDeclarationSyntax externalClassSyntax)
         {
-            foreach (var klasaSyntax in klasaZewnetrzna.Members.OfType<ClassDeclarationSyntax>())
+            foreach (var classSyntax in externalClassSyntax.Members.OfType<ClassDeclarationSyntax>())
             {
-                var klasa = ParsujKlase(klasaZewnetrzna.SyntaxTree, klasaSyntax);
-                yield return klasa;
+                var parsedClass = ParseClass(externalClassSyntax.SyntaxTree, classSyntax);
+                yield return parsedClass;
             }
         }
 
-        private DerivedObject DajTypDziedziczony(BaseTypeSyntax o)
+        private DerivedObject GetDerivedType(BaseTypeSyntax baseTypeSyntax)
         {
-            var wynik = new DerivedObject();
+            var result = new DerivedObject();
 
-            wynik.Name = o.Type.GetTypeName();
-            wynik.StartPosition = DajPolozenie(o.SyntaxTree, o.Span).Item1.ToPlaceInFile();
-            wynik.EndPosition = DajPolozenie(o.SyntaxTree, o.Span).Item2.ToPlaceInFile();
+            result.Name = baseTypeSyntax.Type.GetTypeName();
+            result.StartPosition = GetPosition(baseTypeSyntax.SyntaxTree, baseTypeSyntax.Span).Item1.ToPlaceInFile();
+            result.EndPosition = GetPosition(baseTypeSyntax.SyntaxTree, baseTypeSyntax.Span).Item2.ToPlaceInFile();
 
-            if (o.Type.IsGeneric())
+            if (baseTypeSyntax.Type.IsGeneric())
             {
-                var daneGenerycznego = o.Type.GetGenericTypesDetails();
-                wynik.Name = daneGenerycznego.Item1;
-                wynik.ParameterTypeNames.AddRange(daneGenerycznego.Item2);
+                var genericDetails = baseTypeSyntax.Type.GetGenericTypesDetails();
+                result.Name = genericDetails.Item1;
+                result.ParameterTypeNames.AddRange(genericDetails.Item2);
             }
 
-            return wynik;
+            return result;
         }
 
-        private void UzupelnijMetody(
-            IList<Method> metody,
-            TypeDeclarationSyntax klasa,
-            DefinedItem obiektWlasciciela)
+        private void FillMethods(
+            IList<Method> methods,
+            TypeDeclarationSyntax typeDeclarationSyntax,
+            DefinedItem parent)
         {
-            foreach (var metodaSyntax in klasa.Members.OfType<MethodDeclarationSyntax>())
+            foreach (var methodSyntax in typeDeclarationSyntax.Members.OfType<MethodDeclarationSyntax>())
             {
-                var metoda = new Method();
-                metoda.Name = metodaSyntax.Identifier.ValueText;
-                UzupelnijModyfikatory(metodaSyntax.Modifiers, metoda.Modyfikatory);
-                UzupelnijParametry(metodaSyntax.ParameterList, metoda.Parametry);
+                var method = new Method();
+                method.Name = methodSyntax.Identifier.ValueText;
+                FillModifiers(methodSyntax.Modifiers, method.Modyfikatory);
+                FillParameters(methodSyntax.ParameterList, method.Parametry);
 
-                UstawPolozenie(klasa.SyntaxTree, metoda, metodaSyntax);
+                SetPosition(typeDeclarationSyntax.SyntaxTree, method, methodSyntax);
 
-                metoda.ReturnType = new ReturnedType
+                method.ReturnType = new ReturnedType
                 {
-                    Name = metodaSyntax.ReturnType.GetTypeName()
+                    Name = methodSyntax.ReturnType.GetTypeName()
                 };
 
-                UstawPolozenie(klasa.SyntaxTree, metoda.ReturnType, metodaSyntax.ReturnType);
+                SetPosition(typeDeclarationSyntax.SyntaxTree, method.ReturnType, methodSyntax.ReturnType);
 
-                UzupelnijPozycjeNawiasowOtwierajacychIZamykajacych(metodaSyntax, metoda);
+                FillBracesPositions(methodSyntax, method);
 
-                UzupelnijAtrybuty(metodaSyntax.AttributeLists, metoda.Atrybuty);
+                FillAttributes(methodSyntax.AttributeLists, method.Atrybuty);
 
-                metoda.Instructions.AddRange(ParseInstructions(metodaSyntax, metoda));
+                method.Instructions.AddRange(ParseInstructions(methodSyntax, method));
 
-                ParsujDokumentacje(metoda, metodaSyntax);
+                ParseDocumentation(method, methodSyntax);
 
-                ParsujKomentarz(metoda, metodaSyntax);
+                ParseComment(method, methodSyntax);
 
-                ParsujParametryGeneryczne(metoda.GenericParameters, metodaSyntax.TypeParameterList);
+                ParseGenericParameters(method.GenericParameters, methodSyntax.TypeParameterList);
 
-                metoda.Owner = obiektWlasciciela;
+                method.Owner = parent;
 
-                metody.Add(metoda);
+                methods.Add(method);
             }
         }
 
-        private void UzupelnijKontruktory(
-            IList<Constructor> konstruktory,
-            ClassDeclarationSyntax klasa,
-            DefinedItem obiektWlasciciel)
+        private void FillConstructors(
+            IList<Constructor> constructors,
+            ClassDeclarationSyntax classDeclarationSyntax,
+            DefinedItem parent)
         {
-            foreach (var konstruktorSyntax in klasa.Members.OfType<ConstructorDeclarationSyntax>())
+            foreach (var constructorSyntax in classDeclarationSyntax.Members.OfType<ConstructorDeclarationSyntax>())
             {
-                Constructor konstruktor = ParseConstructor(obiektWlasciciel, konstruktorSyntax);
+                Constructor constructor = ParseConstructor(parent, constructorSyntax);
 
-                konstruktory.Add(konstruktor);
+                constructors.Add(constructor);
             }
         }
 
         private Constructor ParseConstructor(
-            DefinedItem obiektWlasciciel,
-            ConstructorDeclarationSyntax konstruktorSyntax)
+            DefinedItem parent,
+            ConstructorDeclarationSyntax constructorDeclarationSyntax)
         {
-            var konstruktor = new Constructor();
+            var constructor = new Constructor();
 
-            UstawPolozenie(konstruktorSyntax.SyntaxTree, konstruktor, konstruktorSyntax);
-            konstruktor.Modifier =
-                SzukajModyfikatorow(konstruktorSyntax.Modifiers)
+            SetPosition(constructorDeclarationSyntax.SyntaxTree, constructor, constructorDeclarationSyntax);
+            constructor.Modifier =
+                FindModifiers(constructorDeclarationSyntax.Modifiers)
                     .Select(o => o.Name)
                         .SingleOrDefault();
 
-            UzupelnijParametry(konstruktorSyntax.ParameterList, konstruktor.Parametry);
+            FillParameters(constructorDeclarationSyntax.ParameterList, constructor.Parametry);
 
-            UzupelnijPozycjeNawiasowOtwierajacychIZamykajacych(
-                konstruktorSyntax,
-                konstruktor);
+            FillBracesPositions(
+                constructorDeclarationSyntax,
+                (IWithParameterBraces)constructor);
 
-            UzupelnijPozycjeKlamerek(konstruktorSyntax, konstruktor);
+            FillMethodBracesPositions(constructorDeclarationSyntax, (IWithBraces)constructor);
 
-            ParsujDokumentacje(konstruktor, konstruktorSyntax);
+            ParseDocumentation(constructor, constructorDeclarationSyntax);
 
-            konstruktor.Owner = obiektWlasciciel;
+            constructor.Owner = parent;
 
-            if (konstruktorSyntax.Initializer != null
-                && konstruktorSyntax.Initializer.ArgumentList != null)
+            if (constructorDeclarationSyntax.Initializer != null
+                && constructorDeclarationSyntax.Initializer.ArgumentList != null)
             {
-                konstruktor.InitializationKeyWord =
-                    konstruktorSyntax.Initializer.ThisOrBaseKeyword.ToString();
-                konstruktor.ParentClassContructorParameters =
-                    konstruktorSyntax
+                constructor.InitializationKeyWord =
+                    constructorDeclarationSyntax.Initializer.ThisOrBaseKeyword.ToString();
+                constructor.ParentClassContructorParameters =
+                    constructorDeclarationSyntax
                         .Initializer
                             .ArgumentList
                                 .Arguments
@@ -388,9 +387,9 @@ namespace KruchyParserKodu.Roslyn
                                         .ToList();
             }
 
-            konstruktor.Instructions.AddRange(ParseInstructions(konstruktorSyntax, konstruktor));
+            constructor.Instructions.AddRange(ParseInstructions(constructorDeclarationSyntax, constructor));
 
-            return konstruktor;
+            return constructor;
         }
 
         private IEnumerable<Instruction> ParseInstructions(
@@ -406,7 +405,7 @@ namespace KruchyParserKodu.Roslyn
 
                     instruction.Text = instructionSyntax.ToString();
 
-                    UstawPolozenie(instruction, instructionSyntax);
+                    SetPosition(instruction, instructionSyntax);
 
                     instruction.CodeUnit = parentCodeUnit;
 
@@ -438,222 +437,229 @@ namespace KruchyParserKodu.Roslyn
             return new Instruction();
         }
 
-        private void UzupelnijPozycjeNawiasowOtwierajacychIZamykajacych(
+        private void FillBracesPositions(
             BaseMethodDeclarationSyntax syntax,
-            IWithParameterBraces obiekt)
+            IWithParameterBraces definedItem)
         {
-            obiekt.StartingParameterBrace =
-                DajPolozenie(syntax.ParameterList.OpenParenToken).Item1.ToPlaceInFile();
-            obiekt.ClosingParameterBrace =
-                DajPolozenie(syntax.ParameterList.CloseParenToken).Item1.ToPlaceInFile();
+            definedItem.StartingParameterBrace =
+                GetPosistion(syntax.ParameterList.OpenParenToken).Item1.ToPlaceInFile();
+            definedItem.ClosingParameterBrace =
+                GetPosistion(syntax.ParameterList.CloseParenToken).Item1.ToPlaceInFile();
         }
 
-        private void UzupelnijPozycjeKlamerek(
+        private void FillMethodBracesPositions(
             BaseMethodDeclarationSyntax syntax,
-            IWithBraces obiekt)
+            IWithBraces definedItem)
         {
-            obiekt.StartingBrace =
-                DajPolozenie(syntax.Body.OpenBraceToken)
+            definedItem.StartingBrace =
+                GetPosistion(syntax.Body.OpenBraceToken)
                     .Item1.ToPlaceInFile();
 
-            obiekt.ClosingBrace =
-                DajPolozenie(syntax.Body.CloseBraceToken)
+            definedItem.ClosingBrace =
+                GetPosistion(syntax.Body.CloseBraceToken)
                     .Item1.ToPlaceInFile();
 
         }
 
-        private void UzupelnijParametry(ParameterListSyntax parameterList, IList<Parameter> parametry)
+        private void FillParameters(ParameterListSyntax parameterList, IList<Parameter> parameters)
         {
-            parametry.AddRange(parameterList.Parameters.Select(o => DajParametr(o)));
+            parameters.AddRange(parameterList.Parameters.Select(o => GetParameter(o)));
         }
 
-        private Parameter DajParametr(ParameterSyntax parametrSyntax)
+        private Parameter GetParameter(ParameterSyntax parametrSyntax)
         {
-            var parametr = new Parameter();
-            parametr.ParameterName = parametrSyntax.Identifier.ValueText;
-            parametr.TypeName = parametrSyntax.Type.GetTypeName();
+            var parameter = new Parameter();
+            parameter.ParameterName = parametrSyntax.Identifier.ValueText;
+            parameter.TypeName = parametrSyntax.Type.GetTypeName();
 
-            parametr.Modifier =
-                SzukajModyfikatorow(parametrSyntax.Modifiers)
+            parameter.Modifier =
+                FindModifiers(parametrSyntax.Modifiers)
                     .Select(o => o.Name)
                         .SingleOrDefault();
 
-            if (parametr.Modifier == "this")
-                parametr.WithThis = true;
-            if (parametr.Modifier == "out")
-                parametr.WithOut = true;
-            if (parametr.Modifier == "params")
-                parametr.WithParams = true;
-            if (parametr.Modifier == "ref")
-                parametr.WithRef = true;
+            if (parameter.Modifier == "this")
+                parameter.WithThis = true;
+            if (parameter.Modifier == "out")
+                parameter.WithOut = true;
+            if (parameter.Modifier == "params")
+                parameter.WithParams = true;
+            if (parameter.Modifier == "ref")
+                parameter.WithRef = true;
             if (parametrSyntax.Default != null)
-                parametr.DefaultValue =
+                parameter.DefaultValue =
                     parametrSyntax.Default.Value.ToFullString().Trim();
 
-            UzupelnijAtrybuty(parametrSyntax.AttributeLists, parametr.Attributes);
+            FillAttributes(parametrSyntax.AttributeLists, parameter.Attributes);
 
-            return parametr;
+            return parameter;
         }
 
-        private void UzupelnijWlasciwosci(
-            IList<Property> propertiesy,
-            TypeDeclarationSyntax klasa,
-            DefinedItem definiowanyObiekt)
+        private void FillProperties(
+            IList<Property> properties,
+            TypeDeclarationSyntax typeDeclarationSyntax,
+            DefinedItem definedItem)
         {
-            var wlasciwosciSyntax = klasa.Members.OfType<PropertyDeclarationSyntax>();
+            var propertyDeclarationSyntax = typeDeclarationSyntax.Members.OfType<PropertyDeclarationSyntax>();
 
-            foreach (var wlasciwoscSyntax in wlasciwosciSyntax)
+            foreach (var wlasciwoscSyntax in propertyDeclarationSyntax)
             {
-                var properties = new Property();
-                properties.Name = wlasciwoscSyntax.Identifier.ValueText;
-                properties.TypeName = wlasciwoscSyntax.Type.GetTypeName();
-                UzupelnijAtrybuty(wlasciwoscSyntax.AttributeLists, properties.Attributes);
-                UzupelnijModyfikatory(wlasciwoscSyntax.Modifiers, properties.Modifiers);
-                UstawPolozenie(wlasciwoscSyntax.SyntaxTree, properties, wlasciwoscSyntax);
-                ParsujDokumentacje(properties, wlasciwoscSyntax);
+                var property = new Property();
+                property.Name = wlasciwoscSyntax.Identifier.ValueText;
+                property.TypeName = wlasciwoscSyntax.Type.GetTypeName();
+                FillAttributes(wlasciwoscSyntax.AttributeLists, property.Attributes);
+                FillModifiers(wlasciwoscSyntax.Modifiers, property.Modifiers);
+                SetPosition(wlasciwoscSyntax.SyntaxTree, property, wlasciwoscSyntax);
+                ParseDocumentation(property, wlasciwoscSyntax);
 
-                properties.HasGet = JestAccessorr(wlasciwoscSyntax, "get");
-                properties.HasSet = JestAccessorr(wlasciwoscSyntax, "set");
+                property.HasGet = IsAccessor(wlasciwoscSyntax, "get");
+                property.HasSet = IsAccessor(wlasciwoscSyntax, "set");
 
-                properties.Owner = definiowanyObiekt;
+                property.Owner = definedItem;
 
-                propertiesy.Add(properties);
+                properties.Add(property);
             }
         }
 
-        private bool JestAccessorr(PropertyDeclarationSyntax syntax, string nazwa)
+        private bool IsAccessor(PropertyDeclarationSyntax syntax, string name)
         {
             if (syntax.AccessorList == null)
                 return false;
 
-            return syntax.AccessorList.Accessors.Any(o => o.Keyword.ValueText == nazwa);
+            return syntax.AccessorList.Accessors.Any(o => o.Keyword.ValueText == name);
         }
 
-        private void UzupelnijPola(IList<Field> pola, ClassDeclarationSyntax klasa, DefinedItem wlasciciel)
+        private void FillFields(
+            IList<Field> fields,
+            ClassDeclarationSyntax classDeclarationSyntax,
+            DefinedItem parent)
         {
-            var deklaracjePol = klasa.Members.OfType<FieldDeclarationSyntax>();
+            var fieldDeclarations = classDeclarationSyntax.Members.OfType<FieldDeclarationSyntax>();
 
-            foreach (var deklarowanePole in deklaracjePol)
+            foreach (var declaredField in fieldDeclarations)
             {
-                var pole = new Field();
-                var identyfikator = deklarowanePole
+                var field = new Field();
+                var identifier = declaredField
                         .Declaration
                             .Variables
                                 .SingleOrDefault();
 
-                if (identyfikator == null)
+                if (identifier == null)
                     continue;
 
-                pole.Name = identyfikator.Identifier.ValueText;
+                field.Name = identifier.Identifier.ValueText;
 
-                pole.TypeName = deklarowanePole.Declaration.Type.GetTypeName();
+                field.TypeName = declaredField.Declaration.Type.GetTypeName();
 
-                pole.Modifiers.AddRange(
-                    deklarowanePole.Modifiers.Select(o => DajModifikator(o)));
+                field.Modifiers.AddRange(
+                    declaredField.Modifiers.Select(o => getModifier(o)));
 
-                UstawPolozenie(deklarowanePole.SyntaxTree, pole, deklarowanePole);
+                SetPosition(declaredField.SyntaxTree, field, declaredField);
 
-                ParsujDokumentacje(pole, deklarowanePole);
+                ParseDocumentation(field, declaredField);
 
-                pole.Owner = wlasciciel;
+                field.Owner = parent;
 
-                pola.Add(pole);
+                fields.Add(field);
             }
         }
 
 
-        private void UzupelnijPola(IList<Field> pola, EnumDeclarationSyntax klasa, DefinedItem wlasciciel)
+        private void FillField(
+            IList<Field> fields,
+            EnumDeclarationSyntax enumDeclarationSyntax,
+            DefinedItem parent)
         {
-            var deklaracjePol = klasa.Members.OfType<EnumMemberDeclarationSyntax>();
+            var fieldDeclarations = enumDeclarationSyntax.Members.OfType<EnumMemberDeclarationSyntax>();
 
-            foreach (var deklarowanePole in deklaracjePol)
+            foreach (var declaredField in fieldDeclarations)
             {
-                var pole = new Field();
-                pole.Name = deklarowanePole.Identifier.ValueText;
+                var field = new Field();
+                field.Name = declaredField.Identifier.ValueText;
 
-                UstawPolozenie(deklarowanePole.SyntaxTree, pole, deklarowanePole);
+                SetPosition(declaredField.SyntaxTree, field, declaredField);
 
-                ParsujDokumentacje(pole, deklarowanePole);
+                ParseDocumentation(field, declaredField);
 
-                pole.Owner = wlasciciel;
+                field.Owner = parent;
 
-                pola.Add(pole);
+                fields.Add(field);
             }
         }
 
 
-        private void UzupelnijModyfikatory(
+        private void FillModifiers(
             SyntaxTokenList syntax,
-            IList<Modifier> modyfikatory)
+            IList<Modifier> modifiers)
         {
-            foreach (var modyfikator in SzukajModyfikatorow(syntax))
-                modyfikatory.Add(modyfikator);
+            foreach (var modifier in FindModifiers(syntax))
+                modifiers.Add(modifier);
         }
 
-        private IEnumerable<Modifier> SzukajModyfikatorow(SyntaxTokenList syntax)
+        private IEnumerable<Modifier> FindModifiers(SyntaxTokenList syntax)
         {
-            return syntax.Select(o => DajModifikator(o));
+            return syntax.Select(o => getModifier(o));
         }
 
-        private Modifier DajModifikator(SyntaxToken o)
+        private Modifier getModifier(SyntaxToken syntaxToken)
         {
-            var modyfikator = new Modifier(o.ValueText);
+            var modyfikator = new Modifier(syntaxToken.ValueText);
 
-            UstawPolozenie(o, modyfikator);
+            SetPosition(syntaxToken, modyfikator);
 
             return modyfikator;
         }
 
-        private void UstawPolozeniePoczatkowejKlamerki(
-            IWithBraces obiekt,
+        private void SetOpeningBracePosition(
+            IWithBraces definedItem,
             SyntaxToken token)
         {
-            var pozycjaPoczatkowejKlamerki = DajPolozenie(token.SyntaxTree, token);
-            obiekt.StartingBrace.Row =
-                pozycjaPoczatkowejKlamerki.Item1.Line;
-            obiekt.StartingBrace.Column =
-                pozycjaPoczatkowejKlamerki.Item1.Character;
+            var startBracePosition = GetPosition(token.SyntaxTree, token);
+            definedItem.StartingBrace.Row =
+                startBracePosition.Item1.Line;
+            definedItem.StartingBrace.Column =
+                startBracePosition.Item1.Character;
         }
 
-        private void UstawPolozenieKoncowejKlamerki(
-            IWithBraces obiekt,
+        private void SetClosingBracePosition(
+            IWithBraces definedItem,
             SyntaxToken token)
         {
-            var pozycjaKoncowejKlamerki = DajPolozenie(token.SyntaxTree, token);
-            obiekt.ClosingBrace = pozycjaKoncowejKlamerki.Item1.ToPlaceInFile();
+            var closingBracePosition = GetPosition(token.SyntaxTree, token);
+            definedItem.ClosingBrace = closingBracePosition.Item1.ToPlaceInFile();
         }
 
-        private void UzupelnijAtrybuty(
-            SyntaxList<AttributeListSyntax> attributeLists,
-            List<ParserKodu.Models.Attribute> listaAtrybutow)
+        private void FillAttributes(
+            SyntaxList<AttributeListSyntax> attributeListsSyntax,
+            List<ParserKodu.Models.Attribute> attributeList)
         {
-            foreach (var atrybut in attributeLists)
+            foreach (var attribute in attributeListsSyntax)
             {
-                listaAtrybutow.AddRange(ParsujAtrybut(atrybut));
+                attributeList.AddRange(ParseAttribute(attribute));
             }
         }
 
-        private IEnumerable<ParserKodu.Models.Attribute> ParsujAtrybut(AttributeListSyntax listaAtrybutow)
+        private IEnumerable<ParserKodu.Models.Attribute> ParseAttribute(
+            AttributeListSyntax attributeList)
         {
-            foreach (var atrybutSyntax in listaAtrybutow.Attributes)
+            foreach (var attributeSyntax in attributeList.Attributes)
             {
-                yield return ParsujAtrybut(atrybutSyntax);
+                yield return ParseAttribute(attributeSyntax);
             }
         }
 
-        private ParserKodu.Models.Attribute ParsujAtrybut(AttributeSyntax atrybutSyntax)
+        private ParserKodu.Models.Attribute ParseAttribute(AttributeSyntax atrybutSyntax)
         {
-            var atrybut =
+            var attribute =
                 new ParserKodu.Models.Attribute
                 {
                     Name = atrybutSyntax.Name.GetText().ToString(),
-                    Parameters = SzukajParametrowAtrybutu(atrybutSyntax)
+                    Parameters = FindAttributeParameters(atrybutSyntax)
                 };
-            UstawPolozenie(atrybutSyntax.SyntaxTree, atrybut, atrybutSyntax);
-            return atrybut;
+            SetPosition(atrybutSyntax.SyntaxTree, attribute, atrybutSyntax);
+            return attribute;
         }
 
-        private IList<AttributeParameter> SzukajParametrowAtrybutu(
+        private IList<AttributeParameter> FindAttributeParameters(
             AttributeSyntax atrybutSyntax)
         {
             if (atrybutSyntax.ArgumentList == null)
@@ -663,81 +669,81 @@ namespace KruchyParserKodu.Roslyn
                     atrybutSyntax
                         .ArgumentList
                             .Arguments
-                                .Select(o => DajParametrAtrybutu(o))
+                                .Select(o => GetAttributeParameter(o))
                                     .ToList();
         }
 
-        private AttributeParameter DajParametrAtrybutu(AttributeArgumentSyntax o)
+        private AttributeParameter GetAttributeParameter(AttributeArgumentSyntax attributeArgumentSyntax)
         {
-            var wynik = new AttributeParameter();
-            var polozenie = DajPolozenie(o.SyntaxTree, o.Span);
+            var result = new AttributeParameter();
+            var position = GetPosition(attributeArgumentSyntax.SyntaxTree, attributeArgumentSyntax.Span);
 
-            wynik.StartPosition = polozenie.Item1.ToPlaceInFile();
-            wynik.EndPosition = polozenie.Item2.ToPlaceInFile();
-            wynik.Value = o.Expression?.ToFullString()?.Trim();
-            wynik.Name = o.NameEquals?.Name?.ToFullString()?.Trim();
+            result.StartPosition = position.Item1.ToPlaceInFile();
+            result.EndPosition = position.Item2.ToPlaceInFile();
+            result.Value = attributeArgumentSyntax.Expression?.ToFullString()?.Trim();
+            result.Name = attributeArgumentSyntax.NameEquals?.Name?.ToFullString()?.Trim();
 
-            if (wynik.Name == null)
-                wynik.Name = "";
+            if (result.Name == null)
+                result.Name = "";
 
-            return wynik;
+            return result;
 
         }
 
-        private void UstawPolozenie(
-            ParsedUnit obiekt,
-            SyntaxNode wezel)
+        private void SetPosition(
+            ParsedUnit parsedUnit,
+            SyntaxNode syntaxNode)
         {
-            UstawPolozenie(
-                wezel.SyntaxTree,
-                obiekt,
-                wezel);
+            SetPosition(
+                syntaxNode.SyntaxTree,
+                parsedUnit,
+                syntaxNode);
         }
 
-        private void UstawPolozenie(
+        private void SetPosition(
             SyntaxTree syntaxTree,
-            ParsedUnit obiekt,
-            SyntaxNode wezel)
+            ParsedUnit parsedUnit,
+            SyntaxNode syntaxNode)
         {
-            var l = syntaxTree.GetLineSpan(wezel.Span);
+            var l = syntaxTree.GetLineSpan(syntaxNode.Span);
             var l1 = l.StartLinePosition;
             var l2 = l.EndLinePosition;
 
-            obiekt.StartPosition = new PlaceInFile(
+            parsedUnit.StartPosition = new PlaceInFile(
                 l1.Line + 1,
                 l1.Character + 1);
-            obiekt.EndPosition = new PlaceInFile(
+            parsedUnit.EndPosition = new PlaceInFile(
                 l2.Line + 1,
                 l2.Character + 1);
         }
 
-        private void UstawPolozenie(SyntaxToken token, ParsedUnit obiekt)
+        private void SetPosition(SyntaxToken token, ParsedUnit parsedUnit)
         {
-            var polozenie = DajPolozenie(token);
-            obiekt.StartPosition = polozenie.Item1.ToPlaceInFile();
-            obiekt.EndPosition = polozenie.Item2.ToPlaceInFile();
+            var position = GetPosistion(token);
+            parsedUnit.StartPosition = position.Item1.ToPlaceInFile();
+            parsedUnit.EndPosition = position.Item2.ToPlaceInFile();
         }
 
-        private void UstawPolozenie(SyntaxTrivia trivia, ParsedUnit jednostka)
+        private void SetPosition(SyntaxTrivia trivia, ParsedUnit parsedUnit)
         {
-            var polozenie = DajPolozenie(trivia.SyntaxTree, trivia.FullSpan);
-            jednostka.StartPosition = polozenie.Item1.ToPlaceInFile();
-            jednostka.EndPosition = polozenie.Item2.ToPlaceInFile();
+            var position = GetPosition(trivia.SyntaxTree, trivia.FullSpan);
+            parsedUnit.StartPosition = position.Item1.ToPlaceInFile();
+            parsedUnit.EndPosition = position.Item2.ToPlaceInFile();
         }
 
-        private Tuple<LinePosition, LinePosition> DajPolozenie(
+        private Tuple<LinePosition, LinePosition> GetPosition(
             SyntaxTree syntaxTree,
             SyntaxToken token)
         {
-            return DajPolozenie(syntaxTree, token.Span);
+            return GetPosition(syntaxTree, token.Span);
         }
 
-        private Tuple<LinePosition, LinePosition> DajPolozenie(SyntaxToken token)
+        private Tuple<LinePosition, LinePosition> GetPosistion(SyntaxToken token)
         {
-            return DajPolozenie(token.SyntaxTree, token.Span);
+            return GetPosition(token.SyntaxTree, token.Span);
         }
 
-        private Tuple<LinePosition, LinePosition> DajPolozenie(
+        private Tuple<LinePosition, LinePosition> GetPosition(
             SyntaxTree syntaxTree,
             TextSpan span)
         {
