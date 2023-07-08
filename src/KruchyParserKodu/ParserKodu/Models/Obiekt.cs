@@ -1,9 +1,8 @@
 ﻿using KruchyParserKodu.ParserKodu.Interfaces;
-using KruchyParserKodu.ParserKodu.Models;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace KruchyParserKodu.ParserKodu
+namespace KruchyParserKodu.ParserKodu.Models
 {
     public class Obiekt
         : ParsowanaJednostka

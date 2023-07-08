@@ -6,6 +6,7 @@ using Kruchy.Plugin.Utils.Extensions;
 using Kruchy.Plugin.Utils.Wrappers;
 using KruchyParserKodu;
 using KruchyParserKodu.ParserKodu;
+using KruchyParserKodu.ParserKodu.Models;
 
 namespace Kruchy.Plugin.Akcje.Akcje
 {
