@@ -68,7 +68,7 @@
     <Compile Include="ParserKodu\Models\Modifier.cs" />
     <Compile Include="ParserKodu\Models\ModifiersExtensions.cs" />
     <Compile Include="ParserKodu\Models\DefinedItem.cs" />
-    <Compile Include="ParserKodu\ObiektDziedziczony.cs" />
+    <Compile Include="ParserKodu\Models\DerivedObject.cs" />
     <Compile Include="ParserKodu\Parametr.cs" />
     <Compile Include="ParserKodu\Models\AttributeParameter.cs" />
     <Compile Include="ParserKodu\ParametrGeneryczny.cs" />

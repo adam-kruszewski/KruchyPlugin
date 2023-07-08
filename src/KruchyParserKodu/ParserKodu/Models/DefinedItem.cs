@@ -37,7 +37,7 @@ namespace KruchyParserKodu.ParserKodu.Models
         public IList<Property> Properties { get; private set; }
         public IList<Method> Methods { get; private set; }
         public List<Attribute> Attributes { get; private set; }
-        public IList<ObiektDziedziczony> SuperClassAndInterfaces { get; private set; }
+        public IList<DerivedObject> SuperClassAndInterfaces { get; private set; }
 
         public IList<DefinedItem> InternalDefinedItems { get; private set; }
 
@@ -57,7 +57,7 @@ namespace KruchyParserKodu.ParserKodu.Models
             Properties = new List<Property>();
             Methods = new List<Method>();
             Attributes = new List<Attribute>();
-            SuperClassAndInterfaces = new List<ObiektDziedziczony>();
+            SuperClassAndInterfaces = new List<DerivedObject>();
 
             StartingBrace = new PlaceInFile();
             ClosingBrace = new PlaceInFile();

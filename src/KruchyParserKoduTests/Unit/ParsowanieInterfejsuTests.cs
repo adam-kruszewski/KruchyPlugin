@@ -54,14 +54,14 @@ namespace KruchyParserKoduTests.Unit
 
             interfejs.SuperClassAndInterfaces.Should().HaveCount(2);
 
-            interfejs.SuperClassAndInterfaces[0].Nazwa.Should().Be("InterfejsDoParsowania");
-            interfejs.SuperClassAndInterfaces[0].NazwyTypowParametrow.Should().BeEmpty();
+            interfejs.SuperClassAndInterfaces[0].Name.Should().Be("InterfejsDoParsowania");
+            interfejs.SuperClassAndInterfaces[0].ParameterTypeNames.Should().BeEmpty();
             interfejs.SuperClassAndInterfaces[0].Poczatek.Sprawdz(5, 53);
             interfejs.SuperClassAndInterfaces[0].Koniec.Sprawdz(5, 74);
 
-            interfejs.SuperClassAndInterfaces[1].Nazwa.Should().Be("Interfejs2");
-            interfejs.SuperClassAndInterfaces[1].NazwyTypowParametrow.Should().HaveCount(2);
-            var parametryTypu = interfejs.SuperClassAndInterfaces[1].NazwyTypowParametrow;
+            interfejs.SuperClassAndInterfaces[1].Name.Should().Be("Interfejs2");
+            interfejs.SuperClassAndInterfaces[1].ParameterTypeNames.Should().HaveCount(2);
+            var parametryTypu = interfejs.SuperClassAndInterfaces[1].ParameterTypeNames;
             parametryTypu[0].Should().Be("Klasa1");
             parametryTypu[1].Should().Be("int?");
             interfejs.SuperClassAndInterfaces[1].Poczatek.Sprawdz(5, 76);

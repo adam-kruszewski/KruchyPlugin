@@ -25,9 +25,9 @@ namespace KruchyParserKoduTests.Unit
             var klasa = plik.DefiniowaneObiekty.First();
 
             klasa.SuperClassAndInterfaces.Count().Should().Be(3);
-            klasa.SuperClassAndInterfaces.First().Nazwa.Should().Be("Test3");
-            klasa.SuperClassAndInterfaces[1].Nazwa.Should().Be("ITest1");
-            klasa.SuperClassAndInterfaces[2].Nazwa.Should().Be("ITest2");
+            klasa.SuperClassAndInterfaces.First().Name.Should().Be("Test3");
+            klasa.SuperClassAndInterfaces[1].Name.Should().Be("ITest1");
+            klasa.SuperClassAndInterfaces[2].Name.Should().Be("ITest2");
             klasa.SuperClassAndInterfaces[2].Poczatek.Sprawdz(9, 65);
             klasa.SuperClassAndInterfaces[2].Koniec.Sprawdz(9, 71);
         }

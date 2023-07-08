@@ -84,7 +84,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             if (KlasaServiceTests(klasa))
             {
                 var nazwaKlasyLubInterfejsu =
-                    klasa.SuperClassAndInterfaces.First().NazwyTypowParametrow.First();
+                    klasa.SuperClassAndInterfaces.First().ParameterTypeNames.First();
                 if (nazwaKlasyLubInterfejsu.StartsWith("I") && char.IsUpper(nazwaKlasyLubInterfejsu[1]))
                     return nazwaKlasyLubInterfejsu.Substring(1);
                 else
@@ -100,7 +100,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             if (nadklasa == null)
                 return false;
 
-            if (nadklasa.Nazwa == "ServiceTests")
+            if (nadklasa.Name == "ServiceTests")
                 return true;
 
             return false;

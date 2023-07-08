@@ -280,19 +280,19 @@ namespace KruchyParserKodu.Roslyn
             }
         }
 
-        private ObiektDziedziczony DajTypDziedziczony(BaseTypeSyntax o)
+        private DerivedObject DajTypDziedziczony(BaseTypeSyntax o)
         {
-            var wynik = new ObiektDziedziczony();
+            var wynik = new DerivedObject();
 
-            wynik.Nazwa = o.Type.DajNazweTypu();
+            wynik.Name = o.Type.DajNazweTypu();
             wynik.Poczatek = DajPolozenie(o.SyntaxTree, o.Span).Item1.ToPozycjaWPliku();
             wynik.Koniec = DajPolozenie(o.SyntaxTree, o.Span).Item2.ToPozycjaWPliku();
 
             if (o.Type.JestGeneryczny())
             {
                 var daneGenerycznego = o.Type.DajDaneTypuGenerycznego();
-                wynik.Nazwa = daneGenerycznego.Item1;
-                wynik.NazwyTypowParametrow.AddRange(daneGenerycznego.Item2);
+                wynik.Name = daneGenerycznego.Item1;
+                wynik.ParameterTypeNames.AddRange(daneGenerycznego.Item2);
             }
 
             return wynik;
