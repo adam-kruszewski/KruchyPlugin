@@ -13,7 +13,7 @@ namespace KruchyParserKodu.ParserKodu
         public IList<Modifier> Modyfikatory { get; private set; }
 
         public Documentation Documentation { get; set; }
-        public Obiekt Owner { get; set; }
+        public DefinedItem Owner { get; set; }
 
         public Pole()
         {

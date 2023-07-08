@@ -11,7 +11,7 @@ namespace KruchyParserKoduTests.Unit
     public class ParsowanieDokumentacjiTests
     {
         Plik parsowane;
-        Obiekt klasa;
+        DefinedItem klasa;
 
         [SetUp]
         public void SetUpEachTest()

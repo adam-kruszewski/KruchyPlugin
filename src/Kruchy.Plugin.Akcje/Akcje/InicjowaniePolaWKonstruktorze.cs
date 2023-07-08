@@ -104,7 +104,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         }
 
         private string GenerujZawartoscKontruktora(
-            Obiekt klasa,
+            DefinedItem klasa,
             string zawartoscDoDodania)
         {
             var builder = new MetodaBuilder();

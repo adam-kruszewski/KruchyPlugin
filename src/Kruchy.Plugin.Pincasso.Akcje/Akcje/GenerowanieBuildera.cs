@@ -32,7 +32,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
 
             var sparsowane = Parser.Parsuj(zawartoscAktualnego);
 
-            Obiekt obiektDoZbudowania = DajObiektDoZbudowania(sparsowane);
+            DefinedItem obiektDoZbudowania = DajObiektDoZbudowania(sparsowane);
 
             if (obiektDoZbudowania == null)
             {
@@ -86,7 +86,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
                 sparsowane.Usingi.Select(o => o.Nazwa));
         }
 
-        private List<WlasciwoscDlaBuildera> SzukajWlasciwosciDlaBuildera(Obiekt obiektDoZbudowania)
+        private List<WlasciwoscDlaBuildera> SzukajWlasciwosciDlaBuildera(DefinedItem obiektDoZbudowania)
         {
             var polaBedaceReferencja =
                 obiektDoZbudowania
@@ -114,9 +114,9 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             return wlasciwosciDlaBuildera;
         }
 
-        private Obiekt DajObiektDoZbudowania(Plik sparsowane)
+        private DefinedItem DajObiektDoZbudowania(Plik sparsowane)
         {
-            Obiekt obiektDoZbudowania = null;
+            DefinedItem obiektDoZbudowania = null;
 
             if (sparsowane.DefiniowaneObiekty.Count(o => o.Rodzaj == RodzajObiektu.Klasa) == 1)
             {
@@ -183,7 +183,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             return tesktMetody;
         }
 
-        private PlaceInFile UstalMiejsceWstawienia(Obiekt klasaBuildera)
+        private PlaceInFile UstalMiejsceWstawienia(DefinedItem klasaBuildera)
         {
             var metodaSave = klasaBuildera.Metody.FirstOrDefault(o => o.Name == "Save");
 
@@ -210,7 +210,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
         }
 
         private bool JestMetodaDlaWlasciwosci(
-            Obiekt klasaBuildera,
+            DefinedItem klasaBuildera,
             WlasciwoscDlaBuildera wlasciwosc)
         {
             var metodyDoAnalizy = klasaBuildera.Metody.Where(
@@ -248,7 +248,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
 
         private string GenerujZawartosc(
             IProjectWrapper projektTestow,
-            Obiekt obiektDoZbudowania,
+            DefinedItem obiektDoZbudowania,
             List<WlasciwoscDlaBuildera> wlasciwosciDlaBuildera,
             string nazwaKlasyBuildera,
             IParametryGenerowaniaBuildera parametry,

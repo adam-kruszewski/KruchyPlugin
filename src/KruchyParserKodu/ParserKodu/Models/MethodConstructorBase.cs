@@ -11,7 +11,7 @@ namespace KruchyParserKodu.ParserKodu.Models
                     , IWithComment
                         , IWithDocumentation
     {
-        public Obiekt Owner { get; set; }
+        public DefinedItem Owner { get; set; }
 
         public IList<Parametr> Parametry { get; private set; }
 

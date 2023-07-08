@@ -10,13 +10,13 @@ namespace KruchyParserKodu.ParserKodu
         public PlaceInFile KoniecNamespace { get; set; }
         public IList<UsingNamespace> Usingi { get; private set; }
 
-        public IList<Obiekt> DefiniowaneObiekty { get; private set; }
+        public IList<DefinedItem> DefiniowaneObiekty { get; private set; }
 
         public IList<Enumeration> DefiniowaneEnumeracje { get; private set; }
 
         public Plik()
         {
-            DefiniowaneObiekty = new List<Obiekt>();
+            DefiniowaneObiekty = new List<DefinedItem>();
             Usingi = new List<UsingNamespace>();
             DefiniowaneEnumeracje = new List<Enumeration>();
         }

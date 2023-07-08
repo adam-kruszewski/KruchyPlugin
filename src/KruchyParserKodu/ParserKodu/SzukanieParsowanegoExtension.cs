@@ -24,7 +24,7 @@ namespace KruchyParserKodu.ParserKodu
                             .FirstOrDefault();
         }
 
-        private static IEnumerable<Method> WszystkieMetodyObiektu(Obiekt obiekt)
+        private static IEnumerable<Method> WszystkieMetodyObiektu(DefinedItem obiekt)
         {
             var metodyObiektowWewnetrznych =
                 obiekt.ObiektyWewnetrzne.SelectMany(o => WszystkieMetodyObiektu(o));
@@ -46,7 +46,7 @@ namespace KruchyParserKodu.ParserKodu
                         .FirstOrDefault();
         }
 
-        private static IEnumerable<Constructor> WszystkieKonstruktoryObiektow(Obiekt obiekt)
+        private static IEnumerable<Constructor> WszystkieKonstruktoryObiektow(DefinedItem obiekt)
         {
             var konstruktoryObiektowWewnetrznych =
                 obiekt.ObiektyWewnetrzne
@@ -71,7 +71,7 @@ namespace KruchyParserKodu.ParserKodu
                             .FirstOrDefault();
         }
 
-        private static IEnumerable<Property> WszystkiePropertiesyObiektow(Obiekt obiekt)
+        private static IEnumerable<Property> WszystkiePropertiesyObiektow(DefinedItem obiekt)
         {
             var propertiesyObiektowWewnetrznych =
                 obiekt.ObiektyWewnetrzne.SelectMany(o => WszystkiePropertiesyObiektow(o));
@@ -130,7 +130,7 @@ namespace KruchyParserKodu.ParserKodu
             return ostatnieLinieDefinicji.Max() + 1;
         }
 
-        public static Obiekt SzukajKlasyWLinii(
+        public static DefinedItem SzukajKlasyWLinii(
             this Plik parsowane,
             int numerLinii)
         {
@@ -144,13 +144,13 @@ namespace KruchyParserKodu.ParserKodu
                             .FirstOrDefault();
         }
 
-        private static object WyliczOdleglosc(Obiekt o, int numerLinii)
+        private static object WyliczOdleglosc(DefinedItem o, int numerLinii)
         {
             return Math.Abs(o.Poczatek.Row - numerLinii)
                 + Math.Abs(o.Koniec.Row - numerLinii);
         }
 
-        public static IEnumerable<Obiekt> WszystkieObiektyObiektu(Obiekt obiekt)
+        public static IEnumerable<DefinedItem> WszystkieObiektyObiektu(DefinedItem obiekt)
         {
             var wynik =
                 obiekt.ObiektyWewnetrzne
@@ -162,7 +162,7 @@ namespace KruchyParserKodu.ParserKodu
             return wynik;
         }
 
-        public static Obiekt SzukajObiektuWLinii(
+        public static DefinedItem SzukajObiektuWLinii(
             this Plik parsowane,
             int numerLinii)
         {

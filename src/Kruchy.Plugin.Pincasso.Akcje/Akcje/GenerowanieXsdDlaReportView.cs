@@ -33,7 +33,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             if (string.IsNullOrEmpty(sciezkaDoXsd))
                 return;
 
-            Obiekt klasaView = DajKlaseReportView();
+            DefinedItem klasaView = DajKlaseReportView();
 
             if (klasaView == null)
                 return;
@@ -56,7 +56,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
         }
 
         private void UzupelnijDefinicjeWgKlasy(
-            Obiekt klasaView,
+            DefinedItem klasaView,
             XmlDocument dokument,
             XmlElement element)
         {
@@ -84,7 +84,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
         }
 
         private void UzupelnijDaneOdnosniePolTypuKolekcja(
-            Obiekt klasaView,
+            DefinedItem klasaView,
             XmlDocument dokument)
         {
             var rootElement = dokument.DocumentElement;
@@ -117,7 +117,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
                 elementDlaWlasciwosci);
         }
 
-        private Obiekt DajKlaseWProjekcieWgNazwy(string nazwaKlasy)
+        private DefinedItem DajKlaseWProjekcieWgNazwy(string nazwaKlasy)
         {
             var plikZKlasa =
                 solution
@@ -234,7 +234,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
         }
 
         private XmlDocument DajNowyDokumentLubWczytajIstniejacy(
-            Obiekt klasaView,
+            DefinedItem klasaView,
             string sciezkaDoXsd)
         {
             if (File.Exists(sciezkaDoXsd))
@@ -291,7 +291,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             return elementGlowny;
         }
 
-        private static XmlElement CreateRootElement(Obiekt klasaView, XmlDocument doc)
+        private static XmlElement CreateRootElement(DefinedItem klasaView, XmlDocument doc)
         {
             XmlElement element1 = doc.CreateElement("xs", "schema", NamespaceXS);
             doc.AppendChild(element1);
@@ -305,7 +305,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             return element1;
         }
 
-        private static string DajNazweKlasyWXsd(Obiekt klasa)
+        private static string DajNazweKlasyWXsd(DefinedItem klasa)
         {
             var nazwa = klasa.Name;
             return DajNazweKlasyWXsd(nazwa);
@@ -320,12 +320,12 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
                 return nazwa;
         }
 
-        private static string DajTargetNamespace(Obiekt klasaView)
+        private static string DajTargetNamespace(DefinedItem klasaView)
         {
             return string.Format("http://tempuri.org/{0}.xsd", DajNazweKlasyWXsd(klasaView));
         }
 
-        private Obiekt DajKlaseReportView()
+        private DefinedItem DajKlaseReportView()
         {
             var sparsowane = Parser.Parsuj(solution.AktualnyDokument.GetContent());
 
@@ -334,7 +334,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
                     .DefiniowaneObiekty
                         .Where(o => o.Rodzaj == RodzajObiektu.Klasa);
 
-            Obiekt klasaView;
+            DefinedItem klasaView;
             klasaView =
                 sparsowane
                     .SzukajKlasyWLinii(solution.AktualnyDokument.GetCursorLineNumber());

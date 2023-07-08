@@ -38,7 +38,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             }
         }
 
-        private void ZmienWKlasie(string modyfikator, Obiekt klasa)
+        private void ZmienWKlasie(string modyfikator, DefinedItem klasa)
         {
             var dotychczasowyModyfikator =
                 SzukajDotychczasowegoModyfikatora(klasa.Modyfikatory);

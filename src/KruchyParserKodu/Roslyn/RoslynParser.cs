@@ -171,9 +171,9 @@ namespace KruchyParserKodu.Roslyn
             return wynik;
         }
 
-        private Obiekt ParsujInterfejs(InterfaceDeclarationSyntax interfaceSyntax)
+        private DefinedItem ParsujInterfejs(InterfaceDeclarationSyntax interfaceSyntax)
         {
-            var definiowanyObiekt = new Obiekt();
+            var definiowanyObiekt = new DefinedItem();
             definiowanyObiekt.Name = interfaceSyntax.Identifier.ValueText;
             definiowanyObiekt.Rodzaj = RodzajObiektu.Interfejs;
             UstawPolozenie(interfaceSyntax.Keyword, definiowanyObiekt.RodzajObiektuObiekt);
@@ -196,9 +196,9 @@ namespace KruchyParserKodu.Roslyn
             return definiowanyObiekt;
         }
 
-        private Obiekt ParsujKlase(SyntaxTree syntaxTree, ClassDeclarationSyntax klasa)
+        private DefinedItem ParsujKlase(SyntaxTree syntaxTree, ClassDeclarationSyntax klasa)
         {
-            var definiowanyObiekt = new Obiekt();
+            var definiowanyObiekt = new DefinedItem();
             definiowanyObiekt.Name = klasa.Identifier.ValueText;
             definiowanyObiekt.Rodzaj = RodzajObiektu.Klasa;
             UstawPolozenie(klasa.Keyword, definiowanyObiekt.RodzajObiektuObiekt);
@@ -238,7 +238,7 @@ namespace KruchyParserKodu.Roslyn
             return definiowanyObiekt;
         }
 
-        private void ParsujParametryGeneryczne(Obiekt obiekt, TypeParameterListSyntax parameterListSyntax)
+        private void ParsujParametryGeneryczne(DefinedItem obiekt, TypeParameterListSyntax parameterListSyntax)
         {
             ParsujParametryGeneryczne(obiekt.ParametryGeneryczne, parameterListSyntax);
         }
@@ -263,7 +263,7 @@ namespace KruchyParserKodu.Roslyn
             }
         }
 
-        private void UzupelniejTypyDziedziczone(Obiekt obiekt, TypeDeclarationSyntax syntax)
+        private void UzupelniejTypyDziedziczone(DefinedItem obiekt, TypeDeclarationSyntax syntax)
         {
             if (syntax.BaseList != null)
                 obiekt.NadklasaIInterfejsy.AddRange(
@@ -271,7 +271,7 @@ namespace KruchyParserKodu.Roslyn
 
         }
 
-        private IEnumerable<Obiekt> SzukajKlasWewnetrznych(ClassDeclarationSyntax klasaZewnetrzna)
+        private IEnumerable<DefinedItem> SzukajKlasWewnetrznych(ClassDeclarationSyntax klasaZewnetrzna)
         {
             foreach (var klasaSyntax in klasaZewnetrzna.Members.OfType<ClassDeclarationSyntax>())
             {
@@ -301,7 +301,7 @@ namespace KruchyParserKodu.Roslyn
         private void UzupelnijMetody(
             IList<Method> metody,
             TypeDeclarationSyntax klasa,
-            Obiekt obiektWlasciciela)
+            DefinedItem obiektWlasciciela)
         {
             foreach (var metodaSyntax in klasa.Members.OfType<MethodDeclarationSyntax>())
             {
@@ -340,7 +340,7 @@ namespace KruchyParserKodu.Roslyn
         private void UzupelnijKontruktory(
             IList<Constructor> konstruktory,
             ClassDeclarationSyntax klasa,
-            Obiekt obiektWlasciciel)
+            DefinedItem obiektWlasciciel)
         {
             foreach (var konstruktorSyntax in klasa.Members.OfType<ConstructorDeclarationSyntax>())
             {
@@ -351,7 +351,7 @@ namespace KruchyParserKodu.Roslyn
         }
 
         private Constructor ParseConstructor(
-            Obiekt obiektWlasciciel,
+            DefinedItem obiektWlasciciel,
             ConstructorDeclarationSyntax konstruktorSyntax)
         {
             var konstruktor = new Constructor();
@@ -498,7 +498,7 @@ namespace KruchyParserKodu.Roslyn
         private void UzupelnijWlasciwosci(
             IList<Property> propertiesy,
             TypeDeclarationSyntax klasa,
-            Obiekt definiowanyObiekt)
+            DefinedItem definiowanyObiekt)
         {
             var wlasciwosciSyntax = klasa.Members.OfType<PropertyDeclarationSyntax>();
 
@@ -529,7 +529,7 @@ namespace KruchyParserKodu.Roslyn
             return syntax.AccessorList.Accessors.Any(o => o.Keyword.ValueText == nazwa);
         }
 
-        private void UzupelnijPola(IList<Pole> pola, ClassDeclarationSyntax klasa, Obiekt wlasciciel)
+        private void UzupelnijPola(IList<Pole> pola, ClassDeclarationSyntax klasa, DefinedItem wlasciciel)
         {
             var deklaracjePol = klasa.Members.OfType<FieldDeclarationSyntax>();
 
@@ -562,7 +562,7 @@ namespace KruchyParserKodu.Roslyn
         }
 
 
-        private void UzupelnijPola(IList<Pole> pola, EnumDeclarationSyntax klasa, Obiekt wlasciciel)
+        private void UzupelnijPola(IList<Pole> pola, EnumDeclarationSyntax klasa, DefinedItem wlasciciel)
         {
             var deklaracjePol = klasa.Members.OfType<EnumMemberDeclarationSyntax>();
 

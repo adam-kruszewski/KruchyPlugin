@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace KruchyParserKodu.ParserKodu.Models
 {
-    public class Obiekt
+    public class DefinedItem
         : ParsowanaJednostka
             , IWithName
                 , IWithBraces
@@ -23,7 +23,7 @@ namespace KruchyParserKodu.ParserKodu.Models
 
         public RodzajObiektuObiekt RodzajObiektuObiekt { get; set; }
 
-        public Obiekt Owner { get; set; }
+        public DefinedItem Owner { get; set; }
 
         public string Name { get; set; }
         public IList<Constructor> Konstruktory { get; private set; }
@@ -39,7 +39,7 @@ namespace KruchyParserKodu.ParserKodu.Models
         public List<Attribute> Atrybuty { get; private set; }
         public IList<ObiektDziedziczony> NadklasaIInterfejsy { get; private set; }
 
-        public IList<Obiekt> ObiektyWewnetrzne { get; private set; }
+        public IList<DefinedItem> ObiektyWewnetrzne { get; private set; }
 
         public PlaceInFile StartingBrace { get; set; }
         public PlaceInFile ClosingBrace { get; set; }
@@ -50,7 +50,7 @@ namespace KruchyParserKodu.ParserKodu.Models
 
         public IList<ParametrGeneryczny> ParametryGeneryczne { get; set; }
 
-        public Obiekt() : base()
+        public DefinedItem() : base()
         {
             Konstruktory = new List<Constructor>();
             Pola = new List<Pole>();
@@ -61,7 +61,7 @@ namespace KruchyParserKodu.ParserKodu.Models
 
             StartingBrace = new PlaceInFile();
             ClosingBrace = new PlaceInFile();
-            ObiektyWewnetrzne = new List<Obiekt>();
+            ObiektyWewnetrzne = new List<DefinedItem>();
             Modyfikatory = new List<Modifier>();
 
             RodzajObiektuObiekt = new RodzajObiektuObiekt();

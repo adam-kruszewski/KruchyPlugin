@@ -94,7 +94,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             return null;
         }
 
-        private bool KlasaServiceTests(Obiekt klasa)
+        private bool KlasaServiceTests(DefinedItem klasa)
         {
             var nadklasa = klasa.NadklasaIInterfejsy.FirstOrDefault();
             if (nadklasa == null)

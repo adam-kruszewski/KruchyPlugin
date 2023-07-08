@@ -8,7 +8,7 @@ namespace Kruchy.Plugin.Akcje.Utils
     public static class ObiektExtensions
     {
         public static IEnumerable<Pole> SzukajPolPrivateReadOnly(
-            this Obiekt obiekt)
+            this DefinedItem obiekt)
         {
             return obiekt.Pola.Where(o => SzukajPolPrivateReadOnly(o));
         }

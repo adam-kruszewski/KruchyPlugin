@@ -202,7 +202,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                     .ToString();
         }
 
-        private Obiekt SzukajKlasy(Plik parsowanyPlik)
+        private DefinedItem SzukajKlasy(Plik parsowanyPlik)
         {
             var klasy =
                 parsowanyPlik

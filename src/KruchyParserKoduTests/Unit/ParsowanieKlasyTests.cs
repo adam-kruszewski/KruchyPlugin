@@ -46,7 +46,7 @@ namespace KruchyParserKoduTests.Unit
             SprawdzMetody(obiekt);
         }
 
-        private static void SprawdzPola(Obiekt obiekt)
+        private static void SprawdzPola(DefinedItem obiekt)
         {
             obiekt.Pola.Count().Should().Be(2);
             var pole = obiekt.Pola.First();
@@ -64,7 +64,7 @@ namespace KruchyParserKoduTests.Unit
             poleStringReadonly.Modyfikatory[1].Name.Should().Be("readonly");
         }
 
-        private static void SprawdzPropertiesy(Obiekt obiekt)
+        private static void SprawdzPropertiesy(DefinedItem obiekt)
         {
             obiekt.Propertiesy.Count().Should().Be(2);
             var wlasciwosc = obiekt.Propertiesy.First();
@@ -79,7 +79,7 @@ namespace KruchyParserKoduTests.Unit
             wlasciwosc2.JestSet.Should().BeFalse();
         }
 
-        private void SprawdzKonstruktory(Obiekt obiekt)
+        private void SprawdzKonstruktory(DefinedItem obiekt)
         {
             obiekt.Konstruktory.Count().Should().Be(2);
 
@@ -110,7 +110,7 @@ namespace KruchyParserKoduTests.Unit
             konstrZ1Parametrem.Modifier.Should().Be("public");
         }
 
-        private void SprawdzMetody(Obiekt obiekt)
+        private void SprawdzMetody(DefinedItem obiekt)
         {
             obiekt.Metody.Count().Should().Be(2);
 

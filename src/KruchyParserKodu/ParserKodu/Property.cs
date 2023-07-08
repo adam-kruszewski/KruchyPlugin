@@ -15,7 +15,7 @@ namespace KruchyParserKodu.ParserKodu
         public bool JestGet { get; set; }
         public bool JestSet { get; set; }
         public Documentation Documentation { get; set; }
-        public Obiekt Owner { get; set; }
+        public DefinedItem Owner { get; set; }
 
         public Property()
         {

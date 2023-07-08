@@ -20,7 +20,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         private static Dictionary<Type, Action<UzupelnianieDokumentacji, ParsowanaJednostka>> metodyAnalizy =
             new Dictionary<Type, Action<UzupelnianieDokumentacji, ParsowanaJednostka>>
         {
-            { typeof(Obiekt), (ud, pj) => ud.PrzetworzObiekt(pj as Obiekt) },
+            { typeof(DefinedItem), (ud, pj) => ud.PrzetworzObiekt(pj as DefinedItem) },
             { typeof(Constructor), (ud, konstruktor) => ud.PrzetworzKonstruktor(konstruktor as Constructor) },
             { typeof(Method), (ud, metoda) => ud.PrzetworzMetode(metoda as Method) },
             { typeof(Pole), (ud, pole) => ud.PrzetworzPole(pole as Pole) },
@@ -66,12 +66,12 @@ namespace Kruchy.Plugin.Akcje.Akcje
             }
         }
 
-        private IEnumerable<Obiekt> DajDefiniowanePodObiekty(Obiekt o)
+        private IEnumerable<DefinedItem> DajDefiniowanePodObiekty(DefinedItem o)
         {
             return o.ObiektyWewnetrzne.Union(o.ObiektyWewnetrzne.SelectMany(k => DajDefiniowanePodObiekty(k)));
         }
 
-        private void PrzetworzObiekt(Obiekt obiekt)
+        private void PrzetworzObiekt(DefinedItem obiekt)
         {
             if (obiekt.Documentation == null)
             {
@@ -382,7 +382,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             }
         }
 
-        private string DajNazwePolaWlasciwosciWgKonfiguracji(string nazwa, Obiekt wlasciciel, string nazwaTypu)
+        private string DajNazwePolaWlasciwosciWgKonfiguracji(string nazwa, DefinedItem wlasciciel, string nazwaTypu)
         {
             string summary = null;
 
