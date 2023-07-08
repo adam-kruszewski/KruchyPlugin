@@ -7,44 +7,44 @@ namespace KruchyParserKodu.Roslyn
 {
     public static class TypeSyntaxExtensions
     {
-        public static string DajNazweTypu(this TypeSyntax syntax)
+        public static string GetTypeName(this TypeSyntax syntax)
         {
-            var identyfikatorTypu = syntax as IdentifierNameSyntax;
-            var alternatywnyIdentyfikatorTypu = syntax as GenericNameSyntax;
-            var predefiniowanyTyp = syntax as PredefinedTypeSyntax;
-            var nullableTyp = syntax as NullableTypeSyntax;
+            var typeIdentifier = syntax as IdentifierNameSyntax;
+            var alternateTypeIdentifier = syntax as GenericNameSyntax;
+            var predefindType = syntax as PredefinedTypeSyntax;
+            var nullableType = syntax as NullableTypeSyntax;
 
-            if (predefiniowanyTyp != null)
-                return predefiniowanyTyp.ToString();
+            if (predefindType != null)
+                return predefindType.ToString();
 
-            if (identyfikatorTypu != null)
-                return identyfikatorTypu.Identifier.ValueText;
-            if (alternatywnyIdentyfikatorTypu != null)
-                return alternatywnyIdentyfikatorTypu.ToFullString().Trim();
+            if (typeIdentifier != null)
+                return typeIdentifier.Identifier.ValueText;
+            if (alternateTypeIdentifier != null)
+                return alternateTypeIdentifier.ToFullString().Trim();
 
-            if (nullableTyp != null)
-                return nullableTyp.ToFullString().Trim();
+            if (nullableType != null)
+                return nullableType.ToFullString().Trim();
 
             return syntax.ToFullString().Trim();
         }
 
-        public static bool JestGeneryczny(this TypeSyntax syntax)
+        public static bool IsGeneric(this TypeSyntax syntax)
         {
             return (syntax as GenericNameSyntax) != null;
         }
 
-        public static Tuple<string, List<string>> DajDaneTypuGenerycznego(
+        public static Tuple<string, List<string>> GetGenericTypesDetails(
             this TypeSyntax syntax)
         {
-            var generyczny = syntax as GenericNameSyntax;
+            var generic = syntax as GenericNameSyntax;
 
             var parametry =
-                generyczny
+                generic
                     .TypeArgumentList
                         .Arguments
-                            .Select(o => o.DajNazweTypu());
+                            .Select(o => o.GetTypeName());
 
-            return Tuple.Create(generyczny.Identifier.ValueText, parametry.ToList());
+            return Tuple.Create(generic.Identifier.ValueText, parametry.ToList());
         }
     }
 }

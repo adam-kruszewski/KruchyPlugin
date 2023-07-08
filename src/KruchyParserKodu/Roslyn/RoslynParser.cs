@@ -284,13 +284,13 @@ namespace KruchyParserKodu.Roslyn
         {
             var wynik = new DerivedObject();
 
-            wynik.Name = o.Type.DajNazweTypu();
+            wynik.Name = o.Type.GetTypeName();
             wynik.StartPosition = DajPolozenie(o.SyntaxTree, o.Span).Item1.ToPozycjaWPliku();
             wynik.EndPosition = DajPolozenie(o.SyntaxTree, o.Span).Item2.ToPozycjaWPliku();
 
-            if (o.Type.JestGeneryczny())
+            if (o.Type.IsGeneric())
             {
-                var daneGenerycznego = o.Type.DajDaneTypuGenerycznego();
+                var daneGenerycznego = o.Type.GetGenericTypesDetails();
                 wynik.Name = daneGenerycznego.Item1;
                 wynik.ParameterTypeNames.AddRange(daneGenerycznego.Item2);
             }
@@ -314,7 +314,7 @@ namespace KruchyParserKodu.Roslyn
 
                 metoda.ReturnType = new ReturnedType
                 {
-                    Name = metodaSyntax.ReturnType.DajNazweTypu()
+                    Name = metodaSyntax.ReturnType.GetTypeName()
                 };
 
                 UstawPolozenie(klasa.SyntaxTree, metoda.ReturnType, metodaSyntax.ReturnType);
@@ -471,7 +471,7 @@ namespace KruchyParserKodu.Roslyn
         {
             var parametr = new Parameter();
             parametr.ParameterName = parametrSyntax.Identifier.ValueText;
-            parametr.TypeName = parametrSyntax.Type.DajNazweTypu();
+            parametr.TypeName = parametrSyntax.Type.GetTypeName();
 
             parametr.Modifier =
                 SzukajModyfikatorow(parametrSyntax.Modifiers)
@@ -506,7 +506,7 @@ namespace KruchyParserKodu.Roslyn
             {
                 var properties = new Property();
                 properties.Name = wlasciwoscSyntax.Identifier.ValueText;
-                properties.TypeName = wlasciwoscSyntax.Type.DajNazweTypu();
+                properties.TypeName = wlasciwoscSyntax.Type.GetTypeName();
                 UzupelnijAtrybuty(wlasciwoscSyntax.AttributeLists, properties.Attributes);
                 UzupelnijModyfikatory(wlasciwoscSyntax.Modifiers, properties.Modifiers);
                 UstawPolozenie(wlasciwoscSyntax.SyntaxTree, properties, wlasciwoscSyntax);
@@ -546,7 +546,7 @@ namespace KruchyParserKodu.Roslyn
 
                 pole.Name = identyfikator.Identifier.ValueText;
 
-                pole.TypeName = deklarowanePole.Declaration.Type.DajNazweTypu();
+                pole.TypeName = deklarowanePole.Declaration.Type.GetTypeName();
 
                 pole.Modifiers.AddRange(
                     deklarowanePole.Modifiers.Select(o => DajModifikator(o)));
