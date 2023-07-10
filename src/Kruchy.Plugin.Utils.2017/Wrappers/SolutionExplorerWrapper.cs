@@ -22,7 +22,7 @@ namespace Kruchy.Plugin.Utils._2017.Wrappers
             }
         }
 
-        private UIHierarchyItem WezelGlowny
+        private UIHierarchyItem MainNode
         {
             get { return SolutionExplorer.UIHierarchyItems.Item(1); }
         }
@@ -33,115 +33,116 @@ namespace Kruchy.Plugin.Utils._2017.Wrappers
             this.dte = dte;
         }
 
-        public static ISolutionExplorerWrapper DajDlaSolution(
+        public static ISolutionExplorerWrapper GetForSolution(
             ISolutionWrapper solution,
             DTE2 dte)
         {
             return new SolutionExplorerWrapper(solution, dte);
         }
 
-        private IList<UIHierarchyItem> WszystkieWezly()
+        private IList<UIHierarchyItem> AllNodes()
         {
             var wynik = new List<UIHierarchyItem>();
-            ZaladujElementyUI();
+            FindUiElements();
 
-            OdwiedzWezly(WezelGlowny, wynik);
+            VisitNodeAndChildren(MainNode, wynik);
             return wynik;
         }
 
-        private void OdwiedzWezly(
-            UIHierarchyItem wezel,
-            List<UIHierarchyItem> wynik)
+        private void VisitNodeAndChildren(
+            UIHierarchyItem node,
+            List<UIHierarchyItem> result)
         {
-            wynik.Add(wezel);
-            for (int i = 1; i <= wezel.UIHierarchyItems.Count; i++)
+            result.Add(node);
+            for (int i = 1; i <= node.UIHierarchyItems.Count; i++)
             {
-                var dziecko = wezel.UIHierarchyItems.Item(i);
-                wynik.Add(dziecko);
-                OdwiedzWezly(dziecko, wynik);
+                var child = node.UIHierarchyItems.Item(i);
+                result.Add(child);
+                VisitNodeAndChildren(child, result);
             }
         }
 
-        private void ZaladujElementyUI()
+        private void FindUiElements()
         {
             UIHierarchyItem UIHItem = SolutionExplorer.UIHierarchyItems.Item(1);
 
-            var rozwijane = new List<UIHierarchyItems>();
+            var expanding = new List<UIHierarchyItems>();
             if (!UIHItem.UIHierarchyItems.Expanded)
             {
                 UIHItem.UIHierarchyItems.Expanded = true;
-                rozwijane.Add(UIHItem.UIHierarchyItems);
+                expanding.Add(UIHItem.UIHierarchyItems);
             }
-            Podrozuj(UIHItem.UIHierarchyItems, rozwijane);
-            foreach (var items in rozwijane)
+            Visit(UIHItem.UIHierarchyItems, expanding);
+            foreach (var items in expanding)
                 items.Expanded = false;
         }
 
-        private void Podrozuj(
-            UIHierarchyItems uIHierarchyItems, List<UIHierarchyItems> rozwijane)
+        private void Visit(
+            UIHierarchyItems uIHierarchyItems,
+            List<UIHierarchyItems> expanding)
         {
             if (!uIHierarchyItems.Expanded)
             {
                 uIHierarchyItems.Expanded = true;
-                rozwijane.Add(uIHierarchyItems);
+                expanding.Add(uIHierarchyItems);
             }
 
             for (int i = 1; i <= uIHierarchyItems.Count; i++)
             {
                 var item = uIHierarchyItems.Item(i);
                 var projectItem = item.Object as ProjectItem;
-                Podrozuj(item.UIHierarchyItems, rozwijane);
+                Visit(item.UIHierarchyItems, expanding);
             }
         }
 
-        public void OpenFile(string sciezka)
+        public void OpenFile(string path)
         {
             //ZaladujElementyUI();
-            dte.ItemOperations.OpenFile(sciezka);
+            dte.ItemOperations.OpenFile(path);
         }
 
-        public void OpenFile(IFileWrapper plik)
+        public void OpenFile(IFileWrapper fileWrapper)
         {
             //ZaladujElementyUI();
-            dte.ItemOperations.OpenFile(plik.FullPath);
+            dte.ItemOperations.OpenFile(fileWrapper.FullPath);
         }
 
-        public void SelectPath(string sciezka)
+        public void SelectPath(string path)
         {
-            var wezlyProjektow = SzukajWezlowProjektow(3);
-            if (Directory.Exists(sciezka))
+            var projectNodes = FindProjectNodes(3);
+            if (Directory.Exists(path))
             {
-                var info = new FileInfo(sciezka);
-                var pelna = info.FullName;
-                var projekt =
-                    wezlyProjektow
-                        .Where(o => ProjektWKtorymJestSciezka(pelna, o))
+                var info = new FileInfo(path);
+                var fullName = info.FullName;
+                var project =
+                    projectNodes
+                        .Where(o => ProjectContainsPath(fullName, o))
                             .FirstOrDefault();
-                if (projekt != null)
+                if (project != null)
                 {
-                    var katalogProjektu = DajKatalogWezlaProjektu(projekt);
-                    var reszta = pelna.Substring(katalogProjektu.Length);
+                    var nodeDirectoryNode = getNodeDirectoryNode(project);
+                    var rest = fullName.Substring(nodeDirectoryNode.Length);
 
-                    var czesci =
-                        reszta.Split(
+                    var parts =
+                        rest.Split(
                             Path.DirectorySeparatorChar)
                                 .Where(o => o != "")
                                     .ToArray();
-                    OdznaczZaznaczone();
+                    RevertSelection();
 
-                    UIHierarchyItem znalezionyWezel = ZnajdzWezelDlaReszty(projekt, czesci);
-                    if (znalezionyWezel != null)
+                    UIHierarchyItem foundNode = GetNodeForRest(project, parts);
+                    if (foundNode != null)
                     {
-                        znalezionyWezel.Select(vsUISelectionType.vsUISelectionTypeSetCaret);
-                        znalezionyWezel.Select(vsUISelectionType.vsUISelectionTypeToggle);
-                        znalezionyWezel.Select(vsUISelectionType.vsUISelectionTypeSelect);
-                        znalezionyWezel.UIHierarchyItems.Expanded = true;
+                        foundNode.Select(vsUISelectionType.vsUISelectionTypeSetCaret);
+                        foundNode.Select(vsUISelectionType.vsUISelectionTypeToggle);
+                        foundNode.Select(vsUISelectionType.vsUISelectionTypeSelect);
+                        foundNode.UIHierarchyItems.Expanded = true;
                     }
                 }
             }
         }
 
-        private void OdznaczZaznaczone()
+        private void RevertSelection()
         {
             foreach (EnvDTE.UIHierarchyItem item in SolutionExplorer.SelectedItems as object[])
             {
@@ -149,141 +150,122 @@ namespace Kruchy.Plugin.Utils._2017.Wrappers
             }
         }
 
-        private bool ProjektWKtorymJestSciezka(string pelna, UIHierarchyItem o)
+        private bool ProjectContainsPath(string fullPath, UIHierarchyItem hierarchyItem)
         {
             return
-                pelna
+                fullPath
                     .ToLower()
-                        .StartsWith(DajKatalogWezlaProjektu(o).ToLower());
+                        .StartsWith(getNodeDirectoryNode(hierarchyItem).ToLower());
         }
 
-        private UIHierarchyItem ZnajdzWezelDlaReszty(
-            UIHierarchyItem projekt, string[] czesci)
+        private UIHierarchyItem GetNodeForRest(
+            UIHierarchyItem projectHierarchyItem,
+            string[] parts)
         {
-            if (czesci.Length == 0)
+            if (parts.Length == 0)
                 return null;
-            var nazwa = czesci.First().ToLower();
-            if (!projekt.UIHierarchyItems.Expanded)
-                projekt.UIHierarchyItems.Expanded = true;
+            var nazwa = parts.First().ToLower();
+            if (!projectHierarchyItem.UIHierarchyItems.Expanded)
+                projectHierarchyItem.UIHierarchyItems.Expanded = true;
 
-            for (int i = 1; i <= projekt.UIHierarchyItems.Count; i++)
+            for (int i = 1; i <= projectHierarchyItem.UIHierarchyItems.Count; i++)
             {
-                var item = projekt.UIHierarchyItems.Item(i);
+                var item = projectHierarchyItem.UIHierarchyItems.Item(i);
                 if (item.Name.ToLower() == nazwa)
                 {
-                    if (czesci.Length == 1)
+                    if (parts.Length == 1)
                         return item;
                     else
                     {
-                        var noweCzesci = new string[czesci.Length - 1];
-                        for (int j = 0; j < czesci.Length - 1; j++)
-                            noweCzesci[j] = czesci[j + 1];
-                        return ZnajdzWezelDlaReszty(item, noweCzesci);
+                        var newParts = new string[parts.Length - 1];
+                        for (int j = 0; j < parts.Length - 1; j++)
+                            newParts[j] = parts[j + 1];
+                        return GetNodeForRest(item, newParts);
                     }
                 }
             }
             return null;
         }
 
-        private string DajKatalogWezlaProjektu(UIHierarchyItem wezelProjektu)
+        private string getNodeDirectoryNode(UIHierarchyItem wezelProjektu)
         {
-            var projekt = wezelProjektu.Object as Project;
+            var project = wezelProjektu.Object as Project;
 
-            if (projekt == null)
+            if (project == null)
                 throw new ApplicationException("Coś poszło nie tak z projektem");
 
-            var info = new FileInfo(projekt.FullName);
+            var info = new FileInfo(project.FullName);
             return info.DirectoryName;
         }
 
-        private bool WSciezce(UIHierarchyItem wezel, string sciezka)
+        private string BuildPath(UIHierarchyItem hierarchyItem)
         {
-            var projectItem = wezel.Object as ProjectItem;
-            if (projectItem != null)
+            if (hierarchyItem.Name == "KontaktyWatku")
             {
-                var nazwaPliku = projectItem.FileNames[0];
-                if (nazwaPliku.EndsWith("\\"))
-                    nazwaPliku = nazwaPliku.Substring(0, nazwaPliku.Length - 1);
-                if (nazwaPliku == sciezka)
-                    return true;
-            }
-            else
-            {
-                string aktualnaSciezka = BudujSciezke(wezel);
-                if (aktualnaSciezka == sciezka)
-                    return true;
-            }
-            return false;
-        }
-
-        private string BudujSciezke(UIHierarchyItem wezel)
-        {
-            if (wezel.Name == "KontaktyWatku")
-            {
-                var h = wezel.Collection.Parent as UIHierarchyItem;
+                var h = hierarchyItem.Collection.Parent as UIHierarchyItem;
             }
 
-            var itemsNaSciezce = new List<UIHierarchyItem>();
-            var aktualna = wezel;
-            while (aktualna != null)
+            var indexOnPath = new List<UIHierarchyItem>();
+            var currentHierarchyItem = hierarchyItem;
+            while (currentHierarchyItem != null)
             {
-                var p = aktualna.Object as Project;
+                var p = currentHierarchyItem.Object as Project;
                 if (p != null)
                 {
                     if (p.FullName.ToLower().EndsWith(".csproj"))
                     {
                         var fi = new FileInfo(p.FullName);
-                        var elementySciezki = new List<string>();
-                        elementySciezki.Add(fi.DirectoryName);
-                        itemsNaSciezce.Reverse();
-                        foreach (UIHierarchyItem item in itemsNaSciezce)
-                            elementySciezki.Add(item.Name);
-                        var wynik = string.Join("" + Path.PathSeparator, elementySciezki.ToArray());
-                        return wynik;
+                        var pathElements = new List<string>();
+                        pathElements.Add(fi.DirectoryName);
+                        indexOnPath.Reverse();
+                        foreach (UIHierarchyItem item in indexOnPath)
+                            pathElements.Add(item.Name);
+                        var result = string.Join("" + Path.PathSeparator, pathElements.ToArray());
+                        return result;
                     }
                     else
                         return string.Empty;
                 }
-                itemsNaSciezce.Add(aktualna);
-                aktualna = aktualna.Collection.Parent as UIHierarchyItem;
+                indexOnPath.Add(currentHierarchyItem);
+                currentHierarchyItem = currentHierarchyItem.Collection.Parent as UIHierarchyItem;
             }
             return string.Empty;
         }
 
-        private List<UIHierarchyItem> SzukajWezlowProjektow(int maxGlebokosc)
+        private List<UIHierarchyItem> FindProjectNodes(int maxDepth)
         {
-            var wynik = new List<UIHierarchyItem>();
+            var result = new List<UIHierarchyItem>();
             UIHierarchyItem solutionItem = SolutionExplorer.UIHierarchyItems.Item(1);
 
-            wynik.AddRange(SzukajWezlowProjektow(solutionItem, maxGlebokosc));
-            return wynik;
+            result.AddRange(FindProjectNodes(solutionItem, maxDepth));
+            return result;
         }
 
-        private IEnumerable<UIHierarchyItem> SzukajWezlowProjektow(
-            UIHierarchyItem item, int maxGlebokosc)
+        private IEnumerable<UIHierarchyItem> FindProjectNodes(
+            UIHierarchyItem item, int maxDepth)
         {
-            var inicjalneRozwiniecie = item.UIHierarchyItems.Expanded;
+            var initialExpanded = item.UIHierarchyItems.Expanded;
             if (!item.UIHierarchyItems.Expanded)
             {
                 item.UIHierarchyItems.Expanded = true;
-                item.UIHierarchyItems.Expanded = inicjalneRozwiniecie;
+                item.UIHierarchyItems.Expanded = initialExpanded;
             }
 
             for (int i = 1; i <= item.UIHierarchyItems.Count; i++)
             {
-                UIHierarchyItem aktItem = item.UIHierarchyItems.Item(i);
-                if (JestProjektem(aktItem))
-                    yield return aktItem;
+                UIHierarchyItem currentHierarchyItem = item.UIHierarchyItems.Item(i);
+                if (IsProject(currentHierarchyItem))
+                    yield return currentHierarchyItem;
                 else
                 {
-                    if (maxGlebokosc > 0)
-                        foreach (var p in SzukajWezlowProjektow(aktItem, maxGlebokosc - 1))
+                    if (maxDepth > 0)
+                        foreach (var p in FindProjectNodes(currentHierarchyItem, maxDepth - 1))
                             yield return p;
                 }
             }
         }
 
-        private bool JestProjektem(UIHierarchyItem item)
+        private bool IsProject(UIHierarchyItem item)
         {
             var project = item.Object as Project;
             if (project != null && project.FullName.EndsWith(".csproj"))

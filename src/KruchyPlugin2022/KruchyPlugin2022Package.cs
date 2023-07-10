@@ -87,7 +87,7 @@ namespace KruchyPlugin2022
 
                 object[] parametry = new[] { sw };
                 if (konstruktor.GetParameters().Length == 2)
-                    parametry = new[] { sw, (object)SolutionExplorerWrapper.DajDlaSolution(sw, dte) };
+                    parametry = new[] { sw, (object)SolutionExplorerWrapper.GetForSolution(sw, dte) };
 
                 var pozycjaMenu = Activator.CreateInstance(klasa, parametry) as IPozycjaMenu;
                 new PozycjaMenuAdapter(pozycjaMenu, sw).Podlacz(mcs2);
