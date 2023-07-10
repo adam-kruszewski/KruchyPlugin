@@ -5,17 +5,17 @@ using Kruchy.Plugin.Utils.Wrappers;
 namespace Kruchy.Plugin.Utils._2017.Wrappers
 {
 #pragma warning disable VSTHRD010
-    public class PlikWrapper : IFileWrapper
+    public class FileWrapper : IFileWrapper
     {
         private Document document;
         private ProjectItem projectItem;
 
-        public PlikWrapper(EnvDTE.Document document)
+        public FileWrapper(EnvDTE.Document document)
         {
             this.document = document;
         }
 
-        public PlikWrapper(ProjectItem projectItem)
+        public FileWrapper(ProjectItem projectItem)
         {
             this.projectItem = projectItem;
         }

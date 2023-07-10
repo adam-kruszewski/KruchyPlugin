@@ -46,7 +46,7 @@ namespace Kruchy.Plugin.Utils._2017.Wrappers
             ProjectItem pi)
         {
             if (JestPlikiemWProjekcie(pi))
-                listaPlikow.Add(new PlikWrapper(pi));
+                listaPlikow.Add(new FileWrapper(pi));
             else
             {
                 foreach (ProjectItem piDzieci in pi.ProjectItems)
@@ -66,7 +66,7 @@ namespace Kruchy.Plugin.Utils._2017.Wrappers
 
         public IFileWrapper AddFile(string sciezka)
         {
-            return new PlikWrapper(
+            return new FileWrapper(
                 project.ProjectItems.AddFromFile(sciezka));
         }
 

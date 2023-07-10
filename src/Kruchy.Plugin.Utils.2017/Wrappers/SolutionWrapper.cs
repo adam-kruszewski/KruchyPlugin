@@ -53,7 +53,7 @@ namespace Kruchy.Plugin.Utils._2017.Wrappers
                 {
                     return null;
                 }
-                return new PlikWrapper(dte.ActiveDocument);
+                return new FileWrapper(dte.ActiveDocument);
             }
         }
 
