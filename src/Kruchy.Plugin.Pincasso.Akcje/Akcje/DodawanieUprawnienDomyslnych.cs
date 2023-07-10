@@ -22,7 +22,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
                 return;
             }
             var nazwaKlasy = "";
-            var dokument = solution.CurenctDocument;
+            var dokument = solution.CurentDocument;
             var liczbaLinii = dokument.GetLineCount();
             for (int i = 1; i <= dokument.GetLineCount(); i++)
             {

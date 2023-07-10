@@ -55,7 +55,7 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
                     .Generuj(mockParametrow.Object);
 
                 //assert
-                var zawartosc = solution.CurenctDocument.GetContent();
+                var zawartosc = solution.CurentDocument.GetContent();
 
                 zawartosc.Should().Be(wczytywacz.DajZawartoscPrzykladu("ReportViewXsd.xsd"));
                 solution.CurrentFile.FullPath.Should().Be(sciezkaDoXsd);

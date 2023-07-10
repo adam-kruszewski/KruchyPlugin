@@ -26,7 +26,7 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
             new UzupelnianieKonstruktora(solution).Uzupelnij();
 
             //assert
-            var zawartoscPoZmianie = solution.CurenctDocument.GetContent();
+            var zawartoscPoZmianie = solution.CurentDocument.GetContent();
 
             zawartoscPoZmianie.Should().Be(
 @"namespace Kruchy.Plugin.Akcje.Tests.Samples
@@ -59,7 +59,7 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
             new UzupelnianieKonstruktora(solution).Uzupelnij();
 
             //assert
-            var zawartoscPoZmianie = solution.CurenctDocument.GetContent();
+            var zawartoscPoZmianie = solution.CurentDocument.GetContent();
 
             zawartoscPoZmianie.Should().Be(
 @"namespace Kruchy.Plugin.Akcje.Tests.Samples

@@ -64,7 +64,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         private void UstawSieNaMetodzie(Method metoda)
         {
             var parsowane =
-                Parser.Parse(solution.CurenctDocument.GetContent());
+                Parser.Parse(solution.CurentDocument.GetContent());
 
             if (parsowane.DefinedItems.Count != 1)
                 return;
@@ -75,7 +75,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                         .FirstOrDefault();
 
             if (znalezionaMetoda != null)
-                solution.CurenctDocument.SetCursor(
+                solution.CurentDocument.SetCursor(
                     znalezionaMetoda.StartPosition.Row,
                     znalezionaMetoda.StartPosition.Column);
         }

@@ -22,7 +22,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             }
             foreach (var nazwaUsinga in usingi)
                 solution
-                    .CurenctDocument
+                    .CurentDocument
                         .DodajUsingaJesliTrzeba(nazwaUsinga);
         }
     }

@@ -56,7 +56,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Menu
             {
                 get
                 {
-                    var aktualnaZawartosc = solution.CurenctDocument.GetContent();
+                    var aktualnaZawartosc = solution.CurentDocument.GetContent();
 
                     var regex = new Regex(@"//sciezka_do_xsd=([A-Za-z0-9_\\/.]+)");
                     var match = regex.Match(aktualnaZawartosc);

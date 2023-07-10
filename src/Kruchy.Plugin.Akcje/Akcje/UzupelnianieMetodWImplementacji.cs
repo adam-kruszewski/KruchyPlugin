@@ -88,7 +88,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         {
             solutionExplorer.OpenFile(sciezkaDoImplementacji);
 
-            var zawartosc = solution.CurenctDocument.GetContent();
+            var zawartosc = solution.CurentDocument.GetContent();
             var parsowane = Parser.Parse(zawartosc);
             int numerLiniiGdzieDodawac = 0;
 
@@ -118,13 +118,13 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
             }
 
-            solution.CurenctDocument
+            solution.CurentDocument
                 .InsertInLine(wstawianyTekst, numerLiniiGdzieDodawac);
-            solution.CurenctDocument.SetCursorForAddedMethod(
+            solution.CurentDocument.SetCursorForAddedMethod(
                 numerLiniiGdzieDodawac + 1);
 
             foreach (var u in usingi.Select(o => o.Name))
-                solution.CurenctDocument.DodajUsingaJesliTrzeba(u);
+                solution.CurentDocument.DodajUsingaJesliTrzeba(u);
         }
 
         private static int WyliczLinieDodanieWgNastepnejMetody(

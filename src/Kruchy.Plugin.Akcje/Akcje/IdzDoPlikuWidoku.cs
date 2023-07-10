@@ -25,11 +25,11 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         public void PrzejdzDoWidokuDlaAktualnejMetody()
         {
-            if (solution.CurenctDocument == null)
+            if (solution.CurentDocument == null)
                 return;
-            var zawartosc = solution.CurenctDocument.GetContent();
+            var zawartosc = solution.CurentDocument.GetContent();
             var parsowane = Parser.Parse(zawartosc);
-            var liniaKursora = solution.CurenctDocument.GetCursorLineNumber();
+            var liniaKursora = solution.CurentDocument.GetCursorLineNumber();
 
             var aktualnaMetoda = parsowane.FindMethodByLineNumber(liniaKursora);
 

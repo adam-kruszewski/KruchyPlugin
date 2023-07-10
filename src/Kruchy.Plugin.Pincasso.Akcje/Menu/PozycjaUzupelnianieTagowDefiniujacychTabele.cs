@@ -33,7 +33,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Menu
 
         public void Execute(object sender, EventArgs args)
         {
-            var dokumentWrapper = solution.CurenctDocument;
+            var dokumentWrapper = solution.CurentDocument;
             new UzupelnianieTagowDefiniujacychTabele(dokumentWrapper).Uzupelnij();
         }
     }

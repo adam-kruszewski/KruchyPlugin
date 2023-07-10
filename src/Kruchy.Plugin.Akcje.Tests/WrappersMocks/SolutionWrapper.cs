@@ -48,7 +48,7 @@ namespace Kruchy.Plugin.Akcje.Tests.WrappersMocks
 
         public IProjectWrapper CurrentProject { get; set; }
 
-        public IDocumentWrapper CurenctDocument { get { return dokument; } }
+        public IDocumentWrapper CurentDocument { get { return dokument; } }
 
         public IList<IProjectWrapper> Projects { get { return projekty.ToList(); } }
 

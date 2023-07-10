@@ -33,7 +33,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Menu
 
         public void Execute(object sender, EventArgs args)
         {
-            new UzupelnianieReferencedObject(solution.CurenctDocument).Uzupelnij();
+            new UzupelnianieReferencedObject(solution.CurentDocument).Uzupelnij();
         }
     }
 }

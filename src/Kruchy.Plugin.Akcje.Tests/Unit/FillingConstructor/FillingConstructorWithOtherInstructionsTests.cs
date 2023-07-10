@@ -32,7 +32,7 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit.FillingConstructor
             var expectedResult = new WczytywaczZawartosciPrzykladow()
                 .DajZawartoscPrzykladu("FillingConstructor.ConstructorWithOtherInstructionsNewConstructorResult.cs");
 
-            var actualResult = solution.CurenctDocument.GetContent();
+            var actualResult = solution.CurentDocument.GetContent();
 
             actualResult.Should().Be(expectedResult);
         }
@@ -58,7 +58,7 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit.FillingConstructor
             var expectedResult = new WczytywaczZawartosciPrzykladow()
                 .DajZawartoscPrzykladu("FillingConstructor.ConstructorWithOtherInstructionAddLackingAssignmentsResult.cs");
 
-            var actualResult = solution.CurenctDocument.GetContent();
+            var actualResult = solution.CurentDocument.GetContent();
 
             actualResult.Should().Be(expectedResult);
         }

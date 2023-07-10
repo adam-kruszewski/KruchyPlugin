@@ -98,7 +98,7 @@ namespace Kruchy.Plugin.Utils.Menu
                 if (!PlikCs(solution))
                     return null;
 
-                return Parser.Parse(solution.CurenctDocument.GetContent());
+                return Parser.Parse(solution.CurentDocument.GetContent());
             }
             catch (Exception ex)
             {

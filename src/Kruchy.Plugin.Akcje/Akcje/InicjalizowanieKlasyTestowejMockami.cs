@@ -56,7 +56,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 DodajPotrzebneUsingi(polaZTypemZKonstruktora);
             }
 
-            solution.CurenctDocument.DodajUsingaJesliTrzeba("Moq");
+            solution.CurentDocument.DodajUsingaJesliTrzeba("Moq");
         }
 
         private void DodajPotrzebneUsingi(IEnumerable<Tuple<string, string>> polaZTypemZKonstruktora)
@@ -71,7 +71,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 {
                     var sparsowane = Parser.ParseFile(plikZDefinicja.FullPath);
 
-                    solution.CurenctDocument.DodajUsingaJesliTrzeba(sparsowane.Namespace);
+                    solution.CurentDocument.DodajUsingaJesliTrzeba(sparsowane.Namespace);
                 }
             }
         }
@@ -84,7 +84,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         private IEnumerable<Tuple<string, string>> DajPolaMockowDoDodania(
             IEnumerable<Tuple<string, string>> polaZTypemZKonstruktora)
         {
-            var parsowane = Parser.Parse(solution.CurenctDocument.GetContent());
+            var parsowane = Parser.Parse(solution.CurentDocument.GetContent());
 
             var polaZdefiniowane = parsowane.DefinedItems.First().Fields;
 
@@ -96,7 +96,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         private void DodajPolaMockow(IEnumerable<Tuple<string, string>> polaMockowDoDodania)
         {
-            var parsowane = Parser.Parse(solution.CurenctDocument.GetContent());
+            var parsowane = Parser.Parse(solution.CurentDocument.GetContent());
 
             int numerLiniiDoDodawaniaPol = SzukajLiniiDoWstawieniaPola(parsowane);
 
@@ -110,7 +110,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                     .ZNazwaTypu($"Mock<{array[i].Item1}>")
                     .Build(StaleDlaKodu.WcieciaDlaPolaKlasy);
 
-                solution.CurenctDocument.InsertInLine(nowaLinia, numerLiniiDoDodawaniaPol);
+                solution.CurentDocument.InsertInLine(nowaLinia, numerLiniiDoDodawaniaPol);
             }
         }
 
@@ -134,7 +134,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         private void DodajPoleInstancji(string nazwaBezRozszerzenia)
         {
-            var parsowane = Parser.Parse(solution.CurenctDocument.GetContent());
+            var parsowane = Parser.Parse(solution.CurentDocument.GetContent());
 
             if (!parsowane.DefinedItems.First().Fields.Any(o => o.Name == NazwaPolaInstancji))
             {
@@ -143,7 +143,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                     .ZNazwaTypu(nazwaBezRozszerzenia)
                     .Build(StaleDlaKodu.WcieciaDlaPolaKlasy);
 
-                solution.CurenctDocument.InsertInLine(nowaLinia, SzukajLiniiDoWstawieniaPola(parsowane));
+                solution.CurentDocument.InsertInLine(nowaLinia, SzukajLiniiDoWstawieniaPola(parsowane));
             }
         }
 
@@ -156,7 +156,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             IEnumerable<Tuple<string, string>> polaZTypemZKontruktora,
             string nazwaKlasyTestowanej)
         {
-            var parsowane = Parser.Parse(solution.CurenctDocument.GetContent());
+            var parsowane = Parser.Parse(solution.CurentDocument.GetContent());
 
             var aktualna = parsowane.DefinedItems.First().Methods.SingleOrDefault(o => o.Name == NazwaMetody);
 
@@ -166,7 +166,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             {
                 poczatek = aktualna.StartPosition;
 
-                solution.CurenctDocument.Remove(
+                solution.CurentDocument.Remove(
                     aktualna.StartPosition.Row, aktualna.StartPosition.Column,
                     aktualna.EndPosition.Row, aktualna.EndPosition.Column);
             }else
@@ -187,7 +187,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 poczatek.Row = parsowane.DefinedItems.First().ClosingBrace.Row;
             }
 
-            solution.CurenctDocument.InsertInLine(GenerujMetode(polaZTypemZKontruktora, nazwaKlasyTestowanej), poczatek.Row);
+            solution.CurentDocument.InsertInLine(GenerujMetode(polaZTypemZKontruktora, nazwaKlasyTestowanej), poczatek.Row);
         }
 
         private string GenerujMetode(

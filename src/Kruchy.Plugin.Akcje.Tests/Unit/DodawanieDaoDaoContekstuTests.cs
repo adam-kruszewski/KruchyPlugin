@@ -36,7 +36,7 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
                     var sciezkaDoIContext =
                     Path.Combine(projekt.DirectoryPath, "Base", "IKruchyContext.cs");
 
-                    solution.CurenctDocument.GetContent().Should().Be(
+                    solution.CurentDocument.GetContent().Should().Be(
 @"using Kruchy.Projekt1.Dao;
 using Kruchy.Projekt1.Dao.Impl;
 using Pincasso.Core.Base;
@@ -161,7 +161,7 @@ namespace KruchyProjekt.Base
             string oczekiwanaZawartosc)
         {
             solutionExplorer.OpenFile(sciezka);
-            var zawartosc = solution.CurenctDocument.GetContent();
+            var zawartosc = solution.CurentDocument.GetContent();
 
             zawartosc.Should().Be(oczekiwanaZawartosc);
         }

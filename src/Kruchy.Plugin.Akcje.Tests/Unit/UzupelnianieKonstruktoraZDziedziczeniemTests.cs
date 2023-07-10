@@ -21,7 +21,7 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
             new UzupelnianieKonstruktora(solution).Uzupelnij();
 
             //assert
-            var zawartoscPoZmianie = solution.CurenctDocument.GetContent();
+            var zawartoscPoZmianie = solution.CurentDocument.GetContent();
 
             zawartoscPoZmianie.Should().Be(
 @"using System;
@@ -63,7 +63,7 @@ namespace Kruchy.Plugin.Akcje.Tests.Samples
             new UzupelnianieKonstruktora(solution).Uzupelnij();
 
             //assert
-            var zawartoscPoZmianie = solution.CurenctDocument.GetContent();
+            var zawartoscPoZmianie = solution.CurentDocument.GetContent();
             //TODO trzeba poprawić mocki zawartości dokumentu - bo na żywo działa chyba dobrze
             zawartoscPoZmianie.Should().Be(
 @"using System;

@@ -25,10 +25,10 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
 
         public void Dodaj()
         {
-            var sparsowane = Parser.Parse(solution.CurenctDocument.GetContent());
+            var sparsowane = Parser.Parse(solution.CurentDocument.GetContent());
 
             var obiekt =
-                sparsowane.FindDefinedItemByLineNumber(solution.CurenctDocument.GetCursorLineNumber());
+                sparsowane.FindDefinedItemByLineNumber(solution.CurentDocument.GetCursorLineNumber());
 
             if (obiekt == null && sparsowane.DefinedItems.Count() == 1)
                 obiekt = sparsowane.DefinedItems.Single();
@@ -91,7 +91,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
         {
             solutionExplorer.OpenFile(sciezkaDoContext);
 
-            var dokument = solution.CurenctDocument;
+            var dokument = solution.CurentDocument;
 
             var sparsowaneDao = Parser.ParseFile(plikDao.FullPath);
             var sparsowaneIDao = Parser.ParseFile(plikIDao.FullPath);
@@ -116,7 +116,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
         {
             solutionExplorer.OpenFile(sciezkaDoIContext);
 
-            var dokument = solution.CurenctDocument;
+            var dokument = solution.CurentDocument;
 
             var sparsowaneIDao = Parser.ParseFile(plikIDao.FullPath);
 

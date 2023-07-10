@@ -35,12 +35,12 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             var nazwaKlasyContextu = parsowane.DefinedItems.First().Name;
             var namespaceKlasy = parsowane.Namespace;
 
-            var aktualnyDokument = solution.CurenctDocument;
+            var aktualnyDokument = solution.CurentDocument;
             aktualnyDokument.DodajUsingaJesliTrzeba(namespaceKlasy);
             aktualnyDokument.DodajUsingaJesliTrzeba("Pincasso.Core.Base");
 
             var parsowaneAktualny =
-                Parser.Parse(solution.CurenctDocument.GetContent());
+                Parser.Parse(solution.CurentDocument.GetContent());
             DodajAtrybutContext(nazwaKlasyContextu, parsowaneAktualny);
             DodajInterfejsUsingContext(nazwaKlasyContextu, parsowaneAktualny);
         }
@@ -66,7 +66,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
                     .ZNazwaTypu(nazwaKlasyContextu)
                     .ZModyfikatorem("public");
 
-            solution.CurenctDocument.InsertInLine(
+            solution.CurentDocument.InsertInLine(
                 propBuilder.Build(StaleDlaKodu.WciecieDlaMetody),
                 numerLiniiWstawiania);
         }
@@ -82,7 +82,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
                 var wstawianyTekst = ", IUseDbDaoContext<" + nazwaKlasyContextu + ">";
                 if (ostatni.StartPosition.Row == klasa.StartPosition.Row)
                 {
-                    solution.CurenctDocument.
+                    solution.CurentDocument.
                         InsertInPlace(
                             wstawianyTekst,
                             ostatni.StartPosition.Row,
@@ -96,7 +96,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
                         sb.Append(StaleDlaKodu.JednostkaWciecia);
                     sb.Append(wstawianyTekst);
                     sb.AppendLine();
-                    solution.CurenctDocument
+                    solution.CurentDocument
                         .InsertInPlace(
                             sb.ToString(),
                             ostatni.StartPosition.Row + 1,

@@ -21,7 +21,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             if (solution.CurrentFile == null || !solution.CurrentFile.JestWBuilderze())
                 return;
 
-            var dokument = solution.CurenctDocument;
+            var dokument = solution.CurentDocument;
             var parsowane = Parser.Parse(dokument.GetContent());
 
             var metodaBuilder =

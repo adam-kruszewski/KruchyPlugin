@@ -35,7 +35,7 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
 
             //assert
             var expectedContent = wczytywacz.DajZawartoscPrzykladu("WynikKlasyDoDokumentacji.cs").EndLinesToN();
-            var actualContent = solution.CurenctDocument.GetContent().EndLinesToN();
+            var actualContent = solution.CurentDocument.GetContent().EndLinesToN();
             actualContent.Should().Be(expectedContent);
         }
 
@@ -51,7 +51,7 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
             new UzupelnianieDokumentacji(solution).Uzupelnij();
 
             //assert
-            solution.CurenctDocument.GetContent().Should().Be(
+            solution.CurentDocument.GetContent().Should().Be(
                 wczytywacz.DajZawartoscPrzykladu("WynikKlasaGenertycznaZMetodaGeneryczna.cs"));
         }
 
@@ -67,7 +67,7 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
             new UzupelnianieDokumentacji(solution).Uzupelnij();
 
             //assert
-            solution.CurenctDocument.GetContent().Should().Be(
+            solution.CurentDocument.GetContent().Should().Be(
                 wczytywacz.DajZawartoscPrzykladu("WynikKlasaDoDokumentacjaRozne.cs"));
         }
 
@@ -107,7 +107,7 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
             new UzupelnianieDokumentacji(solution).Uzupelnij();
 
             //assert
-            solution.CurenctDocument.GetContent().Should().Be(
+            solution.CurentDocument.GetContent().Should().Be(
                 wczytywacz.DajZawartoscPrzykladu("WynikKlasaDoDokumentacjiCzasownikow.cs"));
         }
 
@@ -156,7 +156,7 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
             new UzupelnianieDokumentacji(solution).Uzupelnij();
 
             //assert
-            solution.CurenctDocument.GetContent().Should().Be(
+            solution.CurentDocument.GetContent().Should().Be(
                 wczytywacz.DajZawartoscPrzykladu("KlasaDoDokumentacjiWlasciwosciIPolWynik.cs"));
         }
 
@@ -181,7 +181,7 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
             new UzupelnianieDokumentacji(solution).Uzupelnij();
 
             //assert
-            solution.CurenctDocument.GetContent().Should().Be(
+            solution.CurentDocument.GetContent().Should().Be(
                 wczytywacz.DajZawartoscPrzykladu("WynikKlasaDokumentacjiZTypuPola.cs"));
         }
 
@@ -195,7 +195,7 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
             new UzupelnianieDokumentacji(solution).Uzupelnij();
 
             //assert
-            solution.CurenctDocument.GetContent().Should().Be(
+            solution.CurentDocument.GetContent().Should().Be(
                 wczytywacz.DajZawartoscPrzykladu("WynikEnumeracjaDoDokumentacji.cs"));
         }
 

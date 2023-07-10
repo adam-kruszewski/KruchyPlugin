@@ -28,7 +28,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
         public void Generuj(
             IParametryGenerowaniaBuildera parametry)
         {
-            var zawartoscAktualnego = solution.CurenctDocument.GetContent();
+            var zawartoscAktualnego = solution.CurentDocument.GetContent();
 
             var sparsowane = Parser.Parse(zawartoscAktualnego);
 
@@ -128,7 +128,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
                 obiektDoZbudowania =
                     sparsowane
                         .FindClassByLineNumber(
-                            solution.CurenctDocument.GetCursorLineNumber());
+                            solution.CurentDocument.GetCursorLineNumber());
             }
 
             return obiektDoZbudowania;
@@ -139,7 +139,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             string nazwaKlasyBuildera,
             IEnumerable<string> usingiZObiektuBudowanego)
         {
-            var sparsowane = Parser.Parse(solution.CurenctDocument.GetContent());
+            var sparsowane = Parser.Parse(solution.CurentDocument.GetContent());
 
             var klasaBuildera =
                 sparsowane.DefinedItems.Single(o => o.Name == nazwaKlasyBuildera);
@@ -153,13 +153,13 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
 
                 string tesktMetody = GenerujTrescMetody(nazwaKlasyBuildera, wlasciwosc);
 
-                solution.CurenctDocument.InsertInLine(
+                solution.CurentDocument.InsertInLine(
                     tesktMetody + new StringBuilder().AppendLine().ToString(),
                     miejsceWstawiania.Row);
             }
 
             foreach (var usingBudowanego in usingiZObiektuBudowanego)
-                solution.CurenctDocument.DodajUsingaJesliTrzeba(usingBudowanego);
+                solution.CurentDocument.DodajUsingaJesliTrzeba(usingBudowanego);
         }
 
         private string GenerujTrescMetody(
@@ -229,7 +229,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
         {
             for (int i = metoda.StartPosition.Row; i < metoda.EndPosition.Row; i++)
             {
-                if (solution.CurenctDocument.GetLineContent(i)
+                if (solution.CurentDocument.GetLineContent(i)
                     .Contains(napisUstawiajacyWartoscPola))
                     return true;
             }

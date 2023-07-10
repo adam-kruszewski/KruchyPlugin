@@ -327,7 +327,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
 
         private DefinedItem DajKlaseReportView()
         {
-            var sparsowane = Parser.Parse(solution.CurenctDocument.GetContent());
+            var sparsowane = Parser.Parse(solution.CurentDocument.GetContent());
 
             var klasy =
                 sparsowane
@@ -337,7 +337,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             DefinedItem klasaView;
             klasaView =
                 sparsowane
-                    .FindClassByLineNumber(solution.CurenctDocument.GetCursorLineNumber());
+                    .FindClassByLineNumber(solution.CurentDocument.GetCursorLineNumber());
 
             if (klasaView == null)
                 klasaView = klasy.FirstOrDefault();

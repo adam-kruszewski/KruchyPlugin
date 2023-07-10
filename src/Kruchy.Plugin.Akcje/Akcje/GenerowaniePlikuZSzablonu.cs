@@ -81,7 +81,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             if (wybranyProjekt == null)
                 wybranyProjekt = solution.CurrentProject;
 
-            var sparsowane = Parser.Parse(solution.CurenctDocument.GetContent());
+            var sparsowane = Parser.Parse(solution.CurentDocument.GetContent());
 
             foreach (var schematKlasy in szablon.SchematyKlas)
             {
@@ -205,7 +205,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         private string DajNazweKlasy(FileWithCode sparsowane)
         {
             var obiekt =
-            sparsowane.FindClassByLineNumber(solution.CurenctDocument.GetCursorLineNumber());
+            sparsowane.FindClassByLineNumber(solution.CurentDocument.GetCursorLineNumber());
 
             if (obiekt == null)
                 return sparsowane.DefinedItems.Single().Name;
