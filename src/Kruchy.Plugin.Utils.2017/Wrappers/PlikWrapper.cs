@@ -74,8 +74,8 @@ namespace Kruchy.Plugin.Utils._2017.Wrappers
             {
                 var p = FullPath;
 
-                var katalogProjektu = Project.DirectoryPath;
-                p = p.Replace(katalogProjektu, "");
+                var projectDirectory = Project.DirectoryPath;
+                p = p.Replace(projectDirectory, "");
                 return p;
             }
         }
