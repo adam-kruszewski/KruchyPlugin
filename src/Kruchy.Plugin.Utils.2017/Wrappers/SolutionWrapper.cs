@@ -61,11 +61,11 @@ namespace Kruchy.Plugin.Utils._2017.Wrappers
         {
             get
             {
-                var plik = CurrentFile;
-                if (plik == null)
+                var currentFile = CurrentFile;
+                if (currentFile == null)
                     return null;
 
-                return plik.Project;
+                return currentFile.Project;
             }
         }
 
@@ -87,44 +87,44 @@ namespace Kruchy.Plugin.Utils._2017.Wrappers
         {
             get
             {
-                var wynik = new List<IProjectWrapper>();
+                var result = new List<IProjectWrapper>();
                 var solution = dte.Solution;
                 for (int i = 1; i <= solution.Count; i++)
                 {
                     var p = solution.Projects.Item(i);
                     if (p.FullName.ToLower().EndsWith(".csproj"))
-                        wynik.Add(new ProjectWrapper(p));
+                        result.Add(new ProjectWrapper(p));
                     else
-                        SzukajProjektow(p, wynik);
+                        FindProject(p, result);
                 }
-                return wynik;
+                return result;
             }
         }
 
-        private void SzukajProjektow(Project p, List<IProjectWrapper> wynik)
+        private void FindProject(Project p, List<IProjectWrapper> result)
         {
             for (int i = 1; i <= p.ProjectItems.Count; i++)
             {
                 var item = p.ProjectItems.Item(i);
-                SzukajProjektowWProjectItem(item, wynik);
+                FindProjectsInProjectItem(item, result);
             }
         }
 
-        private void SzukajProjektowWProjectItem(
+        private void FindProjectsInProjectItem(
             ProjectItem pi,
-            List<IProjectWrapper> wynik)
+            List<IProjectWrapper> result)
         {
             var itemObject = pi.Object as Project;
             if (itemObject == null)
                 return;
             if (itemObject.FullName.ToLower().EndsWith(".csproj"))
-                wynik.Add(new ProjectWrapper(itemObject));
+                result.Add(new ProjectWrapper(itemObject));
             else
             {
                 for (int i = 1; i <= itemObject.ProjectItems.Count; i++)
                 {
                     var item = itemObject.ProjectItems.Item(i);
-                    SzukajProjektowWProjectItem(item, wynik);
+                    FindProjectsInProjectItem(item, result);
                 }
             }
         }
