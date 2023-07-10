@@ -18,10 +18,10 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
 
         public void Dodaj(string nazwaMetody)
         {
-            if (solution.AktualnyPlik == null || !solution.AktualnyPlik.JestWBuilderze())
+            if (solution.CurrentFile == null || !solution.CurrentFile.JestWBuilderze())
                 return;
 
-            var dokument = solution.AktualnyDokument;
+            var dokument = solution.CurenctDocument;
             var parsowane = Parser.Parse(dokument.GetContent());
 
             var metodaBuilder =

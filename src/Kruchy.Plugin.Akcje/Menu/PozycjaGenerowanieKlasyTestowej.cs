@@ -71,9 +71,9 @@ namespace Kruchy.Plugin.Akcje.Menu
 
         private string GetDireectoryFromModule()
         {
-            var projectDirectoryPath = solution.AktualnyProjekt.DirectoryPath;
+            var projectDirectoryPath = solution.CurrentProject.DirectoryPath;
 
-            var fileDirectoryPath = solution.AktualnyPlik.Directory;
+            var fileDirectoryPath = solution.CurrentFile.Directory;
 
             var result = fileDirectoryPath.Replace(projectDirectoryPath, "");
 

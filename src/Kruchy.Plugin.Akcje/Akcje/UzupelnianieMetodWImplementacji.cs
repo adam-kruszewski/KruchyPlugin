@@ -25,7 +25,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         public void Uzupelnij()
         {
-            var aktualnyPlik = solution.AktualnyPlik;
+            var aktualnyPlik = solution.CurrentFile;
             if (!aktualnyPlik.JestInterfejsem())
             {
                 MessageBox.Show("Aktualny plik nie jest interfejsem");
@@ -47,7 +47,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             Method nastepnaMetoda = SzukajNastepnejMetody(parsowane, aktualnaMetoda);
 
             var sciezkaDoImplementacji =
-                solution.AktualnyPlik.SzukajSciezkiDoImplementacji();
+                solution.CurrentFile.SzukajSciezkiDoImplementacji();
 
             if (sciezkaDoImplementacji == null)
             {
@@ -88,7 +88,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         {
             solutionExplorer.OpenFile(sciezkaDoImplementacji);
 
-            var zawartosc = solution.AktualnyDokument.GetContent();
+            var zawartosc = solution.CurenctDocument.GetContent();
             var parsowane = Parser.Parse(zawartosc);
             int numerLiniiGdzieDodawac = 0;
 
@@ -118,13 +118,13 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
             }
 
-            solution.AktualnyDokument
+            solution.CurenctDocument
                 .InsertInLine(wstawianyTekst, numerLiniiGdzieDodawac);
-            solution.AktualnyDokument.SetCursorForAddedMethod(
+            solution.CurenctDocument.SetCursorForAddedMethod(
                 numerLiniiGdzieDodawac + 1);
 
             foreach (var u in usingi.Select(o => o.Name))
-                solution.AktualnyDokument.DodajUsingaJesliTrzeba(u);
+                solution.CurenctDocument.DodajUsingaJesliTrzeba(u);
         }
 
         private static int WyliczLinieDodanieWgNastepnejMetody(

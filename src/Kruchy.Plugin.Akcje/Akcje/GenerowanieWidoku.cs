@@ -28,7 +28,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             nazwa = Normalizuj(nazwa);
 
             var katalogControllera =
-                solution.AktualnyPlik.SciezkaKataloguControllera();
+                solution.CurrentFile.SciezkaKataloguControllera();
             if (!Directory.Exists(katalogControllera))
                 Directory.CreateDirectory(katalogControllera);
 
@@ -39,7 +39,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 return;
             }
             File.WriteAllText(pelnaSciezka, "");
-            solution.AktualnyProjekt.AddFile(pelnaSciezka);
+            solution.CurrentProject.AddFile(pelnaSciezka);
             solutionExplorer.OpenFile(pelnaSciezka);
         }
 

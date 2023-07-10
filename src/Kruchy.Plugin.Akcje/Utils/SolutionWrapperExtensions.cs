@@ -16,13 +16,13 @@ namespace Kruchy.Plugin.Akcje.Utils
             {
                 var powiazanie =
                     konfiguracja?.PowiazaniaProjektowTestowych
-                    ?.FirstOrDefault(o => o.NazwaProjektu == solution.AktualnyProjekt.Name);
+                    ?.FirstOrDefault(o => o.NazwaProjektu == solution.CurrentProject.Name);
 
                 if (powiazanie != null)
-                    return solution.Projekty.Single(o => o.Name == powiazanie.NazwaProjektuTestowego);
+                    return solution.Projects.Single(o => o.Name == powiazanie.NazwaProjektuTestowego);
             }
 
-            var nazwaSzukanegoProjektu = solution.AktualnyProjekt.Name + ".Tests";
+            var nazwaSzukanegoProjektu = solution.CurrentProject.Name + ".Tests";
             var projektTestow = solution.SzukajProjektuWgNazwy(nazwaSzukanegoProjektu);
             return projektTestow;
         }
@@ -36,16 +36,16 @@ namespace Kruchy.Plugin.Akcje.Utils
             {
                 var powiazanie =
                     konfiguracja?.PowiazaniaProjektowTestowych
-                    ?.FirstOrDefault(o => o.NazwaProjektuTestowego == solution.AktualnyProjekt.Name);
+                    ?.FirstOrDefault(o => o.NazwaProjektuTestowego == solution.CurrentProject.Name);
 
                 if (powiazanie != null)
                 {
-                    return solution.Projekty.Single(o => o.Name == powiazanie.NazwaProjektu);
+                    return solution.Projects.Single(o => o.Name == powiazanie.NazwaProjektu);
                 }
             }
 
             var nazwaSzukanegoProjektu =
-                solution.AktualnyProjekt.Name.Replace(".Tests", "");
+                solution.CurrentProject.Name.Replace(".Tests", "");
             return solution.SzukajProjektuWgNazwy(nazwaSzukanegoProjektu);
         }
     }

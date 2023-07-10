@@ -23,13 +23,13 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         public void Przejdz()
         {
-            if (solution.AktualnyPlik == null)
+            if (solution.CurrentFile == null)
                 return;
 
-            var parsowane = Parser.Parse(solution.AktualnyDokument.GetContent());
+            var parsowane = Parser.Parse(solution.CurenctDocument.GetContent());
 
             IFileWrapper plik = null;
-            if (solution.AktualnyProjekt.Modul())
+            if (solution.CurrentProject.Modul())
             {
                 var projektTestow = solution.SzukajProjektuTestowego();
 
@@ -42,7 +42,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                                 .FirstOrDefault();
 
                 if (plik == null)
-                    plik = solution.Projekty.SelectMany(o => o.Files)
+                    plik = solution.Projects.SelectMany(o => o.Files)
                         .Where(o => o.Name.ToLower() == nazwaSzukanegoPliku.ToLower())
                             .FirstOrDefault();
             }
@@ -51,7 +51,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 var projektModulu = solution.SzukajProjektuModulu();
 
                 var nazwaSzukanegoPliku =
-                    solution.AktualnyPlik.NameWithoutExtension.ToLower()
+                    solution.CurrentFile.NameWithoutExtension.ToLower()
                     .Replace("tests", "");
 
                 plik = SzukajPlikiKlasyTestowanej(projektModulu, nazwaSzukanegoPliku);
@@ -79,7 +79,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         private string SzukajNazwyKlasyTestowanejZServiceTests()
         {
-            var parsowane = Parser.Parse(solution.AktualnyDokument.GetContent());
+            var parsowane = Parser.Parse(solution.CurenctDocument.GetContent());
             var klasa = parsowane.DefinedItems.First();
             if (KlasaServiceTests(klasa))
             {
@@ -119,7 +119,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                                 .FirstOrDefault();
 
             if (fileWrapper == null)
-                fileWrapper = solution.Projekty.SelectMany(o => o.Files)
+                fileWrapper = solution.Projects.SelectMany(o => o.Files)
                     .Where(o => o.NameWithoutExtension.ToLower() == nazwaSzukanegoPliku.ToLower())
                         .FirstOrDefault();
 

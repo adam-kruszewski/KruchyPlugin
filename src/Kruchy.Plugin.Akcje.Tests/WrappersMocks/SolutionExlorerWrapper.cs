@@ -21,9 +21,9 @@ namespace Kruchy.Plugin.Akcje.Tests.WrappersMocks
         public void OpenFile(string sciezka)
         {
             OtwartyPlik = sciezka;
-            if (solution.AktualnyDokument != null)
+            if (solution.CurenctDocument != null)
                 PoprzednieZawartosciDokumentow.Add(
-                    solution.AktualnyDokument.GetContent());
+                    solution.CurenctDocument.GetContent());
             solution.OtworzPlik(sciezka);
         }
 

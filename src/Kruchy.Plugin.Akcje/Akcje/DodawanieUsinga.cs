@@ -15,14 +15,14 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         public void Dodaj(params string[] usingi)
         {
-            if (solution.AktualnyPlik == null)
+            if (solution.CurrentFile == null)
             {
                 MessageBox.Show("Brak otwartego pliku");
                 return;
             }
             foreach (var nazwaUsinga in usingi)
                 solution
-                    .AktualnyDokument
+                    .CurenctDocument
                         .DodajUsingaJesliTrzeba(nazwaUsinga);
         }
     }

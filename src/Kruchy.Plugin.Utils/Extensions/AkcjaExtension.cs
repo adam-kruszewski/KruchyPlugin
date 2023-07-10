@@ -6,7 +6,7 @@ namespace Kruchy.Plugin.Utils.Extensions
     {
         public static bool CzyPlikControllera(this ISolutionWrapper solution)
         {
-            var aktualny = solution.AktualnyPlik;
+            var aktualny = solution.CurrentFile;
             if (aktualny == null)
                 return false;
 

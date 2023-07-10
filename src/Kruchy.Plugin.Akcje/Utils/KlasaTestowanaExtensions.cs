@@ -17,7 +17,7 @@ namespace Kruchy.Plugin.Akcje.Utils
             }
 
             var nazwaSzukanegoPliku =
-                solution.AktualnyPlik.NameWithoutExtension.ToLower()
+                solution.CurrentFile.NameWithoutExtension.ToLower()
                 .Replace("tests", "");
             var plik = SzukajPlikuKlasyTestowanej(projektModulu, nazwaSzukanegoPliku);
 

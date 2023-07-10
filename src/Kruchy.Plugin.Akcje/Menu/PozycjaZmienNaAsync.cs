@@ -27,7 +27,7 @@ namespace Kruchy.Plugin.Akcje.Menu
         }
         public void Execute(object sender, EventArgs args)
         {
-            new ZmianaNaAsync(solution.AktualnyDokument).ZamienNaAsyncMethod();
+            new ZmianaNaAsync(solution.CurenctDocument).ZamienNaAsyncMethod();
         }
     }
 }

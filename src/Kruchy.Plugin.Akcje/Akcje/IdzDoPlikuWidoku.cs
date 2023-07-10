@@ -25,11 +25,11 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         public void PrzejdzDoWidokuDlaAktualnejMetody()
         {
-            if (solution.AktualnyDokument == null)
+            if (solution.CurenctDocument == null)
                 return;
-            var zawartosc = solution.AktualnyDokument.GetContent();
+            var zawartosc = solution.CurenctDocument.GetContent();
             var parsowane = Parser.Parse(zawartosc);
-            var liniaKursora = solution.AktualnyDokument.GetCursorLineNumber();
+            var liniaKursora = solution.CurenctDocument.GetCursorLineNumber();
 
             var aktualnaMetoda = parsowane.FindMethodByLineNumber(liniaKursora);
 
@@ -44,7 +44,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             if (!solution.CzyPlikControllera())
                 MessageBox.Show("To nie jest plik controllera");
 
-            var aktualny = solution.AktualnyPlik;
+            var aktualny = solution.CurrentFile;
             var nazwaControllera =
                 aktualny.NameWithoutExtension.DajNazweControllera();
 

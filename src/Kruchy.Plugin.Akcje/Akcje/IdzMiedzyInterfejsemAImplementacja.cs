@@ -23,7 +23,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         public void Przejdz()
         {
-            var aktualny = solution.AktualnyPlik;
+            var aktualny = solution.CurrentFile;
             if (aktualny == null)
                 return;
 
@@ -64,7 +64,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         private void UstawSieNaMetodzie(Method metoda)
         {
             var parsowane =
-                Parser.Parse(solution.AktualnyDokument.GetContent());
+                Parser.Parse(solution.CurenctDocument.GetContent());
 
             if (parsowane.DefinedItems.Count != 1)
                 return;
@@ -75,7 +75,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                         .FirstOrDefault();
 
             if (znalezionaMetoda != null)
-                solution.AktualnyDokument.SetCursor(
+                solution.CurenctDocument.SetCursor(
                     znalezionaMetoda.StartPosition.Row,
                     znalezionaMetoda.StartPosition.Column);
         }

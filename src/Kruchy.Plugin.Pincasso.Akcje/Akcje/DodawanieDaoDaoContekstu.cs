@@ -25,10 +25,10 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
 
         public void Dodaj()
         {
-            var sparsowane = Parser.Parse(solution.AktualnyDokument.GetContent());
+            var sparsowane = Parser.Parse(solution.CurenctDocument.GetContent());
 
             var obiekt =
-                sparsowane.FindDefinedItemByLineNumber(solution.AktualnyDokument.GetCursorLineNumber());
+                sparsowane.FindDefinedItemByLineNumber(solution.CurenctDocument.GetCursorLineNumber());
 
             if (obiekt == null && sparsowane.DefinedItems.Count() == 1)
                 obiekt = sparsowane.DefinedItems.Single();
@@ -54,11 +54,11 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             }
 
             var plikIDao =
-                solution.AktualnyProjekt.
+                solution.CurrentProject.
                     Files.SingleOrDefault(o => o.Name == nazwaInterfejsuDao + ".cs");
 
             var plikDao =
-                solution.AktualnyProjekt
+                solution.CurrentProject
                     .Files.SingleOrDefault(o => o.Name == nazwaKlasyDao + ".cs");
 
             var sciezkaDoIContext = SzukajSciezkiDoIContext();
@@ -91,7 +91,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
         {
             solutionExplorer.OpenFile(sciezkaDoContext);
 
-            var dokument = solution.AktualnyDokument;
+            var dokument = solution.CurenctDocument;
 
             var sparsowaneDao = Parser.ParseFile(plikDao.FullPath);
             var sparsowaneIDao = Parser.ParseFile(plikIDao.FullPath);
@@ -116,7 +116,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
         {
             solutionExplorer.OpenFile(sciezkaDoIContext);
 
-            var dokument = solution.AktualnyDokument;
+            var dokument = solution.CurenctDocument;
 
             var sparsowaneIDao = Parser.ParseFile(plikIDao.FullPath);
 
@@ -172,7 +172,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
         {
             return
                 solution
-                    .AktualnyProjekt
+                    .CurrentProject
                         .Files
                             .Where(o => PasujeDoWyrazenia(o, wyrazenie));
         }

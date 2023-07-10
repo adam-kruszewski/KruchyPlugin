@@ -13,7 +13,7 @@ namespace Kruchy.Plugin.Akcje.KonfiguracjaPlugina
         private static Konfiguracja instance;
         public static Konfiguracja GetInstance(ISolutionWrapper solution)
         {
-            if (instance == null || instance.Solution?.PelnaNazwa != solution.PelnaNazwa)
+            if (instance == null || instance.Solution?.FullName != solution.FullName)
                 instance = new Konfiguracja(solution);
             return instance;
         }
@@ -30,14 +30,14 @@ namespace Kruchy.Plugin.Akcje.KonfiguracjaPlugina
 
             var backupDirectoryName = ".kruchy-plugin-configuration-backups";
 
-            var fullBackupDirectoryPath = Path.Combine(solution.Katalog, backupDirectoryName);
+            var fullBackupDirectoryPath = Path.Combine(solution.Directory, backupDirectoryName);
 
             if (!Directory.Exists(fullBackupDirectoryPath))
                 Directory.CreateDirectory(fullBackupDirectoryPath);
 
             if (File.Exists(configurationFilePath))
             {
-                var newPath = Path.Combine(fullBackupDirectoryPath, solution.Nazwa + $"{DateTime.Now.ToFileTime()}-backup");
+                var newPath = Path.Combine(fullBackupDirectoryPath, solution.Name + $"{DateTime.Now.ToFileTime()}-backup");
                 File.Copy(configurationFilePath, newPath);
             }
 
@@ -96,7 +96,7 @@ namespace Kruchy.Plugin.Akcje.KonfiguracjaPlugina
 
         private static string DajSciezkePlikuKonfiguracji(ISolutionWrapper solution)
         {
-            var pelnaSciezkaSolution = solution.PelnaNazwa;
+            var pelnaSciezkaSolution = solution.FullName;
             return pelnaSciezkaSolution + ".kruchy.xml";
         }
 

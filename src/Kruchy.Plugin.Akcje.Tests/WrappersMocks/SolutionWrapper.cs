@@ -15,7 +15,7 @@ namespace Kruchy.Plugin.Akcje.Tests.WrappersMocks
 
         public SolutionWrapper()
         {
-            AktualnyPlik = new Mock<IFileWrapper>().Object;
+            CurrentFile = new Mock<IFileWrapper>().Object;
         }
 
         public SolutionWrapper(string aktualnaZawartosc) : this()
@@ -30,7 +30,7 @@ namespace Kruchy.Plugin.Akcje.Tests.WrappersMocks
             : this(aktualnaZawartosc)
         {
             DodajProjekt(projekt);
-            AktualnyProjekt = projekt;
+            CurrentProject = projekt;
         }
 
         public void DodajProjekt(IProjectWrapper projekt)
@@ -38,29 +38,29 @@ namespace Kruchy.Plugin.Akcje.Tests.WrappersMocks
             projekty.Add(projekt);
         }
 
-        public string PelnaNazwa { get { return "A"; } }
+        public string FullName { get { return "A"; } }
 
-        public string Nazwa { get { return "A"; } }
+        public string Name { get { return "A"; } }
 
-        public string Katalog { get { return "A"; } }
+        public string Directory { get { return "A"; } }
 
-        public IFileWrapper AktualnyPlik { get; set; }
+        public IFileWrapper CurrentFile { get; set; }
 
-        public IProjectWrapper AktualnyProjekt { get; set; }
+        public IProjectWrapper CurrentProject { get; set; }
 
-        public IDocumentWrapper AktualnyDokument { get { return dokument; } }
+        public IDocumentWrapper CurenctDocument { get { return dokument; } }
 
-        public IList<IProjectWrapper> Projekty { get { return projekty.ToList(); } }
+        public IList<IProjectWrapper> Projects { get { return projekty.ToList(); } }
 
-        public IProjectWrapper ZnajdzProjekt(string nazwa)
+        public IProjectWrapper FindProject(string nazwa)
         {
             throw new NotImplementedException();
         }
 
         public void OtworzPlik(string sciezka)
         {
-            AktualnyProjekt = Projekty.SingleOrDefault(o => ZawieraPlik(o, sciezka));
-            AktualnyPlik = AktualnyProjekt.Files.SingleOrDefault(o => o.FullPath == sciezka);
+            CurrentProject = Projects.SingleOrDefault(o => ZawieraPlik(o, sciezka));
+            CurrentFile = CurrentProject.Files.SingleOrDefault(o => o.FullPath == sciezka);
             dokument = new DokumentWrapper(File.ReadAllText(sciezka, Encoding.UTF8));
         }
 

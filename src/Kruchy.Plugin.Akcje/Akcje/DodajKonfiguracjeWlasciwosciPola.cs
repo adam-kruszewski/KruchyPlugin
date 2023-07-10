@@ -23,9 +23,9 @@ namespace Kruchy.Plugin.Akcje.Akcje
         {
             IAddFieldPropertyConfigurationWindow dialogAdd = UIObjects.FactoryInstance.Get<IAddFieldPropertyConfigurationWindow>();
 
-            var aktualnyNumerLinii = solution.AktualnyDokument.GetCursorLineNumber();
+            var aktualnyNumerLinii = solution.CurenctDocument.GetCursorLineNumber();
 
-            var parsowane = Parser.Parse(solution.AktualnyDokument.GetContent());
+            var parsowane = Parser.Parse(solution.CurenctDocument.GetContent());
 
             var aktualnaWlasciwosc = parsowane.FindPropertyByLineNumber(aktualnyNumerLinii);
 

@@ -18,32 +18,32 @@ namespace Kruchy.Plugin.Utils.Menu
 
         public static bool Spelnione(WymaganieDostepnosci o, ISolutionWrapper solution)
         {
-            if (solution.AktualnyProjekt == null)
+            if (solution.CurrentProject == null)
                 return false;
 
-            if (solution.AktualnyPlik == null)
+            if (solution.CurrentFile == null)
                 return false;
 
             if (o == WymaganieDostepnosci.DomainObject)
             {
-                var aktualnyPlik = solution.AktualnyPlik;
+                var aktualnyPlik = solution.CurrentFile;
                 var di = new DirectoryInfo(aktualnyPlik.Directory);
                 if (di.Name.ToLower() != "domain")
                     return false;
             }
             if (o == WymaganieDostepnosci.Projekt)
             {
-                return solution.AktualnyProjekt != null;
+                return solution.CurrentProject != null;
             }
             if (o == WymaganieDostepnosci.Modul)
             {
-                if (solution.AktualnyProjekt == null)
+                if (solution.CurrentProject == null)
                     return false;
-                return !solution.AktualnyProjekt.Name.ToLower().EndsWith(".tests");
+                return !solution.CurrentProject.Name.ToLower().EndsWith(".tests");
             }
             if (o == WymaganieDostepnosci.KlasaTestowa)
             {
-                return solution.AktualnyPlik.Name.ToLower().EndsWith("tests.cs");
+                return solution.CurrentFile.Name.ToLower().EndsWith("tests.cs");
             }
             if (o == WymaganieDostepnosci.PlikCs)
             {
@@ -51,7 +51,7 @@ namespace Kruchy.Plugin.Utils.Menu
             }
             if (o == WymaganieDostepnosci.Controller)
             {
-                return solution.AktualnyPlik.Name.ToLower().EndsWith("controller.cs");
+                return solution.CurrentFile.Name.ToLower().EndsWith("controller.cs");
             }
 
             if (o == WymaganieDostepnosci.Klasa)
@@ -72,23 +72,23 @@ namespace Kruchy.Plugin.Utils.Menu
 
             if (o == WymaganieDostepnosci.Builder)
             {
-                return solution.AktualnyPlik.Name.ToLower().EndsWith("builder.cs");
+                return solution.CurrentFile.Name.ToLower().EndsWith("builder.cs");
             }
 
             if (o == WymaganieDostepnosci.WidokCshtml)
             {
-                return solution.AktualnyPlik.Name.ToLower().EndsWith(".cshtml");
+                return solution.CurrentFile.Name.ToLower().EndsWith(".cshtml");
             }
 
             if (o == WymaganieDostepnosci.PlikDao)
-                return solution.AktualnyPlik.NameWithoutExtension.EndsWith("Dao");
+                return solution.CurrentFile.NameWithoutExtension.EndsWith("Dao");
 
             return true;
         }
 
         private static bool PlikCs(ISolutionWrapper solution)
         {
-            return solution.AktualnyPlik.Name.ToLower().EndsWith(".cs");
+            return solution.CurrentFile.Name.ToLower().EndsWith(".cs");
         }
 
         private static FileWithCode Parsuj(ISolutionWrapper solution)
@@ -98,7 +98,7 @@ namespace Kruchy.Plugin.Utils.Menu
                 if (!PlikCs(solution))
                     return null;
 
-                return Parser.Parse(solution.AktualnyDokument.GetContent());
+                return Parser.Parse(solution.CurenctDocument.GetContent());
             }
             catch (Exception ex)
             {

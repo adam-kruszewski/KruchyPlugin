@@ -35,7 +35,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
             if (projektTestowy == null)
                 throw new ApplicationException(
-                    "Nie ma projektu testowego dla projektu " + solution.AktualnyProjekt.Name);
+                    "Nie ma projektu testowego dla projektu " + solution.CurrentProject.Name);
 
             var nazwaPlikuTestow = nazwaKlasy + ".cs";
             var pelnaSciezka = Path.Combine(

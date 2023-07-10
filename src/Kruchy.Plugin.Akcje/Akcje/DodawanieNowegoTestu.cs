@@ -30,7 +30,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                     .DodajModyfikator("async")
                     .ZTypemZwracanym("Task");
 
-                solution.AktualnyDokument?.DodajUsingaJesliTrzeba("System.Threading.Tasks");
+                solution.CurenctDocument?.DodajUsingaJesliTrzeba("System.Threading.Tasks");
             }
 
             builder.DodajLinie("//arrange");
@@ -38,7 +38,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             builder.DodajLinie("//act");
             builder.DodajLinie("");
             builder.DodajLinie("//assert");
-            var dokument = solution.AktualnyDokument;
+            var dokument = solution.CurenctDocument;
             if (dokument == null)
                 return;
 

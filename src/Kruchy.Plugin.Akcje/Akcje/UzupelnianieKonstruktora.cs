@@ -39,7 +39,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         public void Uzupelnij()
         {
-            if (solution.AktualnyDokument == null)
+            if (solution.CurenctDocument == null)
                 return;
 
             FileWithCode parsowanyPlik = GetParsedCode();
@@ -81,12 +81,12 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
                 if (konstruktor != null)
                 {
-                    solution.AktualnyDokument.Remove(
+                    solution.CurenctDocument.Remove(
                         konstruktor.StartPosition.Row,
                         1,
                         konstruktor.EndPosition.Row,
                         konstruktor.EndPosition.Column);
-                    solution.AktualnyDokument.InsertInLine(
+                    solution.CurenctDocument.InsertInLine(
                         nowyKonstruktor, konstruktor.StartPosition.Row);
                 }
                 else
@@ -103,7 +103,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                             obiekt.Properties.Select(o => o.EndPosition.Row).Max();
 
                     var dodatek = new StringBuilder().AppendLine().ToString();
-                    solution.AktualnyDokument.InsertInLine(
+                    solution.CurenctDocument.InsertInLine(
                         PrzygotujTekstDoWstawienia(nowyKonstruktor, dodatek),
                         maksymalnyNumerLiniiPol + 1);
                 }
@@ -173,12 +173,12 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 builder.Append(poleBuilder.Build(StaleDlaKodu.WciecieDlaMetody));
             }
 
-            solution.AktualnyDokument.InsertInLine(builder.ToString(), liniaPierwszego);
+            solution.CurenctDocument.InsertInLine(builder.ToString(), liniaPierwszego);
         }
 
         private void UsunPole(Field p)
         {
-            solution.AktualnyDokument.Remove(
+            solution.CurenctDocument.Remove(
                 p.StartPosition.Row,
                 //p.Poczatek.Kolumna,
                 1,
@@ -186,7 +186,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 p.EndPosition.Column);
 
             //if (p.Poczatek.Wiersz != p.Koniec.Wiersz)
-            solution.AktualnyDokument.RemoveLine(p.EndPosition.Row);
+            solution.CurenctDocument.RemoveLine(p.EndPosition.Row);
         }
 
         private string PrzygotujTekstDoWstawienia(
@@ -215,12 +215,12 @@ namespace Kruchy.Plugin.Akcje.Akcje
             return
                 parsowanyPlik
                     .FindClassByLineNumber(
-                        solution.AktualnyDokument.GetCursorLineNumber());
+                        solution.CurenctDocument.GetCursorLineNumber());
         }
 
         private FileWithCode GetParsedCode()
         {
-            var kod = solution.AktualnyDokument.GetContent();
+            var kod = solution.CurenctDocument.GetContent();
 
             var parsowanyPlik = Parser.Parse(kod);
             return parsowanyPlik;

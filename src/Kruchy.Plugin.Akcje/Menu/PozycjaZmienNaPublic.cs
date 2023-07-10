@@ -30,7 +30,7 @@ namespace Kruchy.Plugin.Akcje.Menu
 
         public void Execute(object sender, EventArgs args)
         {
-            new ZmianaModyfikatoraMetody(solution.AktualnyDokument).ZmienNa("public");
+            new ZmianaModyfikatoraMetody(solution.CurenctDocument).ZmienNa("public");
         }
     }
 }

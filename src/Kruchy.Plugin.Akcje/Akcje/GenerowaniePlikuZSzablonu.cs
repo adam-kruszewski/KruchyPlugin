@@ -48,7 +48,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
             dialogAdd.CanSelectDirectory = szablon.WyborSciezki && !directoryFromSelectemItem;
 
-            dialogAdd.Projects = solution.Projekty;
+            dialogAdd.Projects = solution.Projects;
 
             dialogAdd.VariablesToFill =
                 szablon.Zmienne.Where(o => o.WprowadzanaWUI)
@@ -69,7 +69,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             if (directoryFromSelectemItem)
             {
                 wybranaSciezka = solutionExplorer.GetSelection().GetSingleSelectedFolder()?.FullPath;
-                wybranyProjekt = solution.Projekty.Single(o => wybranaSciezka.StartsWith(o.DirectoryPath));
+                wybranyProjekt = solution.Projects.Single(o => wybranaSciezka.StartsWith(o.DirectoryPath));
             }
             else
             {
@@ -79,9 +79,9 @@ namespace Kruchy.Plugin.Akcje.Akcje
             }
 
             if (wybranyProjekt == null)
-                wybranyProjekt = solution.AktualnyProjekt;
+                wybranyProjekt = solution.CurrentProject;
 
-            var sparsowane = Parser.Parse(solution.AktualnyDokument.GetContent());
+            var sparsowane = Parser.Parse(solution.CurenctDocument.GetContent());
 
             foreach (var schematKlasy in szablon.SchematyKlas)
             {
@@ -164,11 +164,11 @@ namespace Kruchy.Plugin.Akcje.Akcje
             var wynik = new Dictionary<string, string>();
 
             wynik["NAZWA_KLASY"] = DajNazweKlasy(sparsowane);
-            wynik["NAZWA_PROJEKTU"] = solution.AktualnyProjekt.Name.Replace(".csproj", "");
+            wynik["NAZWA_PROJEKTU"] = solution.CurrentProject.Name.Replace(".csproj", "");
             wynik["NAMESPACE_KLASY"] = sparsowane.Namespace;
-            wynik["NAZWA_PLIKU"] = solution.AktualnyPlik.Name;
+            wynik["NAZWA_PLIKU"] = solution.CurrentFile.Name;
             wynik["NAZWA_PLIKU_BEZ_ROZSZERZENIA"] =
-                solution.AktualnyPlik.NameWithoutExtension;
+                solution.CurrentFile.NameWithoutExtension;
             wynik["WYBRANA_SCIEZKA"] = wybranaSciezka;
             var sciezkaWProjekcie = DajSciezkeWProjekcie(wybranaSciezka, wybranyProjekt);
             wynik["SCIEZKA_W_PROJEKCIE"] = sciezkaWProjekcie;
@@ -205,7 +205,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         private string DajNazweKlasy(FileWithCode sparsowane)
         {
             var obiekt =
-            sparsowane.FindClassByLineNumber(solution.AktualnyDokument.GetCursorLineNumber());
+            sparsowane.FindClassByLineNumber(solution.CurenctDocument.GetCursorLineNumber());
 
             if (obiekt == null)
                 return sparsowane.DefinedItems.Single().Name;

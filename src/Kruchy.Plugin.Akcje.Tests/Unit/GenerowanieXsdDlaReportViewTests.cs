@@ -31,7 +31,7 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
             using (var projekt = new ProjektWrapper("a1"))
             {
                 var solution = new SolutionWrapper(zawartoscView);
-                solution.AktualnyProjekt = projekt;
+                solution.CurrentProject = projekt;
 
                 var plikZView = new PlikWrapper(
                     "ReportView.cs",
@@ -55,10 +55,10 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
                     .Generuj(mockParametrow.Object);
 
                 //assert
-                var zawartosc = solution.AktualnyDokument.GetContent();
+                var zawartosc = solution.CurenctDocument.GetContent();
 
                 zawartosc.Should().Be(wczytywacz.DajZawartoscPrzykladu("ReportViewXsd.xsd"));
-                solution.AktualnyPlik.FullPath.Should().Be(sciezkaDoXsd);
+                solution.CurrentFile.FullPath.Should().Be(sciezkaDoXsd);
             }
         }
     }

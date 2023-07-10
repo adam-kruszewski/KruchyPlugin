@@ -4,20 +4,20 @@ namespace Kruchy.Plugin.Utils.Wrappers
 {
     public interface ISolutionWrapper
     {
-        string PelnaNazwa { get; }
+        string FullName { get; }
 
-        string Nazwa { get; }
+        string Name { get; }
 
-        string Katalog { get; }
+        string Directory { get; }
 
-        IFileWrapper AktualnyPlik { get; }
+        IFileWrapper CurrentFile { get; }
 
-        IProjectWrapper AktualnyProjekt { get; }
+        IProjectWrapper CurrentProject { get; }
 
-        IDocumentWrapper AktualnyDokument { get; }
+        IDocumentWrapper CurenctDocument { get; }
 
-        IList<IProjectWrapper> Projekty { get; }
+        IList<IProjectWrapper> Projects { get; }
 
-        IProjectWrapper ZnajdzProjekt(string nazwa);
+        IProjectWrapper FindProject(string name);
     }
 }

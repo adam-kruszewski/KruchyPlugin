@@ -28,7 +28,7 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
                 },
                 (solution, projekt, solutionExplorer) =>
                 {
-                    solution.AktualnyPlik.Name.Should().Be("KruchyContext.cs");
+                    solution.CurrentFile.Name.Should().Be("KruchyContext.cs");
 
                     var sciezkaDoContext =
                     Path.Combine(projekt.DirectoryPath, "Base", "KruchyContext.cs");
@@ -36,7 +36,7 @@ namespace Kruchy.Plugin.Akcje.Tests.Unit
                     var sciezkaDoIContext =
                     Path.Combine(projekt.DirectoryPath, "Base", "IKruchyContext.cs");
 
-                    solution.AktualnyDokument.GetContent().Should().Be(
+                    solution.CurenctDocument.GetContent().Should().Be(
 @"using Kruchy.Projekt1.Dao;
 using Kruchy.Projekt1.Dao.Impl;
 using Pincasso.Core.Base;
@@ -161,7 +161,7 @@ namespace KruchyProjekt.Base
             string oczekiwanaZawartosc)
         {
             solutionExplorer.OpenFile(sciezka);
-            var zawartosc = solution.AktualnyDokument.GetContent();
+            var zawartosc = solution.CurenctDocument.GetContent();
 
             zawartosc.Should().Be(oczekiwanaZawartosc);
         }

@@ -38,7 +38,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             if (klasaView == null)
                 return;
 
-            var aktualnyProjekt = solution.AktualnyProjekt;
+            var aktualnyProjekt = solution.CurrentProject;
 
             var dokument = DajNowyDokumentLubWczytajIstniejacy(klasaView, sciezkaDoXsd);
             ZapiszDokument(dokument, sciezkaDoXsd);
@@ -121,7 +121,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
         {
             var plikZKlasa =
                 solution
-                    .AktualnyProjekt
+                    .CurrentProject
                         .Files
                             .Single(o => o.NameWithoutExtension == nazwaKlasy);
 
@@ -258,7 +258,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
 
             ZapiszDokument(nowyDokument, sciezkaDoXsd);
 
-            solution.AktualnyProjekt.AddFile(sciezkaDoXsd);
+            solution.CurrentProject.AddFile(sciezkaDoXsd);
 
             return nowyDokument;
         }
@@ -327,7 +327,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
 
         private DefinedItem DajKlaseReportView()
         {
-            var sparsowane = Parser.Parse(solution.AktualnyDokument.GetContent());
+            var sparsowane = Parser.Parse(solution.CurenctDocument.GetContent());
 
             var klasy =
                 sparsowane
@@ -337,7 +337,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             DefinedItem klasaView;
             klasaView =
                 sparsowane
-                    .FindClassByLineNumber(solution.AktualnyDokument.GetCursorLineNumber());
+                    .FindClassByLineNumber(solution.CurenctDocument.GetCursorLineNumber());
 
             if (klasaView == null)
                 klasaView = klasy.FirstOrDefault();

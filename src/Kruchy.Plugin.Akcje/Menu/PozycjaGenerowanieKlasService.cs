@@ -46,7 +46,7 @@ namespace Kruchy.Plugin.Akcje.Menu
 
             var g = new GenerowanieKlasService(solution, solutionExplorer);
 
-            g.Generuj(solution.AktualnyPlik, dialog.NazwaPliku, dialog.StanCheckBoxa);
+            g.Generuj(solution.CurrentFile, dialog.NazwaPliku, dialog.StanCheckBoxa);
         }
     }
 }

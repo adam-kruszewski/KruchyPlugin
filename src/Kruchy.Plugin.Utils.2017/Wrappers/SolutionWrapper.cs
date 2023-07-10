@@ -18,30 +18,30 @@ namespace Kruchy.Plugin.Utils._2017.Wrappers
             this.dte = dte;
         }
 
-        public string PelnaNazwa
+        public string FullName
         {
             get { return dte.Solution.FullName; }
         }
 
-        public string Nazwa
+        public string Name
         {
             get
             {
-                var fi = new FileInfo(PelnaNazwa);
+                var fi = new FileInfo(FullName);
                 return fi.Name.Substring(0, fi.Name.Length - fi.Extension.Length);
             }
         }
 
-        public string Katalog
+        public string Directory
         {
             get
             {
-                var fi = new FileInfo(PelnaNazwa);
+                var fi = new FileInfo(FullName);
                 return fi.DirectoryName;
             }
         }
 
-        public IFileWrapper AktualnyPlik
+        public IFileWrapper CurrentFile
         {
             get
             {
@@ -57,11 +57,11 @@ namespace Kruchy.Plugin.Utils._2017.Wrappers
             }
         }
 
-        public IProjectWrapper AktualnyProjekt
+        public IProjectWrapper CurrentProject
         {
             get
             {
-                var plik = AktualnyPlik;
+                var plik = CurrentFile;
                 if (plik == null)
                     return null;
 
@@ -69,7 +69,7 @@ namespace Kruchy.Plugin.Utils._2017.Wrappers
             }
         }
 
-        public IDocumentWrapper AktualnyDokument
+        public IDocumentWrapper CurenctDocument
         {
             get
             {
@@ -83,7 +83,7 @@ namespace Kruchy.Plugin.Utils._2017.Wrappers
 
         public DTE2 DTE { get { return dte; } }
 
-        public IList<IProjectWrapper> Projekty
+        public IList<IProjectWrapper> Projects
         {
             get
             {
@@ -134,9 +134,9 @@ namespace Kruchy.Plugin.Utils._2017.Wrappers
             throw new System.NotImplementedException();
         }
 
-        public IProjectWrapper ZnajdzProjekt(string nazwa)
+        public IProjectWrapper FindProject(string nazwa)
         {
-            var l = Projekty.ToList();
+            var l = Projects.ToList();
             return l.Where(o => o.Name == nazwa).FirstOrDefault();
         }
     }

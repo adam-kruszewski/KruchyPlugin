@@ -21,7 +21,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
 
         public void Dodaj()
         {
-            var projekt = solution.AktualnyProjekt;
+            var projekt = solution.CurrentProject;
 
             if (projekt == null)
             {
@@ -35,12 +35,12 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             var nazwaKlasyContextu = parsowane.DefinedItems.First().Name;
             var namespaceKlasy = parsowane.Namespace;
 
-            var aktualnyDokument = solution.AktualnyDokument;
+            var aktualnyDokument = solution.CurenctDocument;
             aktualnyDokument.DodajUsingaJesliTrzeba(namespaceKlasy);
             aktualnyDokument.DodajUsingaJesliTrzeba("Pincasso.Core.Base");
 
             var parsowaneAktualny =
-                Parser.Parse(solution.AktualnyDokument.GetContent());
+                Parser.Parse(solution.CurenctDocument.GetContent());
             DodajAtrybutContext(nazwaKlasyContextu, parsowaneAktualny);
             DodajInterfejsUsingContext(nazwaKlasyContextu, parsowaneAktualny);
         }
@@ -66,7 +66,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
                     .ZNazwaTypu(nazwaKlasyContextu)
                     .ZModyfikatorem("public");
 
-            solution.AktualnyDokument.InsertInLine(
+            solution.CurenctDocument.InsertInLine(
                 propBuilder.Build(StaleDlaKodu.WciecieDlaMetody),
                 numerLiniiWstawiania);
         }
@@ -82,7 +82,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
                 var wstawianyTekst = ", IUseDbDaoContext<" + nazwaKlasyContextu + ">";
                 if (ostatni.StartPosition.Row == klasa.StartPosition.Row)
                 {
-                    solution.AktualnyDokument.
+                    solution.CurenctDocument.
                         InsertInPlace(
                             wstawianyTekst,
                             ostatni.StartPosition.Row,
@@ -96,7 +96,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
                         sb.Append(StaleDlaKodu.JednostkaWciecia);
                     sb.Append(wstawianyTekst);
                     sb.AppendLine();
-                    solution.AktualnyDokument
+                    solution.CurenctDocument
                         .InsertInPlace(
                             sb.ToString(),
                             ostatni.StartPosition.Row + 1,

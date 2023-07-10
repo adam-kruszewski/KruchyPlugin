@@ -56,7 +56,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Menu
             {
                 get
                 {
-                    var aktualnaZawartosc = solution.AktualnyDokument.GetContent();
+                    var aktualnaZawartosc = solution.CurenctDocument.GetContent();
 
                     var regex = new Regex(@"//sciezka_do_xsd=([A-Za-z0-9_\\/.]+)");
                     var match = regex.Match(aktualnaZawartosc);
@@ -71,7 +71,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Menu
                         if (wyniki.Count == 1)
                             return
                                 Path.Combine(
-                                    solution.AktualnyProjekt.DirectoryPath,
+                                    solution.CurrentProject.DirectoryPath,
                                     wyniki.Single());
                     }
 
@@ -82,7 +82,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Menu
                     if (!string.IsNullOrEmpty(okno.NazwaPliku))
                     {
                         return Path.Combine(
-                            solution.AktualnyProjekt.DirectoryPath,
+                            solution.CurrentProject.DirectoryPath,
                             okno.NazwaPliku);
                     }
                     return okno.NazwaPliku;

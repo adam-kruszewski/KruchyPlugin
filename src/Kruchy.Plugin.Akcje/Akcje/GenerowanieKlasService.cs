@@ -26,7 +26,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             string nazwaKlasyService,
             bool obaWKataloguImpl)
         {
-            var aktualny = solution.AktualnyPlik;
+            var aktualny = solution.CurrentFile;
             var projekt = aktualny.Project;
 
             if (aktualny == null)

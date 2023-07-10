@@ -72,7 +72,7 @@ namespace Kruchy.Plugin.Akcje.Menu
                 {
                     sciezkaDoOtwarcia =
                         Path.Combine(
-                            solution.Katalog,
+                            solution.Directory,
                             sciezka);
                 }
 

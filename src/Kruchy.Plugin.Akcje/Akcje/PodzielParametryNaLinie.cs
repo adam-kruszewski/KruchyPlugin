@@ -21,7 +21,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         public void Podziel()
         {
-            var dokument = solution.AktualnyDokument;
+            var dokument = solution.CurenctDocument;
             var parsowane =
                 Parser.Parse(dokument.GetContent());
 
@@ -54,7 +54,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         private void PodzielNaLinieKonstruktor(Constructor konstruktor)
         {
-            var dokument = solution.AktualnyDokument;
+            var dokument = solution.CurenctDocument;
 
             dokument.Remove(
                 konstruktor.StartingParameterBrace.Row,

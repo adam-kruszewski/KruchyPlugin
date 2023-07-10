@@ -9,20 +9,20 @@ namespace Kruchy.Plugin.Utils.Extensions
     {
         public static string NamespaceAktualnegoPliku(this ISolutionWrapper solution)
         {
-            if (solution.AktualnyDokument == null)
+            if (solution.CurenctDocument == null)
                 return null;
 
-            var zawartosc = solution.AktualnyDokument.GetContent();
+            var zawartosc = solution.CurenctDocument.GetContent();
             return Parser.Parse(zawartosc).Namespace;
         }
 
         public static string NazwaObiektuAktualnegoPliku(
             this ISolutionWrapper solution)
         {
-            if (solution.AktualnyDokument == null)
+            if (solution.CurenctDocument == null)
                 return null;
 
-            var zawartosc = solution.AktualnyDokument.GetContent();
+            var zawartosc = solution.CurenctDocument.GetContent();
             var parsowane = Parser.Parse(zawartosc);
             if (parsowane.DefinedItems.Count <= 0)
                 return null;
@@ -32,9 +32,9 @@ namespace Kruchy.Plugin.Utils.Extensions
 
         public static string NazwaAktualnejMetody(this ISolutionWrapper solution)
         {
-            var zawartosc = solution.AktualnyDokument.GetContent();
+            var zawartosc = solution.CurenctDocument.GetContent();
             var parsowane = Parser.Parse(zawartosc);
-            var liniaKursora = solution.AktualnyDokument.GetCursorLineNumber();
+            var liniaKursora = solution.CurenctDocument.GetCursorLineNumber();
 
             var aktualnaMetoda = parsowane.FindMethodByLineNumber(liniaKursora);
 
@@ -47,7 +47,7 @@ namespace Kruchy.Plugin.Utils.Extensions
         public static FileWithCode ParsujZawartoscAktualnegoDokumetu(
             this ISolutionWrapper solution)
         {
-            return Parser.Parse(solution.AktualnyDokument.GetContent());
+            return Parser.Parse(solution.CurenctDocument.GetContent());
         }
 
         public static IProjectWrapper SzukajProjektuWgNazwy(
@@ -56,7 +56,7 @@ namespace Kruchy.Plugin.Utils.Extensions
         {
             var projekt =
                 solution
-                    .Projekty
+                    .Projects
                         .Where(o => o.Name.ToLower() == nazwaSzukanegoProjektu.ToLower())
                             .FirstOrDefault();
             return projekt;

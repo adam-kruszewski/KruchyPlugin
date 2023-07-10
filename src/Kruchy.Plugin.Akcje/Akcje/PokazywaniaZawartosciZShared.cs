@@ -20,11 +20,11 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         public void Pokaz()
         {
-            var plik = solution.AktualnyPlik;
+            var plik = solution.CurrentFile;
 
             var sciezkaWShared =
-                solution.AktualnyProjekt.SciezkaDoPlikuWShared(
-                    solution.AktualnyPlik.Name);
+                solution.CurrentProject.SciezkaDoPlikuWShared(
+                    solution.CurrentFile.Name);
 
             if (!File.Exists(sciezkaWShared))
             {

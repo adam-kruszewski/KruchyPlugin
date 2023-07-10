@@ -24,9 +24,9 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
         public void Generuj(string nazwaKlasy)
         {
             var nazwaKlasyWalidowanej =
-                solution.AktualnyPlik.NameWithoutExtension;
+                solution.CurrentFile.NameWithoutExtension;
 
-            var parsowane = Parser.Parse(solution.AktualnyDokument.GetContent());
+            var parsowane = Parser.Parse(solution.CurenctDocument.GetContent());
             nazwaKlasyWalidowanej = parsowane.DefinedItems[0].Name;
 
             var zawartoscImplementacji =
@@ -44,7 +44,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             var nazwaPlikuImplementacji = nazwaKlasy + ".cs";
             var nazwaPlikuInterfejsu = "I" + nazwaKlasy + ".cs";
 
-            var sciezkaDoProjektu = solution.AktualnyProjekt.DirectoryPath;
+            var sciezkaDoProjektu = solution.CurrentProject.DirectoryPath;
             var pelnaSciezkaDoPlikuImplementacji =
                 Path.Combine(sciezkaDoProjektu, "Validation", "Impl", nazwaPlikuImplementacji);
             var pelnaSciezkaDoPlikuInterfejsu =
@@ -73,8 +73,8 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
                 pelnaSciezkaDoPlikuInterfejsu,
                 zawartoscInterfejsu,
                 Encoding.UTF8);
-            solution.AktualnyProjekt.AddFile(pelnaSciezkaDoPlikuImplementacji);
-            solution.AktualnyProjekt.AddFile(pelnaSciezkaDoPlikuInterfejsu);
+            solution.CurrentProject.AddFile(pelnaSciezkaDoPlikuImplementacji);
+            solution.CurrentProject.AddFile(pelnaSciezkaDoPlikuInterfejsu);
 
             solutionExplorer.OpenFile(pelnaSciezkaDoPlikuInterfejsu);
             solutionExplorer.OpenFile(pelnaSciezkaDoPlikuImplementacji);
@@ -115,7 +115,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
 
         private string DajNamespaceImplementacji()
         {
-            return solution.AktualnyPlik.Project.Name + ".Validation.Impl";
+            return solution.CurrentFile.Project.Name + ".Validation.Impl";
         }
 
         private string GenerujZawartoscInterfejsu(
@@ -141,7 +141,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
 
         private string DajNamespaceInterfejsu()
         {
-            return solution.AktualnyPlik.Project.Name + ".Validation";
+            return solution.CurrentFile.Project.Name + ".Validation";
         }
 
     }

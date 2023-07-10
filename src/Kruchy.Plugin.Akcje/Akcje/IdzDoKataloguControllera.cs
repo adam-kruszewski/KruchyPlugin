@@ -19,7 +19,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
         public void Przejdz()
         {
-            var aktualny = solution.AktualnyPlik;
+            var aktualny = solution.CurrentFile;
             if (aktualny == null)
                 return;
 

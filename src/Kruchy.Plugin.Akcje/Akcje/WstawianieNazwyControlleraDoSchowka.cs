@@ -21,7 +21,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             {
                 var nazwaControllera =
                     solution
-                        .AktualnyPlik
+                        .CurrentFile
                             .DajNazweControllera();
 
                 System.Windows.Forms.Clipboard.SetText(nazwaControllera);
@@ -29,9 +29,9 @@ namespace Kruchy.Plugin.Akcje.Akcje
             }
             else
             {
-                if (solution.AktualnyPlik == null)
+                if (solution.CurrentFile == null)
                     return;
-                var fi = new FileInfo(solution.AktualnyPlik.FullPath);
+                var fi = new FileInfo(solution.CurrentFile.FullPath);
                 if (fi.Extension.ToLower() == ".cshtml")
                     Clipboard.SetText(fi.DirectoryName);
             }

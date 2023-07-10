@@ -35,7 +35,7 @@ namespace Kruchy.Plugin.Akcje.Menu
         public void Execute(object sender, EventArgs args)
         {
             var konf = Konfiguracja.GetInstance(solution);
-            var aktualnaZawartosc = solution.AktualnyDokument.GetContent();
+            var aktualnaZawartosc = solution.CurenctDocument.GetContent();
             var aktualnyNamespace = Parser.Parse(aktualnaZawartosc).Namespace;
 
             var usingi =
@@ -66,7 +66,7 @@ namespace Kruchy.Plugin.Akcje.Menu
 
         private string DajNazweModulu()
         {
-            return solution.AktualnyProjekt.Name;
+            return solution.CurrentProject.Name;
         }
 
         private string DajNazweModuluTestowanego()
