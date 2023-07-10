@@ -77,7 +77,7 @@ namespace Kruchy.Plugin.Utils._2017.Wrappers
                     return null;
 
                 var textDoc = (TextDocument)dte.ActiveDocument.Object("TextDocument");
-                return new DokumentWrapper(textDoc);
+                return new DocumentWrapper(textDoc);
             }
         }
 

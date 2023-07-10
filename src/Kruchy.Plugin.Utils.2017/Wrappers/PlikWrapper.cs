@@ -99,7 +99,7 @@ namespace Kruchy.Plugin.Utils._2017.Wrappers
             get
             {
                 var textDocument = (TextDocument)document.Object("TextDocument");
-                return new DokumentWrapper(textDocument);
+                return new DocumentWrapper(textDocument);
             }
         }
 

@@ -45,7 +45,7 @@
     <Compile Include="DynamicItemMenuCommand.cs" />
     <Compile Include="PozycjaMenuAdapter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Wrappers\DokumentWrapper.cs" />
+    <Compile Include="Wrappers\DocumentWrapper.cs" />
     <Compile Include="Wrappers\PlikWrapper.cs" />
     <Compile Include="Wrappers\ProjektWrapper.cs" />
     <Compile Include="Wrappers\SelectedFolder.cs" />
