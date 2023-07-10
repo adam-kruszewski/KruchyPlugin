@@ -85,10 +85,10 @@ namespace Kruchy.Plugin.Utils._2017.Wrappers
             get
             {
                 if (projectItem != null)
-                    return new ProjektWrapper(projectItem.ContainingProject);
+                    return new ProjectWrapper(projectItem.ContainingProject);
                 else
                     if (document.ProjectItem != null)
-                        return new ProjektWrapper(document.ProjectItem.ContainingProject);
+                        return new ProjectWrapper(document.ProjectItem.ContainingProject);
 
                 return null;
             }

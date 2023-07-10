@@ -47,7 +47,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Wrappers\DocumentWrapper.cs" />
     <Compile Include="Wrappers\FileWrapper.cs" />
-    <Compile Include="Wrappers\ProjektWrapper.cs" />
+    <Compile Include="Wrappers\ProjectWrapper.cs" />
     <Compile Include="Wrappers\SelectedFolder.cs" />
     <Compile Include="Wrappers\SelectionWrapper.cs" />
     <Compile Include="Wrappers\SolutionExplorerWrapper.cs" />

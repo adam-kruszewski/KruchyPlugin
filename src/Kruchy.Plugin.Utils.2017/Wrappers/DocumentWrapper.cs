@@ -11,14 +11,14 @@ namespace Kruchy.Plugin.Utils._2017.Wrappers
     public class DocumentWrapper : IDocumentWrapper
     {
         private readonly TextDocument textDocument;
-        private readonly ProjektWrapper projectWrapper;
+        private readonly ProjectWrapper projectWrapper;
 
         public DocumentWrapper(TextDocument textDocument)
         {
             this.textDocument = textDocument;
         }
 
-        public DocumentWrapper(TextDocument textDocument, ProjektWrapper projectWrapper)
+        public DocumentWrapper(TextDocument textDocument, ProjectWrapper projectWrapper)
         {
             this.textDocument = textDocument;
             this.projectWrapper = projectWrapper;

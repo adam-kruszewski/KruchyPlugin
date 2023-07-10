@@ -93,7 +93,7 @@ namespace Kruchy.Plugin.Utils._2017.Wrappers
                 {
                     var p = solution.Projects.Item(i);
                     if (p.FullName.ToLower().EndsWith(".csproj"))
-                        wynik.Add(new ProjektWrapper(p));
+                        wynik.Add(new ProjectWrapper(p));
                     else
                         SzukajProjektow(p, wynik);
                 }
@@ -118,7 +118,7 @@ namespace Kruchy.Plugin.Utils._2017.Wrappers
             if (itemObject == null)
                 return;
             if (itemObject.FullName.ToLower().EndsWith(".csproj"))
-                wynik.Add(new ProjektWrapper(itemObject));
+                wynik.Add(new ProjectWrapper(itemObject));
             else
             {
                 for (int i = 1; i <= itemObject.ProjectItems.Count; i++)
@@ -129,7 +129,7 @@ namespace Kruchy.Plugin.Utils._2017.Wrappers
             }
         }
 
-        public ProjektWrapper ZnajdzProjktDlaPliku(string nazwa)
+        public ProjectWrapper ZnajdzProjktDlaPliku(string nazwa)
         {
             throw new System.NotImplementedException();
         }
