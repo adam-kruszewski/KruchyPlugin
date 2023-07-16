@@ -1,3 +1,6 @@
 [submodule "Externals/KruchyCSharpCodeParser"]
 	path = Externals/KruchyCSharpCodeParser
 	url = https://github.com/adam-kruszewski/KruchyCSharpCodeParser.git
+[submodule "Externals/KruchyPluginUtils"]
+	path = Externals/KruchyPluginUtils
+	url = https://github.com/adam-kruszewski/KruchyPluginUtils.git
