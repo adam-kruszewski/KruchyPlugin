@@ -4,3 +4,6 @@
 [submodule "Externals/KruchyPluginUtils"]
 	path = Externals/KruchyPluginUtils
 	url = https://github.com/adam-kruszewski/KruchyPluginUtils.git
+[submodule "Externals/KruchyCodeBuilders"]
+	path = Externals/KruchyCodeBuilders
+	url = https://github.com/adam-kruszewski/KruchyCodeBuilders.git
