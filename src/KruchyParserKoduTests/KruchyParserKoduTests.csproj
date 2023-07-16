@@ -50,10 +50,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\KruchyParserKodu\KruchyParserKodu.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="Properties\" />
   </ItemGroup>
 
