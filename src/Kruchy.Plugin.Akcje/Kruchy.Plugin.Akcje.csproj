@@ -131,9 +131,9 @@
       <Project>{eb4586ea-ec53-4cc4-b1ad-a7720d12c098}</Project>
       <Name>KruchyParserKodu</Name>
     </ProjectReference>
-    <ProjectReference Include="..\KrucheBuilderyKodu\KrucheBuilderyKodu.csproj">
+    <ProjectReference Include="..\KrucheBuilderyKodu\KruchyCodeBuilders.csproj">
       <Project>{b3dfe520-906c-4b30-9464-f934cabb209e}</Project>
-      <Name>KrucheBuilderyKodu</Name>
+      <Name>KruchyCodeBuilders</Name>
     </ProjectReference>
     <ProjectReference Include="..\Kruchy.Plugin.Utils\Kruchy.Plugin.Utils.csproj">
       <Project>{7868c192-f37e-418e-ac84-e507756c3f5f}</Project>

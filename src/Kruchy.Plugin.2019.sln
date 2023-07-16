@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "KruchyParserKodu", "KruchyP
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "KrucheBuilderyKodu", "KrucheBuilderyKodu", "{86825CFC-35CE-4313-8987-F882B5B07DFF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KrucheBuilderyKodu", "KrucheBuilderyKodu\KrucheBuilderyKodu.csproj", "{B3DFE520-906C-4B30-9464-F934CABB209E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KruchyCodeBuilders", "KrucheBuilderyKodu\KruchyCodeBuilders.csproj", "{B3DFE520-906C-4B30-9464-F934CABB209E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utils", "Utils", "{0B42274F-3CD5-4A2B-AED1-9295B3EB4F4B}"
 EndProject
