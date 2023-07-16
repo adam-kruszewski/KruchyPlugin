@@ -30,9 +30,9 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
                 if (linia.Contains("class ") && linia.Contains(nazwaKlasy))
                 {
                     var trescWstawiana =
-                        new AtrybutBuilder()
-                            .ZNazwa("UprawnieniaDomyslne")
-                                .Build(StaleDlaKodu.WciecieDlaKlasy);
+                        new AttributeBuilder()
+                            .WithName("UprawnieniaDomyslne")
+                                .Build(ConstsForCode.DefaultIndentForClass);
                     dokument.InsertInLine(trescWstawiana, i);
                     dokument.DodajUsingaJesliTrzeba("Pincasso.MvcApp.Security");
                     break;

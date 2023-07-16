@@ -25,17 +25,17 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             var parsowane = Parser.Parse(dokument.GetContent());
 
             var metodaBuilder =
-                new MetodaBuilder()
-                    .DodajModyfikator("public")
-                    .ZNazwa(nazwaMetody)
-                    .ZTypemZwracanym(
+                new MethodBuilder()
+                    .AddModifier("public")
+                    .WithName(nazwaMetody)
+                    .WithReturnType(
                         parsowane
                             .FindDefinedItemByLineNumber(dokument.GetCursorLineNumber()).Name)
-                    .DodajLinie("return this;");
+                    .AddLine("return this;");
 
             var numerLiniiWstawiania = dokument.GetCursorLineNumber();
             dokument.InsertInLine(
-                metodaBuilder.Build(StaleDlaKodu.WciecieDlaMetody),
+                metodaBuilder.Build(ConstsForCode.DefaultIndentForMethod),
                 numerLiniiWstawiania);
 
             var zawartoscLinii = dokument.GetLineContent(numerLiniiWstawiania);

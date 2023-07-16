@@ -88,11 +88,11 @@ namespace KruchyProjekt.Base
             Directory.CreateDirectory(katalogDaoImpl);
 
             var plikBuilder =
-                new PlikClassBuilder()
-                    .WNamespace("Kruchy.Projekt1.Dao")
-                    .ZNazwa("ISamochodDomainDao")
-                    .ZNazwaRodzajuObiektu("interface")
-                    .ZObiektem(new InterfejsBuilder().ZNazwa("ISamochodDomainDao"));
+                new FileWithCodeBuilder()
+                    .InNamespace("Kruchy.Projekt1.Dao")
+                    .WithName("ISamochodDomainDao")
+                    .WithKindOfObjectName("interface")
+                    .WithObject(new InterfaceBuilder().WithName("ISamochodDomainDao"));
             var zawartoscIDao = plikBuilder.Build();
 
             var sciezkDoIDao = Path.Combine(katalogDao, "ISamochodDomainDao.cs");
@@ -100,11 +100,11 @@ namespace KruchyProjekt.Base
             projekt.AddFile(sciezkDoIDao);
 
             var plikDaoImplBuilder =
-                new PlikClassBuilder()
-                    .WNamespace("Kruchy.Projekt1.Dao.Impl")
-                    .ZNazwa("SamochodDomainDao")
-                    .ZNazwaRodzajuObiektu("class")
-                    .ZObiektem(new ClassBuilder().ZNazwa("SamochodDomainDao"));
+                new FileWithCodeBuilder()
+                    .InNamespace("Kruchy.Projekt1.Dao.Impl")
+                    .WithName("SamochodDomainDao")
+                    .WithKindOfObjectName("class")
+                    .WithObject(new ClassBuilder().WithName("SamochodDomainDao"));
             var zawartoscDao = plikDaoImplBuilder.Build();
 
             var sciezkaDoDaoImpl = Path.Combine(katalogDaoImpl, "SamochodDomainDao.cs");

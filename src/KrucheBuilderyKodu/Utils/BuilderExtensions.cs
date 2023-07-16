@@ -11,7 +11,7 @@ namespace KruchyCodeBuilders.Utils
         {
             if (poziomMetody > 1)
                 for (int i = 0; i < poziomMetody - 1; i++)
-                    builder.Append(StaleDlaKodu.JednostkaWciecia);
+                    builder.Append(ConstsForCode.IndentUnit);
         }
     }
 }

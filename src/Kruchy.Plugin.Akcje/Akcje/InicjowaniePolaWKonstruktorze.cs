@@ -81,7 +81,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             int poziomKlasy)
         {
             var builder = new StringBuilder();
-            builder.Append(StaleDlaKodu.WciecieDlaZawartosciMetody);
+            builder.Append(ConstsForCode.DefaultIndentForMethodContent);
 
             builder.DodajWciecieWgPoziomuMetody(poziomKlasy);
 
@@ -106,13 +106,13 @@ namespace Kruchy.Plugin.Akcje.Akcje
             DefinedItem klasa,
             string zawartoscDoDodania)
         {
-            var builder = new MetodaBuilder();
-            builder.JedenParametrWLinii(false);
-            builder.ZNazwa(klasa.Name);
-            builder.ZTypemZwracanym("");
-            builder.DodajModyfikator("public");
-            builder.DodajLinie(zawartoscDoDodania.TrimStart());
-            var zawartoscKontruktora = builder.Build(StaleDlaKodu.WciecieDlaMetody);
+            var builder = new MethodBuilder();
+            builder.ParameterInSigleLine(false);
+            builder.WithName(klasa.Name);
+            builder.WithReturnType("");
+            builder.AddModifier("public");
+            builder.AddLine(zawartoscDoDodania.TrimStart());
+            var zawartoscKontruktora = builder.Build(ConstsForCode.DefaultIndentForMethod);
             return zawartoscKontruktora;
         }
     }

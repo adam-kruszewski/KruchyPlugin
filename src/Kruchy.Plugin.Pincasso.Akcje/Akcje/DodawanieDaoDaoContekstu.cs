@@ -101,7 +101,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             dokument.DodajUsingaJesliTrzeba("Pincasso.Core.Base");
 
             dokument.InsertInLine(
-                    string.Format("{0}public {1} {2} ", StaleDlaKodu.WciecieDlaMetody, nazwaInterfejsuDao, nazwaKlasyDao)
+                    string.Format("{0}public {1} {2} ", ConstsForCode.DefaultIndentForMethod, nazwaInterfejsuDao, nazwaKlasyDao)
                      + "{ get { " +
                      string.Format("return GetDao<{0}>();", nazwaKlasyDao)
                      + " } }",
@@ -124,7 +124,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
 
             dokument.InsertInLine(
                 string.Format("{0}{1} {2} ",
-                    StaleDlaKodu.WciecieDlaMetody,
+                    ConstsForCode.DefaultIndentForMethod,
                     nazwaInterfejsuDao,
                     nazwaKlasyDao) + "{ get; }",
                 SzukajLiniiDoDodanieMetody(dokument, nazwaInterfejsuDao));

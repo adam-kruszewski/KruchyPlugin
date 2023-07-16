@@ -83,7 +83,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 new StringBuilder()
                     .Append(",")
                     .AppendLine()
-                    .Append(StaleDlaKodu.WcieciaDlaParametruMetody);
+                    .Append(ConstsForCode.DefaultIndentForMethodParameters);
 
             var poziomMetody = WyliczPoziomMetody(obiekt.Owner);
 
@@ -93,7 +93,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
             if (parametry.Any())
             {
                 builder.AppendLine();
-                builder.Append(StaleDlaKodu.WcieciaDlaParametruMetody);
+                builder.Append(ConstsForCode.DefaultIndentForMethodParameters);
                 DodajWciecieWgPoziomuMetody(builder, poziomMetody);
             }
             builder.Append(string.Join(lacznik, parametry));
@@ -107,7 +107,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
         {
             if (poziomMetody > 1)
                 for (int i = 0; i < poziomMetody - 1; i++)
-                    lacznikBuilder.Append(StaleDlaKodu.JednostkaWciecia);
+                    lacznikBuilder.Append(ConstsForCode.IndentUnit);
         }
 
         private int WyliczPoziomMetody(IWithOwner obiekt)
@@ -127,10 +127,10 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
             foreach (var atrybut in parametr.Attributes)
             {
-                var atrybutBuilder = new AtrybutBuilder().ZNazwa(atrybut.Name);
+                var atrybutBuilder = new AttributeBuilder().WithName(atrybut.Name);
                 foreach (var parametrAtrybutu in atrybut.Parameters)
                 {
-                    atrybutBuilder.DodajWartoscParametruNieStringowa(parametrAtrybutu.Value);
+                    atrybutBuilder.AddNonStringParameterValue(parametrAtrybutu.Value);
                 }
 
                 builder.Append(atrybutBuilder.Build(true));

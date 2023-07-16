@@ -67,7 +67,7 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
                     .ZModyfikatorem("public");
 
             solution.CurentDocument.InsertInLine(
-                propBuilder.Build(StaleDlaKodu.WciecieDlaMetody),
+                propBuilder.Build(ConstsForCode.DefaultIndentForMethod),
                 numerLiniiWstawiania);
         }
 
@@ -91,9 +91,9 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
                 else
                 {
                     var sb = new StringBuilder();
-                    sb.Append(StaleDlaKodu.WciecieDlaKlasy);
+                    sb.Append(ConstsForCode.DefaultIndentForClass);
                     for (int i = 0; i <= klasa.SuperClassAndInterfaces.Count(); i++)
-                        sb.Append(StaleDlaKodu.JednostkaWciecia);
+                        sb.Append(ConstsForCode.IndentUnit);
                     sb.Append(wstawianyTekst);
                     sb.AppendLine();
                     solution.CurentDocument

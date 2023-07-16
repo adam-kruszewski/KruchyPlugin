@@ -163,13 +163,13 @@ namespace Kruchy.Plugin.Akcje.Akcje
             foreach (var p in SortujPola(list))
             {
                 var poleBuilder =
-                    new PoleBuilder()
-                        .ZNazwa(p.Name)
-                        .ZNazwaTypu(p.TypeName)
-                        .DodajModyfikatorem("private")
-                        .DodajModyfikatorem("readonly");
+                    new FieldBuilder()
+                        .WithName(p.Name)
+                        .WithTypeName(p.TypeName)
+                        .AddModifier("private")
+                        .AddModifier("readonly");
 
-                builder.Append(poleBuilder.Build(StaleDlaKodu.WciecieDlaMetody));
+                builder.Append(poleBuilder.Build(ConstsForCode.DefaultIndentForMethod));
             }
 
             solution.CurentDocument.InsertInLine(builder.ToString(), liniaPierwszego);
@@ -232,11 +232,11 @@ namespace Kruchy.Plugin.Akcje.Akcje
             string slowoKluczowe,
             Constructor constructor)
         {
-            var builder = new MetodaBuilder();
-            builder.JedenParametrWLinii(true);
-            builder.ZNazwa(nazwaKlasy);
-            builder.ZTypemZwracanym("");
-            builder.DodajModyfikator("public");
+            var builder = new MethodBuilder();
+            builder.ParameterInSigleLine(true);
+            builder.WithName(nazwaKlasy);
+            builder.WithReturnType("");
+            builder.AddModifier("public");
 
             foreach (var pole in SortujPola(pola))
             {
@@ -244,13 +244,13 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 if (nazwaParametru.StartsWith("_"))
                     nazwaParametru = pole.Name.Substring(1);
 
-                builder.DodajParametr(pole.TypeName, nazwaParametru);
+                builder.AddParameter(pole.TypeName, nazwaParametru);
 
                 var napisThisJesliTrzeba = "this.";
                 if (pole.Name != nazwaParametru)
                     napisThisJesliTrzeba = "";
 
-                builder.DodajLinie(napisThisJesliTrzeba + pole.Name + " = " + nazwaParametru + ";");
+                builder.AddLine(napisThisJesliTrzeba + pole.Name + " = " + nazwaParametru + ";");
             }
 
             if (constructor != null)
@@ -263,21 +263,21 @@ namespace Kruchy.Plugin.Akcje.Akcje
             {
                 foreach (var parametrDlaNadklasy in parametryDlaKonstruktoraNadklasy)
                 {
-                    builder.DodajParametr(parametrDlaNadklasy.TypeName, parametrDlaNadklasy.ParameterName);
+                    builder.AddParameter(parametrDlaNadklasy.TypeName, parametrDlaNadklasy.ParameterName);
                 }
 
-                builder.DodajInicjalizacjeKonstruktora(
+                builder.AddContructorInitialization(
                     slowoKluczowe,
                     parametryDlaKonstruktoraNadklasy.Select(o => o.ParameterName));
             }
 
-            return builder.Build(StaleDlaKodu.WciecieDlaMetody).TrimEnd();
+            return builder.Build(ConstsForCode.DefaultIndentForMethod).TrimEnd();
         }
 
         private void AddOtherInstructionsFromOriginalConstructor(
             Constructor constructor,
             IEnumerable<Field> fields,
-            MetodaBuilder builder)
+            MethodBuilder builder)
         {
             Instruction previousOtherInstruction = null;
 
@@ -287,7 +287,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
                 {
                     if (previousOtherInstruction == null)
                     {
-                        builder.DodajLinie("");
+                        builder.AddLine("");
                     }
                     else
                     {
@@ -295,11 +295,11 @@ namespace Kruchy.Plugin.Akcje.Akcje
                             originalInstruction.StartPosition.Row - previousOtherInstruction.StartPosition.Row;
 
                         if (difference > 1)
-                            builder.DodajLinie("");
+                            builder.AddLine("");
 
                     }
 
-                    builder.DodajLinie(originalInstruction.Text);
+                    builder.AddLine(originalInstruction.Text);
 
                     previousOtherInstruction = originalInstruction;
                 }

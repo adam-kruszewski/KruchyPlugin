@@ -19,31 +19,31 @@ namespace Kruchy.Plugin.Akcje.Akcje
             var konfiguracja = Konfiguracja.GetInstance(solution);
 
             var builder =
-                new MetodaBuilder()
-                    .ZNazwa(nazwaTestu)
-                    .DodajModyfikator("public")
-                    .DodajAtrybut(new AtrybutBuilder().ZNazwa(DajNazweAtrybutu(konfiguracja)));
+                new MethodBuilder()
+                    .WithName(nazwaTestu)
+                    .AddModifier("public")
+                    .AddAttribute(new AttributeBuilder().WithName(DajNazweAtrybutu(konfiguracja)));
 
             if (asyncTest)
             {
                 builder = builder
-                    .DodajModyfikator("async")
-                    .ZTypemZwracanym("Task");
+                    .AddModifier("async")
+                    .WithReturnType("Task");
 
                 solution.CurentDocument?.DodajUsingaJesliTrzeba("System.Threading.Tasks");
             }
 
-            builder.DodajLinie("//arrange");
-            builder.DodajLinie("");
-            builder.DodajLinie("//act");
-            builder.DodajLinie("");
-            builder.DodajLinie("//assert");
+            builder.AddLine("//arrange");
+            builder.AddLine("");
+            builder.AddLine("//act");
+            builder.AddLine("");
+            builder.AddLine("//assert");
             var dokument = solution.CurentDocument;
             if (dokument == null)
                 return;
 
             var numerLinii = dokument.GetCursorLineNumber();
-            var trescMetody = builder.Build(StaleDlaKodu.WciecieDlaMetody).TrimEnd();
+            var trescMetody = builder.Build(ConstsForCode.DefaultIndentForMethod).TrimEnd();
             dokument.InsertInLine(trescMetody, numerLinii);
             dokument.SetCursorForAddedMethod(numerLinii + 2);
             dokument.DodajUsingaJesliTrzeba(DajUsingaDoDodania(konfiguracja));

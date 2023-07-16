@@ -87,28 +87,28 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
         {
             var klasa =
                 new ClassBuilder()
-                    .ZNazwa(nazwaKlasy)
-                    .ZNadklasa("PincassoValidator<" + nazwaKlasyWalidowanej + ">")
-                    .DodajInterfejs("I" + nazwaKlasy);
+                    .WithName(nazwaKlasy)
+                    .WithSuperClass("PincassoValidator<" + nazwaKlasyWalidowanej + ">")
+                    .AddInterface("I" + nazwaKlasy);
 
             var metodaCreateRules =
-                new MetodaBuilder()
-                    .ZNazwa("CreateRules")
-                    .DodajModyfikator("protected")
-                    .DodajModyfikator("override")
-                    .ZTypemZwracanym("ValidationRulesSet")
-                    .DodajParametr(nazwaKlasyWalidowanej, "entity")
-                    .DodajParametr("IValidationResultListener", "validationListener")
-                    .DodajLinie("return base.CreateRules(entity, validationListener);");
-            klasa.DodajMetode(metodaCreateRules);
+                new MethodBuilder()
+                    .WithName("CreateRules")
+                    .AddModifier("protected")
+                    .AddModifier("override")
+                    .WithReturnType("ValidationRulesSet")
+                    .AddParameter(nazwaKlasyWalidowanej, "entity")
+                    .AddParameter("IValidationResultListener", "validationListener")
+                    .AddLine("return base.CreateRules(entity, validationListener);");
+            klasa.AddMethod(metodaCreateRules);
 
             var plikClass =
-                new PlikClassBuilder()
-                    .WNamespace(DajNamespaceImplementacji())
-                    .DodajUsing("Piatka.Infrastructure.Validation")
-                    .DodajUsing(usingDlaDomainObiektu)
-                    .DodajUsing("Pincasso.Core.Base")
-                    .ZObiektem(klasa);
+                new FileWithCodeBuilder()
+                    .InNamespace(DajNamespaceImplementacji())
+                    .AddUsing("Piatka.Infrastructure.Validation")
+                    .AddUsing(usingDlaDomainObiektu)
+                    .AddUsing("Pincasso.Core.Base")
+                    .WithObject(klasa);
 
             return plikClass.Build();
         }
@@ -124,17 +124,17 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             string usingDlaDomainObiektu)
         {
             var interfejs =
-                new InterfejsBuilder()
-                    .ZModyfikatorem("public")
-                    .ZNazwa("I" + nazwaKlasy)
-                    .ZNadklasa("IValidator<" + nazwaKlasyWalidowanej + ">");
+                new InterfaceBuilder()
+                    .WithModifier("public")
+                    .WithName("I" + nazwaKlasy)
+                    .WithSuperClass("IValidator<" + nazwaKlasyWalidowanej + ">");
 
             var plikClass =
-                new PlikClassBuilder()
-                    .DodajUsing("Piatka.Infrastructure.Validation")
-                    .WNamespace(DajNamespaceInterfejsu())
-                    .DodajUsing(usingDlaDomainObiektu)
-                    .ZObiektem(interfejs);
+                new FileWithCodeBuilder()
+                    .AddUsing("Piatka.Infrastructure.Validation")
+                    .InNamespace(DajNamespaceInterfejsu())
+                    .AddUsing(usingDlaDomainObiektu)
+                    .WithObject(interfejs);
 
             return plikClass.Build();
         }

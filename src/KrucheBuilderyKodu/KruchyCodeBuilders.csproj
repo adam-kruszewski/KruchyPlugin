@@ -41,15 +41,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Builders\AtrybutBuilder.cs" />
+    <Compile Include="Builders\AttributeBuilder.cs" />
     <Compile Include="Builders\ClassBuilder.cs" />
     <Compile Include="Builders\ICodeBuilder.cs" />
-    <Compile Include="Builders\InterfejsBuilder.cs" />
-    <Compile Include="Builders\MetodaBuilder.cs" />
-    <Compile Include="Builders\PlikClassBuilder.cs" />
-    <Compile Include="Builders\PoleBuilder.cs" />
+    <Compile Include="Builders\InterfaceBuilder.cs" />
+    <Compile Include="Builders\MethodBuilder.cs" />
+    <Compile Include="Builders\FileWithCodeBuilder.cs" />
+    <Compile Include="Builders\FieldBuilder.cs" />
     <Compile Include="Builders\PropertyBuilder.cs" />
-    <Compile Include="Builders\StaleDlaKodu.cs" />
+    <Compile Include="Builders\ConstsForCode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\BuilderExtensions.cs" />
   </ItemGroup>

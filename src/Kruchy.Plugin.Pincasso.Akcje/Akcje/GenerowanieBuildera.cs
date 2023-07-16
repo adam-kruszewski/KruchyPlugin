@@ -169,17 +169,17 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             var nazwaParametru = DajNazweParametru(wlasciwosc.Property.Name);
 
             var tesktMetodyBuilder =
-                new MetodaBuilder()
-                    .DodajModyfikator("public")
-                    .ZNazwa("Z" + wlasciwosc.Property.Name)
-                    .ZTypemZwracanym(nazwaKlasyBuildera)
-                    .DodajParametr(wlasciwosc.Property.TypeName, nazwaParametru);
+                new MethodBuilder()
+                    .AddModifier("public")
+                    .WithName("Z" + wlasciwosc.Property.Name)
+                    .WithReturnType(nazwaKlasyBuildera)
+                    .AddParameter(wlasciwosc.Property.TypeName, nazwaParametru);
 
-            tesktMetodyBuilder.DodajLinie(
+            tesktMetodyBuilder.AddLine(
                 DajLinieUstawiajacaWartosc(wlasciwosc, nazwaParametru));
-            tesktMetodyBuilder.DodajLinie("return this;");
+            tesktMetodyBuilder.AddLine("return this;");
 
-            var tesktMetody = tesktMetodyBuilder.Build(StaleDlaKodu.WciecieDlaMetody);
+            var tesktMetody = tesktMetodyBuilder.Build(ConstsForCode.DefaultIndentForMethod);
             return tesktMetody;
         }
 
@@ -254,40 +254,40 @@ namespace Kruchy.Plugin.Pincasso.Akcje.Akcje
             IParametryGenerowaniaBuildera parametry,
             string namespaceObiektuBudowanego)
         {
-            var plik = new PlikClassBuilder();
-            plik.WNamespace(projektTestow.Name + ".Builders");
-            plik.DodajUsing("Pincasso.Core.Tests.Builders");
-            plik.DodajUsing(namespaceObiektuBudowanego);
-            plik.DodajUsing("Piatka.Infrastructure.Tests.Builders");
+            var plik = new FileWithCodeBuilder();
+            plik.InNamespace(projektTestow.Name + ".Builders");
+            plik.AddUsing("Pincasso.Core.Tests.Builders");
+            plik.AddUsing(namespaceObiektuBudowanego);
+            plik.AddUsing("Piatka.Infrastructure.Tests.Builders");
 
             var nazwaKlasyInterfejsuSerwisu = parametry.NazwaInterfejsuService;
 
             if (string.IsNullOrEmpty(nazwaKlasyInterfejsuSerwisu))
                 return null;
 
-            plik.ZObiektem(
+            plik.WithObject(
                 new ClassBuilder()
-                    .ZModyfikatorem("public")
-                    .ZNazwa(nazwaKlasyBuildera)
-                    .ZNadklasa(
+                    .WithModifier("public")
+                    .WithName(nazwaKlasyBuildera)
+                    .WithSuperClass(
                         string.Format("Builder<{0}, {1}>",
                         nazwaKlasyInterfejsuSerwisu,
                         obiektDoZbudowania.Name))
-                    .DodajMetode(
-                        new MetodaBuilder()
-                            .ZNazwa("Init")
-                            .ZTypemZwracanym("void")
-                            .DodajModyfikator("protected")
-                            .DodajModyfikator("override")
-                            .DodajLinie(
+                    .AddMethod(
+                        new MethodBuilder()
+                            .WithName("Init")
+                            .WithReturnType("void")
+                            .AddModifier("protected")
+                            .AddModifier("override")
+                            .AddLine(
                             string.Format("this.Object = new {0}();", obiektDoZbudowania.Name)))
-                    .DodajMetode(
-                        new MetodaBuilder()
-                            .ZNazwa("Save")
-                            .ZTypemZwracanym("void")
-                            .DodajModyfikator("protected")
-                            .DodajModyfikator("override")
-                            .DodajParametr("IValidationResultListener", "validationListener"))
+                    .AddMethod(
+                        new MethodBuilder()
+                            .WithName("Save")
+                            .WithReturnType("void")
+                            .AddModifier("protected")
+                            .AddModifier("override")
+                            .AddParameter("IValidationResultListener", "validationListener"))
                         );
 
             return plik.Build();

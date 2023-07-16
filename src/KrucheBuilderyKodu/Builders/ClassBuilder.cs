@@ -6,112 +6,112 @@ namespace KruchyCodeBuilders.Builders
 {
     public class ClassBuilder : ICodeBuilder
     {
-        private string modyfikator { get; set; }
-        private string nazwa { get; set; }
-        private string nazwaNadklasy { get; set; }
-        private IList<string> interfejsy { get; set; }
-        private IList<ICodeBuilder> metody { get; set; }
-        private IList<ICodeBuilder> konstruktory { get; set; }
-        private IList<ICodeBuilder> atrybuty { get; set; }
+        private string modifier { get; set; }
+        private string name { get; set; }
+        private string superClassName { get; set; }
+        private IList<string> interfaces { get; set; }
+        private IList<ICodeBuilder> methods { get; set; }
+        private IList<ICodeBuilder> constructors { get; set; }
+        private IList<ICodeBuilder> attributes { get; set; }
 
         public ClassBuilder()
         {
-            metody = new List<ICodeBuilder>();
-            konstruktory = new List<ICodeBuilder>();
-            atrybuty = new List<ICodeBuilder>();
-            interfejsy = new List<string>();
+            methods = new List<ICodeBuilder>();
+            constructors = new List<ICodeBuilder>();
+            attributes = new List<ICodeBuilder>();
+            interfaces = new List<string>();
         }
 
-        public ClassBuilder ZNazwa(string nazwa)
+        public ClassBuilder WithName(string name)
         {
-            this.nazwa = nazwa;
+            this.name = name;
             return this;
         }
 
-        public ClassBuilder ZModyfikatorem(string modyfikator)
+        public ClassBuilder WithModifier(string modifier)
         {
-            this.modyfikator = modyfikator;
+            this.modifier = modifier;
             return this;
         }
 
-        public ClassBuilder ZNadklasa(string nazwa)
+        public ClassBuilder WithSuperClass(string name)
         {
-            nazwaNadklasy = nazwa;
+            superClassName = name;
             return this;
         }
 
-        public ClassBuilder DodajInterfejs(string nazwa)
+        public ClassBuilder AddInterface(string name)
         {
-            interfejsy.Add(nazwa);
+            interfaces.Add(name);
             return this;
         }
 
-        public ClassBuilder DodajKonstruktor(ICodeBuilder konstruktor)
+        public ClassBuilder AddContructor(ICodeBuilder constructor)
         {
-            konstruktory.Add(konstruktor);
+            constructors.Add(constructor);
             return this;
         }
 
-        public ClassBuilder DodajMetode(ICodeBuilder metoda)
+        public ClassBuilder AddMethod(ICodeBuilder methodBuilder)
         {
-            metody.Add(metoda);
+            methods.Add(methodBuilder);
             return this;
         }
 
-        public ClassBuilder DodajAtrybut(ICodeBuilder atrybut)
+        public ClassBuilder AddAttribute(ICodeBuilder attributeBuilder)
         {
-            atrybuty.Add(atrybut);
+            attributes.Add(attributeBuilder);
             return this;
         }
 
-        public string Build(string wciecie = "")
+        public string Build(string indent = "")
         {
             var outputBuilder = new StringBuilder();
 
-            foreach (var a in atrybuty)
-                outputBuilder.Append(a.Build(StaleDlaKodu.JednostkaWciecia));
+            foreach (var a in attributes)
+                outputBuilder.Append(a.Build(ConstsForCode.IndentUnit));
 
-            outputBuilder.Append(wciecie);
-            if (!string.IsNullOrEmpty(modyfikator))
-                outputBuilder.Append(modyfikator + " ");
+            outputBuilder.Append(indent);
+            if (!string.IsNullOrEmpty(modifier))
+                outputBuilder.Append(modifier + " ");
             outputBuilder.Append("class ");
-            outputBuilder.Append(nazwa);
-            if (!string.IsNullOrEmpty(nazwaNadklasy))
-                outputBuilder.Append(" : " + nazwaNadklasy);
+            outputBuilder.Append(name);
+            if (!string.IsNullOrEmpty(superClassName))
+                outputBuilder.Append(" : " + superClassName);
 
-            var wcieciaDlaInterfejsu = wciecie;
-            if (interfejsy.Any())
+            var indentForInterface = indent;
+            if (interfaces.Any())
             {
-                if (string.IsNullOrEmpty(nazwaNadklasy))
+                if (string.IsNullOrEmpty(superClassName))
                     outputBuilder.Append(" : ");
                 else
                 {
-                    outputBuilder.Append(wcieciaDlaInterfejsu);
+                    outputBuilder.Append(indentForInterface);
                     outputBuilder.Append(", ");
                 }
-                outputBuilder.Append(interfejsy.First());
+                outputBuilder.Append(interfaces.First());
             }
 
-            for (int i = 1; i < interfejsy.Count; i++)
+            for (int i = 1; i < interfaces.Count; i++)
             {
-                wcieciaDlaInterfejsu += StaleDlaKodu.JednostkaWciecia;
-                outputBuilder.Append(wcieciaDlaInterfejsu);
+                indentForInterface += ConstsForCode.IndentUnit;
+                outputBuilder.Append(indentForInterface);
                 outputBuilder.Append(", ");
-                outputBuilder.AppendLine(interfejsy[i]);
+                outputBuilder.AppendLine(interfaces[i]);
             }
 
             outputBuilder.AppendLine();
-            outputBuilder.AppendLine(wciecie + "{");
+            outputBuilder.AppendLine(indent + "{");
 
-            foreach (var k in konstruktory)
+            foreach (var k in constructors)
                 outputBuilder.AppendLine(
-                    k.Build(StaleDlaKodu.WielokrotnoscWciecia(2)));
+                    k.Build(ConstsForCode.IndentMultiplication(2)));
 
-            foreach (var m in metody)
+            foreach (var m in methods)
                 outputBuilder.AppendLine(
-                    m.Build(StaleDlaKodu.WielokrotnoscWciecia(2)));
+                    m.Build(ConstsForCode.IndentMultiplication(2)));
 
-            outputBuilder.AppendLine(wciecie + "}");
+            outputBuilder.AppendLine(indent + "}");
             return outputBuilder.ToString();
         }
     }

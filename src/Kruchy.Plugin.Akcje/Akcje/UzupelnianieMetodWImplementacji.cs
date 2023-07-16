@@ -159,15 +159,15 @@ namespace Kruchy.Plugin.Akcje.Akcje
             var builder = new StringBuilder();
             builder.AppendLine();
             var def = definicja.TrimStart().Replace(";", "");
-            builder.Append(StaleDlaKodu.WciecieDlaMetody);
+            builder.Append(ConstsForCode.DefaultIndentForMethod);
             builder.Append("public ");
             builder.AppendLine(def);
 
-            builder.AppendLine(StaleDlaKodu.WciecieDlaMetody + "{");
-            builder.Append(StaleDlaKodu.WciecieDlaMetody);
-            builder.Append(StaleDlaKodu.JednostkaWciecia);
+            builder.AppendLine(ConstsForCode.DefaultIndentForMethod + "{");
+            builder.Append(ConstsForCode.DefaultIndentForMethod);
+            builder.Append(ConstsForCode.IndentUnit);
             builder.AppendLine("throw new System.NotImplementedException();");
-            builder.AppendLine(StaleDlaKodu.WciecieDlaMetody + "}");
+            builder.AppendLine(ConstsForCode.DefaultIndentForMethod + "}");
             return builder.ToString();
         }
     }

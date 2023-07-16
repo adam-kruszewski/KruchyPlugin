@@ -38,8 +38,8 @@ namespace Kruchy.Plugin.Utils._2017.Wrappers
         {
             SetCursor(
                 lineNumber + 2,
-                1 + StaleDlaKodu.WciecieDlaMetody.Length
-                + StaleDlaKodu.JednostkaWciecia.Length);
+                1 + ConstsForCode.DefaultIndentForMethod.Length
+                + ConstsForCode.IndentUnit.Length);
         }
 
         public string GetContent()

@@ -82,14 +82,14 @@ namespace Kruchy.Plugin.Akcje.Akcje
         {
             var klasaBuilder =
                 new ClassBuilder()
-                    .ZModyfikatorem("")
-                    .ZNazwa(nazwaKlasyService)
-                    .DodajInterfejs("I" + nazwaKlasyService);
+                    .WithModifier("")
+                    .WithName(nazwaKlasyService)
+                    .AddInterface("I" + nazwaKlasyService);
 
             var plikBuilder =
-                new PlikClassBuilder()
-                    .ZObiektem(klasaBuilder)
-                    .WNamespace(GenerujNamespaceImpl(projekt));
+                new FileWithCodeBuilder()
+                    .WithObject(klasaBuilder)
+                    .InNamespace(GenerujNamespaceImpl(projekt));
 
             var zawartosc = plikBuilder.Build();
             return zawartosc;
@@ -101,17 +101,17 @@ namespace Kruchy.Plugin.Akcje.Akcje
             bool obaWImpl)
         {
             var interfaceBuilder =
-                new InterfejsBuilder()
-                    .ZNazwa("I" + nazwaKlasyService)
-                    .ZModyfikatorem("public");
+                new InterfaceBuilder()
+                    .WithName("I" + nazwaKlasyService)
+                    .WithModifier("public");
 
             var plikClassBuilder =
-                new PlikClassBuilder()
-                    .ZObiektem(interfaceBuilder);
+                new FileWithCodeBuilder()
+                    .WithObject(interfaceBuilder);
             if (!obaWImpl)
-                plikClassBuilder.WNamespace(GenerujNamespace(projekt));
+                plikClassBuilder.InNamespace(GenerujNamespace(projekt));
             else
-                plikClassBuilder.WNamespace(GenerujNamespaceImpl(projekt));
+                plikClassBuilder.InNamespace(GenerujNamespaceImpl(projekt));
 
             var zawartosc = plikClassBuilder.Build();
             return zawartosc;

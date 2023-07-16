@@ -105,10 +105,10 @@ namespace Kruchy.Plugin.Akcje.Akcje
             for (int i = array.Length - 1; i >= 0; i--)
             {
                 var nowaLinia =
-                    new PoleBuilder()
-                    .ZNazwa(DajNazwaPolaMocka(array[i].Item2))
-                    .ZNazwaTypu($"Mock<{array[i].Item1}>")
-                    .Build(StaleDlaKodu.WcieciaDlaPolaKlasy);
+                    new FieldBuilder()
+                    .WithName(DajNazwaPolaMocka(array[i].Item2))
+                    .WithTypeName($"Mock<{array[i].Item1}>")
+                    .Build(ConstsForCode.DefaultIndentForClassField);
 
                 solution.CurentDocument.InsertInLine(nowaLinia, numerLiniiDoDodawaniaPol);
             }
@@ -138,10 +138,10 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
             if (!parsowane.DefinedItems.First().Fields.Any(o => o.Name == NazwaPolaInstancji))
             {
-                var nowaLinia = new PoleBuilder()
-                    .ZNazwa(NazwaPolaInstancji)
-                    .ZNazwaTypu(nazwaBezRozszerzenia)
-                    .Build(StaleDlaKodu.WcieciaDlaPolaKlasy);
+                var nowaLinia = new FieldBuilder()
+                    .WithName(NazwaPolaInstancji)
+                    .WithTypeName(nazwaBezRozszerzenia)
+                    .Build(ConstsForCode.DefaultIndentForClassField);
 
                 solution.CurentDocument.InsertInLine(nowaLinia, SzukajLiniiDoWstawieniaPola(parsowane));
             }
@@ -195,19 +195,19 @@ namespace Kruchy.Plugin.Akcje.Akcje
             string nazwaKlasyTestowanej)
         {
             var resultBuilder = new StringBuilder();
-            var atrybut = new AtrybutBuilder().ZNazwa("TestInitialize").Build(StaleDlaKodu.WciecieDlaMetody);
+            var atrybut = new AttributeBuilder().WithName("TestInitialize").Build(ConstsForCode.DefaultIndentForMethod);
 
             resultBuilder.Append(atrybut);
 
             var metoda =
-                new MetodaBuilder()
-                    .ZNazwa(NazwaMetody)
-                    .DodajModyfikator("private")
-                    .ZTypemZwracanym("void");
+                new MethodBuilder()
+                    .WithName(NazwaMetody)
+                    .AddModifier("private")
+                    .WithReturnType("void");
 
             foreach (var pole in polaZTypemZKontruktora)
             {
-                metoda.DodajLinie($"{DajNazwaPolaMocka(pole.Item2)} = new Mock<{pole.Item1}>();");
+                metoda.AddLine($"{DajNazwaPolaMocka(pole.Item2)} = new Mock<{pole.Item1}>();");
             }
 
             var tworzenieInstancjiBuilder = new StringBuilder();
@@ -218,7 +218,7 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
             foreach (var parametr in polaZTypemZKontruktora)
             {
-                tworzenieInstancjiBuilder.Append($"{StaleDlaKodu.WciecieDlaZawartosciMetody}{StaleDlaKodu.JednostkaWciecia}{DajNazwaPolaMocka(parametr.Item2)}.Object");
+                tworzenieInstancjiBuilder.Append($"{ConstsForCode.DefaultIndentForMethodContent}{ConstsForCode.IndentUnit}{DajNazwaPolaMocka(parametr.Item2)}.Object");
 
                 if (indeks != polaZTypemZKontruktora.Count() -1)
                 {
@@ -229,9 +229,9 @@ namespace Kruchy.Plugin.Akcje.Akcje
 
             tworzenieInstancjiBuilder.Append(");");
 
-            metoda.DodajLinie(tworzenieInstancjiBuilder.ToString());
+            metoda.AddLine(tworzenieInstancjiBuilder.ToString());
 
-            resultBuilder.Append(metoda.Build(StaleDlaKodu.WciecieDlaMetody));
+            resultBuilder.Append(metoda.Build(ConstsForCode.DefaultIndentForMethod));
 
             return resultBuilder.ToString().TrimEnd();
         }
