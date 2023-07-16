@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace KrucheBuilderyKodu.Builders
+namespace KruchyCodeBuilders.Builders
 {
     public class StaleDlaKodu
     {

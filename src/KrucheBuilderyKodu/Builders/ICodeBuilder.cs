@@ -1,5 +1,5 @@
 ﻿
-namespace KrucheBuilderyKodu.Builders
+namespace KruchyCodeBuilders.Builders
 {
     public interface ICodeBuilder
     {

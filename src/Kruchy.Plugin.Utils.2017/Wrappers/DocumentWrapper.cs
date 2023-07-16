@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Text;
 using EnvDTE;
-using KrucheBuilderyKodu.Builders;
+using KruchyCodeBuilders.Builders;
 using Kruchy.Plugin.Utils.Wrappers;
 using KruchyParserKodu.ParserKodu;
 

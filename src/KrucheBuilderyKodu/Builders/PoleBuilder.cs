@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text;
 
-namespace KrucheBuilderyKodu.Builders
+namespace KruchyCodeBuilders.Builders
 {
     public class PoleBuilder
     {

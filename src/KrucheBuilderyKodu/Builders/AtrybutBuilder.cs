@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KrucheBuilderyKodu.Builders
+namespace KruchyCodeBuilders.Builders
 {
     public class AtrybutBuilder : ICodeBuilder
     {

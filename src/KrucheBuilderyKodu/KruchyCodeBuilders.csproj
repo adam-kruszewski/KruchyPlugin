@@ -7,7 +7,7 @@
     <ProjectGuid>{B3DFE520-906C-4B30-9464-F934CABB209E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>KrucheBuilderyKodu</RootNamespace>
+    <RootNamespace>KruchyCodeBuilders</RootNamespace>
     <AssemblyName>KrucheBuilderyKodu</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

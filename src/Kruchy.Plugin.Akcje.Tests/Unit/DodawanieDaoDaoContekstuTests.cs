@@ -3,7 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using FluentAssertions;
-using KrucheBuilderyKodu.Builders;
+using KruchyCodeBuilders.Builders;
 using Kruchy.Plugin.Akcje.Akcje;
 using Kruchy.Plugin.Akcje.Tests.Utils;
 using Kruchy.Plugin.Akcje.Tests.WrappersMocks;

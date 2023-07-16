@@ -1,6 +1,6 @@
-﻿using KrucheBuilderyKodu.Builders;
-using Kruchy.Plugin.Utils.Extensions;
+﻿using Kruchy.Plugin.Utils.Extensions;
 using Kruchy.Plugin.Utils.Wrappers;
+using KruchyCodeBuilders.Builders;
 using KruchyParserKodu.ParserKodu;
 using KruchyParserKodu.ParserKodu.Models;
 

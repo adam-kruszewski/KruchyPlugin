@@ -1,4 +1,4 @@
-﻿using KrucheBuilderyKodu.Builders;
+﻿using KruchyCodeBuilders.Builders;
 using Kruchy.Plugin.Akcje.KonfiguracjaPlugina;
 using Kruchy.Plugin.Utils.Extensions;
 using Kruchy.Plugin.Utils.Wrappers;

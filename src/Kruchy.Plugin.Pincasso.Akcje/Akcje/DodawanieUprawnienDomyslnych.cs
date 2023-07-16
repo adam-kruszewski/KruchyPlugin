@@ -1,4 +1,4 @@
-﻿using KrucheBuilderyKodu.Builders;
+﻿using KruchyCodeBuilders.Builders;
 using Kruchy.Plugin.Utils.Extensions;
 using Kruchy.Plugin.Utils.Wrappers;
 using System.Windows.Forms;

@@ -1,7 +1,7 @@
 ﻿using System.Text;
-using KrucheBuilderyKodu.Builders;
+using KruchyCodeBuilders.Builders;
 
-namespace KrucheBuilderyKodu.Utils
+namespace KruchyCodeBuilders.Utils
 {
     public static class BuilderExtensions
     {

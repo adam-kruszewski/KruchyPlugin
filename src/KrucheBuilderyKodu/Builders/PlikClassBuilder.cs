@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Text;
 
-namespace KrucheBuilderyKodu.Builders
+namespace KruchyCodeBuilders.Builders
 {
     public class PlikClassBuilder : ICodeBuilder
     {

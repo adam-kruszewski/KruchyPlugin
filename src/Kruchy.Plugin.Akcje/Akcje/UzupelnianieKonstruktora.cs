@@ -1,16 +1,15 @@
-﻿using System;
+﻿using Kruchy.Plugin.Akcje.KonfiguracjaPlugina;
+using Kruchy.Plugin.Akcje.Utils;
+using Kruchy.Plugin.Utils.Wrappers;
+using KruchyCodeBuilders.Builders;
+using KruchyParserKodu.ParserKodu;
+using KruchyParserKodu.ParserKodu.Models;
+using KruchyParserKodu.ParserKodu.Models.Instructions;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using KrucheBuilderyKodu.Builders;
-using Kruchy.Plugin.Akcje.KonfiguracjaPlugina;
-using Kruchy.Plugin.Akcje.Utils;
-using Kruchy.Plugin.Utils.Wrappers;
-using KruchyParserKodu.ParserKodu;
-using KruchyParserKodu.ParserKodu.Models;
-using KruchyParserKodu.ParserKodu.Models.Instructions;
 
 namespace Kruchy.Plugin.Akcje.Akcje
 {
