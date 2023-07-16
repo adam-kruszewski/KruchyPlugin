@@ -69,13 +69,13 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\..\Externals\KruchyCodeBuilders\Source\KruchyCodeBuilders\KruchyCodeBuilders\KruchyCodeBuilders.csproj">
+      <Project>{9fcfdbd3-d77c-49f9-9814-c47877dd2810}</Project>
+      <Name>KruchyCodeBuilders</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Externals\KruchyCSharpCodeParser\Source\KruchyParserKodu\KruchyParserKodu.csproj">
       <Project>{eb4586ea-ec53-4cc4-b1ad-a7720d12c098}</Project>
       <Name>KruchyParserKodu</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\KrucheBuilderyKodu\KruchyCodeBuilders.csproj">
-      <Project>{B3DFE520-906C-4B30-9464-F934CABB209E}</Project>
-      <Name>KruchyCodeBuilders</Name>
     </ProjectReference>
     <ProjectReference Include="..\Kruchy.Plugin.Akcje\Kruchy.Plugin.Akcje.csproj">
       <Project>{373932f3-fed1-4037-97e2-05a8dda18afe}</Project>

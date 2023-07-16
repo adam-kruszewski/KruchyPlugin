@@ -54,13 +54,13 @@
     <Compile Include="Wrappers\SolutionWrapper.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Externals\KruchyCodeBuilders\Source\KruchyCodeBuilders\KruchyCodeBuilders\KruchyCodeBuilders.csproj">
+      <Project>{9fcfdbd3-d77c-49f9-9814-c47877dd2810}</Project>
+      <Name>KruchyCodeBuilders</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Externals\KruchyCSharpCodeParser\Source\KruchyParserKodu\KruchyParserKodu.csproj">
       <Project>{eb4586ea-ec53-4cc4-b1ad-a7720d12c098}</Project>
       <Name>KruchyParserKodu</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\KrucheBuilderyKodu\KruchyCodeBuilders.csproj">
-      <Project>{b3dfe520-906c-4b30-9464-f934cabb209e}</Project>
-      <Name>KruchyCodeBuilders</Name>
     </ProjectReference>
     <ProjectReference Include="..\Kruchy.Plugin.Utils\Kruchy.Plugin.Utils.csproj">
       <Project>{7868c192-f37e-418e-ac84-e507756c3f5f}</Project>
