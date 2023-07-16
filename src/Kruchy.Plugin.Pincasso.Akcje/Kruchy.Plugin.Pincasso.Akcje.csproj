@@ -69,6 +69,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\..\Externals\KruchyCSharpCodeParser\Source\KruchyParserKodu\KruchyParserKodu.csproj">
+      <Project>{eb4586ea-ec53-4cc4-b1ad-a7720d12c098}</Project>
+      <Name>KruchyParserKodu</Name>
+    </ProjectReference>
     <ProjectReference Include="..\KrucheBuilderyKodu\KrucheBuilderyKodu.csproj">
       <Project>{B3DFE520-906C-4B30-9464-F934CABB209E}</Project>
       <Name>KrucheBuilderyKodu</Name>
@@ -80,10 +84,6 @@
     <ProjectReference Include="..\Kruchy.Plugin.Utils\Kruchy.Plugin.Utils.csproj">
       <Project>{7868C192-F37E-418E-AC84-E507756C3F5F}</Project>
       <Name>Kruchy.Plugin.Utils</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\KruchyParserKodu\KruchyParserKodu.csproj">
-      <Project>{EB4586EA-EC53-4CC4-B1AD-A7720D12C098}</Project>
-      <Name>KruchyParserKodu</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
