@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.0.31903.59
+# Visual Studio Version 18
+VisualStudioVersion = 18.4.11620.152 stable
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.Example", "Plugin.Example\Plugin.Example.csproj", "{572A6A2F-B3E6-42F8-B2BF-BD1EA242973D}"
 EndProject
@@ -31,7 +31,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KruchyParserKoduTests", "..
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "KruchyCodeBuilders", "KruchyCodeBuilders", "{91570926-EAE2-40AC-8CC6-650DC7862D95}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KruchyCodeBuilders", "..\Externals\KruchyCodeBuilders\Source\KruchyCodeBuilders\KruchyCodeBuilders\KruchyCodeBuilders.csproj", "{9FCFDBD3-D77C-49F9-9814-C47877DD2810}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KruchyCodeBuilders", "..\Externals\KruchyCodeBuilders\Source\KruchyCodeBuilders\KruchyCodeBuilders\KruchyCodeBuilders.csproj", "{B3DFE520-906C-4B30-9464-F934CABB209E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -100,12 +100,12 @@ Global
 		{F05E32F1-4747-47DC-9644-9D41CF116AAB}.Debug-2022|Any CPU.Build.0 = Debug|Any CPU
 		{F05E32F1-4747-47DC-9644-9D41CF116AAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F05E32F1-4747-47DC-9644-9D41CF116AAB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9FCFDBD3-D77C-49F9-9814-C47877DD2810}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9FCFDBD3-D77C-49F9-9814-C47877DD2810}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9FCFDBD3-D77C-49F9-9814-C47877DD2810}.Debug-2022|Any CPU.ActiveCfg = Debug|Any CPU
-		{9FCFDBD3-D77C-49F9-9814-C47877DD2810}.Debug-2022|Any CPU.Build.0 = Debug|Any CPU
-		{9FCFDBD3-D77C-49F9-9814-C47877DD2810}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9FCFDBD3-D77C-49F9-9814-C47877DD2810}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3DFE520-906C-4B30-9464-F934CABB209E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3DFE520-906C-4B30-9464-F934CABB209E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3DFE520-906C-4B30-9464-F934CABB209E}.Debug-2022|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3DFE520-906C-4B30-9464-F934CABB209E}.Debug-2022|Any CPU.Build.0 = Debug|Any CPU
+		{B3DFE520-906C-4B30-9464-F934CABB209E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3DFE520-906C-4B30-9464-F934CABB209E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -119,7 +119,7 @@ Global
 		{3E444894-807C-43AC-86B1-F6D81EEE4BE3} = {C374FFBE-47C7-4BA1-AAA6-B6FEF3054203}
 		{EB4586EA-EC53-4CC4-B1AD-A7720D12C098} = {8035588D-6DAE-4411-AAA2-3D3FF1309C20}
 		{F05E32F1-4747-47DC-9644-9D41CF116AAB} = {8035588D-6DAE-4411-AAA2-3D3FF1309C20}
-		{9FCFDBD3-D77C-49F9-9814-C47877DD2810} = {91570926-EAE2-40AC-8CC6-650DC7862D95}
+		{B3DFE520-906C-4B30-9464-F934CABB209E} = {91570926-EAE2-40AC-8CC6-650DC7862D95}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {485F7081-62E2-49CF-8968-A48D402BE6B4}
